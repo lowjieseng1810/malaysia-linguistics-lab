@@ -1,0 +1,463 @@
+{% extends "base.html" %}
+
+{% block title %}
+Safety & Respect | Malaysian Language Heritage Explorer
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+.safety-page {
+    padding: 34px 0 70px;
+}
+
+.safety-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 54px 46px;
+    margin-bottom: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12, 52, 38, 0.96),
+            rgba(25, 77, 57, 0.82)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 28px;
+
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.safety-hero::after {
+    content: "";
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    right: -100px;
+    top: -140px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(217, 180, 74, 0.22),
+            transparent 68%
+        );
+
+    pointer-events: none;
+}
+
+.safety-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 14px;
+
+    color: #E5C65D;
+
+    font-size: 0.78rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.safety-title {
+    max-width: 760px;
+
+    margin: 0 0 18px;
+
+    font-size: clamp(2.3rem, 5vw, 4.5rem);
+    font-weight: 800;
+
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+}
+
+.safety-intro {
+    max-width: 760px;
+
+    margin: 0;
+
+    color: rgba(246, 248, 247, 0.82);
+
+    font-size: 1.08rem;
+    line-height: 1.75;
+}
+
+.safety-principle {
+    margin-top: 28px;
+    padding: 18px 20px;
+
+    max-width: 760px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-left: 3px solid #D9B44A;
+    border-radius: 0 16px 16px 0;
+
+    color: rgba(255, 255, 255, 0.92);
+
+    line-height: 1.65;
+}
+
+.safety-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.safety-card {
+    position: relative;
+
+    min-height: 280px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 64, 47, 0.88),
+            rgba(11, 42, 31, 0.88)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.22);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.safety-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(217, 180, 74, 0.46);
+}
+
+.safety-number {
+    margin-bottom: 22px;
+
+    color: #E5C65D;
+
+    font-size: 0.76rem;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+}
+
+.safety-card h2 {
+    margin-bottom: 14px;
+
+    font-size: 1.45rem;
+    font-weight: 750;
+}
+
+.safety-card p {
+    margin: 0;
+
+    color: rgba(246, 248, 247, 0.76);
+
+    line-height: 1.75;
+}
+
+.safety-card-wide {
+    grid-column: 1 / -1;
+
+    min-height: auto;
+}
+
+.safety-status {
+    display: inline-flex;
+    align-items: center;
+
+    margin-top: 20px;
+    padding: 9px 13px;
+
+    background: rgba(217, 180, 74, 0.10);
+
+    border:
+        1px solid rgba(217, 180, 74, 0.28);
+
+    border-radius: 999px;
+
+    color: #F0D77E;
+
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.safety-footer-note {
+    margin-top: 22px;
+    padding: 26px 28px;
+
+    background: rgba(7, 29, 21, 0.72);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 22px;
+
+    color: rgba(246, 248, 247, 0.78);
+
+    line-height: 1.75;
+}
+
+.safety-footer-note strong {
+    color: white;
+}
+
+@media (max-width: 768px) {
+
+    .safety-page {
+        padding-top: 18px;
+    }
+
+    .safety-hero {
+        padding: 38px 25px;
+        border-radius: 22px;
+    }
+
+    .safety-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .safety-card-wide {
+        grid-column: auto;
+    }
+
+    .safety-card {
+        min-height: auto;
+        padding: 25px;
+    }
+
+}
+
+</style>
+
+
+<section class="safety-page">
+
+    <header class="safety-hero">
+
+        <span class="safety-eyebrow">
+            Safety · Respect · Responsibility
+        </span>
+
+        <h1 class="safety-title">
+            Learn with respect.
+            Explore with care.
+        </h1>
+
+        <p class="safety-intro">
+This project introduces selected Malaysian languages
+as living forms of communication connected with real
+people, communities, histories, and places.
+            Learning should never turn a community into a curiosity
+            or reduce a living culture to a collection of objects.
+        </p>
+
+        <div class="safety-principle">
+            The goal is not to speak for communities. The goal is
+            to create a careful learning space that makes sources,
+            limitations, and the need for community review visible.
+        </div>
+
+    </header>
+
+
+    <div class="safety-grid">
+
+        <article class="safety-card">
+
+            <div class="safety-number">
+                PRINCIPLE 01
+            </div>
+
+            <h2>
+                Respect living communities
+            </h2>
+
+            <p>
+                The languages presented here belong to living
+                communities. They should not be treated as
+                costumes, decorations, historical relics, or
+                entertainment. Cultural material is presented
+                to support understanding of the people and places
+                connected with each language.
+            </p>
+
+        </article>
+
+
+        <article class="safety-card">
+
+            <div class="safety-number">
+                PRINCIPLE 02
+            </div>
+
+            <h2>
+                Cultural sensitivity
+            </h2>
+
+            <p>
+                Not every tradition, object, ceremony, story, or
+                form of knowledge should automatically be placed
+                online. Material that may be sacred, restricted,
+                private, or sensitive requires greater care and
+                should not be presented simply because it is
+                available somewhere on the internet.
+            </p>
+
+        </article>
+
+
+        <article class="safety-card">
+
+            <div class="safety-number">
+                PRINCIPLE 03
+            </div>
+
+            <h2>
+                Source transparency
+            </h2>
+
+            <p>
+                Photographs, maps, videos, and research materials
+                should be connected to their sources wherever
+                possible. Historical artworks should be identified
+                as historical representations, and images should
+                not be presented as evidence of present-day life
+                when they are not.
+            </p>
+
+        </article>
+
+
+        <article class="safety-card">
+
+            <div class="safety-number">
+                PRINCIPLE 04
+            </div>
+
+            <h2>
+                Language diversity matters
+            </h2>
+
+            <p>
+                A language name can include regional and local
+                differences. This is especially important for
+                language traditions such as Bidayuh. Learning
+                material should identify the variety being taught
+                instead of presenting every community as if it
+                speaks in exactly the same way.
+            </p>
+
+        </article>
+
+
+        <article class="safety-card">
+
+            <div class="safety-number">
+                PRINCIPLE 05
+            </div>
+
+            <h2>
+                Learning content has limits
+            </h2>
+
+            <p>
+                A digital learning resource cannot replace fluent
+                speakers, community knowledge, or full linguistic
+                documentation. Material under development should
+                remain clearly marked as under review until it has
+                been checked against reliable sources and, where
+                possible, reviewed with appropriate speakers or
+                community contributors.
+            </p>
+
+            <div class="safety-status">
+                Under Review ≠ Community Verified
+            </div>
+
+        </article>
+
+
+        <article class="safety-card">
+
+            <div class="safety-number">
+                PRINCIPLE 06
+            </div>
+
+            <h2>
+                Corrections are part of the project
+            </h2>
+
+            <p>
+                Language and cultural information can be incomplete,
+                outdated, or wrong. Corrections should be welcomed,
+                reviewed carefully, and supported with context or
+                reliable evidence. Community knowledge should not
+                be dismissed simply because a digital resource is
+                already published.
+            </p>
+
+        </article>
+
+
+        <article class="safety-card safety-card-wide">
+
+            <div class="safety-number">
+                PROJECT POSITION
+            </div>
+
+            <h2>
+                An independent educational project
+            </h2>
+
+            <p>
+                Malaysian Language Heritage Explorer is an
+                independent educational project. It does not claim
+                to officially represent the Iban, Kadazan-Dusun,
+                Bidayuh, Mah Meri, or any other community featured
+                in the project. Unless clearly stated otherwise,
+                content should not be interpreted as official
+                community endorsement or as a replacement for
+                community-led language education.
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <div class="safety-footer-note">
+
+        <strong>
+            A responsible language project should be able to show
+            what it knows, what it does not yet know, and who still
+            needs to be heard.
+        </strong>
+
+        This page will continue to develop alongside the project,
+        especially as learning materials, community review, source
+        records, and correction systems become more complete.
+
+    </div>
+
+</section>
+
+{% endblock %}

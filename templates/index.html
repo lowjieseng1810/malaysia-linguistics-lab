@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Malaysian Language Heritage Explorer</h1>
+
+    {% if session.username %}
+        <p>Welcome back, <strong>{{ session.username }}</strong>! You are logged in.</p>
+    {% else %}
+        <p>Welcome! Please <a href="{{ url_for('login') }}">login</a> or
+           <a href="{{ url_for('register') }}">register</a> to get started.</p>
+    {% endif %}
+{% endblock %}

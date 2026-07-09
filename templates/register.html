@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register | Malaysian Language Heritage Explorer
+{% endblock %}
+
+{% block content %}
+
+<h2>Register</h2>
+
+<form
+    method="POST"
+    class="mt-3"
+    style="max-width: 400px;"
+    id="registerForm"
+>
+
+    <input
+        type="hidden"
+        name="csrf_token"
+        value="{{ csrf_token() }}"
+    >
+
+
+    <div class="mb-3">
+
+        <label
+            for="username"
+            class="form-label"
+        >
+            Username
+        </label>
+
+        <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            minlength="3"
+            maxlength="30"
+            autocomplete="username"
+            required
+        >
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label
+            for="email"
+            class="form-label"
+        >
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            maxlength="254"
+            autocomplete="email"
+            required
+        >
+
+        <div class="form-text text-light opacity-75">
+            Used for password recovery.
+        </div>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label
+            for="password"
+            class="form-label"
+        >
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            minlength="8"
+            maxlength="128"
+            autocomplete="new-password"
+            required
+        >
+
+        <div class="form-text text-light opacity-75">
+            Use at least 8 characters.
+        </div>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label
+            for="confirm_password"
+            class="form-label"
+        >
+            Confirm Password
+        </label>
+
+        <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            class="form-control"
+            minlength="8"
+            maxlength="128"
+            autocomplete="new-password"
+            required
+        >
+
+        <div
+            id="passwordMismatch"
+            class="text-warning mt-2"
+            style="display: none;"
+        >
+            Passwords do not match.
+        </div>
+
+    </div>
+
+
+    <div class="form-check mb-3">
+
+        <input
+            type="checkbox"
+            class="form-check-input"
+            id="showPasswords"
+        >
+
+        <label
+            class="form-check-label"
+            for="showPasswords"
+        >
+            Show passwords
+        </label>
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="btn btn-primary"
+    >
+        Register
+    </button>
+
+</form>
+
+
+<p class="mt-3">
+
+    Already have an account?
+
+    <a href="{{ url_for('login') }}">
+        Login here
+    </a>.
+
+</p>
+
+
+<script>
+
+const passwordInput =
+    document.getElementById("password");
+
+const confirmPasswordInput =
+    document.getElementById("confirm_password");
+
+const showPasswordsCheckbox =
+    document.getElementById("showPasswords");
+
+const registerForm =
+    document.getElementById("registerForm");
+
+const passwordMismatch =
+    document.getElementById("passwordMismatch");
+
+
+showPasswordsCheckbox.addEventListener(
+    "change",
+    function () {
+
+        const inputType =
+            this.checked
+                ? "text"
+                : "password";
+
+        passwordInput.type = inputType;
+
+        confirmPasswordInput.type = inputType;
+
+    }
+);
+
+
+registerForm.addEventListener(
+    "submit",
+    function (event) {
+
+        if (
+            passwordInput.value !==
+            confirmPasswordInput.value
+        ) {
+
+            event.preventDefault();
+
+            passwordMismatch.style.display =
+                "block";
+
+            confirmPasswordInput.focus();
+
+            return;
+        }
+
+        passwordMismatch.style.display =
+            "none";
+
+    }
+);
+
+
+confirmPasswordInput.addEventListener(
+    "input",
+    function () {
+
+        if (
+            confirmPasswordInput.value ===
+            passwordInput.value
+        ) {
+
+            passwordMismatch.style.display =
+                "none";
+
+        }
+
+    }
+);
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,3106 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Malaysian Language Heritage Explorer{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<main class="dashboard-page">
+
+
+    <!-- ================= DASHBOARD HERO ================= -->
+
+    <section class="dashboard-hero">
+
+        <span class="hero-eyebrow">
+            Your Learning Journey
+        </span>
+
+        <h1>
+            Welcome back, {{ username }}
+        </h1>
+
+        <p>
+            Explore Malaysia's linguistic heritage, learn at your own pace,
+            and continue discovering the languages and cultures that make
+            the country unique.
+        </p>
+
+    </section>
+
+
+    <!-- ================= YOUR LANGUAGES ================= -->
+
+   <section class="dashboard-languages-section"
+         id="languages"
+         aria-labelledby="languages-heading">
+    
+         <div class="dashboard-section-header">
+
+        <div>
+
+            <h2 id="languages-heading">
+                Your Languages
+            </h2>
+
+            <p>
+                Choose a language to continue your learning journey.
+            </p>
+
+        </div>
+
+        <span class="language-count">
+            4 languages
+        </span>
+
+    </div>
+
+
+    <div class="language-grid">
+
+
+        <!-- IBAN -->
+
+        <a class="language-card iban-card"
+           href="{{ url_for('language_page', lang_key='iban') }}"
+           aria-label="Open Iban language course">
+
+            <div class="language-card-content">
+
+                <span class="language-region">
+                    Sarawak
+                </span>
+
+                <h3 class="language-name">
+                    Iban
+                </h3>
+
+                <p class="language-description">
+                    Discover one of Sarawak's most widely spoken
+                    indigenous languages.
+                </p>
+
+
+                <div class="progress-area">
+
+                    <div class="progress-label-row">
+
+                        <span class="progress-label">
+                            Learning progress
+                        </span>
+
+                        <span class="progress-percent">
+                            {{ language_progress['iban']['percentage'] }}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track"
+                         role="progressbar"
+                         aria-label="Iban learning progress"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         aria-valuenow="{{ language_progress['iban']['percentage'] }}">
+
+                        <progress class="progress-fill"
+                                  max="100"
+                                  value="{{ language_progress['iban']['percentage'] }}">
+                        </progress>
+
+                    </div>
+
+                </div>
+
+
+                <div class="language-card-footer">
+
+                    <span class="continue-text">
+
+                        {% if language_progress['iban']['percentage'] > 0 %}
+                            Continue learning
+                        {% else %}
+                            Start learning
+                        {% endif %}
+
+                    </span>
+
+                    <span class="card-arrow"
+                          aria-hidden="true">
+                        →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- KADAZAN-DUSUN -->
+
+        <a class="language-card kadazan-card"
+           href="{{ url_for('language_page', lang_key='kadazan-dusun') }}"
+           aria-label="Open Kadazan-Dusun language course">
+
+            <div class="language-card-content">
+
+                <span class="language-region">
+                    Sabah
+                </span>
+
+                <h3 class="language-name">
+                    Kadazan-Dusun
+                </h3>
+
+                <p class="language-description">
+                    Begin exploring a major indigenous language
+                    tradition from Sabah.
+                </p>
+
+
+                <div class="progress-area">
+
+                    <div class="progress-label-row">
+
+                        <span class="progress-label">
+                            Learning progress
+                        </span>
+
+                        <span class="progress-percent">
+                            {{ language_progress['kadazan-dusun']['percentage'] }}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track"
+                         role="progressbar"
+                         aria-label="Kadazan-Dusun learning progress"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         aria-valuenow="{{ language_progress['kadazan-dusun']['percentage'] }}">
+
+                        <progress class="progress-fill"
+                                  max="100"
+                                  value="{{ language_progress['kadazan-dusun']['percentage'] }}">
+                        </progress>
+
+                    </div>
+
+                </div>
+
+
+                <div class="language-card-footer">
+
+                    <span class="continue-text">
+
+                        {% if language_progress['kadazan-dusun']['percentage'] > 0 %}
+                            Continue learning
+                        {% else %}
+                            Start learning
+                        {% endif %}
+
+                    </span>
+
+                    <span class="card-arrow"
+                          aria-hidden="true">
+                        →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- BIDAYUH -->
+
+        <a class="language-card bidayuh-card"
+           href="{{ url_for('language_page', lang_key='bidayuh') }}"
+           aria-label="Open Bidayuh language course">
+
+            <div class="language-card-content">
+
+                <span class="language-region">
+                    Sarawak
+                </span>
+
+                <h3 class="language-name">
+                    Bidayuh
+                </h3>
+
+                <p class="language-description">
+                    Explore the language and cultural heritage of
+                    Bidayuh communities in Sarawak.
+                </p>
+
+
+                <div class="progress-area">
+
+                    <div class="progress-label-row">
+
+                        <span class="progress-label">
+                            Learning progress
+                        </span>
+
+                        <span class="progress-percent">
+                            {{ language_progress['bidayuh']['percentage'] }}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track"
+                         role="progressbar"
+                         aria-label="Bidayuh learning progress"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         aria-valuenow="{{ language_progress['bidayuh']['percentage'] }}">
+
+                        <progress class="progress-fill"
+                                  max="100"
+                                  value="{{ language_progress['bidayuh']['percentage'] }}">
+                        </progress>
+
+                    </div>
+
+                </div>
+
+
+                <div class="language-card-footer">
+
+                    <span class="continue-text">
+
+                        {% if language_progress['bidayuh']['percentage'] > 0 %}
+                            Continue learning
+                        {% else %}
+                            Start learning
+                        {% endif %}
+
+                    </span>
+
+                    <span class="card-arrow"
+                          aria-hidden="true">
+                        →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <!-- MAH MERI -->
+
+        <a class="language-card mah-meri-card"
+           href="{{ url_for('language_page', lang_key='mah-meri') }}"
+           aria-label="Open Mah Meri language page">
+
+            <div class="language-card-content">
+
+                <span class="language-region">
+                    Selangor
+                </span>
+
+                <h3 class="language-name">
+                    Mah Meri
+                </h3>
+
+                <p class="language-description">
+                    Explore a living Indigenous language connected with
+                    coastal communities in Peninsular Malaysia.
+                </p>
+
+
+                <div class="progress-area">
+
+                    <div class="progress-label-row">
+
+                        <span class="progress-label">
+                            Learning progress
+                        </span>
+
+                        <span class="progress-percent">
+                            {{ language_progress['mah-meri']['percentage'] }}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track"
+                         role="progressbar"
+                         aria-label="Mah Meri learning progress"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         aria-valuenow="{{ language_progress['mah-meri']['percentage'] }}">
+
+                        <progress class="progress-fill"
+                                  max="100"
+                                  value="{{ language_progress['mah-meri']['percentage'] }}">
+                        </progress>
+
+                    </div>
+
+                </div>
+
+
+                <div class="language-card-footer">
+
+                    <span class="continue-text">
+
+                        {% if language_progress['mah-meri']['percentage'] > 0 %}
+                            Continue learning
+                        {% else %}
+                            Explore language
+                        {% endif %}
+
+                    </span>
+
+                    <span class="card-arrow"
+                          aria-hidden="true">
+                        →
+                    </span>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+    <!-- ================= EXPLORE MALAYSIA ================= -->
+
+    <section class="world-explorer-section"
+         id="world-explorer"
+         aria-labelledby="world-explorer-heading">
+
+        <div class="world-explorer-intro">
+
+            <span class="explorer-eyebrow">
+                Explore Where Languages Live
+            </span>
+
+            <h2 id="world-explorer-heading">
+                Begin from your place in the world
+            </h2>
+
+            <p>
+                Travel from where you are to the communities behind
+                Malaysia's living languages.
+            </p>
+
+        </div>
+
+
+        <div class="world-explorer-card"
+             id="world-explorer-card">
+
+
+            <!-- LEFT SIDE: STORY -->
+
+            <div class="world-explorer-content">
+
+                <span class="explorer-stage-label">
+                    Your Place in the World
+                </span>
+
+                <h3>
+                    Every language begins somewhere.
+                </h3>
+
+                <p>
+                    Start from your place in the world, then move closer
+                    to Malaysia and discover where these living languages
+                    continue to be spoken.
+                </p>
+
+
+                <div class="explorer-route">
+
+                    <div class="explorer-route-step is-active">
+
+                        <span class="route-step-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Your World
+                            </strong>
+
+                            <span>
+                                Begin where you are
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="explorer-route-line"
+                          aria-hidden="true">
+                    </span>
+
+
+                    <div class="explorer-route-step">
+
+                        <span class="route-step-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Malaysia
+                            </strong>
+
+                            <span>
+                                Move closer to the country
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <span class="explorer-route-line"
+                          aria-hidden="true">
+                    </span>
+
+
+                    <div class="explorer-route-step">
+
+                        <span class="route-step-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Living Languages
+                            </strong>
+
+                            <span>
+                                Discover communities and places
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button class="explore-world-button"
+                        id="explore-world-button"
+                        type="button">
+
+                    Explore the Map
+
+                    <span aria-hidden="true">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- RIGHT SIDE: EARTH EXPERIENCE -->
+
+            <div class="globe-stage"
+                 id="globe-stage"
+                 aria-label="Interactive world exploration area">
+
+
+                <!-- DECORATIVE ORBITS -->
+
+                <div class="globe-orbit globe-orbit-one"
+                     aria-hidden="true">
+                </div>
+
+                <div class="globe-orbit globe-orbit-two"
+                     aria-hidden="true">
+                </div>
+
+
+                <!-- INTERACTIVE GLOBE -->
+
+                <div class="globe-placeholder"
+                     id="interactive-globe">
+
+
+                    <!-- SPACE -->
+
+                    <div class="globe-space"
+                         aria-hidden="true">
+
+                        <span class="globe-star star-one"></span>
+                        <span class="globe-star star-two"></span>
+                        <span class="globe-star star-three"></span>
+                        <span class="globe-star star-four"></span>
+                        <span class="globe-star star-five"></span>
+
+                    </div>
+
+
+                    <!-- OUTER ATMOSPHERE -->
+
+                    <div class="earth-atmosphere"
+                         aria-hidden="true">
+                    </div>
+
+
+                    <!-- EARTH -->
+
+                    <div class="earth-sphere"
+                         id="earth-sphere"
+                         aria-hidden="true">
+
+
+                        <!-- OCEAN BASE -->
+
+                        <div class="earth-ocean">
+                        </div>
+
+
+                        <!-- REAL WORLD MAP LAYER -->
+
+                        <div class="earth-map-layer">
+
+                            <svg class="earth-world-map"
+                                 viewBox="0 0 1000 500"
+                                 preserveAspectRatio="xMidYMid slice"
+                                 xmlns="http://www.w3.org/2000/svg">
+
+
+                                <!-- NORTH AMERICA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M65 86
+                                      C88 58 122 43 159 46
+                                      C187 31 225 41 245 62
+                                      C268 67 281 85 270 101
+                                      C250 111 244 127 232 141
+                                      C214 148 213 165 199 177
+                                      C184 189 171 207 154 204
+                                      C145 189 134 176 119 168
+                                      C108 153 98 139 82 132
+                                      C70 118 55 105 65 86
+                                      Z
+
+                                      M183 190
+                                      C201 190 219 201 225 215
+                                      C217 226 207 230 199 224
+                                      C193 212 185 205 183 190
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- GREENLAND -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M239 35
+                                      C260 20 291 21 307 38
+                                      C312 55 303 75 286 89
+                                      C267 94 248 82 240 66
+                                      C235 55 233 43 239 35
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- SOUTH AMERICA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M219 228
+                                      C240 218 267 223 285 240
+                                      C300 253 309 273 303 292
+                                      C299 315 286 332 281 353
+                                      C272 376 262 401 245 425
+                                      C232 414 224 394 223 373
+                                      C216 353 207 334 201 314
+                                      C193 293 190 270 199 250
+                                      C203 240 209 233 219 228
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- EUROPE -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M444 103
+                                      C459 92 474 89 486 94
+                                      C499 86 518 92 524 105
+                                      C536 111 534 125 522 132
+                                      C511 138 499 135 490 141
+                                      C479 148 467 140 459 134
+                                      C447 139 435 132 432 121
+                                      C434 113 438 108 444 103
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- AFRICA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M445 145
+                                      C465 135 493 137 515 149
+                                      C535 160 548 178 550 200
+                                      C548 222 538 241 531 261
+                                      C522 285 511 312 491 333
+                                      C475 338 460 321 453 304
+                                      C445 286 440 268 431 250
+                                      C422 232 418 210 423 190
+                                      C426 170 434 156 445 145
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- ASIA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M515 92
+                                      C543 72 574 62 607 58
+                                      C638 50 674 55 704 65
+                                      C738 69 769 83 794 103
+                                      C818 115 836 134 839 151
+                                      C831 166 814 173 797 170
+                                      C785 181 770 188 753 186
+                                      C743 199 729 208 714 207
+                                      C700 220 683 221 669 211
+                                      C654 218 638 214 626 202
+                                      C610 202 597 192 588 180
+                                      C570 176 558 163 550 151
+                                      C536 148 524 141 516 132
+                                      C504 121 504 103 515 92
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- ARABIAN PENINSULA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M545 182
+                                      C558 181 575 188 583 200
+                                      C593 212 591 226 581 240
+                                      C568 242 555 233 548 220
+                                      C540 208 537 194 545 182
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- INDIA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M612 189
+                                      C628 190 647 199 655 213
+                                      C660 227 653 245 644 263
+                                      C635 275 625 260 620 248
+                                      C614 234 608 218 606 204
+                                      C605 197 607 192 612 189
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- SOUTHEAST ASIA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M672 194
+                                      C686 195 701 203 711 215
+                                      C720 225 724 238 716 248
+                                      C707 254 697 246 692 238
+                                      C682 233 674 223 670 213
+                                      C666 205 667 199 672 194
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- MALAY PENINSULA -->
+
+                                <path class="earth-continent earth-malaysia-region"
+                                      d="
+                                      M704 236
+                                      C711 239 716 247 716 256
+                                      C716 265 711 274 706 281
+                                      C700 277 698 267 699 258
+                                      C699 249 700 241 704 236
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- BORNEO -->
+
+                                <path class="earth-continent earth-malaysia-region"
+                                      d="
+                                      M737 252
+                                      C749 245 765 248 772 259
+                                      C777 271 771 284 760 291
+                                      C747 294 735 286 731 274
+                                      C728 265 731 257 737 252
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- INDONESIAN ARCHIPELAGO -->
+
+                                <path class="earth-island"
+                                      d="
+                                      M707 286
+                                      C723 281 742 282 756 288
+                                      C746 296 724 298 708 293
+                                      Z
+                                      ">
+                                </path>
+
+                                <path class="earth-island"
+                                      d="
+                                      M763 294
+                                      C781 289 800 292 814 300
+                                      C801 307 780 307 765 302
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- JAPAN -->
+
+                                <path class="earth-island"
+                                      d="
+                                      M817 132
+                                      C824 141 824 151 820 160
+                                      C816 168 812 164 813 155
+                                      C814 146 813 138 817 132
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- AUSTRALIA -->
+
+                                <path class="earth-continent"
+                                      d="
+                                      M753 313
+                                      C776 299 806 296 831 305
+                                      C853 313 870 330 875 350
+                                      C871 371 853 387 832 397
+                                      C808 402 783 393 765 378
+                                      C749 365 742 344 747 327
+                                      C748 321 750 317 753 313
+                                      Z
+                                      ">
+                                </path>
+
+
+                                <!-- NEW ZEALAND -->
+
+                                <path class="earth-island"
+                                      d="
+                                      M901 367
+                                      C908 374 912 385 908 396
+                                      C905 406 899 410 897 400
+                                      C895 389 896 376 901 367
+                                      Z
+                                      ">
+                                </path>
+
+
+                            </svg>
+
+                        </div>
+
+
+                        <!-- CLOUDS -->
+
+                        <div class="earth-cloud-layer">
+                        </div>
+
+
+                        <!-- SUNLIGHT -->
+
+                        <div class="earth-light">
+                        </div>
+
+
+                        <!-- NIGHT SIDE -->
+
+                        <div class="earth-night-shadow">
+                        </div>
+
+
+                        <!-- SURFACE GLASS -->
+
+                        <div class="earth-surface-glass">
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- MALAYSIA DESTINATION MARKER -->
+
+                    <div class="malaysia-globe-marker"
+                         id="malaysia-globe-marker"
+                         aria-hidden="true">
+
+                        <span class="malaysia-marker-ring">
+                        </span>
+
+                        <span class="malaysia-marker-dot">
+                        </span>
+
+                        <span class="malaysia-marker-label">
+                            Malaysia
+                        </span>
+
+                    </div>
+
+
+                    <!-- USER LOCATION MARKER
+                         JS WILL POSITION THIS -->
+
+                    <div class="user-globe-marker"
+                         id="user-globe-marker"
+                         aria-hidden="true">
+
+                        <span class="user-marker-ring">
+                        </span>
+
+                        <span class="user-marker-core">
+                        </span>
+
+                        <span class="user-marker-label">
+                            You are here
+                        </span>
+
+                    </div>
+
+
+                    <!-- COORDINATE LINES -->
+
+                    <div class="globe-coordinate-line globe-coordinate-one"
+                         aria-hidden="true">
+                    </div>
+
+                    <div class="globe-coordinate-line globe-coordinate-two"
+                         aria-hidden="true">
+                    </div>
+
+
+                </div>
+
+
+                <!-- LOCATION STATUS -->
+
+                <div class="globe-status"
+                     id="globe-status">
+
+                    <span class="globe-status-dot"
+                          aria-hidden="true">
+                    </span>
+
+                    <span id="globe-status-text">
+                        Finding your place in the world
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+   <!-- ================= LIVING LANGUAGE RECORDS ================= -->
+
+<section class="living-sound-preview"
+         id="living-records"
+         aria-labelledby="living-sound-heading">
+  
+         <div class="living-sound-intro">
+
+        <span class="explorer-eyebrow">
+            Listen & Discover
+        </span>
+
+        <h2 id="living-sound-heading">
+            Listen to Living Languages
+        </h2>
+
+        <p>
+            Choose a language and enter its world through learning,
+            community stories, and living cultural heritage.
+        </p>
+
+    </div>
+
+
+    <div class="language-record-grid">
+
+
+        <!-- IBAN RECORD -->
+
+        <a class="language-record-card iban-record"
+           href="{{ url_for('language_page', lang_key='iban') }}"
+           aria-label="Explore Iban">
+
+            <div class="language-record">
+
+                <span class="record-groove groove-one"></span>
+                <span class="record-groove groove-two"></span>
+                <span class="record-groove groove-three"></span>
+
+                <span class="record-label">
+
+                    <strong>
+                        Iban
+                    </strong>
+
+                    <small>
+                        Sarawak
+                    </small>
+
+                </span>
+
+                <span class="record-centre"></span>
+
+            </div>
+
+            <div class="record-card-content">
+
+                <span>
+                    Living Language 01
+                </span>
+
+                <strong>
+                    Iban
+                </strong>
+
+                <small>
+                    Sarawak
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- KADAZAN-DUSUN RECORD -->
+
+        <a class="language-record-card kadazan-record"
+           href="{{ url_for('language_page', lang_key='kadazan-dusun') }}"
+           aria-label="Explore Kadazan-Dusun">
+
+            <div class="language-record">
+
+                <span class="record-groove groove-one"></span>
+                <span class="record-groove groove-two"></span>
+                <span class="record-groove groove-three"></span>
+
+                <span class="record-label">
+
+                    <strong>
+                        Kadazan
+                    </strong>
+
+                    <small>
+                        Sabah
+                    </small>
+
+                </span>
+
+                <span class="record-centre"></span>
+
+            </div>
+
+            <div class="record-card-content">
+
+                <span>
+                    Living Language 02
+                </span>
+
+                <strong>
+                    Kadazan-Dusun
+                </strong>
+
+                <small>
+                    Sabah
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- BIDAYUH RECORD -->
+
+        <a class="language-record-card bidayuh-record"
+           href="{{ url_for('language_page', lang_key='bidayuh') }}"
+           aria-label="Explore Bidayuh">
+
+            <div class="language-record">
+
+                <span class="record-groove groove-one"></span>
+                <span class="record-groove groove-two"></span>
+                <span class="record-groove groove-three"></span>
+
+                <span class="record-label">
+
+                    <strong>
+                        Bidayuh
+                    </strong>
+
+                    <small>
+                        Sarawak
+                    </small>
+
+                </span>
+
+                <span class="record-centre"></span>
+
+            </div>
+
+            <div class="record-card-content">
+
+                <span>
+                    Living Language 03
+                </span>
+
+                <strong>
+                    Bidayuh
+                </strong>
+
+                <small>
+                    Sarawak
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- MAH MERI RECORD -->
+
+        <a class="language-record-card mah-meri-record"
+           href="{{ url_for('language_page', lang_key='mah-meri') }}"
+           aria-label="Explore Mah Meri">
+
+            <div class="language-record">
+
+                <span class="record-groove groove-one"></span>
+                <span class="record-groove groove-two"></span>
+                <span class="record-groove groove-three"></span>
+
+                <span class="record-label">
+
+                    <strong>
+                        Mah Meri
+                    </strong>
+
+                    <small>
+                        Selangor
+                    </small>
+
+                </span>
+
+                <span class="record-centre"></span>
+
+            </div>
+
+            <div class="record-card-content">
+
+                <span>
+                    Living Language 04
+                </span>
+
+                <strong>
+                    Mah Meri
+                </strong>
+
+                <small>
+                    Selangor
+                </small>
+
+            </div>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+<script src="{{ url_for('static', filename='js/mahmeri-data.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+<!-- =========================================================
+     IMMERSIVE CULTURAL LISTENING PLAYER
+     ========================================================= -->
+
+<div class="language-player-overlay"
+     id="languagePlayerOverlay"
+     aria-hidden="true">
+
+    <button class="player-close-button"
+            id="playerCloseButton"
+            type="button"
+            aria-label="Close player">
+        ×
+    </button>
+
+    <div class="player-ambient-glow"></div>
+
+    <section class="language-player-shell"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="playerLanguageName">
+
+        <!-- ================= LEFT ================= -->
+
+        <div class="player-record-stage">
+
+            <span class="player-eyebrow">
+                CULTURAL LISTENING
+            </span>
+
+            <div class="player-record-wrap">
+
+                <div class="player-record"
+                     id="playerRecord">
+
+                    <div class="player-record-art"
+                         id="playerRecordArt">
+                    </div>
+
+                    <div class="player-record-shine"></div>
+
+                    <div class="player-spindle"></div>
+
+                </div>
+
+            </div>
+
+            <div class="player-language-identity">
+
+                <span id="playerRegion">
+                    Malaysia
+                </span>
+
+                <h2 id="playerLanguageName">
+                    Living Language
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT ================= -->
+
+        <div class="player-control-panel">
+
+            <div class="player-track-info">
+
+                <span class="player-track-number"
+                      id="playerTrackLabel">
+                    LISTENING RECORD · 01
+                </span>
+
+                <h3 id="playerTrackTitle">
+                    Select a recording
+                </h3>
+
+                <p id="playerTrackArtist">
+                    Cultural listening experience
+                </p>
+
+            </div>
+
+
+            <!-- ================= PROGRESS ================= -->
+
+            <div class="player-progress-section">
+
+                <input
+                    class="player-progress"
+                    id="playerProgress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                    step="0.1"
+                    aria-label="Playback progress">
+
+                <div class="player-time-row">
+
+                    <span id="playerCurrentTime">
+                        0:00
+                    </span>
+
+                    <span id="playerDuration">
+                        0:00
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CONTROLS ================= -->
+
+            <div class="player-main-controls">
+
+                <button class="player-side-button"
+                        id="playerRestartButton"
+                        type="button"
+                        aria-label="Restart">
+                    ↺
+                </button>
+
+                <button class="player-play-button"
+                        id="playerPlayButton"
+                        type="button"
+                        aria-label="Play">
+
+                    <span id="playerPlayIcon">
+                        ▶
+                    </span>
+
+                </button>
+
+                <button class="player-speed-button"
+                        id="playerSpeedButton"
+                        type="button"
+                        aria-label="Change playback speed">
+                    1×
+                </button>
+
+            </div>
+
+
+            <!-- ================= STATUS ================= -->
+
+            <div class="player-status-message"
+                 id="playerStatusMessage">
+            </div>
+
+
+            <!-- ================= SOURCE VIDEO ================= -->
+
+            <div class="player-source-area"
+                 id="playerSourceArea">
+
+                <div class="player-source-header">
+
+                    <span>
+                        SOURCE VIDEO
+                    </span>
+
+                    <a id="playerSourceLink"
+                       href="#"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Open on YouTube ↗
+                    </a>
+
+                </div>
+
+                <div class="youtube-source-frame">
+
+                    <div id="youtubePlayer"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= NOTE ================= -->
+
+            <div class="player-listening-note">
+
+                <span>✦</span>
+
+                <p>
+                    Explore music connected with the communities
+                    and cultural worlds behind the languages.
+                    Original source remains available below.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<style>
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
+.language-player-overlay {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(42, 100, 72, 0.28),
+            transparent 45%
+        ),
+        rgba(3, 12, 8, 0.94);
+
+    backdrop-filter: blur(24px);
+
+    transition:
+        opacity 0.45s ease,
+        visibility 0.45s ease;
+}
+
+
+.language-player-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   CLOSE
+   ========================================================= */
+
+.player-close-button {
+    position: absolute;
+    z-index: 20;
+
+    top: 34px;
+    right: 42px;
+
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.16);
+
+    border-radius: 50%;
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.player-close-button:hover {
+    transform: rotate(90deg);
+
+    background:
+        rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   AMBIENT LIGHT
+   ========================================================= */
+
+.player-ambient-glow {
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(89, 190, 124, 0.15),
+            transparent 68%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PLAYER SHELL
+   ========================================================= */
+
+.language-player-shell {
+    position: relative;
+    z-index: 5;
+
+    width: min(1100px, 94vw);
+    min-height: 620px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.05fr 0.95fr;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(222, 242, 227, 0.13);
+
+    border-radius: 38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(21, 55, 39, 0.96),
+            rgba(7, 23, 16, 0.98)
+        );
+
+    box-shadow:
+        0 60px 120px rgba(0, 0, 0, 0.56),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    transform:
+        translateY(24px)
+        scale(0.97);
+
+    transition:
+        transform 0.5s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.language-player-overlay.is-open
+.language-player-shell {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   RECORD STAGE
+   ========================================================= */
+
+.player-record-stage {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 620px;
+
+    padding: 54px 40px;
+
+    background:
+        radial-gradient(
+            circle at 50% 42%,
+            rgba(117, 190, 129, 0.10),
+            transparent 45%
+        );
+}
+
+
+.player-eyebrow {
+    margin-bottom: 30px;
+
+    color:
+        rgba(226, 194, 110, 0.92);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 0.2em;
+}
+
+
+/* =========================================================
+   RECORD
+   ========================================================= */
+
+.player-record-wrap {
+    position: relative;
+
+    width: min(360px, 70vw);
+}
+
+
+.player-record {
+    position: relative;
+
+    width: 100%;
+    aspect-ratio: 1;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.045) 0 1px,
+            rgba(0, 0, 0, 0.15) 1px 4px
+        ),
+        radial-gradient(
+            circle at 35% 28%,
+            #333a35,
+            #101511 45%,
+            #020403 100%
+        );
+
+    box-shadow:
+        0 40px 70px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 0 40px rgba(0, 0, 0, 0.7);
+
+    animation:
+        playerRecordSpin 18s
+        linear infinite;
+
+    animation-play-state: paused;
+}
+
+
+.player-record.is-playing {
+    animation-play-state: running;
+}
+
+
+@keyframes playerRecordSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   RECORD ART
+   ========================================================= */
+
+.player-record-art {
+    position: absolute;
+
+    width: 73%;
+    aspect-ratio: 1;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background-size: cover;
+    background-position: center;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 0, 0, 0.35);
+}
+
+
+.player-record-shine {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 210deg,
+            transparent 0deg 22deg,
+            rgba(255, 255, 255, 0.14) 34deg,
+            rgba(255, 255, 255, 0.02) 62deg,
+            transparent 80deg 210deg,
+            rgba(255, 255, 255, 0.07) 228deg,
+            transparent 250deg
+        );
+
+    pointer-events: none;
+}
+
+
+.player-spindle {
+    position: absolute;
+    z-index: 10;
+
+    width: 10px;
+    height: 10px;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff2b9,
+            #a67d2d 55%,
+            #211707
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   LANGUAGE IDENTITY
+   ========================================================= */
+
+.player-language-identity {
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+
+.player-language-identity span {
+    color:
+        rgba(217, 232, 220, 0.6);
+
+    font-size: 13px;
+
+    letter-spacing: 0.08em;
+}
+
+
+.player-language-identity h2 {
+    margin: 7px 0 0;
+
+    color: #f5f7f3;
+
+    font-size:
+        clamp(30px, 4vw, 48px);
+
+    letter-spacing: -0.04em;
+}
+
+
+/* =========================================================
+   CONTROL PANEL
+   ========================================================= */
+
+.player-control-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 58px 58px;
+
+    border-left:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    background:
+        rgba(3, 15, 10, 0.28);
+}
+
+
+.player-track-number {
+    color: #d6b96d;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+}
+
+
+.player-track-info h3 {
+    margin: 16px 0 8px;
+
+    color: #f7f8f4;
+
+    font-size:
+        clamp(28px, 3.4vw, 42px);
+
+    line-height: 1.08;
+
+    letter-spacing: -0.04em;
+}
+
+
+.player-track-info p {
+    margin: 0;
+
+    color:
+        rgba(222, 235, 225, 0.58);
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.player-progress-section {
+    margin-top: 38px;
+}
+
+
+.player-progress {
+    width: 100%;
+
+    accent-color: #d9bd72;
+
+    cursor: pointer;
+}
+
+
+.player-time-row {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 10px;
+
+    color:
+        rgba(222, 235, 225, 0.48);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.player-main-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 24px;
+
+    margin-top: 30px;
+}
+
+
+.player-main-controls button {
+    cursor: pointer;
+}
+
+
+.player-side-button,
+.player-speed-button {
+    width: 52px;
+    height: 52px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    color:
+        rgba(245, 248, 244, 0.84);
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    font-size: 16px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.player-side-button:hover,
+.player-speed-button:hover {
+    transform: translateY(-3px);
+
+    background:
+        rgba(255, 255, 255, 0.10);
+}
+
+
+.player-play-button {
+    width: 82px;
+    height: 82px;
+
+    display: grid;
+    place-items: center;
+
+    border: none;
+    border-radius: 50%;
+
+    color: #132217;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3df9a,
+            #caa853
+        );
+
+    font-size: 25px;
+
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.34),
+        0 0 30px rgba(217, 189, 114, 0.13);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.player-play-button:hover {
+    transform: scale(1.07);
+
+    box-shadow:
+        0 20px 42px rgba(0, 0, 0, 0.42),
+        0 0 38px rgba(217, 189, 114, 0.22);
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.player-status-message {
+    min-height: 22px;
+
+    margin-top: 18px;
+
+    color:
+        rgba(226, 194, 110, 0.86);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   YOUTUBE SOURCE
+   ========================================================= */
+
+.player-source-area {
+    margin-top: 18px;
+}
+
+
+.player-source-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    color:
+        rgba(220, 233, 223, 0.48);
+}
+
+
+.player-source-header a {
+    color:
+        rgba(226, 194, 110, 0.82);
+
+    text-decoration: none;
+}
+
+
+.youtube-source-frame {
+    width: 100%;
+    height: 78px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 14px;
+
+    background: #07100b;
+}
+
+
+.youtube-source-frame iframe {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   NOTE
+   ========================================================= */
+
+.player-listening-note {
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 22px;
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.player-listening-note span {
+    color: #d8ba6b;
+}
+
+
+.player-listening-note p {
+    margin: 0;
+
+    color:
+        rgba(220, 233, 223, 0.48);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CLICKABLE CARDS
+   ========================================================= */
+
+.language-record-card {
+    cursor: pointer;
+}
+
+
+.language-record-card::after {
+    content: "Open listening experience →";
+
+    display: block;
+
+    margin-top: 14px;
+
+    color:
+        rgba(226, 194, 110, 0);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transform: translateY(5px);
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.language-record-card:hover::after {
+    color:
+        rgba(226, 194, 110, 0.9);
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .language-player-overlay {
+        padding: 18px;
+
+        overflow-y: auto;
+    }
+
+
+    .language-player-shell {
+        grid-template-columns: 1fr;
+
+        margin: auto 0;
+    }
+
+
+    .player-record-stage {
+        min-height: auto;
+
+        padding:
+            50px 24px 36px;
+    }
+
+
+    .player-control-panel {
+        padding:
+            42px 28px 50px;
+
+        border-left: none;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.07);
+    }
+
+
+    .player-close-button {
+        position: fixed;
+
+        top: 18px;
+        right: 18px;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     YOUTUBE IFRAME API
+     ========================================================= -->
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+
+<script>
+
+/* =========================================================
+   CULTURAL LISTENING PLAYER
+   ========================================================= */
+
+
+const languagePlayerData = {
+
+    iban: {
+        name: "Iban",
+        region: "Sarawak",
+        label: "CULTURAL LISTENING · 01",
+        title: "Music of Sarawak — Taboh Iban Ngajat",
+        artist: "Bujang Gelau",
+        art: "/static/images/iban_record_art.png",
+        youtubeId: "DkiSauJXJJI"
+    },
+
+    "kadazan-dusun": {
+    name: "Kadazan-Dusun",
+    region: "Penampang, Sabah",
+    label: "CULTURAL LISTENING · 02",
+    title: "Muzik Tarian Tradisional Sabah — Sumazau",
+    artist: "Kadazan-Dusun · Penampang",
+    art: "/static/images/kadazan_record_art.png",
+    youtubeId: "_LYi70yWQjY"
+},
+
+    bidayuh: {
+    name: "Bidayuh",
+    region: "Sarawak",
+    label: "CULTURAL LISTENING · 03",
+    title: "Taboh Bidayuh — Rejang Beuh",
+    artist: "Music of Sarawak",
+    art: "/static/images/bidayuh_record_art.png",
+    youtubeId: "GYZskUdeBR0"
+},
+
+    "mah-meri": {
+    name: "Mah Meri",
+    region: "Pulau Carey, Selangor",
+    label: "CULTURAL LISTENING · 04",
+    title: "The Mah Meri of Pulau Carey",
+    artist: "PUSAKA · Evenings at Publika",
+    art: "/static/images/mah_meri_record_art.png",
+    youtubeId: "3vFgN-k597o"
+}
+
+};
+
+
+const overlay =
+    document.getElementById(
+        "languagePlayerOverlay"
+    );
+
+const closeButton =
+    document.getElementById(
+        "playerCloseButton"
+    );
+
+const playButton =
+    document.getElementById(
+        "playerPlayButton"
+    );
+
+const playIcon =
+    document.getElementById(
+        "playerPlayIcon"
+    );
+
+const record =
+    document.getElementById(
+        "playerRecord"
+    );
+
+const recordArt =
+    document.getElementById(
+        "playerRecordArt"
+    );
+
+const progress =
+    document.getElementById(
+        "playerProgress"
+    );
+
+const currentTimeText =
+    document.getElementById(
+        "playerCurrentTime"
+    );
+
+const durationText =
+    document.getElementById(
+        "playerDuration"
+    );
+
+const speedButton =
+    document.getElementById(
+        "playerSpeedButton"
+    );
+
+const restartButton =
+    document.getElementById(
+        "playerRestartButton"
+    );
+
+const statusMessage =
+    document.getElementById(
+        "playerStatusMessage"
+    );
+
+const sourceArea =
+    document.getElementById(
+        "playerSourceArea"
+    );
+
+const sourceLink =
+    document.getElementById(
+        "playerSourceLink"
+    );
+
+
+let youtubePlayer = null;
+
+let youtubeReady = false;
+
+let currentLanguageKey = null;
+
+let currentVideoId = null;
+
+let progressTimer = null;
+
+let pendingVideoId = null;
+
+
+const speedOptions = [
+    0.75,
+    1,
+    1.25,
+    1.5,
+    2
+];
+
+let speedIndex = 1;
+
+
+/* =========================================================
+   YOUTUBE API READY
+   ========================================================= */
+
+function onYouTubeIframeAPIReady() {
+
+    youtubePlayer =
+        new YT.Player(
+            "youtubePlayer",
+            {
+
+                height: "78",
+                width: "100%",
+
+                videoId: "",
+
+                playerVars: {
+                    controls: 1,
+                    rel: 0,
+                    playsinline: 1
+                },
+
+                events: {
+
+                    onReady:
+                        handleYouTubeReady,
+
+                    onStateChange:
+                        handleYouTubeStateChange,
+
+                    onError:
+                        handleYouTubeError
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   YOUTUBE READY
+   ========================================================= */
+
+function handleYouTubeReady() {
+
+    youtubeReady = true;
+
+
+    if (pendingVideoId) {
+
+        loadCurrentVideo(
+            pendingVideoId
+        );
+
+        pendingVideoId = null;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD VIDEO
+   ========================================================= */
+
+function loadCurrentVideo(
+    videoId
+) {
+
+    if (
+        !youtubeReady ||
+        !youtubePlayer
+    ) {
+
+        pendingVideoId =
+            videoId;
+
+        return;
+
+    }
+
+
+    youtubePlayer.cueVideoById(
+        videoId
+    );
+
+
+    progress.value =
+        0;
+
+    currentTimeText.textContent =
+        "0:00";
+
+    durationText.textContent =
+        "0:00";
+
+}
+
+
+/* =========================================================
+   OPEN PLAYER
+   ========================================================= */
+
+function openLanguagePlayer(
+    languageKey
+) {
+
+    const data =
+        languagePlayerData[
+            languageKey
+        ];
+
+
+    if (!data) {
+        return;
+    }
+
+
+    currentLanguageKey =
+        languageKey;
+
+
+    currentVideoId =
+        data.youtubeId;
+
+
+    document.getElementById(
+        "playerLanguageName"
+    ).textContent =
+        data.name;
+
+
+    document.getElementById(
+        "playerRegion"
+    ).textContent =
+        data.region;
+
+
+    document.getElementById(
+        "playerTrackLabel"
+    ).textContent =
+        data.label;
+
+
+    document.getElementById(
+        "playerTrackTitle"
+    ).textContent =
+        data.title;
+
+
+    document.getElementById(
+        "playerTrackArtist"
+    ).textContent =
+        data.artist;
+
+
+    recordArt.style.backgroundImage =
+        `url("${data.art}")`;
+
+
+    playIcon.textContent =
+        "▶";
+
+
+    record.classList.remove(
+        "is-playing"
+    );
+
+
+    progress.value =
+        0;
+
+
+    currentTimeText.textContent =
+        "0:00";
+
+
+    durationText.textContent =
+        "0:00";
+
+
+    speedIndex =
+        1;
+
+
+    speedButton.textContent =
+        "1×";
+
+
+    if (data.youtubeId) {
+
+        statusMessage.textContent =
+            "";
+
+
+        sourceArea.style.display =
+            "block";
+
+
+        sourceLink.href =
+            "https://www.youtube.com/watch?v=" +
+            data.youtubeId;
+
+
+        loadCurrentVideo(
+            data.youtubeId
+        );
+
+    } else {
+
+        statusMessage.textContent =
+            "This listening record is being prepared.";
+
+
+        sourceArea.style.display =
+            "none";
+
+    }
+
+
+    overlay.classList.add(
+        "is-open"
+    );
+
+
+    overlay.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =========================================================
+   CLOSE PLAYER
+   ========================================================= */
+
+function closeLanguagePlayer() {
+
+    if (
+        youtubeReady &&
+        youtubePlayer &&
+        typeof youtubePlayer.pauseVideo
+            === "function"
+    ) {
+
+        youtubePlayer.pauseVideo();
+
+    }
+
+
+    stopProgressTimer();
+
+
+    playIcon.textContent =
+        "▶";
+
+
+    record.classList.remove(
+        "is-playing"
+    );
+
+
+    overlay.classList.remove(
+        "is-open"
+    );
+
+
+    overlay.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================================
+   CARD CONNECTION
+   ========================================================= */
+
+const recordCards =
+    document.querySelectorAll(
+        ".language-record-card"
+    );
+
+
+recordCards.forEach(
+    (card) => {
+
+        card.addEventListener(
+            "click",
+            (event) => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                let languageKey =
+                    null;
+
+
+                if (
+                    card.classList.contains(
+                        "iban-record"
+                    )
+                ) {
+
+                    languageKey =
+                        "iban";
+
+                }
+
+
+                if (
+                    card.classList.contains(
+                        "kadazan-record"
+                    )
+                ) {
+
+                    languageKey =
+                        "kadazan-dusun";
+
+                }
+
+
+                if (
+                    card.classList.contains(
+                        "bidayuh-record"
+                    )
+                ) {
+
+                    languageKey =
+                        "bidayuh";
+
+                }
+
+
+                if (
+                    card.classList.contains(
+                        "mah-meri-record"
+                    )
+                ) {
+
+                    languageKey =
+                        "mah-meri";
+
+                }
+
+
+                if (languageKey) {
+
+                    openLanguagePlayer(
+                        languageKey
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PLAY / PAUSE
+   ========================================================= */
+
+playButton.addEventListener(
+    "click",
+    () => {
+
+        if (!currentVideoId) {
+
+            statusMessage.textContent =
+                "Recording coming soon.";
+
+            return;
+
+        }
+
+
+        if (
+            !youtubeReady ||
+            !youtubePlayer
+        ) {
+
+            statusMessage.textContent =
+                "Player is still loading. Try again in a moment.";
+
+            return;
+
+        }
+
+
+        const state =
+            youtubePlayer.getPlayerState();
+
+
+        if (
+            state ===
+            YT.PlayerState.PLAYING
+        ) {
+
+            youtubePlayer.pauseVideo();
+
+        } else {
+
+            youtubePlayer.playVideo();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PLAYER STATE
+   ========================================================= */
+
+function handleYouTubeStateChange(
+    event
+) {
+
+    if (
+        event.data ===
+        YT.PlayerState.PLAYING
+    ) {
+
+        playIcon.textContent =
+            "❚❚";
+
+
+        record.classList.add(
+            "is-playing"
+        );
+
+
+        statusMessage.textContent =
+            "";
+
+
+        startProgressTimer();
+
+    }
+
+
+    if (
+        event.data ===
+        YT.PlayerState.PAUSED
+    ) {
+
+        playIcon.textContent =
+            "▶";
+
+
+        record.classList.remove(
+            "is-playing"
+        );
+
+
+        stopProgressTimer();
+
+    }
+
+
+    if (
+        event.data ===
+        YT.PlayerState.ENDED
+    ) {
+
+        playIcon.textContent =
+            "▶";
+
+
+        record.classList.remove(
+            "is-playing"
+        );
+
+
+        stopProgressTimer();
+
+
+        progress.value =
+            100;
+
+    }
+
+}
+
+
+/* =========================================================
+   PROGRESS TIMER
+   ========================================================= */
+
+function startProgressTimer() {
+
+    stopProgressTimer();
+
+
+    progressTimer =
+        setInterval(
+            updateProgress,
+            500
+        );
+
+}
+
+
+function stopProgressTimer() {
+
+    if (progressTimer) {
+
+        clearInterval(
+            progressTimer
+        );
+
+
+        progressTimer =
+            null;
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE PROGRESS
+   ========================================================= */
+
+function updateProgress() {
+
+    if (
+        !youtubeReady ||
+        !youtubePlayer
+    ) {
+        return;
+    }
+
+
+    const currentTime =
+        youtubePlayer.getCurrentTime();
+
+
+    const duration =
+        youtubePlayer.getDuration();
+
+
+    if (
+        !duration ||
+        !Number.isFinite(duration)
+    ) {
+        return;
+    }
+
+
+    progress.value =
+        (
+            currentTime /
+            duration
+        ) * 100;
+
+
+    currentTimeText.textContent =
+        formatTime(
+            currentTime
+        );
+
+
+    durationText.textContent =
+        formatTime(
+            duration
+        );
+
+}
+
+
+/* =========================================================
+   FORMAT TIME
+   ========================================================= */
+
+function formatTime(
+    seconds
+) {
+
+    if (
+        !Number.isFinite(seconds)
+    ) {
+
+        return "0:00";
+
+    }
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const remainingSeconds =
+        Math.floor(
+            seconds % 60
+        );
+
+
+    return (
+        minutes +
+        ":" +
+        String(
+            remainingSeconds
+        ).padStart(
+            2,
+            "0"
+        )
+    );
+
+}
+
+
+/* =========================================================
+   SEEK
+   ========================================================= */
+
+progress.addEventListener(
+    "input",
+    () => {
+
+        if (
+            !youtubeReady ||
+            !youtubePlayer
+        ) {
+            return;
+        }
+
+
+        const duration =
+            youtubePlayer.getDuration();
+
+
+        if (!duration) {
+            return;
+        }
+
+
+        const newTime =
+            (
+                Number(
+                    progress.value
+                ) /
+                100
+            ) *
+            duration;
+
+
+        youtubePlayer.seekTo(
+            newTime,
+            true
+        );
+
+    }
+);
+
+
+/* =========================================================
+   RESTART
+   ========================================================= */
+
+restartButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            !youtubeReady ||
+            !youtubePlayer ||
+            !currentVideoId
+        ) {
+            return;
+        }
+
+
+        youtubePlayer.seekTo(
+            0,
+            true
+        );
+
+
+        progress.value =
+            0;
+
+
+        currentTimeText.textContent =
+            "0:00";
+
+    }
+);
+
+
+/* =========================================================
+   SPEED
+   ========================================================= */
+
+speedButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            !youtubeReady ||
+            !youtubePlayer ||
+            !currentVideoId
+        ) {
+            return;
+        }
+
+
+        speedIndex =
+            (
+                speedIndex + 1
+            ) %
+            speedOptions.length;
+
+
+        const requestedSpeed =
+            speedOptions[
+                speedIndex
+            ];
+
+
+        youtubePlayer.setPlaybackRate(
+            requestedSpeed
+        );
+
+
+        const actualSpeed =
+            youtubePlayer.getPlaybackRate();
+
+
+        speedButton.textContent =
+            actualSpeed + "×";
+
+    }
+);
+
+
+/* =========================================================
+   YOUTUBE ERROR
+   ========================================================= */
+
+function handleYouTubeError(
+    event
+) {
+
+    playIcon.textContent =
+        "▶";
+
+
+    record.classList.remove(
+        "is-playing"
+    );
+
+
+    stopProgressTimer();
+
+
+    statusMessage.textContent =
+        "This source cannot be played inside the website. Open the original source below.";
+
+
+    console.error(
+        "YouTube player error:",
+        event.data
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE EVENTS
+   ========================================================= */
+
+closeButton.addEventListener(
+    "click",
+    closeLanguagePlayer
+);
+
+
+overlay.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target ===
+            overlay
+        ) {
+
+            closeLanguagePlayer();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            closeLanguagePlayer();
+
+        }
+
+    }
+);
+
+</script>
+
+{% endblock %}

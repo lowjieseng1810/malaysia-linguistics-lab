@@ -1,0 +1,8822 @@
+/* =========================================
+   Malaysian Language Heritage Explorer
+   Dashboard Page
+   ========================================= */
+
+
+/* DASHBOARD LAYOUT */
+
+.dashboard-page {
+    width: 100%;
+    padding: 10px 0 40px;
+}
+
+
+/* HERO SECTION */
+
+.dashboard-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 34px 36px;
+    margin: 10px 0 34px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(22, 72, 52, 0.76),
+            rgba(10, 42, 31, 0.58)
+        );
+
+    box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.dashboard-hero::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -70px;
+    top: -100px;
+    border-radius: 50%;
+    background: rgba(217, 180, 74, 0.10);
+    pointer-events: none;
+}
+
+.hero-eyebrow {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #e6c96d;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.dashboard-hero h1 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    max-width: 720px;
+    color: #ffffff;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 750;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.dashboard-hero p {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+    margin: 14px 0 0;
+    color: rgba(244, 249, 246, 0.78);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+
+/* SECTION HEADER */
+
+.dashboard-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 18px;
+}
+
+.dashboard-section-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.dashboard-section-header p {
+    margin: 6px 0 0;
+    color: rgba(235, 243, 238, 0.68);
+    font-size: 0.92rem;
+}
+
+.language-count {
+    flex-shrink: 0;
+    padding: 7px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* LANGUAGE GRID */
+
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+
+/* FULL CLICKABLE LANGUAGE CARD */
+
+.language-card {
+    position: relative;
+    display: flex;
+    min-height: 300px;
+    overflow: hidden;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 24px;
+
+    background-color: rgba(13, 47, 35, 0.80);
+    background-size: cover;
+    background-position: center;
+
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* INDIVIDUAL LANGUAGE BACKGROUNDS */
+
+.language-card.iban-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.30) 0%,
+            rgba(7, 31, 23, 0.58) 48%,
+            rgba(6, 28, 20, 0.92) 100%
+        ),
+        url("../images/iban_bg.png");
+}
+
+.language-card.kadazan-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.28) 0%,
+            rgba(7, 31, 23, 0.57) 48%,
+            rgba(6, 28, 20, 0.92) 100%
+        ),
+        url("../images/kadazan_dusun_bg.png");
+}
+
+.language-card.bidayuh-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.30) 0%,
+            rgba(7, 31, 23, 0.58) 48%,
+            rgba(6, 28, 20, 0.92) 100%
+        ),
+        url("../images/bidayuh_bg.png");
+}
+
+
+/* CARD INTERACTION */
+
+.language-card:hover,
+.language-card:focus-visible {
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-5px);
+    border-color: rgba(230, 201, 109, 0.52);
+
+    box-shadow:
+        0 26px 60px rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.language-card:focus-visible {
+    outline: 3px solid rgba(230, 201, 109, 0.72);
+    outline-offset: 4px;
+}
+
+
+/* SUBTLE CARD DECORATION */
+
+.language-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.06),
+            transparent 42%
+        );
+
+    pointer-events: none;
+}
+
+.language-card::after {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    right: -40px;
+    bottom: -55px;
+    border-radius: 50%;
+    background: rgba(217, 180, 74, 0.09);
+    pointer-events: none;
+}
+
+
+/* CARD CONTENT */
+
+.language-card-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-height: 300px;
+    padding: 25px;
+}
+
+.language-region {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+
+    padding: 6px 10px;
+    margin-bottom: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+
+    background: rgba(7, 35, 25, 0.38);
+
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.language-name {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 1.55rem;
+    font-weight: 720;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.42);
+}
+
+.language-description {
+    margin: 9px 0 24px;
+
+    color: rgba(246, 250, 247, 0.84);
+
+    font-size: 0.88rem;
+    line-height: 1.6;
+
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+
+/* PROGRESS AREA */
+
+.progress-area {
+    margin-top: auto;
+}
+
+.progress-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.progress-label {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.progress-percent {
+    color: #f0d77f;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d9b44a,
+            #efd77e
+        );
+
+    transition: width 0.5s ease;
+}
+
+
+/* CARD FOOTER */
+
+.language-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.continue-text {
+    color: rgba(255, 255, 255, 0.90);
+    font-size: 0.82rem;
+    font-weight: 650;
+}
+
+.card-arrow {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+
+    background: rgba(7, 35, 25, 0.42);
+
+    color: #f1d77c;
+    font-size: 1.05rem;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.language-card:hover .card-arrow {
+    transform: translateX(3px);
+    background: rgba(255, 255, 255, 0.16);
+}
+
+
+/* TABLET */
+
+@media (max-width: 960px) {
+
+    .language-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 680px) {
+
+    .dashboard-page {
+        padding-top: 0;
+    }
+
+    .dashboard-hero {
+        padding: 27px 22px;
+        margin-top: 0;
+        margin-bottom: 28px;
+        border-radius: 22px;
+    }
+
+    .dashboard-hero h1 {
+        font-size: 2rem;
+    }
+
+    .dashboard-hero p {
+        font-size: 0.92rem;
+    }
+
+    .dashboard-section-header {
+        align-items: flex-start;
+        margin-bottom: 16px;
+    }
+
+    .language-count {
+        display: none;
+    }
+
+    .language-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .language-card {
+        min-height: 270px;
+        border-radius: 21px;
+    }
+
+    .language-card-content {
+        min-height: 270px;
+        padding: 22px;
+    }
+
+}
+
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .language-card,
+    .card-arrow,
+    .progress-fill {
+        transition: none;
+    }
+
+    .language-card:hover {
+        transform: none;
+    }
+
+}
+
+
+/* =========================================
+   WORLD EXPLORER
+   Dashboard Immersive Exploration
+   ========================================= */
+
+
+/* SECTION */
+
+.world-explorer-section {
+    position: relative;
+
+    margin-top: 86px;
+    margin-bottom: 72px;
+}
+
+
+/* INTRO */
+
+.world-explorer-intro {
+    max-width: 760px;
+
+    margin-bottom: 26px;
+}
+
+.explorer-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #e6c96d;
+
+    font-size: 0.74rem;
+    font-weight: 750;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.world-explorer-intro h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 760;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.world-explorer-intro p {
+    max-width: 650px;
+
+    margin: 13px 0 0;
+
+    color: rgba(238, 246, 241, 0.68);
+
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+
+
+/* MAIN EXPLORER CARD */
+
+.world-explorer-card {
+    position: relative;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 0.88fr)
+        minmax(420px, 1.12fr);
+
+    min-height: 590px;
+
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at 82% 35%,
+            rgba(52, 128, 91, 0.16),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(15, 59, 42, 0.92),
+            rgba(4, 27, 19, 0.94)
+        );
+
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.world-explorer-card::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255, 255, 255, 0.035),
+            transparent 38%
+        );
+
+    pointer-events: none;
+}
+
+.world-explorer-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(240, 215, 127, 0.42),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* LEFT CONTENT */
+
+.world-explorer-content {
+    position: relative;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 48px 18px 48px 48px;
+}
+
+.explorer-stage-label {
+    display: inline-flex;
+    align-self: flex-start;
+
+    padding: 7px 11px;
+    margin-bottom: 18px;
+
+    border: 1px solid rgba(240, 215, 127, 0.22);
+    border-radius: 999px;
+
+    background: rgba(217, 180, 74, 0.09);
+
+    color: #efd77e;
+
+    font-size: 0.69rem;
+    font-weight: 750;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+}
+
+.world-explorer-content h3 {
+    max-width: 500px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 760;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.world-explorer-content > p {
+    max-width: 520px;
+
+    margin: 17px 0 0;
+
+    color: rgba(238, 246, 241, 0.68);
+
+    font-size: 0.92rem;
+    line-height: 1.72;
+}
+
+
+/* ROUTE */
+
+.explorer-route {
+    display: flex;
+    align-items: center;
+
+    margin-top: 32px;
+}
+
+.explorer-route-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 0;
+
+    opacity: 0.46;
+}
+
+.explorer-route-step.is-active {
+    opacity: 1;
+}
+
+.route-step-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    flex: 0 0 34px;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 0.64rem;
+    font-weight: 750;
+}
+
+.explorer-route-step.is-active
+.route-step-number {
+    border-color:
+        rgba(240, 215, 127, 0.40);
+
+    background:
+        rgba(217, 180, 74, 0.13);
+
+    color: #efd77e;
+
+    box-shadow:
+        0 0 20px
+        rgba(217, 180, 74, 0.10);
+}
+
+.explorer-route-step strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 0.77rem;
+    font-weight: 700;
+}
+
+.explorer-route-step span:last-child {
+    display: block;
+
+    margin-top: 3px;
+
+    max-width: 105px;
+
+    color: rgba(238, 246, 241, 0.48);
+
+    font-size: 0.65rem;
+    line-height: 1.35;
+
+    white-space: normal;
+}
+
+.explorer-route-line {
+    width: 32px;
+    height: 1px;
+
+    flex: 0 1 32px;
+
+    margin: 0 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(240, 215, 127, 0.32),
+            rgba(255, 255, 255, 0.10)
+        );
+}
+
+
+/* EXPLORE BUTTON */
+
+.explore-world-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+
+    min-height: 48px;
+
+    margin-top: 34px;
+    padding: 11px 19px;
+
+    border: 1px solid
+        rgba(230, 201, 109, 0.30);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9b44a,
+            #efd77e
+        );
+
+    color: #183226;
+
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 780;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.23);
+
+    transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.explore-world-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 36px rgba(0, 0, 0, 0.30);
+}
+
+.explore-world-button span {
+    font-size: 1rem;
+
+    transition:
+        transform 0.22s ease;
+}
+
+.explore-world-button:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================
+   GLOBE STAGE
+   ========================================= */
+
+.globe-stage {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 0;
+    min-height: 590px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(61, 145, 105, 0.12),
+            transparent 48%
+        );
+}
+
+
+/* GLOBE */
+
+.globe-placeholder {
+    position: relative;
+    z-index: 3;
+
+    width: min(390px, 74%);
+    aspect-ratio: 1;
+
+    overflow: hidden;
+
+    border: 1px solid
+        rgba(240, 215, 127, 0.22);
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 32% 27%,
+            rgba(255, 255, 255, 0.16),
+            transparent 18%
+        ),
+        radial-gradient(
+            circle at 62% 58%,
+            rgba(72, 158, 111, 0.34),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 35% 68%,
+            rgba(217, 180, 74, 0.12),
+            transparent 18%
+        ),
+        linear-gradient(
+            145deg,
+            #1d6a4c,
+            #0b3d2b 52%,
+            #061f16
+        );
+
+    box-shadow:
+        inset -45px -35px 70px
+            rgba(0, 0, 0, 0.34),
+        inset 24px 18px 48px
+            rgba(255, 255, 255, 0.06),
+        0 0 0 12px
+            rgba(255, 255, 255, 0.018),
+        0 0 70px
+            rgba(52, 143, 98, 0.18);
+
+    animation:
+        globeFloat 5s ease-in-out infinite;
+}
+
+
+/* GLOBE GRID */
+
+.globe-placeholder-grid {
+    position: absolute;
+    inset: -20%;
+
+    border-radius: 50%;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 35px,
+            rgba(255, 255, 255, 0.055) 36px,
+            transparent 37px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 44px,
+            rgba(255, 255, 255, 0.045) 45px,
+            transparent 46px
+        );
+
+    transform:
+        rotate(-13deg)
+        scale(1.2);
+
+    animation:
+        globeGridMove 18s linear infinite;
+}
+
+
+/* LOCATION MARKER */
+
+.globe-location-marker {
+    position: absolute;
+z-index: 6;
+   
+top: 47%;
+    left: 58%;
+
+    width: 20px;
+    height: 20px;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.location-marker-core {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 10px;
+    height: 10px;
+
+    border: 2px solid
+        rgba(255, 255, 255, 0.92);
+    border-radius: 50%;
+
+    background: #efd77e;
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 15px
+        rgba(240, 215, 127, 0.75);
+}
+
+.location-marker-pulse {
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid
+        rgba(240, 215, 127, 0.62);
+    border-radius: 50%;
+
+    animation:
+        locationPulse 2.2s ease-out infinite;
+}
+
+
+/* ORBITS */
+
+.globe-orbit {
+    position: absolute;
+
+    z-index: 1;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.07);
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.globe-orbit-one {
+    width: 470px;
+    height: 470px;
+
+    transform:
+        rotate(17deg)
+        scaleY(0.42);
+}
+
+.globe-orbit-two {
+    width: 550px;
+    height: 550px;
+
+    border-color:
+        rgba(240, 215, 127, 0.06);
+
+    transform:
+        rotate(-25deg)
+        scaleY(0.35);
+}
+
+
+/* STATUS */
+
+.globe-status {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    bottom: 42px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+
+    background:
+        rgba(4, 27, 19, 0.56);
+
+    color:
+        rgba(238, 246, 241, 0.66);
+
+    font-size: 0.71rem;
+    font-weight: 650;
+
+    transform:
+        translateX(-50%);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.globe-status-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #efd77e;
+
+    box-shadow:
+        0 0 9px
+        rgba(240, 215, 127, 0.62);
+}
+
+
+/* =========================================
+   SOUND PREVIEW
+   ========================================= */
+
+.living-sound-preview {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 38px;
+
+    min-height: 220px;
+
+    padding: 34px 40px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.14);
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(19, 62, 45, 0.74),
+            rgba(8, 35, 25, 0.76)
+        );
+
+    box-shadow:
+        0 20px 48px rgba(0, 0, 0, 0.23);
+}
+
+.living-sound-preview > div:first-child {
+    position: relative;
+    z-index: 2;
+
+    max-width: 610px;
+}
+
+.living-sound-preview h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(1.7rem, 4vw, 2.7rem);
+    font-weight: 750;
+    line-height: 1.12;
+    letter-spacing: -0.04em;
+}
+
+.living-sound-preview p {
+    margin: 12px 0 0;
+
+    color: rgba(238, 246, 241, 0.65);
+
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+
+/* PREVIEW RECORD */
+
+.sound-preview-record {
+    position: relative;
+
+    width: 150px;
+    height: 150px;
+
+    flex: 0 0 150px;
+
+    border-radius: 50%;
+
+    background:
+        repeating-radial-gradient(
+            circle,
+            #10251c 0,
+            #10251c 4px,
+            #182e24 5px,
+            #182e24 7px
+        );
+
+    box-shadow:
+        0 20px 38px rgba(0, 0, 0, 0.30),
+        inset 0 0 0 1px
+            rgba(255, 255, 255, 0.08);
+
+    opacity: 0.82;
+
+    animation:
+        previewRecordSpin 12s linear infinite;
+}
+
+.sound-preview-record::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #e8cf78 0 14%,
+            #b99538 15% 100%
+        );
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 20px
+        rgba(217, 180, 74, 0.16);
+}
+
+.sound-preview-centre {
+    position: absolute;
+
+    z-index: 2;
+
+    top: 50%;
+    left: 50%;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #173226;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+
+@keyframes globeFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(2deg);
+    }
+}
+
+
+@keyframes globeGridMove {
+
+    from {
+        transform:
+            rotate(-13deg)
+            translateX(0)
+            scale(1.2);
+    }
+
+    to {
+        transform:
+            rotate(-13deg)
+            translateX(46px)
+            scale(1.2);
+    }
+}
+
+
+@keyframes locationPulse {
+
+    0% {
+        opacity: 0.8;
+        transform: scale(0.55);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(2.1);
+    }
+}
+
+
+@keyframes previewRecordSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   EXPLORER TABLET
+   ========================================= */
+
+@media (max-width: 1050px) {
+
+    .world-explorer-card {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(340px, 0.9fr);
+    }
+
+    .world-explorer-content {
+        padding:
+            42px 10px
+            42px 38px;
+    }
+
+    .explorer-route {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .explorer-route-line {
+        width: 1px;
+        height: 18px;
+
+        margin:
+            -2px 0 -2px 16px;
+    }
+}
+
+
+/* =========================================
+   EXPLORER MOBILE
+   ========================================= */
+
+@media (max-width: 780px) {
+
+    .world-explorer-section {
+        margin-top: 64px;
+        margin-bottom: 54px;
+    }
+
+    .world-explorer-card {
+        grid-template-columns: 1fr;
+
+        min-height: 0;
+
+        border-radius: 24px;
+    }
+
+    .world-explorer-content {
+        padding: 30px 23px 12px;
+    }
+
+    .globe-stage {
+        min-height: 430px;
+    }
+
+    .globe-placeholder {
+        width: min(310px, 72%);
+    }
+
+    .globe-orbit-one {
+        width: 370px;
+        height: 370px;
+    }
+
+    .globe-orbit-two {
+        width: 430px;
+        height: 430px;
+    }
+
+    .living-sound-preview {
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 28px 24px;
+    }
+
+    .sound-preview-record {
+        align-self: center;
+
+        width: 125px;
+        height: 125px;
+
+        flex-basis: 125px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .globe-stage {
+        min-height: 360px;
+    }
+
+    .globe-placeholder {
+        width: min(260px, 76%);
+    }
+
+    .globe-status {
+        bottom: 25px;
+
+        white-space: nowrap;
+    }
+
+    .explore-world-button {
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .globe-placeholder,
+    .globe-placeholder-grid,
+    .location-marker-pulse,
+    .sound-preview-record {
+        animation: none;
+    }
+
+    .explore-world-button,
+    .explore-world-button span {
+        transition: none;
+    }
+
+    .explore-world-button:hover {
+        transform: none;
+    }
+}
+
+/* =========================================
+   MALAYSIA GLOBE MARKER
+   ========================================= */
+
+.malaysia-globe-marker {
+    position: absolute;
+    z-index: 20;
+
+    top: 47%;
+    left: 58%;
+
+    width: 24px;
+    height: 24px;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+.malaysia-marker-dot {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 10px;
+    height: 10px;
+
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+
+    background: #efd77e;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow:
+        0 0 12px rgba(240, 215, 127, 0.95),
+        0 0 26px rgba(240, 215, 127, 0.55);
+}
+
+.malaysia-marker-ring {
+    position: absolute;
+    inset: 0;
+
+    border: 1px solid rgba(240, 215, 127, 0.75);
+    border-radius: 50%;
+
+    animation: malaysiaMarkerPulse 2.2s ease-out infinite;
+}
+
+.malaysia-marker-label {
+    position: absolute;
+
+    top: 50%;
+    left: 34px;
+
+    padding: 6px 10px;
+
+    border: 1px solid rgba(240, 215, 127, 0.24);
+    border-radius: 999px;
+
+    background: rgba(4, 27, 19, 0.78);
+
+    color: #efd77e;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+
+    transform: translateY(-50%);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+@keyframes malaysiaMarkerPulse {
+
+    0% {
+        transform: scale(0.55);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2.2);
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   WORLD EXPLORER TRAVEL TRANSITION
+   ========================================= */
+
+/* GLOBE PREPARATION */
+
+#interactive-globe {
+    transition:
+        transform 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s ease,
+        filter 1s ease;
+}
+
+.earth-sphere {
+    transition:
+        transform 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1s ease;
+}
+
+.malaysia-globe-marker {
+    transition:
+        transform 0.8s ease,
+        opacity 0.6s ease;
+}
+
+
+/* TRAVELLING */
+
+.world-explorer-card.is-travelling
+#interactive-globe {
+    transform: scale(1.75);
+}
+
+.world-explorer-card.is-travelling
+.earth-sphere {
+    transform: scale(1.08);
+    filter:
+        brightness(1.12)
+        saturate(1.08);
+}
+
+.world-explorer-card.is-travelling
+.malaysia-globe-marker {
+    transform:
+        translate(-50%, -50%)
+        scale(1.3);
+}
+
+
+/* FADE STORY WHILE APPROACHING */
+
+.world-explorer-card
+.world-explorer-content {
+    transition:
+        opacity 0.7s ease,
+        transform 0.9s ease,
+        filter 0.8s ease;
+}
+
+.world-explorer-card.is-travelling
+.world-explorer-content {
+    opacity: 0.18;
+
+    transform:
+        translateX(-22px);
+
+    filter:
+        blur(3px);
+}
+
+
+/* CLOUD COVER */
+
+.world-explorer-card::after {
+    content: "";
+
+    position: absolute;
+    z-index: 80;
+
+    inset: -20%;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transform:
+        scale(1.18)
+        translateX(-8%);
+
+    background:
+        radial-gradient(
+            ellipse at 18% 45%,
+            rgba(232, 244, 239, 0.96) 0%,
+            rgba(205, 229, 219, 0.82) 18%,
+            transparent 42%
+        ),
+        radial-gradient(
+            ellipse at 52% 35%,
+            rgba(244, 249, 247, 0.96) 0%,
+            rgba(209, 231, 222, 0.78) 20%,
+            transparent 46%
+        ),
+        radial-gradient(
+            ellipse at 82% 58%,
+            rgba(225, 239, 233, 0.94) 0%,
+            rgba(188, 219, 206, 0.72) 20%,
+            transparent 44%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(196, 225, 213, 0.88),
+            rgba(239, 247, 243, 0.96)
+        );
+
+    filter: blur(12px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 1.1s ease,
+        filter 1s ease;
+}
+
+
+/* CLOUDS FULLY COVER SCREEN */
+
+.world-explorer-card.is-cloud-covered::after {
+    opacity: 1;
+
+    transform:
+        scale(1)
+        translateX(0);
+
+    filter: blur(3px);
+}
+
+
+/* MALAYSIA VIEW PREPARATION */
+
+.world-explorer-card.is-malaysia-view
+#interactive-globe {
+    opacity: 0;
+
+    transform:
+        scale(2.4);
+
+    filter:
+        blur(12px)
+        brightness(1.3);
+}
+
+.world-explorer-card.is-malaysia-view
+.world-explorer-content {
+    opacity: 0;
+
+    transform:
+        translateX(-35px);
+
+    pointer-events: none;
+}
+
+
+/* CLOUDS MOVE AWAY AFTER ARRIVAL */
+
+.world-explorer-card.is-malaysia-view::after {
+    transform:
+        scale(1.3)
+        translateX(18%);
+}
+
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #interactive-globe,
+    .earth-sphere,
+    .malaysia-globe-marker,
+    .world-explorer-content,
+    .world-explorer-card::after {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* =========================================
+   LIVING MALAYSIA EXPLORER
+   FINAL REBUILT VERSION
+   ========================================= */
+
+
+/* =========================================
+   1. ARRIVAL STAGE
+   ========================================= */
+
+.world-explorer-card.has-arrived {
+    display: block;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.living-malaysia-stage {
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100%;
+    padding: 28px;
+
+    overflow: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: scale(0.975);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(3, 26, 20, 0.18),
+            rgba(3, 24, 18, 0.60)
+        ),
+        url("../images/west_malaysia_bg.png");
+
+    background-size: cover;
+    background-position: center;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.world-explorer-card.has-arrived
+.living-malaysia-stage {
+    position: relative;
+
+    opacity: 1;
+    visibility: visible;
+
+    transform: scale(1);
+}
+
+.world-explorer-card.has-arrived
+.world-explorer-content,
+
+.world-explorer-card.has-arrived
+.globe-stage {
+    display: none;
+}
+
+
+/* =========================================
+   2. REMOVE OLD AMBIENT FOG
+   ========================================= */
+
+.malaysia-ambient-world,
+.malaysia-mist,
+.mist-one,
+.mist-two,
+.mist-three,
+.malaysia-sky-glow {
+    display: none !important;
+}
+
+
+/* =========================================
+   3. COMPACT STAGE HEADER
+   ========================================= */
+
+.malaysia-stage-header {
+    position: relative;
+    z-index: 10;
+
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(280px, 0.52fr);
+
+    align-items: end;
+    gap: 34px;
+
+    width: 100%;
+    max-width: none;
+
+    margin: 0 0 20px;
+    padding: 2px 4px 0;
+}
+
+.malaysia-stage-eyebrow {
+    grid-column: 1 / -1;
+
+    display: block;
+
+    margin-bottom: -22px;
+
+    color: #efd77e;
+
+    font-size: 0.67rem;
+    font-weight: 760;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.malaysia-stage-header h3 {
+    max-width: 690px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+    font-weight: 760;
+
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+
+    text-shadow:
+        0 5px 22px rgba(0, 0, 0, 0.32);
+}
+
+.malaysia-stage-header p {
+    max-width: 390px;
+
+    margin: 0 0 3px;
+
+    color: rgba(238, 246, 241, 0.66);
+
+    font-size: 0.82rem;
+    line-height: 1.62;
+}
+
+
+/* =========================================
+   4. MAIN THREE-PART EXPERIENCE
+   ========================================= */
+
+.malaysia-experience-layout {
+    position: relative;
+    z-index: 10;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(280px, 0.72fr);
+
+    gap: 18px;
+
+    width: 100%;
+    min-height: 500px;
+}
+
+
+/* =========================================
+   5. MAP WORLD
+   ========================================= */
+
+.miniature-map-scene {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 500px;
+
+    overflow: hidden;
+
+    isolation: isolate;
+
+    border:
+        1px solid rgba(211, 235, 222, 0.14);
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            ellipse at 52% 40%,
+            rgba(84, 172, 132, 0.14),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            ellipse at 18% 82%,
+            rgba(36, 121, 94, 0.16),
+            transparent 44%
+        ),
+
+        linear-gradient(
+            180deg,
+            #0b4b3e 0%,
+            #093f35 38%,
+            #07332d 72%,
+            #052923 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+
+        inset 0 -60px 100px rgba(0, 0, 0, 0.16),
+
+        0 20px 45px rgba(0, 0, 0, 0.24);
+}
+
+
+/* TOP LIGHT */
+
+.miniature-map-scene::before {
+    content: "";
+
+    position: absolute;
+    z-index: 2;
+
+    top: -190px;
+    left: 12%;
+
+    width: 76%;
+    height: 340px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(195, 235, 215, 0.16),
+            rgba(92, 178, 140, 0.05) 46%,
+            transparent 72%
+        );
+
+    pointer-events: none;
+}
+
+
+/* CINEMATIC EDGE */
+
+.miniature-map-scene::after {
+    content: "";
+
+    position: absolute;
+    z-index: 25;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 19, 16, 0.18),
+            transparent 11%,
+            transparent 88%,
+            rgba(2, 19, 16, 0.18)
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(2, 24, 19, 0.08),
+            transparent 20%,
+            transparent 78%,
+            rgba(2, 19, 16, 0.24)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   6. SEA — ONLY INSIDE MAP
+   ========================================= */
+
+.miniature-ocean {
+    position: absolute;
+    z-index: 1;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24, 112, 87, 0.06),
+            rgba(5, 47, 41, 0.22)
+        );
+}
+
+
+/* SMALL MOVING SEA TEXTURE */
+
+.miniature-ocean::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -20% -15%;
+
+    opacity: 0.55;
+
+    background:
+        repeating-linear-gradient(
+            168deg,
+
+            transparent 0,
+            transparent 35px,
+
+            rgba(174, 225, 204, 0.055) 36px,
+
+            rgba(211, 239, 226, 0.11) 37px,
+
+            rgba(174, 225, 204, 0.04) 39px,
+
+            transparent 41px,
+            transparent 74px
+        );
+
+    animation:
+        finalSeaTexture
+        16s linear infinite;
+}
+
+
+/* ACTUAL CURVED WAVE CRESTS */
+
+.miniature-ocean::after {
+    content: "";
+
+    position: absolute;
+
+    width: 78%;
+    height: 48%;
+
+    left: 8%;
+    bottom: -8%;
+
+    border-top:
+        1px solid rgba(190, 232, 214, 0.20);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 -42px 0 -41px rgba(190, 232, 214, 0.15),
+
+        0 -86px 0 -85px rgba(190, 232, 214, 0.10),
+
+        0 -128px 0 -127px rgba(190, 232, 214, 0.07);
+
+    opacity: 0.72;
+
+    animation:
+        finalSeaCrest
+        9s ease-in-out infinite;
+}
+
+.ocean-current {
+    display: none;
+}
+
+
+@keyframes finalSeaTexture {
+
+    from {
+        transform:
+            translateX(-6%)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateX(10%)
+            translateY(12px);
+    }
+}
+
+
+@keyframes finalSeaCrest {
+
+    0%,
+    100% {
+        transform:
+            translateX(-18px)
+            translateY(5px)
+            scaleX(0.97);
+
+        opacity: 0.48;
+    }
+
+    50% {
+        transform:
+            translateX(24px)
+            translateY(-7px)
+            scaleX(1.04);
+
+        opacity: 0.82;
+    }
+}
+
+
+/* =========================================
+   7. COMPASS
+   ========================================= */
+
+.map-compass {
+    position: absolute;
+    z-index: 35;
+
+    top: 22px;
+    left: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: rgba(240, 215, 127, 0.58);
+
+    opacity: 0.76;
+}
+
+.compass-letter {
+    font-size: 0.66rem;
+    font-weight: 800;
+}
+
+.compass-line {
+    width: 1px;
+    height: 30px;
+
+    margin-top: 5px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(240, 215, 127, 0.52),
+            transparent
+        );
+}
+
+
+/* =========================================
+   8. REMOVE ALL OLD FAKE MAPS
+   ========================================= */
+
+.miniature-land,
+.malaysia-svg-map,
+.malaysia-map-region {
+    display: none !important;
+}
+
+
+/* =========================================
+   9. REAL MALAYSIA MAP
+   ========================================= */
+
+.real-malaysia-map-wrap {
+    position: absolute;
+    z-index: 10;
+
+    top: 48px;
+    right: 8px;
+    bottom: 62px;
+    left: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: visible;
+
+    pointer-events: none;
+
+    animation:
+        finalMalaysiaFloat
+        7s ease-in-out infinite;
+}
+
+.real-malaysia-map {
+    display: block;
+
+    width: 108%;
+    height: 108%;
+
+    max-width: none;
+
+    border: 0;
+
+    opacity: 1;
+    visibility: visible;
+
+    filter:
+        drop-shadow(
+            0 24px 17px
+            rgba(0, 0, 0, 0.34)
+        )
+
+        drop-shadow(
+            0 6px 5px
+            rgba(0, 0, 0, 0.20)
+        )
+
+        drop-shadow(
+            0 0 20px
+            rgba(77, 167, 125, 0.12)
+        );
+
+    pointer-events: none;
+}
+
+
+@keyframes finalMalaysiaFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+
+/* =========================================
+   10. REMOVE OLD ROUTE LINES
+   ========================================= */
+
+.exploration-route {
+    display: none;
+}
+
+
+/* =========================================
+   11. BEACON BASE
+   ========================================= */
+
+.exploration-beacon {
+    position: absolute;
+    z-index: 45;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    overflow: visible;
+
+    border: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.beacon-outer-ring,
+.beacon-middle-ring,
+.beacon-core {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.beacon-outer-ring {
+    width: 44px;
+    height: 44px;
+
+    border:
+        1px solid rgba(240, 215, 127, 0.32);
+
+    animation:
+        finalBeaconOuter
+        2.6s ease-out infinite;
+}
+
+.beacon-middle-ring {
+    width: 27px;
+    height: 27px;
+
+    border:
+        1px solid rgba(240, 215, 127, 0.52);
+
+    background:
+        rgba(217, 180, 74, 0.08);
+
+    animation:
+        finalBeaconMiddle
+        2.6s ease-in-out infinite;
+}
+
+.beacon-core {
+    width: 10px;
+    height: 10px;
+
+    border:
+        2px solid rgba(255, 255, 255, 0.92);
+
+    background: #efd77e;
+
+    box-shadow:
+        0 0 12px rgba(239, 215, 126, 0.90),
+
+        0 0 28px rgba(239, 215, 126, 0.38);
+}
+
+
+@keyframes finalBeaconOuter {
+
+    0% {
+        opacity: 0.82;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.60);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.55);
+    }
+}
+
+
+@keyframes finalBeaconMiddle {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.94);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.10);
+    }
+}
+
+
+/* =========================================
+   12. SARAWAK SIGNAL
+   ========================================= */
+
+.sarawak-beacon {
+    left: 60%;
+    top: 59%;
+}
+
+.sarawak-beacon .beacon-label {
+    top: 54px;
+    right: 22px;
+    left: auto;
+
+    transform: translateX(-100%);
+
+    text-align: left;
+}
+
+
+/* CONNECTOR */
+
+.sarawak-beacon::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    top: 22px;
+    right: 8px;
+
+    width: 72px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.08),
+            rgba(239, 215, 126, 0.72)
+        );
+
+    transform:
+        rotate(-42deg);
+
+    transform-origin: right center;
+}
+
+
+/* =========================================
+   13. SABAH SIGNAL
+   ========================================= */
+
+.sabah-beacon {
+    right: 9%;
+    top: 35%;
+}
+
+.sabah-beacon .beacon-label {
+    right: 2px;
+    bottom: 58px;
+    left: auto;
+    top: auto;
+
+    transform: none;
+
+    text-align: right;
+}
+
+
+/* CONNECTOR */
+
+.sabah-beacon::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    right: 8px;
+    bottom: 20px;
+
+    width: 70px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.08),
+            rgba(239, 215, 126, 0.74)
+        );
+
+    transform:
+        rotate(58deg);
+
+    transform-origin: right center;
+}
+
+
+/* =========================================
+   14. LOCATION LABELS
+   ========================================= */
+
+.beacon-label {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+
+    width: max-content;
+    min-width: 138px;
+
+    padding: 8px 11px;
+
+    overflow: visible;
+
+    border:
+        1px solid rgba(220, 238, 228, 0.15);
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7, 48, 36, 0.96),
+            rgba(4, 31, 24, 0.94)
+        );
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.30),
+
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.24s ease,
+        border-color 0.24s ease,
+        background 0.24s ease;
+}
+
+.beacon-label strong {
+    display: block;
+
+    color: #f4f8f5;
+
+    font-size: 0.73rem;
+    font-weight: 720;
+
+    white-space: nowrap;
+}
+
+.beacon-label small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(221, 236, 227, 0.58);
+
+    font-size: 0.59rem;
+
+    white-space: nowrap;
+}
+
+.exploration-beacon:hover
+.beacon-label,
+
+.exploration-beacon:focus-visible
+.beacon-label,
+
+.exploration-beacon.is-selected
+.beacon-label {
+    border-color:
+        rgba(240, 215, 127, 0.38);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18, 72, 51, 0.98),
+            rgba(5, 38, 28, 0.97)
+        );
+}
+
+.exploration-beacon:focus-visible {
+    outline: none;
+}
+
+.exploration-beacon:focus-visible
+.beacon-core {
+    outline:
+        3px solid rgba(240, 215, 127, 0.50);
+
+    outline-offset: 5px;
+}
+
+.exploration-beacon.is-selected
+.beacon-core {
+    transform:
+        translate(-50%, -50%)
+        scale(1.18);
+
+    box-shadow:
+        0 0 18px rgba(240, 215, 127, 1),
+
+        0 0 38px rgba(217, 180, 74, 0.62);
+}
+
+
+/* =========================================
+   15. MAP INSTRUCTION
+   ========================================= */
+
+.map-stage-instruction {
+    position: absolute;
+    z-index: 48;
+
+    left: 50%;
+    bottom: 17px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: rgba(238, 246, 241, 0.54);
+
+    font-size: 0.65rem;
+    font-weight: 650;
+
+    white-space: nowrap;
+
+    transform: translateX(-50%);
+}
+
+.instruction-signal {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #efd77e;
+
+    box-shadow:
+        0 0 10px rgba(240, 215, 127, 0.70);
+
+    animation:
+        finalInstructionSignal
+        1.8s ease-in-out infinite;
+}
+
+
+@keyframes finalInstructionSignal {
+
+    0%,
+    100% {
+        opacity: 0.5;
+
+        transform: scale(0.85);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.18);
+    }
+}
+
+
+/* =========================================
+   16. DISCOVERY PANEL
+   ========================================= */
+
+.region-discovery-panel {
+    position: relative;
+    z-index: 50;
+
+    min-width: 0;
+    height: 500px;
+    min-height: 500px;
+    max-height: 500px;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding: 22px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 25px;
+
+    background:
+        radial-gradient(
+            circle at 80% 12%,
+            rgba(88, 163, 125, 0.10),
+            transparent 28%
+        ),
+
+        linear-gradient(
+            145deg,
+            rgba(10, 51, 37, 0.82),
+            rgba(4, 31, 23, 0.88)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+
+        0 18px 38px rgba(0, 0, 0, 0.18);
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(240, 215, 127, 0.34)
+        rgba(255, 255, 255, 0.04);
+}
+
+.region-discovery-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.region-discovery-panel::-webkit-scrollbar-track {
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border-radius: 999px;
+}
+
+.region-discovery-panel::-webkit-scrollbar-thumb {
+    background:
+        rgba(240, 215, 127, 0.32);
+
+    border-radius: 999px;
+}
+
+
+/* =========================================
+   17. EMPTY DISCOVERY STATE
+   ========================================= */
+
+.discovery-empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height: 454px;
+}
+
+.discovery-empty-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    margin-bottom: 17px;
+
+    border:
+        1px solid rgba(240, 215, 127, 0.22);
+
+    border-radius: 14px;
+
+    background:
+        rgba(217, 180, 74, 0.09);
+
+    color: #efd77e;
+
+    font-size: 1rem;
+}
+
+.discovery-empty-eyebrow,
+.region-discovery-eyebrow {
+    display: block;
+
+    color: #e5c76a;
+
+    font-size: 0.64rem;
+    font-weight: 750;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+}
+
+.discovery-empty-state h4,
+.region-discovery-content h4 {
+    margin: 8px 0 10px;
+
+    color: #ffffff;
+
+    font-size: 1.3rem;
+    line-height: 1.23;
+}
+
+.discovery-empty-state p,
+.region-discovery-description {
+    margin: 0;
+
+    color: rgba(238, 246, 241, 0.61);
+
+    font-size: 0.78rem;
+    line-height: 1.62;
+}
+
+
+/* =========================================
+   18. DISCOVERED REGION
+   ========================================= */
+
+.region-discovery-content {
+    min-height: max-content;
+
+    opacity: 0;
+
+    transform: translateX(18px);
+
+    transition:
+        opacity 0.5s ease,
+
+        transform 0.62s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.region-discovery-panel.is-revealing
+.region-discovery-content {
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+.close-region-discovery {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 18px;
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.64);
+
+    font-size: 0.68rem;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.close-region-discovery:hover {
+    color: #efd77e;
+
+    transform: translateX(-3px);
+}
+
+.region-discovery-description {
+    margin-bottom: 16px;
+}
+
+
+/* =========================================
+   19. DISCOVERED LANGUAGE CARDS
+   ========================================= */
+
+.discovered-language-cards {
+    display: flex;
+    flex-direction: column;
+
+    gap: 11px;
+
+    padding-bottom: 6px;
+}
+
+.region-discovery-panel
+.map-result-language-card {
+    width: 100%;
+    min-height: 150px;
+
+    flex: 0 0 150px;
+
+    border-radius: 16px;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.language-card-content {
+    min-height: 150px;
+
+    padding: 15px;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.language-region {
+    margin-bottom: 8px;
+
+    padding: 4px 7px;
+
+    font-size: 0.58rem;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.language-name {
+    font-size: 1.04rem;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.language-description {
+    display: none;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.progress-area {
+    margin-top: 9px;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.language-card-footer {
+    margin-top: 9px;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.continue-text {
+    font-size: 0.66rem;
+}
+
+.region-discovery-panel
+.map-result-language-card
+.card-arrow {
+    width: 27px;
+    height: 27px;
+
+    font-size: 0.82rem;
+}
+
+
+/* =========================================
+   20. FOOTER
+   ========================================= */
+
+.malaysia-stage-footer {
+    position: relative;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    margin-top: 14px;
+    padding: 0 4px;
+}
+
+.malaysia-stage-footer span {
+    color: rgba(240, 215, 127, 0.44);
+
+    font-size: 0.63rem;
+    font-weight: 750;
+}
+
+.malaysia-stage-footer p {
+    margin: 0;
+
+    color: rgba(238, 246, 241, 0.46);
+
+    font-size: 0.66rem;
+    line-height: 1.45;
+}
+
+
+/* =========================================
+   21. TABLET
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .living-malaysia-stage {
+        padding: 24px;
+    }
+
+    .malaysia-stage-header {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(240px, 0.5fr);
+    }
+
+    .malaysia-experience-layout {
+        grid-template-columns:
+            minmax(0, 1.35fr)
+            minmax(250px, 0.72fr);
+    }
+
+    .miniature-map-scene,
+    .region-discovery-panel {
+        min-height: 480px;
+    }
+
+    .region-discovery-panel {
+        height: 480px;
+        max-height: 480px;
+    }
+
+    .discovery-empty-state {
+        min-height: 434px;
+    }
+
+    .real-malaysia-map {
+        width: 112%;
+        height: 112%;
+    }
+}
+
+
+/* =========================================
+   22. MOBILE
+   ========================================= */
+
+@media (max-width: 820px) {
+
+    .living-malaysia-stage {
+        padding: 22px 18px;
+    }
+
+    .malaysia-stage-header {
+        display: block;
+
+        margin-bottom: 18px;
+    }
+
+    .malaysia-stage-eyebrow {
+        margin-bottom: 8px;
+    }
+
+    .malaysia-stage-header p {
+        margin-top: 10px;
+    }
+
+    .malaysia-experience-layout {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .miniature-map-scene {
+        min-height: 500px;
+    }
+
+    .region-discovery-panel {
+        height: auto;
+        min-height: 260px;
+        max-height: 500px;
+    }
+
+    .discovery-empty-state {
+        min-height: 214px;
+    }
+
+    .real-malaysia-map-wrap {
+        top: 58px;
+        right: 2px;
+        bottom: 68px;
+        left: 2px;
+    }
+
+    .sarawak-beacon {
+        left: 58%;
+    }
+
+    .sabah-beacon {
+        right: 7%;
+    }
+}
+
+
+/* =========================================
+   23. SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 520px) {
+
+    .living-malaysia-stage {
+        padding:
+            20px 14px;
+    }
+
+    .malaysia-stage-header h3 {
+        font-size: 1.75rem;
+    }
+
+    .miniature-map-scene {
+        min-height: 430px;
+
+        border-radius: 21px;
+    }
+
+    .real-malaysia-map-wrap {
+        top: 60px;
+        right: -15px;
+        bottom: 62px;
+        left: -15px;
+    }
+
+    .sarawak-beacon {
+        left: 56%;
+        top: 59%;
+    }
+
+    .sabah-beacon {
+        right: 5%;
+        top: 35%;
+    }
+
+    .beacon-label {
+        min-width: 118px;
+
+        padding: 7px 9px;
+    }
+
+    .beacon-label strong {
+        font-size: 0.68rem;
+    }
+
+    .beacon-label small {
+        font-size: 0.54rem;
+    }
+
+    .sarawak-beacon .beacon-label {
+        top: 50px;
+        right: 5px;
+    }
+
+    .sabah-beacon .beacon-label {
+        right: -2px;
+        bottom: 52px;
+    }
+}
+
+
+/* =========================================
+   24. REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .miniature-ocean::before,
+    .miniature-ocean::after,
+    .real-malaysia-map-wrap,
+    .beacon-outer-ring,
+    .beacon-middle-ring,
+    .instruction-signal {
+        animation: none;
+    }
+
+    .living-malaysia-stage,
+    .region-discovery-content,
+    .beacon-label {
+        transition-duration: 0.01ms;
+    }
+}
+
+/* =========================================
+   FINAL FIX
+   SABAH + SARAWAK LABELS OUTSIDE THE MAP
+   ========================================= */
+
+
+/* =========================================
+   SARAWAK
+   Signal stays on land.
+   Label moves to the lower-left empty sea.
+   ========================================= */
+
+.sarawak-beacon {
+    left: 60% !important;
+    top: 59% !important;
+}
+
+.sarawak-beacon .beacon-label {
+    position: absolute !important;
+
+    top: 82px !important;
+    right: 48px !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    transform:
+        translateX(-100%) !important;
+
+    min-width: 138px !important;
+
+    text-align: left !important;
+}
+
+
+/* SARAWAK CONNECTOR LINE */
+
+.sarawak-beacon::after {
+    content: "" !important;
+
+    position: absolute !important;
+    z-index: -1 !important;
+
+    top: 20px !important;
+    right: 8px !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    width: 118px !important;
+    height: 1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.10),
+            rgba(239, 215, 126, 0.76)
+        ) !important;
+
+    transform:
+        rotate(-48deg) !important;
+
+    transform-origin:
+        right center !important;
+
+    box-shadow:
+        0 0 8px
+        rgba(239, 215, 126, 0.24) !important;
+}
+
+
+/* =========================================
+   SABAH
+   Signal stays on land.
+   Label moves to upper-right empty sea.
+   ========================================= */
+
+.sabah-beacon {
+    right: 9% !important;
+    top: 35% !important;
+}
+
+.sabah-beacon .beacon-label {
+    position: absolute !important;
+
+    top: auto !important;
+    right: -8px !important;
+    bottom: 92px !important;
+    left: auto !important;
+
+    transform: none !important;
+
+    min-width: 138px !important;
+
+    text-align: right !important;
+}
+
+
+/* SABAH CONNECTOR LINE */
+
+.sabah-beacon::after {
+    content: "" !important;
+
+    position: absolute !important;
+    z-index: -1 !important;
+
+    top: auto !important;
+    right: 8px !important;
+    bottom: 19px !important;
+    left: auto !important;
+
+    width: 105px !important;
+    height: 1px !important;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.10),
+            rgba(239, 215, 126, 0.76)
+        ) !important;
+
+    transform:
+        rotate(66deg) !important;
+
+    transform-origin:
+        right center !important;
+
+    box-shadow:
+        0 0 8px
+        rgba(239, 215, 126, 0.24) !important;
+}
+
+
+/* =========================================
+   KEEP BOTH LABELS ABOVE THE MAP
+   ========================================= */
+
+.sarawak-beacon,
+.sabah-beacon {
+    z-index: 45 !important;
+}
+
+.sarawak-beacon .beacon-label,
+.sabah-beacon .beacon-label {
+    z-index: 46 !important;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .sarawak-beacon .beacon-label {
+        top: 76px !important;
+        right: 34px !important;
+    }
+
+    .sabah-beacon .beacon-label {
+        right: -4px !important;
+        bottom: 84px !important;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 820px) {
+
+    .sarawak-beacon .beacon-label {
+        top: 68px !important;
+        right: 20px !important;
+    }
+
+    .sabah-beacon .beacon-label {
+        right: -4px !important;
+        bottom: 76px !important;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
+@media (max-width: 520px) {
+
+    .sarawak-beacon .beacon-label {
+        top: 60px !important;
+        right: 8px !important;
+    }
+
+    .sabah-beacon .beacon-label {
+        right: -2px !important;
+        bottom: 68px !important;
+    }
+}
+
+/* =========================================
+   FINAL SARAWAK LABEL POSITION
+   Move right — away from West Malaysia
+   ========================================= */
+
+.sarawak-beacon .beacon-label {
+    top: 88px !important;
+
+    left: 42px !important;
+    right: auto !important;
+
+    transform: none !important;
+
+    min-width: 138px !important;
+
+    text-align: left !important;
+}
+
+
+/* CONNECTOR NOW POINTS DOWN-RIGHT */
+
+.sarawak-beacon::after {
+    top: 21px !important;
+
+    left: 10px !important;
+    right: auto !important;
+
+    width: 92px !important;
+
+    transform:
+        rotate(48deg) !important;
+
+    transform-origin:
+        left center !important;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1100px) {
+
+    .sarawak-beacon .beacon-label {
+        top: 80px !important;
+        left: 34px !important;
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 820px) {
+
+    .sarawak-beacon .beacon-label {
+        top: 72px !important;
+        left: 24px !important;
+    }
+}
+
+/* =========================================
+   FINAL MAP FRAME — SLIGHTLY BIGGER
+   ========================================= */
+
+.living-malaysia-stage {
+    min-height: 860px !important;
+}
+
+.malaysia-experience-layout {
+    grid-template-columns:
+        minmax(560px, 1.68fr)
+        minmax(270px, 0.70fr) !important;
+
+    min-height: 660px !important;
+}
+
+.miniature-map-scene {
+    min-height: 660px !important;
+}
+
+.region-discovery-panel {
+    min-height: 660px !important;
+}
+
+/* Give the real SVG a little more breathing room */
+.real-malaysia-map-wrap {
+    top: 58px !important;
+    right: 8px !important;
+    bottom: 68px !important;
+    left: 8px !important;
+}
+
+.real-malaysia-map {
+    width: 110% !important;
+    height: 110% !important;
+}
+
+/* =========================================
+   FINAL WEST MALAYSIA VISIBILITY FIX
+   Keep right side unchanged
+   ========================================= */
+
+.real-malaysia-map-wrap {
+    right: 18px !important;
+    left: 8px !important;
+}
+
+.real-malaysia-map {
+    width: 105% !important;
+    height: 105% !important;
+
+    transform: translateX(1.5%) !important;
+    transform-origin: right center !important;
+}
+
+/* =========================================
+   DISCOVERY PANEL — EXPERIENCE UPGRADE
+   ========================================= */
+
+
+/* ================= PANEL FOUNDATION ================= */
+
+.region-discovery-panel {
+    position: relative !important;
+    z-index: 50 !important;
+
+    min-height: 660px !important;
+
+    padding: 0 !important;
+
+    overflow: hidden !important;
+
+    border:
+        1px solid
+        rgba(220, 238, 228, 0.14) !important;
+
+    border-radius:
+        30px !important;
+
+    background:
+        radial-gradient(
+            circle at 82% 10%,
+            rgba(217, 180, 74, 0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            155deg,
+            rgba(10, 55, 40, 0.96),
+            rgba(4, 31, 24, 0.98)
+        ) !important;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.08),
+
+        0 24px 55px
+        rgba(0, 0, 0, 0.24) !important;
+
+    scrollbar-width: thin;
+}
+
+
+/* SUBTLE TOP LIGHT */
+
+.region-discovery-panel::before {
+    content: "";
+
+    position: absolute;
+
+    z-index: 0;
+
+    top: 0;
+    left: 14%;
+    right: 14%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(240, 215, 127, 0.48),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   EMPTY DISCOVERY STATE
+   ========================================= */
+
+.discovery-empty-state {
+    position: relative;
+    z-index: 2;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+
+    min-height: 660px !important;
+
+    padding:
+        30px
+        28px
+        26px !important;
+}
+
+
+/* TOP STATUS */
+
+.discovery-waiting-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    align-self: flex-start;
+
+    padding:
+        7px
+        10px;
+
+    border:
+        1px solid
+        rgba(240, 215, 127, 0.18);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(217, 180, 74, 0.07);
+
+    color:
+        rgba(240, 215, 127, 0.78);
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.discovery-waiting-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        #efd77e;
+
+    box-shadow:
+        0 0 10px
+        rgba(240, 215, 127, 0.72);
+
+    animation:
+        discoveryWaitingPulse
+        2s
+        ease-in-out
+        infinite;
+}
+
+
+/* CENTRE STORY */
+
+.discovery-empty-centre {
+    margin:
+        auto
+        0;
+
+    padding:
+        34px
+        0;
+}
+
+
+.discovery-empty-symbol {
+    position: relative;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    width: 58px !important;
+    height: 58px !important;
+
+    margin-bottom:
+        22px !important;
+
+    border:
+        1px solid
+        rgba(240, 215, 127, 0.25) !important;
+
+    border-radius:
+        18px !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(217, 180, 74, 0.14),
+            rgba(217, 180, 74, 0.05)
+        ) !important;
+
+    color:
+        #efd77e !important;
+
+    font-size:
+        1.15rem !important;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.18),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.discovery-empty-symbol::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -9px;
+
+    border:
+        1px solid
+        rgba(240, 215, 127, 0.08);
+
+    border-radius:
+        24px;
+}
+
+
+.discovery-empty-eyebrow {
+    display: block !important;
+
+    margin-bottom:
+        9px;
+
+    color:
+        #e5c76a !important;
+
+    font-size:
+        0.64rem !important;
+
+    font-weight:
+        780 !important;
+
+    letter-spacing:
+        0.14em !important;
+
+    text-transform:
+        uppercase;
+}
+
+
+.discovery-empty-state h4 {
+    max-width:
+        260px;
+
+    margin:
+        0 !important;
+
+    color:
+        #ffffff !important;
+
+    font-size:
+        1.62rem !important;
+
+    font-weight:
+        740;
+
+    line-height:
+        1.14 !important;
+
+    letter-spacing:
+        -0.035em;
+}
+
+
+.discovery-empty-state p {
+    max-width:
+        250px;
+
+    margin:
+        13px
+        0
+        0 !important;
+
+    color:
+        rgba(229, 240, 233, 0.58) !important;
+
+    font-size:
+        0.78rem !important;
+
+    line-height:
+        1.68 !important;
+}
+
+
+/* BOTTOM REGION PREVIEW */
+
+.discovery-region-preview {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:
+        8px;
+}
+
+
+.discovery-region-hint {
+    padding:
+        11px
+        10px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+}
+
+
+.discovery-region-hint strong {
+    display:
+        block;
+
+    color:
+        rgba(244, 248, 245, 0.82);
+
+    font-size:
+        0.68rem;
+}
+
+
+.discovery-region-hint span {
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    color:
+        rgba(221, 236, 227, 0.42);
+
+    font-size:
+        0.56rem;
+}
+
+
+/* =========================================
+   DISCOVERED REGION CONTENT
+   ========================================= */
+
+.region-discovery-content {
+    position: relative;
+    z-index: 2;
+
+    min-height: 660px !important;
+
+    padding:
+        25px
+        22px
+        24px !important;
+
+    opacity: 0;
+
+    transform:
+        translateY(16px);
+
+    transition:
+        opacity 0.48s ease,
+        transform 0.62s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.region-discovery-panel.is-revealing
+.region-discovery-content {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* BACK BUTTON */
+
+.close-region-discovery {
+    display:
+        inline-flex !important;
+
+    align-items:
+        center !important;
+
+    gap:
+        7px !important;
+
+    margin:
+        0
+        0
+        24px !important;
+
+    padding:
+        7px
+        10px !important;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09) !important;
+
+    border-radius:
+        999px !important;
+
+    background:
+        rgba(255, 255, 255, 0.035) !important;
+
+    color:
+        rgba(232, 241, 235, 0.64) !important;
+
+    font-size:
+        0.64rem !important;
+
+    cursor:
+        pointer;
+
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.close-region-discovery:hover {
+    color:
+        #efd77e !important;
+
+    border-color:
+        rgba(240, 215, 127, 0.24) !important;
+
+    transform:
+        translateX(-3px);
+}
+
+
+/* REGION NUMBER */
+
+.discovery-region-index {
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.region-discovery-eyebrow {
+    color:
+        #e5c76a !important;
+
+    font-size:
+        0.62rem !important;
+
+    font-weight:
+        780 !important;
+
+    letter-spacing:
+        0.13em !important;
+
+    text-transform:
+        uppercase;
+}
+
+
+.discovery-language-count {
+    flex-shrink:
+        0;
+
+    padding:
+        6px
+        9px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.09);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color:
+        rgba(230, 240, 234, 0.60);
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        680;
+}
+
+
+/* REGION TITLE */
+
+.region-discovery-content h4 {
+    margin:
+        0 !important;
+
+    color:
+        #ffffff !important;
+
+    font-size:
+        1.58rem !important;
+
+    font-weight:
+        750;
+
+    line-height:
+        1.14 !important;
+
+    letter-spacing:
+        -0.035em;
+}
+
+
+.region-discovery-description {
+    margin:
+        11px
+        0
+        20px !important;
+
+    color:
+        rgba(225, 238, 230, 0.58) !important;
+
+    font-size:
+        0.75rem !important;
+
+    line-height:
+        1.65 !important;
+}
+
+
+/* DIVIDER */
+
+.discovery-language-heading {
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.discovery-language-heading span {
+    color:
+        rgba(240, 215, 127, 0.62);
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.10em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.discovery-language-heading::after {
+    content: "";
+
+    flex:
+        1;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(240, 215, 127, 0.18),
+            transparent
+        );
+}
+
+
+/* =========================================
+   DISCOVERED LANGUAGE CARDS
+   ========================================= */
+
+.discovered-language-cards {
+    display:
+        flex !important;
+
+    flex-direction:
+        column !important;
+
+    gap:
+        10px !important;
+
+    padding-bottom:
+        0 !important;
+}
+
+
+.region-discovery-panel
+.map-result-language-card {
+    min-height:
+        142px !important;
+
+    flex:
+        0 0 auto !important;
+
+    border-radius:
+        17px !important;
+
+    border-color:
+        rgba(255, 255, 255, 0.11) !important;
+}
+
+
+.region-discovery-panel
+.map-result-language-card
+.language-card-content {
+    min-height:
+        142px !important;
+
+    padding:
+        15px !important;
+}
+
+
+.region-discovery-panel
+.map-result-language-card
+.language-region {
+    margin-bottom:
+        8px !important;
+}
+
+
+.region-discovery-panel
+.map-result-language-card
+.language-name {
+    font-size:
+        1.08rem !important;
+}
+
+
+.region-discovery-panel
+.map-result-language-card
+.progress-area {
+    margin-top:
+        auto !important;
+}
+
+
+.region-discovery-panel
+.map-result-language-card
+.language-card-footer {
+    margin-top:
+        9px !important;
+}
+
+
+/* =========================================
+   ANIMATION
+   ========================================= */
+
+@keyframes discoveryWaitingPulse {
+
+    0%,
+    100% {
+        opacity: 0.45;
+
+        transform:
+            scale(0.82);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform:
+            scale(1.18);
+    }
+
+}
+
+
+/* =========================================
+   DISCOVERY RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .discovery-empty-state,
+    .region-discovery-content {
+        padding-left:
+            20px !important;
+
+        padding-right:
+            20px !important;
+    }
+
+}
+
+
+@media (max-width: 820px) {
+
+    .region-discovery-panel,
+    .discovery-empty-state,
+    .region-discovery-content {
+        min-height:
+            440px !important;
+    }
+
+}
+
+/* =========================================
+   DISCOVERY PANEL
+   FINAL PLACE-FIRST EXPERIENCE
+   ========================================= */
+
+
+/* =========================================
+   1. PANEL BASE
+   ========================================= */
+
+.region-discovery-panel {
+    position: relative !important;
+    z-index: 50 !important;
+
+    min-height: 660px !important;
+    height: 660px !important;
+    max-height: 660px !important;
+
+    padding: 25px !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    border:
+        1px solid
+        rgba(218, 237, 226, 0.13) !important;
+
+    border-radius:
+        28px !important;
+
+    background:
+        radial-gradient(
+            circle at 85% 8%,
+            rgba(116, 178, 131, 0.11),
+            transparent 30%
+        ),
+        linear-gradient(
+            155deg,
+            rgba(11, 61, 43, 0.97),
+            rgba(5, 39, 29, 0.98) 48%,
+            rgba(3, 29, 23, 0.99)
+        ) !important;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.07),
+
+        inset 0 -60px 90px
+        rgba(0, 0, 0, 0.10),
+
+        0 24px 50px
+        rgba(0, 0, 0, 0.20) !important;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(232, 205, 112, 0.34)
+        transparent;
+}
+
+
+.region-discovery-panel::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.region-discovery-panel::-webkit-scrollbar-track {
+    background:
+        transparent;
+}
+
+
+.region-discovery-panel::-webkit-scrollbar-thumb {
+    border-radius:
+        999px;
+
+    background:
+        rgba(232, 205, 112, 0.30);
+}
+
+
+/* =========================================
+   2. DISCOVERY CONTENT ENTRANCE
+   ========================================= */
+
+.region-discovery-content {
+    position: relative;
+
+    min-height: max-content;
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.65s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.region-discovery-panel.is-revealing
+.region-discovery-content {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* =========================================
+   3. BACK BUTTON
+   ========================================= */
+
+.close-region-discovery {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin:
+        0
+        0
+        23px;
+
+    padding:
+        0;
+
+    border:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        rgba(228, 239, 232, 0.58);
+
+    font-size:
+        0.67rem;
+
+    font-weight:
+        670;
+
+    cursor:
+        pointer;
+
+    transition:
+        color 0.22s ease,
+        transform 0.22s ease;
+}
+
+
+.close-region-discovery:hover {
+    color:
+        #efd77e;
+
+    transform:
+        translateX(-3px);
+}
+
+
+/* =========================================
+   4. PLACE IDENTITY
+   ========================================= */
+
+.discovery-place-identity {
+    position: relative;
+
+    padding-bottom:
+        20px;
+
+    border-bottom:
+        1px solid
+        rgba(220, 237, 228, 0.09);
+}
+
+
+.region-discovery-eyebrow {
+    display: block;
+
+    margin-bottom:
+        10px;
+
+    color:
+        #e5c76a;
+
+    font-size:
+        0.63rem;
+
+    font-weight:
+        780;
+
+    letter-spacing:
+        0.15em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.discovery-place-title-row {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+}
+
+
+.discovery-place-title-row h4 {
+    position: relative;
+    z-index: 2;
+
+    flex: 1;
+
+    margin:
+        0;
+
+    color:
+        #f6f9f7;
+
+    font-size:
+        clamp(
+            1.38rem,
+            2.2vw,
+            1.82rem
+        );
+
+    font-weight:
+        720;
+
+    line-height:
+        1.13;
+
+    letter-spacing:
+        -0.035em;
+}
+
+
+/* LARGE QUIET LANGUAGE COUNT */
+
+.discovery-place-mark {
+    flex-shrink:
+        0;
+
+    margin-top:
+        -8px;
+
+    color:
+        rgba(231, 207, 121, 0.18);
+
+    font-size:
+        2.8rem;
+
+    font-weight:
+        800;
+
+    line-height:
+        1;
+
+    letter-spacing:
+        -0.08em;
+
+    user-select:
+        none;
+}
+
+
+/* =========================================
+   5. PLACE STORY
+   ========================================= */
+
+.discovery-place-story {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        2px
+        1fr;
+
+    gap:
+        14px;
+
+    margin-top:
+        19px;
+}
+
+
+.discovery-story-line {
+    display:
+        block;
+
+    width:
+        2px;
+
+    min-height:
+        100%;
+
+    border-radius:
+        999px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #e5c76a,
+            rgba(229, 199, 106, 0.10)
+        );
+}
+
+
+.discovery-place-story p {
+    margin:
+        0;
+
+    color:
+        rgba(225, 237, 229, 0.68);
+
+    font-size:
+        0.76rem;
+
+    line-height:
+        1.68;
+}
+
+
+/* =========================================
+   6. CULTURAL SIGNALS
+   ========================================= */
+
+.discovery-cultural-signals {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap:
+        7px;
+
+    margin-top:
+        17px;
+}
+
+
+.discovery-cultural-signals span {
+    display: inline-flex;
+    align-items: center;
+
+    min-height:
+        27px;
+
+    padding:
+        5px
+        9px;
+
+    border:
+        1px solid
+        rgba(215, 235, 222, 0.10);
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(120, 177, 139, 0.07);
+
+    color:
+        rgba(222, 236, 227, 0.62);
+
+    font-size:
+        0.57rem;
+
+    font-weight:
+        650;
+
+    letter-spacing:
+        0.015em;
+}
+
+
+/* =========================================
+   7. LANGUAGE PATHS HEADER
+   ========================================= */
+
+.discovery-paths-header {
+    margin-top:
+        25px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.discovery-paths-header > span {
+    display:
+        block;
+
+    color:
+        #f2f7f4;
+
+    font-size:
+        0.78rem;
+
+    font-weight:
+        730;
+}
+
+
+.discovery-paths-header p {
+    margin:
+        4px
+        0
+        0;
+
+    color:
+        rgba(221, 235, 226, 0.48);
+
+    font-size:
+        0.62rem;
+
+    line-height:
+        1.5;
+}
+
+
+/* =========================================
+   8. LANGUAGE PATH CONTAINER
+   ========================================= */
+
+.discovery-language-paths {
+    display: grid;
+
+    gap:
+        10px;
+
+    padding-bottom:
+        3px;
+}
+
+
+/* =========================================
+   9. LANGUAGE PATH
+   ========================================= */
+
+.discovery-language-path {
+    position: relative;
+
+    display: block;
+
+    padding:
+        14px;
+
+    overflow:
+        hidden;
+
+    border:
+        1px solid
+        rgba(217, 235, 224, 0.11);
+
+    border-radius:
+        17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(19, 79, 55, 0.54),
+            rgba(8, 50, 37, 0.48)
+        );
+
+    color:
+        inherit;
+
+    text-decoration:
+        none;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.045);
+
+    transition:
+        transform 0.28s
+        cubic-bezier(0.22, 1, 0.36, 1),
+
+        border-color 0.28s ease,
+
+        background 0.28s ease,
+
+        box-shadow 0.28s ease;
+}
+
+
+.discovery-language-path::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        -60px;
+
+    right:
+        -50px;
+
+    width:
+        150px;
+
+    height:
+        150px;
+
+    border-radius:
+        50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(142, 198, 151, 0.10),
+            transparent 68%
+        );
+
+    pointer-events:
+        none;
+}
+
+
+.discovery-language-path:hover {
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(229, 199, 106, 0.27);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 91, 62, 0.68),
+            rgba(10, 57, 41, 0.62)
+        );
+
+    box-shadow:
+        0 14px 26px
+        rgba(0, 0, 0, 0.16),
+
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================
+   10. PATH TOP LINE
+   ========================================= */
+
+.discovery-language-path-top {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom:
+        9px;
+}
+
+
+.discovery-language-number {
+    color:
+        #e5c76a;
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        780;
+
+    letter-spacing:
+        0.10em;
+}
+
+
+.discovery-language-origin {
+    color:
+        rgba(218, 233, 224, 0.42);
+
+    font-size:
+        0.54rem;
+
+    font-weight:
+        650;
+
+    letter-spacing:
+        0.05em;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================================
+   11. PATH MAIN CONTENT
+   ========================================= */
+
+.discovery-language-path-main {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+
+    gap:
+        13px;
+}
+
+
+.discovery-language-path-main > div {
+    flex:
+        1;
+
+    min-width:
+        0;
+}
+
+
+.discovery-language-path h5 {
+    margin:
+        0;
+
+    color:
+        #f5f8f6;
+
+    font-size:
+        1rem;
+
+    font-weight:
+        730;
+
+    line-height:
+        1.2;
+
+    letter-spacing:
+        -0.02em;
+}
+
+
+.discovery-language-path-main p {
+    margin:
+        5px
+        0
+        0;
+
+    color:
+        rgba(219, 234, 224, 0.55);
+
+    font-size:
+        0.62rem;
+
+    line-height:
+        1.48;
+}
+
+
+.discovery-language-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink:
+        0;
+
+    width:
+        31px;
+
+    height:
+        31px;
+
+    border:
+        1px solid
+        rgba(229, 199, 106, 0.17);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(229, 199, 106, 0.07);
+
+    color:
+        #e5c76a;
+
+    font-size:
+        0.82rem;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.discovery-language-path:hover
+.discovery-language-arrow {
+    transform:
+        translateX(3px);
+
+    background:
+        rgba(229, 199, 106, 0.13);
+}
+
+
+/* =========================================
+   12. PATH FOOTER
+   ========================================= */
+
+.discovery-language-path-footer {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap:
+        10px;
+
+    margin-top:
+        11px;
+
+    padding-top:
+        10px;
+
+    border-top:
+        1px solid
+        rgba(220, 235, 226, 0.07);
+}
+
+
+.discovery-language-path-footer > span:first-child {
+    color:
+        rgba(235, 242, 237, 0.72);
+
+    font-size:
+        0.59rem;
+
+    font-weight:
+        680;
+}
+
+
+.discovery-path-progress {
+    color:
+        rgba(229, 199, 106, 0.62);
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        680;
+}
+
+
+/* =========================================
+   13. REMOVE OLD COPIED-CARD BEHAVIOUR
+   ========================================= */
+
+.region-discovery-panel
+.discovered-language-cards,
+
+.region-discovery-panel
+.map-result-language-card {
+    display:
+        none !important;
+}
+
+
+/* =========================================
+   14. EMPTY STATE
+   ========================================= */
+
+.discovery-empty-state {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    min-height:
+        600px;
+}
+
+
+.discovery-empty-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width:
+        45px;
+
+    height:
+        45px;
+
+    margin-bottom:
+        18px;
+
+    border:
+        1px solid
+        rgba(229, 199, 106, 0.20);
+
+    border-radius:
+        14px;
+
+    background:
+        rgba(229, 199, 106, 0.07);
+
+    color:
+        #e5c76a;
+}
+
+
+.discovery-empty-eyebrow {
+    color:
+        #e5c76a;
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        760;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.discovery-empty-state h4 {
+    margin:
+        9px
+        0
+        10px;
+
+    color:
+        #f5f8f6;
+
+    font-size:
+        1.4rem;
+
+    line-height:
+        1.18;
+
+    letter-spacing:
+        -0.03em;
+}
+
+
+.discovery-empty-state p {
+    margin:
+        0;
+
+    color:
+        rgba(221, 235, 226, 0.57);
+
+    font-size:
+        0.75rem;
+
+    line-height:
+        1.65;
+}
+
+
+/* =========================================
+   15. TABLET
+   ========================================= */
+
+@media (max-width: 1100px) {
+
+    .region-discovery-panel {
+        padding:
+            21px !important;
+    }
+
+
+    .discovery-place-title-row h4 {
+        font-size:
+            1.42rem;
+    }
+
+
+    .discovery-place-mark {
+        font-size:
+            2.35rem;
+    }
+
+}
+
+
+/* =========================================
+   16. MOBILE
+   ========================================= */
+
+@media (max-width: 820px) {
+
+    .region-discovery-panel {
+        height:
+            auto !important;
+
+        max-height:
+            none !important;
+
+        min-height:
+            520px !important;
+    }
+
+
+    .discovery-empty-state {
+        min-height:
+            470px;
+    }
+
+
+    .discovery-language-path {
+        padding:
+            15px;
+    }
+
+}
+
+
+/* =========================================
+   17. REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .region-discovery-content,
+    .discovery-language-path,
+    .discovery-language-arrow {
+        transition-duration:
+            0.01ms !important;
+    }
+
+}
+
+/* =========================================
+   ENSERA CULTURAL OBJECT
+   TRIGGER BUTTON FIX
+   ========================================= */
+
+.cultural-object-trigger {
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    margin-top: 14px !important;
+
+    padding:
+        13px
+        15px !important;
+
+    border:
+        1px solid
+        rgba(221, 196, 112, 0.24) !important;
+
+    border-radius:
+        12px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 75, 57, 0.96),
+            rgba(8, 47, 37, 0.98)
+        ) !important;
+
+    color:
+        rgba(244, 248, 245, 0.92) !important;
+
+    font: inherit !important;
+
+    font-size:
+        0.72rem !important;
+
+    font-weight:
+        650 !important;
+
+    letter-spacing:
+        0.01em !important;
+
+    text-align:
+        left !important;
+
+    cursor:
+        pointer !important;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.06),
+
+        0 10px 22px
+        rgba(0, 0, 0, 0.16) !important;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease !important;
+}
+
+
+.cultural-object-trigger:hover {
+    transform:
+        translateY(-1px) !important;
+
+    border-color:
+        rgba(239, 215, 126, 0.46) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(26, 91, 68, 0.98),
+            rgba(10, 57, 44, 1)
+        ) !important;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.08),
+
+        0 13px 26px
+        rgba(0, 0, 0, 0.22) !important;
+}
+
+
+.cultural-object-trigger:focus-visible {
+    outline:
+        2px solid
+        rgba(239, 215, 126, 0.72) !important;
+
+    outline-offset:
+        3px !important;
+}
+
+
+.cultural-object-trigger[aria-expanded="true"] {
+    border-color:
+        rgba(239, 215, 126, 0.38) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(12, 61, 47, 0.98),
+            rgba(5, 39, 31, 1)
+        ) !important;
+}
+
+
+.cultural-object-trigger span {
+    color:
+        inherit !important;
+}
+
+
+.cultural-object-trigger-arrow {
+    flex-shrink:
+        0 !important;
+
+    margin-left:
+        16px !important;
+
+    color:
+        rgba(239, 215, 126, 0.92) !important;
+
+    font-size:
+        1rem !important;
+
+    transition:
+        transform 0.25s ease !important;
+}
+
+
+.cultural-object-trigger[aria-expanded="true"]
+.cultural-object-trigger-arrow {
+    transform:
+        rotate(90deg) !important;
+}
+
+/* =========================================
+   INAIT MEMORY ECHO EXPERIENCE
+   SABAH — DISTINCT FROM ENSERA
+   APPEND TO END OF dashboard.css
+   ========================================= */
+
+
+/* =========================================
+   MEMORY ECHO CONTAINER
+   ========================================= */
+
+.inait-memory-echo {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 6px;
+
+    padding:
+        16px
+        14px;
+
+    border:
+        1px solid
+        rgba(221, 196, 112, 0.16);
+
+    border-radius:
+        16px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(49, 122, 92, 0.18),
+            transparent 52%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(7, 45, 35, 0.82),
+            rgba(4, 31, 25, 0.92)
+        );
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   SOFT MEMORY RINGS
+   ========================================= */
+
+.inait-memory-echo::before,
+.inait-memory-echo::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    border:
+        1px solid
+        rgba(239, 215, 126, 0.08);
+
+    border-radius:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    pointer-events:
+        none;
+}
+
+
+.inait-memory-echo::before {
+    top: 34px;
+
+    width: 180px;
+    height: 180px;
+}
+
+
+.inait-memory-echo::after {
+    top: 66px;
+
+    width: 112px;
+    height: 112px;
+}
+
+
+/* =========================================
+   MEMORY ECHO INTRODUCTION
+   ========================================= */
+
+.memory-echo-introduction {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding-bottom: 11px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+.memory-echo-introduction span {
+    color:
+        rgba(239, 215, 126, 0.76);
+
+    font-size:
+        0.61rem;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.memory-echo-introduction p {
+    margin: 0;
+
+    max-width: 180px;
+
+    color:
+        rgba(224, 234, 228, 0.68);
+
+    font-size:
+        0.68rem;
+
+    line-height:
+        1.5;
+
+    text-align:
+        right;
+}
+
+
+/* =========================================
+   MEMORY MOMENT
+   ========================================= */
+
+.memory-echo-moment {
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        44px
+        1fr;
+
+    gap: 13px;
+
+    align-items: center;
+
+    min-height: 82px;
+
+    padding:
+        12px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.075);
+
+    border-radius:
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+}
+
+
+.memory-echo-moment:hover {
+    transform:
+        translateX(3px);
+
+    border-color:
+        rgba(239, 215, 126, 0.22);
+
+    background:
+        rgba(255, 255, 255, 0.055);
+}
+
+
+/* =========================================
+   ECHO SYMBOL
+   ========================================= */
+
+.memory-echo-symbol {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid
+        rgba(239, 215, 126, 0.28);
+
+    border-radius:
+        50%;
+
+    color:
+        rgba(239, 215, 126, 0.94);
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.04em;
+
+    background:
+        rgba(12, 64, 49, 0.88);
+
+    box-shadow:
+        0 0 0 5px
+        rgba(239, 215, 126, 0.035),
+
+        0 0 0 10px
+        rgba(239, 215, 126, 0.018);
+}
+
+
+/* =========================================
+   MEMORY MOMENT TEXT
+   ========================================= */
+
+.memory-echo-copy {
+    min-width: 0;
+}
+
+
+.memory-echo-copy strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color:
+        rgba(247, 249, 246, 0.94);
+
+    font-size:
+        0.8rem;
+
+    font-weight:
+        680;
+
+    letter-spacing:
+        0.01em;
+}
+
+
+.memory-echo-copy p {
+    margin: 0;
+
+    color:
+        rgba(218, 229, 222, 0.68);
+
+    font-size:
+        0.69rem;
+
+    line-height:
+        1.55;
+}
+
+
+/* =========================================
+   ECHO BETWEEN MOMENTS
+   ========================================= */
+
+.memory-echo-connection {
+    position: relative;
+
+    z-index: 2;
+
+    width: 1px;
+    height: 18px;
+
+    margin:
+        -4px
+        0
+        -4px
+        33px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(239, 215, 126, 0.32),
+            rgba(239, 215, 126, 0.06)
+        );
+}
+
+
+.memory-echo-connection::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -2px;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(239, 215, 126, 0.52);
+
+    transform:
+        translateX(-50%);
+
+    box-shadow:
+        0 0 8px
+        rgba(239, 215, 126, 0.22);
+}
+
+
+/* =========================================
+   HEAR / HOLD / CARRY DIFFERENCE
+   ========================================= */
+
+.memory-echo-moment[data-memory-stage="hear"]
+.memory-echo-symbol {
+    box-shadow:
+        0 0 0 5px
+        rgba(239, 215, 126, 0.04),
+
+        0 0 0 10px
+        rgba(239, 215, 126, 0.02),
+
+        0 0 18px
+        rgba(239, 215, 126, 0.08);
+}
+
+
+.memory-echo-moment[data-memory-stage="hold"] {
+    margin-left:
+        10px;
+
+    margin-right:
+        10px;
+}
+
+
+.memory-echo-moment[data-memory-stage="hold"]
+.memory-echo-symbol {
+    border-style:
+        dashed;
+}
+
+
+.memory-echo-moment[data-memory-stage="carry"] {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(28, 91, 68, 0.16),
+            rgba(255, 255, 255, 0.035)
+        );
+}
+
+
+.memory-echo-moment[data-memory-stage="carry"]
+.memory-echo-symbol {
+    box-shadow:
+        0 0 0 5px
+        rgba(239, 215, 126, 0.05),
+
+        0 0 0 11px
+        rgba(239, 215, 126, 0.025),
+
+        0 0 0 17px
+        rgba(239, 215, 126, 0.012);
+}
+
+
+/* =========================================
+   MEMORY ECHO CLOSING THOUGHT
+   ========================================= */
+
+.memory-echo-question {
+    position: relative;
+
+    z-index: 2;
+
+    margin-top:
+        3px;
+
+    padding:
+        13px
+        14px;
+
+    border-left:
+        2px solid
+        rgba(239, 215, 126, 0.52);
+
+    background:
+        rgba(239, 215, 126, 0.045);
+
+    border-radius:
+        0
+        10px
+        10px
+        0;
+}
+
+
+.memory-echo-question span {
+    display: block;
+
+    margin-bottom:
+        6px;
+
+    color:
+        rgba(239, 215, 126, 0.76);
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.memory-echo-question p {
+    margin: 0;
+
+    color:
+        rgba(232, 239, 234, 0.78);
+
+    font-size:
+        0.7rem;
+
+    line-height:
+        1.58;
+}
+
+
+/* =========================================
+   INAIT REVEAL MOTION
+   ========================================= */
+
+#inait-object-experience:not([hidden])
+.memory-echo-moment {
+    animation:
+        memoryEchoReveal
+        0.48s
+        ease
+        both;
+}
+
+
+#inait-object-experience:not([hidden])
+.memory-echo-moment:nth-of-type(2) {
+    animation-delay:
+        0.07s;
+}
+
+
+#inait-object-experience:not([hidden])
+.memory-echo-moment:nth-of-type(3) {
+    animation-delay:
+        0.14s;
+}
+
+
+@keyframes memoryEchoReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================
+   MEMORY ECHO MOBILE
+   ========================================= */
+
+@media (max-width: 820px) {
+
+    .inait-memory-echo {
+        padding:
+            14px
+            12px;
+    }
+
+
+    .memory-echo-introduction {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            6px;
+    }
+
+
+    .memory-echo-introduction p {
+        max-width:
+            none;
+
+        text-align:
+            left;
+    }
+
+
+    .memory-echo-moment[data-memory-stage="hold"] {
+        margin-left:
+            0;
+
+        margin-right:
+            0;
+    }
+
+}
+
+
+/* =========================================
+   MEMORY ECHO REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #inait-object-experience:not([hidden])
+    .memory-echo-moment {
+        animation:
+            none !important;
+    }
+
+
+    .memory-echo-moment {
+        transition-duration:
+            0.01ms !important;
+    }
+
+}
+
+/* =========================================
+   INAIT — ONE MEANING / TWO FORMS
+   COMPACT STRUCTURAL REVEAL
+   ========================================= */
+
+.inait-language-reveal {
+    position: relative;
+
+    margin-top:
+        13px;
+
+    padding:
+        13px
+        14px;
+
+    border:
+        1px solid
+        rgba(221, 196, 112, 0.16);
+
+    border-radius:
+        13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(20, 75, 57, 0.1)
+        );
+
+    overflow:
+        hidden;
+}
+
+
+.inait-language-reveal::before {
+    content: "";
+
+    position:
+        absolute;
+
+    top:
+        -42px;
+
+    left:
+        50%;
+
+    width:
+        120px;
+
+    height:
+        120px;
+
+    border:
+        1px solid
+        rgba(239, 215, 126, 0.07);
+
+    border-radius:
+        50%;
+
+    transform:
+        translateX(-50%);
+
+    pointer-events:
+        none;
+}
+
+
+.inait-language-reveal-heading {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    display:
+        flex;
+
+    align-items:
+        baseline;
+
+    justify-content:
+        space-between;
+
+    gap:
+        12px;
+
+    padding-bottom:
+        9px;
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.07);
+}
+
+
+.inait-language-reveal-heading span {
+    color:
+        rgba(239, 215, 126, 0.78);
+
+    font-size:
+        0.58rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.inait-language-reveal-heading strong {
+    color:
+        rgba(241, 246, 242, 0.88);
+
+    font-size:
+        0.68rem;
+
+    font-weight:
+        650;
+}
+
+
+.inait-language-reveal-core {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    gap:
+        8px;
+
+    padding:
+        10px
+        0
+        8px;
+}
+
+
+.inait-meaning-point {
+    width:
+        6px;
+
+    height:
+        6px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(239, 215, 126, 0.9);
+
+    box-shadow:
+        0 0 10px
+        rgba(239, 215, 126, 0.28);
+}
+
+
+.inait-meaning-label {
+    color:
+        rgba(225, 234, 228, 0.68);
+
+    font-size:
+        0.62rem;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.03em;
+}
+
+
+.inait-language-forms {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto
+        minmax(0, 1fr);
+
+    gap:
+        9px;
+
+    align-items:
+        center;
+}
+
+
+.inait-language-form {
+    min-width:
+        0;
+
+    padding:
+        9px
+        10px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.075);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    text-align:
+        center;
+}
+
+
+.inait-language-form span {
+    display:
+        block;
+
+    margin-bottom:
+        3px;
+
+    color:
+        rgba(239, 215, 126, 0.68);
+
+    font-size:
+        0.52rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.1em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.inait-language-form strong {
+    display:
+        block;
+
+    color:
+        rgba(242, 246, 243, 0.9);
+
+    font-size:
+        0.67rem;
+
+    font-weight:
+        650;
+
+    line-height:
+        1.35;
+}
+
+
+.inait-language-relation {
+    color:
+        rgba(239, 215, 126, 0.68);
+
+    font-size:
+        0.86rem;
+
+    font-weight:
+        500;
+}
+
+
+.inait-language-reveal-note {
+    position:
+        relative;
+
+    z-index:
+        1;
+
+    margin:
+        9px
+        0
+        0;
+
+    color:
+        rgba(216, 227, 220, 0.64);
+
+    font-size:
+        0.64rem;
+
+    line-height:
+        1.5;
+
+    text-align:
+        center;
+}
+
+
+@media (max-width: 820px) {
+
+    .inait-language-reveal-heading {
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap:
+            4px;
+    }
+
+
+    .inait-language-forms {
+        gap:
+            6px;
+    }
+
+
+    .inait-language-form {
+        padding:
+            8px
+            7px;
+    }
+
+}
+
+/* =========================================
+   CULTURAL OBJECT SOURCES
+   COMPACT CURATORIAL CITATION
+   APPEND TO END OF dashboard.css
+   ========================================= */
+
+
+/* =========================================
+   SOURCES CONTAINER
+   ========================================= */
+
+.cultural-object-sources {
+    margin-top:
+        12px;
+
+    padding-top:
+        11px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   SOURCES HEADING
+   ========================================= */
+
+.cultural-sources-heading {
+    display:
+        block;
+
+    margin-bottom:
+        7px;
+
+    color:
+        rgba(239, 215, 126, 0.72);
+
+    font-size:
+        0.56rem;
+
+    font-weight:
+        750;
+
+    letter-spacing:
+        0.12em;
+
+    line-height:
+        1.3;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================================
+   SOURCE LIST
+   ========================================= */
+
+.cultural-object-sources ul {
+    margin:
+        0;
+
+    padding:
+        0;
+
+    list-style:
+        none;
+}
+
+
+.cultural-object-sources li {
+    position:
+        relative;
+
+    margin:
+        0;
+
+    padding-left:
+        11px;
+
+    color:
+        rgba(213, 225, 217, 0.62);
+
+    font-size:
+        0.61rem;
+
+    line-height:
+        1.45;
+}
+
+
+.cultural-object-sources li::before {
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0.62em;
+
+    left:
+        0;
+
+    width:
+        3px;
+
+    height:
+        3px;
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(239, 215, 126, 0.58);
+}
+
+
+/* =========================================
+   INAIT SOURCE — EXTRA COMPACT
+   ========================================= */
+
+#inait-object-experience
+.cultural-object-sources {
+    margin-top:
+        10px;
+
+    padding-top:
+        10px;
+}
+
+
+#inait-object-experience
+.cultural-object-sources li {
+    color:
+        rgba(213, 225, 217, 0.58);
+
+    font-size:
+        0.58rem;
+
+    line-height:
+        1.38;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 820px) {
+
+    .cultural-object-sources {
+        margin-top:
+            10px;
+
+        padding-top:
+            9px;
+    }
+
+
+    .cultural-object-sources li {
+        font-size:
+            0.6rem;
+
+        line-height:
+            1.42;
+    }
+
+}
+
+/* =========================================
+   SELANGOR BEACON — FINAL POSITION
+   ========================================= */
+
+.selangor-beacon {
+    left: 14%;
+    top: 56%;
+}
+
+
+/* Label stays outside the peninsula */
+
+.selangor-beacon .beacon-label {
+    left: auto !important;
+    right: calc(100% + 3px) !important;
+
+    top: calc(100% + 28px) !important;
+    bottom: auto !important;
+
+    width: 150px !important;
+
+    transform: none !important;
+
+    text-align: right !important;
+}
+
+/* =========================================
+   MAH MERI
+   TWO VOICE REGISTERS EXPERIENCE
+   ========================================= */
+
+
+/* =========================================
+   MAIN CULTURAL OBJECT
+   ========================================= */
+
+.mahmeri-language-object {
+    position: relative;
+    margin-top: 28px;
+    padding: 26px 0 4px;
+    border-top: 1px solid rgba(225, 244, 214, 0.14);
+}
+
+
+/* =========================================
+   OBJECT INTRODUCTION
+   ========================================= */
+
+.mahmeri-language-object .cultural-object-heading {
+    position: relative;
+    z-index: 2;
+}
+
+
+.mahmeri-language-object .cultural-object-introduction {
+    margin-top: 20px;
+    max-width: 100%;
+    color: rgba(241, 248, 235, 0.78);
+    font-size: 0.94rem;
+    line-height: 1.75;
+}
+
+
+/* =========================================
+   REGISTER CONTRAST EXPERIENCE
+   ========================================= */
+
+.mahmeri-register-contrast {
+    position: relative;
+    margin-top: 26px;
+    padding: 24px 18px 20px;
+    overflow: hidden;
+
+    border: 1px solid rgba(220, 244, 194, 0.18);
+    border-radius: 24px;
+
+    background:
+        radial-gradient(
+            circle at 50% 48%,
+            rgba(220, 239, 113, 0.12),
+            transparent 34%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(18, 91, 67, 0.68),
+            rgba(7, 54, 45, 0.86)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 22px 45px rgba(0, 24, 20, 0.18);
+}
+
+
+/* SOFT BACKGROUND GLOW */
+
+.mahmeri-register-contrast::before {
+    content: "";
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(232, 238, 116, 0.15),
+            rgba(232, 238, 116, 0.04) 44%,
+            transparent 72%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   CONTRAST HEADING
+   ========================================= */
+
+.mahmeri-register-heading {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+
+.mahmeri-register-heading span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #e5df72;
+
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+
+.mahmeri-register-heading strong {
+    display: block;
+
+    color: #f5f8ed;
+
+    font-size: 1.02rem;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   TWO REGISTER CARDS
+   ========================================= */
+
+.mahmeri-register-cards {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+
+/* INDIVIDUAL REGISTER */
+
+.mahmeri-register-card {
+    position: relative;
+
+    min-width: 0;
+    padding: 18px 14px 16px;
+
+    border: 1px solid rgba(225, 245, 209, 0.15);
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    transition:
+        transform 220ms ease,
+        border-color 220ms ease,
+        background 220ms ease;
+}
+
+
+.mahmeri-register-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(229, 223, 114, 0.38);
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(255, 255, 255, 0.11),
+            rgba(255, 255, 255, 0.04)
+        );
+}
+
+
+/* =========================================
+   REGISTER NUMBER
+   ========================================= */
+
+.mahmeri-register-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    margin-bottom: 14px;
+
+    border: 1px solid rgba(229, 223, 114, 0.32);
+    border-radius: 50%;
+
+    color: #e8e277;
+
+    background: rgba(229, 223, 114, 0.08);
+
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+
+/* =========================================
+   REGISTER LABEL
+   ========================================= */
+
+.mahmeri-register-card h6 {
+    margin: 0 0 14px;
+
+    color: #f6f8ef;
+
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+
+/* =========================================
+   REGISTER CHARACTERISTICS
+   ========================================= */
+
+.mahmeri-register-card ul {
+    display: grid;
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.mahmeri-register-card li {
+    position: relative;
+
+    padding-left: 15px;
+
+    color: rgba(239, 247, 233, 0.76);
+
+    font-size: 0.77rem;
+    line-height: 1.48;
+}
+
+
+.mahmeri-register-card li::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0.55em;
+    left: 0;
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #e2dc70;
+
+    box-shadow:
+        0 0 10px rgba(226, 220, 112, 0.48);
+}
+
+
+/* =========================================
+   VOICE RELATION
+   BETWEEN BOTH REGISTERS
+   ========================================= */
+
+.mahmeri-register-relation {
+    position: relative;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin: -6px auto;
+
+    border: 1px solid rgba(229, 223, 114, 0.3);
+    border-radius: 50%;
+
+    color: #ece57b;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(29, 111, 79, 0.96),
+            rgba(9, 64, 51, 0.98)
+        );
+
+    box-shadow:
+        0 0 0 7px rgba(229, 223, 114, 0.035),
+        0 0 24px rgba(229, 223, 114, 0.12);
+
+    font-size: 1rem;
+}
+
+
+/* =========================================
+   KEY IDEA
+   ========================================= */
+
+.mahmeri-register-key-idea {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 20px;
+    padding: 17px 17px 17px 19px;
+
+    border-left: 2px solid #e4de72;
+    border-radius: 0 15px 15px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(228, 222, 114, 0.1),
+            rgba(228, 222, 114, 0.025)
+        );
+}
+
+
+.mahmeri-register-key-idea span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #e6e078;
+
+    font-size: 0.66rem;
+    font-weight: 900;
+
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+
+.mahmeri-register-key-idea p {
+    margin: 0;
+
+    color: rgba(246, 249, 238, 0.9);
+
+    font-size: 0.86rem;
+    font-weight: 650;
+    line-height: 1.58;
+}
+
+
+/* =========================================
+   SOURCE AREA
+   ========================================= */
+
+.mahmeri-language-object .cultural-object-sources {
+    margin-top: 24px;
+    padding-top: 20px;
+
+    border-top: 1px solid rgba(225, 244, 214, 0.12);
+}
+
+.mahmeri-language-object .cultural-object-sources li {
+    color: rgba(235, 244, 228, 0.7);
+
+    font-size: 0.72rem;
+    line-height: 1.58;
+}
+
+
+/* =========================================
+   SMALL PANEL RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1180px) {
+
+    .mahmeri-register-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .mahmeri-register-relation {
+        margin: -2px auto;
+        transform: rotate(90deg);
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .mahmeri-register-contrast {
+        padding: 20px 14px 17px;
+        border-radius: 20px;
+    }
+
+    .mahmeri-register-card {
+        padding: 16px 13px;
+    }
+
+    .mahmeri-register-key-idea {
+        padding: 15px;
+    }
+}
+
+/* =========================================
+   FINAL EARTH EXPERIENCE
+   LIVING WORLD EDITION
+   ========================================= */
+
+
+/* =========================================
+   1. STAGE
+   ========================================= */
+
+.globe-stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.globe-stage::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+
+    left: 50%;
+    top: 48%;
+
+    width: 570px;
+    height: 570px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(94, 211, 157, 0.14) 0%,
+            rgba(48, 166, 116, 0.065) 35%,
+            rgba(16, 79, 57, 0.025) 55%,
+            transparent 72%
+        );
+
+    filter: blur(25px);
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   2. GLOBE CONTAINER
+   ========================================= */
+
+.globe-placeholder {
+    position: relative;
+    z-index: 4;
+
+    width: min(390px, 74%);
+    aspect-ratio: 1;
+
+    overflow: visible;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: transparent;
+    box-shadow: none;
+
+    transform-origin: center;
+
+    animation:
+        livingGlobeFloat
+        8s ease-in-out infinite;
+
+    transition:
+        opacity 0.75s ease,
+        transform 1.45s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1s ease;
+}
+
+
+/* =========================================
+   3. SPACE
+   ========================================= */
+
+.globe-space {
+    position: absolute;
+    z-index: 0;
+
+    inset: -28%;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(70, 193, 137, 0.055),
+            transparent 58%
+        );
+}
+
+.globe-star {
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(232, 250, 241, 0.92);
+
+    box-shadow:
+        0 0 7px rgba(174, 236, 207, 0.58);
+
+    animation:
+        livingStarPulse
+        5s ease-in-out infinite;
+}
+
+.star-one {
+    top: 14%;
+    left: 17%;
+}
+
+.star-two {
+    top: 23%;
+    right: 9%;
+
+    width: 3px;
+    height: 3px;
+
+    animation-delay: -2s;
+}
+
+.star-three {
+    bottom: 20%;
+    left: 7%;
+
+    animation-delay: -3.5s;
+}
+
+.star-four {
+    right: 13%;
+    bottom: 16%;
+
+    animation-delay: -1s;
+}
+
+.star-five {
+    top: 8%;
+    left: 58%;
+
+    width: 1px;
+    height: 1px;
+
+    animation-delay: -4s;
+}
+
+
+/* =========================================
+   4. ATMOSPHERE
+   ========================================= */
+
+.earth-atmosphere {
+    position: absolute;
+    z-index: 1;
+
+    inset: 5%;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 34% 28%,
+            rgba(210, 250, 230, 0.16),
+            transparent 35%
+        );
+
+    box-shadow:
+        0 0 0 1px rgba(144, 225, 187, 0.16),
+
+        0 0 15px rgba(94, 220, 160, 0.25),
+
+        0 0 35px rgba(55, 189, 130, 0.17),
+
+        0 0 75px rgba(28, 126, 91, 0.13);
+
+    animation:
+        livingAtmospherePulse
+        5.5s ease-in-out infinite;
+}
+
+
+/* =========================================
+   5. EARTH SPHERE
+   ========================================= */
+
+.earth-sphere {
+    position: absolute;
+    z-index: 3;
+
+    inset: 7%;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(180, 232, 205, 0.25);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 29% 23%,
+            rgba(170, 231, 207, 0.18),
+            transparent 21%
+        ),
+        linear-gradient(
+            145deg,
+            #236d62 0%,
+            #125347 32%,
+            #083b35 66%,
+            #031d1c 100%
+        );
+
+    box-shadow:
+        inset 25px 18px 45px
+            rgba(220, 249, 235, 0.09),
+
+        inset -58px -32px 75px
+            rgba(0, 9, 11, 0.72),
+
+        0 0 0 1px
+            rgba(102, 210, 163, 0.08),
+
+        0 22px 55px
+            rgba(0, 0, 0, 0.42);
+
+    transform: translateZ(0);
+
+    transition:
+        transform 1.45s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1s ease;
+}
+
+
+/* =========================================
+   6. OCEAN
+   ========================================= */
+
+.earth-ocean {
+    position: absolute;
+    z-index: 0;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    background:
+        radial-gradient(
+            circle at 31% 27%,
+            rgba(144, 220, 198, 0.22),
+            transparent 27%
+        ),
+        radial-gradient(
+            circle at 64% 67%,
+            rgba(5, 45, 44, 0.56),
+            transparent 43%
+        ),
+        linear-gradient(
+            145deg,
+            #27776c 0%,
+            #14594f 35%,
+            #0a403b 64%,
+            #042421 100%
+        );
+}
+
+
+/* =========================================
+   7. WORLD MAP
+   ========================================= */
+
+.earth-map-layer {
+    position: absolute;
+    z-index: 2;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+}
+
+.earth-world-map {
+    position: absolute;
+
+    top: 0;
+    left: -50%;
+
+    width: 200%;
+    height: 100%;
+
+    overflow: visible;
+
+    filter:
+        drop-shadow(
+            0 3px 2px rgba(0, 24, 16, 0.30)
+        );
+
+    animation:
+        livingWorldDrift
+        32s ease-in-out infinite alternate;
+}
+
+.earth-continent {
+    fill:
+        rgba(103, 158, 94, 0.96);
+
+    stroke:
+        rgba(188, 220, 152, 0.17);
+
+    stroke-width: 1.2;
+
+    vector-effect:
+        non-scaling-stroke;
+}
+
+.earth-island {
+    fill:
+        rgba(113, 166, 99, 0.94);
+
+    stroke:
+        rgba(192, 223, 157, 0.15);
+
+    stroke-width: 1;
+
+    vector-effect:
+        non-scaling-stroke;
+}
+
+.earth-malaysia-region {
+    fill:
+        rgba(188, 190, 96, 0.98);
+
+    stroke:
+        rgba(236, 229, 147, 0.44);
+
+    stroke-width: 1.5;
+}
+
+
+/* NATURAL LAND LIGHT */
+
+.earth-map-layer::after {
+    content: "";
+
+    position: absolute;
+    z-index: 3;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            118deg,
+            rgba(225, 243, 199, 0.11) 0%,
+            transparent 27%,
+            transparent 68%,
+            rgba(0, 20, 17, 0.16) 100%
+        );
+
+    mix-blend-mode: soft-light;
+}
+
+
+/* =========================================
+   8. CLOUDS
+   ========================================= */
+
+.earth-cloud-layer {
+    position: absolute;
+    z-index: 4;
+
+    inset: -7%;
+
+    border-radius: 50%;
+
+    opacity: 0.25;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse 22% 7% at 25% 25%,
+            rgba(237, 249, 243, 0.72) 0%,
+            rgba(216, 239, 228, 0.26) 48%,
+            transparent 72%
+        ),
+
+        radial-gradient(
+            ellipse 29% 8% at 62% 34%,
+            rgba(241, 250, 246, 0.66) 0%,
+            rgba(216, 239, 229, 0.23) 48%,
+            transparent 73%
+        ),
+
+        radial-gradient(
+            ellipse 24% 7% at 39% 64%,
+            rgba(235, 248, 242, 0.58) 0%,
+            rgba(213, 237, 226, 0.20) 48%,
+            transparent 72%
+        ),
+
+        radial-gradient(
+            ellipse 20% 6% at 77% 72%,
+            rgba(239, 249, 244, 0.54) 0%,
+            rgba(210, 235, 223, 0.17) 50%,
+            transparent 74%
+        );
+
+    filter:
+        blur(1.8px);
+
+    animation:
+        livingCloudDrift
+        22s ease-in-out infinite alternate;
+}
+
+
+/* =========================================
+   9. LIGHTING
+   ========================================= */
+
+.earth-light {
+    position: absolute;
+    z-index: 5;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 27% 20%,
+            rgba(236, 255, 245, 0.24) 0%,
+            rgba(191, 239, 215, 0.10) 19%,
+            transparent 44%
+        );
+
+    mix-blend-mode: screen;
+}
+
+.earth-night-shadow {
+    position: absolute;
+    z-index: 6;
+
+    inset: -2%;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            transparent 0%,
+            transparent 37%,
+            rgba(1, 19, 20, 0.12) 59%,
+            rgba(0, 8, 12, 0.60) 86%,
+            rgba(0, 5, 8, 0.86) 100%
+        );
+}
+
+.earth-surface-glass {
+    position: absolute;
+    z-index: 7;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(238, 255, 246, 0.12) 0%,
+            transparent 25%,
+            transparent 67%,
+            rgba(0, 13, 14, 0.18) 100%
+        );
+
+    box-shadow:
+        inset 12px 9px 22px
+            rgba(231, 255, 244, 0.05),
+
+        inset -18px -16px 35px
+            rgba(0, 5, 8, 0.28);
+}
+
+
+/* =========================================
+   10. MALAYSIA MARKER
+   ========================================= */
+
+.malaysia-globe-marker {
+    position: absolute;
+    z-index: 20;
+
+    top: 52%;
+    left: 64%;
+
+    width: 22px;
+    height: 22px;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%);
+
+    transition:
+        top 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        left 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.7s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.malaysia-marker-dot {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 8px;
+    height: 8px;
+
+    border:
+        2px solid rgba(255, 250, 214, 0.96);
+
+    border-radius: 50%;
+
+    background:
+        #d8c86d;
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 10px rgba(225, 205, 105, 0.95),
+        0 0 24px rgba(225, 205, 105, 0.48);
+}
+
+.malaysia-marker-ring {
+    position: absolute;
+
+    inset: 0;
+
+    border:
+        1px solid rgba(230, 211, 116, 0.75);
+
+    border-radius: 50%;
+
+    animation:
+        livingMalaysiaPulse
+        2.2s ease-out infinite;
+}
+
+.malaysia-marker-label {
+    position: absolute;
+
+    top: 50%;
+    left: 30px;
+
+    padding: 6px 10px;
+
+    border:
+        1px solid rgba(228, 211, 120, 0.24);
+
+    border-radius: 999px;
+
+    background:
+        rgba(4, 27, 21, 0.88);
+
+    color:
+        rgba(248, 244, 213, 0.95);
+
+    font-size: 0.64rem;
+    font-weight: 800;
+
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+
+    transform:
+        translateY(-50%);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* =========================================
+   11. USER MARKER
+   ========================================= */
+
+.user-globe-marker {
+    position: absolute;
+    z-index: 21;
+
+    top: 50%;
+    left: 50%;
+
+    width: 20px;
+    height: 20px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0.72);
+
+    transition:
+        top 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        left 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.7s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.user-globe-marker.is-visible {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+.user-marker-core {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 8px;
+    height: 8px;
+
+    border:
+        2px solid rgba(231, 249, 241, 0.96);
+
+    border-radius: 50%;
+
+    background:
+        #61d39a;
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 11px rgba(97, 211, 154, 0.95),
+        0 0 25px rgba(97, 211, 154, 0.46);
+}
+
+.user-marker-ring {
+    position: absolute;
+
+    inset: 0;
+
+    border:
+        1px solid rgba(110, 224, 169, 0.72);
+
+    border-radius: 50%;
+
+    animation:
+        livingUserPulse
+        2.1s ease-out infinite;
+}
+
+.user-marker-label {
+    position: absolute;
+
+    top: 50%;
+    right: 29px;
+
+    padding: 6px 10px;
+
+    border:
+        1px solid rgba(115, 220, 169, 0.24);
+
+    border-radius: 999px;
+
+    background:
+        rgba(3, 24, 18, 0.88);
+
+    color:
+        rgba(220, 247, 233, 0.94);
+
+    font-size: 0.64rem;
+    font-weight: 750;
+
+    white-space: nowrap;
+
+    transform:
+        translateY(-50%);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* =========================================
+   12. COORDINATE LINES
+   ========================================= */
+
+.globe-coordinate-line {
+    position: absolute;
+    z-index: 8;
+
+    left: 50%;
+    top: 50%;
+
+    pointer-events: none;
+
+    border:
+        1px solid rgba(164, 224, 195, 0.10);
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.globe-coordinate-one {
+    width: 75%;
+    height: 26%;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-8deg);
+}
+
+.globe-coordinate-two {
+    width: 29%;
+    height: 75%;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(13deg);
+}
+
+
+/* =========================================
+   13. STATUS
+   ========================================= */
+
+.globe-status {
+    position: relative;
+    z-index: 30;
+
+    max-width: calc(100% - 34px);
+
+    transition:
+        border-color 0.5s ease,
+        color 0.5s ease,
+        background 0.5s ease;
+}
+
+.globe-status.has-location {
+    border-color:
+        rgba(92, 207, 150, 0.24);
+
+    color:
+        rgba(226, 247, 237, 0.90);
+
+    background:
+        rgba(3, 30, 21, 0.74);
+}
+
+.globe-status.has-location
+.globe-status-dot {
+    background:
+        #62d49a;
+
+    box-shadow:
+        0 0 10px rgba(98, 212, 154, 0.72);
+}
+
+
+/* =========================================
+   14. TRAVELLING TRANSITION
+   KEEP EXISTING MALAYSIA FLOW
+   ========================================= */
+
+.world-explorer-card.is-travelling
+#interactive-globe {
+    transform:
+        scale(1.18);
+
+    filter:
+        brightness(1.10)
+        saturate(1.08);
+}
+
+.world-explorer-card.is-travelling
+.earth-sphere {
+    transform:
+        scale(1.08);
+}
+
+.world-explorer-card.is-travelling
+.malaysia-globe-marker {
+    transform:
+        translate(-50%, -50%)
+        scale(1.28);
+}
+
+
+/* STORY FADES WHILE APPROACHING */
+
+.world-explorer-card
+.world-explorer-content {
+    transition:
+        opacity 0.7s ease,
+        transform 0.9s ease,
+        filter 0.8s ease;
+}
+
+.world-explorer-card.is-travelling
+.world-explorer-content {
+    opacity: 0.18;
+
+    transform:
+        translateX(-22px);
+
+    filter:
+        blur(3px);
+}
+
+
+/* CLOUD COVER */
+
+.world-explorer-card::after {
+    content: "";
+
+    position: absolute;
+    z-index: 80;
+
+    inset: -20%;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    transform:
+        scale(1.18)
+        translateX(-8%);
+
+    background:
+        radial-gradient(
+            ellipse at 18% 45%,
+            rgba(232, 244, 239, 0.96) 0%,
+            rgba(205, 229, 219, 0.82) 18%,
+            transparent 42%
+        ),
+
+        radial-gradient(
+            ellipse at 52% 35%,
+            rgba(244, 249, 247, 0.96) 0%,
+            rgba(209, 231, 222, 0.78) 20%,
+            transparent 46%
+        ),
+
+        radial-gradient(
+            ellipse at 82% 58%,
+            rgba(225, 239, 233, 0.94) 0%,
+            rgba(188, 219, 206, 0.72) 20%,
+            transparent 44%
+        ),
+
+        linear-gradient(
+            135deg,
+            rgba(196, 225, 213, 0.88),
+            rgba(239, 247, 243, 0.96)
+        );
+
+    filter:
+        blur(12px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 1.1s ease,
+        filter 1s ease;
+}
+
+.world-explorer-card.is-cloud-covered::after {
+    opacity: 1;
+
+    transform:
+        scale(1)
+        translateX(0);
+
+    filter:
+        blur(3px);
+}
+
+
+/* MALAYSIA VIEW */
+
+.world-explorer-card.is-malaysia-view
+#interactive-globe {
+    opacity: 0;
+
+    transform:
+        scale(2.4);
+
+    filter:
+        blur(12px)
+        brightness(1.3);
+}
+
+.world-explorer-card.is-malaysia-view
+.world-explorer-content {
+    opacity: 0;
+
+    transform:
+        translateX(-35px);
+
+    pointer-events: none;
+}
+
+.world-explorer-card.is-malaysia-view::after {
+    transform:
+        scale(1.3)
+        translateX(18%);
+}
+
+
+/* =========================================
+   15. ANIMATIONS
+   ========================================= */
+
+@keyframes livingGlobeFloat {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-0.4deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(0.4deg);
+    }
+}
+
+@keyframes livingWorldDrift {
+    0% {
+        transform:
+            translateX(-1.2%);
+    }
+
+    100% {
+        transform:
+            translateX(1.2%);
+    }
+}
+
+@keyframes livingCloudDrift {
+    0% {
+        transform:
+            translateX(-4%)
+            rotate(-7deg)
+            scale(1.02);
+    }
+
+    100% {
+        transform:
+            translateX(5%)
+            rotate(-6deg)
+            scale(1.05);
+    }
+}
+
+@keyframes livingAtmospherePulse {
+    0%,
+    100% {
+        opacity: 0.82;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes livingStarPulse {
+    0%,
+    100% {
+        opacity: 0.30;
+    }
+
+    50% {
+        opacity: 0.95;
+    }
+}
+
+@keyframes livingMalaysiaPulse {
+    0% {
+        opacity: 0.95;
+        transform:
+            scale(0.55);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            scale(2.55);
+    }
+}
+
+@keyframes livingUserPulse {
+    0% {
+        opacity: 0.88;
+        transform:
+            scale(0.55);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            scale(2.35);
+    }
+}
+
+
+/* =========================================
+   16. RESPONSIVE
+   ========================================= */
+
+@media (max-width: 780px) {
+
+    .globe-placeholder {
+        width:
+            min(310px, 72%);
+    }
+
+    .malaysia-marker-label,
+    .user-marker-label {
+        font-size:
+            0.59rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .globe-placeholder {
+        width:
+            min(260px, 76%);
+    }
+
+    .malaysia-marker-label {
+        left:
+            26px;
+    }
+
+    .user-marker-label {
+        right:
+            25px;
+    }
+}
+
+
+/* =========================================
+   17. REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .globe-placeholder,
+    .globe-star,
+    .earth-atmosphere,
+    .earth-world-map,
+    .earth-cloud-layer,
+    .malaysia-marker-ring,
+    .user-marker-ring {
+        animation:
+            none !important;
+    }
+
+    #interactive-globe,
+    .earth-sphere,
+    .malaysia-globe-marker,
+    .world-explorer-content,
+    .world-explorer-card::after {
+        transition-duration:
+            0.01ms;
+    }
+}
+
+/* =========================================
+   MAH MERI LANGUAGE CARD
+   ========================================= */
+
+.mah-meri-card {
+    background-image:
+        linear-gradient(
+            135deg,
+            rgba(4, 31, 23, 0.72),
+            rgba(3, 23, 18, 0.88)
+        ),
+        url("../images/mah_meri_card_bg.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* =========================================
+   LIVING LANGUAGE RECORD COLLECTION
+   ========================================= */
+
+.living-sound-preview {
+    position: relative;
+    overflow: hidden;
+
+    display: block;
+
+    margin-top: 44px;
+    padding: 42px;
+
+    border:
+        1px solid rgba(132, 204, 165, 0.16);
+
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at 88% 12%,
+            rgba(89, 185, 134, 0.12),
+            transparent 34%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(8, 48, 35, 0.96),
+            rgba(3, 28, 22, 0.98)
+        );
+
+    box-shadow:
+        0 28px 70px rgba(0, 20, 14, 0.22),
+        inset 0 1px 0 rgba(220, 248, 232, 0.05);
+}
+
+
+/* SOFT BACKGROUND GLOW */
+
+.living-sound-preview::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(210, 183, 103, 0.07),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 82% 70%,
+            rgba(76, 190, 137, 0.08),
+            transparent 32%
+        );
+}
+
+
+/* =========================================
+   INTRO
+   ========================================= */
+
+.living-sound-intro {
+    position: relative;
+    z-index: 2;
+
+    max-width: 700px;
+    margin-bottom: 36px;
+}
+
+.living-sound-intro h2 {
+    margin:
+        10px 0 12px;
+
+    color:
+        rgba(240, 250, 244, 0.98);
+
+    font-size:
+        clamp(1.8rem, 3vw, 2.8rem);
+
+    line-height:
+        1.08;
+}
+
+.living-sound-intro p {
+    max-width: 620px;
+
+    margin: 0;
+
+    color:
+        rgba(204, 226, 215, 0.72);
+
+    line-height:
+        1.75;
+}
+
+
+/* =========================================
+   RECORD GRID
+   ========================================= */
+
+.language-record-grid {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   RECORD CARD
+   ========================================= */
+
+.language-record-card {
+    position: relative;
+
+    min-width: 0;
+
+    padding:
+        26px 18px 20px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(163, 219, 187, 0.12);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            155deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        );
+
+    color: inherit;
+    text-decoration: none;
+
+    transition:
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.45s ease;
+}
+
+.language-record-card:hover {
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(181, 226, 200, 0.25);
+
+    background:
+        linear-gradient(
+            155deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    box-shadow:
+        0 24px 45px rgba(0, 15, 11, 0.28);
+}
+
+
+/* =========================================
+   VINYL RECORD
+   ========================================= */
+
+.language-record {
+    position: relative;
+
+    width:
+        min(190px, 88%);
+
+    aspect-ratio: 1;
+
+    margin:
+        0 auto 24px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 0 13%,
+            rgba(255, 255, 255, 0.055) 13.4% 14%,
+            transparent 14.5% 24%,
+            rgba(255, 255, 255, 0.035) 24.5% 25%,
+            transparent 25.5% 38%,
+            rgba(255, 255, 255, 0.028) 38.5% 39%,
+            transparent 39.5% 50%
+        ),
+        repeating-radial-gradient(
+            circle at center,
+            rgba(222, 240, 230, 0.035) 0 1px,
+            rgba(1, 12, 10, 0.08) 1px 3px
+        ),
+        radial-gradient(
+            circle at 34% 28%,
+            #26342f 0%,
+            #101714 42%,
+            #050807 72%,
+            #020403 100%
+        );
+
+    box-shadow:
+        0 22px 38px rgba(0, 0, 0, 0.34),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+    animation:
+        livingRecordSpin
+        22s linear infinite;
+
+    transition:
+        box-shadow 0.45s ease;
+}
+
+.language-record-card:hover
+.language-record {
+    animation-duration:
+        10s;
+
+    box-shadow:
+        0 28px 50px rgba(0, 0, 0, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.10);
+}
+
+
+/* VINYL LIGHT REFLECTION */
+
+.language-record::before {
+    content: "";
+
+    position: absolute;
+    z-index: 6;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    background:
+        conic-gradient(
+            from 215deg,
+            transparent 0deg,
+            rgba(216, 244, 229, 0.13) 22deg,
+            transparent 54deg,
+            transparent 185deg,
+            rgba(201, 231, 216, 0.07) 214deg,
+            transparent 245deg
+        );
+
+    mix-blend-mode: screen;
+}
+
+
+/* DARK EDGE DEPTH */
+
+.language-record::after {
+    content: "";
+
+    position: absolute;
+    z-index: 7;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 28px rgba(0, 0, 0, 0.66),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.025);
+}
+
+
+/* =========================================
+   RECORD COVER ART
+   ========================================= */
+
+.record-label {
+    position: absolute;
+    z-index: 4;
+
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+
+    width: 46%;
+    aspect-ratio: 1;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border:
+        2px solid rgba(239, 244, 227, 0.22);
+
+    border-radius: 50%;
+
+    color:
+        rgba(250, 250, 234, 0.96);
+
+    text-align: center;
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 0 4px rgba(0, 0, 0, 0.18),
+        0 7px 18px rgba(0, 0, 0, 0.25);
+}
+
+
+/* DARK OVERLAY ABOVE ART */
+
+.record-label::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(2, 23, 17, 0.16),
+            rgba(1, 15, 12, 0.58)
+        );
+}
+
+.record-label strong {
+    position: relative;
+    z-index: 2;
+
+    max-width: 78%;
+
+    font-size:
+        0.68rem;
+
+    line-height:
+        1.05;
+}
+
+.record-label small {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 4px;
+
+    color:
+        rgba(238, 242, 219, 0.72);
+
+    font-size:
+        0.48rem;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
+}
+
+
+/* =========================================
+   INDIVIDUAL BEAUTIFUL COVER ART
+   ========================================= */
+
+
+/* IBAN — RIVER + RAINFOREST */
+
+.iban-record
+.record-label {
+    background:
+        linear-gradient(
+            rgba(3, 31, 23, 0.30),
+            rgba(3, 24, 18, 0.58)
+        ),
+        radial-gradient(
+            ellipse at 50% 105%,
+            rgba(101, 172, 145, 0.88) 0 13%,
+            transparent 14%
+        ),
+        radial-gradient(
+            ellipse at 20% 62%,
+            #42775b 0 28%,
+            transparent 29%
+        ),
+        radial-gradient(
+            ellipse at 80% 56%,
+            #315f49 0 31%,
+            transparent 32%
+        ),
+        linear-gradient(
+            160deg,
+            #7da58d,
+            #174b39 62%,
+            #08271e
+        );
+}
+
+
+/* KADAZAN-DUSUN — MOUNTAIN + DAWN */
+
+.kadazan-record
+.record-label {
+    background:
+        linear-gradient(
+            rgba(4, 29, 23, 0.12),
+            rgba(3, 24, 18, 0.54)
+        ),
+        linear-gradient(
+            145deg,
+            transparent 0 44%,
+            #59795f 45% 61%,
+            transparent 62%
+        ),
+        linear-gradient(
+            215deg,
+            transparent 0 46%,
+            #345a46 47% 66%,
+            transparent 67%
+        ),
+        linear-gradient(
+            180deg,
+            #b9aa72 0%,
+            #607c65 43%,
+            #173c2f 100%
+        );
+}
+
+
+/* BIDAYUH — BAMBOO + HIGHLAND */
+
+.bidayuh-record
+.record-label {
+    background:
+        repeating-linear-gradient(
+            72deg,
+            transparent 0 8px,
+            rgba(217, 198, 125, 0.18) 8px 10px
+        ),
+        radial-gradient(
+            ellipse at 50% 110%,
+            #61734d 0 38%,
+            transparent 39%
+        ),
+        linear-gradient(
+            160deg,
+            #a18c58 0%,
+            #4e6948 45%,
+            #17392d 100%
+        );
+}
+
+
+/* MAH MERI — REAL PENINSULAR MALAYSIA IMAGE */
+
+.mah-meri-record
+.record-label {
+    background:
+        linear-gradient(
+            rgba(3, 30, 22, 0.22),
+            rgba(2, 22, 17, 0.56)
+        ),
+        url("../images/mah_meri_card_bg.png");
+
+    background-size:
+        cover;
+
+    background-position:
+        center;
+}
+
+
+/* =========================================
+   RECORD CENTRE HOLE
+   ========================================= */
+
+.record-centre {
+    position: absolute;
+    z-index: 10;
+
+    top: 50%;
+    left: 50%;
+
+    width: 9px;
+    height: 9px;
+
+    border:
+        2px solid rgba(232, 236, 218, 0.66);
+
+    border-radius: 50%;
+
+    background:
+        #07110d;
+
+    transform:
+        translate(-50%, -50%);
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================
+   GROOVES
+   ========================================= */
+
+.record-groove {
+    position: absolute;
+    z-index: 2;
+
+    top: 50%;
+    left: 50%;
+
+    border:
+        1px solid rgba(221, 239, 228, 0.055);
+
+    border-radius: 50%;
+
+    transform:
+        translate(-50%, -50%);
+}
+
+.groove-one {
+    width: 62%;
+    height: 62%;
+}
+
+.groove-two {
+    width: 76%;
+    height: 76%;
+}
+
+.groove-three {
+    width: 90%;
+    height: 90%;
+}
+
+
+/* =========================================
+   CARD TEXT
+   ========================================= */
+
+.record-card-content {
+    text-align: center;
+}
+
+.record-card-content > span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color:
+        rgba(128, 207, 165, 0.78);
+
+    font-size:
+        0.64rem;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.12em;
+
+    text-transform:
+        uppercase;
+}
+
+.record-card-content > strong {
+    display: block;
+
+    color:
+        rgba(240, 249, 244, 0.96);
+
+    font-size:
+        1.05rem;
+}
+
+.record-card-content > small {
+    display: block;
+
+    margin-top: 5px;
+
+    color:
+        rgba(197, 219, 208, 0.62);
+
+    font-size:
+        0.76rem;
+}
+
+
+/* =========================================
+   ROTATION
+   ========================================= */
+
+@keyframes livingRecordSpin {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1050px) {
+
+    .language-record-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 620px) {
+
+    .living-sound-preview {
+        padding:
+            30px 20px;
+    }
+
+    .language-record-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .language-record {
+        width:
+            min(210px, 78%);
+    }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .language-record {
+        animation:
+            none !important;
+    }
+}
+
+/* =========================================
+   FINAL CULTURAL VINYL ART UPGRADE
+   ========================================= */
+
+
+/* Bigger premium vinyl */
+
+.language-record {
+    width: min(205px, 92%);
+
+    background:
+        repeating-radial-gradient(
+            circle at center,
+            rgba(255, 255, 255, 0.045) 0 1px,
+            rgba(0, 0, 0, 0.16) 1px 3px
+        ),
+        radial-gradient(
+            circle at 35% 28%,
+            #303632 0%,
+            #111713 42%,
+            #050806 72%,
+            #010302 100%
+        );
+
+    box-shadow:
+        0 26px 48px rgba(0, 0, 0, 0.48),
+        0 0 0 1px rgba(226, 239, 230, 0.07),
+        inset 0 0 34px rgba(0, 0, 0, 0.68);
+}
+
+
+/* The cultural artwork now fills most of the record */
+
+.record-label {
+    width: 72%;
+
+    border:
+        1px solid rgba(239, 224, 171, 0.34);
+
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.38),
+        0 0 22px rgba(0, 0, 0, 0.32),
+        inset 0 0 18px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Remove old rotating text */
+
+.record-label strong,
+.record-label small {
+    display: none;
+}
+
+
+/* Remove old dark art overlay */
+
+.record-label::after {
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 0 48%,
+            rgba(0, 0, 0, 0.08) 72%,
+            rgba(0, 0, 0, 0.28) 100%
+        );
+}
+
+
+/* =========================================
+   NEW ARTWORK
+   ========================================= */
+
+.iban-record .record-label {
+    background-image:
+        url("../images/iban_record_art.png") !important;
+}
+
+.kadazan-record .record-label {
+    background-image:
+        url("../images/kadazan_record_art.png") !important;
+}
+
+.bidayuh-record .record-label {
+    background-image:
+        url("../images/bidayuh_record_art.png") !important;
+}
+
+.mah-meri-record .record-label {
+    background-image:
+        url("../images/mah_meri_record_art.png") !important;
+}
+
+
+/* =========================================
+   PREMIUM INNER RING
+   ========================================= */
+
+.record-label::before {
+    content: "";
+
+    position: absolute;
+    z-index: 5;
+
+    inset: 0;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 238, 181, 0.16),
+        inset 0 0 22px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================
+   SMALL METALLIC SPINDLE
+   ========================================= */
+
+.record-centre {
+    width: 8px;
+    height: 8px;
+
+    border:
+        2px solid rgba(241, 220, 157, 0.88);
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff4c5,
+            #b89542 45%,
+            #34250e 100%
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.36),
+        0 0 10px rgba(215, 180, 89, 0.22);
+}
+
+
+/* =========================================
+   VINYL LIGHT SWEEP
+   ========================================= */
+
+.language-record::before {
+    background:
+        conic-gradient(
+            from 210deg,
+            transparent 0deg 18deg,
+            rgba(227, 246, 235, 0.15) 30deg,
+            rgba(227, 246, 235, 0.03) 55deg,
+            transparent 72deg 190deg,
+            rgba(229, 239, 219, 0.08) 210deg,
+            transparent 238deg 360deg
+        );
+
+    mix-blend-mode: screen;
+}
+
+
+/* =========================================
+   HOVER — LIFT + FASTER ROTATION
+   ========================================= */
+
+.language-record-card:hover .language-record {
+    animation-duration: 8s;
+
+    box-shadow:
+        0 34px 58px rgba(0, 0, 0, 0.54),
+        0 0 0 1px rgba(232, 239, 216, 0.11),
+        inset 0 0 34px rgba(0, 0, 0, 0.64);
+}
+
+
+/* Different subtle glow for each record */
+
+.iban-record:hover .language-record {
+    filter:
+        drop-shadow(0 0 13px rgba(160, 84, 61, 0.20));
+}
+
+.kadazan-record:hover .language-record {
+    filter:
+        drop-shadow(0 0 13px rgba(211, 170, 72, 0.20));
+}
+
+.bidayuh-record:hover .language-record {
+    filter:
+        drop-shadow(0 0 13px rgba(119, 154, 93, 0.20));
+}
+
+.mah-meri-record:hover .language-record {
+    filter:
+        drop-shadow(0 0 13px rgba(69, 156, 144, 0.20));
+}

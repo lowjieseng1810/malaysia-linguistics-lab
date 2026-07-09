@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+
+{% block title %}
+About the Project | Malaysian Language Heritage Explorer
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/about.css') }}">
+
+<main class="about-page">
+
+    <section class="about-hero">
+
+        <span class="about-eyebrow">
+            About the Project
+        </span>
+
+        <h1>
+            A digital space for exploring
+            Malaysia's living language heritage.
+        </h1>
+
+        <p class="about-intro">
+            Malaysian Language Heritage Explorer is an educational
+            project designed to make selected Malaysian languages,
+            communities, and cultural contexts easier to discover
+            through interactive learning.
+        </p>
+
+        <div class="about-hero-meta">
+
+            <span>
+                4 languages
+            </span>
+
+            <span>
+                12 learning levels
+            </span>
+
+            <span>
+                Interactive cultural exploration
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <div class="about-section-heading">
+
+            <span class="about-number">
+                01
+            </span>
+
+            <div>
+
+                <span class="about-eyebrow">
+                    The Purpose
+                </span>
+
+                <h2>
+                    Why this project exists
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-feature-grid">
+
+            <article class="about-feature-card">
+
+                <span class="feature-label">
+                    Discover
+                </span>
+
+                <h3>
+                    Make languages easier to encounter
+                </h3>
+
+                <p>
+                    Many of Malaysia's languages can be difficult to
+                    discover through ordinary learning platforms.
+                    This project brings selected languages into one
+                    accessible digital experience.
+                </p>
+
+            </article>
+
+
+            <article class="about-feature-card">
+
+                <span class="feature-label">
+                    Learn
+                </span>
+
+                <h3>
+                    Begin with practical expressions
+                </h3>
+
+                <p>
+                    Short learning levels introduce useful words and
+                    expressions through guided steps, questions,
+                    hints, and saved progress.
+                </p>
+
+            </article>
+
+
+            <article class="about-feature-card">
+
+                <span class="feature-label">
+                    Connect
+                </span>
+
+                <h3>
+                    Place language in cultural context
+                </h3>
+
+                <p>
+                    Maps, visual records, and contextual information
+                    help connect language learning with the people,
+                    places, and living heritage around it.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <div class="about-section-heading">
+
+            <span class="about-number">
+                02
+            </span>
+
+            <div>
+
+                <span class="about-eyebrow">
+                    Current Explorer
+                </span>
+
+                <h2>
+                    Four languages across Malaysia
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-language-grid">
+
+            <a href="{{ url_for('language_page', lang_key='iban') }}"
+               class="about-language-card">
+
+                <span>
+                    Sarawak
+                </span>
+
+                <strong>
+                    Iban
+                </strong>
+
+                <small>
+                    Explore course →
+                </small>
+
+            </a>
+
+
+            <a href="{{ url_for('language_page', lang_key='kadazan-dusun') }}"
+               class="about-language-card">
+
+                <span>
+                    Sabah
+                </span>
+
+                <strong>
+                    Kadazan-Dusun
+                </strong>
+
+                <small>
+                    Explore course →
+                </small>
+
+            </a>
+
+
+            <a href="{{ url_for('language_page', lang_key='bidayuh') }}"
+               class="about-language-card">
+
+                <span>
+                    Sarawak
+                </span>
+
+                <strong>
+                    Bidayuh
+                </strong>
+
+                <small>
+                    Explore course →
+                </small>
+
+            </a>
+
+
+            <a href="{{ url_for('language_page', lang_key='mah-meri') }}"
+               class="about-language-card">
+
+                <span>
+                    Selangor
+                </span>
+
+                <strong>
+                    Mah Meri
+                </strong>
+
+                <small>
+                    Explore course →
+                </small>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <div class="about-section-heading">
+
+            <span class="about-number">
+                03
+            </span>
+
+            <div>
+
+                <span class="about-eyebrow">
+                    How It Works
+                </span>
+
+                <h2>
+                    Explore, learn, and continue
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-process">
+
+            <article class="about-process-step">
+
+                <span class="process-number">
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Choose a language
+                    </h3>
+
+                    <p>
+                        Start from the dashboard or interactive map
+                        and enter one of the available language pages.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="about-process-step">
+
+                <span class="process-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Complete guided lessons
+                    </h3>
+
+                    <p>
+                        Work through learning steps and questions.
+                        Progress is saved so you can continue later.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="about-process-step">
+
+                <span class="process-number">
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        Explore the wider context
+                    </h3>
+
+                    <p>
+                        Discover maps, images, language records,
+                        cultural context, and trusted source material.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-note">
+
+        <span class="about-eyebrow">
+            An evolving educational project
+        </span>
+
+        <h2>
+            Built to grow carefully.
+        </h2>
+
+        <p>
+            This explorer is not intended to replace community
+            knowledge, fluent speakers, or specialist research.
+            Language and cultural information should be reviewed,
+            sourced, and improved as the project develops.
+        </p>
+
+        <div class="about-note-actions">
+
+            <a href="{{ url_for('home') }}"
+               class="about-primary-link">
+                Explore the Dashboard
+            </a>
+
+            <a href="{{ url_for('profile') }}"
+               class="about-secondary-link">
+                View My Profile
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}

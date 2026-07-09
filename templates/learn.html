@@ -1,0 +1,352 @@
+{% extends "base.html" %}
+
+{% block title %}Learn {{ language.display_name }} | Malaysian Language Heritage Explorer{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/language.css') }}">
+
+<main class="language-page">
+
+    <a class="back-link"
+       href="{{ url_for('language_page', lang_key=lang_key) }}">
+        ← Back to {{ language.display_name }}
+    </a>
+
+
+    <!-- ================= LEARNING HERO ================= -->
+
+    <section class="language-hero">
+
+        <div class="language-hero-content">
+
+            <span class="language-eyebrow">
+                Learning Course
+            </span>
+
+            <h1>
+                Learn {{ language.display_name }}
+            </h1>
+
+            <p class="language-hero-description">
+                Complete each level at your own pace.
+                Your progress is saved separately inside every level.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COURSE OVERVIEW ================= -->
+
+    <section class="language-facts"
+             aria-label="{{ language.display_name }} course overview">
+
+        <article class="fact-card">
+
+            <span class="fact-label">
+                Language
+            </span>
+
+            <strong>
+                {{ language.display_name }}
+            </strong>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <span class="fact-label">
+                Course Levels
+            </span>
+
+            <strong>
+                {{ levels_info|length }} Levels
+            </strong>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <span class="fact-label">
+                Progress
+            </span>
+
+            <strong>
+                Saved Automatically
+            </strong>
+
+        </article>
+
+    </section>
+
+
+    <!-- ================= LEARNING PATH ================= -->
+
+    <section aria-labelledby="learning-path-heading">
+
+        <div class="learning-path-header">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    Your Course
+                </span>
+
+                <h2 id="learning-path-heading">
+                    Learning Path
+                </h2>
+
+                <p>
+                    Continue from where you stopped or review
+                    a level you have already completed.
+                </p>
+
+            </div>
+
+
+            <span class="level-count">
+                {{ levels_info|length }} levels
+            </span>
+
+        </div>
+
+
+        <div class="level-list">
+
+            {% for level in levels_info %}
+
+                <article
+                    class="level-card
+                    {% if level.completed %}
+                        is-completed
+                    {% elif level.unlocked %}
+                        is-unlocked
+                    {% else %}
+                        is-locked
+                    {% endif %}">
+
+
+                    <!-- LEVEL NUMBER -->
+
+                    <div class="level-number">
+                        {{ level.number }}
+                    </div>
+
+
+                    <!-- LEVEL CONTENT -->
+
+                    <div class="level-content">
+
+                        <h3 class="level-title">
+                            Level {{ level.number }} — {{ level.title }}
+                        </h3>
+
+
+                        <p class="level-description">
+
+                            {% if level.completed %}
+
+                                Level completed. You can revisit it at any time.
+
+                            {% elif level.percentage > 0 %}
+
+                                Continue from where you stopped.
+
+                            {% elif level.unlocked %}
+
+                                Ready to begin. Start this level to continue learning.
+
+                            {% else %}
+
+                                Complete the previous level to unlock this stage.
+
+                            {% endif %}
+
+                        </p>
+
+
+                        <!-- LEVEL PROGRESS -->
+
+                        <div class="level-step-progress">
+
+                            <div class="level-step-progress-info">
+
+                                <span>
+                                    Level progress
+                                </span>
+
+                                <span>
+                                    {{ level.current_step }}
+                                    /
+                                    {{ level.total_steps }}
+                                    steps ·
+                                    {{ level.percentage }}%
+                                </span>
+
+                            </div>
+
+
+                            <div class="level-step-progress-track"
+                                 role="progressbar"
+                                 aria-label="Level {{ level.number }} progress"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 aria-valuenow="{{ level.percentage }}">
+
+                                <div class="level-step-progress-fill"
+                                     data-progress="{{ level.percentage }}">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LEVEL ACTION -->
+
+                    <div class="level-action">
+
+                        {% if level.completed %}
+
+                            <span class="status-badge status-done">
+                                Completed
+                            </span>
+
+                            <a class="level-start-button"
+                               href="{{ url_for(
+                                   'level_page',
+                                   lang_key=lang_key,
+                                   level_num=level.number
+                               ) }}">
+                                Review
+                            </a>
+
+
+                        {% elif level.unlocked %}
+
+
+                            {% if level.percentage > 0 %}
+
+                                <span class="status-badge status-open">
+                                    In Progress
+                                </span>
+
+                                <a class="level-start-button"
+                                   href="{{ url_for(
+                                       'level_page',
+                                       lang_key=lang_key,
+                                       level_num=level.number
+                                   ) }}">
+                                    Continue
+                                </a>
+
+
+                            {% else %}
+
+                                <span class="status-badge status-open">
+                                    Open
+                                </span>
+
+                                <a class="level-start-button"
+                                   href="{{ url_for(
+                                       'level_page',
+                                       lang_key=lang_key,
+                                       level_num=level.number
+                                   ) }}">
+                                    Start
+                                </a>
+
+                            {% endif %}
+
+
+                        {% else %}
+
+                            <span class="status-badge status-locked">
+                                Locked
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COURSE FOOTER ================= -->
+
+    <section class="language-learning-cta">
+
+        <div>
+
+            <span class="section-eyebrow">
+                About This Language
+            </span>
+
+            <h2>
+                Discover the community behind the language
+            </h2>
+
+            <p>
+                Return to the language introduction to explore
+                its community, region, cultural context, and
+                preservation story.
+            </p>
+
+        </div>
+
+
+        <a class="primary-language-button"
+           href="{{ url_for(
+               'language_page',
+               lang_key=lang_key
+           ) }}">
+            Explore {{ language.display_name }}
+            <span aria-hidden="true">→</span>
+        </a>
+
+    </section>
+
+</main>
+
+
+<script>
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const progressFills =
+            document.querySelectorAll(
+                ".level-step-progress-fill"
+            );
+
+        progressFills.forEach(
+            function (fill) {
+
+                const progress =
+                    Number(
+                        fill.dataset.progress
+                    ) || 0;
+
+                fill.style.width =
+                    progress + "%";
+            }
+        );
+
+    }
+);
+</script>
+
+{% endblock %}

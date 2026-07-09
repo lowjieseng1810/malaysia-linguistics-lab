@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>
+{% block title %}
+Malaysian Language Heritage Explorer
+{% endblock %}
+</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+<style>
+
+:root{
+
+--green:#1E4D3A;
+--green-dark:#163C2D;
+--green-light:#2E6A52;
+
+--gold:#D9B44A;
+
+--text:#F6F8F7;
+
+--muted:#D5DDD8;
+
+--card:rgba(255,255,255,.12);
+
+--border:rgba(255,255,255,.22);
+
+--shadow:0 18px 45px rgba(0,0,0,.28);
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:
+"Segoe UI",
+Tahoma,
+Geneva,
+Verdana,
+sans-serif;
+
+color:var(--text);
+
+min-height:100vh;
+
+background:
+
+linear-gradient(
+rgba(8,24,18,.70),
+rgba(10,35,24,.78)
+),
+
+url("{{ url_for('static', filename='images/west_malaysia_bg.png') }}");
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
+}
+
+body.menu-open{
+overflow:hidden;
+}
+
+
+/* =========================================
+   TOP NAVIGATION
+   ========================================= */
+
+.navbar{
+
+position:relative;
+
+z-index:900;
+
+background:rgba(18,48,37,.70)!important;
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.10);
+
+}
+
+.navbar .container{
+
+padding-top:0;
+padding-bottom:0;
+
+}
+
+.navbar-brand{
+
+font-weight:700;
+
+font-size:1.15rem;
+
+letter-spacing:.3px;
+
+color:#ffffff;
+
+}
+
+.navbar-brand:hover{
+color:#ffffff;
+}
+
+
+/* RIGHT SIDE */
+
+.navbar-actions{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+margin-left:auto;
+
+}
+
+.navbar-user{
+
+color:rgba(255,255,255,.82);
+
+font-size:.88rem;
+
+white-space:nowrap;
+
+}
+
+.navbar-user strong{
+color:#ffffff;
+}
+
+
+/* =========================================
+   HAMBURGER BUTTON
+   ========================================= */
+
+.menu-toggle{
+
+position:relative;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+width:44px;
+height:44px;
+
+padding:0;
+
+border:1px solid rgba(255,255,255,.16);
+
+border-radius:14px;
+
+background:rgba(255,255,255,.07);
+
+cursor:pointer;
+
+transition:
+background .22s ease,
+border-color .22s ease,
+transform .22s ease;
+
+}
+
+.menu-toggle:hover{
+
+background:rgba(255,255,255,.13);
+
+border-color:rgba(217,180,74,.38);
+
+transform:translateY(-1px);
+
+}
+
+.menu-toggle:focus-visible{
+
+outline:3px solid rgba(217,180,74,.45);
+
+outline-offset:3px;
+
+}
+
+.menu-toggle-lines{
+
+position:relative;
+
+display:block;
+
+width:20px;
+height:14px;
+
+}
+
+.menu-toggle-lines span{
+
+position:absolute;
+
+left:0;
+
+display:block;
+
+width:20px;
+height:2px;
+
+border-radius:999px;
+
+background:#ffffff;
+
+transition:
+transform .28s ease,
+opacity .22s ease,
+top .28s ease;
+
+}
+
+.menu-toggle-lines span:nth-child(1){
+top:0;
+}
+
+.menu-toggle-lines span:nth-child(2){
+top:6px;
+}
+
+.menu-toggle-lines span:nth-child(3){
+top:12px;
+}
+
+.menu-toggle.is-open
+.menu-toggle-lines span:nth-child(1){
+
+top:6px;
+
+transform:rotate(45deg);
+
+}
+
+.menu-toggle.is-open
+.menu-toggle-lines span:nth-child(2){
+
+opacity:0;
+
+}
+
+.menu-toggle.is-open
+.menu-toggle-lines span:nth-child(3){
+
+top:6px;
+
+transform:rotate(-45deg);
+
+}
+
+
+/* =========================================
+   MENU OVERLAY
+   ========================================= */
+
+.menu-overlay{
+
+position:fixed;
+
+z-index:950;
+
+inset:0;
+
+background:rgba(2,15,11,.56);
+
+backdrop-filter:blur(4px);
+-webkit-backdrop-filter:blur(4px);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:
+opacity .3s ease,
+visibility .3s ease;
+
+}
+
+.menu-overlay.is-visible{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+
+/* =========================================
+   SLIDE-OUT MENU
+   ========================================= */
+
+.site-menu{
+
+position:fixed;
+
+z-index:1000;
+
+top:0;
+right:0;
+
+display:flex;
+
+flex-direction:column;
+
+width:min(390px,92vw);
+height:100vh;
+height:100dvh;
+
+overflow-y:auto;
+
+border-left:1px solid rgba(255,255,255,.13);
+
+background:
+
+radial-gradient(
+circle at 90% 8%,
+rgba(217,180,74,.12),
+transparent 27%
+),
+
+linear-gradient(
+155deg,
+rgba(20,66,48,.98),
+rgba(5,31,23,.99)
+);
+
+box-shadow:
+-28px 0 70px rgba(0,0,0,.38);
+
+transform:translateX(105%);
+
+transition:
+transform .42s cubic-bezier(.22,1,.36,1);
+
+}
+
+.site-menu.is-open{
+
+transform:translateX(0);
+
+}
+
+
+/* MENU HEADER */
+
+.site-menu-header{
+
+display:flex;
+
+justify-content:space-between;
+align-items:flex-start;
+
+gap:20px;
+
+padding:28px 26px 22px;
+
+border-bottom:1px solid rgba(255,255,255,.09);
+
+}
+
+.site-menu-eyebrow{
+
+display:block;
+
+margin-bottom:7px;
+
+color:#e6c96d;
+
+font-size:.68rem;
+
+font-weight:750;
+
+letter-spacing:.14em;
+
+text-transform:uppercase;
+
+}
+
+.site-menu-header h2{
+
+margin:0;
+
+color:#ffffff;
+
+font-size:1.45rem;
+
+font-weight:720;
+
+letter-spacing:-.025em;
+
+}
+
+.menu-close{
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+width:40px;
+height:40px;
+
+flex:0 0 40px;
+
+padding:0;
+
+border:1px solid rgba(255,255,255,.14);
+
+border-radius:13px;
+
+background:rgba(255,255,255,.06);
+
+color:#ffffff;
+
+font-size:1.35rem;
+
+line-height:1;
+
+cursor:pointer;
+
+transition:
+background .2s ease,
+border-color .2s ease;
+
+}
+
+.menu-close:hover{
+
+background:rgba(255,255,255,.12);
+
+border-color:rgba(217,180,74,.35);
+
+}
+
+
+/* MENU USER */
+
+.site-menu-user{
+
+margin:20px 22px 4px;
+
+padding:16px 17px;
+
+border:1px solid rgba(255,255,255,.11);
+
+border-radius:17px;
+
+background:rgba(255,255,255,.055);
+
+}
+
+.site-menu-user-label{
+
+display:block;
+
+margin-bottom:4px;
+
+color:rgba(235,243,238,.52);
+
+font-size:.67rem;
+
+font-weight:700;
+
+letter-spacing:.1em;
+
+text-transform:uppercase;
+
+}
+
+.site-menu-user strong{
+
+display:block;
+
+overflow:hidden;
+
+color:#ffffff;
+
+font-size:.95rem;
+
+text-overflow:ellipsis;
+
+white-space:nowrap;
+
+}
+
+
+/* MENU LINKS */
+
+.site-menu-nav{
+
+display:flex;
+
+flex-direction:column;
+
+gap:7px;
+
+padding:20px 22px;
+
+}
+
+.site-menu-link{
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+min-height:64px;
+
+padding:12px 14px;
+
+overflow:hidden;
+
+border:1px solid transparent;
+
+border-radius:17px;
+
+color:#ffffff;
+
+text-decoration:none;
+
+transition:
+background .22s ease,
+border-color .22s ease,
+transform .22s ease;
+
+}
+
+.site-menu-link:hover,
+.site-menu-link:focus-visible{
+
+color:#ffffff;
+
+background:rgba(255,255,255,.075);
+
+border-color:rgba(255,255,255,.12);
+
+transform:translateX(-3px);
+
+}
+
+.site-menu-link:focus-visible{
+
+outline:3px solid rgba(217,180,74,.35);
+
+outline-offset:2px;
+
+}
+
+.menu-link-icon{
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+width:40px;
+height:40px;
+
+flex:0 0 40px;
+
+border:1px solid rgba(217,180,74,.22);
+
+border-radius:13px;
+
+background:rgba(217,180,74,.08);
+
+color:#efd77e;
+
+font-size:.86rem;
+
+font-weight:800;
+
+}
+
+.menu-link-copy{
+
+display:flex;
+
+flex-direction:column;
+
+min-width:0;
+
+}
+
+.menu-link-copy strong{
+
+color:#ffffff;
+
+font-size:.91rem;
+
+font-weight:700;
+
+}
+
+.menu-link-copy small{
+
+margin-top:3px;
+
+color:rgba(235,243,238,.54);
+
+font-size:.7rem;
+
+line-height:1.35;
+
+}
+
+.menu-link-arrow{
+
+margin-left:auto;
+
+color:rgba(239,215,126,.72);
+
+font-size:1rem;
+
+transition:transform .22s ease;
+
+}
+
+.site-menu-link:hover
+.menu-link-arrow{
+
+transform:translateX(3px);
+
+}
+
+
+/* MENU FOOTER */
+
+.site-menu-footer{
+
+margin-top:auto;
+
+padding:18px 22px 26px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.menu-auth-link{
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+width:100%;
+min-height:46px;
+
+padding:10px 16px;
+
+border:1px solid rgba(255,255,255,.15);
+
+border-radius:14px;
+
+background:rgba(255,255,255,.06);
+
+color:#ffffff;
+
+font-size:.82rem;
+
+font-weight:700;
+
+text-decoration:none;
+
+transition:
+background .22s ease,
+border-color .22s ease;
+
+}
+
+.menu-auth-link:hover{
+
+color:#ffffff;
+
+background:rgba(255,255,255,.12);
+
+border-color:rgba(217,180,74,.32);
+
+}
+
+
+/* =========================================
+   ORIGINAL GLOBAL STYLES
+   ========================================= */
+
+.container{
+
+max-width:1100px;
+
+padding-top:35px;
+
+padding-bottom:40px;
+
+}
+
+.card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:20px;
+
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+
+box-shadow:var(--shadow);
+
+padding:24px;
+
+color:white;
+
+margin-bottom:20px;
+
+}
+
+.btn-main{
+
+background:var(--green);
+
+border:none;
+
+color:white;
+
+padding:10px 18px;
+
+border-radius:12px;
+
+font-weight:600;
+
+transition:.25s;
+
+text-decoration:none;
+
+display:inline-block;
+
+}
+
+.btn-main:hover{
+
+background:var(--green-light);
+
+color:white;
+
+transform:translateY(-2px);
+
+}
+
+.alert{
+
+border-radius:14px;
+
+border:none;
+
+}
+
+a{
+
+text-decoration:none;
+
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media(max-width:768px){
+
+.container{
+
+padding-left:18px;
+
+padding-right:18px;
+
+}
+
+.navbar-brand{
+
+max-width:220px;
+
+font-size:15px;
+
+line-height:1.2;
+
+}
+
+.navbar-user{
+
+display:none;
+
+}
+
+.navbar-actions{
+
+gap:8px;
+
+}
+
+.menu-toggle{
+
+width:42px;
+height:42px;
+
+}
+
+.site-menu-header{
+
+padding:
+24px 20px
+20px;
+
+}
+
+.site-menu-user{
+
+margin-left:17px;
+margin-right:17px;
+
+}
+
+.site-menu-nav{
+
+padding-left:17px;
+padding-right:17px;
+
+}
+
+.site-menu-footer{
+
+padding-left:17px;
+padding-right:17px;
+
+}
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+html{
+scroll-behavior:auto;
+}
+
+.site-menu,
+.menu-overlay,
+.menu-toggle-lines span,
+.site-menu-link,
+.menu-link-arrow{
+
+transition:none;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     TOP NAVIGATION
+     ========================================= -->
+
+<nav class="navbar navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand"
+href="{{ url_for('home') }}">
+
+Malaysian Language Heritage Explorer
+
+</a>
+
+
+<div class="navbar-actions">
+
+{% if session.username %}
+
+<span class="navbar-user">
+
+Hello,
+<strong>{{ session.username }}</strong>
+
+</span>
+
+{% endif %}
+
+
+<button
+type="button"
+class="menu-toggle"
+id="menu-toggle"
+aria-label="Open navigation menu"
+aria-controls="site-menu"
+aria-expanded="false">
+
+<span class="menu-toggle-lines"
+aria-hidden="true">
+
+<span></span>
+<span></span>
+<span></span>
+
+</span>
+
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- =========================================
+     DARK OVERLAY
+     ========================================= -->
+
+<div
+class="menu-overlay"
+id="menu-overlay"
+aria-hidden="true">
+</div>
+
+
+<!-- =========================================
+     SLIDE-OUT MENU
+     ========================================= -->
+
+<aside
+class="site-menu"
+id="site-menu"
+aria-hidden="true"
+aria-label="Main navigation">
+
+<div class="site-menu-header">
+
+<div>
+
+<span class="site-menu-eyebrow">
+Explore
+</span>
+
+<h2>
+Navigation
+</h2>
+
+</div>
+
+
+<button
+type="button"
+class="menu-close"
+id="menu-close"
+aria-label="Close navigation menu">
+
+×️
+
+</button>
+
+</div>
+
+
+{% if session.username %}
+
+<div class="site-menu-user">
+
+<span class="site-menu-user-label">
+Signed in as
+</span>
+
+<strong>
+{{ session.username }}
+</strong>
+
+</div>
+
+{% endif %}
+
+
+<nav class="site-menu-nav">
+
+
+<a
+href="{{ url_for('home') }}"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+01
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+Dashboard Home
+</strong>
+
+<small>
+Return to the main explorer
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+
+<a
+href="{{ url_for('home') }}#languages"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+02
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+Your Languages
+</strong>
+
+<small>
+Open the four language courses
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+
+<a
+href="{{ url_for('home') }}#world-explorer"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+03
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+Explore Malaysia
+</strong>
+
+<small>
+Travel through the interactive map
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+
+<a
+href="{{ url_for('home') }}#living-records"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+04
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+Living Language Records
+</strong>
+
+<small>
+Listen, discover and explore
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+
+{% if session.username %}
+
+<a
+href="{{ url_for('profile') }}"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+05
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+My Profile
+</strong>
+
+<small>
+View your account and learning progress
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+{% endif %}
+
+
+<a
+href="{{ url_for('about_project') }}"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+06
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+About the Project
+</strong>
+
+<small>
+Learn why this explorer was created
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+
+<a
+href="{{ url_for('safety') }}"
+class="site-menu-link">
+
+<span class="menu-link-icon">
+07
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+Safety & Sources
+</strong>
+
+<small>
+Review sources, limits, and project safeguards
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+
+</nav>
+
+
+<div class="site-menu-footer">
+
+{% if session.username %}
+
+<a
+href="{{ url_for('logout') }}"
+class="menu-auth-link">
+
+Log out
+
+</a>
+
+{% else %}
+
+<a
+href="{{ url_for('login') }}"
+class="menu-auth-link">
+
+Log in
+
+</a>
+
+{% endif %}
+
+</div>
+
+</aside>
+
+
+<!-- =========================================
+     PAGE CONTENT
+     ========================================= -->
+
+<div class="container">
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-info">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endwith %}
+
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+
+<!-- =========================================
+     MENU JAVASCRIPT
+     ========================================= -->
+
+<script>
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+const menuToggle =
+document.getElementById("menu-toggle");
+
+const menuClose =
+document.getElementById("menu-close");
+
+const siteMenu =
+document.getElementById("site-menu");
+
+const menuOverlay =
+document.getElementById("menu-overlay");
+
+if(
+!menuToggle ||
+!menuClose ||
+!siteMenu ||
+!menuOverlay
+){
+return;
+}
+
+
+function openMenu(){
+
+siteMenu.classList.add("is-open");
+
+menuOverlay.classList.add("is-visible");
+
+menuToggle.classList.add("is-open");
+
+document.body.classList.add("menu-open");
+
+menuToggle.setAttribute(
+"aria-expanded",
+"true"
+);
+
+siteMenu.setAttribute(
+"aria-hidden",
+"false"
+);
+
+menuOverlay.setAttribute(
+"aria-hidden",
+"false"
+);
+
+menuClose.focus();
+
+}
+
+
+function closeMenu(){
+
+siteMenu.classList.remove("is-open");
+
+menuOverlay.classList.remove("is-visible");
+
+menuToggle.classList.remove("is-open");
+
+document.body.classList.remove("menu-open");
+
+menuToggle.setAttribute(
+"aria-expanded",
+"false"
+);
+
+siteMenu.setAttribute(
+"aria-hidden",
+"true"
+);
+
+menuOverlay.setAttribute(
+"aria-hidden",
+"true"
+);
+
+}
+
+
+menuToggle.addEventListener(
+"click",
+function(){
+
+if(
+siteMenu.classList.contains("is-open")
+){
+
+closeMenu();
+
+}else{
+
+openMenu();
+
+}
+
+}
+);
+
+
+menuClose.addEventListener(
+"click",
+closeMenu
+);
+
+
+menuOverlay.addEventListener(
+"click",
+closeMenu
+);
+
+
+document.addEventListener(
+"keydown",
+function(event){
+
+if(
+event.key === "Escape" &&
+siteMenu.classList.contains("is-open")
+){
+
+closeMenu();
+
+menuToggle.focus();
+
+}
+
+}
+);
+
+
+const menuLinks =
+siteMenu.querySelectorAll(
+".site-menu-link"
+);
+
+
+menuLinks.forEach(
+function(link){
+
+link.addEventListener(
+"click",
+closeMenu
+);
+
+}
+);
+
+}
+);
+
+</script>
+
+
+</body>
+
+</html>

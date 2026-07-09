@@ -1,0 +1,1024 @@
+{% extends "base.html" %}
+
+{% block title %}{{ language.display_name }} | Malaysian Language Heritage Explorer{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/language.css') }}">
+
+<main class="language-page">
+
+
+    <!-- ================= BACK LINK ================= -->
+
+    <a class="back-link"
+       href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="language-hero">
+
+        <div class="language-hero-content">
+
+            <span class="language-eyebrow">
+                {{ language.eyebrow }}
+            </span>
+
+            <h1>
+                {{ language.display_name }}
+            </h1>
+
+            <p class="language-hero-description">
+                {{ language.blurb }}
+            </p>
+
+
+            <div class="language-hero-actions">
+
+                <a class="primary-language-button"
+                   href="{{ url_for(
+                       'learn_page',
+                       lang_key=lang_key
+                   ) }}">
+
+                    {% if learning_summary.completed_count == learning_summary.total_levels %}
+
+                        Review Course
+
+                    {% elif learning_summary.active_level and learning_summary.active_level.percentage > 0 %}
+
+                        Continue Learning
+
+                    {% else %}
+
+                        Start Learning
+
+                    {% endif %}
+
+                    <span aria-hidden="true">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a class="secondary-language-button"
+                   href="#language-story">
+                    Explore the Language
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="language-hero-summary">
+
+            <span class="hero-summary-label">
+                Learning Progress
+            </span>
+
+            <strong class="hero-summary-number">
+                {{ learning_summary.completed_count }}
+                /
+                {{ learning_summary.total_levels }}
+            </strong>
+
+            <span class="hero-summary-text">
+                levels completed
+            </span>
+
+
+            {% if learning_summary.active_level %}
+
+                <div class="hero-current-level">
+
+                    <span>
+                        Current course stage
+                    </span>
+
+                    <strong>
+                        Level
+                        {{ learning_summary.active_level.number }}
+                        —
+                        {{ learning_summary.active_level.title }}
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUICK FACTS ================= -->
+
+    <section class="language-facts"
+             aria-label="{{ language.display_name }} quick facts">
+
+
+        <article class="fact-card">
+
+            <span class="fact-label">
+                Language
+            </span>
+
+            <strong>
+                {{ language.display_name }}
+            </strong>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <span class="fact-label">
+                Community
+            </span>
+
+            <strong>
+                {{ language.community }}
+            </strong>
+
+        </article>
+
+
+        <article class="fact-card">
+
+            <span class="fact-label">
+                Region
+            </span>
+
+            <strong>
+                {{ language.region }}
+            </strong>
+
+        </article>
+
+
+        <article class="fact-card verification-fact">
+
+            <span class="fact-label">
+                Content Status
+            </span>
+
+            <strong>
+                {{ language.verification_status }}
+            </strong>
+
+        </article>
+
+    </section>
+
+
+    <!-- ================= LANGUAGE STORY ================= -->
+
+    <section class="language-story-section"
+             id="language-story">
+
+
+        <div class="section-heading">
+
+            <span class="section-eyebrow">
+                Language & Community
+            </span>
+
+            <h2>
+                Discover the people behind the language
+            </h2>
+
+            <p>
+                Language is more than vocabulary.
+                Explore its community, place, cultural context,
+                and living heritage.
+            </p>
+
+        </div>
+
+
+        <div class="language-story-grid">
+
+
+            <!-- ABOUT -->
+
+            <article class="language-story-card story-card-large">
+
+                <span class="story-card-number">
+                    01
+                </span>
+
+                <span class="info-card-label">
+                    About the Language
+                </span>
+
+                <h3>
+                    {{ language.about_title }}
+                </h3>
+
+                <p>
+                    {{ language.about }}
+                </p>
+
+            </article>
+
+
+            <!-- SPEAKERS -->
+
+            <article class="language-story-card">
+
+                <span class="story-card-number">
+                    02
+                </span>
+
+                <span class="info-card-label">
+                    Who Speaks It
+                </span>
+
+                <h3>
+                    {{ language.speakers_title }}
+                </h3>
+
+                <p>
+                    {{ language.speakers }}
+                </p>
+
+            </article>
+
+
+            <!-- LOCATION -->
+
+            <article class="language-story-card">
+
+                <span class="story-card-number">
+                    03
+                </span>
+
+                <span class="info-card-label">
+                    Where It Is Spoken
+                </span>
+
+                <h3>
+                    {{ language.location_title }}
+                </h3>
+
+                <p>
+                    {{ language.location }}
+                </p>
+
+            </article>
+
+
+            <!-- PRESERVATION -->
+
+            <article class="language-story-card story-card-wide">
+
+                <span class="story-card-number">
+                    04
+                </span>
+
+                <span class="info-card-label">
+                    Why Preservation Matters
+                </span>
+
+                <h3>
+                    {{ language.preservation_title }}
+                </h3>
+
+                <p>
+                    {{ language.preservation }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEARNING UNLOCKS ================= -->
+
+    {% if explore_unlocks %}
+
+        <section class="learning-unlocks-section">
+
+
+            <div class="unlock-section-heading">
+
+                <span class="section-eyebrow">
+                    Your Journey Changed This Page
+                </span>
+
+                <h2>
+                    You understand more than before
+                </h2>
+
+                <p>
+                    The language you encountered during your journey
+                    now appears differently as you explore.
+                </p>
+
+            </div>
+
+
+            {% for unlock in explore_unlocks %}
+
+                <article class="learning-unlock-card">
+
+
+                    <!-- UNLOCK HEADER -->
+
+                    <div class="unlock-card-header">
+
+                        <div>
+
+                            <span class="unlock-journey-label">
+                                {{ unlock.journey_number }}
+                                Complete
+                            </span>
+
+                            <span class="unlock-eyebrow">
+                                {{ unlock.eyebrow }}
+                            </span>
+
+                            <h3>
+                                {{ unlock.title }}
+                            </h3>
+
+                            <p>
+                                {{ unlock.description }}
+                            </p>
+
+                        </div>
+
+
+                        <div class="unlock-status">
+
+                            <span class="unlock-status-icon"
+                                  aria-hidden="true">
+                                ✓
+                            </span>
+
+                            <span>
+                                Unlocked
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- WORLD MESSAGE -->
+
+                    {% if unlock.world_message %}
+
+                        <div class="unlock-world-message">
+
+                            <span class="unlock-world-symbol"
+                                  aria-hidden="true">
+                                ✦
+                            </span>
+
+                            <p>
+                                {{ unlock.world_message }}
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- RECOGNISED EXPRESSIONS -->
+
+                    <div class="recognised-language-list">
+
+                        {% for item in unlock.expressions %}
+
+                            <article class="recognised-expression">
+
+                                <div class="recognised-expression-number">
+                                    0{{ loop.index }}
+                                </div>
+
+
+                                <div class="recognised-expression-main">
+
+                                    <span class="recognised-context">
+                                        {{ item.context }}
+                                    </span>
+
+                                    <strong>
+                                        {{ item.expression }}
+                                    </strong>
+
+                                    <span class="recognised-meaning">
+                                        {{ item.meaning }}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="recognised-status">
+
+                                    <span aria-hidden="true">
+                                        ✓
+                                    </span>
+
+                                    {{ item.recognition }}
+
+                                </div>
+
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <!-- UNLOCK FOOTER -->
+
+                    <div class="unlock-card-footer">
+
+                        <span aria-hidden="true">
+                            ✦
+                        </span>
+
+                        <p>
+                            These expressions are no longer just lesson content.
+                            You can now recognise them as part of a living language.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </section>
+
+    {% endif %}
+
+
+    <!-- ================= LANGUAGE ECHOES ================= -->
+
+    {% if explore_unlocks %}
+
+        {% for unlock in explore_unlocks %}
+
+            {% if unlock.echoes %}
+
+                <section class="language-echoes-section">
+
+
+                    <div class="language-echoes-intro">
+
+                        <span class="section-eyebrow">
+                            The Language Speaks Back
+                        </span>
+
+                        <h2>
+                            You have heard these words before
+                        </h2>
+
+                        <p>
+                            Your journey has changed what you can recognise.
+                            Familiar expressions now return as part of the
+                            language world you are exploring.
+                        </p>
+
+                    </div>
+
+
+                    <div class="language-echoes-grid">
+
+                        {% for echo in unlock.echoes %}
+
+                            <article class="language-echo-card">
+
+                                <div class="language-echo-status">
+
+                                    <span class="language-echo-icon"
+                                          aria-hidden="true">
+                                        ✓
+                                    </span>
+
+                                    <span>
+                                        {{ echo.label }}
+                                    </span>
+
+                                </div>
+
+
+                                <strong class="language-echo-expression">
+                                    {{ echo.expression }}
+                                </strong>
+
+
+                                <span class="language-echo-meaning">
+                                    {{ echo.meaning }}
+                                </span>
+
+                            </article>
+
+                        {% endfor %}
+
+                    </div>
+
+                </section>
+
+            {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <!-- ================= COMMUNITY GALLERY ================= -->
+
+    <section class="community-gallery-section">
+
+
+        <div class="section-heading-row">
+
+            <div class="section-heading">
+
+                <span class="section-eyebrow">
+                    Community Gallery
+                </span>
+
+                <h2>
+                    Language in real life
+                </h2>
+
+                <p>
+                    Future community photographs can help connect
+                    language learning with people, places, and
+                    cultural context.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="community-gallery-grid">
+
+            {% for image in language.gallery %}
+
+                <article class="community-gallery-card">
+
+
+                    {% if image.image_url %}
+
+                        <div class="community-image-wrap"
+     style="--gallery-bg: url('{{ image.image_url }}');">
+                            
+     <img class="community-image"
+                                 src="{{ image.image_url }}"
+                                 alt="{{ image.title }}"
+                                 loading="lazy">
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="community-image-placeholder">
+
+                            <span class="placeholder-icon"
+                                  aria-hidden="true">
+                                ◇
+                            </span>
+
+                            <span>
+                                Community image coming soon
+                            </span>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="community-gallery-content">
+
+                        <span class="gallery-card-number">
+                            0{{ loop.index }}
+                        </span>
+
+                        <h3>
+                            {{ image.title }}
+                        </h3>
+
+                        <p>
+                            {{ image.caption }}
+                        </p>
+
+
+                        {% if image.source_name and image.source_url %}
+
+                            <a class="source-inline-link"
+                               href="{{ image.source_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                Image source:
+                                {{ image.source_name }}
+                                ↗
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= VIDEO ================= -->
+
+    <section class="language-video-section">
+
+
+        <div class="section-heading">
+
+            <span class="section-eyebrow">
+                Watch & Listen
+            </span>
+
+            <h2>
+                Hear from trusted voices
+            </h2>
+
+            <p>
+                Videos from community, educational, cultural,
+                or research sources can add voices and context
+                beyond written descriptions.
+            </p>
+
+        </div>
+
+
+        <div class="language-video-list">
+
+            {% for video in language.videos %}
+
+                <article class="language-video-card">
+
+
+                    <div class="video-frame-wrap">
+
+                        {% if video.embed_url %}
+
+                            <iframe
+                                src="{{ video.embed_url }}"
+                                title="{{ video.title }}"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+                            </iframe>
+
+                        {% else %}
+
+                            <div class="video-placeholder">
+
+                                <span class="video-play-icon"
+                                      aria-hidden="true">
+                                    ▶
+                                </span>
+
+                                <span>
+                                    Trusted video source coming soon
+                                </span>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="video-card-content">
+
+                        <span class="info-card-label">
+                            Featured Video
+                        </span>
+
+                        <h3>
+                            {{ video.title }}
+                        </h3>
+
+                        <p class="video-creator">
+                            {{ video.creator }}
+                        </p>
+
+                        <p>
+                            {{ video.description }}
+                        </p>
+
+
+                        {% if video.source_url %}
+
+                            <a class="secondary-language-button"
+                               href="{{ video.source_url }}"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                View Original Source
+                                <span aria-hidden="true">
+                                    ↗
+                                </span>
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= REVIEW STATUS ================= -->
+
+    <section class="verification-section">
+
+
+        <div class="verification-status-card">
+
+            <div class="verification-icon"
+                 aria-hidden="true">
+                ✓
+            </div>
+
+
+            <div class="verification-content">
+
+                <span class="section-eyebrow">
+                    Content Transparency
+                </span>
+
+                <h2>
+                    {{ language.verification_status }}
+                </h2>
+
+                <p>
+                    {{ language.verification_note }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="verification-actions">
+
+            <a class="primary-language-button"
+               href="{{ url_for(
+                   'suggest_correction',
+                   lang_key=lang_key
+               ) }}">
+                Suggest a Correction
+                <span aria-hidden="true">
+                    →
+                </span>
+            </a>
+
+
+            <a class="secondary-language-button"
+               href="{{ url_for(
+                   'language_sources',
+                   lang_key=lang_key
+               ) }}">
+                View Sources
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEARNING CTA ================= -->
+
+    <section class="language-learning-cta">
+
+        <div>
+
+            <span class="section-eyebrow">
+                Ready to Learn?
+            </span>
+
+            <h2>
+                Start exploring
+                {{ language.display_name }}
+            </h2>
+
+            <p>
+                Learn through living language journeys,
+                conversations, discovery, and saved progress.
+            </p>
+
+        </div>
+
+
+        <a class="primary-language-button"
+           href="{{ url_for(
+               'learn_page',
+               lang_key=lang_key
+           ) }}">
+
+            {% if learning_summary.completed_count == learning_summary.total_levels %}
+
+                Review the Course
+
+            {% elif learning_summary.active_level and learning_summary.active_level.percentage > 0 %}
+
+                Continue Learning
+
+            {% else %}
+
+                Start Learning
+
+            {% endif %}
+
+            <span aria-hidden="true">
+                →
+            </span>
+
+        </a>
+
+    </section>
+
+
+</main>
+
+</main>
+
+
+<style>
+/* =========================================================
+   COMMUNITY GALLERY — FINAL IMAGE RULES
+   ========================================================= */
+
+.community-gallery-card .community-image-wrap {
+    width: 100% !important;
+    height: 320px !important;
+    min-height: 320px !important;
+
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: rgba(4, 20, 13, 0.92) !important;
+}
+
+
+/* =========================================================
+   NORMAL GALLERY PHOTOS
+   Complete image in front + blurred image filling the sides
+   ========================================================= */
+
+.community-gallery-card .community-image-wrap {
+    position: relative !important;
+
+    width: 100% !important;
+    height: 320px !important;
+    min-height: 320px !important;
+
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #04140d !important;
+}
+
+
+/* Blurred enlarged copy behind the real image */
+
+.community-gallery-card .community-image-wrap::before {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: -20px !important;
+
+    background-image: var(--gallery-bg) !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+
+    filter: blur(18px) brightness(0.55) !important;
+    transform: scale(1.12) !important;
+
+    z-index: 0 !important;
+}
+
+
+/* Dark layer so the blurred sides stay elegant */
+
+.community-gallery-card .community-image-wrap::after {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    background: rgba(2, 18, 12, 0.22) !important;
+
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+
+/* Real complete image */
+
+.community-gallery-card .community-image {
+    position: relative !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    transform: none !important;
+
+    display: block !important;
+
+    z-index: 2 !important;
+}
+
+/* =========================================================
+   IBAN MAP — SHOW COMPLETE SVG
+   ========================================================= */
+
+.community-image-wrap:has(
+    img[src*="iban_language_distribution"]
+) {
+    width: 100% !important;
+
+    height: 320px !important;
+    min-height: 320px !important;
+
+    padding: 0 !important;
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: #ffffff !important;
+}
+
+
+.community-image-wrap img[src*="iban_language_distribution"] {
+    position: static !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+
+    object-fit: contain !important;
+    object-position: center center !important;
+
+    transform: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+}
+
+/* Bidayuh rope-making photo:
+   move the visible crop slightly downward to show more of the man's head */
+.community-image-wrap img[src*="bidayuh_rope_making"] {
+    object-position: center 30% !important;
+}
+
+</style>
+
+
+{% endblock %}
+
+
+

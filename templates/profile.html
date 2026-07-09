@@ -1,0 +1,278 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile | Malaysian Language Heritage Explorer
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/profile.css') }}">
+
+<main class="profile-page">
+
+    <section class="profile-hero">
+
+        <div class="profile-avatar">
+            {{ user.username[0] | upper }}
+        </div>
+
+        <div class="profile-identity">
+
+            <span class="profile-eyebrow">
+                Personal Profile
+            </span>
+
+            <h1>
+                {{ user.username }}
+            </h1>
+
+            <p>
+             Your learning journey across Malaysia's language heritage.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="profile-overview-grid">
+
+        <article class="profile-stat-card">
+
+            <span class="stat-label">
+                Overall Progress
+            </span>
+
+            <strong>
+                {{ overall_percentage }}%
+            </strong>
+
+            <div class="stat-progress-track">
+
+                <div class="stat-progress-fill"
+                     data-progress="{{ overall_percentage }}">
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="profile-stat-card">
+
+            <span class="stat-label">
+                Levels Completed
+            </span>
+
+            <strong>
+                {{ completed_levels }}
+                <small>/ {{ total_levels }}</small>
+            </strong>
+
+            <p>
+                Across all four language courses
+            </p>
+
+        </article>
+
+
+        <article class="profile-stat-card">
+
+            <span class="stat-label">
+                Languages Exploring
+            </span>
+
+            <strong>
+                {{ active_languages }}
+                <small>/ {{ language_progress | length }}</small>
+            </strong>
+
+            <p>
+                Courses with learning progress
+            </p>
+
+        </article>
+
+    </section>
+
+
+    <section class="profile-section">
+
+        <div class="profile-section-heading">
+
+            <div>
+
+                <span class="profile-eyebrow">
+                    Account
+                </span>
+
+                <h2>
+                    Your details
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="account-card">
+
+            <div class="account-row">
+
+                <span>
+                    Username
+                </span>
+
+                <strong>
+                    {{ user.username }}
+                </strong>
+
+            </div>
+
+
+            <div class="account-row">
+
+                <span>
+                    Email
+                </span>
+
+                <strong>
+                    {% if user.email %}
+                        {{ user.email }}
+                    {% else %}
+                        Not connected
+                    {% endif %}
+                </strong>
+
+            </div>
+
+
+            <div class="account-row">
+
+                <span>
+                    Sign-in method
+                </span>
+
+                <strong>
+                    {% if user.provider == "google" %}
+                        Google
+                    {% else %}
+                        Password
+                    {% endif %}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="profile-section">
+
+        <div class="profile-section-heading">
+
+            <div>
+
+                <span class="profile-eyebrow">
+                    Learning
+                </span>
+
+                <h2>
+                    Language progress
+                </h2>
+
+            </div>
+
+            <a href="{{ url_for('dashboard') }}"
+               class="profile-dashboard-link">
+                Back to Dashboard
+            </a>
+
+        </div>
+
+
+        <div class="language-progress-grid">
+
+            {% for lang_key, item in language_progress.items() %}
+
+            <a href="{{ url_for('language_page', lang_key=lang_key) }}"
+               class="language-progress-card">
+
+                <div class="language-progress-top">
+
+                    <div>
+
+                        <span class="language-region">
+                            {{ item.region }}
+                        </span>
+
+                        <h3>
+                            {{ item.display_name }}
+                        </h3>
+
+                    </div>
+
+                    <strong class="language-percentage">
+                        {{ item.percentage }}%
+                    </strong>
+
+                </div>
+
+
+                <div class="language-progress-track">
+
+                    <div class="language-progress-fill"
+                         data-progress="{{ item.percentage }}">
+                    </div>
+
+                </div>
+
+
+                <div class="language-progress-meta">
+
+                    <span>
+                        {{ item.completed }}
+                        of
+                        {{ item.total }}
+                        levels completed
+                    </span>
+
+                    <span>
+                        Explore →
+                    </span>
+
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script>
+document
+    .querySelectorAll("[data-progress]")
+    .forEach(function (bar) {
+
+        const value =
+            Number(bar.dataset.progress) || 0;
+
+        const safeValue =
+            Math.max(
+                0,
+                Math.min(100, value)
+            );
+
+        bar.style.width =
+            safeValue + "%";
+    });
+</script>
+
+{% endblock %}
