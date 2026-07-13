@@ -383,31 +383,28 @@
          id="world-explorer"
          aria-labelledby="world-explorer-heading">
 
-        <div class="world-explorer-intro">
+    <div class="world-explorer-intro">
 
-            <span class="explorer-eyebrow">
-                Explore Where Languages Live
-            </span>
+        <span class="explorer-eyebrow">
+            Explore Where Languages Live
+        </span>
 
-            <h2 id="world-explorer-heading">
-                Begin from your place in the world
-            </h2>
+        <h2 id="world-explorer-heading">
+            Begin from your place in the world
+        </h2>
 
-            <p>
-                Travel from where you are to the communities behind
-                Malaysia's living languages.
-            </p>
+        <p>
+            Travel from where you are to the communities behind
+            Malaysia's living languages.
+        </p>
 
-        </div>
-
-
-        <div class="world-explorer-card"
-             id="world-explorer-card">
+    </div>
 
 
-            <!-- LEFT SIDE: STORY -->
+    <div class="world-explorer-card"
+         id="world-explorer-card">
 
-            <div class="world-explorer-content">
+<div class="world-explorer-content">
 
                 <span class="explorer-stage-label">
                     Your Place in the World
@@ -433,7 +430,6 @@
                         </span>
 
                         <div>
-
                             <strong>
                                 Your World
                             </strong>
@@ -441,7 +437,6 @@
                             <span>
                                 Begin where you are
                             </span>
-
                         </div>
 
                     </div>
@@ -459,7 +454,6 @@
                         </span>
 
                         <div>
-
                             <strong>
                                 Malaysia
                             </strong>
@@ -467,7 +461,6 @@
                             <span>
                                 Move closer to the country
                             </span>
-
                         </div>
 
                     </div>
@@ -485,7 +478,6 @@
                         </span>
 
                         <div>
-
                             <strong>
                                 Living Languages
                             </strong>
@@ -493,7 +485,6 @@
                             <span>
                                 Discover communities and places
                             </span>
-
                         </div>
 
                     </div>
@@ -514,432 +505,43 @@
                 </button>
 
             </div>
+       
+         <!-- FULL-WIDTH THREE.JS SPACE SCENE -->
 
+        <div class="globe-stage"
+             id="globe-stage"
+             aria-label="Interactive world exploration area">
 
-            <!-- RIGHT SIDE: EARTH EXPERIENCE -->
+            <div id="three-globe-container"
+                 aria-hidden="true">
+            </div>
 
-            <div class="globe-stage"
-                 id="globe-stage"
-                 aria-label="Interactive world exploration area">
 
+            <!-- STORY OVERLAY -->
 
-                <!-- DECORATIVE ORBITS -->
+           
 
-                <div class="globe-orbit globe-orbit-one"
-                     aria-hidden="true">
-                </div>
 
-                <div class="globe-orbit globe-orbit-two"
-                     aria-hidden="true">
-                </div>
+            <!-- LOCATION STATUS -->
 
+            <div class="globe-status"
+                 id="globe-status">
 
-                <!-- INTERACTIVE GLOBE -->
+                <span class="globe-status-dot"
+                      aria-hidden="true">
+                </span>
 
-                <div class="globe-placeholder"
-                     id="interactive-globe">
-
-
-                    <!-- SPACE -->
-
-                    <div class="globe-space"
-                         aria-hidden="true">
-
-                        <span class="globe-star star-one"></span>
-                        <span class="globe-star star-two"></span>
-                        <span class="globe-star star-three"></span>
-                        <span class="globe-star star-four"></span>
-                        <span class="globe-star star-five"></span>
-
-                    </div>
-
-
-                    <!-- OUTER ATMOSPHERE -->
-
-                    <div class="earth-atmosphere"
-                         aria-hidden="true">
-                    </div>
-
-
-                    <!-- EARTH -->
-
-                    <div class="earth-sphere"
-                         id="earth-sphere"
-                         aria-hidden="true">
-
-
-                        <!-- OCEAN BASE -->
-
-                        <div class="earth-ocean">
-                        </div>
-
-
-                        <!-- REAL WORLD MAP LAYER -->
-
-                        <div class="earth-map-layer">
-
-                            <svg class="earth-world-map"
-                                 viewBox="0 0 1000 500"
-                                 preserveAspectRatio="xMidYMid slice"
-                                 xmlns="http://www.w3.org/2000/svg">
-
-
-                                <!-- NORTH AMERICA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M65 86
-                                      C88 58 122 43 159 46
-                                      C187 31 225 41 245 62
-                                      C268 67 281 85 270 101
-                                      C250 111 244 127 232 141
-                                      C214 148 213 165 199 177
-                                      C184 189 171 207 154 204
-                                      C145 189 134 176 119 168
-                                      C108 153 98 139 82 132
-                                      C70 118 55 105 65 86
-                                      Z
-
-                                      M183 190
-                                      C201 190 219 201 225 215
-                                      C217 226 207 230 199 224
-                                      C193 212 185 205 183 190
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- GREENLAND -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M239 35
-                                      C260 20 291 21 307 38
-                                      C312 55 303 75 286 89
-                                      C267 94 248 82 240 66
-                                      C235 55 233 43 239 35
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- SOUTH AMERICA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M219 228
-                                      C240 218 267 223 285 240
-                                      C300 253 309 273 303 292
-                                      C299 315 286 332 281 353
-                                      C272 376 262 401 245 425
-                                      C232 414 224 394 223 373
-                                      C216 353 207 334 201 314
-                                      C193 293 190 270 199 250
-                                      C203 240 209 233 219 228
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- EUROPE -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M444 103
-                                      C459 92 474 89 486 94
-                                      C499 86 518 92 524 105
-                                      C536 111 534 125 522 132
-                                      C511 138 499 135 490 141
-                                      C479 148 467 140 459 134
-                                      C447 139 435 132 432 121
-                                      C434 113 438 108 444 103
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- AFRICA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M445 145
-                                      C465 135 493 137 515 149
-                                      C535 160 548 178 550 200
-                                      C548 222 538 241 531 261
-                                      C522 285 511 312 491 333
-                                      C475 338 460 321 453 304
-                                      C445 286 440 268 431 250
-                                      C422 232 418 210 423 190
-                                      C426 170 434 156 445 145
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- ASIA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M515 92
-                                      C543 72 574 62 607 58
-                                      C638 50 674 55 704 65
-                                      C738 69 769 83 794 103
-                                      C818 115 836 134 839 151
-                                      C831 166 814 173 797 170
-                                      C785 181 770 188 753 186
-                                      C743 199 729 208 714 207
-                                      C700 220 683 221 669 211
-                                      C654 218 638 214 626 202
-                                      C610 202 597 192 588 180
-                                      C570 176 558 163 550 151
-                                      C536 148 524 141 516 132
-                                      C504 121 504 103 515 92
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- ARABIAN PENINSULA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M545 182
-                                      C558 181 575 188 583 200
-                                      C593 212 591 226 581 240
-                                      C568 242 555 233 548 220
-                                      C540 208 537 194 545 182
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- INDIA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M612 189
-                                      C628 190 647 199 655 213
-                                      C660 227 653 245 644 263
-                                      C635 275 625 260 620 248
-                                      C614 234 608 218 606 204
-                                      C605 197 607 192 612 189
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- SOUTHEAST ASIA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M672 194
-                                      C686 195 701 203 711 215
-                                      C720 225 724 238 716 248
-                                      C707 254 697 246 692 238
-                                      C682 233 674 223 670 213
-                                      C666 205 667 199 672 194
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- MALAY PENINSULA -->
-
-                                <path class="earth-continent earth-malaysia-region"
-                                      d="
-                                      M704 236
-                                      C711 239 716 247 716 256
-                                      C716 265 711 274 706 281
-                                      C700 277 698 267 699 258
-                                      C699 249 700 241 704 236
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- BORNEO -->
-
-                                <path class="earth-continent earth-malaysia-region"
-                                      d="
-                                      M737 252
-                                      C749 245 765 248 772 259
-                                      C777 271 771 284 760 291
-                                      C747 294 735 286 731 274
-                                      C728 265 731 257 737 252
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- INDONESIAN ARCHIPELAGO -->
-
-                                <path class="earth-island"
-                                      d="
-                                      M707 286
-                                      C723 281 742 282 756 288
-                                      C746 296 724 298 708 293
-                                      Z
-                                      ">
-                                </path>
-
-                                <path class="earth-island"
-                                      d="
-                                      M763 294
-                                      C781 289 800 292 814 300
-                                      C801 307 780 307 765 302
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- JAPAN -->
-
-                                <path class="earth-island"
-                                      d="
-                                      M817 132
-                                      C824 141 824 151 820 160
-                                      C816 168 812 164 813 155
-                                      C814 146 813 138 817 132
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- AUSTRALIA -->
-
-                                <path class="earth-continent"
-                                      d="
-                                      M753 313
-                                      C776 299 806 296 831 305
-                                      C853 313 870 330 875 350
-                                      C871 371 853 387 832 397
-                                      C808 402 783 393 765 378
-                                      C749 365 742 344 747 327
-                                      C748 321 750 317 753 313
-                                      Z
-                                      ">
-                                </path>
-
-
-                                <!-- NEW ZEALAND -->
-
-                                <path class="earth-island"
-                                      d="
-                                      M901 367
-                                      C908 374 912 385 908 396
-                                      C905 406 899 410 897 400
-                                      C895 389 896 376 901 367
-                                      Z
-                                      ">
-                                </path>
-
-
-                            </svg>
-
-                        </div>
-
-
-                        <!-- CLOUDS -->
-
-                        <div class="earth-cloud-layer">
-                        </div>
-
-
-                        <!-- SUNLIGHT -->
-
-                        <div class="earth-light">
-                        </div>
-
-
-                        <!-- NIGHT SIDE -->
-
-                        <div class="earth-night-shadow">
-                        </div>
-
-
-                        <!-- SURFACE GLASS -->
-
-                        <div class="earth-surface-glass">
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- MALAYSIA DESTINATION MARKER -->
-
-                    <div class="malaysia-globe-marker"
-                         id="malaysia-globe-marker"
-                         aria-hidden="true">
-
-                        <span class="malaysia-marker-ring">
-                        </span>
-
-                        <span class="malaysia-marker-dot">
-                        </span>
-
-                        <span class="malaysia-marker-label">
-                            Malaysia
-                        </span>
-
-                    </div>
-
-
-                    <!-- USER LOCATION MARKER
-                         JS WILL POSITION THIS -->
-
-                    <div class="user-globe-marker"
-                         id="user-globe-marker"
-                         aria-hidden="true">
-
-                        <span class="user-marker-ring">
-                        </span>
-
-                        <span class="user-marker-core">
-                        </span>
-
-                        <span class="user-marker-label">
-                            You are here
-                        </span>
-
-                    </div>
-
-
-                    <!-- COORDINATE LINES -->
-
-                    <div class="globe-coordinate-line globe-coordinate-one"
-                         aria-hidden="true">
-                    </div>
-
-                    <div class="globe-coordinate-line globe-coordinate-two"
-                         aria-hidden="true">
-                    </div>
-
-
-                </div>
-
-
-                <!-- LOCATION STATUS -->
-
-                <div class="globe-status"
-                     id="globe-status">
-
-                    <span class="globe-status-dot"
-                          aria-hidden="true">
-                    </span>
-
-                    <span id="globe-status-text">
-                        Finding your place in the world
-                    </span>
-
-                </div>
+                <span id="globe-status-text">
+                    Finding your place in the world
+                </span>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
 
    <!-- ================= LIVING LANGUAGE RECORDS ================= -->
 
@@ -1164,6 +766,10 @@
 
 
 <script src="{{ url_for('static', filename='js/mahmeri-data.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/earth-globe.js') }}"></script>
 
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
