@@ -51,9 +51,25 @@
 
         </div>
 
-        <span class="language-count">
-            4 languages
-        </span>
+        <div class="dashboard-header-actions">
+
+            <a class="compare-languages-button"
+               href="{{ url_for('compare_languages') }}"
+               aria-label="Compare Malaysian minority languages">
+
+                Compare Languages
+
+                <span aria-hidden="true">
+                    ⇄
+                </span>
+
+            </a>
+
+            <span class="language-count">
+                4 languages
+            </span>
+
+        </div>
 
     </div>
 
@@ -404,7 +420,21 @@
     <div class="world-explorer-card"
          id="world-explorer-card">
 
-<div class="world-explorer-content">
+
+        <!-- FULL-WIDTH THREE.JS SPACE SCENE -->
+
+        <div class="globe-stage"
+             id="globe-stage"
+             aria-label="Interactive world exploration area">
+
+            <div id="three-globe-container"
+                 aria-hidden="true">
+            </div>
+
+
+            <!-- STORY OVERLAY -->
+
+            <div class="world-explorer-content">
 
                 <span class="explorer-stage-label">
                     Your Place in the World
@@ -505,21 +535,6 @@
                 </button>
 
             </div>
-       
-         <!-- FULL-WIDTH THREE.JS SPACE SCENE -->
-
-        <div class="globe-stage"
-             id="globe-stage"
-             aria-label="Interactive world exploration area">
-
-            <div id="three-globe-container"
-                 aria-hidden="true">
-            </div>
-
-
-            <!-- STORY OVERLAY -->
-
-           
 
 
             <!-- LOCATION STATUS -->

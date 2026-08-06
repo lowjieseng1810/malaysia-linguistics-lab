@@ -177,6 +177,110 @@
     </section>
 
 
+    <!-- ================= LANGUAGE FAMILY TREE ================= -->
+
+    <section class="family-tree-section"
+             aria-labelledby="family-tree-heading">
+
+        <h2 id="family-tree-heading"
+            class="family-tree-title">
+            Language Family Tree
+        </h2>
+
+        <div class="family-tree">
+
+            {% if family_tree.roots %}
+
+                {% for root_name, branches in family_tree.roots.items() %}
+
+                    <div class="family-tree-root">
+
+                        <span class="family-tree-root-label">
+                            {{ root_name }}
+                        </span>
+
+                        <ul class="family-tree-branch-list">
+
+                            {% for branch_name, branch_languages in branches.items() %}
+
+                                <li class="family-tree-branch">
+
+                                    <span class="family-tree-branch-label">
+                                        {{ branch_name }}
+                                    </span>
+
+                                    <ul class="family-tree-leaf-list">
+
+                                        {% for lang in branch_languages %}
+
+                                            <li class="family-tree-leaf {{ 'family-tree-current' if lang.is_current else '' }}">
+                                                <span class="family-tree-leaf-text">
+                                                    {{ lang.display_name }}
+                                                    {% if lang.is_current %}
+                                                        <span class="family-tree-current-tag">
+                                                            You are here
+                                                        </span>
+                                                    {% endif %}
+                                                </span>
+                                            </li>
+
+                                        {% endfor %}
+
+                                    </ul>
+
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="family-tree-unavailable">
+                    Relationship currently under research.
+                </p>
+
+            {% endif %}
+
+            {% if family_tree.unclassified %}
+
+                <div class="family-tree-root family-tree-unclassified">
+
+                    <span class="family-tree-root-label">
+                        Unclassified
+                    </span>
+
+                    <p class="family-tree-unavailable">
+                        Relationship currently under research.
+                    </p>
+
+                    <ul class="family-tree-leaf-list">
+
+                        {% for lang in family_tree.unclassified %}
+
+                            <li class="family-tree-leaf {{ 'family-tree-current' if lang.is_current else '' }}">
+                                <span class="family-tree-leaf-text">
+                                    {{ lang.display_name }}
+                                </span>
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
     <!-- ================= LANGUAGE STORY ================= -->
 
     <section class="language-story-section"

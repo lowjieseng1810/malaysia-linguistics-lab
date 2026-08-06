@@ -130,6 +130,46 @@ align-items: center;
 }
 
 
+/* COMPARE LANGUAGES BUTTON */
+
+.dashboard-header-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 12px;
+}
+
+.compare-languages-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid rgba(230, 201, 109, 0.30);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1f6b4d, #163f2e);
+    color: #f0d77f;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.compare-languages-button:hover {
+    color: #ffffff;
+    border-color: rgba(230, 201, 109, 0.55);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 28px rgba(0, 0, 0, 0.28);
+}
+
+
 /* LANGUAGE GRID */
 
 .language-grid {
@@ -458,6 +498,11 @@ align-items: center;
 
     .language-count {
         display: none;
+    }
+
+    .compare-languages-button {
+        padding: 9px 13px;
+        font-size: 0.76rem;
     }
 
     .language-grid {
@@ -983,9 +1028,6 @@ transform:none;
 
     font-size: 0.71rem;
     font-weight: 650;
-
-    transform:
-        translateX(-50%);
 
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -3364,8 +3406,8 @@ transform:none;
 }
 
 .real-malaysia-map {
-    width: 105% !important;
-    height: 105% !important;
+    width: 97% !important;
+    height: 97% !important;
 
     transform: translateX(1.5%) !important;
     transform-origin: right center !important;
@@ -6299,20 +6341,67 @@ transform:none;
 }
 
 
-/* Label stays outside the peninsula */
+/* Label stays outside the peninsula.
+
+   Anchored to the RIGHT of the beacon
+   (not the left) because the beacon sits
+   only 14% from the map's left edge -
+   anchoring the 150px label to the left
+   pushed it past the map container's
+   clipped (overflow:hidden) boundary,
+   cutting off the leading text/number
+   ("1" in "1 living language"). */
 
 .selangor-beacon .beacon-label {
-    left: auto !important;
-    right: calc(100% + 3px) !important;
+    left: calc(100% + 3px) !important;
+    right: auto !important;
 
-    top: calc(100% + 28px) !important;
+    top: calc(100% + 52px) !important;
     bottom: auto !important;
 
     width: 150px !important;
 
     transform: none !important;
 
-    text-align: right !important;
+    text-align: left !important;
+}
+
+
+/* SELANGOR CONNECTOR LINE
+   (matches the Sarawak/Sabah ::after
+   connector style, angled down-right
+   toward the label's position) */
+
+.selangor-beacon::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    top: 20px;
+    left: 10px;
+    right: auto;
+    bottom: auto;
+
+    width: 64px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.10),
+            rgba(239, 215, 126, 0.76)
+        );
+
+    transform:
+        rotate(58deg);
+
+    transform-origin:
+        left center;
+
+    box-shadow:
+        0 0 8px
+        rgba(239, 215, 126, 0.24);
 }
 
 /* =========================================
@@ -7522,9 +7611,6 @@ transform:none;
    ========================================= */
 
 .globe-status {
-    position: relative;
-    z-index: 30;
-
     max-width: calc(100% - 34px);
 
     transition:

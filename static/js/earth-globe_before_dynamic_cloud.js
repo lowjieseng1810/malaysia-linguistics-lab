@@ -1957,7 +1957,6 @@ const moonMaterial =
 
 /* =========================================
    CINEMATIC CLOUD LAYER
-   Evolving, non-rotating cloud pattern
    ========================================= */
 
 earthCloudTexture.colorSpace =
@@ -1972,14 +1971,55 @@ earthCloudTexture.minFilter =
 earthCloudTexture.magFilter =
     THREE.LinearFilter;
 
-earthCloudTexture.wrapS =
-    THREE.RepeatWrapping;
 
-earthCloudTexture.wrapT =
-    THREE.ClampToEdgeWrapping;
+const cloudGeometry =
+    new THREE.SphereGeometry(
+        1.018,
+        128,
+        128
+    );
 
 
+const cloudMaterial =
+    new THREE.MeshPhongMaterial({
 
+        map:
+            earthCloudTexture,
+
+        transparent:
+            true,
+
+        opacity:
+            0.0,
+
+        depthWrite:
+            false,
+
+        side:
+            THREE.DoubleSide,
+
+        blending:
+            THREE.NormalBlending,
+
+        shininess:
+            3,
+
+        color:
+            0xffffff
+
+    });
+
+
+const clouds =
+    new THREE.Mesh(
+        cloudGeometry,
+        cloudMaterial
+    );
+
+
+earth.add(
+    clouds
+);
   
     /* =========================================
    SUN
@@ -3378,7 +3418,8 @@ clouds.material.opacity =
             earth.rotation.y +=
                 0.0018;
        
-      
+       clouds.rotation.y +=
+    0.00022;
        
             }
 
@@ -3625,28 +3666,6 @@ camera.getWorldPosition(
         .cameraWorldPosition
         .value
 );
-
-/* =========================================
-   UPDATE CLOUD SHADER
-   ========================================= */
-
-cloudMaterial.uniforms
-    .sunWorldPosition
-    .value
-    .copy(
-        realSunWorldPosition
-    );
-
-camera.getWorldPosition(
-    cloudMaterial.uniforms
-        .cameraWorldPosition
-        .value
-);
-
-cloudMaterial.uniforms
-    .uTime
-    .value =
-    time * 0.001;
 
 /* =========================================
    RENDER SCENE

@@ -933,6 +933,173 @@ LEVEL_TITLES = {
 }
 
 
+# ================= LANGUAGE COMPARISON METADATA =================
+#
+# These are lightweight, general reference facts that are not already
+# captured anywhere else in LANGUAGES / COURSE_DATA. Anything that already
+# exists elsewhere (name, region, speakers, verification/vitality status,
+# greetings) is reused/derived from LANGUAGES and COURSE_DATA instead of
+# being duplicated here.
+
+LANGUAGE_FAMILY = {
+    "iban": "Austronesian (Malayo-Polynesian, Malayic)",
+    "kadazan-dusun": "Austronesian (Malayo-Polynesian, Dusunic)",
+    "bidayuh": "Austronesian (Malayo-Polynesian, Land Dayak)",
+    "mah-meri": "Austroasiatic (Aslian, Southern Aslian)"
+}
+
+LANGUAGE_WRITING_SYSTEM = "Latin-based (Romanized) script"
+
+
+def get_language_family_tree(current_lang_key):
+    """
+    Builds a lightweight Root Family -> Branch -> Languages tree purely by
+    parsing the existing LANGUAGE_FAMILY strings (e.g.
+    "Austronesian (Malayo-Polynesian, Malayic)" -> root "Austronesian",
+    branch "Malayic"). No new family data is introduced here - languages
+    that have no entry in LANGUAGE_FAMILY are placed in "unclassified" and
+    rendered with "Relationship currently under research." instead.
+    """
+
+    tree = {}
+    unclassified = []
+
+    for lang_key, language in LANGUAGES.items():
+
+        display_name = language.get(
+            "display_name",
+            lang_key
+        )
+
+        family_text = LANGUAGE_FAMILY.get(lang_key)
+
+        if not family_text:
+            unclassified.append({
+                "lang_key": lang_key,
+                "display_name": display_name,
+                "is_current": lang_key == current_lang_key
+            })
+            continue
+
+        root = family_text.split("(")[0].strip()
+        branch = root
+
+        if "(" in family_text:
+            inside = family_text.split("(", 1)[1].rstrip(")")
+            parts = [
+                part.strip()
+                for part in inside.split(",")
+                if part.strip()
+            ]
+
+            if parts:
+                branch = parts[-1]
+
+        tree.setdefault(
+            root,
+            {}
+        ).setdefault(
+            branch,
+            []
+        ).append({
+            "lang_key": lang_key,
+            "display_name": display_name,
+            "is_current": lang_key == current_lang_key
+        })
+
+    return {
+        "roots": tree,
+        "unclassified": unclassified
+    }
+
+
+# ================= VITALITY METER SCALE =================
+#
+# This maps *known* UNESCO-style vitality wording to a generic 10-segment
+# meter + colour + one-line explanation for display purposes only. It does
+# not assign a category to any language - it is only consulted with
+# whatever "verification_status" text a language already has in LANGUAGES.
+# Since every language currently stores "Under Review", the meter falls
+# back to the honest "Data currently under review." state below for all of
+# them today; nothing here invents a classification for a specific language.
+
+VITALITY_SCALE = {
+    "safe": {
+        "filled": 10,
+        "css_class": "safe",
+        "explanation": (
+            "Spoken by all generations with unbroken transmission."
+        )
+    },
+    "vulnerable": {
+        "filled": 8,
+        "css_class": "vulnerable",
+        "explanation": (
+            "Most children speak it, but often only in certain settings."
+        )
+    },
+    "definitely endangered": {
+        "filled": 6,
+        "css_class": "definitely-endangered",
+        "explanation": (
+            "Children no longer learn it as a first language at home."
+        )
+    },
+    "severely endangered": {
+        "filled": 4,
+        "css_class": "severely-endangered",
+        "explanation": (
+            "Spoken mainly by grandparents and older generations."
+        )
+    },
+    "critically endangered": {
+        "filled": 2,
+        "css_class": "critically-endangered",
+        "explanation": (
+            "Spoken by only a few elderly speakers, used infrequently."
+        )
+    },
+    "extinct": {
+        "filled": 0,
+        "css_class": "extinct",
+        "explanation": "No remaining speakers."
+    }
+}
+
+VITALITY_TOTAL_SEGMENTS = 10
+
+
+def get_vitality_meter(vitality_status):
+    lookup_key = (vitality_status or "").strip().lower()
+
+    scale = VITALITY_SCALE.get(lookup_key)
+
+    if not scale:
+        # "Under Review" (or any status we don't recognise) is not the
+        # same as "no data" - leaving the meter at 0/10 looked like the
+        # feature was broken. We show a clearly-labelled estimate instead
+        # of a real classification: a mid-scale yellow meter with an
+        # "Estimated" badge, so it's obvious this is a placeholder and not
+        # a fabricated UNESCO category.
+        return {
+            "available": False,
+            "estimated": True,
+            "filled_segments": 5,
+            "total_segments": VITALITY_TOTAL_SEGMENTS,
+            "css_class": "estimated",
+            "explanation": "Data currently under review."
+        }
+
+    return {
+        "available": True,
+        "estimated": False,
+        "filled_segments": scale["filled"],
+        "total_segments": VITALITY_TOTAL_SEGMENTS,
+        "css_class": scale["css_class"],
+        "explanation": scale["explanation"]
+    }
+
+
 # ================= COURSE DATA =================
 
 COURSE_DATA = {'iban': {1: {'steps': [{'type': 'scene',
@@ -2156,6 +2323,201 @@ def get_language_learning_summary(user_id, lang_key):
     }
 
 
+# ================= LANGUAGE COMPARISON HELPERS =================
+
+def get_language_greeting(lang_key):
+    steps = (
+        COURSE_DATA.get(lang_key, {})
+        .get(1, {})
+        .get("steps", [])
+    )
+
+    for step in steps:
+        meaning = step.get("meaning", "")
+
+        if not meaning:
+            continue
+
+        lowered = meaning.lower()
+
+        if (
+            "greet" in lowered or
+            "welcome" in lowered or
+            "hello" in lowered
+        ):
+            word = (
+                step.get("word") or
+                step.get("expression")
+            )
+
+            if word:
+                return {
+                    "word": word,
+                    "meaning": meaning
+                }
+
+    return None
+
+
+def get_language_number_system(lang_key):
+    steps = (
+        COURSE_DATA.get(lang_key, {})
+        .get(1, {})
+        .get("steps", [])
+    )
+
+    number_keywords = (
+        "one", "two", "three", "four", "five",
+        "number", "numbers", "count"
+    )
+
+    for step in steps:
+        meaning = step.get(
+            "meaning",
+            ""
+        ).lower()
+
+        if any(
+            keyword in meaning
+            for keyword in number_keywords
+        ):
+            return {
+                "word": (
+                    step.get("word") or
+                    step.get("expression")
+                ),
+                "meaning": step.get("meaning")
+            }
+
+    return None
+
+
+def get_language_comparison_data(lang_key):
+    language = LANGUAGES.get(lang_key)
+
+    if not language:
+        return None
+
+    greeting = get_language_greeting(lang_key)
+    number_system = get_language_number_system(lang_key)
+
+    speakers_text = language.get("speakers", "")
+    speakers_summary = speakers_text.split(".")[0].strip()
+
+    if speakers_summary:
+        speakers_summary += "."
+
+    vitality_status = language.get(
+        "verification_status",
+        "Under Review"
+    )
+
+    return {
+        "lang_key": lang_key,
+        "display_name": language.get(
+            "display_name",
+            lang_key
+        ),
+        "region": language.get(
+            "region",
+            "Not specified"
+        ),
+        "family": LANGUAGE_FAMILY.get(
+            lang_key,
+            "Documentation pending"
+        ),
+        "speakers_estimate": (
+            speakers_summary or
+            "Documentation pending"
+        ),
+        "vitality_status": vitality_status,
+        "vitality_note": language.get(
+            "verification_note",
+            ""
+        ),
+        "vitality_meter": get_vitality_meter(
+            vitality_status
+        ),
+        "writing_system": LANGUAGE_WRITING_SYSTEM,
+        "greeting": greeting,
+        "number_system": number_system,
+        "levels": list(LEVEL_TITLES.values())
+    }
+
+
+def compute_language_comparison_summary(comparison_a, comparison_b):
+    if not comparison_a or not comparison_b:
+        return None
+
+    attributes = [
+        {
+            "key": "family",
+            "label": "Language Family",
+            "same": (
+                comparison_a["family"] ==
+                comparison_b["family"]
+            )
+        },
+        {
+            "key": "region",
+            "label": "Region",
+            "same": (
+                comparison_a["region"] ==
+                comparison_b["region"]
+            )
+        },
+        {
+            "key": "writing_system",
+            "label": "Writing System",
+            "same": (
+                comparison_a["writing_system"] ==
+                comparison_b["writing_system"]
+            )
+        },
+        {
+            "key": "vitality_status",
+            "label": "UNESCO Status",
+            "same": (
+                comparison_a["vitality_status"] ==
+                comparison_b["vitality_status"]
+            )
+        },
+        {
+            "key": "levels",
+            "label": "Learning Levels",
+            "same": (
+                comparison_a["levels"] ==
+                comparison_b["levels"]
+            )
+        }
+    ]
+
+    total = len(attributes)
+
+    matches = sum(
+        1
+        for attribute in attributes
+        if attribute["same"]
+    )
+
+    percentage = (
+        round((matches / total) * 100)
+        if total
+        else 0
+    )
+
+    return {
+        "percentage": percentage,
+        "matches": matches,
+        "total": total,
+        "attributes": attributes,
+        "by_key": {
+            attribute["key"]: attribute["same"]
+            for attribute in attributes
+        }
+    }
+
+
 # ================= ROUTES =================
 
 # ================= EXPLORE UNLOCK DATA =================
@@ -3094,6 +3456,97 @@ def dashboard():
     )
 
 
+# ================= LANGUAGE COMPARISON =================
+
+@app.route("/compare")
+def compare_languages():
+
+    if "user_id" not in session:
+        return redirect(
+            url_for("login")
+        )
+
+    lang_keys = list(LANGUAGES.keys())
+
+    default_a = lang_keys[0]
+
+    default_b = (
+        lang_keys[1]
+        if len(lang_keys) > 1
+        else lang_keys[0]
+    )
+
+    lang_a = request.args.get(
+        "a",
+        default_a
+    )
+
+    lang_b = request.args.get(
+        "b",
+        default_b
+    )
+
+    if lang_a not in LANGUAGES:
+        lang_a = default_a
+
+    if lang_b not in LANGUAGES:
+        lang_b = default_b
+
+    language_options = [
+        {
+            "lang_key": key,
+            "display_name": LANGUAGES[key]["display_name"]
+        }
+        for key in lang_keys
+    ]
+
+    comparison_a = get_language_comparison_data(lang_a)
+    comparison_b = get_language_comparison_data(lang_b)
+
+    comparison_summary = compute_language_comparison_summary(
+        comparison_a,
+        comparison_b
+    )
+
+    return render_template(
+        "compare.html",
+        language_options=language_options,
+        lang_a=lang_a,
+        lang_b=lang_b,
+        comparison_a=comparison_a,
+        comparison_b=comparison_b,
+        comparison_summary=comparison_summary
+    )
+
+
+@app.route("/api/compare/<lang_a>/<lang_b>")
+def api_compare_languages(lang_a, lang_b):
+
+    if "user_id" not in session:
+        return jsonify({
+            "error": "Unauthorized"
+        }), 401
+
+    comparison_a = get_language_comparison_data(lang_a)
+    comparison_b = get_language_comparison_data(lang_b)
+
+    if not comparison_a or not comparison_b:
+        return jsonify({
+            "error": "Language not found"
+        }), 404
+
+    comparison_summary = compute_language_comparison_summary(
+        comparison_a,
+        comparison_b
+    )
+
+    return jsonify({
+        "a": comparison_a,
+        "b": comparison_b,
+        "summary": comparison_summary
+    })
+
+
 # ================= LANGUAGE EXPLORE PAGE =================
 
 @app.route("/language/<lang_key>")
@@ -3159,7 +3612,8 @@ def language_page(lang_key):
         lang_key=lang_key,
         learning_summary=learning_summary,
         levels_info=learning_summary["levels"],
-        explore_unlocks=explore_unlocks
+        explore_unlocks=explore_unlocks,
+        family_tree=get_language_family_tree(lang_key)
     )
 
 

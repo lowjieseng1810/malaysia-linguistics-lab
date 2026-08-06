@@ -2117,50 +2117,89 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-            window.setTimeout(
-                function () {
+            /*
+               Sync with the actual Three.js
+               camera flight (earth-globe.js)
+               instead of guessing with fixed
+               timeouts, so the Malaysia map
+               never swaps in before the
+               camera has actually finished
+               centering on Malaysia.
+            */
 
-                    explorerCard.classList.add(
-                        "is-cloud-covered"
-                    );
+            function onArrivalReady() {
 
-                },
-                900
+                window.removeEventListener(
+                    "earthMalaysiaArrivalReady",
+                    onArrivalReady
+                );
+
+                explorerCard.classList.add(
+                    "is-cloud-covered"
+                );
+
+            }
+
+            window.addEventListener(
+                "earthMalaysiaArrivalReady",
+                onArrivalReady
             );
 
 
-            window.setTimeout(
-                function () {
+            function onFlightComplete() {
 
-                    createMalaysiaStage();
+                window.removeEventListener(
+                    "earthMalaysiaFlightComplete",
+                    onFlightComplete
+                );
 
+                /*
+                   Pause for about a second
+                   after the camera has fully
+                   arrived and centered on
+                   Malaysia before switching
+                   to the map page.
+                */
 
-                    explorerCard.classList.add(
-                        "is-malaysia-view"
-                    );
+                window.setTimeout(
+                    function () {
 
-                },
-                1700
-            );
-
-
-            window.setTimeout(
-                function () {
-
-                    explorerCard.classList.remove(
-                        "is-cloud-covered"
-                    );
+                        createMalaysiaStage();
 
 
-                    explorerCard.classList.add(
-                        "has-arrived"
-                    );
+                        explorerCard.classList.add(
+                            "is-malaysia-view"
+                        );
 
 
-                    transitionRunning = false;
+                        window.setTimeout(
+                            function () {
 
-                },
-                2700
+                                explorerCard.classList.remove(
+                                    "is-cloud-covered"
+                                );
+
+
+                                explorerCard.classList.add(
+                                    "has-arrived"
+                                );
+
+
+                                transitionRunning = false;
+
+                            },
+                            900
+                        );
+
+                    },
+                    1000
+                );
+
+            }
+
+            window.addEventListener(
+                "earthMalaysiaFlightComplete",
+                onFlightComplete
             );
 
         }

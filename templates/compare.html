@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+
+{% block title %}Compare Languages | Malaysian Language Heritage Explorer{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/language.css') }}">
+
+<main class="language-page compare-page">
+
+
+    <!-- ================= BACK LINK ================= -->
+
+    <a class="back-link"
+       href="{{ url_for('dashboard') }}">
+        ← Back to Dashboard
+    </a>
+
+
+    <!-- ================= COMPARE HERO ================= -->
+
+    <section class="language-hero compare-hero">
+
+        <div class="language-hero-content">
+
+            <span class="language-eyebrow">
+                Language Comparison
+            </span>
+
+            <h1>
+                Compare Malaysian Languages
+            </h1>
+
+            <p class="language-hero-description">
+                Choose any two Malaysian minority languages to see how they
+                compare side by side.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPARE CONTROLS ================= -->
+
+    <section class="compare-controls-panel"
+              aria-labelledby="compare-controls-heading">
+
+        <h2 id="compare-controls-heading"
+            class="compare-controls-title">
+            Choose two languages
+        </h2>
+
+        <form class="compare-controls-form"
+              id="compare-form"
+              method="get"
+              action="{{ url_for('compare_languages') }}">
+
+            <div class="compare-select-group">
+
+                <label for="compare-select-a">
+                    Language A
+                </label>
+
+                <select id="compare-select-a"
+                        name="a"
+                        class="compare-select">
+
+                    {% for option in language_options %}
+
+                        <option value="{{ option.lang_key }}"
+                                {% if option.lang_key == lang_a %}selected{% endif %}>
+                            {{ option.display_name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <span class="compare-versus"
+                  aria-hidden="true">
+                vs
+            </span>
+
+            <div class="compare-select-group">
+
+                <label for="compare-select-b">
+                    Language B
+                </label>
+
+                <select id="compare-select-b"
+                        name="b"
+                        class="compare-select">
+
+                    {% for option in language_options %}
+
+                        <option value="{{ option.lang_key }}"
+                                {% if option.lang_key == lang_b %}selected{% endif %}>
+                            {{ option.display_name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <button type="submit"
+                    class="primary-language-button compare-submit-button">
+                Compare
+                <span aria-hidden="true">→</span>
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- ================= OVERALL SIMILARITY ================= -->
+
+    <section class="compare-summary-panel"
+             id="compare-summary-panel"
+             aria-labelledby="compare-summary-heading">
+
+        <h2 id="compare-summary-heading"
+            class="compare-summary-title">
+            Overall Similarity
+        </h2>
+
+        <div class="compare-summary-score">
+
+            <span class="compare-summary-percentage"
+                  id="compare-summary-percentage">
+                {{ comparison_summary.percentage }}%
+            </span>
+
+            <span class="compare-summary-caption">
+                similar across {{ comparison_summary.total }} key attributes
+            </span>
+
+        </div>
+
+        <div class="compare-summary-badges"
+             id="compare-summary-badges">
+
+            {% for attribute in comparison_summary.attributes %}
+
+                <span class="diff-badge {{ 'same' if attribute.same else 'different' }}">
+                    {% if attribute.same %}
+                        ✓ Same {{ attribute.label }}
+                    {% else %}
+                        ✗ Different {{ attribute.label }}
+                    {% endif %}
+                </span>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LANGUAGE VITALITY DASHBOARD ================= -->
+
+    <section class="vitality-dashboard-panel"
+             id="vitality-dashboard-panel"
+             aria-labelledby="vitality-dashboard-heading">
+
+        <h2 id="vitality-dashboard-heading"
+            class="compare-table-title">
+            Language Vitality
+        </h2>
+
+        <div class="vitality-dashboard-grid">
+
+            <!-- LANGUAGE A -->
+
+            <div class="vitality-card">
+
+                <span class="vitality-card-label">
+                    Language A
+                </span>
+
+                <h3 class="vitality-card-name"
+                    id="vitality-name-a">
+                    {{ comparison_a.display_name }}
+                </h3>
+
+                <div class="vitality-meter"
+                     id="vitality-meter-a">
+
+                    {% for segment in range(1, comparison_a.vitality_meter.total_segments + 1) %}
+
+                        <span class="vitality-segment {{ 'filled' if segment <= comparison_a.vitality_meter.filled_segments else '' }} {{ comparison_a.vitality_meter.css_class }}"></span>
+
+                    {% endfor %}
+
+                </div>
+
+                <span class="vitality-badge {{ comparison_a.vitality_meter.css_class }}"
+                      id="vitality-badge-a">
+                    {{ comparison_a.vitality_status }}
+                </span>
+
+                {% if comparison_a.vitality_meter.estimated %}
+                    <span class="vitality-estimated-badge"
+                          id="vitality-estimated-a">
+                        ~ Estimated
+                    </span>
+                {% endif %}
+
+                <p class="vitality-explanation"
+                   id="vitality-explanation-a">
+                    {{ comparison_a.vitality_meter.explanation }}
+                </p>
+
+                <div class="vitality-speakers">
+                    <span class="vitality-speakers-label">
+                        Estimated Speakers
+                    </span>
+                    <span class="vitality-speakers-value"
+                          id="vitality-speakers-a">
+                        {{ comparison_a.speakers_estimate }}
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- LANGUAGE B -->
+
+            <div class="vitality-card">
+
+                <span class="vitality-card-label">
+                    Language B
+                </span>
+
+                <h3 class="vitality-card-name"
+                    id="vitality-name-b">
+                    {{ comparison_b.display_name }}
+                </h3>
+
+                <div class="vitality-meter"
+                     id="vitality-meter-b">
+
+                    {% for segment in range(1, comparison_b.vitality_meter.total_segments + 1) %}
+
+                        <span class="vitality-segment {{ 'filled' if segment <= comparison_b.vitality_meter.filled_segments else '' }} {{ comparison_b.vitality_meter.css_class }}"></span>
+
+                    {% endfor %}
+
+                </div>
+
+                <span class="vitality-badge {{ comparison_b.vitality_meter.css_class }}"
+                      id="vitality-badge-b">
+                    {{ comparison_b.vitality_status }}
+                </span>
+
+                {% if comparison_b.vitality_meter.estimated %}
+                    <span class="vitality-estimated-badge"
+                          id="vitality-estimated-b">
+                        ~ Estimated
+                    </span>
+                {% endif %}
+
+                <p class="vitality-explanation"
+                   id="vitality-explanation-b">
+                    {{ comparison_b.vitality_meter.explanation }}
+                </p>
+
+                <div class="vitality-speakers">
+                    <span class="vitality-speakers-label">
+                        Estimated Speakers
+                    </span>
+                    <span class="vitality-speakers-value"
+                          id="vitality-speakers-b">
+                        {{ comparison_b.speakers_estimate }}
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COMPARISON TABLE ================= -->
+
+    <section class="compare-table-panel"
+              aria-labelledby="compare-table-heading">
+
+        <h2 id="compare-table-heading"
+            class="compare-table-title">
+            Side-by-side comparison
+        </h2>
+
+        <div class="compare-table-scroll">
+
+            <table class="compare-table"
+                   id="compare-table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Feature</th>
+                        <th scope="col"
+                            id="compare-col-a">
+                            {{ comparison_a.display_name }}
+                        </th>
+                        <th scope="col"
+                            id="compare-col-b">
+                            {{ comparison_b.display_name }}
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody id="compare-table-body">
+
+                    <tr>
+                        <th scope="row">Language Name</th>
+                        <td data-field="display_name">{{ comparison_a.display_name }}</td>
+                        <td data-field="display_name">{{ comparison_b.display_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            State / Region
+                            <span class="diff-badge {{ 'same' if comparison_summary.by_key.region else 'different' }}"
+                                  id="diff-badge-region">
+                                {{ '✓ Same' if comparison_summary.by_key.region else '✗ Different' }}
+                            </span>
+                        </th>
+                        <td data-field="region">{{ comparison_a.region }}</td>
+                        <td data-field="region">{{ comparison_b.region }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            Language Family
+                            <span class="diff-badge {{ 'same' if comparison_summary.by_key.family else 'different' }}"
+                                  id="diff-badge-family">
+                                {{ '✓ Same' if comparison_summary.by_key.family else '✗ Different' }}
+                            </span>
+                        </th>
+                        <td data-field="family">{{ comparison_a.family }}</td>
+                        <td data-field="family">{{ comparison_b.family }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Estimated Speakers</th>
+                        <td data-field="speakers_estimate">{{ comparison_a.speakers_estimate }}</td>
+                        <td data-field="speakers_estimate">{{ comparison_b.speakers_estimate }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            UNESCO Vitality Status
+                            <span class="diff-badge {{ 'same' if comparison_summary.by_key.vitality_status else 'different' }}"
+                                  id="diff-badge-vitality_status">
+                                {{ '✓ Same' if comparison_summary.by_key.vitality_status else '✗ Different' }}
+                            </span>
+                        </th>
+                        <td data-field="vitality_status">
+                            <span class="compare-status-pill">{{ comparison_a.vitality_status }}</span>
+                        </td>
+                        <td data-field="vitality_status">
+                            <span class="compare-status-pill">{{ comparison_b.vitality_status }}</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            Writing System
+                            <span class="diff-badge {{ 'same' if comparison_summary.by_key.writing_system else 'different' }}"
+                                  id="diff-badge-writing_system">
+                                {{ '✓ Same' if comparison_summary.by_key.writing_system else '✗ Different' }}
+                            </span>
+                        </th>
+                        <td data-field="writing_system">{{ comparison_a.writing_system }}</td>
+                        <td data-field="writing_system">{{ comparison_b.writing_system }}</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Greeting</th>
+                        <td data-field="greeting">
+                            {% if comparison_a.greeting %}
+                                <strong>{{ comparison_a.greeting.word }}</strong>
+                                <span class="compare-meaning">— {{ comparison_a.greeting.meaning }}</span>
+                            {% else %}
+                                Documentation pending
+                            {% endif %}
+                        </td>
+                        <td data-field="greeting">
+                            {% if comparison_b.greeting %}
+                                <strong>{{ comparison_b.greeting.word }}</strong>
+                                <span class="compare-meaning">— {{ comparison_b.greeting.meaning }}</span>
+                            {% else %}
+                                Documentation pending
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Number System</th>
+                        <td data-field="number_system">
+                            {% if comparison_a.number_system %}
+                                <strong>{{ comparison_a.number_system.word }}</strong>
+                                <span class="compare-meaning">— {{ comparison_a.number_system.meaning }}</span>
+                            {% else %}
+                                Not yet included in course content
+                            {% endif %}
+                        </td>
+                        <td data-field="number_system">
+                            {% if comparison_b.number_system %}
+                                <strong>{{ comparison_b.number_system.word }}</strong>
+                                <span class="compare-meaning">— {{ comparison_b.number_system.meaning }}</span>
+                            {% else %}
+                                Not yet included in course content
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            Available Learning Levels
+                            <span class="diff-badge {{ 'same' if comparison_summary.by_key.levels else 'different' }}"
+                                  id="diff-badge-levels">
+                                {{ '✓ Same' if comparison_summary.by_key.levels else '✗ Different' }}
+                            </span>
+                        </th>
+                        <td data-field="levels">
+                            <ul class="compare-levels-list">
+                                {% for level in comparison_a.levels %}
+                                    <li>{{ level }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td data-field="levels">
+                            <ul class="compare-levels-list">
+                                {% for level in comparison_b.levels %}
+                                    <li>{{ level }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="compare-table-note">
+            Language family, writing system, and vitality/documentation status
+            are general reference information and may be refined as this
+            project's content is reviewed with community and linguistic sources.
+        </p>
+
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+
+{% endblock %}
