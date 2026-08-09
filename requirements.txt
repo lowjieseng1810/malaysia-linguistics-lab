@@ -6,3 +6,4 @@ Flask-Limiter>=4.1,<5
 Authlib>=1.7,<2
 requests>=2.34,<3
 openai>=2.53,<3
+gunicorn>=26,<27
