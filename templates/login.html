@@ -4,10 +4,12 @@
 Login | Malaysian Linguistics Lab
 {% endblock %}
 
-{% block content %}
-
+{% block page_css %}
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
 
 <div class="login-page">
 <div class="login-panel">

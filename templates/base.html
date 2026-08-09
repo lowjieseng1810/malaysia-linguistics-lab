@@ -39,6 +39,9 @@ href="{{ url_for('static', filename='css/achievement-notify.css') }}">
 href="{{ url_for('static', filename='css/mascot-companion.css') }}">
 {% endif %}
 
+{# Page-specific stylesheets (e.g. login/register) must load in <head>. #}
+{% block page_css %}{% endblock %}
+
 <style>
 
 :root{
