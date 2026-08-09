@@ -1,6 +1,6 @@
 /* =========================================
    MAH MERI RESEARCH CONTENT DATA
-   Malaysian Language Heritage Explorer
+   Malaysian Linguistics Lab
    ========================================= */
 
 window.MAH_MERI_DATA = {
@@ -9,7 +9,10 @@ window.MAH_MERI_DATA = {
         key: "mah-meri",
         name: "Mah Meri",
         region: "Selangor",
-        area: "Peninsular Malaysia"
+        area: "Peninsular Malaysia",
+        /* Carey Island / coastal Selangor — same source as LANGUAGE_COORDS["mah-meri"]. */
+        lat: 2.86,
+        lon: 101.35
     },
 
 

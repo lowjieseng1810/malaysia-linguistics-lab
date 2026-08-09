@@ -1,0 +1,87 @@
+{
+  "language": "mah-meri",
+  "source_ref": "ms.wiktionary Mah Meri/Besisi extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+  "dialect_variant": "Mah Meri (ms.wiktionary)",
+  "entries": [
+    {
+      "word": "cado",
+      "meaning_en": "minum",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "kenon",
+      "meaning_en": "anak",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "kadey",
+      "meaning_en": "besar",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "kaping",
+      "meaning_en": "longgokan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "ca",
+      "meaning_en": "makan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "duk",
+      "meaning_en": "rumah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "hatop",
+      "meaning_en": "lepas, lalu, lampau (telah berlaku atau berlalu)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    },
+    {
+      "word": "tebel",
+      "meaning_en": "lebah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "culture_note": "Imported for mah-meri from Malay Wiktionary extract.",
+      "dialect_variant": "Mah Meri (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)"
+    }
+  ]
+}

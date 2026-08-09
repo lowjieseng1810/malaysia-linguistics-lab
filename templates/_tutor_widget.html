@@ -1,0 +1,296 @@
+<!-- =========================================
+     AI TUTOR WIDGET
+     Reusable partial included from base.html.
+     Modern messaging-app layout: lesson context,
+     learning actions, and a scrollable conversation
+     area with chat bubbles.
+     ========================================= -->
+
+{% set tutor_lang_key = lang_key if lang_key is defined else '' %}
+{% set tutor_level_num = level_num if level_num is defined else '' %}
+{% set tutor_current_step = '' %}
+{% set tutor_total_steps = '' %}
+{% set tutor_mascot_url = url_for('static', filename='images/explorer-mascot-full.svg') %}
+{% set tutor_mascot_icon_url = url_for('static', filename='images/explorer-mascot-head.svg') %}
+
+{% if saved_step is defined and course_steps is defined %}
+    {% set tutor_current_step = saved_step %}
+    {% set tutor_total_steps = course_steps|length %}
+{% elif learning_summary is defined and learning_summary.active_level %}
+    {% set tutor_current_step = learning_summary.active_level.current_step %}
+    {% set tutor_total_steps = learning_summary.active_level.total_steps %}
+{% elif levels_info is defined and levels_info %}
+    {% set lesson_progress = namespace(current='', total='') %}
+    {% for level_item in levels_info %}
+        {% if lesson_progress.total == '' and level_item.unlocked %}
+            {% set lesson_progress.current = level_item.current_step %}
+            {% set lesson_progress.total = level_item.total_steps %}
+        {% endif %}
+    {% endfor %}
+    {% set tutor_current_step = lesson_progress.current %}
+    {% set tutor_total_steps = lesson_progress.total %}
+{% endif %}
+
+<div id="ai-tutor-widget"
+     class="ai-tutor-widget"
+     data-csrf-token="{{ csrf_token() }}"
+     data-lang-key="{{ tutor_lang_key }}"
+     data-level-num="{{ tutor_level_num }}"
+    data-mascot-url="{{ tutor_mascot_icon_url }}"
+     data-username="{{ session.username or 'guest' }}">
+
+    <!-- FLOATING TOGGLE BUTTON -->
+
+    <button type="button"
+            id="ai-tutor-toggle-button"
+            class="btn btn-warning ai-tutor-toggle-button"
+            aria-expanded="false"
+            aria-controls="ai-tutor-panel">
+        <span class="ai-tutor-toggle-icon" aria-hidden="true">
+            <img src="{{ tutor_mascot_icon_url }}"
+                 alt=""
+                 loading="eager"
+                 decoding="async">
+        </span>
+        AI Tutor
+    </button>
+
+
+    <!-- COMPANION PANEL -->
+
+    <section id="ai-tutor-panel"
+             class="ai-tutor-panel card"
+             aria-label="AI Tutor language companion">
+
+        <!-- HEADER -->
+
+        <header class="ai-tutor-header card-header">
+
+            <div class="ai-tutor-avatar-badge" aria-hidden="true">
+                <img src="{{ tutor_mascot_icon_url }}"
+                     alt=""
+                     loading="eager"
+                     decoding="async">
+            </div>
+
+            <div class="ai-tutor-header-text">
+
+                <h2 class="ai-tutor-title h6 mb-0">
+                    AI Tutor
+                </h2>
+
+                <p class="ai-tutor-subtitle mb-0">
+                    <span class="ai-tutor-status-dot" aria-hidden="true"></span>
+                    Language &amp; linguistics tutor
+                </p>
+
+            </div>
+
+            <button type="button"
+                    id="ai-tutor-clear-button"
+                    class="ai-tutor-icon-button"
+                    aria-label="Start a new conversation"
+                    title="Start a new conversation">
+                <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.1" fill="none" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <button type="button"
+                    id="ai-tutor-close-button"
+                    class="btn-close"
+                    aria-label="Close AI Tutor"></button>
+
+        </header>
+
+
+        <!-- LESSON CONTEXT CARD -->
+
+        <div class="ai-tutor-context-card">
+
+            <div class="ai-tutor-context-main">
+
+                <span class="ai-tutor-context-lang">
+                    {% if language %}
+                        {{ language.display_name }}
+                    {% else %}
+                        General Practice
+                    {% endif %}
+                </span>
+
+                {% if level_title %}
+                    <span class="ai-tutor-context-level">
+                        Level {{ level_num }}: {{ level_title }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+            <div class="ai-tutor-context-meta">
+
+                <span class="ai-tutor-progress-pill">
+                    {% if tutor_total_steps != '' and tutor_total_steps|int > 0 %}
+                        📈 {{ tutor_current_step }}/{{ tutor_total_steps }}
+                    {% else %}
+                        📈 Not started
+                    {% endif %}
+                </span>
+
+                <span class="ai-tutor-grounded-badge">
+                    🔒 Lesson + linguistics
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- LEARNING ACTIONS -->
+
+        <div class="ai-tutor-quick-actions card-body border-bottom">
+
+            <span class="ai-tutor-section-label">
+                Learning Actions
+            </span>
+
+            <div class="ai-tutor-action-grid">
+
+                <button type="button"
+                        class="ai-tutor-quick-action"
+                        data-mode="explain">
+                    <span class="ai-tutor-action-icon" aria-hidden="true">💬</span>
+                    <span class="ai-tutor-action-title">Explain</span>
+                </button>
+
+                <button type="button"
+                        class="ai-tutor-quick-action"
+                        data-mode="example">
+                    <span class="ai-tutor-action-icon" aria-hidden="true">📝</span>
+                    <span class="ai-tutor-action-title">Example</span>
+                </button>
+
+                <button type="button"
+                        class="ai-tutor-quick-action"
+                        data-mode="quiz">
+                    <span class="ai-tutor-action-icon" aria-hidden="true">❓</span>
+                    <span class="ai-tutor-action-title">Quiz</span>
+                </button>
+
+                <button type="button"
+                        class="ai-tutor-quick-action"
+                        data-mode="culture">
+                    <span class="ai-tutor-action-icon" aria-hidden="true">🌏</span>
+                    <span class="ai-tutor-action-title">Culture</span>
+                </button>
+
+                <button type="button"
+                        class="ai-tutor-quick-action"
+                        data-mode="chat">
+                    <span class="ai-tutor-action-icon" aria-hidden="true">✨</span>
+                    <span class="ai-tutor-action-title">Free Chat</span>
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONVERSATION AREA (only this scrolls) -->
+
+        <div class="ai-tutor-notes-area" id="ai-tutor-notes-area">
+
+            <div id="ai-tutor-empty-state" class="ai-tutor-empty-state">
+
+                <div class="ai-tutor-empty-avatar" aria-hidden="true">
+                    <img src="{{ tutor_mascot_url }}"
+                         alt=""
+                         loading="eager"
+                         decoding="async">
+                </div>
+
+                <h3 class="ai-tutor-empty-title">
+                    Hi! 👋 I'm your Malaysian Language AI Tutor
+                </h3>
+
+                <p class="ai-tutor-empty-subtitle">
+                    I can help you with:
+                </p>
+
+                <ul class="ai-tutor-empty-list">
+                    <li>today's lesson</li>
+                    <li>pronunciation</li>
+                    <li>grammar</li>
+                    <li>vocabulary</li>
+                    <li>translations</li>
+                    <li>language families</li>
+                    <li>indigenous languages</li>
+                    <li>linguistics</li>
+                </ul>
+
+                <p class="ai-tutor-empty-hint">
+                    Choose an action above, or ask me anything language-related.
+                </p>
+
+                <div class="ai-tutor-empty-suggestions">
+
+                    <button type="button" class="ai-tutor-suggestion-chip" data-mode="explain">
+                        Explain this lesson
+                    </button>
+
+                    <button type="button" class="ai-tutor-suggestion-chip" data-mode="example">
+                        Give me an example
+                    </button>
+
+                    <button type="button" class="ai-tutor-suggestion-chip" data-mode="quiz">
+                        Quiz me
+                    </button>
+
+                    <button type="button" class="ai-tutor-suggestion-chip" data-mode="chat">
+                        Just chat with me
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="ai-tutor-messages"
+                 class="ai-tutor-messages"
+                 aria-live="polite">
+            </div>
+
+        </div>
+
+
+        <!-- INPUT -->
+
+        <form id="ai-tutor-form"
+              class="ai-tutor-input-row card-footer">
+
+            <label for="ai-tutor-input"
+                   class="visually-hidden">
+                Ask about this lesson
+            </label>
+
+            <input type="text"
+                   id="ai-tutor-input"
+                   name="message"
+                   class="form-control ai-tutor-input"
+                   placeholder="Ask about a language, word, or grammar rule..."
+                   autocomplete="off">
+
+            <button type="submit"
+                    id="ai-tutor-send-button"
+                    class="ai-tutor-send-button"
+                    aria-label="Send message">
+                <span class="ai-tutor-send-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </button>
+
+        </form>
+
+    </section>
+
+</div>

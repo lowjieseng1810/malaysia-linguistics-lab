@@ -1,0 +1,2185 @@
+{
+  "language": "mah-meri",
+  "source_ref": "Skeat, W.W. (1896). A Vocabulary of the Besisi Dialect. Journal of the Straits Branch of the Royal Asiatic Society 29: 13–31 (public domain; historical Besisi = Mah Meri heritage variety)",
+  "dialect_variant": "Besisi (historical; Bukit area / coastal Selangor)",
+  "entries": [
+    {
+      "word": "Tés",
+      "meaning_en": "Boil",
+      "meaning_ms": "Bara",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ding dioi",
+      "meaning_en": "Bamboo",
+      "meaning_ms": "buluh pe | | | rindu",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tih",
+      "meaning_en": "Above",
+      "meaning_ms": "Atas",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Dasa",
+      "meaning_en": "Accustomed",
+      "meaning_ms": "Biasa",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chénib",
+      "meaning_en": "After",
+      "meaning_ms": "Di-blakang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kapet",
+      "meaning_en": "Assault",
+      "meaning_ms": "Pukol",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "nekam",
+      "meaning_en": "Torush upon",
+      "meaning_ms": "terkam",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Nenek",
+      "meaning_en": "Assuredly",
+      "meaning_ms": "Benar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Yong",
+      "meaning_en": "Astray",
+      "meaning_ms": "Sesat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "uyong",
+      "meaning_en": "Astray",
+      "meaning_ms": "Sesat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gomoh",
+      "meaning_en": "Aunt",
+      "meaning_ms": "Mah-sudara",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ded",
+      "meaning_en": "Await",
+      "meaning_ms": "Menanti",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chelon",
+      "meaning_en": "Back",
+      "meaning_ms": "B’lakang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lem ngot",
+      "meaning_en": "Bap",
+      "meaning_ms": "Ta’ baik",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "jehet",
+      "meaning_en": "Bap",
+      "meaning_ms": "Ta’ baik",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ding",
+      "meaning_en": "BamBoo",
+      "meaning_ms": "Buluh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "chhim",
+      "meaning_en": "Bird",
+      "meaning_ms": "Burong",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hiram",
+      "meaning_en": "Black",
+      "meaning_ms": "Itam",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Buitas",
+      "meaning_en": "Blind",
+      "meaning_ms": "Buta",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Mahame",
+      "meaning_en": "BLoop",
+      "meaning_ms": "Darah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Békdut",
+      "meaning_en": "Blunt",
+      "meaning_ms": "Tumpul",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "békunst",
+      "meaning_en": "Blunt",
+      "meaning_ms": "Tumpul",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tamp",
+      "meaning_en": "Brush",
+      "meaning_ms": "Sapu",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Temoh",
+      "meaning_en": "Call",
+      "meaning_ms": "Triak",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kiit",
+      "meaning_en": "Centipede",
+      "meaning_ms": "Halipan",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kénon",
+      "meaning_en": "Child",
+      "meaning_ms": "Anak",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "ké nin",
+      "meaning_en": "Child",
+      "meaning_ms": "Anak",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "budek",
+      "meaning_en": "Child",
+      "meaning_ms": "Anak",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kwom",
+      "meaning_en": "Claw",
+      "meaning_ms": "Menyorong kuku",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Yal",
+      "meaning_en": "Cxiims",
+      "meaning_ms": "Panjat",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Teket",
+      "meaning_en": "Kop COLD",
+      "meaning_ms": "Sejuk",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "O-h",
+      "meaning_en": "OS Mavites CoME",
+      "meaning_ms": "Mari",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gnahek",
+      "meaning_en": "Contend With",
+      "meaning_ms": "Berkla hi",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chhi",
+      "meaning_en": "Cook",
+      "meaning_ms": "Masak",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Akon",
+      "meaning_en": "CouGH",
+      "meaning_ms": "Bato’",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bayak",
+      "meaning_en": "Crocodile",
+      "meaning_ms": "Buaia",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tét",
+      "meaning_en": "CuT",
+      "meaning_ms": "Potong",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Dian",
+      "meaning_en": "Dammar",
+      "meaning_ms": "Damar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "domok",
+      "meaning_en": "DarT",
+      "meaning_ms": "anak sumpitan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hagam",
+      "meaning_en": "DarK",
+      "meaning_ms": "Glap",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chohoi",
+      "meaning_en": "Day",
+      "meaning_ms": "Siang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kébus",
+      "meaning_en": "Dead",
+      "meaning_ms": "Mati",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pekang",
+      "meaning_en": "Deaf",
+      "meaning_ms": "Pekak",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Men",
+      "meaning_en": "Directly",
+      "meaning_ms": "Sa-kejap",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Seh",
+      "meaning_en": "Disappear To",
+      "meaning_ms": "Hilang",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kle",
+      "meaning_en": "Dislocated",
+      "meaning_ms": "Salah urat",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chau",
+      "meaning_en": "DoGa",
+      "meaning_ms": "Anjing",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "choh",
+      "meaning_en": "DoGa",
+      "meaning_ms": "Anjing",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Béng",
+      "meaning_en": "Drink",
+      "meaning_ms": "Minum",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "cha",
+      "meaning_en": "Drink",
+      "meaning_ms": "Minum",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pésuit",
+      "meaning_en": "EscaPE",
+      "meaning_ms": "Lepas",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Koh",
+      "meaning_en": "Exude",
+      "meaning_ms": "Menitek or Kluar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Met",
+      "meaning_en": "Eye",
+      "meaning_ms": "Mata",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bialik mét",
+      "meaning_en": "Eyebrow",
+      "meaning_ms": "Kening",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ken ting mét",
+      "meaning_en": "Eyelash",
+      "meaning_ms": "Bulu mata",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Teng",
+      "meaning_en": "Ear",
+      "meaning_ms": "Telinga",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tong",
+      "meaning_en": "Ear",
+      "meaning_ms": "Telinga",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Subar anteng",
+      "meaning_en": "Earring",
+      "meaning_ms": "Subang anting",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chok",
+      "meaning_en": "Earth",
+      "meaning_ms": "Bumi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chachar",
+      "meaning_en": "Fat",
+      "meaning_ms": "Makan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "nachar",
+      "meaning_en": "Fat",
+      "meaning_ms": "Makan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sarit",
+      "meaning_en": "Ebb",
+      "meaning_ms": "Surut",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Képok",
+      "meaning_en": "Egg",
+      "meaning_ms": "Telor",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lép",
+      "meaning_en": "Enter",
+      "meaning_ms": "Masok",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Mungkak or",
+      "meaning_en": "Face",
+      "meaning_ms": "Muka",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Groyn or",
+      "meaning_en": "Fall",
+      "meaning_ms": "Jatoh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lop",
+      "meaning_en": "Far",
+      "meaning_ms": "Jauh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Dépa",
+      "meaning_en": "Fathom",
+      "meaning_ms": "Depa",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "buluk",
+      "meaning_en": "Feather",
+      "meaning_ms": "Bulu",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hélér",
+      "meaning_en": "Fern",
+      "meaning_ms": "Paku",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Choéhh",
+      "meaning_en": "Feverish",
+      "meaning_ms": "Sakit demam",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "jarék",
+      "meaning_en": "Finger",
+      "meaning_ms": "Jari",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kukuts",
+      "meaning_en": "Fingernail",
+      "meaning_ms": "Kuku",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chiang",
+      "meaning_en": "In",
+      "meaning_ms": "Di-depan",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "méri",
+      "meaning_en": "Forest",
+      "meaning_ms": "Utan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Petis",
+      "meaning_en": "Fungus",
+      "meaning_ms": "Sendawan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tégah",
+      "meaning_en": "Forbid",
+      "meaning_ms": "Larang",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kéning",
+      "meaning_en": "Forehead",
+      "meaning_ms": "Dahi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Beranta balei",
+      "meaning_en": "Games",
+      "meaning_ms": "Permainan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ang",
+      "meaning_en": "GAPE To",
+      "meaning_ms": "Nganga",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hantuk",
+      "meaning_en": "GuHosT",
+      "meaning_ms": "Hantu",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gehéng",
+      "meaning_en": "Hard",
+      "meaning_ms": "Kras",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Greh gohup lit",
+      "meaning_en": "Hate",
+      "meaning_ms": "Sakit hati",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Koi",
+      "meaning_en": "Head",
+      "meaning_ms": "Kapala",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Piong",
+      "meaning_en": "HEAR To",
+      "meaning_ms": "Dengar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tahoh",
+      "meaning_en": "Here",
+      "meaning_ms": "Sini",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chong",
+      "meaning_en": "HILy",
+      "meaning_ms": "Bukit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "G iang",
+      "meaning_en": "Iguana",
+      "meaning_ms": "Geroyang",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sré",
+      "meaning_en": "KNOow To",
+      "meaning_ms": "Tahu",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hinong",
+      "meaning_en": "Lately",
+      "meaning_ms": "Tadi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Glok",
+      "meaning_en": "Laugh",
+      "meaning_ms": "J ertawar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hamtr",
+      "meaning_en": "LEAP To",
+      "meaning_ms": "Lompat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kejdl",
+      "meaning_en": "Leg",
+      "meaning_ms": "Betis",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Murtek",
+      "meaning_en": "Little",
+      "meaning_ms": "Sadikit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Cherén or",
+      "meaning_en": "Lofty",
+      "meaning_ms": "Tinggi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "gelek",
+      "meaning_en": "Low",
+      "meaning_ms": "Rendah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tékar",
+      "meaning_en": "Carpet",
+      "meaning_ms": "Tikar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ayau",
+      "meaning_en": "MEw TO",
+      "meaning_ms": "Mengiau",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pé",
+      "meaning_en": "MiDDAY",
+      "meaning_ms": "Tengah hari",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "haru",
+      "meaning_en": "Mix To",
+      "meaning_ms": "Kachau",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Munyet",
+      "meaning_en": "Monkey",
+      "meaning_ms": "Munyiet",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Péhng",
+      "meaning_en": "Murder",
+      "meaning_ms": "Bunoh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bilan",
+      "meaning_en": "Moon",
+      "meaning_ms": "Bulan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Alé",
+      "meaning_en": "More",
+      "meaning_ms": "Lagi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ngut or",
+      "meaning_en": "Not",
+      "meaning_ms": "Tidak",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Muh",
+      "meaning_en": "NosE",
+      "meaning_ms": "Hidong",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Web vor Woa",
+      "meaning_en": "Nor YET",
+      "meaning_ms": "Belum",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bisa",
+      "meaning_en": "Noxious",
+      "meaning_ms": "Bisa",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Koko",
+      "meaning_en": "Nail",
+      "meaning_ms": "Kuku",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "or Kacho",
+      "meaning_en": "Naked",
+      "meaning_ms": "Telanjang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kanon Suiclere",
+      "meaning_en": "Nephew",
+      "meaning_ms": "Anak sudara",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Prenah",
+      "meaning_en": "Never",
+      "meaning_ms": "Ta’prenah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Glap",
+      "meaning_en": "Dark",
+      "meaning_ms": "Glap",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Dayong",
+      "meaning_en": "Oar",
+      "meaning_ms": "Dayong",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sumpa",
+      "meaning_en": "Oath",
+      "meaning_ms": "Sumpah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Turut",
+      "meaning_en": "OBey",
+      "meaning_ms": "Turut",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Séré",
+      "meaning_en": "Old",
+      "meaning_ms": "Tuah",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Buka",
+      "meaning_en": "Open",
+      "meaning_ms": "Buka",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "lawan",
+      "meaning_en": "Oppose",
+      "meaning_ms": "Lawan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Téténg",
+      "meaning_en": "Orchid",
+      "meaning_ms": "Sakat",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hukum",
+      "meaning_en": "Order",
+      "meaning_ms": "Hukum",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Asal",
+      "meaning_en": "Origin",
+      "meaning_ms": "Asal",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lupa",
+      "meaning_en": "Omit",
+      "meaning_ms": "Lupa",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Héh Gyier",
+      "meaning_en": "Our",
+      "meaning_ms": "Kita punya",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Mui",
+      "meaning_en": "One",
+      "meaning_ms": "Satu",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kachang",
+      "meaning_en": "Pea",
+      "meaning_ms": "Kachang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kupés",
+      "meaning_en": "Peel",
+      "meaning_ms": "Kupas",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kadam",
+      "meaning_en": "Pen",
+      "meaning_ms": "Kalam",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Timba",
+      "meaning_en": "Pail",
+      "meaning_ms": "limba",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gohup e",
+      "meaning_en": "Pain",
+      "meaning_ms": "Sakit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bagi PART",
+      "meaning_en": "Part",
+      "meaning_ms": "Bhagian",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Selam hadoh",
+      "meaning_en": "Plunge",
+      "meaning_ms": "Selam",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pantun",
+      "meaning_en": "Poem",
+      "meaning_ms": "Pantun",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tanjong",
+      "meaning_en": "Point",
+      "meaning_ms": "Tanjong",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kenon",
+      "meaning_en": "Puppy",
+      "meaning_ms": "Anak anjing",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "BisAk",
+      "meaning_en": "Poisonous",
+      "meaning_ms": "Bisa",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ramai",
+      "meaning_en": "Populous",
+      "meaning_ms": "Ramei",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Daging",
+      "meaning_en": "PorRK",
+      "meaning_ms": "Daging babi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gambar",
+      "meaning_en": "Portrait",
+      "meaning_ms": "Gambar",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sentur",
+      "meaning_en": "Positive",
+      "meaning_ms": "Tentu",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tihang",
+      "meaning_en": "Post",
+      "meaning_ms": "Tiang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Piok",
+      "meaning_en": "Pot",
+      "meaning_ms": "Priok",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ubi Negala",
+      "meaning_en": "Potatoes",
+      "meaning_ms": "Ubi Benggala",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pahéh",
+      "meaning_en": "Practice",
+      "meaning_ms": "Blajar, Biasa=bisah. : PRAHU (Prahu",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gantt",
+      "meaning_en": "Of",
+      "meaning_ms": "Ganti",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chok main",
+      "meaning_en": "TO Games",
+      "meaning_ms": "Ber-main | | | main",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kochok",
+      "meaning_en": "Pigeon",
+      "meaning_ms": "Punei",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bantal",
+      "meaning_en": "Pillow",
+      "meaning_ms": "Bantal",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Nénas",
+      "meaning_en": "Pineapple",
+      "meaning_ms": "Nanas",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "PREVIOUS",
+      "meaning_en": "Pray",
+      "meaning_ms": "Sembahyang",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Siap",
+      "meaning_en": "Provide",
+      "meaning_ms": "10, (get ready, (Siap-kan",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Wakil",
+      "meaning_en": "Proxy",
+      "meaning_ms": "Wakil",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tukal",
+      "meaning_en": "Pumpkin",
+      "meaning_ms": "Labu",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bélik",
+      "meaning_en": "Purchase",
+      "meaning_ms": "Bli",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hala",
+      "meaning_en": "Eursue",
+      "meaning_ms": "Kejer",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hérdh",
+      "meaning_en": "Teh QUESTION",
+      "meaning_ms": "Bertanya",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Nahi",
+      "meaning_en": "Quarrel",
+      "meaning_ms": "Berklahi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kachih",
+      "meaning_en": "Rage",
+      "meaning_ms": "Anger",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Singah",
+      "meaning_en": "Rage",
+      "meaning_ms": "Ganas",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gémah",
+      "meaning_en": "Rain",
+      "meaning_ms": "Ujan",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "gé mar",
+      "meaning_en": "Rain",
+      "meaning_ms": "Ujan",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Plangi",
+      "meaning_en": "Rainbow",
+      "meaning_ms": "Plangi",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Angkit",
+      "meaning_en": "RAIsE",
+      "meaning_ms": "Angkat",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kaneh",
+      "meaning_en": "Rat",
+      "meaning_ms": "Tikus",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ching or",
+      "meaning_en": "Rattan",
+      "meaning_ms": "Rotan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Karak",
+      "meaning_en": "Behind",
+      "meaning_ms": "Ting | | --- | --- | | | gal",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tih kanan",
+      "meaning_en": "Bevonubene",
+      "meaning_ms": "Tangan kanan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gi leh",
+      "meaning_en": "Remove",
+      "meaning_ms": "Pindah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kasoi é",
+      "meaning_en": "Require",
+      "meaning_ms": "Min ta’",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "oyn",
+      "meaning_en": "Retain",
+      "meaning_ms": "Simpan",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Yok",
+      "meaning_en": "River-Turtle",
+      "meaning_ms": "Labi-labi",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jébol",
+      "meaning_en": "Roll Of Hair",
+      "meaning_ms": "Sanggul",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "tapat",
+      "meaning_en": "Prutay aim",
+      "meaning_ms": "elim",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Dok",
+      "meaning_en": "Run",
+      "meaning_ms": "Lari",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "duh",
+      "meaning_en": "Run",
+      "meaning_ms": "Lari",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jangkar",
+      "meaning_en": "Root",
+      "meaning_ms": "Akar",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Layar",
+      "meaning_en": "Sail",
+      "meaning_ms": "Layer",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Péréng",
+      "meaning_en": "Saucer",
+      "meaning_ms": "Piring",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bejek",
+      "meaning_en": "Seed",
+      "meaning_ms": "Biji",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pegong",
+      "meaning_en": "Seize",
+      "meaning_ms": "Pegang",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jahit",
+      "meaning_en": "Siw",
+      "meaning_ms": "Jait",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jepek",
+      "meaning_en": "Shallow",
+      "meaning_ms": "Tohor",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kah",
+      "meaning_en": "Shark",
+      "meaning_ms": "[kan yu",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Chikd",
+      "meaning_en": "Shave",
+      "meaning_ms": "Chukor",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gelek or",
+      "meaning_en": "Short",
+      "meaning_ms": "Pendek",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sepak",
+      "meaning_en": "Slap",
+      "meaning_ms": "lem piling",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Getek",
+      "meaning_en": "Sleep",
+      "meaning_ms": "Tidor",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Pépoi",
+      "meaning_en": "Slowly",
+      "meaning_ms": "Perlahan-perlahan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sakit nachar",
+      "meaning_en": "Small-Pox",
+      "meaning_ms": "Sakit chachar",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jelok",
+      "meaning_en": "Smoke",
+      "meaning_ms": "Asap",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tijau",
+      "meaning_en": "Snake",
+      "meaning_ms": "Ular",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bong",
+      "meaning_en": "Spider",
+      "meaning_ms": "Laba-laba",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "must",
+      "meaning_en": "Squeeze",
+      "meaning_ms": "Pichit",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jong",
+      "meaning_en": "Upright",
+      "meaning_ms": "Berdiri",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bégas",
+      "meaning_en": "SwiFT",
+      "meaning_ms": "Chepat",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Nisom",
+      "meaning_en": "To-Morrow",
+      "meaning_ms": "Esok",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Doi kedim",
+      "meaning_en": "To-Night",
+      "meaning_ms": "Malam ini",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lida",
+      "meaning_en": "Tongue",
+      "meaning_ms": "Lidah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Grés",
+      "meaning_en": "Trouble",
+      "meaning_ms": "Susah",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tékoh",
+      "meaning_en": "TRUNK of a tree",
+      "meaning_ms": "Pangkal",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gil",
+      "meaning_en": "TAKE To",
+      "meaning_ms": "Ambil",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Légf",
+      "meaning_en": "Tame",
+      "meaning_ms": "Jinak",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tongkngk",
+      "meaning_en": "Tap",
+      "meaning_ms": "Sakal",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Siat",
+      "meaning_en": "Tear",
+      "meaning_ms": "Koyah-kan",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lémoi",
+      "meaning_en": "Teeth",
+      "meaning_ms": "Gigi",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Naké",
+      "meaning_en": "That",
+      "meaning_ms": "Itu",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Plong",
+      "meaning_en": "Thatch",
+      "meaning_ms": "Atap",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bélih",
+      "meaning_en": "Thigh",
+      "meaning_ms": "Paha",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bélé",
+      "meaning_en": "Thigh",
+      "meaning_ms": "Paha",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jit",
+      "meaning_en": "Thin",
+      "meaning_ms": "Kurus",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jét",
+      "meaning_en": "Thin",
+      "meaning_ms": "Kurus",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Na-héh",
+      "meaning_en": "Tus",
+      "meaning_ms": "Ini",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hiki",
+      "meaning_en": "Thither",
+      "meaning_ms": "Kasana",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Gendé",
+      "meaning_en": "Thumb",
+      "meaning_ms": "Ibu jari",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Tuéh or",
+      "meaning_en": "Tiger",
+      "meaning_ms": "Harimau",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Lengéd",
+      "meaning_en": "Tired",
+      "meaning_ms": "Penat",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ibah",
+      "meaning_en": "Uncle",
+      "meaning_ms": "Bapa Saudara",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Seho",
+      "meaning_en": "Understand",
+      "meaning_ms": "Herti",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Ché",
+      "meaning_en": "Upas",
+      "meaning_ms": "Ipoh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kik",
+      "meaning_en": "Vomit",
+      "meaning_ms": "Muntah",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Nénéh",
+      "meaning_en": "Very",
+      "meaning_ms": "Sakali",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hé papék",
+      "meaning_en": "We",
+      "meaning_ms": "Kita",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Hé",
+      "meaning_en": "We",
+      "meaning_ms": "Kita",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Yam",
+      "meaning_en": "Weep",
+      "meaning_ms": "Menangis",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Nama",
+      "meaning_en": "WHat",
+      "meaning_ms": "Apa",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Dudui",
+      "meaning_en": "Wait",
+      "meaning_ms": "Nanti",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "biok",
+      "meaning_en": "White",
+      "meaning_ms": "of hair only",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kéd",
+      "meaning_en": "Wife",
+      "meaning_ms": "Bini",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "ris",
+      "meaning_en": "WowunD",
+      "meaning_ms": "Luka",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "prés",
+      "meaning_en": "WowunD",
+      "meaning_ms": "Luka",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Sdrat",
+      "meaning_en": "Write",
+      "meaning_ms": "Menulis",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bachel",
+      "meaning_en": "Bullfrog",
+      "meaning_ms": null,
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Bé",
+      "meaning_en": "Padi",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Jawat",
+      "meaning_en": "Pock-Marked",
+      "meaning_ms": null,
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "RAachin",
+      "meaning_en": "Poison",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Peha",
+      "meaning_en": "Previous",
+      "meaning_ms": "Kelmarin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Siput putar",
+      "meaning_en": "Shell",
+      "meaning_ms": null,
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Src",
+      "meaning_en": "Stand Star",
+      "meaning_ms": null,
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Budi",
+      "meaning_en": "Tadpole",
+      "meaning_ms": null,
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kangkong",
+      "meaning_en": "Throat",
+      "meaning_ms": null,
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kalengkong",
+      "meaning_en": "Windpipe",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    },
+    {
+      "word": "Kedor",
+      "meaning_en": "Woman",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+    }
+  ]
+}

@@ -1,0 +1,571 @@
+.mascot-companion {
+  position: fixed;
+  z-index: 1150;
+  width: 140px;
+  pointer-events: none;
+  transition: left 0.45s ease, right 0.45s ease, top 0.45s ease, bottom 0.45s ease, opacity 0.3s ease;
+}
+
+.mascot-companion.is-dragging {
+  z-index: 2100;
+  transition: none;
+}
+
+.mascot-companion.is-settling {
+  transition: left 0.38s cubic-bezier(.22,1,.36,1),
+    top 0.38s cubic-bezier(.22,1,.36,1),
+    right 0.38s cubic-bezier(.22,1,.36,1),
+    bottom 0.38s cubic-bezier(.22,1,.36,1);
+}
+
+.mascot-companion.is-dragging .mascot-companion-figure {
+  cursor: grabbing;
+  transform: translateY(-4px) scale(1.05);
+  filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.42));
+}
+
+.mascot-companion.is-settling .mascot-companion-figure {
+  animation: mascotSettle 0.42s ease;
+}
+
+@keyframes mascotSettle {
+  0% { transform: translateY(-3px) scale(1.04); }
+  60% { transform: translateY(2px) scale(0.99); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+body.mascot-is-dragging {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grabbing;
+}
+
+body.mascot-is-dragging * {
+  cursor: grabbing !important;
+}
+
+.mascot-companion.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Legacy hook kept for compatibility; JS no longer hides the companion. */
+.mascot-companion.is-safe-hidden {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mascot-companion.is-compact {
+  width: 112px;
+}
+
+.mascot-companion.is-compact .mascot-companion-figure,
+.mascot-companion.is-compact .mascot-svg {
+  width: 78px;
+  height: 90px;
+}
+
+.mascot-companion-figure {
+  position: relative;
+  display: block;
+  width: 96px;
+  height: 112px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.mascot-companion[data-side="left"] .mascot-companion-figure {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.mascot-svg {
+  width: 96px;
+  height: 112px;
+  display: block;
+  shape-rendering: geometricPrecision;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.32));
+  transform-origin: 50% 82%;
+  transition: transform 0.3s ease;
+}
+
+.mascot-arm,
+.mascot-head-group,
+.mascot-pad,
+.mascot-ear,
+.mascot-ear-inner {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+}
+
+/* Pivot arms from the shoulder (body side) so poses stay attached */
+.mascot-arm--left {
+  transform-origin: right 35%;
+}
+.mascot-arm--right {
+  transform-origin: left 35%;
+}
+
+.mascot-mouth--smile,
+.mascot-mouth--grin,
+.mascot-mouth--wow,
+.mascot-mouth--yawn,
+.mascot-eye-closed,
+.mascot-eye-proud,
+.mascot-stars,
+.mascot-sleepy-lid,
+.mascot-tongue,
+.mascot-prop,
+.mascot-fx,
+.mascot-tail {
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+/* Short legs stay readable; paw pads use SVG opacity */
+.mascot-pad--foot-left,
+.mascot-pad--foot-right {
+  transition: opacity 0.18s ease;
+}
+
+.mascot-mouth--neutral {
+  opacity: 1;
+}
+
+.mascot-companion.is-idle .mascot-svg {
+  animation: mascotBreathe 3.8s ease-in-out infinite;
+}
+
+.mascot-companion.is-blinking .mascot-lid {
+  height: 10px !important;
+}
+
+.mascot-companion.is-blinking .mascot-shine {
+  opacity: 0;
+}
+
+/* Subtle cursor gaze — translate only, no redrawn pupils */
+.mascot-gaze {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: none;
+}
+
+.mascot-companion.is-blinking .mascot-gaze,
+.mascot-companion.is-sleepy .mascot-gaze,
+.mascot-companion.is-celebrating .mascot-gaze {
+  transform: none !important;
+}
+
+/* Click: ears + eyes react briefly */
+.mascot-companion.is-clicked .mascot-ear--left {
+  transform: rotate(-8deg) translateY(-1px);
+}
+.mascot-companion.is-clicked .mascot-ear--right {
+  transform: rotate(8deg) translateY(-1px);
+}
+.mascot-companion.is-clicked .mascot-eye {
+  transform: scale(1.05);
+}
+
+@keyframes mascotBreathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-2px) scale(1.015); }
+}
+
+/* —— HAPPY —— */
+.mascot-companion.is-happy .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-happy .mascot-mouth--smile { opacity: 1; }
+.mascot-companion.is-happy .mascot-blush { opacity: 0.7; }
+.mascot-companion.is-happy .mascot-brow { opacity: 0.4; }
+.mascot-companion.is-happy .mascot-svg {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* —— EXCITED (star eyes) —— */
+.mascot-companion.is-excited .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-excited .mascot-mouth--grin { opacity: 1; }
+.mascot-companion.is-excited .mascot-eye,
+.mascot-companion.is-excited .mascot-shine { opacity: 0; }
+.mascot-companion.is-excited .mascot-stars { opacity: 1; }
+.mascot-companion.is-excited .mascot-arm--left {
+  transform: rotate(-35deg) translate(-2px, -14px);
+}
+.mascot-companion.is-excited .mascot-arm--right {
+  transform: rotate(35deg) translate(2px, -14px);
+}
+.mascot-companion.is-excited .mascot-svg {
+  transform: translateY(-5px) scale(1.05) rotate(2deg);
+}
+.mascot-companion.is-excited .mascot-blush { opacity: 0.8; }
+
+/* —— CELEBRATING —— */
+.mascot-companion.is-celebrating .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-celebrating .mascot-mouth--grin { opacity: 1; }
+.mascot-companion.is-celebrating .mascot-eye,
+.mascot-companion.is-celebrating .mascot-shine,
+.mascot-companion.is-celebrating .mascot-lid { opacity: 0 !important; }
+.mascot-companion.is-celebrating .mascot-eye-closed { opacity: 1; }
+.mascot-companion.is-celebrating .mascot-arm--left {
+  transform: rotate(-55deg) translate(-4px, -18px);
+}
+.mascot-companion.is-celebrating .mascot-arm--right {
+  transform: rotate(55deg) translate(4px, -18px);
+}
+.mascot-companion.is-celebrating .mascot-fx--confetti { opacity: 1; }
+.mascot-companion.is-celebrating .mascot-blush { opacity: 0.85; }
+.mascot-companion.is-celebrating .mascot-svg {
+  animation: mascotCelebrate 0.55s ease-in-out 3;
+}
+
+@keyframes mascotCelebrate {
+  0%, 100% { transform: translateY(-4px) rotate(-2deg) scale(1.05); }
+  50% { transform: translateY(-11px) rotate(3deg) scale(1.08); }
+}
+
+/* —— THINKING —— */
+.mascot-companion.is-thinking .mascot-svg {
+  transform: rotate(-6deg) translateY(-1px);
+}
+.mascot-companion.is-thinking .mascot-brow--right {
+  opacity: 0.85;
+  transform: translateY(-2px) rotate(-14deg);
+}
+.mascot-companion.is-thinking .mascot-brow--left {
+  opacity: 0.5;
+}
+.mascot-companion.is-thinking .mascot-eye {
+  transform: translate(1.2px, -1.5px);
+}
+.mascot-companion.is-thinking .mascot-arm--right {
+  transform: rotate(-28deg) translate(-10px, -8px);
+}
+
+/* —— CURIOUS —— */
+.mascot-companion.is-curious .mascot-svg {
+  transform: rotate(8deg) translateY(-2px);
+}
+.mascot-companion.is-curious .mascot-brow--left {
+  transform: translateY(-3px) rotate(10deg);
+}
+.mascot-companion.is-curious .mascot-fx--query { opacity: 1; }
+.mascot-companion.is-curious .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-curious .mascot-mouth--smile { opacity: 1; }
+
+/* —— PROUD —— */
+.mascot-companion.is-proud .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-proud .mascot-mouth--smile { opacity: 1; }
+.mascot-companion.is-proud .mascot-eye,
+.mascot-companion.is-proud .mascot-shine { opacity: 0; }
+.mascot-companion.is-proud .mascot-eye-proud { opacity: 1; }
+.mascot-companion.is-proud .mascot-fx--sparkle { opacity: 1; }
+.mascot-companion.is-proud .mascot-svg {
+  transform: translateY(-3px) scale(1.04) rotate(-2deg);
+}
+.mascot-companion.is-proud .mascot-blush { opacity: 0.7; }
+
+/* —— ENCOURAGING —— */
+.mascot-companion.is-encouraging .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-encouraging .mascot-mouth--smile { opacity: 1; }
+.mascot-companion.is-encouraging .mascot-arm--right {
+  transform: rotate(20deg) translate(4px, -16px) scaleY(1.05);
+}
+.mascot-companion.is-encouraging .mascot-fx--sparkle { opacity: 1; }
+.mascot-companion.is-encouraging .mascot-svg {
+  transform: translateY(-2px) scale(1.03);
+}
+.mascot-companion.is-encouraging .mascot-blush { opacity: 0.75; }
+
+/* —— SURPRISED —— */
+.mascot-companion.is-surprised .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-surprised .mascot-mouth--wow { opacity: 1; }
+.mascot-companion.is-surprised .mascot-eye {
+  transform: scale(1.06);
+}
+.mascot-companion.is-surprised .mascot-brow--left,
+.mascot-companion.is-surprised .mascot-brow--right {
+  transform: translateY(-3px);
+}
+.mascot-companion.is-surprised .mascot-fx--bang { opacity: 1; }
+.mascot-companion.is-surprised .mascot-svg {
+  transform: translateY(-4px) scale(1.08);
+}
+
+/* —— SLEEPY —— */
+.mascot-companion.is-sleepy .mascot-mouth--neutral { opacity: 0; }
+.mascot-companion.is-sleepy .mascot-mouth--yawn { opacity: 1; }
+.mascot-companion.is-sleepy .mascot-tongue { opacity: 1; }
+.mascot-companion.is-sleepy .mascot-eye,
+.mascot-companion.is-sleepy .mascot-shine { opacity: 0.2; }
+.mascot-companion.is-sleepy .mascot-sleepy-lid--left { opacity: 1; }
+.mascot-companion.is-sleepy .mascot-sleepy-lid--right { opacity: 0.85; }
+.mascot-companion.is-sleepy .mascot-fx--zzz { opacity: 1; }
+.mascot-companion.is-sleepy .mascot-svg {
+  transform: translateY(2px) scale(0.98);
+  opacity: 0.96;
+}
+.mascot-companion.is-sleepy .mascot-arm--left {
+  transform: rotate(15deg) translate(2px, 2px);
+}
+
+/* —— POSES (data-pose on root) —— */
+.mascot-companion[data-pose="wave"] .mascot-arm--right {
+  transform: rotate(40deg) translate(2px, -18px);
+}
+.mascot-companion[data-pose="clap"] .mascot-arm--left {
+  transform: rotate(25deg) translate(10px, -4px);
+}
+.mascot-companion[data-pose="clap"] .mascot-arm--right {
+  transform: rotate(-25deg) translate(-10px, -4px);
+}
+.mascot-companion[data-pose="hug"] .mascot-prop--heart { opacity: 1; }
+.mascot-companion[data-pose="hug"] .mascot-arm--left {
+  transform: rotate(30deg) translate(8px, 2px);
+}
+.mascot-companion[data-pose="hug"] .mascot-arm--right {
+  transform: rotate(-30deg) translate(-8px, 2px);
+}
+.mascot-companion[data-pose="hug"] .mascot-eye,
+.mascot-companion[data-pose="hug"] .mascot-shine { opacity: 0; }
+.mascot-companion[data-pose="hug"] .mascot-eye-closed { opacity: 1; }
+.mascot-companion[data-pose="point"] .mascot-arm--right {
+  transform: rotate(-10deg) translate(14px, -4px);
+}
+.mascot-companion[data-pose="sit"] .mascot-leg--left,
+.mascot-companion[data-pose="sit"] .mascot-leg--right {
+  transform: translateY(2px) scaleX(1.15);
+}
+.mascot-companion[data-pose="sit"] .mascot-pad--foot-left,
+.mascot-companion[data-pose="sit"] .mascot-pad--foot-right {
+  opacity: 1;
+}
+.mascot-companion[data-pose="sit"] .mascot-body {
+  transform: translateY(4px);
+}
+.mascot-companion[data-pose="sit"] .mascot-arm--left,
+.mascot-companion[data-pose="sit"] .mascot-arm--right {
+  transform: translateY(6px);
+}
+
+.mascot-companion.is-clicked .mascot-svg {
+  animation: mascotClickBounce 0.65s ease;
+}
+
+@keyframes mascotClickBounce {
+  0% { transform: translateY(0) scale(1); }
+  20% { transform: translateY(2px) scale(1.02, 0.94); }
+  45% { transform: translateY(-10px) scale(1.06) rotate(-3deg); }
+  70% { transform: translateY(-2px) scale(1.02) rotate(2deg); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Bubbles / speech */
+.mascot-bubbles {
+  position: absolute;
+  right: 82px;
+  bottom: 78px;
+  width: 18px;
+  height: 52px;
+  pointer-events: none;
+}
+
+.mascot-companion[data-side="left"] .mascot-bubbles {
+  right: auto;
+  left: 82px;
+}
+
+.mascot-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(247, 239, 226, 0.75);
+  box-shadow: 0 0 0 1px rgba(240, 200, 90, 0.28);
+  opacity: 0;
+}
+
+.mascot-bubble:nth-child(1) { width: 6px; height: 6px; left: 8px; bottom: 0; }
+.mascot-bubble:nth-child(2) { width: 8px; height: 8px; left: 2px; bottom: 14px; }
+.mascot-bubble:nth-child(3) { width: 11px; height: 11px; left: 8px; bottom: 28px; }
+
+.mascot-companion.is-thinking .mascot-bubble:nth-child(1),
+.mascot-companion:has(.mascot-thought.is-staging) .mascot-bubble:nth-child(1) {
+  animation: mascotBubbleIn 0.45s ease forwards;
+}
+.mascot-companion:has(.mascot-thought.is-staging) .mascot-bubble:nth-child(2) {
+  animation: mascotBubbleIn 0.45s ease 0.28s forwards;
+}
+.mascot-companion:has(.mascot-thought.is-staging) .mascot-bubble:nth-child(3) {
+  animation: mascotBubbleIn 0.45s ease 0.56s forwards;
+}
+.mascot-companion.is-thinking .mascot-bubble:nth-child(1) {
+  animation: mascotBubble 1.8s ease infinite;
+}
+.mascot-companion.is-thinking .mascot-bubble:nth-child(2) {
+  animation: mascotBubble 1.8s ease 0.18s infinite;
+}
+.mascot-companion.is-thinking .mascot-bubble:nth-child(3) {
+  animation: mascotBubble 1.8s ease 0.36s infinite;
+}
+
+@keyframes mascotBubbleIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.6); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes mascotBubble {
+  0%, 100% { opacity: 0; transform: translateY(4px) scale(0.7); }
+  40% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.mascot-thought {
+  position: absolute;
+  right: 100px;
+  bottom: 92px;
+  width: min(236px, calc(100vw - 148px));
+  padding: 12px 14px;
+  border-radius: 22px 22px 8px 22px;
+  border: 1px solid rgba(240, 200, 90, 0.32);
+  background:
+    radial-gradient(circle at 14% 18%, rgba(255, 244, 210, 0.1), transparent 42%),
+    rgba(14, 28, 22, 0.96);
+  color: rgba(246, 240, 230, 0.95);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.9) translateY(8px);
+  transform-origin: bottom right;
+  transition: opacity 0.32s ease 0.15s, transform 0.32s ease 0.15s;
+  pointer-events: none;
+}
+
+.mascot-companion[data-side="left"] .mascot-thought {
+  right: auto;
+  left: 100px;
+  border-radius: 22px 22px 22px 8px;
+  transform-origin: bottom left;
+}
+
+.mascot-thought.is-open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.mascot-thought-eyebrow {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.62rem;
+  font-weight: 740;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.mascot-thought-text {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.mascot-thought.is-text-in .mascot-thought-text,
+.mascot-thought.is-text-in .mascot-thought-eyebrow {
+  opacity: 1;
+}
+
+.mascot-thought.is-text-in .mascot-thought-eyebrow {
+  color: rgba(240, 200, 90, 0.88);
+}
+
+.mascot-speech {
+  position: absolute;
+  right: 0;
+  bottom: 116px;
+  width: min(220px, calc(100vw - 36px));
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(16, 28, 22, 0.95);
+  color: rgba(246, 240, 230, 0.94);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.mascot-companion[data-side="left"] .mascot-speech {
+  right: auto;
+  left: 0;
+}
+
+.mascot-speech.is-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 720px) {
+  .mascot-companion { width: 112px; }
+  .mascot-companion-figure,
+  .mascot-svg {
+    width: 78px;
+    height: 92px;
+  }
+  .mascot-thought {
+    width: min(200px, calc(100vw - 96px));
+    font-size: 0.72rem;
+  }
+
+  /*
+   * Keep companion clear of the Earth / Malaysia map stage —
+   * park toward the bottom edge, not over SE Asia markers.
+   */
+  .dashboard-page--universe .mascot-companion {
+    width: 96px;
+    bottom: 12px !important;
+    top: auto !important;
+  }
+
+  .dashboard-page--universe .mascot-companion-figure,
+  .dashboard-page--universe .mascot-svg {
+    width: 64px;
+    height: 76px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 1100px) {
+  .dashboard-page--universe .mascot-companion {
+    width: 84px;
+    bottom: 8px !important;
+    right: 8px !important;
+    left: auto !important;
+  }
+
+  .dashboard-page--universe .mascot-companion-figure,
+  .dashboard-page--universe .mascot-svg {
+    width: 56px;
+    height: 66px;
+  }
+
+  .dashboard-page--universe .mascot-thought {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot-companion.is-idle .mascot-svg,
+  .mascot-companion.is-celebrating .mascot-svg,
+  .mascot-companion.is-clicked .mascot-svg,
+  .mascot-bubble {
+    animation: none !important;
+  }
+}

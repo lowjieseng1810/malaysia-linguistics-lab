@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Learn {{ language.display_name }} | Malaysian Language Heritage Explorer{% endblock %}
+{% block title %}Learn {{ language.display_name }} | Malaysian Linguistics Lab{% endblock %}
 
 {% block content %}
 
@@ -219,14 +219,26 @@
                                 Completed
                             </span>
 
-                            <a class="level-start-button"
-                               href="{{ url_for(
-                                   'level_page',
-                                   lang_key=lang_key,
-                                   level_num=level.number
-                               ) }}">
-                                Review
-                            </a>
+                            <div class="level-action-links">
+                                <a class="level-start-button"
+                                   href="{{ url_for(
+                                       'level_page',
+                                       lang_key=lang_key,
+                                       level_num=level.number
+                                   ) }}">
+                                    Review
+                                </a>
+
+                                <a class="level-start-button level-replay-button"
+                                   href="{{ url_for(
+                                       'level_page',
+                                       lang_key=lang_key,
+                                       level_num=level.number,
+                                       replay=1
+                                   ) }}">
+                                    Replay
+                                </a>
+                            </div>
 
 
                         {% elif level.unlocked %}

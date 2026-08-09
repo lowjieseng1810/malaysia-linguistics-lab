@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Settings | Malaysian Linguistics Lab{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+
+<main class="settings-page">
+  <header class="settings-header">
+    <span class="settings-eyebrow">Companion controls</span>
+    <h1>Mascot Settings</h1>
+    <p>
+      These controls affect the non-AI exploration companion only.
+      Your AI Tutor remains independent.
+    </p>
+  </header>
+
+  <form class="settings-card" id="mascot-settings-form">
+    <label class="settings-toggle">
+      <span>
+        <strong>Mascot</strong>
+        <small>Show the exploration companion across the product</small>
+      </span>
+      <input type="checkbox" name="enabled" {% if mascot_prefs.enabled %}checked{% endif %}>
+    </label>
+
+    <label class="settings-toggle">
+      <span>
+        <strong>Mascot Reactions</strong>
+        <small>Respond to discoveries, lessons, and quizzes</small>
+      </span>
+      <input type="checkbox" name="reactions_enabled" {% if mascot_prefs.reactions_enabled %}checked{% endif %}>
+    </label>
+
+    <label class="settings-toggle">
+      <span>
+        <strong>Achievement Reactions</strong>
+        <small>Celebrate newly earned seals</small>
+      </span>
+      <input type="checkbox" name="achievement_reactions_enabled" {% if mascot_prefs.achievement_reactions_enabled %}checked{% endif %}>
+    </label>
+
+    <label class="settings-toggle">
+      <span>
+        <strong>Do You Know?</strong>
+        <small>Occasional curated heritage facts</small>
+      </span>
+      <input type="checkbox" name="facts_enabled" {% if mascot_prefs.facts_enabled %}checked{% endif %}>
+    </label>
+
+    <label class="settings-toggle">
+      <span>
+        <strong>Mascot Thought Bubbles</strong>
+        <small>Show thinking clouds with short messages</small>
+      </span>
+      <input type="checkbox" name="thoughts_enabled" {% if mascot_prefs.thoughts_enabled %}checked{% endif %}>
+    </label>
+
+    <label class="settings-toggle">
+      <span>
+        <strong>Mascot Voice</strong>
+        <small>Optional browser speech for major milestones (off by default)</small>
+      </span>
+      <input type="checkbox" name="voice_enabled" {% if mascot_prefs.voice_enabled %}checked{% endif %}>
+    </label>
+
+    <label class="settings-select">
+      <span>
+        <strong>Mascot Frequency</strong>
+        <small>How often optional reactions appear</small>
+      </span>
+      <select name="frequency">
+        <option value="occasional" {% if mascot_prefs.frequency == 'occasional' %}selected{% endif %}>Occasional</option>
+        <option value="normal" {% if mascot_prefs.frequency == 'normal' %}selected{% endif %}>Normal</option>
+        <option value="frequent" {% if mascot_prefs.frequency == 'frequent' %}selected{% endif %}>Frequent</option>
+      </select>
+    </label>
+
+    <div class="settings-actions">
+      <button type="submit" class="settings-save">Save settings</button>
+      <span class="settings-status" id="settings-status" aria-live="polite"></span>
+    </div>
+  </form>
+</main>
+
+<script>
+(function () {
+  const form = document.getElementById("mascot-settings-form");
+  const status = document.getElementById("settings-status");
+  function csrf() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    return meta ? meta.getAttribute("content") || "" : "";
+  }
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    const payload = {
+      enabled: !!form.enabled.checked,
+      reactions_enabled: !!form.reactions_enabled.checked,
+      achievement_reactions_enabled: !!form.achievement_reactions_enabled.checked,
+      facts_enabled: !!form.facts_enabled.checked,
+      thoughts_enabled: !!form.thoughts_enabled.checked,
+      voice_enabled: !!form.voice_enabled.checked,
+      frequency: data.frequency || "normal"
+    };
+    status.textContent = "Saving…";
+    try {
+      const response = await fetch("/api/mascot/preferences", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrf()
+        },
+        credentials: "same-origin",
+        body: JSON.stringify(payload)
+      });
+      const json = await response.json();
+      if (!response.ok || !json.success) {
+        throw new Error("save_failed");
+      }
+      status.textContent = "Saved.";
+      window.dispatchEvent(new CustomEvent("mascotPreferencesUpdated", { detail: json.preferences }));
+    } catch (err) {
+      status.textContent = "Could not save settings.";
+    }
+  });
+})();
+</script>
+{% endblock %}

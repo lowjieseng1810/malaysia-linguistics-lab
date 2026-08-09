@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ language.display_name }} | Malaysian Language Heritage Explorer{% endblock %}
+{% block title %}{{ language.display_name }} | Malaysian Linguistics Lab{% endblock %}
 
 {% block content %}
 
@@ -679,14 +679,11 @@
 
                     {% if image.image_url %}
 
-                        <div class="community-image-wrap"
-     style="--gallery-bg: url('{{ image.image_url }}');">
-                            
-     <img class="community-image"
+                        <div class="community-image-wrap">
+                            <img class="community-image"
                                  src="{{ image.image_url }}"
                                  alt="{{ image.title }}"
                                  loading="lazy">
-
                         </div>
 
                     {% else %}

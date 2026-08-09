@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Sources — {{ language.display_name }}{% endblock %}
+
+{% block content %}
+
+<style>
+.src-page{padding:20px 0 60px;max-width:780px;}
+.src-page h1{font-size:1.7rem;font-weight:750;color:#fff;margin:10px 0 8px;}
+.src-page p{color:var(--muted);font-size:.95rem;line-height:1.55;margin-bottom:14px;}
+.src-page .card{padding:22px;margin-bottom:16px;}
+.src-page h2{font-size:1.05rem;color:#efd77e;margin:0 0 10px;}
+.src-list{list-style:none;padding:0;margin:0;}
+.src-list li{
+  padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07);
+  color:#fff;font-size:.92rem;
+}
+.src-list li:last-child{border-bottom:none;}
+.src-list a{color:#efd77e;}
+.src-meta{display:block;color:var(--muted);font-size:.8rem;margin-top:4px;}
+.src-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.src-actions a{
+  padding:11px 16px;border-radius:12px;font-size:.9rem;font-weight:650;text-decoration:none;
+  border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;
+}
+</style>
+
+<div class="src-page">
+
+  <div class="src-actions" style="margin-bottom:8px;">
+    <a href="{{ url_for('language_page', lang_key=lang_key) }}">← Back to {{ language.display_name }}</a>
+  </div>
+
+  <h1>Sources &amp; transparency</h1>
+  <p>
+    Reference material used for the {{ language.display_name }} pages in this
+    explorer. Course vocabulary and lesson text come from the project's curated
+    <code>COURSE_DATA</code>; cultural notes below are taken from the language
+    record where available.
+  </p>
+
+  <div class="card">
+    <h2>Verification status</h2>
+    <p style="margin:0;color:#fff;">
+      {{ language.verification_status or "Under review" }}
+    </p>
+    {% if language.verification_note %}
+    <p style="margin:10px 0 0;">{{ language.verification_note }}</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h2>Listed sources</h2>
+    {% set source_items = language.sources or language.references or [] %}
+    {% if source_items %}
+    <ul class="src-list">
+      {% for item in source_items %}
+      <li>
+        {% if item is mapping %}
+          {% if item.url %}
+          <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+            {{ item.title or item.name or item.url }}
+          </a>
+          {% else %}
+          {{ item.title or item.name or item }}
+          {% endif %}
+          {% if item.note %}<span class="src-meta">{{ item.note }}</span>{% endif %}
+        {% else %}
+          {{ item }}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p style="margin:0;">
+      No structured source list is stored for this language yet.
+      See the verification note above and the project Safety page for how
+      content is handled.
+    </p>
+    {% endif %}
+  </div>
+
+  {% if language.gallery %}
+  <div class="card">
+    <h2>Image / media attributions</h2>
+    <ul class="src-list">
+      {% for slide in language.gallery %}
+      <li>
+        {{ slide.title or "Cultural image" }}
+        {% if slide.source_name %}
+        <span class="src-meta">Source: {{ slide.source_name }}</span>
+        {% endif %}
+        {% if slide.caption %}
+        <span class="src-meta">{{ slide.caption }}</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <div class="src-actions">
+    <a href="{{ url_for('suggest_correction', lang_key=lang_key) }}">Suggest a correction</a>
+    <a href="{{ url_for('safety') }}">Safety &amp; sources</a>
+    <a href="{{ url_for('dictionary_page', lang=lang_key) }}">Open dictionary</a>
+  </div>
+
+</div>
+
+{% endblock %}

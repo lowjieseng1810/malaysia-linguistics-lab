@@ -1,0 +1,1255 @@
+{
+  "language": "kadazan-dusun",
+  "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+  "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)",
+  "entries": [
+    {
+      "word": "longon",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "gibang",
+      "meaning_en": "left",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "wanan",
+      "meaning_en": "right",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "gakod",
+      "meaning_en": "leg/foot",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "lapap",
+      "meaning_en": "leg/foot",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mamanau",
+      "meaning_en": "to walk",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "ralan",
+      "meaning_en": "road/path",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "rumikot",
+      "meaning_en": "to come",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "kumaau",
+      "meaning_en": "to turn",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "oromos",
+      "meaning_en": "dirty",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "soliohuk",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "kulit",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tiyan",
+      "meaning_en": "back",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tulang",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tinai'",
+      "meaning_en": "intestines",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tundu-undu'",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "susu",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "lihawa",
+      "meaning_en": "shoulder",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "oilo",
+      "meaning_en": "to know, be knowledgeable",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "momusorou",
+      "meaning_en": "to think",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "moddosi",
+      "meaning_en": "to fear",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "raha'",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tulu",
+      "meaning_en": "head",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "liou",
+      "meaning_en": "neck",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "todung",
+      "meaning_en": "hair",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "momuhobo",
+      "meaning_en": "to breathe",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "moningud",
+      "meaning_en": "to sniff, smell",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "kabang",
+      "meaning_en": "mouth",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "nipon",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "dila'",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongirak",
+      "meaning_en": "to laugh",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mihad",
+      "meaning_en": "to cry",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongilob",
+      "meaning_en": "to vomit",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "momodula'",
+      "meaning_en": "to spit",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "makan",
+      "meaning_en": "to eat",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "minum",
+      "meaning_en": "to chew",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongokot",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "monosop",
+      "meaning_en": "to suck",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tolingo",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mokinongou",
+      "meaning_en": "to hear",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mato",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "montong",
+      "meaning_en": "to see",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "monguwab",
+      "meaning_en": "to yawn",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "modop",
+      "meaning_en": "to sleep",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongipi",
+      "meaning_en": "to lie down",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mirikau",
+      "meaning_en": "to sit",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mingkakat",
+      "meaning_en": "to stand",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tulun",
+      "meaning_en": "person/human being",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "kusai",
+      "meaning_en": "man/male",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tondu'",
+      "meaning_en": "woman/female",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tanak",
+      "meaning_en": "child",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "sawo",
+      "meaning_en": "husband",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "sawo",
+      "meaning_en": "wife",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tina'",
+      "meaning_en": "mother",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tama'",
+      "meaning_en": "mother",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tapa'",
+      "meaning_en": "father",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tama'",
+      "meaning_en": "father",
+      "part_of_speech": "noun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "walai",
+      "meaning_en": "house",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "taap",
+      "meaning_en": "thatch/roof",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "ngaran",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "momoros",
+      "meaning_en": "to say",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "rolu",
+      "meaning_en": "rope",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongogos",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "dalat",
+      "meaning_en": "to sew",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "monobok",
+      "meaning_en": "to hunt",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "manakau",
+      "meaning_en": "to hit",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mamatai",
+      "meaning_en": "to kill",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "matai",
+      "meaning_en": "to die, be dead",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "poimpasi",
+      "meaning_en": "to live, be alive",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "kayu",
+      "meaning_en": "to scratch",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "atarom",
+      "meaning_en": "to split",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "noinggaralan",
+      "meaning_en": "dull, blunt",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mananom",
+      "meaning_en": "to work",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "momili'",
+      "meaning_en": "to choose",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongukad",
+      "meaning_en": "to grow",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "momoli",
+      "meaning_en": "to buy",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongukab",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tasu",
+      "meaning_en": "to pound, beat",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tombolog",
+      "meaning_en": "bird",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tontolu'",
+      "meaning_en": "egg",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "hulu",
+      "meaning_en": "feather",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "talad",
+      "meaning_en": "wing",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tumulud",
+      "meaning_en": "to fly",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tikus",
+      "meaning_en": "rat",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tonsi",
+      "meaning_en": "meat/flesh",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "lunok",
+      "meaning_en": "fat/grease",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tikiu",
+      "meaning_en": "tail",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tulanut",
+      "meaning_en": "snake",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tonggiluwang",
+      "meaning_en": "worm (earthworm)",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "nondui",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "korut",
+      "meaning_en": "spider",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "sada'",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "roun",
+      "meaning_en": "rotten",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "gamut",
+      "meaning_en": "root",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tusak",
+      "meaning_en": "flower",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tuwa'",
+      "meaning_en": "fruit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "sakot",
+      "meaning_en": "grass",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tana'",
+      "meaning_en": "earth/soil",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "watu",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "togis",
+      "meaning_en": "sand",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "lumuyung",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "rahat",
+      "meaning_en": "sea",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "silawon",
+      "meaning_en": "salt",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "botung dot agayo",
+      "meaning_en": "lake",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "gouton",
+      "meaning_en": "woods/forest",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "puru'",
+      "meaning_en": "woods/forest",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tawan",
+      "meaning_en": "sky",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tulan",
+      "meaning_en": "moon",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "rombituwon",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "hawun",
+      "meaning_en": "cloud",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "rasam",
+      "meaning_en": "rain",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tinggoron",
+      "meaning_en": "thunder",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "kodumaat",
+      "meaning_en": "lightning",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tongus",
+      "meaning_en": "wind",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "oyopos",
+      "meaning_en": "to blow",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "awagat",
+      "meaning_en": "heavy",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tapui",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tawu",
+      "meaning_en": "to burn",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "oitom",
+      "meaning_en": "black",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "opurak",
+      "meaning_en": "white",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "aragang",
+      "meaning_en": "red",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "osilou",
+      "meaning_en": "yellow",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "otomou",
+      "meaning_en": "green",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "okoro'",
+      "meaning_en": "small",
+      "part_of_speech": "adjective",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "agayo",
+      "meaning_en": "big",
+      "part_of_speech": "adjective",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "okikip",
+      "meaning_en": "short",
+      "part_of_speech": "adjective",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "alaab",
+      "meaning_en": "wide",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "orualan",
+      "meaning_en": "painful, sick",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "otingayaman",
+      "meaning_en": "shy, ashamed",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "wagu",
+      "meaning_en": "old",
+      "part_of_speech": "adjective",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "osonong",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "araat",
+      "meaning_en": "bad, evil",
+      "part_of_speech": "adjective",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "otopot",
+      "meaning_en": "correct, true",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "totuwong",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "tadau",
+      "meaning_en": "day",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "toun",
+      "meaning_en": "year",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "hilo id",
+      "meaning_en": "when?",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "id suang",
+      "meaning_en": "in, inside",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "id sawat",
+      "meaning_en": "above",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "id siriba'",
+      "meaning_en": "below",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "iti",
+      "meaning_en": "this",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "ilo'",
+      "meaning_en": "that",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "id somok",
+      "meaning_en": "near",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "id sodu'",
+      "meaning_en": "far",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "iyoho'",
+      "meaning_en": "where?",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "iya'",
+      "meaning_en": "thou",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "iyau",
+      "meaning_en": "he/she",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "iyokoyu",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "iyolo'",
+      "meaning_en": "they",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "suwai",
+      "meaning_en": "what?",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "koinsanai",
+      "meaning_en": "all",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "om",
+      "meaning_en": "and",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "ondung",
+      "meaning_en": "if",
+      "part_of_speech": "pronoun",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "okon",
+      "meaning_en": "how?",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "amu'",
+      "meaning_en": "no, not",
+      "part_of_speech": "expression",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    },
+    {
+      "word": "mongintob",
+      "meaning_en": "to count",
+      "part_of_speech": "verb",
+      "lesson_id": 5,
+      "source_ref": "ABVD Kadazan Dusun of Taginambur, Kota Belud (id=934); Stemmah Sariau; ISO-639-3:kzs; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)"
+    }
+  ]
+}

@@ -174,7 +174,7 @@ const loadingBrand =
     document.createElement("div");
 
 loadingBrand.textContent =
-    "Malaysian Minority Languages Explorer";
+    "Malaysian Linguistics Lab";
 
 loadingBrand.style.color =
     "#ffffff";

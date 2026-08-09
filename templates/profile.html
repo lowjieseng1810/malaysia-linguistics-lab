@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-My Profile | Malaysian Language Heritage Explorer
+My Profile | Malaysian Linguistics Lab
 {% endblock %}
 
 {% block content %}
@@ -93,6 +93,123 @@ My Profile | Malaysian Language Heritage Explorer
             </p>
 
         </article>
+
+
+        <article class="profile-stat-card">
+
+            <span class="stat-label">
+                Saved Words
+            </span>
+
+            <strong>
+                {{ saved_words_count }}
+            </strong>
+
+            <p>
+                <a href="{{ url_for('favorites_page') }}" style="color:#efd77e;">
+                    View favorites →
+                </a>
+            </p>
+
+        </article>
+
+    </section>
+
+
+    <section class="profile-section">
+
+        <div class="profile-section-heading">
+
+            <div>
+
+                <span class="profile-eyebrow">
+                    Practice mastery
+                </span>
+
+                <h2>
+                    Quiz performance
+                </h2>
+
+                <p style="color:var(--muted);font-size:.9rem;margin-top:6px;max-width:520px;">
+                    Separate from lesson completion above. This tracks how well
+                    you answer practice-quiz questions over time.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('quiz_page') }}"
+               class="profile-dashboard-link">
+                Practice Quiz →
+            </a>
+
+        </div>
+
+        <div class="profile-overview-grid">
+
+            <article class="profile-stat-card">
+                <span class="stat-label">Quiz mastery</span>
+                <strong>{{ mastery_summary.mastery_pct }}%</strong>
+                <p>
+                    {{ mastery_summary.correct }} correct /
+                    {{ mastery_summary.wrong }} incorrect
+                    across {{ mastery_summary.item_count }} items
+                </p>
+            </article>
+
+            <article class="profile-stat-card">
+                <span class="stat-label">Best quiz answer streak</span>
+                <strong>{{ mastery_summary.best_streak }}</strong>
+                <p>Consecutive correct quiz answers on a single item — separate from your daily exploration streak</p>
+            </article>
+
+            <article class="profile-stat-card">
+                <span class="stat-label">Answers recorded</span>
+                <strong>{{ mastery_summary.answered }}</strong>
+                <p>Total graded practice answers</p>
+            </article>
+
+        </div>
+
+        {% if mastery_summary.weak_items %}
+        <div class="account-card" style="margin-top:18px;">
+            <div class="account-row">
+                <span>Weak areas to review</span>
+                <strong>Based on repeated mistakes</strong>
+            </div>
+            {% for item in mastery_summary.weak_items %}
+            <div class="account-row">
+                <span>{{ item.language }} · {{ item.item_key }}</span>
+                <strong>{{ item.wrong }} misses · {{ item.mastery_pct }}%</strong>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if quiz_history %}
+        <div class="account-card" style="margin-top:18px;">
+            <div class="account-row">
+                <span>Recent quiz sessions</span>
+                <strong>Last {{ quiz_history | length }}</strong>
+            </div>
+            {% for entry in quiz_history %}
+            <div class="account-row">
+                <span>
+                    {{ entry.language_display }} · {{ entry.level_title }}
+                    {% if entry.difficulty %} · {{ entry.difficulty }}{% endif %}
+                </span>
+                <strong>
+                    {{ entry.correct }}/{{ entry.total }}
+                    ({{ entry.percentage }}%)
+                </strong>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p style="color:var(--muted);margin-top:14px;font-size:.9rem;">
+            No finished practice quizzes yet.
+            <a href="{{ url_for('quiz_page') }}" style="color:#efd77e;">Start one →</a>
+        </p>
+        {% endif %}
 
     </section>
 

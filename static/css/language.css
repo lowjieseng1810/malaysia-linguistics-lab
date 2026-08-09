@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Language Heritage Explorer
+   Malaysian Linguistics Lab
    COMPLETE LANGUAGE PAGE
    ========================================= */
 
@@ -1046,6 +1046,25 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.level-action-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.level-replay-button {
+    background: rgba(8, 24, 20, 0.55) !important;
+    color: rgba(243, 226, 164, 0.95) !important;
+    border: 1px solid rgba(239, 215, 126, 0.34);
+    box-shadow: none;
+}
+
+.level-replay-button:hover,
+.level-replay-button:focus-visible {
+    border-color: rgba(239, 215, 126, 0.55);
+    background: rgba(18, 42, 34, 0.78) !important;
 }
 
 .status-badge {

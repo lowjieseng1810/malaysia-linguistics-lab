@@ -1,0 +1,443 @@
+{% extends "base.html" %}
+
+{% block title %}Saved Words — Malaysian Linguistics Lab{% endblock %}
+
+{% block content %}
+
+<style>
+
+.dict-header{
+  margin-bottom:22px;
+}
+
+.dict-header h1{
+  font-size:1.7rem;
+  font-weight:750;
+  color:#ffffff;
+  margin-bottom:6px;
+}
+
+.dict-header p{
+  color:var(--muted);
+  font-size:.95rem;
+  max-width:640px;
+}
+
+.dict-controls{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin-bottom:18px;
+  max-width:280px;
+}
+
+.dict-controls label{
+  display:block;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(235,243,238,.6);
+  margin-bottom:6px;
+}
+
+.dict-controls select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:.9rem;
+}
+
+.dict-controls select option{
+  color:#111;
+}
+
+.dict-meta-row{
+  color:var(--muted);
+  font-size:.85rem;
+  margin-bottom:14px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.dict-meta-row a{
+  color:#efd77e;
+}
+
+.dict-results{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:14px;
+}
+
+.dict-word-card{
+  position:relative;
+  cursor:pointer;
+  transition:transform .18s ease, border-color .18s ease;
+}
+
+.dict-word-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(217,180,74,.4);
+}
+
+.dict-word-card:focus-visible{
+  outline:2px solid #efd77e;
+  outline-offset:2px;
+}
+
+.dict-word-card h3{
+  font-size:1.05rem;
+  margin-bottom:4px;
+  color:#fff;
+}
+
+.dict-word-card .dict-meaning{
+  color:var(--muted);
+  font-size:.88rem;
+  margin-bottom:8px;
+}
+
+.dict-word-card .dict-lang-tag{
+  color:#efd77e;
+  font-size:.7rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  margin-bottom:6px;
+}
+
+.dict-save-btn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:1px solid rgba(217,180,74,.5);
+  background:rgba(217,180,74,.18);
+  color:#efd77e;
+  font-size:1rem;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.dict-empty{
+  text-align:center;
+  padding:60px 20px;
+  color:var(--muted);
+}
+
+.dict-empty a{
+  color:#efd77e;
+}
+
+.dict-modal-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:1100;
+  background:rgba(2,15,11,.62);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.dict-modal-backdrop.is-open{
+  display:flex;
+}
+
+.dict-modal{
+  width:min(520px,100%);
+  max-height:86vh;
+  overflow-y:auto;
+  background:linear-gradient(155deg,rgba(20,66,48,.98),rgba(5,31,23,.99));
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:20px;
+  box-shadow:-10px 20px 60px rgba(0,0,0,.4);
+  padding:26px;
+  position:relative;
+}
+
+.dict-modal-close{
+  float:right;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+  line-height:1;
+}
+
+.dict-modal h2{
+  font-size:1.4rem;
+  color:#fff;
+  margin-bottom:4px;
+}
+
+.dict-modal-lang{
+  color:#efd77e;
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:16px;
+}
+
+.dict-detail-row{
+  display:flex;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.9rem;
+}
+
+.dict-detail-row .k{
+  flex:0 0 130px;
+  color:rgba(235,243,238,.55);
+  font-weight:700;
+  font-size:.76rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+
+.dict-detail-row .v{
+  flex:1;
+  color:#fff;
+}
+
+.dict-modal-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:18px;
+}
+
+.dict-modal-actions button{
+  padding:9px 14px;
+  border-radius:11px;
+  border:1px solid rgba(217,180,74,.3);
+  background:rgba(217,180,74,.1);
+  color:#efd77e;
+  font-size:.82rem;
+  font-weight:650;
+  cursor:pointer;
+}
+
+@media (max-width: 640px){
+  .dict-results{ grid-template-columns:1fr; }
+  .dict-detail-row{ flex-direction:column; gap:2px; }
+  .dict-modal-actions button{ flex:1 1 100%; }
+}
+
+</style>
+
+<div class="dict-header">
+  <h1>Saved Words</h1>
+  <p>
+    Vocabulary you have bookmarked from the Dictionary, across every language
+    you're learning. Click a word to see its full course entry again.
+  </p>
+</div>
+
+<div class="card">
+
+  <div class="dict-controls">
+    <div>
+      <label for="fav-lang">Language</label>
+      <select id="fav-lang">
+        <option value="">All languages</option>
+        {% for opt in language_options %}
+        <option value="{{ opt.lang_key }}">{{ opt.display_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="dict-meta-row">
+    <span id="fav-count">Loading…</span>
+    <a href="{{ url_for('dictionary_page') }}">Browse dictionary →</a>
+  </div>
+
+  <div id="fav-results" class="dict-results" aria-live="polite"></div>
+
+</div>
+
+<div class="dict-modal-backdrop" id="fav-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fav-modal-title">
+  <div class="dict-modal" id="fav-modal">
+    <button class="dict-modal-close" id="fav-modal-close" type="button" aria-label="Close">×</button>
+    <div id="fav-modal-body"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  const els = {
+    lang: document.getElementById("fav-lang"),
+    results: document.getElementById("fav-results"),
+    count: document.getElementById("fav-count"),
+    modalBackdrop: document.getElementById("fav-modal-backdrop"),
+    modalBody: document.getElementById("fav-modal-body"),
+    modalClose: document.getElementById("fav-modal-close"),
+  };
+
+  function csrfToken() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    return meta ? meta.content : "";
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text == null ? "" : String(text);
+    return div.innerHTML;
+  }
+
+  function fieldRow(label, value) {
+    if (!value) return "";
+    return (
+      '<div class="dict-detail-row"><div class="k">' + escapeHtml(label) +
+      '</div><div class="v">' + escapeHtml(value) + "</div></div>"
+    );
+  }
+
+  function closeModal() {
+    els.modalBackdrop.classList.remove("is-open");
+  }
+
+  function unsave(wordId, language, onDone) {
+    fetch("/api/favorites/toggle", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-CSRFToken": csrfToken() },
+      body: JSON.stringify({ vocabulary_id: wordId, language: language }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && !data.saved && onDone) onDone();
+      })
+      .catch(function () {});
+  }
+
+  function openDetail(row) {
+    const params = new URLSearchParams({ language: row.lang_key });
+    fetch("/api/dictionary/word/" + row.id + "?" + params.toString())
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok) {
+          els.modalBody.innerHTML = '<div class="dict-empty">' +
+            escapeHtml((res.d && res.d.message) || "Could not load this word.") + "</div>";
+          els.modalBackdrop.classList.add("is-open");
+          return;
+        }
+        const d = res.d;
+        els.modalBody.innerHTML =
+          '<h2 id="fav-modal-title">' + escapeHtml(d.word) + "</h2>" +
+          '<div class="dict-modal-lang">' + escapeHtml(d.language_display || row.lang_key) + " · Saved</div>" +
+          fieldRow("Meaning", d.meaning_en) +
+          fieldRow("Part of speech", d.part_of_speech) +
+          fieldRow("Pronunciation / IPA", d.ipa) +
+          fieldRow("Example", d.example_sentence) +
+          fieldRow("Difficulty", d.difficulty) +
+          fieldRow("Lesson", d.lesson_title ? (d.lesson_title + " (Level " + d.lesson_id + ")") : (d.lesson_id != null ? ("Level " + d.lesson_id) : "")) +
+          fieldRow("Culture note", d.culture_note) +
+          '<div class="dict-modal-actions">' +
+          (d.lesson_url ? '<button type="button" data-learn="' + escapeHtml(d.lesson_url) + '">Learn this word in its lesson</button>' : "") +
+          '<button type="button" data-unsave="1">Remove from saved</button>' +
+          '<button type="button" data-dict="1">Open in dictionary</button>' +
+          "</div>";
+
+        const learnBtn = els.modalBody.querySelector("[data-learn]");
+        if (learnBtn) {
+          learnBtn.addEventListener("click", function () {
+            window.location.href = learnBtn.dataset.learn;
+          });
+        }
+        els.modalBody.querySelector("[data-unsave]").addEventListener("click", function () {
+          unsave(d.id, d.language || row.lang_key, function () {
+            closeModal();
+            load();
+          });
+        });
+        els.modalBody.querySelector("[data-dict]").addEventListener("click", function () {
+          window.location.href = "/dictionary?lang=" + encodeURIComponent(row.lang_key) +
+            "&q=" + encodeURIComponent(d.word || "");
+        });
+        els.modalBackdrop.classList.add("is-open");
+      });
+  }
+
+  function load() {
+    els.count.textContent = "Loading…";
+    const params = new URLSearchParams();
+    if (els.lang.value) params.set("language", els.lang.value);
+
+    fetch("/api/favorites?" + params.toString())
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        const rows = data.rows || [];
+        if (!rows.length) {
+          els.count.textContent = "0 saved words";
+          els.results.innerHTML =
+            '<div class="dict-empty">No saved words yet. Visit the ' +
+            '<a href="/dictionary">Dictionary</a>' +
+            ' and tap the star on any word to save it here.</div>';
+          return;
+        }
+        els.count.textContent = rows.length + " saved word" + (rows.length === 1 ? "" : "s");
+        els.results.innerHTML = "";
+        rows.forEach(function (row) {
+          const card = document.createElement("div");
+          card.className = "card dict-word-card";
+          card.tabIndex = 0;
+
+          card.innerHTML =
+            '<button type="button" class="dict-save-btn" aria-label="Remove from saved words" title="Remove">★</button>' +
+            '<div class="dict-lang-tag">' + escapeHtml(row.language_display || row.lang_key) + "</div>" +
+            "<h3>" + escapeHtml(row.word) + "</h3>" +
+            '<div class="dict-meaning">' + escapeHtml(row.meaning_en || "Meaning not recorded yet") + "</div>";
+
+          card.querySelector(".dict-save-btn").addEventListener("click", function (e) {
+            e.stopPropagation();
+            unsave(row.id, row.lang_key, function () { load(); });
+          });
+
+          card.addEventListener("click", function () { openDetail(row); });
+          card.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              openDetail(row);
+            }
+          });
+
+          els.results.appendChild(card);
+        });
+      })
+      .catch(function () {
+        els.count.textContent = "";
+        els.results.innerHTML = '<div class="dict-empty">Could not load saved words right now.</div>';
+      });
+  }
+
+  els.modalClose.addEventListener("click", closeModal);
+  els.modalBackdrop.addEventListener("click", function (e) {
+    if (e.target === els.modalBackdrop) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  els.lang.addEventListener("change", load);
+  load();
+
+})();
+</script>
+
+{% endblock %}

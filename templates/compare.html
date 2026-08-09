@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Compare Languages | Malaysian Language Heritage Explorer{% endblock %}
+{% block title %}Compare Languages | Malaysian Linguistics Lab{% endblock %}
 
 {% block content %}
 
@@ -34,8 +34,16 @@
 
             <p class="language-hero-description">
                 Choose any two Malaysian minority languages to see how they
-                compare side by side.
+                compare side by side — region, family, vitality, writing system,
+                greetings, and available course content from this project.
             </p>
+
+            {% if lang_a == lang_b %}
+            <p class="language-hero-description" style="margin-top:10px;color:#efd77e;">
+                You selected the same language twice, so every field will match.
+                Pick a different language on either side for a real comparison.
+            </p>
+            {% endif %}
 
         </div>
 

@@ -1,0 +1,560 @@
+/* Heritage key (sidebar) + hanging walnut plaque (dashboard content) */
+
+/* ---------- Sidebar heritage keycap ---------- */
+.dash-nav-heritage .heritage-key {
+  --hk-cyan: #3fd0e8;
+  --hk-blue: #4a7dff;
+  --hk-violet: #8b6cf0;
+  --hk-pink: #d98bb8;
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.heritage-key:focus-visible {
+  outline: 2px solid rgba(214, 176, 77, 0.7);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.heritage-key-aura {
+  position: absolute;
+  inset: -5px -4px;
+  border-radius: 14px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(63, 208, 232, 0.55),
+    rgba(74, 125, 255, 0.5),
+    rgba(139, 108, 240, 0.55),
+    rgba(217, 139, 184, 0.45),
+    rgba(63, 208, 232, 0.55)
+  );
+  filter: blur(7px);
+  opacity: 0.42;
+  z-index: 0;
+  animation: heritageKeyAura 3.4s linear infinite;
+  pointer-events: none;
+}
+
+.heritage-key-cap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 12px;
+  border-radius: 11px;
+  border: 1px solid rgba(214, 176, 77, 0.42);
+  background:
+    linear-gradient(180deg, rgba(255, 236, 190, 0.14), transparent 38%),
+    linear-gradient(165deg, #214536 0%, #163528 55%, #0f241c 100%);
+  color: #f4ecd8;
+  box-shadow:
+    0 1px 0 rgba(255, 240, 200, 0.18) inset,
+    0 -3px 0 rgba(0, 0, 0, 0.28) inset,
+    0 5px 0 rgba(6, 16, 12, 0.72),
+    0 10px 18px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(8, 20, 16, 0.55);
+  transform: translateY(0);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    filter 0.18s ease,
+    border-color 0.18s ease;
+  animation: heritageKeyBreath 3.2s ease-in-out infinite;
+}
+
+.heritage-key-icon {
+  display: inline-flex;
+  color: #efd77e;
+  filter: drop-shadow(0 0 4px rgba(80, 170, 220, 0.25));
+}
+
+.heritage-key-label {
+  font-size: 0.84rem;
+  font-weight: 760;
+  letter-spacing: 0.04em;
+}
+
+.heritage-key:hover .heritage-key-cap,
+.heritage-key:focus-visible .heritage-key-cap {
+  border-color: rgba(239, 215, 126, 0.62);
+  filter: brightness(1.06);
+}
+
+.heritage-key:active .heritage-key-cap,
+.heritage-key.is-pressed .heritage-key-cap {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 rgba(255, 240, 200, 0.1) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.25) inset,
+    0 1px 0 rgba(6, 16, 12, 0.7),
+    0 4px 10px rgba(0, 0, 0, 0.22);
+  animation-play-state: paused;
+}
+
+/* Busy while board is up — slightly calmer, but still alive */
+.heritage-key.is-busy .heritage-key-cap,
+.heritage-key:disabled:not(.is-cooldown) .heritage-key-cap {
+  filter: saturate(0.78) brightness(0.94);
+  opacity: 0.82;
+  cursor: default;
+}
+
+.heritage-key.is-busy .heritage-key-aura,
+.heritage-key:disabled:not(.is-cooldown) .heritage-key-aura {
+  opacity: 0.28;
+}
+
+/* Cooldown: keep breathing/aurora visible; countdown replaces label */
+.heritage-key.is-cooldown .heritage-key-cap,
+.heritage-key.is-cooldown:disabled .heritage-key-cap {
+  filter: saturate(0.88) brightness(0.97);
+  opacity: 0.92;
+  cursor: default;
+  animation-play-state: running;
+}
+
+.heritage-key.is-cooldown .heritage-key-aura,
+.heritage-key.is-cooldown:disabled .heritage-key-aura {
+  animation-play-state: running;
+  opacity: 0.34;
+}
+
+.heritage-key.is-counting .heritage-key-label {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  min-width: 1.6em;
+}
+
+.heritage-key.is-hopping .heritage-key-cap {
+  animation: heritageKeyHop 0.72s ease-in-out 1;
+}
+
+.heritage-trigger-speech {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: calc(100% - 2px);
+  z-index: 6;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(16, 28, 22, 0.96);
+  color: rgba(246, 240, 230, 0.94);
+  font-size: 0.74rem;
+  line-height: 1.3;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.heritage-trigger-speech::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 22px;
+  width: 9px;
+  height: 9px;
+  transform: rotate(45deg);
+  background: rgba(16, 28, 22, 0.96);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.heritage-trigger-speech.is-open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes heritageKeyAura {
+  0% { transform: rotate(0deg); opacity: 0.34; }
+  50% { opacity: 0.62; }
+  100% { transform: rotate(360deg); opacity: 0.34; }
+}
+
+@keyframes heritageKeyBreath {
+  0%, 100% {
+    box-shadow:
+      0 1px 0 rgba(255, 240, 200, 0.16) inset,
+      0 -3px 0 rgba(0, 0, 0, 0.28) inset,
+      0 5px 0 rgba(6, 16, 12, 0.72),
+      0 10px 18px rgba(0, 0, 0, 0.28),
+      0 0 10px rgba(70, 150, 220, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 1px 0 rgba(255, 240, 200, 0.22) inset,
+      0 -3px 0 rgba(0, 0, 0, 0.28) inset,
+      0 5px 0 rgba(6, 16, 12, 0.72),
+      0 12px 20px rgba(0, 0, 0, 0.3),
+      0 0 22px rgba(120, 130, 230, 0.34);
+  }
+}
+
+@keyframes heritageKeyHop {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px) translateY(-1px); }
+  55% { transform: translateX(4px) translateY(-2px); }
+  80% { transform: translateX(-2px); }
+}
+
+/* ---------- Hanging board: fixed high anchors + hemp ropes + board ---------- */
+.heritage-plaque {
+  /* --plaque-y aliases board top; anchors stay fixed in host space */
+  --anchor-y: -460px;
+  --plaque-y: -400px;
+  --board-x: 0px;
+  --plaque-rot: 0deg;
+  --rope-len: 60px;
+  --rope-left-len: 60px;
+  --rope-right-len: 60px;
+  --rope-left-rot: 0deg;
+  --rope-right-rot: 0deg;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 56;
+  width: min(520px, calc(100% - 28px));
+  margin-left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-50%);
+  will-change: opacity;
+  transition: none;
+}
+
+.heritage-plaque.is-visible {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.heritage-plaque-anchor {
+  position: absolute;
+  top: var(--anchor-y);
+  z-index: 2;
+  width: 11px;
+  height: 11px;
+  margin-left: -5.5px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(176, 138, 72, 0.85);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 230, 170, 0.55), transparent 55%),
+    radial-gradient(circle at 50% 55%, #8a6a3a, #4a3420 70%);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 220, 160, 0.35);
+  pointer-events: none;
+}
+
+.heritage-plaque-anchor--left { left: 22%; }
+.heritage-plaque-anchor--right { left: 78%; }
+
+.heritage-plaque-rope {
+  position: absolute;
+  top: var(--anchor-y);
+  z-index: 1;
+  width: 4px;
+  height: 0;
+  margin-left: -2px;
+  border-radius: 999px;
+  transform-origin: top center;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      168deg,
+      #c9a878 0 2px,
+      #a88858 2px 4px,
+      #d4b890 4px 5px,
+      #8f7348 5px 7px,
+      #b99662 7px 9px
+    );
+  box-shadow:
+    inset 1px 0 0 rgba(255, 230, 190, 0.22),
+    inset -1px 0 0 rgba(40, 24, 10, 0.35),
+    1px 0 2px rgba(0, 0, 0, 0.18);
+}
+
+.heritage-plaque-rope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    repeating-linear-gradient(
+      12deg,
+      transparent 0 3px,
+      rgba(60, 40, 18, 0.18) 3px 4px
+    );
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.heritage-plaque-rope--left {
+  left: 22%;
+  height: var(--rope-left-len);
+  transform: rotate(var(--rope-left-rot));
+}
+
+.heritage-plaque-rope--right {
+  left: 78%;
+  height: var(--rope-right-len);
+  transform: rotate(var(--rope-right-rot));
+}
+
+.heritage-plaque-board {
+  position: absolute;
+  top: var(--plaque-y);
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px 18px;
+  align-items: center;
+  min-height: 210px;
+  padding: 22px 24px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(70, 48, 28, 0.9);
+  background:
+    linear-gradient(180deg, rgba(255, 245, 220, 0.06), transparent 38%),
+    repeating-linear-gradient(
+      92deg,
+      rgba(255, 220, 170, 0.035) 0 2px,
+      transparent 2px 7px
+    ),
+    linear-gradient(165deg, #4a3424 0%, #322316 42%, #241910 100%);
+  box-shadow:
+    0 28px 52px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 236, 210, 0.1),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.28),
+    inset 0 0 0 1px rgba(180, 140, 90, 0.12);
+  color: #f3ead8;
+  text-align: left;
+  transform: translate3d(var(--board-x), 0, 0) rotate(var(--plaque-rot));
+  transform-origin: 50% 0;
+  will-change: transform, top;
+  cursor: grab;
+  touch-action: none; /* allow touch-drag of the suspended board */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.heritage-plaque-board.is-dragging {
+  cursor: grabbing;
+  touch-action: none;
+}
+
+.heritage-plaque-board::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(180, 140, 90, 0.14);
+  pointer-events: none;
+}
+
+.heritage-plaque-board::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 18%;
+  right: 18%;
+  height: 10px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 22% 50%, #b08a48 0 3px, transparent 3.5px),
+    radial-gradient(circle at 78% 50%, #b08a48 0 3px, transparent 3.5px);
+  opacity: 0.9;
+}
+
+.heritage-plaque-stamp-slot {
+  position: relative;
+  z-index: 1;
+  grid-row: 1 / span 6;
+  width: 118px;
+}
+
+.heritage-plaque-stamp-slot .postage-stamp {
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
+}
+
+.heritage-plaque-copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.heritage-plaque-eyebrow {
+  margin: 0;
+  color: rgba(214, 184, 120, 0.88);
+  font-size: 0.66rem;
+  font-weight: 760;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.heritage-plaque-title {
+  margin: 0;
+  color: #f7f0e2;
+  font-size: 1.24rem;
+  font-weight: 760;
+  line-height: 1.2;
+}
+
+.heritage-plaque-desc {
+  margin: 0;
+  color: rgba(236, 226, 208, 0.82);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.heritage-plaque-meta {
+  margin: 0;
+  color: rgba(214, 184, 120, 0.8);
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.heritage-plaque-action {
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(180, 140, 90, 0.45);
+  background: linear-gradient(180deg, #3a2a1c, #2a1e14);
+  color: #f3ead8;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 760;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+
+.heritage-plaque-action:hover,
+.heritage-plaque-action:focus-visible {
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.heritage-plaque-rarity {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 780;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(214, 184, 120, 0.9);
+}
+.heritage-plaque-rarity--uncommon { color: #b8e0c0; }
+.heritage-plaque-rarity--rare { color: #c5daf5; }
+.heritage-plaque-rarity--epic { color: #e0c8f5; }
+.heritage-plaque-rarity--legendary { color: #f3df9a; }
+
+.heritage-plaque-glints {
+  position: absolute;
+  inset: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+.heritage-plaque-glint {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 245, 210, 0.75), transparent 70%);
+  animation: plaqueGlint 1.4s ease-out 1;
+}
+@keyframes plaqueGlint {
+  0% { transform: scale(0.4); opacity: 0; }
+  40% { opacity: 0.85; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.heritage-plaque--rarity-rare .heritage-plaque-board {
+  box-shadow:
+    0 28px 52px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(120, 160, 220, 0.08),
+    inset 0 1px 0 rgba(255, 236, 210, 0.1);
+}
+.heritage-plaque--rarity-epic .heritage-plaque-board {
+  box-shadow:
+    0 28px 52px rgba(0, 0, 0, 0.5),
+    0 0 18px rgba(160, 120, 210, 0.09),
+    inset 0 1px 0 rgba(255, 236, 210, 0.1);
+}
+.heritage-plaque--rarity-legendary .heritage-plaque-board {
+  box-shadow:
+    0 28px 52px rgba(0, 0, 0, 0.52),
+    0 0 20px rgba(220, 180, 90, 0.1),
+    inset 0 1px 0 rgba(255, 236, 210, 0.12);
+}
+
+/* Keep AI Tutor and sidebar usable while the board hangs. */
+
+@media (max-width: 720px) {
+  .heritage-plaque {
+    width: min(420px, calc(100% - 16px));
+  }
+}
+
+@media (max-width: 640px) {
+  .heritage-plaque-board {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding: 18px 16px 16px;
+    min-height: 0;
+  }
+
+  .heritage-plaque-stamp-slot {
+    grid-row: auto;
+    width: 96px;
+  }
+
+  .heritage-plaque-copy {
+    justify-items: center;
+  }
+
+  .heritage-plaque-action {
+    justify-self: center;
+  }
+
+  .heritage-key-cap {
+    min-height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heritage-key-aura,
+  .heritage-key-cap,
+  .heritage-key.is-hopping .heritage-key-cap,
+  .heritage-plaque-glint {
+    animation: none !important;
+  }
+
+  .heritage-key-aura {
+    opacity: 0.28;
+    filter: blur(5px);
+  }
+
+  .heritage-trigger-speech {
+    transition: opacity 0.2s ease;
+  }
+}

@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Language Heritage Explorer
+   Malaysian Linguistics Lab
    Dashboard Page
    ========================================= */
 
@@ -11,29 +11,39 @@
     padding: 10px 0 40px;
 }
 
+#languages,
+#world-explorer,
+#living-records,
+#daily-challenge-card,
+#random-word-card {
+    scroll-margin-top: 92px;
+}
+
 
 /* HERO SECTION */
 
 .dashboard-hero {
     position: relative;
     overflow: hidden;
-   display: grid;
-
-grid-template-columns:
-    minmax(420px, 0.88fr)
-    minmax(560px, 1.12fr);
-
-align-items: center;
+    display: grid;
+    grid-template-columns: minmax(280px, 1.05fr) minmax(280px, 0.95fr);
+    gap: 22px;
+    align-items: stretch;
     padding: 34px 36px;
     margin: 10px 0 34px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 26px;
 
     background:
+        radial-gradient(
+            circle at 88% 18%,
+            rgba(239, 215, 126, 0.14),
+            transparent 34%
+        ),
         linear-gradient(
             135deg,
-            rgba(22, 72, 52, 0.76),
-            rgba(10, 42, 31, 0.58)
+            rgba(22, 72, 52, 0.82),
+            rgba(8, 28, 22, 0.72)
         );
 
     box-shadow:
@@ -42,6 +52,155 @@ align-items: center;
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+}
+
+.dashboard-hero-copy,
+.dashboard-hero-actions {
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.dashboard-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: rgba(244, 246, 242, 0.92);
+    text-decoration: none;
+    font-size: 0.86rem;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.hero-cta:hover,
+.hero-cta:focus-visible {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.hero-cta--primary {
+    border-color: rgba(239, 215, 126, 0.45);
+    background: rgba(239, 215, 126, 0.16);
+    color: #f6e7b0;
+}
+
+.daily-challenge-card,
+.random-word-card {
+    padding: 18px 18px 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(239, 215, 126, 0.22);
+    background: rgba(4, 16, 12, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: transform 0.22s ease, border-color 0.22s ease;
+}
+
+.daily-challenge-card:hover,
+.random-word-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(239, 215, 126, 0.4);
+}
+
+.daily-challenge-eyebrow {
+    display: inline-block;
+    margin: 0 0 8px;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(239, 215, 126, 0.82);
+}
+
+.daily-challenge-card h2,
+.random-word-card h2 {
+    margin: 0;
+    color: #fff8e8;
+    font-size: 1.22rem;
+    line-height: 1.25;
+}
+
+.daily-challenge-meta {
+    margin: 8px 0 0;
+    color: rgba(239, 215, 126, 0.88);
+    font-size: 0.86rem;
+}
+
+.daily-challenge-copy {
+    margin: 8px 0 0;
+    color: rgba(220, 232, 224, 0.78);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.daily-challenge-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.daily-challenge-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(239, 215, 126, 0.35);
+    background: rgba(8, 22, 18, 0.55);
+    color: #f3e2a4;
+    text-decoration: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.daily-challenge-btn--primary {
+    background: rgba(239, 215, 126, 0.18);
+}
+
+.daily-challenge-btn:hover,
+.daily-challenge-btn:focus-visible {
+    transform: translateY(-1px);
+    background: rgba(239, 215, 126, 0.24);
+}
+
+.daily-challenge-link {
+    color: rgba(220, 232, 224, 0.78);
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.daily-challenge-link:hover,
+.daily-challenge-link:focus-visible {
+    color: #efd77e;
+}
+
+.random-word-lang {
+    margin: 0 0 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(210, 224, 216, 0.72);
+}
+
+@media (max-width: 980px) {
+    .dashboard-hero {
+        grid-template-columns: 1fr;
+        padding: 26px 22px;
+    }
 }
 
 .dashboard-hero::after {
@@ -136,7 +295,10 @@ align-items: center;
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    max-width: 100%;
 }
 
 .compare-languages-button {
@@ -214,9 +376,9 @@ align-items: center;
     background-image:
         linear-gradient(
             180deg,
-            rgba(7, 31, 23, 0.30) 0%,
-            rgba(7, 31, 23, 0.58) 48%,
-            rgba(6, 28, 20, 0.92) 100%
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
         ),
         url("../images/iban_bg.png");
 }
@@ -225,9 +387,9 @@ align-items: center;
     background-image:
         linear-gradient(
             180deg,
-            rgba(7, 31, 23, 0.28) 0%,
-            rgba(7, 31, 23, 0.57) 48%,
-            rgba(6, 28, 20, 0.92) 100%
+            rgba(7, 31, 23, 0.16) 0%,
+            rgba(7, 31, 23, 0.4) 48%,
+            rgba(6, 28, 20, 0.76) 100%
         ),
         url("../images/kadazan_dusun_bg.png");
 }
@@ -236,9 +398,9 @@ align-items: center;
     background-image:
         linear-gradient(
             180deg,
-            rgba(7, 31, 23, 0.30) 0%,
-            rgba(7, 31, 23, 0.58) 48%,
-            rgba(6, 28, 20, 0.92) 100%
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
         ),
         url("../images/bidayuh_bg.png");
 }
@@ -881,6 +1043,29 @@ display:block;
 
     padding-top:180px;
 
+}
+
+.globe-fallback{
+    max-width:420px;
+    margin:120px auto 0;
+    padding:28px 24px;
+    text-align:center;
+    border:1px solid rgba(230, 201, 109, 0.28);
+    border-radius:16px;
+    background:rgba(8, 32, 24, 0.85);
+    color:rgba(235,243,238,.85);
+}
+
+.globe-fallback strong{
+    color:#efd77e;
+    display:block;
+    margin-bottom:8px;
+}
+
+.globe-fallback p{
+    margin:0 0 8px;
+    font-size:0.92rem;
+    line-height:1.5;
 }
 
    /* GLOBE */
@@ -1724,12 +1909,22 @@ transform:none;
     transform: scale(1);
 }
 
-.world-explorer-card.has-arrived
+/*
+ * Only hide the live Earth when the optional 2D Malaysia
+ * stage is actually mounted. Arrival on the Three.js globe
+ * alone must keep #globe-stage visible and interactive.
+ */
+.world-explorer-card.is-malaysia-view
 .world-explorer-content,
 
-.world-explorer-card.has-arrived
+.world-explorer-card.is-malaysia-view
 .globe-stage {
     display: none;
+}
+
+.world-explorer-card.has-arrived:not(.is-malaysia-view)
+.globe-stage {
+    display: flex;
 }
 
 
@@ -2544,7 +2739,7 @@ transform:none;
 
 .map-stage-instruction {
     position: absolute;
-    z-index: 48;
+    z-index: 30; /* below beacon labels so Sarawak never sits under this cue */
 
     left: 50%;
     bottom: 17px;
@@ -4909,6 +5104,34 @@ transform:none;
         680;
 }
 
+.discovery-language-vocab-count {
+    color: rgba(229, 199, 106, 0.55);
+    font-size: 0.68rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.discovery-language-path-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 10px 2px 18px;
+}
+
+.discovery-language-deep-link {
+    color: rgba(229, 199, 106, 0.85);
+    font-size: 0.72rem;
+    font-weight: 650;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(229, 199, 106, 0.35);
+    padding-bottom: 1px;
+}
+
+.discovery-language-deep-link:hover {
+    color: #efd77e;
+    border-color: #efd77e;
+}
+
 
 /* =========================================
    13. REMOVE OLD COPIED-CARD BEHAVIOUR
@@ -6332,12 +6555,23 @@ transform:none;
 }
 
 /* =========================================
-   SELANGOR BEACON — FINAL POSITION
+   SELANGOR BEACON — geo-placed inside map wrap
+   (left/top set from MAH_MERI_DATA lat/lon in JS)
    ========================================= */
 
+.real-malaysia-map-wrap .exploration-beacon {
+    pointer-events: auto;
+}
+
+.real-malaysia-map-wrap .selangor-beacon {
+    /* Fallback before JS geo placement resolves */
+    left: 16%;
+    top: 62%;
+}
+
 .selangor-beacon {
-    left: 14%;
-    top: 56%;
+    left: 16%;
+    top: 62%;
 }
 
 
@@ -7849,9 +8083,10 @@ transform:none;
 .mah-meri-card {
     background-image:
         linear-gradient(
-            135deg,
-            rgba(4, 31, 23, 0.72),
-            rgba(3, 23, 18, 0.88)
+            180deg,
+            rgba(4, 31, 23, 0.2) 0%,
+            rgba(4, 28, 22, 0.45) 48%,
+            rgba(3, 22, 18, 0.78) 100%
         ),
         url("../images/mah_meri_card_bg.png");
 
@@ -8726,4 +8961,351 @@ transform:none;
 .mah-meri-record:hover .language-record {
     filter:
         drop-shadow(0 0 13px rgba(69, 156, 144, 0.20));
+}
+
+
+/* =========================================
+   MOBILE STATE DETAIL (portrait + landscape)
+   Must follow FINAL MAP FRAME !important rules.
+   Desktop (≥901px wide, tall enough) unchanged.
+   ========================================= */
+
+@media (max-width: 900px) {
+    .living-malaysia-stage {
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 16px 14px 18px !important;
+    }
+
+    .malaysia-stage-header {
+        display: block !important;
+        margin-bottom: 12px !important;
+        gap: 0 !important;
+    }
+
+    .malaysia-stage-header h3 {
+        font-size: clamp(1.35rem, 5.5vw, 1.7rem);
+        line-height: 1.2;
+    }
+
+    .malaysia-stage-header p {
+        margin-top: 8px;
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    /*
+     * Portrait / narrow: stack map then details.
+     * Prevents the minmax(560px, …) desktop grid from
+     * forcing a squeezed side-by-side + giant green void.
+     */
+    .malaysia-experience-layout {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto auto !important;
+        gap: 12px !important;
+        min-height: 0 !important;
+        height: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .miniature-map-scene {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: min(38vh, 300px) !important;
+        height: min(38vh, 300px) !important;
+        max-height: 320px !important;
+        border-radius: 20px !important;
+    }
+
+    .region-discovery-panel {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
+        /* Keep map + details co-visible; scroll inside the panel for long copy. */
+        max-height: min(52vh, 480px) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .region-discovery-panel .region-discovery-content {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    .discovery-empty-state {
+        min-height: 140px !important;
+        padding: 22px 18px !important;
+    }
+
+    .malaysia-stage-footer {
+        margin-top: 12px;
+        padding-top: 10px;
+    }
+
+    .real-malaysia-map-wrap {
+        top: 44px !important;
+        right: 6px !important;
+        bottom: 52px !important;
+        left: 6px !important;
+    }
+
+    /* left/top come from geo placement in dashboard.js (Mah Meri lat/lon). */
+
+    .selangor-beacon .beacon-label {
+        left: calc(100% + 2px) !important;
+        top: calc(100% + 28px) !important;
+        width: min(140px, 42vw) !important;
+        font-size: 0.72rem;
+    }
+
+    .selangor-beacon::after {
+        width: 48px;
+        top: 16px;
+        left: 10px;
+        transform: rotate(50deg);
+    }
+
+    /*
+     * Sarawak label: up + left so it never covers
+     * “Select a glowing signal” at the map bottom.
+     */
+    .sarawak-beacon .beacon-label {
+        top: -6px !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: calc(100% + 6px) !important;
+        width: min(138px, 40vw) !important;
+        transform: none !important;
+        text-align: right !important;
+    }
+
+    .sarawak-beacon::after {
+        top: 12px !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: 12px !important;
+        width: 44px !important;
+        transform: rotate(-22deg) !important;
+        transform-origin: right center !important;
+    }
+
+    .sabah-beacon .beacon-label {
+        top: auto !important;
+        bottom: calc(100% + 8px) !important;
+        right: 0 !important;
+        left: auto !important;
+        transform: none !important;
+        text-align: right !important;
+        width: min(130px, 38vw) !important;
+    }
+
+    .map-stage-instruction {
+        bottom: 8px !important;
+        z-index: 20 !important;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .miniature-map-scene {
+        min-height: min(42vh, 300px) !important;
+        height: min(42vh, 300px) !important;
+    }
+
+    .selangor-beacon .beacon-label {
+        width: min(128px, 46vw) !important;
+        top: calc(100% + 22px) !important;
+    }
+
+    .discovery-place-title-row h4 {
+        font-size: 1.2rem !important;
+        line-height: 1.3;
+    }
+
+    .region-discovery-description,
+    .discovery-place-story p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }
+}
+
+/*
+ * Phone / small-tablet landscape: use width fairly —
+ * do not leave the discovery column as a ~270px sliver
+ * beside a forced 560px map track.
+ */
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 1100px) {
+    .living-malaysia-stage {
+        min-height: 0 !important;
+        padding: 10px 12px 12px !important;
+    }
+
+    .malaysia-stage-header {
+        display: none !important; /* reclaim vertical space; map+panel are the task */
+    }
+
+    .malaysia-experience-layout {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1.2fr) minmax(240px, 1fr) !important;
+        gap: 10px !important;
+        min-height: 0 !important;
+        align-items: stretch !important;
+    }
+
+    .miniature-map-scene {
+        min-height: calc(100vh - 120px) !important;
+        height: calc(100vh - 120px) !important;
+        max-height: none !important;
+    }
+
+    .region-discovery-panel {
+        min-height: calc(100vh - 120px) !important;
+        height: calc(100vh - 120px) !important;
+        max-height: calc(100vh - 120px) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+    }
+
+    .discovery-empty-state {
+        min-height: 140px !important;
+    }
+
+    .malaysia-stage-footer {
+        display: none !important;
+    }
+
+    .real-malaysia-map-wrap {
+        top: 28px !important;
+        right: 8px !important;
+        bottom: 36px !important;
+        left: 8px !important;
+    }
+
+    /* Sarawak label: up + left, clear of bottom instruction cue */
+    .sarawak-beacon .beacon-label {
+        top: -4px !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: calc(100% + 4px) !important;
+        width: min(120px, 28vw) !important;
+        transform: none !important;
+        text-align: right !important;
+        font-size: 0.68rem;
+    }
+
+    .sarawak-beacon::after {
+        top: 10px !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: 10px !important;
+        width: 36px !important;
+        transform: rotate(-18deg) !important;
+        transform-origin: right center !important;
+    }
+
+    .map-stage-instruction {
+        bottom: 6px !important;
+        z-index: 20 !important;
+        font-size: 0.58rem;
+    }
+
+}
+
+
+/* =========================================
+   GEO-PLACED BEACONS — responsive labels + connectors
+   Overrides legacy fixed-% fallbacks once JS projection runs.
+   ========================================= */
+
+.real-malaysia-map-wrap .exploration-beacon.is-geo-placed {
+    right: auto !important;
+}
+
+.exploration-beacon.is-geo-placed .beacon-label {
+    top: var(--label-y, 54px) !important;
+    left: var(--label-x, 0) !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: max-content !important;
+    min-width: 118px !important;
+    transform: none !important;
+    text-align: left !important;
+}
+
+.exploration-beacon.is-geo-placed::after {
+    display: none !important;
+}
+
+.exploration-beacon.is-geo-placed .beacon-connector {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 11px;
+    top: 11px;
+    width: var(--conn-len, 56px);
+    height: 1px;
+    transform-origin: left center;
+    transform: rotate(var(--conn-ang, 42deg));
+    pointer-events: none;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.10),
+            rgba(239, 215, 126, 0.76)
+        );
+    box-shadow: 0 0 8px rgba(239, 215, 126, 0.24);
+}
+
+/* Desktop Selangor: keep the gold leader readable over the map stage. */
+.exploration-beacon.is-geo-placed.selangor-beacon .beacon-connector {
+    z-index: 2;
+    height: 2px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(239, 215, 126, 0.28),
+            rgba(239, 215, 126, 0.92)
+        );
+    box-shadow: 0 0 8px rgba(239, 215, 126, 0.4);
+}
+
+.exploration-beacon .beacon-connector {
+    display: none;
+}
+
+.exploration-beacon.is-geo-placed.sabah-beacon .beacon-label {
+    text-align: right !important;
+}
+
+@media (max-width: 900px) {
+    .exploration-beacon.is-geo-placed.sarawak-beacon .beacon-label {
+        min-width: 112px !important;
+    }
+
+    /*
+     * Selangor and Sarawak sit close together on a compact mobile map, so a
+     * smaller label footprint (not Sabah — its size/position is untouched)
+     * gives the placement search enough clear, land-free room for both
+     * without them overlapping each other.
+     */
+    .exploration-beacon.is-geo-placed.selangor-beacon .beacon-label,
+    .exploration-beacon.is-geo-placed.sarawak-beacon .beacon-label {
+        min-width: 92px !important;
+        padding: 6px 8px !important;
+    }
+
+    .exploration-beacon.is-geo-placed.selangor-beacon .beacon-label strong,
+    .exploration-beacon.is-geo-placed.sarawak-beacon .beacon-label strong {
+        font-size: 0.64rem;
+    }
+
+    .exploration-beacon.is-geo-placed.selangor-beacon .beacon-label small,
+    .exploration-beacon.is-geo-placed.sarawak-beacon .beacon-label small {
+        margin-top: 1px;
+        font-size: 0.5rem;
+    }
 }

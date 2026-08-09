@@ -1,0 +1,367 @@
+{
+  "language": "bidayuh",
+  "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0",
+  "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+  "entries": [
+    {
+      "word": "aku",
+      "meaning_en": "1.25 111.00 49100 mta sdo 1 I",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "omu",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ami",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ni",
+      "meaning_en": "one",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "du",
+      "meaning_en": "two",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ekeh",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ekan",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kasoN",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gutu",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "guti",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kayu",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dauon",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "anyit",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "daiya",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "turaN",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kapiN",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batoh",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "undoN",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "jipeu",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "jeli",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "papateNan",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "siroN",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hati",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "5up",
+      "meaning_en": "drink",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "5auwa",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "entubeuk",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kediNa",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "eNhapiN",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kabus",
+      "meaning_en": "die",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "menug",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batuhandu",
+      "meaning_en": "sun",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bintu",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "umon",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "umoh",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batu",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "apoi",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "jeran",
+      "meaning_en": "path",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "beNaru",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bauC",
+      "meaning_en": "new",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "genan",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bukar-Sadong Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bukar-Sadong Bidayuh (CLLD); CC BY 4.0"
+    }
+  ]
+}

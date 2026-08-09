@@ -1,0 +1,1040 @@
+{% extends "base.html" %}
+
+{% block title %}Dictionary — Malaysian Linguistics Lab{% endblock %}
+
+{% block content %}
+
+<style>
+
+.dict-header{
+  margin-bottom:22px;
+}
+
+.dict-header h1{
+  font-size:1.7rem;
+  font-weight:750;
+  color:#ffffff;
+  margin-bottom:6px;
+}
+
+.dict-header p{
+  color:var(--muted);
+  font-size:.95rem;
+  max-width:640px;
+}
+
+.dict-controls{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.dict-controls label{
+  display:block;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(235,243,238,.6);
+  margin-bottom:6px;
+}
+
+.dict-controls select,
+.dict-controls input{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:.9rem;
+}
+
+.dict-controls select option{
+  color:#111;
+}
+
+.dict-search-row{
+  display:flex;
+  gap:10px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.dict-search-row input{
+  flex:1 1 260px;
+  border-radius:12px;
+  border:1px solid rgba(239, 215, 126, 0.22);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.045),
+      transparent 42%
+    ),
+    rgba(18, 48, 38, 0.72);
+  color:rgba(236, 244, 240, 0.96);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.dict-search-row input::placeholder{
+  color:rgba(180, 198, 188, 0.62);
+}
+
+.dict-search-row input:hover{
+  border-color:rgba(239, 215, 126, 0.32);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055),
+      transparent 42%
+    ),
+    rgba(22, 56, 44, 0.78);
+}
+
+.dict-search-row input:focus,
+.dict-search-row input:focus-visible{
+  border-color:rgba(239, 215, 126, 0.55);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      transparent 42%
+    ),
+    rgba(24, 62, 48, 0.86);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 2px rgba(239, 215, 126, 0.18);
+  outline: none;
+}
+
+.dict-random-btn{
+  flex:0 0 auto;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(217,180,74,.4);
+  background:rgba(217,180,74,.14);
+  color:#3b2a08;
+  font-weight:650;
+  cursor:pointer;
+  transition:transform .18s ease, background .18s ease;
+}
+
+.dict-random-btn:hover,
+.dict-random-btn:focus-visible{
+  transform:translateY(-1px);
+  background:rgba(217,180,74,.24);
+}
+
+.dict-meta-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:var(--muted);
+  font-size:.85rem;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.dict-results{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:14px;
+}
+
+.dict-word-card{
+  cursor:pointer;
+  transition:transform .18s ease, border-color .18s ease;
+}
+
+.dict-word-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(217,180,74,.4);
+}
+
+.dict-word-card h3{
+  font-size:1.05rem;
+  margin-bottom:4px;
+  color:#fff;
+}
+
+.dict-word-card .dict-meaning{
+  color:var(--muted);
+  font-size:.88rem;
+  margin-bottom:8px;
+}
+
+.dict-word-card .dict-tags{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+}
+
+.dict-tag{
+  display:inline-block;
+  padding:2px 9px;
+  border-radius:999px;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  background:rgba(217,180,74,.14);
+  color:#efd77e;
+  border:1px solid rgba(217,180,74,.25);
+}
+
+.dict-word-card{
+  position:relative;
+}
+
+.dict-save-btn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:rgba(235,243,238,.6);
+  font-size:1rem;
+  line-height:1;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.dict-save-btn:hover{
+  border-color:rgba(217,180,74,.5);
+  color:#efd77e;
+}
+
+.dict-save-btn.is-saved{
+  background:rgba(217,180,74,.18);
+  border-color:rgba(217,180,74,.5);
+  color:#efd77e;
+}
+
+.dict-modal-save{
+  position:absolute;
+  top:26px;
+  right:60px;
+}
+
+.dict-empty, .dict-error{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--muted);
+}
+
+.dict-lang-totals{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:12px;
+  margin:0 0 18px;
+}
+.dict-lang-total{
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.dict-lang-total strong{
+  font-size:.95rem;
+}
+.dict-lang-total span{
+  color:var(--muted);
+  font-size:.82rem;
+}
+@media (max-width: 800px){
+  .dict-lang-totals{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+  }
+}
+
+.dict-pagination{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+
+.dict-pagination button{
+  padding:8px 16px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:.85rem;
+  cursor:pointer;
+}
+
+.dict-pagination button:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+}
+
+/* Word detail modal */
+
+.dict-modal-backdrop{
+  position:fixed;
+  inset:0;
+  /* Above mascot (1150); tutor chrome (2000) may still overlay intentionally */
+  z-index:1600;
+  background:rgba(2,15,11,.62);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.dict-modal-backdrop.is-open{
+  display:flex;
+}
+
+.dict-modal{
+  width:min(520px,100%);
+  max-height:86vh;
+  overflow-y:auto;
+  background:linear-gradient(155deg,rgba(20,66,48,.98),rgba(5,31,23,.99));
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:20px;
+  box-shadow:-10px 20px 60px rgba(0,0,0,.4);
+  padding:26px;
+}
+
+.dict-modal-close{
+  float:right;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+  line-height:1;
+}
+
+.dict-modal h2{
+  font-size:1.4rem;
+  color:#fff;
+  margin-bottom:4px;
+}
+
+.dict-modal .dict-modal-lang{
+  color:#efd77e;
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:16px;
+}
+
+.dict-detail-row{
+  display:flex;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.9rem;
+}
+
+.dict-detail-row .k{
+  flex:0 0 130px;
+  color:rgba(235,243,238,.55);
+  font-weight:700;
+  font-size:.76rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  padding-top:2px;
+}
+
+.dict-detail-row .v{
+  flex:1;
+  color:#fff;
+}
+
+.dict-modal-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:18px;
+}
+
+.dict-modal-actions button{
+  padding:9px 14px;
+  border-radius:11px;
+  border:1px solid rgba(217,180,74,.3);
+  background:rgba(217,180,74,.1);
+  color:#efd77e;
+  font-size:.82rem;
+  font-weight:650;
+  cursor:pointer;
+  transition:background .18s ease;
+}
+
+.dict-modal-actions button:hover{
+  background:rgba(217,180,74,.22);
+}
+
+@media (max-width: 640px){
+  .dict-header h1{
+    font-size:1.35rem;
+  }
+
+  .dict-controls{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .dict-search-row input{
+    flex:1 1 100%;
+  }
+
+  .dict-results{
+    grid-template-columns:1fr;
+  }
+
+  .dict-meta-row{
+    font-size:.78rem;
+  }
+
+  .dict-modal{
+    padding:20px;
+    max-height:92vh;
+  }
+
+  .dict-detail-row{
+    flex-direction:column;
+    gap:2px;
+  }
+
+  .dict-detail-row .k{
+    flex:none;
+  }
+
+  .dict-modal-actions button{
+    flex:1 1 100%;
+  }
+
+  .dict-modal-save{
+    top:22px;
+    right:52px;
+  }
+}
+
+</style>
+
+<div class="dict-header">
+  <h1>Dictionary &amp; Vocabulary Library</h1>
+  <p>
+    Search and browse verified course vocabulary across all four languages.
+    Every entry comes from the course database — nothing is invented.
+    Counts reflect real verified entries, not a padded target.
+    Use filters, search, or <strong>Discover a Word</strong> to explore.
+  </p>
+</div>
+
+<div class="dict-lang-totals" aria-label="Verified vocabulary counts by language">
+  {% for opt in language_options %}
+  <div class="dict-lang-total" data-lang="{{ opt.lang_key }}">
+    <strong>{{ opt.display_name }}</strong>
+    <span>{{ opt.vocab_count }} verified words</span>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="card">
+
+  <div class="dict-controls">
+
+    <div>
+      <label for="dict-lang">Language</label>
+      <select id="dict-lang">
+        {% for opt in language_options %}
+        <option value="{{ opt.lang_key }}" {% if opt.lang_key == default_lang %}selected{% endif %}>
+          {{ opt.display_name }} ({{ opt.vocab_count }})
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label for="dict-pos">Part of speech</label>
+      <select id="dict-pos">
+        <option value="">Any</option>
+        {% for pos in pos_options %}
+        <option value="{{ pos }}">{{ pos|capitalize }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label for="dict-difficulty">Difficulty</label>
+      <select id="dict-difficulty">
+        <option value="">Any</option>
+        {% for diff in difficulty_options %}
+        <option value="{{ diff }}">{{ diff|capitalize }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label for="dict-sort">Sort</label>
+      <select id="dict-sort">
+        {% for value, label in sort_options %}
+        <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+  </div>
+
+  <div class="dict-search-row">
+    <input id="dict-search" type="text" placeholder="Search a word or meaning…" autocomplete="off">
+    <button id="dict-random-btn" type="button" class="dict-random-btn">Discover a Word</button>
+  </div>
+
+  <div class="dict-meta-row">
+    <span id="dict-result-count">Loading…</span>
+    <span id="dict-language-label"></span>
+  </div>
+
+  <div id="dict-results" class="dict-results"></div>
+
+  <div id="dict-pagination" class="dict-pagination" hidden>
+    <button id="dict-prev" type="button">← Previous</button>
+    <span id="dict-page-label" style="color:var(--muted);font-size:.85rem;align-self:center;"></span>
+    <button id="dict-next" type="button">Next →</button>
+  </div>
+
+</div>
+
+
+<div class="dict-modal-backdrop" id="dict-modal-backdrop">
+  <div class="dict-modal" id="dict-modal">
+    <button class="dict-modal-close" id="dict-modal-close" aria-label="Close">×</button>
+    <div id="dict-modal-body"></div>
+  </div>
+</div>
+
+
+<script>
+(function () {
+
+  const state = {
+    language: document.getElementById("dict-lang").value,
+    query: "",
+    pos: "",
+    difficulty: "",
+    sort: "alpha",
+    limit: 24,
+    offset: 0,
+  };
+
+  const els = {
+    lang: document.getElementById("dict-lang"),
+    pos: document.getElementById("dict-pos"),
+    difficulty: document.getElementById("dict-difficulty"),
+    sort: document.getElementById("dict-sort"),
+    search: document.getElementById("dict-search"),
+    results: document.getElementById("dict-results"),
+    count: document.getElementById("dict-result-count"),
+    langLabel: document.getElementById("dict-language-label"),
+    pagination: document.getElementById("dict-pagination"),
+    prev: document.getElementById("dict-prev"),
+    next: document.getElementById("dict-next"),
+    pageLabel: document.getElementById("dict-page-label"),
+    modalBackdrop: document.getElementById("dict-modal-backdrop"),
+    modalBody: document.getElementById("dict-modal-body"),
+    modalClose: document.getElementById("dict-modal-close"),
+  };
+
+  let searchDebounce = null;
+  let currentLangDisplay = "";
+  let activeWordContext = null;
+  let askInFlight = false;
+  let searchAbort = null;
+  let detailAbort = null;
+  let searchRequestId = 0;
+  let detailRequestId = 0;
+  let resultsBound = false;
+
+  function csrfToken() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    return meta ? meta.content : "";
+  }
+
+  function quoteForPrompt(text) {
+    return String(text == null ? "" : text).replace(/"/g, "'");
+  }
+
+  function buildUrl() {
+    const params = new URLSearchParams({
+      language: state.language,
+      q: state.query,
+      pos: state.pos,
+      difficulty: state.difficulty,
+      sort: state.sort,
+      limit: state.limit,
+      offset: state.offset,
+    });
+    return "/api/dictionary/search?" + params.toString();
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text == null ? "" : String(text);
+    return div.innerHTML;
+  }
+
+  function bindResultsDelegation() {
+    if (resultsBound || !els.results) return;
+    resultsBound = true;
+    els.results.addEventListener("click", function (e) {
+      const saveBtn = e.target.closest("[data-save-id]");
+      if (saveBtn && els.results.contains(saveBtn)) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleSave(Number(saveBtn.getAttribute("data-save-id")), saveBtn);
+        return;
+      }
+      const card = e.target.closest(".dict-word-card");
+      if (!card || !els.results.contains(card)) return;
+      const id = Number(card.dataset.wordId);
+      if (!id) return;
+      openWordDetail(id);
+    });
+    els.results.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const card = e.target.closest(".dict-word-card");
+      if (!card || !els.results.contains(card)) return;
+      if (e.target.closest("[data-save-id]")) return;
+      e.preventDefault();
+      const id = Number(card.dataset.wordId);
+      if (id) openWordDetail(id);
+    });
+  }
+
+  function renderResults(data) {
+    try {
+      currentLangDisplay = data.language_display || data.language;
+      els.langLabel.textContent = currentLangDisplay;
+
+      const total = data.total_matches || 0;
+      const shown = (data.rows || []).length;
+
+      if (total === 0) {
+        els.count.textContent = "No matching words found.";
+        els.results.innerHTML = '<div class="dict-empty">No words match these filters yet in the course database.</div>';
+        els.pagination.hidden = true;
+        return;
+      }
+
+      const start = state.offset + 1;
+      const end = state.offset + shown;
+      els.count.textContent = "Showing " + start + "–" + end + " of " + total + " words";
+
+      const frag = document.createDocumentFragment();
+      (data.rows || []).forEach(function (row) {
+        const card = document.createElement("div");
+        card.className = "card dict-word-card";
+        card.tabIndex = 0;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", "View details for " + (row.word || ""));
+        card.dataset.wordId = String(row.id);
+
+        const tags = [];
+        if (row.part_of_speech) tags.push(row.part_of_speech);
+        if (row.difficulty) tags.push(row.difficulty);
+
+        card.innerHTML =
+          '<button type="button" class="dict-save-btn' + (row.is_saved ? " is-saved" : "") +
+          '" data-save-id="' + row.id + '" aria-label="' +
+          (row.is_saved ? "Remove from saved words" : "Save this word") + '" title="' +
+          (row.is_saved ? "Saved" : "Save word") + '">' + (row.is_saved ? "★" : "☆") + "</button>" +
+          "<h3>" + escapeHtml(row.word) + "</h3>" +
+          '<div class="dict-meaning">' + escapeHtml(row.meaning_en || "Meaning not recorded yet") + "</div>" +
+          '<div class="dict-tags">' +
+          tags.map(function (t) { return '<span class="dict-tag">' + escapeHtml(t) + "</span>"; }).join("") +
+          "</div>";
+
+        frag.appendChild(card);
+      });
+      els.results.innerHTML = "";
+      els.results.appendChild(frag);
+      bindResultsDelegation();
+
+      els.pagination.hidden = total <= state.limit;
+      els.prev.disabled = state.offset <= 0;
+      els.next.disabled = end >= total;
+      const page = Math.floor(state.offset / state.limit) + 1;
+      const pages = Math.max(1, Math.ceil(total / state.limit));
+      els.pageLabel.textContent = "Page " + page + " of " + pages;
+    } catch (err) {
+      els.count.textContent = "";
+      els.results.innerHTML =
+        '<div class="dict-error">Could not render dictionary results.</div>';
+      els.pagination.hidden = true;
+    }
+  }
+
+  function loadResults() {
+    const reqId = ++searchRequestId;
+    if (searchAbort) {
+      try { searchAbort.abort(); } catch (err) { /* ignore */ }
+    }
+    searchAbort = typeof AbortController !== "undefined" ? new AbortController() : null;
+
+    els.count.textContent = "Loading…";
+    els.results.setAttribute("aria-busy", "true");
+    els.results.innerHTML =
+      '<div class="dict-empty" style="grid-column:1/-1;">Searching the course vocabulary…</div>';
+    fetch(buildUrl(), searchAbort ? { signal: searchAbort.signal } : undefined)
+      .then(function (r) {
+        if (!r.ok) {
+          return r.json().then(function (err) { throw err; });
+        }
+        return r.json();
+      })
+      .then(function (data) {
+        if (reqId !== searchRequestId) return;
+        els.results.removeAttribute("aria-busy");
+        renderResults(data);
+      })
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        if (reqId !== searchRequestId) return;
+        els.results.removeAttribute("aria-busy");
+        els.count.textContent = "";
+        els.results.innerHTML =
+          '<div class="dict-error">' +
+          escapeHtml((err && err.message) || "Could not load the dictionary right now.") +
+          "</div>";
+        els.pagination.hidden = true;
+      });
+  }
+
+  function toggleSave(wordId, btn) {
+    fetch("/api/favorites/toggle", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-CSRFToken": csrfToken() },
+      body: JSON.stringify({ vocabulary_id: wordId, language: state.language }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || data.error) return;
+        const saved = !!data.saved;
+        if (btn) {
+          btn.classList.toggle("is-saved", saved);
+          btn.textContent = saved ? "★" : "☆";
+          btn.title = saved ? "Saved" : "Save word";
+          btn.setAttribute("aria-label", saved ? "Remove from saved words" : "Save this word");
+        }
+        const modalBtn = els.modalBody.querySelector("[data-modal-save]");
+        if (modalBtn && Number(modalBtn.dataset.modalSave) === Number(wordId)) {
+          modalBtn.classList.toggle("is-saved", saved);
+          modalBtn.textContent = saved ? "★ Saved" : "☆ Save word";
+        }
+        if (saved) {
+          if (window.reportNewAchievements && data.new_achievements) {
+            window.reportNewAchievements(data.new_achievements);
+          }
+          window.dispatchEvent(
+            new CustomEvent("mascotCompanionEvent", { detail: { type: "word_saved" } })
+          );
+        }
+      })
+      .catch(function () {});
+  }
+
+  function fieldRow(label, value) {
+    if (!value) return "";
+    return (
+      '<div class="dict-detail-row"><div class="k">' + escapeHtml(label) +
+      '</div><div class="v">' + escapeHtml(value) + "</div></div>"
+    );
+  }
+
+  function openWordDetail(wordId) {
+    const reqId = ++detailRequestId;
+    const params = new URLSearchParams({ language: state.language });
+    if (detailAbort) {
+      try { detailAbort.abort(); } catch (err) { /* ignore */ }
+    }
+    detailAbort = typeof AbortController !== "undefined" ? new AbortController() : null;
+
+    /* Open immediately so the first click always feels acknowledged. */
+    els.modalBody.innerHTML =
+      '<p class="dict-modal-lang" style="margin:0;">Loading word details…</p>';
+    els.modalBackdrop.classList.add("is-open");
+
+    fetch(
+      "/api/dictionary/word/" + wordId + "?" + params.toString(),
+      detailAbort ? { signal: detailAbort.signal } : undefined
+    )
+      .then(function (r) {
+        if (!r.ok) {
+          return r.json().then(function (err) { throw err; });
+        }
+        return r.json();
+      })
+      .then(function (row) {
+        if (reqId !== detailRequestId) return;
+        if (window.reportNewAchievements && row && row.new_achievements) {
+          window.reportNewAchievements(row.new_achievements);
+        }
+        renderWordDetail(row);
+        /* Views are recorded server-side. Avoid firing evaluate_achievements on
+           every word open — that lock contention made later searches hang. */
+      })
+      .catch(function (err) {
+        if (err && err.name === "AbortError") return;
+        if (reqId !== detailRequestId) return;
+        renderWordDetail(null, err);
+      });
+  }
+
+  function closeModal() {
+    detailRequestId += 1; /* invalidate in-flight detail responses */
+    if (detailAbort) {
+      try { detailAbort.abort(); } catch (err) { /* ignore */ }
+    }
+    els.modalBackdrop.classList.remove("is-open");
+  }
+
+  function renderWordDetail(row, err) {
+    if (!row) {
+      els.modalBody.innerHTML =
+        '<div class="dict-error">' +
+        escapeHtml((err && err.message) || "Could not load this word.") +
+        "</div>";
+      els.modalBackdrop.classList.add("is-open");
+      return;
+    }
+
+    const langDisplay = row.language_display || currentLangDisplay;
+    const langKey = row.language || state.language;
+    const word = (row.word || "").trim();
+
+    activeWordContext = {
+      id: row.id,
+      word: word,
+      langKey: langKey,
+      langDisplay: langDisplay,
+      dialect: row.dialect_variant || "",
+      meaning: row.meaning_en || row.meaning_ms || "",
+    };
+
+    els.modalBody.innerHTML =
+      '<button type="button" class="dict-modal-save' + (row.is_saved ? " is-saved" : "") +
+      '" data-modal-save="' + row.id + '">' + (row.is_saved ? "★ Saved" : "☆ Save word") + "</button>" +
+      "<h2>" + escapeHtml(word || "(missing word)") + "</h2>" +
+      '<div class="dict-modal-lang">' + escapeHtml(langDisplay) +
+      (row.dialect_variant ? (" · " + escapeHtml(row.dialect_variant)) : "") +
+      "</div>" +
+      fieldRow("Meaning", row.meaning_en || (row.meaning_ms ? null : "Meaning not recorded yet")) +
+      fieldRow("Malay", row.meaning_ms) +
+      fieldRow("Part of speech", row.part_of_speech) +
+      fieldRow("Pronunciation / IPA", row.ipa) +
+      fieldRow("Example", row.example_sentence) +
+      fieldRow("Difficulty", row.difficulty) +
+      fieldRow("Word length", row.word_len ? (row.word_len + " letters") : "") +
+      fieldRow("Lesson", row.lesson_title ? (row.lesson_title + " (Level " + row.lesson_id + ")") : (row.lesson_id != null ? ("Level " + row.lesson_id) : "")) +
+      fieldRow("Source", row.source || row.source_ref) +
+      fieldRow("Variety / dialect", row.dialect_variant) +
+      fieldRow("Culture note", row.culture_note) +
+      '<div class="dict-modal-actions">' +
+      (row.lesson_url ? '<button type="button" data-learn="' + escapeHtml(row.lesson_url) + '">Learn this word in its lesson</button>' : "") +
+      '<button type="button" data-ask="explain">Explain</button>' +
+      '<button type="button" data-ask="example">Example</button>' +
+      '<button type="button" data-ask="quiz">Quiz</button>' +
+      '<button type="button" data-ask="culture">Culture</button>' +
+      '<button type="button" data-ask="chat">Free Chat</button>' +
+      "</div>";
+
+    els.modalBody.querySelector("[data-modal-save]").addEventListener("click", function () {
+      toggleSave(row.id, els.results.querySelector('[data-save-id="' + row.id + '"]'));
+    });
+
+    const learnBtn = els.modalBody.querySelector("[data-learn]");
+    if (learnBtn) {
+      learnBtn.addEventListener("click", function () {
+        window.location.href = learnBtn.dataset.learn;
+      });
+    }
+
+    els.modalBody.querySelectorAll("[data-ask]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        /* Always read from the active modal context so rapid word changes
+           cannot send a stale previous selection. */
+        askTutorAbout(btn.dataset.ask);
+      });
+    });
+
+    els.modalBackdrop.classList.add("is-open");
+  }
+
+  function askTutorAbout(kind) {
+    const ctx = activeWordContext;
+    if (!ctx || !ctx.word) {
+      return;
+    }
+    const word = quoteForPrompt(ctx.word);
+    const langDisplay = quoteForPrompt(ctx.langDisplay || currentLangDisplay || ctx.langKey);
+    const dialectBit = ctx.dialect
+      ? " (variety: " + quoteForPrompt(ctx.dialect) + ")"
+      : "";
+    const prompts = {
+      explain:
+        "Explain the " + langDisplay + " word \"" + word + "\"" + dialectBit +
+        " and how it is used.",
+      example:
+        "Give me another example sentence using the " + langDisplay +
+        " word \"" + word + "\"" + dialectBit + ".",
+      quiz:
+        "Quiz me on the " + langDisplay + " word \"" + word + "\"" + dialectBit + ".",
+      culture:
+        "Share cultural or linguistic context for the " + langDisplay +
+        " word \"" + word + "\"" + dialectBit + ".",
+      chat:
+        "I want to talk about the " + langDisplay + " word \"" + word + "\"" +
+        dialectBit + ". Keep that context available, but let me ask freely.",
+    };
+    const modeMap = {
+      explain: "explain",
+      example: "example",
+      quiz: "quiz",
+      culture: "culture",
+      chat: "chat",
+    };
+    const message = prompts[kind];
+    if (!message) {
+      return;
+    }
+    if (askInFlight) {
+      return;
+    }
+    askInFlight = true;
+    window.setTimeout(function () {
+      askInFlight = false;
+    }, 400);
+
+    if (window.AITutor && typeof window.AITutor.ask === "function") {
+      window.AITutor.ask(message, {
+        mode: modeMap[kind] || null,
+        langKey: ctx.langKey || state.language || null,
+      });
+    }
+    closeModal();
+  }
+
+  els.modalClose.addEventListener("click", closeModal);
+  els.modalBackdrop.addEventListener("click", function (e) {
+    if (e.target === els.modalBackdrop) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
+
+  els.lang.addEventListener("change", function () {
+    state.language = els.lang.value;
+    state.offset = 0;
+    /* Keep browse usable after language switches — do not carry filters that
+       may be empty for the newly selected language. */
+    state.query = "";
+    state.pos = "";
+    state.difficulty = "";
+    if (els.search) els.search.value = "";
+    if (els.pos) els.pos.value = "";
+    if (els.difficulty) els.difficulty.value = "";
+    activeWordContext = null;
+    closeModal();
+    loadResults();
+  });
+  els.pos.addEventListener("change", function () {
+    state.pos = els.pos.value;
+    state.offset = 0;
+    loadResults();
+  });
+  els.difficulty.addEventListener("change", function () {
+    state.difficulty = els.difficulty.value;
+    state.offset = 0;
+    loadResults();
+  });
+  els.sort.addEventListener("change", function () {
+    state.sort = els.sort.value;
+    state.offset = 0;
+    loadResults();
+  });
+  els.search.addEventListener("input", function () {
+    window.clearTimeout(searchDebounce);
+    searchDebounce = window.setTimeout(function () {
+      state.query = els.search.value.trim();
+      state.offset = 0;
+      loadResults();
+    }, 320);
+  });
+  els.prev.addEventListener("click", function () {
+    state.offset = Math.max(0, state.offset - state.limit);
+    loadResults();
+  });
+  els.next.addEventListener("click", function () {
+    state.offset = state.offset + state.limit;
+    loadResults();
+  });
+
+  const randomBtn = document.getElementById("dict-random-btn");
+  if (randomBtn) {
+    randomBtn.addEventListener("click", function () {
+      randomBtn.disabled = true;
+      const params = new URLSearchParams({
+        language: state.language,
+      });
+      if (state.pos) params.set("pos", state.pos);
+      if (state.difficulty) params.set("difficulty", state.difficulty);
+      fetch("/api/dictionary/random?" + params.toString())
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          randomBtn.disabled = false;
+          if (!data || !data.ok || !data.word || !data.word.id) {
+            els.count.textContent = (data && data.message) || "No word available.";
+            return;
+          }
+          if (window.reportNewAchievements && data.word.new_achievements) {
+            window.reportNewAchievements(data.word.new_achievements);
+          }
+          openWordDetail(data.word.id);
+        })
+        .catch(function () {
+          randomBtn.disabled = false;
+        });
+    });
+  }
+
+  // Honor ?q= / ?lang= deep links (e.g. from Favorites → Dictionary).
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const q = (params.get("q") || "").trim();
+    const lang = (params.get("lang") || "").trim();
+    if (lang && els.lang.querySelector('option[value="' + lang + '"]')) {
+      els.lang.value = lang;
+      state.language = lang;
+    }
+    if (q) {
+      els.search.value = q;
+      state.query = q;
+    }
+  } catch (e) {}
+
+  loadResults();
+
+})();
+</script>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Language Heritage Explorer
+   Malaysian Linguistics Lab
    Universal Journey Learning Engine
    ========================================= */
 
@@ -67,6 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "primary-action-button"
         );
 
+    const replayButton =
+        document.getElementById(
+            "replay-action-button"
+        );
+
     const actionHint =
         document.getElementById(
             "action-hint"
@@ -96,18 +101,23 @@ document.addEventListener("DOMContentLoaded", function () {
             lessonData.steps.length
         );
 
+    // If the learner already finished (current_step == total_steps), reopen
+    // on the completion screen — not step 0.
     let currentStepIndex =
         savedStep >= lessonData.steps.length
-            ? 0
+            ? lessonData.steps.length
             : savedStep;
 
     let selectedAnswer = null;
 
     let answerChecked = false;
 
-    let progressSaved = false;
+    let progressSaved =
+        savedStep >= lessonData.steps.length;
 
     let progressSaving = false;
+
+    let isReplaying = !!lessonData.replayMode;
 
     let stepSaving = false;
 
@@ -1940,6 +1950,15 @@ function renderConversationComplete(
             actionHint.textContent =
                 "Your progress has been saved.";
 
+            if (window.reportNewAchievements && result.new_achievements) {
+                window.reportNewAchievements(result.new_achievements);
+            }
+            window.dispatchEvent(
+                new CustomEvent("mascotCompanionEvent", {
+                    detail: { type: "lesson_completed" }
+                })
+            );
+
             return true;
 
         } catch (error) {
@@ -2021,6 +2040,18 @@ function renderConversationComplete(
         actionButton.dataset.mode =
             "complete";
 
+        actionButton.textContent =
+            "Return to Course";
+
+        if (actionHint) {
+            actionHint.textContent =
+                "Replay anytime — your completion stays saved.";
+        }
+
+        if (replayButton) {
+            replayButton.hidden = false;
+        }
+
         await saveProgress();
 
         if (progressSaved) {
@@ -2033,10 +2064,63 @@ function renderConversationComplete(
             if (completionParagraph) {
 
                 completionParagraph.textContent =
-                    "Your progress has been saved. You can return to this journey whenever you want to review it.";
+                    "Your progress is saved. Review this screen, or replay the journey from the start.";
 
             }
         }
+    }
+
+
+    function resetJourneyRuntimeState() {
+        selectedAnswer = null;
+        answerChecked = false;
+        hintVisible = false;
+        discoverRevealed = false;
+        responseCompleted = false;
+        conversationRound = 0;
+        conversationHistory = [];
+        stopTypewriter();
+        hideHintArea();
+
+        if (feedbackBox) {
+            feedbackBox.className = "feedback-box";
+            feedbackBox.textContent = "";
+        }
+
+        if (learningTitle) {
+            learningTitle.style.display = "";
+        }
+
+        if (learningInstruction) {
+            learningInstruction.style.display = "";
+        }
+
+        if (actionButton) {
+            actionButton.dataset.mode = "";
+            actionButton.disabled = false;
+            actionButton.textContent = "Continue";
+            actionButton.style.display = "";
+        }
+
+        if (actionHint) {
+            actionHint.textContent =
+                "Continue when you are ready.";
+        }
+
+        if (replayButton) {
+            replayButton.hidden = true;
+        }
+    }
+
+
+    function startReplayJourney() {
+        isReplaying = true;
+        currentStepIndex = 0;
+        /* Completion remains in progress.completed; allow a fresh journey pass
+           and an idempotent re-save when the learner finishes again. */
+        progressSaved = false;
+        resetJourneyRuntimeState();
+        renderCurrentStep();
     }
 
 
@@ -2058,6 +2142,19 @@ function renderConversationComplete(
             lessonData.steps[
                 currentStepIndex
             ];
+
+        if (!step || typeof step !== "object") {
+            stepLabel.textContent = "Error";
+            learningTitle.textContent =
+                "This step could not be loaded.";
+            learningInstruction.textContent =
+                "The lesson data for this step is missing or invalid.";
+            learningBody.innerHTML = "";
+            actionButton.disabled = true;
+            actionHint.textContent =
+                "Return to the language page and try again.";
+            return;
+        }
 
         learningTitle.style.display = "";
 
@@ -2191,6 +2288,15 @@ function renderConversationComplete(
 
 
     /* ================= MAIN BUTTON ================= */
+
+    if (replayButton) {
+        replayButton.addEventListener(
+            "click",
+            function () {
+                startReplayJourney();
+            }
+        );
+    }
 
     actionButton.addEventListener(
         "click",

@@ -1,0 +1,2277 @@
+{
+  "language": "bidayuh",
+  "source_ref": "ms.wiktionary Bidayuh variety extracts via kaikki.org (Biatah / Bau / Bukar-Sadong / Serian / Jagoi labels preserved; wiktextract; Ylonen 2022; CC BY-SA)",
+  "dialect_variant": null,
+  "entries": [
+    {
+      "word": "babi",
+      "meaning_en": "sejuk",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "sama",
+      "meaning_en": "bapa; ayah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "kakak",
+      "meaning_en": "labah-labah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "kodok",
+      "meaning_en": "hidu",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "abun",
+      "meaning_en": "awan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "mulau",
+      "meaning_en": "memulaukan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "mayuh",
+      "meaning_en": "kurus",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "moh",
+      "meaning_en": "sudah, telah",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "oku",
+      "meaning_en": "aku (kata ganti nama diri tinggal pertama)",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "man",
+      "meaning_en": "makan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mamuh",
+      "meaning_en": "mandi",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 2,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bereng",
+      "meaning_en": "bulatan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadung extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadung)."
+    },
+    {
+      "word": "puru",
+      "meaning_en": "puluh",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 6,
+      "dialect_variant": "Serian Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Serian extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Serian)."
+    },
+    {
+      "word": "manuk",
+      "meaning_en": "burung",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "timun",
+      "meaning_en": "timun",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "buk",
+      "meaning_en": "buku",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "buok",
+      "meaning_en": "rambut",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sungi",
+      "meaning_en": "sungai",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bi-",
+      "meaning_en": "beR- (awalan pembentuk kata kerja tak transitif)",
+      "meaning_ms": null,
+      "part_of_speech": "prefix",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "muun",
+      "meaning_en": "turun (pergi ke kawasan ketinggian lebih rendah)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "andu",
+      "meaning_en": "hari (tempoh 24 jam)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Serian Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Serian extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Serian)."
+    },
+    {
+      "word": "noh",
+      "meaning_en": "itu",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "tanak",
+      "meaning_en": "tanah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mak",
+      "meaning_en": "jangan",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "dari",
+      "meaning_en": "lelaki",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "na",
+      "meaning_en": "(Singai) letak",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "boli",
+      "meaning_en": "rumah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "suat",
+      "meaning_en": "bunga",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sowa",
+      "meaning_en": "tahun",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "onu",
+      "meaning_en": "hari",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sukup",
+      "meaning_en": "cukup",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "rangit",
+      "meaning_en": "langit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "tondok",
+      "meaning_en": "masak",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "boos",
+      "meaning_en": "tidur",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "Anih",
+      "meaning_en": "apa",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh (ms.wiktionary; variety unlabeled)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh)."
+    },
+    {
+      "word": "Turawe",
+      "meaning_en": "takut",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh (ms.wiktionary; variety unlabeled)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh)."
+    },
+    {
+      "word": "jak",
+      "meaning_en": "jom",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bahas",
+      "meaning_en": "besar",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "kajon",
+      "meaning_en": "tunggu",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "doik",
+      "meaning_en": "tiada",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ponai",
+      "meaning_en": "pandai",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "Nyipuh",
+      "meaning_en": "Ular",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh (ms.wiktionary; variety unlabeled)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh)."
+    },
+    {
+      "word": "sangon",
+      "meaning_en": "cantik",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "paguh",
+      "meaning_en": "baik",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "gogah",
+      "meaning_en": "kuat",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mopuk",
+      "meaning_en": "putih",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "biriah",
+      "meaning_en": "merah",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bagak",
+      "meaning_en": "besar",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "omu",
+      "meaning_en": "panjang",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "singau",
+      "meaning_en": "kucing",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "tobal",
+      "meaning_en": "tebal",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ipit",
+      "meaning_en": "kecil",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "tuui",
+      "meaning_en": "lama",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sinog",
+      "meaning_en": "dekat",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "adin",
+      "meaning_en": "sekarang",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "tomak",
+      "meaning_en": "sentuh",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa bau Bidayuh)."
+    },
+    {
+      "word": "briuh",
+      "meaning_en": "bising",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "buuh",
+      "meaning_en": "bau",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "toru",
+      "meaning_en": "takut",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "jobong",
+      "meaning_en": "rindu",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mu'un",
+      "meaning_en": "turun",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "ningak",
+      "meaning_en": "tengok",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "mokat",
+      "meaning_en": "bangun",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ngin",
+      "meaning_en": "bagi",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sina",
+      "meaning_en": "bercakap",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "odi",
+      "meaning_en": "pergi",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "maat",
+      "meaning_en": "naik",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "milih",
+      "meaning_en": "beli",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "mambiak",
+      "meaning_en": "memcuci",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "nyaa",
+      "meaning_en": "orang",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kroja",
+      "meaning_en": "kerja",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "daki",
+      "meaning_en": "mana",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "oni",
+      "meaning_en": "apa",
+      "meaning_ms": null,
+      "part_of_speech": "unknown",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "siniak",
+      "meaning_en": "bila",
+      "meaning_ms": null,
+      "part_of_speech": "unknown",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "watki",
+      "meaning_en": "macam mana / bagaimana",
+      "meaning_ms": null,
+      "part_of_speech": "unknown",
+      "lesson_id": 2,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "karik",
+      "meaning_en": "cari",
+      "meaning_ms": null,
+      "part_of_speech": "unknown",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "siwuak",
+      "meaning_en": "ayam",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ikien",
+      "meaning_en": "ikan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "Samak",
+      "meaning_en": "Ayah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sinok",
+      "meaning_en": "ibu",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sumuk",
+      "meaning_en": "nenek",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "babai",
+      "meaning_en": "atuk",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "tongan",
+      "meaning_en": "tangan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bobak",
+      "meaning_en": "mulut",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa bau Bidayuh)."
+    },
+    {
+      "word": "po'on",
+      "meaning_en": "kaki",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "baat",
+      "meaning_en": "berat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "tipon",
+      "meaning_en": "telefon",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "onak",
+      "meaning_en": "anak",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "pilai",
+      "meaning_en": "lapar",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "poit",
+      "meaning_en": "pahit",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "poras",
+      "meaning_en": "pedas",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bu'uh",
+      "meaning_en": "bau",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bigamut",
+      "meaning_en": "seram",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "brosi",
+      "meaning_en": "bersih",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kois",
+      "meaning_en": "kotor",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "kobos",
+      "meaning_en": "mati",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "koih",
+      "meaning_en": "kami",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "muu",
+      "meaning_en": "kamu",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "piin",
+      "meaning_en": "air",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "iyoh",
+      "meaning_en": "dia",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "blagu",
+      "meaning_en": "menyanyi",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sien",
+      "meaning_en": "menangis",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "nunak",
+      "meaning_en": "ikut",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kibalot",
+      "meaning_en": "masukkan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "topat",
+      "meaning_en": "tempat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "ngarom",
+      "meaning_en": "malam",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "singumi",
+      "meaning_en": "petang",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "towoh",
+      "meaning_en": "ketawa",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "nog",
+      "meaning_en": "sampai",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "danu",
+      "meaning_en": "sana",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "duoh",
+      "meaning_en": "dengan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "idoh",
+      "meaning_en": "bukan",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sidik",
+      "meaning_en": "sedap",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "pinguman",
+      "meaning_en": "makanan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bojuh",
+      "meaning_en": "baju",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "boton",
+      "meaning_en": "mata",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "koduk",
+      "meaning_en": "main",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "toban",
+      "meaning_en": "bawa",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "madis",
+      "meaning_en": "saudara",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bikoduh",
+      "meaning_en": "berlari",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kabuo",
+      "meaning_en": "habiskan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "oggi",
+      "meaning_en": "ada",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kolas",
+      "meaning_en": "degil",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "koda",
+      "meaning_en": "macam",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ngojit",
+      "meaning_en": "dengar",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bdoyak",
+      "meaning_en": "berdarah",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sikien",
+      "meaning_en": "tanya",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "toin",
+      "meaning_en": "perut",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "pimagah",
+      "meaning_en": "pemberitahuan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bogo",
+      "meaning_en": "banyak",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ngija",
+      "meaning_en": "ajak",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "omba",
+      "meaning_en": "lama",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "osi",
+      "meaning_en": "siapa",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "dusah",
+      "meaning_en": "tak payah",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sodang",
+      "meaning_en": "cukup",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ijan",
+      "meaning_en": "hujan",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kirin",
+      "meaning_en": "nampak",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "mitiak",
+      "meaning_en": "minta",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ponu",
+      "meaning_en": "jalan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa bau Bidayuh)."
+    },
+    {
+      "word": "tia",
+      "meaning_en": "nanti",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "aluak",
+      "meaning_en": "belum",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bonar",
+      "meaning_en": "betul",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa bau Bidayuh)."
+    },
+    {
+      "word": "todah",
+      "meaning_en": "kesian",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "mokuo",
+      "meaning_en": "sudah",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "samah",
+      "meaning_en": "sama",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "molot",
+      "meaning_en": "masuk",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "bokon",
+      "meaning_en": "lain",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "niwat",
+      "meaning_en": "kenapa",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "kojit",
+      "meaning_en": "telinga",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "punuak",
+      "meaning_en": "penuh",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "kosuang",
+      "meaning_en": "anjing",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bakok",
+      "meaning_en": "gila",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "lokat",
+      "meaning_en": "lekat",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "ngiau",
+      "meaning_en": "kucing",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "dayung",
+      "meaning_en": "perempuan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "dali",
+      "meaning_en": "lelaki",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "piruh",
+      "meaning_en": "kenal",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "sromin",
+      "meaning_en": "cermin",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "silun",
+      "meaning_en": "kuku",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "tanon",
+      "meaning_en": "bagitahu",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bau Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bau Bidayuh)."
+    },
+    {
+      "word": "dingan",
+      "meaning_en": "kawan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sonang",
+      "meaning_en": "senang",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "koi",
+      "meaning_en": "ekor",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "naan",
+      "meaning_en": "menahan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "amang",
+      "meaning_en": "bapa; ayah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "rawang",
+      "meaning_en": "keluarga",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "oyouk",
+      "meaning_en": "khinzir",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Jagoi Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Jagoi extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Jagoi)."
+    },
+    {
+      "word": "ma'an",
+      "meaning_en": "makan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Biatah Bidayuh extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Biatah Bidayuh)."
+    },
+    {
+      "word": "ujen",
+      "meaning_en": "hujan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "pirai",
+      "meaning_en": "lapar",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "undung",
+      "meaning_en": "hidung",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "dorod",
+      "meaning_en": "gunung",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "jowin",
+      "meaning_en": "muka",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "itih",
+      "meaning_en": "ini",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "inoh",
+      "meaning_en": "itu",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "tiwas",
+      "meaning_en": "marah",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "modud",
+      "meaning_en": "sejuk",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bokam",
+      "meaning_en": "botol",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "idip",
+      "meaning_en": "kehidupan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bongoh",
+      "meaning_en": "panas",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "batuh",
+      "meaning_en": "batu",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "nuok",
+      "meaning_en": "minum",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "otin",
+      "meaning_en": "hati",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "busuoh",
+      "meaning_en": "kenyang",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mu'uh",
+      "meaning_en": "kamu; kau",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "pi'in",
+      "meaning_en": "air",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "koruh",
+      "meaning_en": "keruh",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "gilongan",
+      "meaning_en": "pelangi",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "singaji",
+      "meaning_en": "sengaja",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "buran",
+      "meaning_en": "bulan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "baruk",
+      "meaning_en": "sebuah rumah tradisional kaum Bidayuh",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "inung",
+      "meaning_en": "hidung",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "kijoran",
+      "meaning_en": "terlalu penat",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "munju",
+      "meaning_en": "benjolan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "torik",
+      "meaning_en": "tarik",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mowah",
+      "meaning_en": "jalan-jalan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "lipapian",
+      "meaning_en": "lipan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sipotag",
+      "meaning_en": "pepatung",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "gonan",
+      "meaning_en": "badan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "kopog",
+      "meaning_en": "(Singai) potong",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "jikon",
+      "meaning_en": "simpan",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "kuduos",
+      "meaning_en": "sayur",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bisig",
+      "meaning_en": "bersih",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sowon",
+      "meaning_en": "isteri, bini",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mujuog",
+      "meaning_en": "berdiri",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "lilih",
+      "meaning_en": "cair",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "pingiposon",
+      "meaning_en": "pesanan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "pinanon",
+      "meaning_en": "pesanan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "Gawea",
+      "meaning_en": "Gawai",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "kalik",
+      "meaning_en": "cari",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "bibin",
+      "meaning_en": "bibir",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "raka",
+      "meaning_en": "tamak",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "tibolui",
+      "meaning_en": "terbalik",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "banuok",
+      "meaning_en": "ubi kayu",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "musuop",
+      "meaning_en": "lesap",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "masuom",
+      "meaning_en": "masam",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "mokos",
+      "meaning_en": "ikat",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "sama'",
+      "meaning_en": "bapa; ayah",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bau Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bau extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bau)."
+    },
+    {
+      "word": "ipūt",
+      "meaning_en": "kecil",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "bu'ai",
+      "meaning_en": "buaya",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "bukang",
+      "meaning_en": "pelangi",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "ramang",
+      "meaning_en": "awan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "ganan",
+      "meaning_en": "nama",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bukar-Sadong Bidayuh (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Bukar-Sadong extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Bukar-Sadong)."
+    },
+    {
+      "word": "sindŭ",
+      "meaning_en": "ibu; emak",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "jewin",
+      "meaning_en": "muka",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "kejit",
+      "meaning_en": "telinga",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    },
+    {
+      "word": "tiyung",
+      "meaning_en": "terung",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6,
+      "dialect_variant": "Bidayuh Biatah (ms.wiktionary)",
+      "source_ref": "ms.wiktionary Bahasa Bidayuh Biatah extract via kaikki.org (wiktextract; Ylonen 2022; CC BY-SA)",
+      "culture_note": "Imported for bidayuh from Malay Wiktionary (Bahasa Bidayuh Biatah)."
+    }
+  ]
+}

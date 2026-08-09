@@ -1,0 +1,1567 @@
+{
+  "language": "iban",
+  "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+  "dialect_variant": null,
+  "entries": [
+    {
+      "word": "taŋan",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jari",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kibaʔ",
+      "meaning_en": "left",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kanan",
+      "meaning_en": "right",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kaki",
+      "meaning_en": "leg/foot",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pah",
+      "meaning_en": "leg/foot",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jalai",
+      "meaning_en": "to walk",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jalai",
+      "meaning_en": "road/path",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "datai",
+      "meaning_en": "to come",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nyemerai",
+      "meaning_en": "to turn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kamah",
+      "meaning_en": "dirty",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "abu",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "apok",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kulit",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "perut",
+      "meaning_en": "back",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tulaŋ",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "perut",
+      "meaning_en": "intestines",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "atau",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tusu",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bau",
+      "meaning_en": "shoulder",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tauʔ",
+      "meaning_en": "to know, be knowledgeable",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "temu",
+      "meaning_en": "to know, be knowledgeable",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pikir",
+      "meaning_en": "to think",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "runding",
+      "meaning_en": "to think",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "takut",
+      "meaning_en": "to fear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "darah",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "palaʔ",
+      "meaning_en": "head",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "rekoŋ",
+      "meaning_en": "neck",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "idoŋ",
+      "meaning_en": "hair",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "be-ñawa",
+      "meaning_en": "to breathe",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nyintak seput",
+      "meaning_en": "to breathe",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "enseput",
+      "meaning_en": "to breathe",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sium",
+      "meaning_en": "to sniff, smell",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mulut",
+      "meaning_en": "mouth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ñawa",
+      "meaning_en": "mouth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ŋeliʔ",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "dilah",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ketawaʔ",
+      "meaning_en": "to laugh",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sabak",
+      "meaning_en": "to cry",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mutah",
+      "meaning_en": "to vomit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ŋe-ludah",
+      "meaning_en": "to spit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "makai",
+      "meaning_en": "to eat",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "irup",
+      "meaning_en": "to chew",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "gigit",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ketup",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kanit",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tusu'",
+      "meaning_en": "to suck",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pendiŋ",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "diŋa",
+      "meaning_en": "to hear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mata",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pedaʔ",
+      "meaning_en": "to see",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ŋuap",
+      "meaning_en": "to yawn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tindok",
+      "meaning_en": "to sleep",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mimpi",
+      "meaning_en": "to lie down",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "dudok",
+      "meaning_en": "to sit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "diri",
+      "meaning_en": "to stand",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "oraŋ",
+      "meaning_en": "person/human being",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "laki",
+      "meaning_en": "man/male",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "induʔ",
+      "meaning_en": "woman/female",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "anak",
+      "meaning_en": "child",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "laki",
+      "meaning_en": "husband",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bini",
+      "meaning_en": "wife",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "indai",
+      "meaning_en": "mother",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "apai",
+      "meaning_en": "father",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "rumah",
+      "meaning_en": "house",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "atap",
+      "meaning_en": "thatch/roof",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bumbung",
+      "meaning_en": "thatch/roof",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nama",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sebut",
+      "meaning_en": "to say",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jakoʔ",
+      "meaning_en": "to say",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tali",
+      "meaning_en": "rope",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kebat",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ŋikat",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nanchang",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nanggam",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jarum",
+      "meaning_en": "to sew",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tusok",
+      "meaning_en": "to hunt",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ngenchuri",
+      "meaning_en": "to hit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bunoh",
+      "meaning_en": "to kill",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mati",
+      "meaning_en": "to die, be dead",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "idup",
+      "meaning_en": "to live, be alive",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kayuʔ",
+      "meaning_en": "to scratch",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tajam",
+      "meaning_en": "to split",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tumpul",
+      "meaning_en": "dull, blunt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tanam",
+      "meaning_en": "to work",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pilih",
+      "meaning_en": "to choose",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kali",
+      "meaning_en": "to grow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "beli",
+      "meaning_en": "to buy",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bukaʔ",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "telenga",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "silak",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kebak",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "asuʔ",
+      "meaning_en": "to pound, beat",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ukui",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "uduk",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ukoi",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "udok",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "buroŋ",
+      "meaning_en": "bird",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "teluʔ",
+      "meaning_en": "egg",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bulu",
+      "meaning_en": "feather",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sayap",
+      "meaning_en": "wing",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "terebai",
+      "meaning_en": "to fly",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "cit",
+      "meaning_en": "rat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tikus",
+      "meaning_en": "rat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "isiʔ",
+      "meaning_en": "meat/flesh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "lemak",
+      "meaning_en": "fat/grease",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "lenying",
+      "meaning_en": "fat/grease",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ikoʔ",
+      "meaning_en": "tail",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ular",
+      "meaning_en": "snake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ulat",
+      "meaning_en": "worm (earthworm)",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ñamok",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "empelawaʔ",
+      "meaning_en": "spider",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ikan",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "daun",
+      "meaning_en": "rotten",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "urat",
+      "meaning_en": "root",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "buŋai",
+      "meaning_en": "flower",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "buah",
+      "meaning_en": "fruit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "rumput",
+      "meaning_en": "grass",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tanah",
+      "meaning_en": "earth/soil",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "batu",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pasir",
+      "meaning_en": "sand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "arung",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jungking",
+      "meaning_en": "to flow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "laut",
+      "meaning_en": "sea",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tasik",
+      "meaning_en": "sea",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "garam",
+      "meaning_en": "salt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "danau",
+      "meaning_en": "lake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "lepung",
+      "meaning_en": "lake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "pegung",
+      "meaning_en": "lake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kampoŋ",
+      "meaning_en": "woods/forest",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "laŋit",
+      "meaning_en": "sky",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bulan",
+      "meaning_en": "moon",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bintaŋ",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "apok",
+      "meaning_en": "cloud",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ujan",
+      "meaning_en": "rain",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "guntur",
+      "meaning_en": "thunder",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kilat",
+      "meaning_en": "lightning",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "aŋin",
+      "meaning_en": "wind",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ribut",
+      "meaning_en": "wind",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "basah",
+      "meaning_en": "to blow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "berat",
+      "meaning_en": "heavy",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "api",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "abu",
+      "meaning_en": "to burn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "itam",
+      "meaning_en": "black",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "celum",
+      "meaning_en": "black",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "burak",
+      "meaning_en": "white",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "putih",
+      "meaning_en": "white",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mirah",
+      "meaning_en": "red",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mansau",
+      "meaning_en": "red",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kuniŋ",
+      "meaning_en": "yellow",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ijau",
+      "meaning_en": "green",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "mit",
+      "meaning_en": "small",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "besai",
+      "meaning_en": "big",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sekut",
+      "meaning_en": "short",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "luas",
+      "meaning_en": "wide",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sakit",
+      "meaning_en": "painful, sick",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "malu",
+      "meaning_en": "shy, ashamed",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "baru",
+      "meaning_en": "old",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "baik",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "manah",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "badas",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jaiʔ",
+      "meaning_en": "bad, evil",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kenaʔ",
+      "meaning_en": "correct, true",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "amat",
+      "meaning_en": "correct, true",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "malam",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ari",
+      "meaning_en": "day",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "taun",
+      "meaning_en": "year",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ba",
+      "meaning_en": "when?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "di",
+      "meaning_en": "at",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "alam",
+      "meaning_en": "in, inside",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "dalam",
+      "meaning_en": "in, inside",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "d-atas",
+      "meaning_en": "above",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "baroh",
+      "meaning_en": "below",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "tuʔ",
+      "meaning_en": "this",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ñaʔ",
+      "meaning_en": "that",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "dampih",
+      "meaning_en": "near",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "jauh",
+      "meaning_en": "far",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "aku",
+      "meaning_en": "where?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nuan",
+      "meaning_en": "thou",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "diʔ",
+      "meaning_en": "thou",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ia",
+      "meaning_en": "he/she",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "kitaʔ",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "diʔ",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nuan",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "sidaʔ",
+      "meaning_en": "they",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "bukai",
+      "meaning_en": "what?",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "abis",
+      "meaning_en": "all",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "semua",
+      "meaning_en": "all",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "magang",
+      "meaning_en": "all",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "eŋgau",
+      "meaning_en": "and",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "entiʔ",
+      "meaning_en": "if",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "nadai",
+      "meaning_en": "how?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "endaʔ",
+      "meaning_en": "no, not",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "ukai",
+      "meaning_en": "no, not",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    },
+    {
+      "word": "itoŋ",
+      "meaning_en": "to count",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981) An Iban-English dictionary; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": null
+    }
+  ]
+}

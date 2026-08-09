@@ -1,562 +1,516 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard | Malaysian Language Heritage Explorer{% endblock %}
+{% block title %}Dashboard | Malaysian Linguistics Lab{% endblock %}
 
 {% block content %}
 
 <link rel="stylesheet"
       href="{{ url_for('static', filename='css/dashboard.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/language-universe.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/universe-landing.css') }}">
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard-shell.css') }}">
 
-<main class="dashboard-page">
+{% set progress_values = language_progress.values() | list %}
+{% set overall_progress = (
+    ((progress_values | map(attribute='percentage') | sum) / (progress_values | length)) | round | int
+) if progress_values else 0 %}
+{% set stats = explorer_stats or {} %}
 
+<div class="dash-shell">
 
-    <!-- ================= DASHBOARD HERO ================= -->
+<aside class="dash-sidebar" aria-label="Main navigation">
+    <div class="dash-sidebar-brand">
+        <img src="{{ url_for('static', filename='images/explorer-mascot-icon.svg') }}"
+             alt=""
+             width="42"
+             height="42">
+        <strong>Malaysian<br>Linguistics<br>Lab</strong>
+    </div>
 
-    <section class="dashboard-hero">
+    <nav class="dash-sidebar-nav">
+        <a class="dash-nav-link is-active" href="{{ url_for('home') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5z"/></svg>
+            </span>
+            <span>Dashboard</span>
+        </a>
+        <a class="dash-nav-link" href="#world-explorer">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8.2"/><path d="M4.5 12h15M12 4c2.4 2.2 3.6 4.8 3.6 8s-1.2 5.8-3.6 8c-2.4-2.2-3.6-4.8-3.6-8s1.2-5.8 3.6-8z"/></svg>
+            </span>
+            <span>World Explorer</span>
+        </a>
+        <a class="dash-nav-link" href="#living-records">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="9" r="2.4"/><circle cx="15.5" cy="9.5" r="2.1"/><path d="M4.5 18c.9-2.6 2.6-3.9 4.5-3.9s3.6 1.3 4.5 3.9"/><path d="M13.2 18c.5-1.7 1.6-2.7 3-2.7 1.3 0 2.3.8 3 2.2"/></svg>
+            </span>
+            <span>Living Languages</span>
+        </a>
+        <a class="dash-nav-link" href="#languages">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M5 5.5h7.5A2.5 2.5 0 0 1 15 8v11.5H7A2 2 0 0 0 5 21.5V5.5z"/><path d="M15 8h2.5A2.5 2.5 0 0 1 20 10.5V20H15"/><path d="M8 9.5h4M8 13h3.5"/></svg>
+            </span>
+            <span>Your Languages</span>
+        </a>
 
-        <span class="hero-eyebrow">
-            Your Learning Journey
-        </span>
+        <p class="dash-nav-group" id="nav-collect">Collect</p>
+        <a class="dash-nav-link dash-nav-link--collect" href="{{ url_for('achievements_page') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M8 8h8M8 12h5M8 16h6"/><circle cx="17" cy="7" r="3.2" fill="rgba(239,215,126,0.18)"/></svg>
+            </span>
+            <span>Achievements</span>
+        </a>
+        <a class="dash-nav-link dash-nav-link--collect" href="#heritage-passport">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8h8M8 12h5.5M8 16h4"/></svg>
+            </span>
+            <span>Heritage Passport</span>
+        </a>
+        <div class="dash-nav-heritage" id="heritage-trigger-slot">
+            <button type="button"
+                    class="heritage-key"
+                    id="heritage-trigger"
+                    aria-label="Heritage key: reveal your latest achievement stamp"
+                    aria-controls="heritage-plaque"
+                    aria-expanded="false">
+                <span class="heritage-key-aura" aria-hidden="true"></span>
+                <span class="heritage-key-cap">
+                    <span class="heritage-key-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <rect x="5" y="4" width="14" height="16" rx="1.6"/>
+                            <path d="M8.5 9h7M8.5 12.5h5M8.5 16h6"/>
+                        </svg>
+                    </span>
+                    <span class="heritage-key-label">Heritage</span>
+                </span>
+            </button>
+            <div class="heritage-trigger-speech"
+                 id="heritage-trigger-speech"
+                 role="status"
+                 aria-live="polite"
+                 hidden></div>
+        </div>
 
-        <h1>
-            Welcome back, {{ username }}
-        </h1>
+        <p class="dash-nav-group">Learn</p>
+        <a class="dash-nav-link" href="{{ url_for('dictionary_page') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 4.5h10.5A2.5 2.5 0 0 1 19 7v12.2H8A2 2 0 0 0 6 21.2V4.5z"/><path d="M6 4.5A2 2 0 0 0 4 6.5v12.7A2 2 0 0 1 6 17.2"/><path d="M9.5 9h6M9.5 12.5h5"/></svg>
+            </span>
+            <span>Dictionary</span>
+        </a>
+        <a class="dash-nav-link" href="{{ url_for('quiz_page') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 9a3 3 0 1 1 4.2 2.7c-.8.4-1.2 1-1.2 1.8V14"/><circle cx="12" cy="17.5" r="0.8" fill="currentColor" stroke="none"/><rect x="4" y="3" width="16" height="18" rx="3"/></svg>
+            </span>
+            <span>Practice Quiz</span>
+        </a>
+        <a class="dash-nav-link" href="{{ url_for('quiz_page') }}?mode=daily">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>
+            </span>
+            <span>Daily Quiz</span>
+        </a>
+        <a class="dash-nav-link" href="#random-word-card">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6.5"/><path d="M16.5 16.5L21 21"/><path d="M8.5 11h5M11 8.5v5"/></svg>
+            </span>
+            <span>Discover a Word</span>
+        </a>
+        <a class="dash-nav-link" href="{{ url_for('favorites_page') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 4.5l2.1 4.3 4.7.7-3.4 3.3.8 4.7L12 15.3 7.8 17.5l.8-4.7L5.2 9.5l4.7-.7L12 4.5z"/></svg>
+            </span>
+            <span>Saved Words</span>
+        </a>
+        <a class="dash-nav-link" href="{{ url_for('compare_languages') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 7h7M7 12h10M7 17h6"/><path d="M17 4v16"/></svg>
+            </span>
+            <span>Compare Languages</span>
+        </a>
+        <a class="dash-nav-link" href="{{ url_for('profile') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19c1.4-3.2 3.7-4.8 6.5-4.8S17.1 15.8 18.5 19"/></svg>
+            </span>
+            <span>Profile &amp; Progress</span>
+        </a>
+        <a class="dash-nav-link" href="{{ url_for('settings_page') }}">
+            <span class="dash-nav-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 4.5v1.6M12 17.9v1.6M4.5 12h1.6M17.9 12h1.6M6.4 6.4l1.1 1.1M16.5 16.5l1.1 1.1M17.6 6.4l-1.1 1.1M7.5 16.5l-1.1 1.1"/></svg>
+            </span>
+            <span>Mascot Settings</span>
+        </a>
+    </nav>
 
-        <p>
-            Explore Malaysia's linguistic heritage, learn at your own pace,
-            and continue discovering the languages and cultures that make
-            the country unique.
-        </p>
+    <div class="dash-sidebar-profile">
+        <img src="{{ url_for('static', filename='images/explorer-mascot-icon.svg') }}"
+             alt=""
+             width="36"
+             height="36">
+        <div>
+            <strong>{{ username }}</strong>
+            <small>Explorer Level {{ stats.level or 1 }}</small>
+            <div class="dash-xp-track"
+                 role="progressbar"
+                 aria-label="Explorer XP progress"
+                 aria-valuemin="0"
+                 aria-valuemax="{{ stats.xp_next or 300 }}"
+                 aria-valuenow="{{ stats.xp_current or 0 }}">
+                <span class="dash-xp-fill" data-xp-pct="{{ stats.xp_pct or 0 }}"></span>
+            </div>
+            <em>{{ stats.xp_current or 0 }} / {{ stats.xp_next or 300 }} XP</em>
+        </div>
+    </div>
+</aside>
 
+<main class="dashboard-page dashboard-page--universe dash-main" id="dash-main">
+    <div id="heritage-plaque-host" class="heritage-plaque-host" aria-hidden="true"></div>
+
+    <header class="dash-topbar">
+        <div class="dash-topbar-copy">
+            <span>Malaysian Linguistics Lab</span>
+        </div>
+        <div class="dash-topbar-stats" aria-label="Your explorer status">
+            <span class="dash-stat dash-stat--streak" id="streak-stat" title="Consecutive active days exploring">
+                <span class="streak-flame" aria-hidden="true">
+                    <svg viewBox="0 0 24 28" width="15" height="17" focusable="false">
+                        <defs>
+                            <linearGradient id="dashFlameGrad" x1="0" y1="1" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#d6b04d"/>
+                                <stop offset="45%" stop-color="#f0a35a"/>
+                                <stop offset="100%" stop-color="#ffd98a"/>
+                            </linearGradient>
+                        </defs>
+                        <path fill="url(#dashFlameGrad)" d="M12 2c1.2 4.2-2.2 6.2-2.2 9.4 0 2.2 1.5 3.8 3.4 3.8.4 0 .8-.1 1.1-.2-.2 2.6-2.1 4.4-4.5 4.4-3.2 0-5.4-2.6-5.4-5.8C4.4 8.4 9.2 5.8 12 2z"/>
+                        <path fill="#ffe7a8" opacity="0.85" d="M13.2 14.2c.1 1.6-1 2.7-2.2 2.7-1.5 0-2.5-1.2-2.5-2.7 0-1.7 1.8-2.8 2.9-4.2.2 1.6.7 2.8 1.8 4.2z"/>
+                    </svg>
+                </span>
+                <span>Streak {{ stats.streak or 0 }}</span>
+            </span>
+            <span class="dash-stat" title="Progress points from lessons and quiz answers">
+                {{ stats.points or 0 }} points
+            </span>
+        </div>
+    </header>
+
+    <section class="universe-landing"
+             id="world-explorer"
+             aria-labelledby="dashboard-hero-heading">
+
+        <div class="world-explorer-card universe-hero-card"
+             id="world-explorer-card"
+             data-explorer-state="world">
+
+            <div class="globe-stage universe-hero-stage"
+                 id="globe-stage"
+                 aria-label="Interactive Malaysian Language Universe">
+
+                <div id="three-globe-container" aria-hidden="true"></div>
+
+                <div class="universe-hero-chrome">
+
+                    <aside class="universe-welcome" aria-label="Welcome">
+                        <span class="universe-brand-mark">
+                            Malaysian Linguistics Lab
+                        </span>
+                        <span class="universe-eyebrow">
+                            Living languages of Malaysia
+                        </span>
+
+                        <p class="universe-welcome-user">
+                            Welcome back, {{ username }}
+                        </p>
+
+                        <h1 id="dashboard-hero-heading">
+                            Explore Malaysia's<br>Living Languages
+                        </h1>
+
+                        <p>
+                            Travel from your world to the communities,
+                            words and stories that keep Malaysia's
+                            languages alive.
+                        </p>
+
+                        <div class="universe-welcome-ctas">
+                            <button class="explore-world-button universe-cta-primary"
+                                    id="explore-world-button"
+                                    type="button">
+                                Enter the Universe
+                                <span aria-hidden="true">→</span>
+                            </button>
+
+                            <a class="universe-cta-secondary"
+                               href="#how-it-works">
+                                How it works
+                            </a>
+                        </div>
+                    </aside>
+
+                    <aside class="universe-journey-card" aria-label="Your journey">
+                        <span class="universe-journey-eyebrow">Your Journey</span>
+                        <ol class="universe-journey-steps">
+                            <li class="is-active">
+                                <span class="universe-journey-num">01</span>
+                                <span>
+                                    <strong>Your World</strong>
+                                    <small>Start anywhere</small>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="universe-journey-num">02</span>
+                                <span>
+                                    <strong>Malaysia</strong>
+                                    <small>Discover living languages</small>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="universe-journey-num">03</span>
+                                <span>
+                                    <strong>Living Languages</strong>
+                                    <small>Explore communities</small>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="universe-journey-num">04</span>
+                                <span>
+                                    <strong>Learn &amp; Preserve</strong>
+                                    <small>Keep exploring</small>
+                                </span>
+                            </li>
+                        </ol>
+                    </aside>
+
+                </div>
+
+                <div class="globe-status" id="globe-status">
+                    <span class="globe-status-dot" aria-hidden="true"></span>
+                    <span id="globe-status-text">Finding your place in the world</span>
+                </div>
+
+            </div>
+        </div>
     </section>
 
 
-    <!-- ================= YOUR LANGUAGES ================= -->
+    <section class="dash-feature-row" aria-label="Learning actions">
+        <a class="dash-feature-card" href="#world-explorer">
+            <span class="dash-feature-icon dash-feature-icon--earth" aria-hidden="true"></span>
+            <span class="dash-feature-eyebrow">World Explorer</span>
+            <strong>Explore Malaysia's living languages</strong>
+            <small>Spin the Earth and enter the Language Universe</small>
+            <span class="dash-feature-cta">Open Explorer →</span>
+        </a>
 
-   <section class="dashboard-languages-section"
+        <article class="dash-feature-card daily-challenge-card" id="daily-challenge-card">
+            <span class="dash-feature-icon dash-feature-icon--daily" aria-hidden="true"></span>
+            <span class="dash-feature-eyebrow">Daily Challenge</span>
+            {% if daily_quiz and daily_quiz.completed %}
+            <strong>Today complete</strong>
+            <small>
+                {{ daily_quiz.score.correct }}/{{ daily_quiz.score.total }}
+                {% if daily_quiz.score.percentage is not none %}
+                · {{ daily_quiz.score.percentage }}%
+                {% endif %}
+            </small>
+            <a class="dash-feature-cta" href="{{ url_for('quiz_page') }}?mode=daily">Retry Quiz →</a>
+            {% else %}
+            <strong>Today's quiz</strong>
+            <small>5 questions · ~2 minutes</small>
+            <a class="dash-feature-cta"
+               href="{{ url_for('quiz_page') }}?mode=daily"
+               id="start-daily-quiz">Start Quiz →</a>
+            {% endif %}
+        </article>
+
+        <article class="dash-feature-card random-word-card" id="random-word-card">
+            <span class="dash-feature-icon dash-feature-icon--discover" aria-hidden="true"></span>
+            <span class="dash-feature-eyebrow">Discover a Word</span>
+            <p class="random-word-lang" id="random-word-lang" hidden></p>
+            <strong id="random-word-term">A word from the collection</strong>
+            <small id="random-word-meta">Learn a random word from our languages</small>
+            <div class="dash-feature-actions">
+                <button type="button" class="dash-feature-cta" id="random-word-btn">Discover →</button>
+                <a class="dash-feature-ghost"
+                   id="random-word-dict-link"
+                   href="{{ url_for('dictionary_page') }}">Dictionary</a>
+                <a class="dash-feature-ghost"
+                   id="random-word-learn-link"
+                   href="{{ url_for('dictionary_page') }}"
+                   hidden>Learn</a>
+            </div>
+        </article>
+
+        {% set teaser = collection_teaser or {} %}
+        <a class="dash-feature-card dash-feature-card--collection" href="{{ url_for('achievements_page') }}" id="heritage-collection-card">
+            <span class="dash-feature-icon dash-feature-icon--collection" aria-hidden="true"></span>
+            <span class="dash-feature-eyebrow">Heritage Collection</span>
+            <strong>{{ teaser.earned or 0 }} / {{ teaser.total or 27 }} stamps collected</strong>
+            <small>
+                {{ teaser.percent or 0 }}% complete
+                · Streak {{ teaser.streak or stats.streak or 0 }}
+            </small>
+            <span class="dash-feature-cta">Continue collecting →</span>
+        </a>
+    </section>
+
+
+    {% set passport = heritage_passport or {} %}
+    {% set passport_cards = passport.cards or [] %}
+    <section class="heritage-passport"
+             id="heritage-passport"
+             aria-labelledby="heritage-passport-heading"
+             data-complete="{{ 'true' if passport.complete else 'false' }}">
+        <div class="heritage-passport-header">
+            <div>
+                <span class="explorer-eyebrow">Field notebook</span>
+                <h2 id="heritage-passport-heading">My Heritage Passport</h2>
+                <p>Collect living languages through exploration — a personal expedition record.</p>
+            </div>
+            <div class="heritage-passport-progress" aria-live="polite">
+                <strong id="heritage-passport-count">{{ passport.discovered_count or 0 }}/{{ passport.total or 4 }}</strong>
+                <span>discovered</span>
+            </div>
+        </div>
+
+        <ol class="heritage-journey-path" aria-label="Heritage journey path">
+            {% for step in passport.journey_path or ['World','Malaysia','Place','Language','Words / Lessons','Heritage Discovered'] %}
+            <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+
+        <div class="heritage-passport-grid" id="heritage-passport-grid">
+            {% for card in passport_cards %}
+            <button type="button"
+                    class="heritage-passport-card {% if card.discovered %}is-discovered{% else %}is-locked{% endif %}"
+                    data-lang="{{ card.key }}"
+                    data-name="{{ card.display_name }}"
+                    data-region="{{ card.region }}"
+                    data-discovered="{{ 'true' if card.discovered else 'false' }}"
+                    data-lessons="{{ card.lessons_completed }}/{{ card.lessons_total }}"
+                    data-words="{{ card.words_explored }}"
+                    data-saved="{{ card.words_saved }}"
+                    data-learn="{{ card.learn_url }}"
+                    data-dictionary="{{ card.dictionary_url }}"
+                    data-image="{% if card.image %}{{ url_for('static', filename='images/' ~ card.image) }}{% endif %}"
+                    aria-label="{{ card.display_name }} passport entry">
+                <span class="heritage-passport-media" aria-hidden="true"></span>
+                {% if card.discovered %}<span class="heritage-passport-seal" aria-hidden="true">Discovered</span>{% endif %}
+                <span class="heritage-passport-body">
+                    <span class="heritage-passport-region">{{ card.region }}</span>
+                    <strong>{{ card.display_name }}</strong>
+                    <span class="heritage-passport-stats">
+                        {{ card.words_explored }} words · {{ card.lessons_completed }}/{{ card.lessons_total }} lessons
+                    </span>
+                    <span class="heritage-passport-state">
+                        {% if card.discovered %}Discovered{% else %}Not yet discovered{% endif %}
+                    </span>
+                </span>
+            </button>
+            {% endfor %}
+        </div>
+
+        <p class="heritage-passport-complete {% if passport.complete %}is-visible{% endif %}"
+           id="heritage-passport-complete"
+           {% if not passport.complete %}hidden{% endif %}>
+            Malaysia's living languages — explored.
+        </p>
+    </section>
+
+    <div class="passport-detail-backdrop" id="passport-detail-backdrop" hidden>
+        <div class="passport-detail" role="dialog" aria-modal="true" aria-labelledby="passport-detail-title">
+            <button type="button" class="passport-detail-close" id="passport-detail-close" aria-label="Close">×</button>
+            <div class="passport-detail-media" id="passport-detail-media"></div>
+            <p class="passport-detail-eyebrow" id="passport-detail-state">Not yet discovered</p>
+            <h3 id="passport-detail-title">Language</h3>
+            <p id="passport-detail-region"></p>
+            <ol class="passport-detail-journey">
+                <li>World</li><li>Malaysia</li><li>Region</li><li>Language</li>
+            </ol>
+            <div class="passport-detail-stats" id="passport-detail-stats"></div>
+            <div class="passport-detail-actions">
+                <a href="#" id="passport-detail-learn">Continue Learning</a>
+                <a href="#" id="passport-detail-dict">Open Dictionary</a>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="how-it-works" id="how-it-works" aria-labelledby="how-it-works-heading">
+        <div class="how-it-works-inner">
+            <span class="explorer-eyebrow">How it works</span>
+            <h2 id="how-it-works-heading">From Earth to living languages</h2>
+            <ol class="how-it-works-steps">
+                <li><strong>Enter the Universe</strong> — travel from your place in the world to Malaysia.</li>
+                <li><strong>Find a beacon</strong> — each signal marks a living language community.</li>
+                <li><strong>Learn &amp; practise</strong> — open lessons, dictionary, and quizzes grounded in real course data.</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <section class="dashboard-languages-section"
          id="languages"
          aria-labelledby="languages-heading">
-    
-         <div class="dashboard-section-header">
 
-        <div>
-
-            <h2 id="languages-heading">
-                Your Languages
-            </h2>
-
-            <p>
-                Choose a language to continue your learning journey.
-            </p>
-
-        </div>
-
-        <div class="dashboard-header-actions">
-
-            <a class="compare-languages-button"
-               href="{{ url_for('compare_languages') }}"
-               aria-label="Compare Malaysian minority languages">
-
-                Compare Languages
-
-                <span aria-hidden="true">
-                    ⇄
-                </span>
-
-            </a>
-
-            <span class="language-count">
-                4 languages
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="language-grid">
-
-
-        <!-- IBAN -->
-
-        <a class="language-card iban-card"
-           href="{{ url_for('language_page', lang_key='iban') }}"
-           aria-label="Open Iban language course">
-
-            <div class="language-card-content">
-
-                <span class="language-region">
-                    Sarawak
-                </span>
-
-                <h3 class="language-name">
-                    Iban
-                </h3>
-
-                <p class="language-description">
-                    Discover one of Sarawak's most widely spoken
-                    indigenous languages.
-                </p>
-
-
-                <div class="progress-area">
-
-                    <div class="progress-label-row">
-
-                        <span class="progress-label">
-                            Learning progress
-                        </span>
-
-                        <span class="progress-percent">
-                            {{ language_progress['iban']['percentage'] }}%
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-track"
-                         role="progressbar"
-                         aria-label="Iban learning progress"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         aria-valuenow="{{ language_progress['iban']['percentage'] }}">
-
-                        <progress class="progress-fill"
-                                  max="100"
-                                  value="{{ language_progress['iban']['percentage'] }}">
-                        </progress>
-
-                    </div>
-
-                </div>
-
-
-                <div class="language-card-footer">
-
-                    <span class="continue-text">
-
-                        {% if language_progress['iban']['percentage'] > 0 %}
-                            Continue learning
-                        {% else %}
-                            Start learning
-                        {% endif %}
-
-                    </span>
-
-                    <span class="card-arrow"
-                          aria-hidden="true">
-                        →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- KADAZAN-DUSUN -->
-
-        <a class="language-card kadazan-card"
-           href="{{ url_for('language_page', lang_key='kadazan-dusun') }}"
-           aria-label="Open Kadazan-Dusun language course">
-
-            <div class="language-card-content">
-
-                <span class="language-region">
-                    Sabah
-                </span>
-
-                <h3 class="language-name">
-                    Kadazan-Dusun
-                </h3>
-
-                <p class="language-description">
-                    Begin exploring a major indigenous language
-                    tradition from Sabah.
-                </p>
-
-
-                <div class="progress-area">
-
-                    <div class="progress-label-row">
-
-                        <span class="progress-label">
-                            Learning progress
-                        </span>
-
-                        <span class="progress-percent">
-                            {{ language_progress['kadazan-dusun']['percentage'] }}%
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-track"
-                         role="progressbar"
-                         aria-label="Kadazan-Dusun learning progress"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         aria-valuenow="{{ language_progress['kadazan-dusun']['percentage'] }}">
-
-                        <progress class="progress-fill"
-                                  max="100"
-                                  value="{{ language_progress['kadazan-dusun']['percentage'] }}">
-                        </progress>
-
-                    </div>
-
-                </div>
-
-
-                <div class="language-card-footer">
-
-                    <span class="continue-text">
-
-                        {% if language_progress['kadazan-dusun']['percentage'] > 0 %}
-                            Continue learning
-                        {% else %}
-                            Start learning
-                        {% endif %}
-
-                    </span>
-
-                    <span class="card-arrow"
-                          aria-hidden="true">
-                        →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- BIDAYUH -->
-
-        <a class="language-card bidayuh-card"
-           href="{{ url_for('language_page', lang_key='bidayuh') }}"
-           aria-label="Open Bidayuh language course">
-
-            <div class="language-card-content">
-
-                <span class="language-region">
-                    Sarawak
-                </span>
-
-                <h3 class="language-name">
-                    Bidayuh
-                </h3>
-
-                <p class="language-description">
-                    Explore the language and cultural heritage of
-                    Bidayuh communities in Sarawak.
-                </p>
-
-
-                <div class="progress-area">
-
-                    <div class="progress-label-row">
-
-                        <span class="progress-label">
-                            Learning progress
-                        </span>
-
-                        <span class="progress-percent">
-                            {{ language_progress['bidayuh']['percentage'] }}%
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-track"
-                         role="progressbar"
-                         aria-label="Bidayuh learning progress"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         aria-valuenow="{{ language_progress['bidayuh']['percentage'] }}">
-
-                        <progress class="progress-fill"
-                                  max="100"
-                                  value="{{ language_progress['bidayuh']['percentage'] }}">
-                        </progress>
-
-                    </div>
-
-                </div>
-
-
-                <div class="language-card-footer">
-
-                    <span class="continue-text">
-
-                        {% if language_progress['bidayuh']['percentage'] > 0 %}
-                            Continue learning
-                        {% else %}
-                            Start learning
-                        {% endif %}
-
-                    </span>
-
-                    <span class="card-arrow"
-                          aria-hidden="true">
-                        →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <!-- MAH MERI -->
-
-        <a class="language-card mah-meri-card"
-           href="{{ url_for('language_page', lang_key='mah-meri') }}"
-           aria-label="Open Mah Meri language page">
-
-            <div class="language-card-content">
-
-                <span class="language-region">
-                    Selangor
-                </span>
-
-                <h3 class="language-name">
-                    Mah Meri
-                </h3>
-
-                <p class="language-description">
-                    Explore a living Indigenous language connected with
-                    coastal communities in Peninsular Malaysia.
-                </p>
-
-
-                <div class="progress-area">
-
-                    <div class="progress-label-row">
-
-                        <span class="progress-label">
-                            Learning progress
-                        </span>
-
-                        <span class="progress-percent">
-                            {{ language_progress['mah-meri']['percentage'] }}%
-                        </span>
-
-                    </div>
-
-
-                    <div class="progress-track"
-                         role="progressbar"
-                         aria-label="Mah Meri learning progress"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         aria-valuenow="{{ language_progress['mah-meri']['percentage'] }}">
-
-                        <progress class="progress-fill"
-                                  max="100"
-                                  value="{{ language_progress['mah-meri']['percentage'] }}">
-                        </progress>
-
-                    </div>
-
-                </div>
-
-
-                <div class="language-card-footer">
-
-                    <span class="continue-text">
-
-                        {% if language_progress['mah-meri']['percentage'] > 0 %}
-                            Continue learning
-                        {% else %}
-                            Explore language
-                        {% endif %}
-
-                    </span>
-
-                    <span class="card-arrow"
-                          aria-hidden="true">
-                        →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </a>
-
-
-    </div>
-
-</section>
-
-    <!-- ================= EXPLORE MALAYSIA ================= -->
-
-    <section class="world-explorer-section"
-         id="world-explorer"
-         aria-labelledby="world-explorer-heading">
-
-    <div class="world-explorer-intro">
-
-        <span class="explorer-eyebrow">
-            Explore Where Languages Live
-        </span>
-
-        <h2 id="world-explorer-heading">
-            Begin from your place in the world
-        </h2>
-
-        <p>
-            Travel from where you are to the communities behind
-            Malaysia's living languages.
-        </p>
-
-    </div>
-
-
-    <div class="world-explorer-card"
-         id="world-explorer-card">
-
-
-        <!-- FULL-WIDTH THREE.JS SPACE SCENE -->
-
-        <div class="globe-stage"
-             id="globe-stage"
-             aria-label="Interactive world exploration area">
-
-            <div id="three-globe-container"
-                 aria-hidden="true">
-            </div>
-
-
-            <!-- STORY OVERLAY -->
-
-            <div class="world-explorer-content">
-
-                <span class="explorer-stage-label">
-                    Your Place in the World
-                </span>
-
-                <h3>
-                    Every language begins somewhere.
-                </h3>
-
+        <div class="dashboard-section-header">
+            <div>
+                <h2 id="languages-heading">
+                    Explore our living languages
+                </h2>
                 <p>
-                    Start from your place in the world, then move closer
-                    to Malaysia and discover where these living languages
-                    continue to be spoken.
+                    Choose a language world to continue learning.
                 </p>
-
-
-                <div class="explorer-route">
-
-                    <div class="explorer-route-step is-active">
-
-                        <span class="route-step-number">
-                            01
-                        </span>
-
-                        <div>
-                            <strong>
-                                Your World
-                            </strong>
-
-                            <span>
-                                Begin where you are
-                            </span>
-                        </div>
-
-                    </div>
-
-
-                    <span class="explorer-route-line"
-                          aria-hidden="true">
-                    </span>
-
-
-                    <div class="explorer-route-step">
-
-                        <span class="route-step-number">
-                            02
-                        </span>
-
-                        <div>
-                            <strong>
-                                Malaysia
-                            </strong>
-
-                            <span>
-                                Move closer to the country
-                            </span>
-                        </div>
-
-                    </div>
-
-
-                    <span class="explorer-route-line"
-                          aria-hidden="true">
-                    </span>
-
-
-                    <div class="explorer-route-step">
-
-                        <span class="route-step-number">
-                            03
-                        </span>
-
-                        <div>
-                            <strong>
-                                Living Languages
-                            </strong>
-
-                            <span>
-                                Discover communities and places
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <button class="explore-world-button"
-                        id="explore-world-button"
-                        type="button">
-
-                    Explore the Map
-
-                    <span aria-hidden="true">
-                        →
-                    </span>
-
-                </button>
-
             </div>
-
-
-            <!-- LOCATION STATUS -->
-
-            <div class="globe-status"
-                 id="globe-status">
-
-                <span class="globe-status-dot"
-                      aria-hidden="true">
-                </span>
-
-                <span id="globe-status-text">
-                    Finding your place in the world
-                </span>
-
-            </div>
-
+            <span class="language-count">4 languages</span>
         </div>
 
-    </div>
+        <div class="language-grid living-language-worlds">
+            {% set card_class = {
+                'iban': 'iban-card',
+                'kadazan-dusun': 'kadazan-card',
+                'bidayuh': 'bidayuh-card',
+                'mah-meri': 'mah-meri-card'
+            } %}
+            {% for lang_key, meta in language_explorer_meta.items() %}
+            {% set pct = language_progress[lang_key].percentage if language_progress.get(lang_key) else 0 %}
+            <a class="language-card {{ card_class.get(lang_key, lang_key ~ '-card') }} living-world-card"
+               href="{{ meta.learn_url }}"
+               aria-label="Open {{ meta.display_name }} language course">
+                <div class="language-card-content living-world-content">
+                    <span class="language-region">{{ meta.region or '' }}</span>
+                    <h3 class="language-name">{{ meta.display_name }}</h3>
+                    <div class="living-world-stats" aria-label="Course coverage">
+                        <div>
+                            <strong>{{ meta.vocab_count }}</strong>
+                            <span>Words</span>
+                        </div>
+                        <div>
+                            <strong>{{ meta.lesson_count }}</strong>
+                            <span>Lessons</span>
+                        </div>
+                        <div>
+                            <strong>{{ meta.quiz_count }}</strong>
+                            <span>Quiz items</span>
+                        </div>
+                    </div>
+                    <div class="language-card-footer">
+                        <span class="continue-text">
+                            {% if pct >= 100 %}Review{% elif pct > 0 %}Continue{% else %}Start exploring{% endif %}
+                        </span>
+                        <span class="card-arrow living-world-arrow" aria-hidden="true">→</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
 
-</section>
+    <p class="dash-heritage-quote">
+        Every language is a universe. Every word, a bridge.
+    </p>
 
    <!-- ================= LIVING LANGUAGE RECORDS ================= -->
 
@@ -778,6 +732,7 @@
 </section>
 
 </main>
+</div>
 
 
 <script src="{{ url_for('static', filename='js/mahmeri-data.js') }}"></script>
@@ -785,6 +740,195 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script src="{{ url_for('static', filename='js/earth-globe.js') }}"></script>
+
+<template id="language-explorer-meta-json">{{ language_explorer_meta | tojson }}</template>
+<script>
+(function () {
+    var el = document.getElementById("language-explorer-meta-json");
+    var raw = el ? (el.innerHTML || el.textContent || "").trim() : "";
+    try {
+        window.LANGUAGE_EXPLORER_META = raw ? JSON.parse(raw) : {};
+    } catch (err) {
+        window.LANGUAGE_EXPLORER_META = {};
+    }
+})();
+</script>
+
+<script src="{{ url_for('static', filename='js/language-universe.js') }}"></script>
+
+<script>
+(function () {
+    function applyXpBars() {
+        document.querySelectorAll(".dash-xp-fill[data-xp-pct]").forEach(function (el) {
+            var pct = Number(el.getAttribute("data-xp-pct") || "0");
+            if (!isFinite(pct)) {
+                pct = 0;
+            }
+            pct = Math.max(0, Math.min(100, pct));
+            el.style.width = pct + "%";
+        });
+    }
+
+    function applyPassportMediaImages() {
+        var gradient =
+            "linear-gradient(180deg, rgba(4,16,12,0.08), rgba(4,14,12,0.58))";
+        document.querySelectorAll(".heritage-passport-card").forEach(function (card) {
+            var media = card.querySelector(".heritage-passport-media");
+            var imageUrl = (card.getAttribute("data-image") || "").trim();
+            if (!media) {
+                return;
+            }
+            if (imageUrl) {
+                media.style.backgroundImage =
+                    gradient + ", url('" + imageUrl.replace(/'/g, "%27") + "')";
+            } else {
+                media.style.backgroundImage = gradient;
+            }
+        });
+    }
+
+    applyXpBars();
+    applyPassportMediaImages();
+
+    function applyPassportUpdate(detail) {
+        if (!detail || !detail.cards) {
+            return;
+        }
+        const countEl = document.getElementById("heritage-passport-count");
+        const completeEl = document.getElementById("heritage-passport-complete");
+        const section = document.getElementById("heritage-passport");
+        if (countEl) {
+            countEl.textContent =
+                String(detail.discovered_count || 0) +
+                "/" +
+                String(detail.total || 4);
+        }
+        detail.cards.forEach(function (card) {
+            const el = document.querySelector(
+                '.heritage-passport-card[data-lang="' + card.key + '"]'
+            );
+            if (!el) {
+                return;
+            }
+            const state = el.querySelector(".heritage-passport-state");
+            const stats = el.querySelector(".heritage-passport-stats");
+            el.dataset.discovered = card.discovered ? "true" : "false";
+            el.dataset.lessons =
+                String(card.lessons_completed || 0) +
+                "/" +
+                String(card.lessons_total || 0);
+            el.dataset.words = String(card.words_explored || 0);
+            el.dataset.saved = String(card.words_saved || 0);
+            if (stats) {
+                stats.textContent =
+                    String(card.words_explored || 0) +
+                    " words · " +
+                    String(card.lessons_completed || 0) +
+                    "/" +
+                    String(card.lessons_total || 0) +
+                    " lessons";
+            }
+            if (card.discovered) {
+                const wasLocked = el.classList.contains("is-locked");
+                el.classList.add("is-discovered");
+                el.classList.remove("is-locked");
+                if (state) {
+                    state.textContent = "Discovered";
+                }
+                if (!el.querySelector(".heritage-passport-seal")) {
+                    const seal = document.createElement("span");
+                    seal.className = "heritage-passport-seal";
+                    seal.setAttribute("aria-hidden", "true");
+                    seal.textContent = "Discovered";
+                    el.appendChild(seal);
+                }
+                if (wasLocked && detail.newly_discovered && detail.language === card.key) {
+                    el.classList.add("is-just-found");
+                    window.setTimeout(function () {
+                        el.classList.remove("is-just-found");
+                    }, 1000);
+                }
+            }
+        });
+        if (detail.complete && completeEl) {
+            completeEl.hidden = false;
+            completeEl.classList.add("is-visible");
+            if (section) {
+                section.dataset.complete = "true";
+            }
+        }
+        if (window.reportNewAchievements && detail.new_achievements) {
+            window.reportNewAchievements(detail.new_achievements);
+        }
+    }
+
+    const backdrop = document.getElementById("passport-detail-backdrop");
+    const closeBtn = document.getElementById("passport-detail-close");
+
+    function openPassportDetail(card) {
+        if (!backdrop || !card) return;
+        document.getElementById("passport-detail-title").textContent =
+            card.dataset.name || "Language";
+        document.getElementById("passport-detail-region").textContent =
+            card.dataset.region || "";
+        document.getElementById("passport-detail-state").textContent =
+            card.dataset.discovered === "true" ? "Discovered" : "Not yet discovered";
+        document.getElementById("passport-detail-stats").textContent =
+            (card.dataset.words || "0") +
+            " words explored · " +
+            (card.dataset.saved || "0") +
+            " saved · " +
+            (card.dataset.lessons || "0/0") +
+            " lessons";
+        const media = document.getElementById("passport-detail-media");
+        if (media) {
+            media.style.backgroundImage = card.dataset.image
+                ? "linear-gradient(180deg, rgba(4,16,12,0.1), rgba(4,14,12,0.55)), url('" +
+                  card.dataset.image +
+                  "')"
+                : "none";
+        }
+        const learn = document.getElementById("passport-detail-learn");
+        const dict = document.getElementById("passport-detail-dict");
+        if (learn) learn.href = card.dataset.learn || "#";
+        if (dict) dict.href = card.dataset.dictionary || "#";
+        const journey = backdrop.querySelector(".passport-detail-journey");
+        if (journey) {
+            journey.innerHTML =
+                "<li>World</li><li>Malaysia</li><li>" +
+                (card.dataset.region || "Region") +
+                "</li><li>" +
+                (card.dataset.name || "Language") +
+                "</li>";
+        }
+        backdrop.hidden = false;
+    }
+
+    function closePassportDetail() {
+        if (backdrop) backdrop.hidden = true;
+    }
+
+    document.getElementById("heritage-passport-grid") &&
+        document.getElementById("heritage-passport-grid").addEventListener("click", function (event) {
+            const card = event.target.closest(".heritage-passport-card");
+            if (card) openPassportDetail(card);
+        });
+
+    if (closeBtn) closeBtn.addEventListener("click", closePassportDetail);
+    if (backdrop) {
+        backdrop.addEventListener("click", function (event) {
+            if (event.target === backdrop) closePassportDetail();
+        });
+    }
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closePassportDetail();
+    });
+
+    window.addEventListener("heritagePassportUpdated", function (event) {
+        applyPassportUpdate(event.detail || {});
+    });
+})();
+</script>
 
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
@@ -1744,6 +1888,10 @@
 
 <script src="https://www.youtube.com/iframe_api"></script>
 
+<script>
+/* LANGUAGE_EXPLORER_META is set earlier for Language Universe. */
+window.LANGUAGE_EXPLORER_META = window.LANGUAGE_EXPLORER_META || {};
+</script>
 
 <script>
 

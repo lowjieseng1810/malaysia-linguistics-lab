@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Suggest a Correction — {{ language.display_name }}{% endblock %}
+
+{% block content %}
+
+<style>
+.corr-page{padding:20px 0 60px;max-width:720px;}
+.corr-page h1{font-size:1.7rem;font-weight:750;color:#fff;margin:10px 0 8px;}
+.corr-page p{color:var(--muted);font-size:.95rem;line-height:1.55;margin-bottom:14px;}
+.corr-page .card{padding:22px;}
+.corr-page label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(235,243,238,.6);margin:14px 0 6px;}
+.corr-page input,.corr-page textarea,.corr-page select{
+  width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--border);
+  background:rgba(255,255,255,.06);color:#fff;font-size:.92rem;
+}
+.corr-page textarea{min-height:140px;resize:vertical;}
+.corr-page select option{color:#111;}
+.corr-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.corr-actions a,.corr-actions button{
+  padding:11px 16px;border-radius:12px;font-size:.9rem;font-weight:650;text-decoration:none;cursor:pointer;
+}
+.corr-primary{border:1px solid rgba(217,180,74,.4);background:rgba(217,180,74,.16);color:#efd77e;}
+.corr-secondary{border:1px solid var(--border);background:rgba(255,255,255,.06);color:#fff;}
+.corr-note{margin-top:16px;padding:12px 14px;border-radius:12px;border:1px solid rgba(217,180,74,.25);background:rgba(217,180,74,.08);color:#efd77e;font-size:.88rem;}
+</style>
+
+<div class="corr-page">
+
+  <a href="{{ url_for('language_page', lang_key=lang_key) }}" class="corr-secondary" style="display:inline-block;margin-bottom:8px;">
+    ← Back to {{ language.display_name }}
+  </a>
+
+  <h1>Suggest a correction</h1>
+  <p>
+    Help improve the {{ language.display_name }} materials on this site.
+    Describe what looks wrong (a word, meaning, cultural note, or source) and
+    how it should be corrected. This form is for community feedback —
+    submissions are not sent automatically until an email channel is configured.
+  </p>
+
+  <div class="card">
+    <form id="correction-form" onsubmit="return handleCorrection(event);">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+      <label for="corr-type">What needs correcting?</label>
+      <select id="corr-type" name="type" required>
+        <option value="vocabulary">Vocabulary / meaning</option>
+        <option value="pronunciation">Pronunciation / IPA</option>
+        <option value="culture">Culture / context note</option>
+        <option value="lesson">Lesson content</option>
+        <option value="other">Something else</option>
+      </select>
+
+      <label for="corr-detail">Details</label>
+      <textarea id="corr-detail" name="detail" required
+        placeholder="Example: The word X is written incorrectly; the usual spelling is Y."></textarea>
+
+      <label for="corr-contact">Optional contact (email)</label>
+      <input id="corr-contact" name="contact" type="email" autocomplete="email"
+        placeholder="So we can follow up if needed">
+
+      <div class="corr-actions">
+        <button type="submit" class="corr-primary">Copy feedback to clipboard</button>
+        <a class="corr-secondary" href="{{ url_for('language_sources', lang_key=lang_key) }}">View sources</a>
+      </div>
+
+      <div class="corr-note" id="corr-status" hidden></div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+function handleCorrection(event) {
+  event.preventDefault();
+  var type = document.getElementById("corr-type").value;
+  var detail = document.getElementById("corr-detail").value.trim();
+  var contact = document.getElementById("corr-contact").value.trim();
+  var status = document.getElementById("corr-status");
+  if (!detail) return false;
+
+  var text =
+    "Language: {{ language.display_name }} ({{ lang_key }})\n" +
+    "Type: " + type + "\n" +
+    "Details: " + detail + "\n" +
+    (contact ? ("Contact: " + contact + "\n") : "");
+
+  function showDone(msg) {
+    status.hidden = false;
+    status.textContent = msg;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showDone("Feedback copied. Paste it into an issue or email to the project maintainers.");
+    }).catch(function () {
+      showDone("Could not copy automatically. Please copy your notes manually.");
+    });
+  } else {
+    showDone("Please copy your notes manually and share them with the maintainers.");
+  }
+  return false;
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,1351 @@
+{
+  "language": "kadazan-dusun",
+  "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+  "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)",
+  "entries": [
+    {
+      "word": "longon",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "gibang",
+      "meaning_en": "left",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "wanan",
+      "meaning_en": "right",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "gakod",
+      "meaning_en": "leg/foot",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "panau",
+      "meaning_en": "to walk",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "dalan",
+      "meaning_en": "road/path",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rikot",
+      "meaning_en": "to come",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kaau",
+      "meaning_en": "to turn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "romos",
+      "meaning_en": "dirty",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "abuk",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "lisohu",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kulit",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tian",
+      "meaning_en": "back",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tiyan",
+      "meaning_en": "belly",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tulang",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tinaiʔ",
+      "meaning_en": "intestines",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "lusou",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "susu",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "lihao",
+      "meaning_en": "shoulder",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ilo",
+      "meaning_en": "to know, be knowledgeable",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "koilo",
+      "meaning_en": "to know, be knowledgeable",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sorou",
+      "meaning_en": "to think",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "oris",
+      "meaning_en": "to fear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rosi",
+      "meaning_en": "to fear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rahaʔ",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tulu",
+      "meaning_en": "head",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "liou",
+      "meaning_en": "neck",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "todung",
+      "meaning_en": "hair",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "puhobo",
+      "meaning_en": "to breathe",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "singud",
+      "meaning_en": "to sniff, smell",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kabang",
+      "meaning_en": "mouth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "nipon",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "nipen",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "dilaʔ",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "irak",
+      "meaning_en": "to laugh",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ihad",
+      "meaning_en": "to cry",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ilob",
+      "meaning_en": "to vomit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "dulaʔ",
+      "meaning_en": "to spit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "akan",
+      "meaning_en": "to eat",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "inum",
+      "meaning_en": "to chew",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kokot",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "siop",
+      "meaning_en": "to suck",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tolingo",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rongou",
+      "meaning_en": "to hear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "mato",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kito",
+      "meaning_en": "to see",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "uab",
+      "meaning_en": "to yawn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "odop",
+      "meaning_en": "to sleep",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ipi",
+      "meaning_en": "to lie down",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "irikau",
+      "meaning_en": "to sit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ingkakat",
+      "meaning_en": "to stand",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tulun",
+      "meaning_en": "person/human being",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kusai",
+      "meaning_en": "man/male",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tondu",
+      "meaning_en": "woman/female",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tanak",
+      "meaning_en": "child",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sao",
+      "meaning_en": "husband",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "asawo",
+      "meaning_en": "husband",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sao",
+      "meaning_en": "wife",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sawo",
+      "meaning_en": "wife",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "asawo",
+      "meaning_en": "wife",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tina",
+      "meaning_en": "mother",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ina",
+      "meaning_en": "mother",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tama",
+      "meaning_en": "father",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ama",
+      "meaning_en": "father",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "walai",
+      "meaning_en": "house",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "taap",
+      "meaning_en": "thatch/roof",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ngaran",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "boros",
+      "meaning_en": "to say",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tali",
+      "meaning_en": "rope",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "wongkos",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kagos",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "dalat",
+      "meaning_en": "to sew",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tokon",
+      "meaning_en": "to stab, pierce",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "panakau",
+      "meaning_en": "to hit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "patai",
+      "meaning_en": "to kill",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "patai",
+      "meaning_en": "to die, be dead",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "pasi",
+      "meaning_en": "to live, be alive",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kayu",
+      "meaning_en": "to scratch",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tarom",
+      "meaning_en": "to split",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "opodih",
+      "meaning_en": "dull, blunt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tanom",
+      "meaning_en": "to work",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "piliʔ",
+      "meaning_en": "to choose",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ukad",
+      "meaning_en": "to grow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "boli",
+      "meaning_en": "to buy",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ukab",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tasu",
+      "meaning_en": "to pound, beat",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tombolog",
+      "meaning_en": "bird",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tontoluʔ",
+      "meaning_en": "egg",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "talad",
+      "meaning_en": "feather",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "palapaʔ",
+      "meaning_en": "wing",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tulud",
+      "meaning_en": "to fly",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tikus",
+      "meaning_en": "rat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "daging",
+      "meaning_en": "meat/flesh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "lunok",
+      "meaning_en": "fat/grease",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tumau",
+      "meaning_en": "fat/grease",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tikiu",
+      "meaning_en": "tail",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tulanut",
+      "meaning_en": "snake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tonggiluang",
+      "meaning_en": "worm (earthworm)",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "nondui",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "korut",
+      "meaning_en": "spider",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sadaʔ",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "roun",
+      "meaning_en": "rotten",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "gamut",
+      "meaning_en": "root",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "bungaʔ",
+      "meaning_en": "flower",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tuaʔ",
+      "meaning_en": "fruit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sakot",
+      "meaning_en": "grass",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tanaʔ",
+      "meaning_en": "earth/soil",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "watu",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "togis",
+      "meaning_en": "sand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "luyung",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rahat",
+      "meaning_en": "sea",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "silaon",
+      "meaning_en": "salt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tusi",
+      "meaning_en": "salt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "botung",
+      "meaning_en": "lake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "gouton",
+      "meaning_en": "woods/forest",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "taan",
+      "meaning_en": "sky",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tulan",
+      "meaning_en": "moon",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rombituon",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "houn",
+      "meaning_en": "cloud",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "rasam",
+      "meaning_en": "rain",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tinggoron",
+      "meaning_en": "thunder",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "kodumaat",
+      "meaning_en": "lightning",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ribut",
+      "meaning_en": "wind",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "oyopos",
+      "meaning_en": "to blow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "aagat",
+      "meaning_en": "heavy",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tapui",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tauh",
+      "meaning_en": "to burn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "oitom",
+      "meaning_en": "black",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "opurak",
+      "meaning_en": "white",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "aragang",
+      "meaning_en": "red",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "osilou",
+      "meaning_en": "yellow",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "asilau",
+      "meaning_en": "yellow",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "otomou",
+      "meaning_en": "green",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "okotoʔ",
+      "meaning_en": "small",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "agayo",
+      "meaning_en": "big",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "okikip",
+      "meaning_en": "short",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "alaab",
+      "meaning_en": "wide",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "oruol",
+      "meaning_en": "painful, sick",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sumakit",
+      "meaning_en": "painful, sick",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "oikum-ikum",
+      "meaning_en": "shy, ashamed",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "wagu",
+      "meaning_en": "old",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "osonong",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "araat",
+      "meaning_en": "bad, evil",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "otopot",
+      "meaning_en": "correct, true",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "otuong",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "tadau",
+      "meaning_en": "day",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "toun",
+      "meaning_en": "year",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "id",
+      "meaning_en": "when?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "id suang",
+      "meaning_en": "in, inside",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "id saat",
+      "meaning_en": "above",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "id siribaʔ",
+      "meaning_en": "below",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "iti",
+      "meaning_en": "this",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ilo",
+      "meaning_en": "that",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "somok",
+      "meaning_en": "near",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "sodu",
+      "meaning_en": "far",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ioho",
+      "meaning_en": "where?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "iaʔ",
+      "meaning_en": "thou",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "iau",
+      "meaning_en": "he/she",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "iaʔ",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ika",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ioloʔ",
+      "meaning_en": "they",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "suai",
+      "meaning_en": "what?",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ngaaiʔ",
+      "meaning_en": "all",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "om",
+      "meaning_en": "and",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "ondum",
+      "meaning_en": "if",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "amuʔ",
+      "meaning_en": "how?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "au",
+      "meaning_en": "no, not",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    },
+    {
+      "word": "intob",
+      "meaning_en": "to count",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); fieldwork Ranau, Sabah; ISO-639-3:dtp; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)"
+    }
+  ]
+}

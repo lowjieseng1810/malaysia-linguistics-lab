@@ -1,0 +1,760 @@
+/* =========================================
+   Corrected Universe hero composition
+   Earth floats in space; UI stays off the globe.
+   WORLD → ENTERING → MALAYSIA
+   ========================================= */
+
+.dashboard-page--universe {
+    padding-top: 4px;
+}
+
+.universe-landing {
+    margin: 0 0 24px;
+}
+
+.universe-hero-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+        radial-gradient(ellipse 60% 50% at 58% 42%, rgba(10, 32, 48, 0.4), transparent 62%),
+        linear-gradient(165deg, rgba(3, 12, 18, 0.98), rgba(4, 16, 14, 0.96));
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.36),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Tall hero stage — Earth dominates ~48–55% of the visual area */
+.universe-hero-stage.globe-stage {
+    height: min(72vh, 720px);
+    min-height: 560px;
+    max-height: 780px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(ellipse 48% 48% at 56% 48%, rgba(6, 20, 28, 0.2) 0%, rgba(2, 8, 12, 0.78) 52%, rgba(1, 4, 8, 0.98) 100%),
+        radial-gradient(circle at 14% 20%, rgba(60, 80, 140, 0.16) 0%, transparent 36%),
+        radial-gradient(circle at 88% 26%, rgba(100, 60, 120, 0.12) 0%, transparent 32%),
+        radial-gradient(circle at 80% 78%, rgba(30, 80, 70, 0.1) 0%, transparent 38%),
+        #02060a;
+}
+
+.universe-hero-stage.globe-stage::before {
+    width: min(420px, 42vw);
+    height: min(420px, 42vw);
+    left: 56%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background:
+        radial-gradient(
+            circle,
+            rgba(70, 140, 180, 0.07) 0%,
+            rgba(30, 80, 70, 0.04) 40%,
+            transparent 70%
+        );
+    filter: blur(28px);
+}
+
+.universe-hero-stage.globe-stage::after {
+    opacity: 0.75;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.05) 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.03) 0 1px, transparent 2px),
+        radial-gradient(circle at 42% 78%, rgba(239, 215, 126, 0.035) 0 1px, transparent 2px);
+    background-size: 170px 170px, 250px 250px, 310px 310px;
+}
+
+/* Full-stage canvas (same aspect as #globe-stage). Earth composition is
+   handled in Three.js — never CSS-inset the WebGL box (that stretches Earth). */
+#world-explorer-card.universe-hero-card #three-earth-container {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 4 !important;
+}
+
+.universe-hero-chrome {
+    position: absolute;
+    inset: 0;
+    z-index: 26;
+    display: grid;
+    /* Dedicated left / center Earth / right journey zones — keep panels off the planet body */
+    grid-template-columns: minmax(150px, 15.5%) minmax(0, 1fr) minmax(144px, 15.5%);
+    gap: 16px;
+    align-items: start;
+    padding: 14px 10px 0;
+    pointer-events: none;
+}
+
+.universe-welcome,
+.universe-journey-card {
+    pointer-events: auto;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.universe-welcome {
+    grid-column: 1;
+    justify-self: start;
+    width: 100%;
+    max-width: 186px;
+    padding: 11px 11px 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(160deg, rgba(6, 22, 18, 0.82), rgba(4, 12, 16, 0.68));
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
+}
+
+.universe-brand-mark {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(239, 215, 126, 0.78);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.universe-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(210, 224, 216, 0.7);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.universe-welcome-user {
+    margin: 0 0 6px !important;
+    color: rgba(243, 226, 164, 0.88) !important;
+    font-size: 0.86rem !important;
+    font-weight: 600;
+}
+
+.universe-welcome h1 {
+    margin: 0;
+    max-width: 12ch;
+    color: #fff;
+    font-size: clamp(1.08rem, 1.45vw, 1.32rem);
+    font-weight: 720;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+}
+
+.universe-welcome > p {
+    margin: 6px 0 0;
+    max-width: 22ch;
+    color: rgba(228, 238, 232, 0.76);
+    font-size: 0.74rem;
+    line-height: 1.4;
+}
+
+.universe-welcome-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.universe-cta-primary.explore-world-button {
+    align-self: flex-start;
+    margin: 0;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 215, 126, 0.4);
+    background: linear-gradient(135deg, #d9b44a, #efd77e);
+    color: #183226;
+    font-size: 0.82rem;
+    font-weight: 780;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.26);
+}
+
+.universe-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 215, 126, 0.24);
+    color: rgba(243, 226, 164, 0.9);
+    text-decoration: none;
+    font-size: 0.8rem;
+    background: rgba(8, 22, 18, 0.3);
+}
+
+.universe-journey-card {
+    grid-column: 3;
+    justify-self: end;
+    width: 100%;
+    max-width: 196px;
+    padding: 12px 12px 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(165deg, rgba(6, 20, 18, 0.78), rgba(4, 12, 16, 0.62));
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.universe-journey-eyebrow {
+    display: block;
+    margin-bottom: 10px;
+    color: rgba(239, 215, 126, 0.76);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.universe-journey-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.universe-journey-steps li {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 8px;
+    align-items: start;
+    opacity: 0.5;
+}
+
+.universe-journey-steps li.is-active {
+    opacity: 1;
+}
+
+.universe-journey-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(236, 244, 240, 0.68);
+    font-size: 0.58rem;
+    font-weight: 750;
+}
+
+.universe-journey-steps li.is-active .universe-journey-num {
+    border-color: rgba(239, 215, 126, 0.42);
+    background: rgba(217, 180, 74, 0.14);
+    color: #efd77e;
+}
+
+.universe-journey-steps strong {
+    display: block;
+    color: #fff;
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.universe-journey-steps small {
+    display: block;
+    margin-top: 2px;
+    color: rgba(210, 224, 216, 0.62);
+    font-size: 0.64rem;
+    line-height: 1.3;
+}
+
+.universe-hero-card .globe-status {
+    top: auto;
+    bottom: 14px;
+    right: 18px;
+    left: auto;
+    z-index: 28;
+}
+
+/* Compact secondary action rail */
+.universe-action-rail {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding: 10px 12px 12px;
+    background: linear-gradient(180deg, rgba(3, 12, 14, 0.15), rgba(3, 14, 12, 0.62));
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.universe-rail-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 84px;
+    padding: 11px 12px 10px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(6, 18, 16, 0.48);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.universe-rail-card:hover,
+.universe-rail-card:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(239, 215, 126, 0.3);
+}
+
+.universe-rail-eyebrow {
+    color: rgba(239, 215, 126, 0.78);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.universe-rail-card strong,
+.universe-rail-card #random-word-term {
+    color: #fff8e8;
+    font-size: 0.86rem;
+    font-weight: 680;
+    line-height: 1.25;
+}
+
+.universe-rail-card small,
+.universe-rail-card #random-word-meta {
+    color: rgba(210, 224, 216, 0.66);
+    font-size: 0.72rem;
+    line-height: 1.35;
+}
+
+.universe-rail-link,
+.universe-rail-ghost {
+    margin-top: auto;
+    align-self: flex-start;
+    color: #efd77e;
+    font-size: 0.74rem;
+    text-decoration: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.universe-rail-ghost {
+    color: rgba(220, 232, 224, 0.7);
+}
+
+.universe-rail-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-top: auto;
+}
+
+.random-word-lang {
+    margin: 0;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(210, 224, 216, 0.68);
+}
+
+.how-it-works {
+    margin: 0 0 24px;
+}
+
+.how-it-works-inner {
+    padding: 18px 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(6, 20, 18, 0.5);
+}
+
+.how-it-works-inner h2 {
+    margin: 6px 0 0;
+    color: #fff;
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+}
+
+.how-it-works-steps {
+    margin: 12px 0 0;
+    padding-left: 18px;
+    color: rgba(220, 232, 224, 0.78);
+    display: grid;
+    gap: 6px;
+}
+
+.how-it-works-steps strong {
+    color: #f3e2a4;
+}
+
+.living-world-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 12px 0 10px;
+}
+
+.living-world-stats div {
+    padding: 7px 5px;
+    border-radius: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(4, 14, 12, 0.4);
+    text-align: center;
+}
+
+.living-world-stats strong {
+    display: block;
+    color: #f3e2a4;
+    font-size: 0.95rem;
+}
+
+.living-world-stats span {
+    display: block;
+    margin-top: 2px;
+    color: rgba(210, 224, 216, 0.66);
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.living-world-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(40, 110, 78, 0.85);
+    color: #fff;
+    border: 1px solid rgba(239, 215, 126, 0.22);
+}
+
+/* MALAYSIA state — Earth hero exits; map stage owns the surface */
+.world-explorer-card.is-malaysia-view .universe-hero-chrome,
+.world-explorer-card.is-malaysia-view .universe-action-rail,
+.world-explorer-card.is-malaysia-view .globe-status,
+.world-explorer-card.is-malaysia-view .universe-discover-bar,
+.world-explorer-card.is-malaysia-view .language-universe {
+    display: none !important;
+}
+
+/*
+ * Collapse the Earth stage entirely once Malaysia map mounts.
+ * Leaving the tall globe-stage in-flow created a huge empty
+ * green/dark block above the state map (especially on mobile).
+ */
+.world-explorer-card.is-malaysia-view .universe-hero-stage.globe-stage,
+.world-explorer-card.is-malaysia-view #three-earth-container,
+.world-explorer-card.is-malaysia-view #globe-stage {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.world-explorer-card.is-malaysia-view {
+    /* Card height comes from the Malaysia stage; do not reserve globe space. */
+    min-height: 0;
+}
+
+.world-explorer-card.is-malaysia-view .living-malaysia-stage {
+    min-height: 720px;
+}
+
+@media (min-width: 901px) {
+    .world-explorer-card.is-malaysia-view .living-malaysia-stage {
+        min-height: 720px;
+    }
+}
+
+/* Mobile Malaysia state stage: drop forced tall green void */
+@media (max-width: 900px) {
+    .world-explorer-card.is-malaysia-view {
+        min-height: 0;
+    }
+
+    .world-explorer-card.is-malaysia-view .living-malaysia-stage {
+        min-height: 0 !important;
+        height: auto;
+    }
+
+    /* Keep globe stage readable when not in Malaysia map mode */
+    .world-explorer-card:not(.is-malaysia-view) .universe-hero-stage.globe-stage {
+        min-height: 440px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 560px) and (max-width: 1100px) {
+    .world-explorer-card.is-malaysia-view {
+        min-height: 0;
+    }
+
+    .world-explorer-card.is-malaysia-view .living-malaysia-stage {
+        min-height: 0 !important;
+    }
+
+    /* Landscape WORLD: compact welcome strip + wide globe stage */
+    .world-explorer-card:not(.is-malaysia-view) .universe-hero-stage.globe-stage {
+        display: grid;
+        grid-template-columns: minmax(160px, 32%) minmax(0, 1fr);
+        grid-template-rows: 1fr auto;
+        height: min(78vh, 360px);
+        min-height: 260px;
+        max-height: none;
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) .universe-hero-chrome {
+        position: relative !important;
+        inset: auto !important;
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px 10px;
+        background: linear-gradient(
+            90deg,
+            rgba(2, 10, 12, 0.82),
+            rgba(2, 10, 12, 0.2)
+        );
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) #three-globe-container,
+    .world-explorer-card:not(.is-malaysia-view) #three-earth-container {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        grid-column: 2;
+        grid-row: 1;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 220px !important;
+        overflow: hidden;
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) #three-globe-container:empty {
+        display: none !important;
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) .globe-status {
+        position: relative !important;
+        grid-column: 2;
+        grid-row: 2;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        margin: 0;
+        padding: 6px 10px;
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) .universe-journey-card {
+        display: none;
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) .universe-welcome h1 {
+        font-size: 1rem;
+    }
+
+    .world-explorer-card:not(.is-malaysia-view) .universe-welcome-ctas {
+        flex-wrap: wrap;
+    }
+}
+
+.world-explorer-card.is-travelling .universe-welcome,
+.world-explorer-card.is-travelling .universe-journey-card {
+    opacity: 0.35;
+}
+
+@media (max-width: 1100px) {
+    .universe-hero-chrome {
+        grid-template-columns: minmax(160px, 20%) 1fr minmax(150px, 20%);
+    }
+}
+
+@media (max-width: 900px) and (orientation: portrait) {
+    /*
+     * Mobile portrait: stack WELCOME → CLEAR GLOBE → STATUS
+     * Chrome must NOT sit as an absolute overlay over Earth.
+     * Scoped to portrait so landscape phones keep the side-by-side grid.
+     */
+    .universe-hero-card:not(.is-malaysia-view) .universe-hero-stage.globe-stage {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        padding: 0;
+    }
+
+    .universe-hero-card:not(.is-malaysia-view) .universe-hero-chrome {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        order: 1;
+        padding: 12px 12px 8px;
+        background: linear-gradient(
+            180deg,
+            rgba(2, 10, 12, 0.72) 0%,
+            rgba(2, 10, 12, 0.35) 100%
+        );
+        pointer-events: none;
+        z-index: 6;
+    }
+
+    .universe-hero-card:not(.is-malaysia-view) .universe-hero-chrome > * {
+        pointer-events: auto;
+    }
+
+    /* Placeholder shell — Earth host replaces it at runtime */
+    .universe-hero-card:not(.is-malaysia-view) #three-globe-container:empty {
+        display: none !important;
+    }
+
+    .universe-hero-card:not(.is-malaysia-view) #three-globe-container,
+    .universe-hero-card:not(.is-malaysia-view) #three-earth-container {
+        position: relative !important;
+        inset: auto !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        order: 2;
+        width: 100% !important;
+        height: min(58vh, 520px) !important;
+        min-height: 360px !important;
+        max-height: 560px;
+        z-index: 4 !important;
+        flex: 0 0 auto;
+        overflow: hidden;
+    }
+
+    .universe-hero-card:not(.is-malaysia-view) .globe-status {
+        position: relative !important;
+        order: 3;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: auto;
+        max-width: none;
+        margin: 0;
+        padding: 10px 14px 12px;
+        border-radius: 0;
+        background: rgba(2, 10, 12, 0.55);
+        z-index: 5;
+    }
+
+    .universe-welcome,
+    .universe-journey-card {
+        max-width: none;
+        width: 100%;
+    }
+
+    .universe-welcome {
+        padding: 10px 12px 11px;
+        border-radius: 14px;
+        border-color: rgba(255, 255, 255, 0.1);
+        background: linear-gradient(
+            160deg,
+            rgba(6, 22, 18, 0.72),
+            rgba(4, 12, 16, 0.5)
+        );
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+    }
+
+    .universe-brand-mark {
+        display: none;
+    }
+
+    .universe-eyebrow {
+        margin-bottom: 4px;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+    }
+
+    .universe-welcome-user {
+        margin: 0 0 3px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .universe-welcome h1 {
+        max-width: none;
+        font-size: 1.18rem;
+        line-height: 1.18;
+    }
+
+    .universe-welcome > p:not(.universe-welcome-user) {
+        display: none;
+    }
+
+    .universe-welcome-ctas {
+        margin-top: 8px;
+        gap: 6px;
+    }
+
+    .universe-cta-primary.explore-world-button,
+    .universe-cta-secondary {
+        min-height: 38px;
+        padding: 8px 12px;
+        font-size: 0.78rem;
+    }
+
+    .universe-journey-card {
+        display: none;
+    }
+
+    .universe-action-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) and (orientation: portrait) {
+    /* Keep stacked composition — do NOT force a single tall stage height */
+    .universe-hero-card:not(.is-malaysia-view) .universe-hero-stage.globe-stage {
+        min-height: 0;
+        height: auto;
+    }
+
+    .universe-hero-card:not(.is-malaysia-view) #three-earth-container {
+        height: min(52vh, 440px) !important;
+        min-height: 300px !important;
+    }
+
+    .universe-hero-card:not(.is-malaysia-view) .universe-hero-chrome {
+        padding: 8px 10px 6px;
+    }
+
+    .universe-welcome {
+        padding: 7px 9px 8px;
+    }
+
+    .universe-eyebrow {
+        display: none;
+    }
+
+    .universe-welcome h1 {
+        font-size: 1.12rem;
+        letter-spacing: -0.025em;
+    }
+
+    .universe-welcome h1 br {
+        display: none;
+    }
+
+    .universe-action-rail {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,1998 @@
+/* =========================================
+   Malaysian Linguistics Lab
+   AI Tutor — Course Companion Panel
+   ========================================= */
+
+
+/* =========================================
+   WIDGET WRAPPER
+   ========================================= */
+
+.ai-tutor-widget{
+
+position:fixed;
+
+inset:auto;
+
+z-index:2000;
+
+}
+
+
+/* =========================================
+   FLOATING TOGGLE BUTTON
+   ========================================= */
+
+.ai-tutor-toggle-button{
+
+position:fixed;
+
+right:24px;
+/* Raised clear of bottom status chrome; JS may refine via --mmle-tutor-fab-bottom. */
+bottom:var(--mmle-tutor-fab-bottom, 128px);
+
+z-index:2000;
+
+display:inline-flex;
+
+align-items:center;
+gap:10px;
+
+padding:14px 22px;
+
+border:1px solid rgba(214,176,77,.28);
+
+border-radius:999px;
+
+background:var(--gold);
+
+color:var(--green-dark);
+
+font-weight:650;
+font-size:.92rem;
+
+box-shadow:0 12px 28px rgba(0,0,0,.28);
+
+backdrop-filter:blur(14px);
+-webkit-backdrop-filter:blur(14px);
+
+transition:
+transform .22s ease,
+box-shadow .22s ease,
+background .22s ease,
+border-color .22s ease;
+
+}
+
+.ai-tutor-toggle-icon{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:34px;
+height:34px;
+
+line-height:1;
+
+}
+
+.ai-tutor-toggle-icon img{
+
+display:block;
+
+width:34px;
+height:34px;
+
+}
+
+.ai-tutor-toggle-button:hover{
+
+color:var(--green-dark);
+
+background:var(--gold-hover);
+
+transform:translateY(-2px);
+
+box-shadow:0 16px 36px rgba(0,0,0,.30);
+
+}
+
+.ai-tutor-toggle-button:focus-visible{
+
+outline:3px solid rgba(214,176,77,.45);
+
+outline-offset:3px;
+
+}
+
+
+/* =========================================
+   COMPANION PANEL
+   Fixed width + fixed height: never resizes
+   when actions are pressed or content grows.
+   Only the conversation area scrolls.
+   ========================================= */
+
+.ai-tutor-panel{
+
+position:fixed;
+
+right:24px;
+bottom:var(--mmle-tutor-panel-bottom, calc(var(--mmle-tutor-fab-bottom, 128px) + 72px));
+
+z-index:2000;
+
+display:flex;
+
+flex-direction:column;
+
+width:min(440px,94vw);
+
+max-width:440px;
+
+height:min(720px,calc(100vh - 112px));
+
+min-height:0;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:28px;
+
+background:rgba(33,64,50,0.92);
+
+box-shadow:0 24px 60px rgba(0,0,0,.28);
+
+backdrop-filter:blur(24px) saturate(130%);
+-webkit-backdrop-filter:blur(24px) saturate(130%);
+
+opacity:0;
+
+visibility:hidden;
+
+pointer-events:none;
+
+transform:translateY(20px) scale(.97);
+
+transform-origin:bottom right;
+
+transition:
+opacity .3s cubic-bezier(.22,1,.36,1),
+visibility .3s cubic-bezier(.22,1,.36,1),
+transform .3s cubic-bezier(.22,1,.36,1);
+
+}
+
+.ai-tutor-panel.is-open{
+
+opacity:1;
+
+visibility:visible;
+
+pointer-events:auto;
+
+transform:translateY(0) scale(1);
+
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.ai-tutor-header{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:18px 20px;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+background:rgba(255,255,255,.03);
+
+flex:0 0 auto;
+
+}
+
+.ai-tutor-avatar-badge{
+
+flex:0 0 auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:42px;
+height:42px;
+
+border-radius:18px;
+
+background:rgba(255,247,230,.07);
+
+border:1px solid rgba(255,247,230,.12);
+
+box-shadow:0 4px 14px rgba(0,0,0,.24);
+
+backdrop-filter:blur(10px);
+
+-webkit-backdrop-filter:blur(10px);
+
+}
+
+.ai-tutor-avatar-badge img{
+
+display:block;
+
+width:38px;
+height:38px;
+
+}
+
+.ai-tutor-header-text{
+
+flex:1 1 auto;
+
+min-width:0;
+
+}
+
+.ai-tutor-title{
+
+color:#ffffff;
+
+font-weight:750;
+
+letter-spacing:-.01em;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+}
+
+.ai-tutor-subtitle{
+
+margin-top:3px!important;
+
+display:flex;
+
+align-items:center;
+
+gap:5px;
+
+color:var(--muted);
+
+font-size:.72rem;
+
+letter-spacing:.02em;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+}
+
+.ai-tutor-status-dot{
+
+display:inline-block;
+
+width:6px;
+height:6px;
+
+border-radius:50%;
+
+background:#5fd68a;
+
+box-shadow:0 0 0 2px rgba(95,214,138,.25);
+
+}
+
+.ai-tutor-header .btn-close{
+
+flex:0 0 auto;
+
+filter:invert(1) grayscale(1) brightness(2);
+
+opacity:.75;
+
+transition:opacity .2s ease, transform .2s ease;
+
+}
+
+.ai-tutor-header .btn-close:hover{
+
+opacity:1;
+
+transform:rotate(90deg);
+
+}
+
+.ai-tutor-header .btn-close:focus-visible{
+
+outline:3px solid rgba(214,176,77,.45);
+
+outline-offset:3px;
+
+}
+
+.ai-tutor-icon-button{
+
+flex:0 0 auto;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:30px;
+height:30px;
+
+border:1px solid rgba(255,255,255,.14);
+
+border-radius:50%;
+
+background:rgba(255,255,255,.06);
+
+color:rgba(255,255,255,.75);
+
+transition:
+background .2s ease,
+border-color .2s ease,
+transform .15s ease,
+color .2s ease;
+
+}
+
+.ai-tutor-icon-button:hover{
+
+background:rgba(214,176,77,.16);
+
+border-color:rgba(214,176,77,.45);
+
+color:#f0d77f;
+
+transform:translateY(-1px) rotate(90deg);
+
+}
+
+.ai-tutor-icon-button:active{
+
+transform:translateY(0) scale(.94);
+
+}
+
+.ai-tutor-icon-button:disabled{
+
+opacity:.5;
+
+cursor:default;
+
+transform:none;
+
+}
+
+.ai-tutor-icon-button:focus-visible{
+
+outline:3px solid rgba(214,176,77,.45);
+
+outline-offset:2px;
+
+}
+
+
+/* =========================================
+   LESSON CONTEXT CARD (condensed)
+   ========================================= */
+
+.ai-tutor-context-card{
+
+flex:0 0 auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:6px;
+
+margin:14px 18px 0;
+
+padding:12px 14px;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:16px;
+
+background:rgba(255,255,255,.04);
+
+box-shadow:none;
+
+}
+
+.ai-tutor-context-main{
+
+display:flex;
+
+flex-wrap:wrap;
+
+align-items:baseline;
+
+gap:6px;
+
+color:#ffffff;
+
+font-size:.82rem;
+
+font-weight:700;
+
+line-height:1.3;
+
+}
+
+.ai-tutor-context-level{
+
+color:rgba(255,255,255,.75);
+
+font-weight:600;
+
+font-size:.76rem;
+
+}
+
+.ai-tutor-context-meta{
+
+display:flex;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:6px;
+
+}
+
+.ai-tutor-progress-pill,
+.ai-tutor-grounded-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:4px;
+
+padding:3px 9px;
+
+border-radius:999px;
+
+font-size:.66rem;
+
+font-weight:750;
+
+letter-spacing:.02em;
+
+}
+
+.ai-tutor-progress-pill{
+
+border:1px solid var(--border);
+
+background:rgba(255,255,255,.08);
+
+color:rgba(255,255,255,.75);
+
+}
+
+.ai-tutor-grounded-badge{
+
+border:1px solid rgba(214,176,77,.4);
+
+background:rgba(214,176,77,.16);
+
+color:#f0d77f;
+
+}
+
+
+/* =========================================
+   SECTION LABELS
+   ========================================= */
+
+.ai-tutor-section-label{
+
+display:block;
+
+margin-bottom:9px;
+
+color:rgba(255,255,255,.55);
+
+font-size:.64rem;
+
+font-weight:750;
+
+letter-spacing:.09em;
+
+text-transform:uppercase;
+
+}
+
+
+/* =========================================
+   LEARNING ACTIONS
+   Wrapping pill row so it scales cleanly
+   from 4 to 5+ actions on any screen width.
+   ========================================= */
+
+.ai-tutor-quick-actions{
+
+padding:14px 18px;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+background:transparent;
+
+flex:0 0 auto;
+
+}
+
+.ai-tutor-action-grid{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
+.ai-tutor-quick-action{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:7px;
+
+padding:9px 14px;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:999px;
+
+background:rgba(255,255,255,.05);
+
+color:var(--text);
+
+text-align:left;
+
+white-space:nowrap;
+
+transition:
+background .22s ease,
+border-color .22s ease,
+transform .15s ease,
+box-shadow .22s ease,
+opacity .2s ease;
+
+}
+
+.ai-tutor-quick-action:hover{
+
+color:var(--text);
+
+background:rgba(214,176,77,.14);
+
+border-color:rgba(214,176,77,.35);
+
+transform:translateY(-1px);
+
+box-shadow:0 8px 18px rgba(0,0,0,.18);
+
+}
+
+.ai-tutor-quick-action:active{
+
+transform:translateY(0) scale(.97);
+
+}
+
+.ai-tutor-quick-action:focus-visible{
+
+outline:3px solid rgba(214,176,77,.45);
+
+outline-offset:2px;
+
+}
+
+.ai-tutor-quick-action:disabled{
+
+opacity:.5;
+
+cursor:default;
+
+transform:none;
+
+}
+
+.ai-tutor-quick-action.is-active{
+
+background:rgba(214,176,77,.22);
+
+border-color:rgba(214,176,77,.55);
+
+color:var(--gold);
+
+box-shadow:0 0 0 1px rgba(214,176,77,.18) inset;
+
+}
+
+.ai-tutor-panel.is-sending .ai-tutor-quick-action.is-active{
+
+opacity:.85;
+
+}
+
+/* Interactive AI Tutor Quiz card */
+
+.ai-tutor-quiz-card{
+
+max-width:100%;
+
+padding:16px 16px 14px;
+
+border:1px solid rgba(214,176,77,.28);
+
+background:linear-gradient(
+180deg,
+rgba(18,46,36,.96),
+rgba(12,32,26,.98)
+);
+
+}
+
+.ai-tutor-quiz-kicker{
+
+margin:0 0 8px;
+
+font-size:.72rem;
+
+font-weight:750;
+
+letter-spacing:.12em;
+
+color:var(--gold);
+
+}
+
+.ai-tutor-quiz-question{
+
+margin:0 0 14px;
+
+font-size:.98rem;
+
+line-height:1.45;
+
+font-weight:600;
+
+}
+
+.ai-tutor-quiz-options{
+
+display:flex;
+
+flex-direction:column;
+
+gap:8px;
+
+}
+
+.ai-tutor-quiz-option{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:10px;
+
+width:100%;
+
+padding:10px 12px;
+
+border:1px solid rgba(255,255,255,.12);
+
+border-radius:14px;
+
+background:rgba(255,255,255,.04);
+
+color:var(--text);
+
+text-align:left;
+
+cursor:pointer;
+
+transition:
+background .18s ease,
+border-color .18s ease,
+transform .12s ease;
+
+}
+
+.ai-tutor-quiz-option:hover:not(:disabled){
+
+background:rgba(214,176,77,.12);
+
+border-color:rgba(214,176,77,.4);
+
+transform:translateY(-1px);
+
+}
+
+.ai-tutor-quiz-option:focus-visible{
+
+outline:3px solid rgba(214,176,77,.45);
+
+outline-offset:2px;
+
+}
+
+.ai-tutor-quiz-option:disabled{
+
+cursor:default;
+
+opacity:.78;
+
+}
+
+.ai-tutor-quiz-option.is-selected{
+
+border-color:rgba(214,176,77,.65);
+
+background:rgba(214,176,77,.16);
+
+}
+
+.ai-tutor-quiz-option-key{
+
+flex:0 0 auto;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:1.55rem;
+
+height:1.55rem;
+
+border-radius:999px;
+
+border:1px solid rgba(214,176,77,.35);
+
+font-size:.78rem;
+
+font-weight:700;
+
+color:var(--gold);
+
+}
+
+.ai-tutor-quiz-option-text{
+
+flex:1 1 auto;
+
+line-height:1.4;
+
+}
+
+.ai-tutor-quiz-result{
+
+border:1px solid rgba(255,255,255,.12);
+
+}
+
+.ai-tutor-quiz-result.is-correct{
+
+border-color:rgba(110,196,140,.45);
+
+background:rgba(40,96,64,.35);
+
+}
+
+.ai-tutor-quiz-result.is-incorrect{
+
+border-color:rgba(214,140,100,.4);
+
+background:rgba(72,48,36,.35);
+
+}
+
+.ai-tutor-quiz-verdict{
+
+margin:0 0 8px;
+
+font-weight:700;
+
+line-height:1.4;
+
+}
+
+.ai-tutor-quiz-explain{
+
+margin:0 0 12px;
+
+opacity:.92;
+
+line-height:1.45;
+
+}
+
+.ai-tutor-quiz-followups{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
+.ai-tutor-quiz-followup{
+
+padding:8px 14px;
+
+border-radius:999px;
+
+border:1px solid rgba(255,255,255,.16);
+
+background:rgba(255,255,255,.06);
+
+color:var(--text);
+
+font-size:.88rem;
+
+cursor:pointer;
+
+transition:background .18s ease,border-color .18s ease;
+
+}
+
+.ai-tutor-quiz-followup:hover{
+
+background:rgba(214,176,77,.14);
+
+border-color:rgba(214,176,77,.4);
+
+}
+
+.ai-tutor-quiz-followup--primary{
+
+background:rgba(214,176,77,.2);
+
+border-color:rgba(214,176,77,.5);
+
+color:var(--gold);
+
+font-weight:650;
+
+}
+
+.ai-tutor-action-icon{
+
+font-size:.95rem;
+
+line-height:1;
+
+}
+
+.ai-tutor-action-title{
+
+font-size:.78rem;
+
+font-weight:700;
+
+}
+
+
+/* =========================================
+   CONVERSATION AREA
+   The ONLY scrollable region in the panel.
+   Header, lesson card, actions and input all
+   stay fixed via flex:0 0 auto above/below.
+   ========================================= */
+
+.ai-tutor-notes-area{
+
+flex:1 1 auto;
+
+display:flex;
+
+flex-direction:column;
+
+min-height:0;
+
+overflow-y:auto;
+
+overscroll-behavior:contain;
+
+-webkit-overflow-scrolling:touch;
+
+scroll-behavior:smooth;
+
+padding:18px;
+
+}
+
+.ai-tutor-notes-area::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+.ai-tutor-notes-area::-webkit-scrollbar-track{
+
+background:transparent;
+
+}
+
+.ai-tutor-notes-area::-webkit-scrollbar-thumb{
+
+background:rgba(255,255,255,.14);
+
+border-radius:999px;
+
+}
+
+.ai-tutor-notes-area::-webkit-scrollbar-thumb:hover{
+
+background:rgba(255,255,255,.24);
+
+}
+
+.ai-tutor-messages{
+
+flex:1 1 auto;
+
+min-height:0;
+
+display:flex;
+
+flex-direction:column;
+
+gap:14px;
+
+background:transparent;
+
+}
+
+
+/* =========================================
+   EMPTY STATE
+   Shown before the first message; a warm,
+   ChatGPT-style welcome screen with quick
+   suggestion chips instead of a blank void.
+   ========================================= */
+
+.ai-tutor-empty-state{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+/* Intentionally NOT flex-grow/centered: the welcome card can be
+   taller than the visible notes area on short panels, and a
+   top-aligned block always renders its top first with the rest
+   reachable by scrolling, instead of being vertically centered
+   and clipped from above on short viewports. */
+flex:0 0 auto;
+
+width:100%;
+
+padding:22px 12px 18px;
+
+text-align:center;
+
+animation:ai-tutor-message-in .35s ease both;
+
+}
+
+.ai-tutor-empty-avatar{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:86px;
+height:86px;
+
+margin-bottom:12px;
+
+
+border-radius:30px;
+
+background:radial-gradient(circle at 35% 30%,rgba(255,247,230,.22),rgba(255,247,230,.06) 72%,rgba(255,247,230,0) 100%);
+
+box-shadow:
+0 12px 30px rgba(0,0,0,.32),
+0 0 0 8px rgba(255,247,230,.05);
+
+animation:ai-tutor-float 4s ease-in-out infinite;
+
+}
+
+.ai-tutor-empty-avatar img{
+
+display:block;
+
+width:86px;
+height:86px;
+
+}
+
+@keyframes ai-tutor-float{
+
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-6px);}
+
+}
+
+.ai-tutor-empty-title{
+
+margin:0 0 8px;
+
+color:#ffffff;
+
+font-size:1.05rem;
+
+font-weight:750;
+
+letter-spacing:-.01em;
+
+}
+
+.ai-tutor-empty-subtitle{
+
+margin:0 0 10px;
+
+max-width:300px;
+
+color:var(--muted);
+
+font-size:.82rem;
+
+line-height:1.55;
+
+}
+
+.ai-tutor-empty-list{
+
+list-style:none;
+
+margin:0 0 14px;
+
+padding:0;
+
+display:grid;
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+gap:6px 16px;
+
+max-width:300px;
+
+text-align:left;
+
+}
+
+.ai-tutor-empty-list li{
+
+position:relative;
+
+padding-left:15px;
+
+color:rgba(255,255,255,.85);
+
+font-size:.78rem;
+
+font-weight:600;
+
+line-height:1.4;
+
+}
+
+.ai-tutor-empty-list li::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:.5em;
+
+width:5px;
+height:5px;
+
+border-radius:50%;
+
+background:var(--gold);
+
+}
+
+.ai-tutor-empty-hint{
+
+margin:0 0 14px;
+
+max-width:300px;
+
+color:var(--muted);
+
+font-size:.76rem;
+
+line-height:1.5;
+
+}
+
+.ai-tutor-empty-suggestions{
+
+display:flex;
+
+flex-wrap:wrap;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+max-width:320px;
+
+}
+
+.ai-tutor-suggestion-chip{
+
+padding:8px 14px;
+
+border:1px solid rgba(214,176,77,.32);
+
+border-radius:999px;
+
+background:rgba(214,176,77,.10);
+
+color:#f0d77f;
+
+font-size:.76rem;
+
+font-weight:700;
+
+transition:
+background .2s ease,
+border-color .2s ease,
+transform .15s ease;
+
+}
+
+.ai-tutor-suggestion-chip:hover{
+
+background:rgba(214,176,77,.2);
+
+border-color:rgba(214,176,77,.5);
+
+transform:translateY(-1px);
+
+}
+
+.ai-tutor-suggestion-chip:disabled{
+
+opacity:.5;
+
+cursor:default;
+
+transform:none;
+
+}
+
+
+/* =========================================
+   CHAT BUBBLES
+   ========================================= */
+
+.ai-tutor-message{
+
+display:flex;
+
+align-items:flex-end;
+
+gap:9px;
+
+max-width:100%;
+
+animation:ai-tutor-message-in .28s cubic-bezier(.22,1,.36,1) both;
+
+}
+
+@keyframes ai-tutor-message-in{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.ai-tutor-avatar{
+
+flex:0 0 auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:40px;
+height:40px;
+
+border-radius:16px;
+
+background:rgba(255,247,230,.08);
+
+border:1px solid rgba(255,247,230,.1);
+
+box-shadow:0 2px 8px rgba(0,0,0,.2);
+
+}
+
+.ai-tutor-avatar img{
+
+display:block;
+
+width:36px;
+height:36px;
+
+}
+
+.ai-tutor-bubble{
+
+position:relative;
+
+max-width:80%;
+
+padding:11px 14px 8px;
+
+border-radius:18px;
+
+font-size:.87rem;
+
+line-height:1.55;
+
+box-shadow:0 4px 14px rgba(0,0,0,.18);
+
+}
+
+.ai-tutor-bubble-text{
+
+word-break:break-word;
+
+}
+
+.ai-tutor-bubble-text p{
+
+margin:0 0 6px;
+
+}
+
+.ai-tutor-bubble-text p:last-child{
+
+margin-bottom:0;
+
+}
+
+.ai-tutor-bubble-text strong{
+
+color:#f0d77f;
+
+font-weight:750;
+
+}
+
+.ai-tutor-message-user .ai-tutor-bubble-text strong{
+
+color:#ffffff;
+
+}
+
+.ai-tutor-bullet-list{
+
+margin:0 0 6px;
+
+padding-left:1.15em;
+
+}
+
+.ai-tutor-bullet-list:last-child{
+
+margin-bottom:0;
+
+}
+
+.ai-tutor-bullet-list li{
+
+margin-bottom:4px;
+
+}
+
+.ai-tutor-vocab-tag{
+
+display:inline-block;
+
+padding:1px 7px;
+
+border-radius:999px;
+
+background:rgba(214,176,77,.22);
+
+color:#f0d77f;
+
+font-weight:750;
+
+font-size:.82em;
+
+}
+
+
+/* =========================================
+   MARKDOWN CONTENT
+   Rendered by marked.js + sanitized by
+   DOMPurify: tables, code blocks, lists,
+   blockquotes and links all need to fit
+   cleanly inside a fixed-width chat bubble
+   without ever forcing the panel to resize.
+   ========================================= */
+
+.ai-tutor-bubble-text ul,
+.ai-tutor-bubble-text ol{
+
+margin:0 0 6px;
+
+padding-left:1.15em;
+
+}
+
+.ai-tutor-bubble-text ul:last-child,
+.ai-tutor-bubble-text ol:last-child{
+
+margin-bottom:0;
+
+}
+
+.ai-tutor-bubble-text li{
+
+margin-bottom:4px;
+
+}
+
+.ai-tutor-bubble-text li > ul,
+.ai-tutor-bubble-text li > ol{
+
+margin-top:4px;
+
+}
+
+.ai-tutor-bubble-text h1,
+.ai-tutor-bubble-text h2,
+.ai-tutor-bubble-text h3,
+.ai-tutor-bubble-text h4{
+
+margin:2px 0 6px;
+
+color:#ffffff;
+
+font-size:.92em;
+
+font-weight:800;
+
+line-height:1.35;
+
+}
+
+.ai-tutor-bubble-text code{
+
+padding:2px 6px;
+
+border-radius:6px;
+
+background:rgba(0,0,0,.28);
+
+color:#ffe9a8;
+
+font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+
+font-size:.85em;
+
+}
+
+.ai-tutor-bubble-text pre{
+
+margin:0 0 8px;
+
+padding:10px 12px;
+
+border-radius:12px;
+
+background:rgba(0,0,0,.32);
+
+border:1px solid rgba(255,255,255,.08);
+
+overflow-x:auto;
+
+max-width:100%;
+
+-webkit-overflow-scrolling:touch;
+
+}
+
+.ai-tutor-bubble-text pre:last-child{
+
+margin-bottom:0;
+
+}
+
+.ai-tutor-bubble-text pre code{
+
+padding:0;
+
+background:transparent;
+
+color:inherit;
+
+font-size:.82em;
+
+line-height:1.5;
+
+white-space:pre;
+
+}
+
+.ai-tutor-bubble-text table{
+
+display:block;
+
+margin:0 0 8px;
+
+max-width:100%;
+
+overflow-x:auto;
+
+-webkit-overflow-scrolling:touch;
+
+border-collapse:collapse;
+
+font-size:.82em;
+
+}
+
+.ai-tutor-bubble-text table:last-child{
+
+margin-bottom:0;
+
+}
+
+.ai-tutor-bubble-text th,
+.ai-tutor-bubble-text td{
+
+padding:6px 10px;
+
+border:1px solid rgba(255,255,255,.16);
+
+text-align:left;
+
+white-space:nowrap;
+
+}
+
+.ai-tutor-bubble-text th{
+
+background:rgba(214,176,77,.14);
+
+color:#f0d77f;
+
+font-weight:750;
+
+}
+
+.ai-tutor-bubble-text blockquote{
+
+margin:0 0 8px;
+
+padding:2px 12px;
+
+border-left:3px solid rgba(214,176,77,.5);
+
+color:rgba(255,255,255,.72);
+
+font-style:italic;
+
+}
+
+.ai-tutor-bubble-text blockquote:last-child{
+
+margin-bottom:0;
+
+}
+
+.ai-tutor-bubble-text a{
+
+color:#8fd6ff;
+
+text-decoration:underline;
+
+text-underline-offset:2px;
+
+}
+
+.ai-tutor-bubble-text a:hover{
+
+color:#b7e6ff;
+
+}
+
+.ai-tutor-bubble-text hr{
+
+margin:8px 0;
+
+border:none;
+
+border-top:1px solid rgba(255,255,255,.14);
+
+}
+
+.ai-tutor-meta{
+
+display:flex;
+
+align-items:center;
+
+justify-content:flex-end;
+
+gap:4px;
+
+margin-top:5px;
+
+font-size:.62rem;
+
+letter-spacing:.02em;
+
+opacity:.65;
+
+}
+
+.ai-tutor-message-assistant{
+
+justify-content:flex-start;
+
+}
+
+.ai-tutor-message-assistant .ai-tutor-bubble{
+
+border-bottom-left-radius:5px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.12);
+
+color:var(--text);
+
+}
+
+.ai-tutor-message-assistant .ai-tutor-meta{
+
+justify-content:flex-start;
+
+}
+
+.ai-tutor-message-user{
+
+justify-content:flex-end;
+
+}
+
+.ai-tutor-message-user .ai-tutor-bubble{
+
+border-bottom-right-radius:5px;
+
+background:linear-gradient(135deg,rgba(214,176,77,.34),rgba(214,176,77,.2));
+
+border:1px solid rgba(214,176,77,.38);
+
+color:#ffffff;
+
+}
+
+.ai-tutor-ticks{
+
+color:#6fd7f5;
+
+font-weight:700;
+
+}
+
+.ai-tutor-message-error .ai-tutor-bubble{
+
+border:1px solid rgba(217,120,90,.4);
+
+background:rgba(217,120,90,.14);
+
+color:#f5d6ca;
+
+}
+
+
+/* =========================================
+   TYPING INDICATOR
+   ========================================= */
+
+.ai-tutor-typing-bubble{
+
+display:flex;
+
+align-items:center;
+
+gap:4px;
+
+padding:13px 16px;
+
+}
+
+.ai-tutor-typing-dot{
+
+width:6px;
+height:6px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.65);
+
+animation:ai-tutor-typing-bounce 1.1s ease-in-out infinite;
+
+}
+
+.ai-tutor-typing-dot:nth-child(2){
+
+animation-delay:.15s;
+
+}
+
+.ai-tutor-typing-dot:nth-child(3){
+
+animation-delay:.3s;
+
+}
+
+@keyframes ai-tutor-typing-bounce{
+
+0%, 60%, 100%{
+transform:translateY(0);
+opacity:.5;
+}
+
+30%{
+transform:translateY(-4px);
+opacity:1;
+}
+
+}
+
+
+/* =========================================
+   INPUT ROW
+   ========================================= */
+
+.ai-tutor-input-row{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:14px 16px;
+
+border-top:1px solid rgba(255,255,255,.10);
+
+background:rgba(255,255,255,.04);
+
+flex:0 0 auto;
+
+}
+
+.ai-tutor-input{
+
+flex:1 1 auto;
+
+border:1px solid rgba(255,255,255,.16);
+
+border-radius:999px;
+
+background:rgba(255,255,255,.08);
+
+color:var(--text);
+
+padding:11px 18px;
+
+font-size:.88rem;
+
+transition:
+background .2s ease,
+border-color .2s ease,
+box-shadow .2s ease;
+
+}
+
+.ai-tutor-input::placeholder{
+
+color:var(--muted);
+
+opacity:.75;
+
+}
+
+.ai-tutor-input:focus{
+
+color:var(--text);
+
+background:rgba(255,255,255,.11);
+
+border-color:rgba(214,176,77,.5);
+
+box-shadow:0 0 0 3px rgba(214,176,77,.18);
+
+}
+
+.ai-tutor-input:disabled{
+
+opacity:.6;
+
+}
+
+.ai-tutor-send-button{
+
+flex:0 0 auto;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+width:42px;
+height:42px;
+
+padding:0;
+
+border:1px solid rgba(214,176,77,.28);
+
+border-radius:50%;
+
+background:var(--gold);
+
+color:var(--green-dark);
+
+transition:
+transform .18s ease,
+box-shadow .18s ease,
+background .18s ease,
+opacity .18s ease;
+
+}
+
+.ai-tutor-send-icon{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+line-height:1;
+
+}
+
+.ai-tutor-send-button:hover:not(:disabled){
+
+color:var(--green-dark);
+
+background:var(--gold-hover);
+
+transform:translateY(-1px);
+
+box-shadow:0 10px 22px rgba(0,0,0,.28);
+
+}
+
+.ai-tutor-send-button:active:not(:disabled){
+
+transform:translateY(0) scale(.96);
+
+}
+
+.ai-tutor-send-button:disabled{
+
+opacity:.55;
+
+cursor:default;
+
+transform:none;
+
+box-shadow:none;
+
+}
+
+.ai-tutor-send-button:focus-visible,
+.ai-tutor-input:focus-visible{
+
+outline:3px solid rgba(214,176,77,.45);
+
+outline-offset:2px;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+   Verified against 320px, 375px, 768px and
+   desktop widths.
+   ========================================= */
+
+@media (max-width:576px){
+
+.ai-tutor-toggle-button{
+
+right:16px;
+bottom:var(--mmle-tutor-fab-bottom, 112px);
+
+padding:12px 16px;
+
+}
+
+/* Keep tutor FAB off the Malaysia map / globe stage on phones */
+.dashboard-page--universe .ai-tutor-toggle-button{
+bottom:var(--mmle-tutor-fab-bottom, 72px);
+right:12px;
+}
+
+.ai-tutor-panel{
+
+right:10px;
+left:10px;
+
+bottom:var(--mmle-tutor-panel-bottom, calc(var(--mmle-tutor-fab-bottom, 112px) + 68px));
+
+width:auto;
+
+max-width:none;
+
+height:min(680px,calc(100vh - 120px));
+
+border-radius:20px;
+
+}
+
+.ai-tutor-bubble{
+
+max-width:88%;
+
+}
+
+.ai-tutor-empty-subtitle{
+
+max-width:none;
+
+}
+
+}
+
+@media (max-width:400px){
+
+.ai-tutor-action-grid{
+
+gap:6px;
+
+}
+
+.ai-tutor-quick-action{
+
+padding:6px 10px;
+
+}
+
+.ai-tutor-action-title{
+
+font-size:.72rem;
+
+}
+
+}
+
+@media (max-width:340px){
+
+.ai-tutor-panel{
+
+right:6px;
+left:6px;
+
+bottom:var(--mmle-tutor-panel-bottom, calc(var(--mmle-tutor-fab-bottom, 92px) + 64px));
+
+height:min(680px,calc(100vh - 112px));
+
+}
+
+.ai-tutor-header{
+
+padding:12px 14px;
+
+}
+
+.ai-tutor-context-card{
+
+margin:10px 12px 0;
+
+}
+
+.ai-tutor-quick-actions,
+.ai-tutor-notes-area,
+.ai-tutor-input-row{
+
+padding-left:12px;
+
+padding-right:12px;
+
+}
+
+}
+
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+.ai-tutor-panel,
+.ai-tutor-message,
+.ai-tutor-empty-state,
+.ai-tutor-empty-avatar,
+.ai-tutor-quick-action,
+.ai-tutor-suggestion-chip,
+.ai-tutor-send-button,
+.ai-tutor-header .btn-close{
+
+animation:none!important;
+
+transition:none!important;
+
+}
+
+}

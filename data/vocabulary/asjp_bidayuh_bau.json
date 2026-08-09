@@ -1,0 +1,376 @@
+{
+  "language": "bidayuh",
+  "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0",
+  "dialect_variant": "Bau Bidayuh (ASJP)",
+  "entries": [
+    {
+      "word": "isa",
+      "meaning_en": "-5.40 145.70 3150 bau bbd 1 I",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ina",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ige",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "osahi",
+      "meaning_en": "one",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "elis",
+      "meaning_en": "two",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "a7",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gw~ai",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "musumus",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "na",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "baga7",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gana7",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "loga7",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "fehil",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "teful",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dahu",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "amug",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "medeu",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "a7i",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "belia7",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "katela7",
+      "meaning_en": "knee",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "eben",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hu tapa7",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gemag",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "le7",
+      "meaning_en": "drink",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "fege7",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "me7ie7",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dame7",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "alme7",
+      "meaning_en": "die",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "fehe7",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "am",
+      "meaning_en": "sun",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "malagw~ai",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "sulugw~ai",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "wa",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "men",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "lai",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hi",
+      "meaning_en": "path",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "aluh",
+      "meaning_en": "mountain",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "wi",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ihio7",
+      "meaning_en": "full",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gw~ilde7",
+      "meaning_en": "new",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "weni",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Bau Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Bau (CLLD); CC BY 4.0"
+    }
+  ]
+}

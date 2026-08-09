@@ -1,0 +1,1431 @@
+{
+  "language": "bidayuh",
+  "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+  "dialect_variant": "Singhi / Bau Bidayuh",
+  "entries": [
+    {
+      "word": "toŋan",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bait",
+      "meaning_en": "left",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "toux",
+      "meaning_en": "right",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "pĕun",
+      "meaning_en": "leg/foot",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ponu",
+      "meaning_en": "to walk",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "aran",
+      "meaning_en": "road/path",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "nug",
+      "meaning_en": "to come",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "naŋuy",
+      "meaning_en": "to turn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kais",
+      "meaning_en": "dirty",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sirida",
+      "meaning_en": "dirty",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "abux",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sapok",
+      "meaning_en": "dust",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kurit",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tain",
+      "meaning_en": "back",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "turaŋ",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "atin",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "saduë",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "papi",
+      "meaning_en": "shoulder",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "puan",
+      "meaning_en": "to know, be knowledgeable",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "saka ŋasuŋ",
+      "meaning_en": "to think",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "toru",
+      "meaning_en": "to fear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "doya",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bak",
+      "meaning_en": "head",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tuŋoĕ",
+      "meaning_en": "neck",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "nuŋ",
+      "meaning_en": "hair",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "masuŋ",
+      "meaning_en": "to breathe",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "koduk",
+      "meaning_en": "to sniff, smell",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "boba",
+      "meaning_en": "mouth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "jupen",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "jorah",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tauwix",
+      "meaning_en": "to laugh",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sien",
+      "meaning_en": "to cry",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ŋutah",
+      "meaning_en": "to vomit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ŋujah",
+      "meaning_en": "to spit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "man",
+      "meaning_en": "to eat",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "nuoh",
+      "meaning_en": "to chew",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "siŋüt",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kuut",
+      "meaning_en": "to bite",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ñuop",
+      "meaning_en": "to suck",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ŋisap",
+      "meaning_en": "to suck",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kojit",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kidiŋah",
+      "meaning_en": "to hear",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "botun",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kirin",
+      "meaning_en": "to see",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kuab",
+      "meaning_en": "to yawn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "boĕs",
+      "meaning_en": "to sleep",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "pimux",
+      "meaning_en": "to lie down",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "guru",
+      "meaning_en": "to sit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "mojug",
+      "meaning_en": "to stand",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dayah",
+      "meaning_en": "person/human being",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dari",
+      "meaning_en": "man/male",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dayuŋ",
+      "meaning_en": "woman/female",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "anak",
+      "meaning_en": "child",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bonun",
+      "meaning_en": "husband",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sowen",
+      "meaning_en": "wife",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sinĕ",
+      "meaning_en": "mother",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sama",
+      "meaning_en": "father",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "romin",
+      "meaning_en": "house",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "toñah",
+      "meaning_en": "thatch/roof",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "iraw",
+      "meaning_en": "thatch/roof",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "adun",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "naŋ",
+      "meaning_en": "to say",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tanen",
+      "meaning_en": "to say",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "taris",
+      "meaning_en": "rope",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "mökes",
+      "meaning_en": "to tie up, fasten",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tos",
+      "meaning_en": "to sew",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "nijub",
+      "meaning_en": "to hunt",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "noku",
+      "meaning_en": "to hit",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ŋabus",
+      "meaning_en": "to kill",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ñüu",
+      "meaning_en": "to kill",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kobus",
+      "meaning_en": "to die, be dead",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "idip",
+      "meaning_en": "to live, be alive",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "koyux",
+      "meaning_en": "to scratch",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "roya",
+      "meaning_en": "to split",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tajü",
+      "meaning_en": "dull, blunt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "papu",
+      "meaning_en": "dull, blunt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "purux",
+      "meaning_en": "to work",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "piris",
+      "meaning_en": "to choose",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "karis",
+      "meaning_en": "to grow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "miris",
+      "meaning_en": "to buy",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "buka",
+      "meaning_en": "to open, uncover",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kosoŋ",
+      "meaning_en": "to pound, beat",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "manuk",
+      "meaning_en": "bird",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "turuoŋ",
+      "meaning_en": "egg",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "burun",
+      "meaning_en": "feather",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "[i]rad",
+      "meaning_en": "wing",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bikabur",
+      "meaning_en": "to fly",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "timirib",
+      "meaning_en": "to fly",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "birog",
+      "meaning_en": "rat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "digoŋ",
+      "meaning_en": "rat",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "asin",
+      "meaning_en": "meat/flesh",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "puak",
+      "meaning_en": "fat/grease",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "[u]kon",
+      "meaning_en": "tail",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ukuĕ",
+      "meaning_en": "tail",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dipux",
+      "meaning_en": "snake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tomux",
+      "meaning_en": "worm (earthworm)",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ratuŋ",
+      "meaning_en": "worm (earthworm)",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "piruŋaŋ",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "toka",
+      "meaning_en": "spider",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "[i]kien",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dawun",
+      "meaning_en": "rotten",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "at",
+      "meaning_en": "root",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bokah",
+      "meaning_en": "root",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "suat",
+      "meaning_en": "flower",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sara",
+      "meaning_en": "flower",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bua",
+      "meaning_en": "fruit",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dux",
+      "meaning_en": "grass",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tanah",
+      "meaning_en": "earth/soil",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "batux",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sumat",
+      "meaning_en": "sand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "pasir",
+      "meaning_en": "sand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "siriet",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "raut",
+      "meaning_en": "sea",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "garoĕ",
+      "meaning_en": "salt",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "danu",
+      "meaning_en": "lake",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "torun",
+      "meaning_en": "woods/forest",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "roŋit",
+      "meaning_en": "sky",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "buran",
+      "meaning_en": "moon",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bitaŋ",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "abun",
+      "meaning_en": "cloud",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "[i]jan",
+      "meaning_en": "rain",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dudu",
+      "meaning_en": "thunder",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kijat",
+      "meaning_en": "lightning",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "kuniŋ",
+      "meaning_en": "lightning",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sobak",
+      "meaning_en": "wind",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bisah",
+      "meaning_en": "to blow",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "baat",
+      "meaning_en": "heavy",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "opui",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "abux",
+      "meaning_en": "to burn",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "suŋut",
+      "meaning_en": "black",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "budah",
+      "meaning_en": "white",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "mopuk",
+      "meaning_en": "white",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "biriĕ",
+      "meaning_en": "red",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sia",
+      "meaning_en": "yellow",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "idip",
+      "meaning_en": "green",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sit",
+      "meaning_en": "small",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "monik",
+      "meaning_en": "small",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ayux",
+      "meaning_en": "big",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sikitok",
+      "meaning_en": "short",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sapit",
+      "meaning_en": "narrow",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dar",
+      "meaning_en": "wide",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "monam",
+      "meaning_en": "painful, sick",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "minõt",
+      "meaning_en": "painful, sick",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dasa",
+      "meaning_en": "shy, ashamed",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "moŋuh",
+      "meaning_en": "shy, ashamed",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "baux",
+      "meaning_en": "old",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "pagux",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "konak",
+      "meaning_en": "good",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "jaat",
+      "meaning_en": "bad, evil",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "tuk",
+      "meaning_en": "correct, true",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bonar",
+      "meaning_en": "correct, true",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "ŋarom",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "anu",
+      "meaning_en": "day",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sowa",
+      "meaning_en": "year",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "daaŋ",
+      "meaning_en": "when?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "daaŋ",
+      "meaning_en": "in, inside",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dĕ somu",
+      "meaning_en": "above",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dĕ tun",
+      "meaning_en": "above",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "dĕ dau",
+      "meaning_en": "below",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "riboeʔ",
+      "meaning_en": "below",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "itis̟ð̙̞̞",
+      "meaning_en": "this",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "inu",
+      "meaning_en": "that",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "sinuk",
+      "meaning_en": "near",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "juĕ",
+      "meaning_en": "far",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "aku",
+      "meaning_en": "where?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "iŋan",
+      "meaning_en": "thou",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "muu",
+      "meaning_en": "thou",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "iyox",
+      "meaning_en": "he/she",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "iŋan",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "iyox",
+      "meaning_en": "they",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "[a]kun",
+      "meaning_en": "what?",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "suĕ porug",
+      "meaning_en": "all",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "duech",
+      "meaning_en": "and",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "toban",
+      "meaning_en": "and",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "komu",
+      "meaning_en": "if",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "idex",
+      "meaning_en": "how?",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "niap",
+      "meaning_en": "to count",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    },
+    {
+      "word": "bibiraŋ",
+      "meaning_en": "to count",
+      "part_of_speech": "verb",
+      "lesson_id": 3,
+      "source_ref": "ABVD Singhi / Bau Bidayuh (id=125); Blust from Reijffert (1956) Vocabulary of English and Sarawak Land Dayak (Singhi tribe); ISO-639-3:sne; Greenhill, Blust & Gray (2008), CC BY 4.0",
+      "dialect_variant": "Singhi / Bau Bidayuh"
+    }
+  ]
+}

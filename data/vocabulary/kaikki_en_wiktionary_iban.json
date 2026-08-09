@@ -1,0 +1,7679 @@
+{
+  "language": "iban",
+  "source_ref": "kaikki.org English Wiktionary extract for Iban (wiktextract; Ylonen 2022; Wiktionary CC BY-SA)",
+  "dialect_variant": null,
+  "entries": [
+    {
+      "word": "van",
+      "meaning_en": "van",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Israel",
+      "meaning_en": "Israeli",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "but",
+      "meaning_en": "stinky",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tomato",
+      "meaning_en": "tomato",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lama",
+      "meaning_en": "long (duration of time)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "amai",
+      "meaning_en": "true",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "malam",
+      "meaning_en": "night",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "orang",
+      "meaning_en": "person, people",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "habitat",
+      "meaning_en": "habitat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tan",
+      "meaning_en": "resistant (not easily damaged)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tin",
+      "meaning_en": "tin",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ai",
+      "meaning_en": "water",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "anu",
+      "meaning_en": "something whose name is unknown or left unmentioned, typically as a filler word.",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ba",
+      "meaning_en": "in",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "bai",
+      "meaning_en": "to bring",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "baik",
+      "meaning_en": "peaceful",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "balat",
+      "meaning_en": "extremely; really; very",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "bam",
+      "meaning_en": "greedy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "beg",
+      "meaning_en": "bag",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chat",
+      "meaning_en": "paint (substance)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lapar",
+      "meaning_en": "hungry (affected by hunger; desirous of food)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "baru",
+      "meaning_en": "new (age of non-living things)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "dia",
+      "meaning_en": "there (not very far from the speaker)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "minggu",
+      "meaning_en": "week (period of seven days)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 3
+    },
+    {
+      "word": "aku",
+      "meaning_en": "I, me (first person singular pronoun)",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 2
+    },
+    {
+      "word": "musik",
+      "meaning_en": "music",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rumah",
+      "meaning_en": "house (abode)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dua",
+      "meaning_en": "two",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "bulan",
+      "meaning_en": "moon (largest natural satellite of planet Earth)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "satu",
+      "meaning_en": "one",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "sungai",
+      "meaning_en": "river (large stream which drains a landmass)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "tak",
+      "meaning_en": "but",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "tiga",
+      "meaning_en": "three",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "empat",
+      "meaning_en": "four",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "kita",
+      "meaning_en": "you (plural)",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kami",
+      "meaning_en": "we (exclusive)",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dada",
+      "meaning_en": "chest",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pam",
+      "meaning_en": "pump",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kek",
+      "meaning_en": "cake",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bol",
+      "meaning_en": "ball",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bir",
+      "meaning_en": "beer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pos",
+      "meaning_en": "mail",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "darah",
+      "meaning_en": "blood (vital liquid flowing in animal bodies)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "temu",
+      "meaning_en": "to know",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "au",
+      "meaning_en": "yes",
+      "meaning_ms": null,
+      "part_of_speech": "interjection",
+      "lesson_id": 6
+    },
+    {
+      "word": "ti",
+      "meaning_en": "which ((relative) who, whom, what)",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "tu",
+      "meaning_en": "this (what is being indicated)",
+      "meaning_ms": null,
+      "part_of_speech": "det",
+      "lesson_id": 6
+    },
+    {
+      "word": "pun",
+      "meaning_en": "tree (large woody plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pat",
+      "meaning_en": "chisel",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ika",
+      "meaning_en": "sister-in-law; brother-in-law",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tau",
+      "meaning_en": "to know; to be able to do something",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bari",
+      "meaning_en": "stale, rancid (no longer fresh)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "mit",
+      "meaning_en": "small",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ini",
+      "meaning_en": "grandmother",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "label",
+      "meaning_en": "label",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ikan",
+      "meaning_en": "fish (vertebrate animal)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "jam",
+      "meaning_en": "hour (Time period of sixty minutes)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bom",
+      "meaning_en": "bomb",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dik",
+      "meaning_en": "you",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ada",
+      "meaning_en": "to be born; to give birth",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ajar",
+      "meaning_en": "lesson",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "beli",
+      "meaning_en": "to buy",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "baju",
+      "meaning_en": "top (clothing that covers upper body)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "barat",
+      "meaning_en": "west (compass point)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Belanda",
+      "meaning_en": "Dutch",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "belajar",
+      "meaning_en": "learn",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "kuda",
+      "meaning_en": "horse",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "duit",
+      "meaning_en": "money",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pisang",
+      "meaning_en": "banana",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ingat",
+      "meaning_en": "to remember, to recall",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kayu",
+      "meaning_en": "tree",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "abu",
+      "meaning_en": "ash (solid remains of a fire)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tanah",
+      "meaning_en": "earth; soil",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "amat",
+      "meaning_en": "true",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "binatang",
+      "meaning_en": "animal (organism)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dan",
+      "meaning_en": "branch (part of plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "enam",
+      "meaning_en": "six",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "tinggi",
+      "meaning_en": "high (elevation)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tujuh",
+      "meaning_en": "seven",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "kaki",
+      "meaning_en": "leg; foot",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "bantu",
+      "meaning_en": "help, assist",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "giga",
+      "meaning_en": "to find",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pasir",
+      "meaning_en": "sand",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "anak",
+      "meaning_en": "child (a female or male child, a daughter or son)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "tinggal",
+      "meaning_en": "to leave.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bunuh",
+      "meaning_en": "to kill (put to death)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "anda",
+      "meaning_en": "lucky; fortunate",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "atas",
+      "meaning_en": "on; above; over",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "bagi",
+      "meaning_en": "part; section",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "besi",
+      "meaning_en": "iron (element)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sa",
+      "meaning_en": "short form for satu, often pronounced as se-.",
+      "meaning_ms": null,
+      "part_of_speech": "affix",
+      "lesson_id": 6
+    },
+    {
+      "word": "deka",
+      "meaning_en": "to wish, to intend, to want",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "aus",
+      "meaning_en": "thirsty",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "atap",
+      "meaning_en": "roof",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "meli",
+      "meaning_en": "to buy",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "nama",
+      "meaning_en": "name",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "din",
+      "meaning_en": "there (very far from the speaker)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "aba",
+      "meaning_en": "father",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "komputer",
+      "meaning_en": "computer (a programmable device)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mar",
+      "meaning_en": "expensive",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "pinta",
+      "meaning_en": "request",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lima",
+      "meaning_en": "five",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "ujan",
+      "meaning_en": "rain",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "misa",
+      "meaning_en": "Mass",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "laya",
+      "meaning_en": "fight",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "laki",
+      "meaning_en": "male, man",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "terima kasih",
+      "meaning_en": "thank you",
+      "meaning_ms": null,
+      "part_of_speech": "phrase",
+      "lesson_id": 6
+    },
+    {
+      "word": "chit",
+      "meaning_en": "rat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "sima",
+      "meaning_en": "navel (of a snake)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "taring",
+      "meaning_en": "canine tooth",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tang",
+      "meaning_en": "but",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "mai",
+      "meaning_en": "to bring",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "batu",
+      "meaning_en": "stone",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "babi",
+      "meaning_en": "pig (mammal of genus Sus)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "padi",
+      "meaning_en": "rice (plants)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "apin",
+      "meaning_en": "not yet (not for the moment, though expected later)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "bah",
+      "meaning_en": "flood (overflow of water)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "logo",
+      "meaning_en": "logo",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "biro",
+      "meaning_en": "bureau",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "aka",
+      "meaning_en": "older brother",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Siria",
+      "meaning_en": "Syrian",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "wi",
+      "meaning_en": "rattan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ulu",
+      "meaning_en": "handle of a weapon or tools",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "gula",
+      "meaning_en": "sugar (sucrose from sugar cane or sugar beet and used to sweeten food and drink)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "banda",
+      "meaning_en": "orange (colour)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "abur",
+      "meaning_en": "chaos",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "anti",
+      "meaning_en": "to wait",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "mina",
+      "meaning_en": "only",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "Kanada",
+      "meaning_en": "Canada (a country in North America)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bas",
+      "meaning_en": "bus",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "adat",
+      "meaning_en": "custom (Frequent repetition of the same act)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "wad",
+      "meaning_en": "ward",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gaga",
+      "meaning_en": "happy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "gagai",
+      "meaning_en": "to chase",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "asap",
+      "meaning_en": "smoke (visible particles and vapour given off by burning material)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ka",
+      "meaning_en": "contraction of deka",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "baka",
+      "meaning_en": "like, similar to",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "atmosfera",
+      "meaning_en": "atmosphere",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kitai",
+      "meaning_en": "we (inclusive)",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mata",
+      "meaning_en": "eye (organ)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "selatan",
+      "meaning_en": "south (compass point)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bula",
+      "meaning_en": "to lie",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ati",
+      "meaning_en": "liver (organ of the body)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "asi",
+      "meaning_en": "rice",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "opis",
+      "meaning_en": "office",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "palau",
+      "meaning_en": "drunk",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "bali",
+      "meaning_en": "alter; change",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "abas",
+      "meaning_en": "to visit",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tupi",
+      "meaning_en": "hat (head covering)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ipa",
+      "meaning_en": "to peek",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "raja",
+      "meaning_en": "king",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "raya",
+      "meaning_en": "large, major, main",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "chuka",
+      "meaning_en": "vinegar",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dosa",
+      "meaning_en": "sin",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ansa",
+      "meaning_en": "goose (a grazing waterfowl of the family Anatidae)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "asu",
+      "meaning_en": "dog (animal)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "alus",
+      "meaning_en": "fine, soft",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tum",
+      "meaning_en": "to heat; to warm",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jai",
+      "meaning_en": "bad, evil (of personality)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 2
+    },
+    {
+      "word": "rega",
+      "meaning_en": "price",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bara",
+      "meaning_en": "embers, glowing coal",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bilun",
+      "meaning_en": "plane; airplane; aeroplane",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kort",
+      "meaning_en": "court; tribunal",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pagi",
+      "meaning_en": "morning",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sida",
+      "meaning_en": "they",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "skit",
+      "meaning_en": "skirt",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "raun",
+      "meaning_en": "to walk around",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "maya",
+      "meaning_en": "when",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "aki",
+      "meaning_en": "grandfather",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "bala",
+      "meaning_en": "group of people",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "igi",
+      "meaning_en": "seed",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ari",
+      "meaning_en": "from",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "mas",
+      "meaning_en": "gold (element)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "akai",
+      "meaning_en": "ouch (expression of one's own physical pain)",
+      "meaning_ms": null,
+      "part_of_speech": "interjection",
+      "lesson_id": 3
+    },
+    {
+      "word": "tama",
+      "meaning_en": "to come inside",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "baja",
+      "meaning_en": "fertilizer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "naya",
+      "meaning_en": "spill",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tua",
+      "meaning_en": "we (both of us)",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "masin",
+      "meaning_en": "salty.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "dara",
+      "meaning_en": "maiden, virgin",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "komen",
+      "meaning_en": "comment",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "apus",
+      "meaning_en": "to extinguish; to put an end to",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ubah",
+      "meaning_en": "to change (to become something different)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "api",
+      "meaning_en": "fire (oxidation reaction)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "iku",
+      "meaning_en": "tail (appendage of an animal)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "buta",
+      "meaning_en": "blind",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kar",
+      "meaning_en": "map",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kering",
+      "meaning_en": "strong (physically)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tanda",
+      "meaning_en": "sign; indication",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "minta",
+      "meaning_en": "to ask",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "hari",
+      "meaning_en": "day",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "akar",
+      "meaning_en": "root (of plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sabun",
+      "meaning_en": "soap (substance)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "roh",
+      "meaning_en": "spirit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "siga",
+      "meaning_en": "wild",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "dalam",
+      "meaning_en": "deep",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "aum",
+      "meaning_en": "meeting",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "abi",
+      "meaning_en": "wound or cut",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nas",
+      "meaning_en": "nurse",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sembilan",
+      "meaning_en": "nine",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "bakal",
+      "meaning_en": "wound",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "buka",
+      "meaning_en": "to open (to make something accessible)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rusa",
+      "meaning_en": "deer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "basu",
+      "meaning_en": "to wash",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "malu",
+      "meaning_en": "shy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "parai",
+      "meaning_en": "dead",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "buk",
+      "meaning_en": "hair",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "guna",
+      "meaning_en": "usage",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ibu",
+      "meaning_en": "aunt; aunty",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gelas",
+      "meaning_en": "glass",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "televisi",
+      "meaning_en": "television",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "alu",
+      "meaning_en": "a pestle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kulit",
+      "meaning_en": "skin (outer covering of the body of a person)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "bini",
+      "meaning_en": "wife",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "tangan",
+      "meaning_en": "hand (part of the body)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "gali",
+      "meaning_en": "to lie down",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bulu",
+      "meaning_en": "body hair",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "manuk",
+      "meaning_en": "chicken",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nyiur",
+      "meaning_en": "coconut",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "salah",
+      "meaning_en": "false, wrong",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tasik",
+      "meaning_en": "sea (body of water)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "tanam",
+      "meaning_en": "to plant",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "telu",
+      "meaning_en": "egg; roe; spawn.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tunu",
+      "meaning_en": "to roast; to broil",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kepala",
+      "meaning_en": "head (part of the body)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "utara",
+      "meaning_en": "north (compass point)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "burung",
+      "meaning_en": "bird",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "langit",
+      "meaning_en": "sky",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "zat",
+      "meaning_en": "any of the organic substances present in food and essential to nutrition.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mandi",
+      "meaning_en": "to bathe; shower",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "manis",
+      "meaning_en": "sweet",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "buah",
+      "meaning_en": "fruit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mulut",
+      "meaning_en": "lips",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "naga",
+      "meaning_en": "dragon (mythical creature)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kampung",
+      "meaning_en": "village",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pintu",
+      "meaning_en": "door",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tebu",
+      "meaning_en": "sugar cane (species of grass)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "papan",
+      "meaning_en": "plank",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gua",
+      "meaning_en": "cave (natural cavity formed underground)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "berat",
+      "meaning_en": "weight",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kuku",
+      "meaning_en": "claw",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ina",
+      "meaning_en": "mother",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "pilih",
+      "meaning_en": "to choose (to pick; to make the choice)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "lubang",
+      "meaning_en": "hole (opening in a solid)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "taruh",
+      "meaning_en": "to keep, to put away",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tunjuk",
+      "meaning_en": "finger",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kain",
+      "meaning_en": "cloth",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "takut",
+      "meaning_en": "afraid",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tubu",
+      "meaning_en": "bamboo shoot",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nanah",
+      "meaning_en": "pus (fluid found in regions of infection)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "daun",
+      "meaning_en": "leaf (part of a plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tuju",
+      "meaning_en": "purpose",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pending",
+      "meaning_en": "ear",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "kad",
+      "meaning_en": "card",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dani",
+      "meaning_en": "to wake up",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "aya",
+      "meaning_en": "uncle (parent's brother)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "blok",
+      "meaning_en": "block",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "serai",
+      "meaning_en": "Cymbopogon citratus; lemongrass.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ruti",
+      "meaning_en": "bread (baked dough made from cereals)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kati",
+      "meaning_en": "how",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "lia",
+      "meaning_en": "ginger (Zingiber officinale)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "aram",
+      "meaning_en": "come on",
+      "meaning_ms": null,
+      "part_of_speech": "interjection",
+      "lesson_id": 6
+    },
+    {
+      "word": "mending",
+      "meaning_en": "to hear",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "mua",
+      "meaning_en": "face",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "renga",
+      "meaning_en": "flu",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gaun",
+      "meaning_en": "gown",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jari",
+      "meaning_en": "hand",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "duduk",
+      "meaning_en": "to sit (to be in a position in which the upper body is upright and the legs are supported)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rami",
+      "meaning_en": "crowded",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "perut",
+      "meaning_en": "belly (abdomen)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tenggara",
+      "meaning_en": "southeast",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "teknologi",
+      "meaning_en": "technology",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bata",
+      "meaning_en": "brick",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kudus",
+      "meaning_en": "holy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "nanas",
+      "meaning_en": "pineapple",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mutar",
+      "meaning_en": "to solve (a problem)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "presiden",
+      "meaning_en": "president",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "reta",
+      "meaning_en": "property",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "riman",
+      "meaning_en": "cancer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "taja",
+      "meaning_en": "although, even though",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "suba",
+      "meaning_en": "before, previously, earlier",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 4
+    },
+    {
+      "word": "saut",
+      "meaning_en": "answer",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "leman",
+      "meaning_en": "type, sort, variety",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ais",
+      "meaning_en": "ice (water in frozen form)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "banding",
+      "meaning_en": "comparison",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "alai",
+      "meaning_en": "place",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "luku",
+      "meaning_en": "assured, certain, determined, immovable, steadfast, unswerving.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kabel",
+      "meaning_en": "cable",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "anang",
+      "meaning_en": "don't (do not)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "dian",
+      "meaning_en": "wax candle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "laku",
+      "meaning_en": "saleable",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "pua",
+      "meaning_en": "blanket",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayat",
+      "meaning_en": "sentence",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nuan",
+      "meaning_en": "you",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rita",
+      "meaning_en": "news",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "puas",
+      "meaning_en": "satisfied (in a state of satisfaction)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lutur",
+      "meaning_en": "doctor",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "traktor",
+      "meaning_en": "tractor",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "enda",
+      "meaning_en": "not (negates meaning of verb)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "reti",
+      "meaning_en": "meaning",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "enti",
+      "meaning_en": "if",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "tirai",
+      "meaning_en": "curtain",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "datai",
+      "meaning_en": "to come",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "semina",
+      "meaning_en": "only, simply.",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "primari",
+      "meaning_en": "primary",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rara",
+      "meaning_en": "break up a quarrel, oppose combatants",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "rari",
+      "meaning_en": "hurry to leave a place one is working without approval of one's employer.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "luki",
+      "meaning_en": "stingy; miserly",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lori",
+      "meaning_en": "lorry",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "aja",
+      "meaning_en": "only",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "hoki",
+      "meaning_en": "hockey",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tinga",
+      "meaning_en": "shred, splinter",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sepuluh",
+      "meaning_en": "ten",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "lipan",
+      "meaning_en": "centipede",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "salin",
+      "meaning_en": "to pour",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "Filipina",
+      "meaning_en": "Filipino",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "Kristian",
+      "meaning_en": "Christian",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pusu",
+      "meaning_en": "anchovy",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "iring",
+      "meaning_en": "guidance",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukit",
+      "meaning_en": "locket",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "panas",
+      "meaning_en": "hot",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "nikal",
+      "meaning_en": "to return",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "antin",
+      "meaning_en": "earring",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "vakum",
+      "meaning_en": "vacuum",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "burak",
+      "meaning_en": "white",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "abak",
+      "meaning_en": "fragments",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "endur",
+      "meaning_en": "place",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "taun",
+      "meaning_en": "year",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "tiun",
+      "meaning_en": "tune, rhyme",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tanak",
+      "meaning_en": "to fry in oil",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jani",
+      "meaning_en": "pig",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "katil",
+      "meaning_en": "bed",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sayur",
+      "meaning_en": "vegetable",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "panggang",
+      "meaning_en": "to roast",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jinak",
+      "meaning_en": "tamed (of animals)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "redak",
+      "meaning_en": "shattered, pulverised",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "aduh",
+      "meaning_en": "ouch (expression of pain, discomfort or shock)",
+      "meaning_ms": null,
+      "part_of_speech": "interjection",
+      "lesson_id": 6
+    },
+    {
+      "word": "bangku",
+      "meaning_en": "bench (long seat)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "jantung",
+      "meaning_en": "heart (an organ)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "kini",
+      "meaning_en": "to where",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tetak",
+      "meaning_en": "to cut up",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bintang",
+      "meaning_en": "star (luminous celestial body)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "biru",
+      "meaning_en": "blue",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kuning",
+      "meaning_en": "yellow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "timur",
+      "meaning_en": "east",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "basah",
+      "meaning_en": "wet (of an object: covered with or impregnated with liquid)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "angin",
+      "meaning_en": "wind (movement of air)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chura",
+      "meaning_en": "colour",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tulang",
+      "meaning_en": "bone",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "tati",
+      "meaning_en": "bother with, care about",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "gelembung",
+      "meaning_en": "balloon",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bau",
+      "meaning_en": "shoulder",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ambi",
+      "meaning_en": "to take",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "mesin",
+      "meaning_en": "machine",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tuai",
+      "meaning_en": "leader, chief, head",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "mimpi",
+      "meaning_en": "dream",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lawa",
+      "meaning_en": "beautiful, good-looking, pretty",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "baya",
+      "meaning_en": "crocodile",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pait",
+      "meaning_en": "bitter",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "bais",
+      "meaning_en": "vice (a tool for drawing lead into cames, or flat grooved rods, for casements.)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tulis",
+      "meaning_en": "to write",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "nyin",
+      "meaning_en": "there (far from the speaker)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "ujut",
+      "meaning_en": "cape",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kukut",
+      "meaning_en": "nail (on fingers and toes)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rikut",
+      "meaning_en": "record",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lapan",
+      "meaning_en": "eight",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 3
+    },
+    {
+      "word": "riput",
+      "meaning_en": "report",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rumput",
+      "meaning_en": "grass",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "iya",
+      "meaning_en": "he; she",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gari",
+      "meaning_en": "shirt",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "regas",
+      "meaning_en": "fit",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "Roh Kudus",
+      "meaning_en": "Holy Spirit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dini",
+      "meaning_en": "where",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tunda",
+      "meaning_en": "follow",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "abis",
+      "meaning_en": "completed; finished",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "adi",
+      "meaning_en": "sibling (younger person who shares same parents)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "librari",
+      "meaning_en": "library",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jadi",
+      "meaning_en": "become, come about, reach a successful conclusion.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "butang",
+      "meaning_en": "to commit adultery",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jugal",
+      "meaning_en": "gastritis",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kutak",
+      "meaning_en": "box",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "silik",
+      "meaning_en": "detailed",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "petang",
+      "meaning_en": "dark",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "raras",
+      "meaning_en": "human beings: build, form, physique, proportion",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "ikat",
+      "meaning_en": "ikat (a style of weaving)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "manang",
+      "meaning_en": "shaman",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "gerai",
+      "meaning_en": "healthy, well",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "rian",
+      "meaning_en": "durian",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sabak",
+      "meaning_en": "cry, lamentation",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "apai",
+      "meaning_en": "father",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "bawang",
+      "meaning_en": "onion",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "makai",
+      "meaning_en": "to eat (consume)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "gawa",
+      "meaning_en": "work",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kalas",
+      "meaning_en": "pink",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "puntan",
+      "meaning_en": "failed; unsuccessful",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tubai",
+      "meaning_en": "the plant derris, used as a fish poison",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "bagas",
+      "meaning_en": "hardworking; diligent",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayam",
+      "meaning_en": "toy",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kuyu",
+      "meaning_en": "cheeks",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nanga",
+      "meaning_en": "confluence (point where two rivers or streams meet)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 3
+    },
+    {
+      "word": "uji",
+      "meaning_en": "to try, to test",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "setor",
+      "meaning_en": "store",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tabur",
+      "meaning_en": "to strew, to scatter.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "sunyi",
+      "meaning_en": "deserted, empty (of a room of space)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tarak",
+      "meaning_en": "student; pupil",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bateri",
+      "meaning_en": "battery",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jurai",
+      "meaning_en": "spreading",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tusu",
+      "meaning_en": "breast",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "minyak",
+      "meaning_en": "oil:",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tangga",
+      "meaning_en": "ladder; stair",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kelas",
+      "meaning_en": "class",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jenuh",
+      "meaning_en": "quiet",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lemak",
+      "meaning_en": "fat, grease",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sitan",
+      "meaning_en": "Satan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "taris",
+      "meaning_en": "line",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tarit",
+      "meaning_en": "classifier for bracelet or vein",
+      "meaning_ms": null,
+      "part_of_speech": "classifier",
+      "lesson_id": 6
+    },
+    {
+      "word": "ruai",
+      "meaning_en": "balcony or veranda of a longhouse",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "utang",
+      "meaning_en": "debt",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kesa",
+      "meaning_en": "fire ant; Solenopsis spp. (tropical fire ants)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "semangka",
+      "meaning_en": "watermelon (fruit)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "nadai",
+      "meaning_en": "to not have",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rendai",
+      "meaning_en": "parched glutinous rice fried in a pan without oil",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mija",
+      "meaning_en": "table",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pegai",
+      "meaning_en": "to hold; handle",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "belas",
+      "meaning_en": "-teen (to form numbers 11 - 19)",
+      "meaning_ms": null,
+      "part_of_speech": "number",
+      "lesson_id": 6
+    },
+    {
+      "word": "pulis",
+      "meaning_en": "police officer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "stail",
+      "meaning_en": "style",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "buai",
+      "meaning_en": "to throw away; discard",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "chis",
+      "meaning_en": "cheese",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "asai",
+      "meaning_en": "to feel",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "sarak",
+      "meaning_en": "to divorce.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "peda",
+      "meaning_en": "look, see",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "lusa",
+      "meaning_en": "day after tomorrow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tabi",
+      "meaning_en": "greeting",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "perarat",
+      "meaning_en": "place an item purposely on the water to be carried downstream.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "angat",
+      "meaning_en": "hot",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "uras",
+      "meaning_en": "rubbish",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lambar",
+      "meaning_en": "page",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sepit",
+      "meaning_en": "speed",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rori",
+      "meaning_en": "lorry",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kudi",
+      "meaning_en": "storm",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bayak",
+      "meaning_en": "monitor lizard",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sanu",
+      "meaning_en": "someone whose name is unknown or left unmentioned, typically as a filler word.",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chok",
+      "meaning_en": "chalk",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kaban",
+      "meaning_en": "friend",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sapit",
+      "meaning_en": "deputy; assistant; partner",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "retis",
+      "meaning_en": "artist; celebrity",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sinu",
+      "meaning_en": "sad",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "Itali",
+      "meaning_en": "Italy (a country in Southern Europe)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "badas",
+      "meaning_en": "good; fine",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "betan",
+      "meaning_en": "defend",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "chiru",
+      "meaning_en": "clear, transparent",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "segi",
+      "meaning_en": "side",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "asur",
+      "meaning_en": "to push",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "awak",
+      "meaning_en": "opportunity",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tesat",
+      "meaning_en": "lost; astray",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kacha",
+      "meaning_en": "glass",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sumai",
+      "meaning_en": "to cook",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jagung",
+      "meaning_en": "maize; corn",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gaya",
+      "meaning_en": "condition; circumstance",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nangka",
+      "meaning_en": "jackfruit, fruit of the tropical tree Artocarpus heterophyllus",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tempik",
+      "meaning_en": "to clap (hand)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "televisyen",
+      "meaning_en": "television",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "indu",
+      "meaning_en": "woman",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "batang",
+      "meaning_en": "Principal member or part of class or thing.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "changkol",
+      "meaning_en": "alternative form of changkul",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jauh",
+      "meaning_en": "far",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "berau",
+      "meaning_en": "rice (raw seeds used as food)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kaul",
+      "meaning_en": "companionship; fellowship",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nyawa",
+      "meaning_en": "life",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ludah",
+      "meaning_en": "spit, saliva",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mirah",
+      "meaning_en": "red",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "manah",
+      "meaning_en": "good; nice",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "embun",
+      "meaning_en": "dew (moisture in the air that settles on plants, etc)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ambun",
+      "meaning_en": "dew",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "butuh",
+      "meaning_en": "penis",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rindu",
+      "meaning_en": "like",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "lebu",
+      "meaning_en": "empty-handed",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "benih",
+      "meaning_en": "seed",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "birah",
+      "meaning_en": "a plant of the calla lily family",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ubat",
+      "meaning_en": "medicine (substance which promotes healing)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ukur",
+      "meaning_en": "to measure (ascertain the quantity of a unit)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ujung",
+      "meaning_en": "endmost (last in a series, furthest away)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "pirak",
+      "meaning_en": "silver",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "angkat",
+      "meaning_en": "to lift, to raise",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tula",
+      "meaning_en": "towel",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bulih",
+      "meaning_en": "gained something",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "besai",
+      "meaning_en": "big (of a great size)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "panggil",
+      "meaning_en": "to call (to request, summon, or beckon)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bungsu",
+      "meaning_en": "lastborn (born last in a family)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tambah",
+      "meaning_en": "to add (to append, as a statement)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kedai",
+      "meaning_en": "shop (establishment that sells goods).",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jaku",
+      "meaning_en": "talk",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "semua",
+      "meaning_en": "all",
+      "meaning_ms": null,
+      "part_of_speech": "det",
+      "lesson_id": 6
+    },
+    {
+      "word": "bansa",
+      "meaning_en": "race; ethnicity",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "padang",
+      "meaning_en": "field; meadow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lantai",
+      "meaning_en": "floor (lower part of a room)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jalai",
+      "meaning_en": "path (a course taken)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bulu mata",
+      "meaning_en": "eyelash",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "jarum",
+      "meaning_en": "needle (implement mainly for sewing)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "masam",
+      "meaning_en": "sour",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayan",
+      "meaning_en": "appear",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "tarik",
+      "meaning_en": "classifier for bracelet or vein",
+      "meaning_ms": null,
+      "part_of_speech": "classifier",
+      "lesson_id": 6
+    },
+    {
+      "word": "bunyi",
+      "meaning_en": "alternative form of munyi",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "laban",
+      "meaning_en": "to fight",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "chawan",
+      "meaning_en": "cup (vessel for drinking)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bakul",
+      "meaning_en": "basket (container)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "anak chauk",
+      "meaning_en": "puppy (young dog)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "urup",
+      "meaning_en": "letter (letter of the alphabet)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "uban",
+      "meaning_en": "grey hair",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sejarah",
+      "meaning_en": "history",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tarum",
+      "meaning_en": "true indigo, Indigofera tinctoria",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "arap",
+      "meaning_en": "believe",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "leju",
+      "meaning_en": "bored",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "setim",
+      "meaning_en": "stamp",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mayas",
+      "meaning_en": "orangutan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "terima",
+      "meaning_en": "receive",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayas",
+      "meaning_en": "shadow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "alah",
+      "meaning_en": "defeated",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "terang",
+      "meaning_en": "bright",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "semalam",
+      "meaning_en": "a night",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pulai",
+      "meaning_en": "to return",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tauhu",
+      "meaning_en": "tofu",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "asil",
+      "meaning_en": "yield; product; result",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ketam",
+      "meaning_en": "crab",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kemari",
+      "meaning_en": "yesterday",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "pegi",
+      "meaning_en": "to go; to go away; to depart",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kandis",
+      "meaning_en": "fruit trees of Garcina spp.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kompeni",
+      "meaning_en": "company",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bajau",
+      "meaning_en": "to rape",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "linsa",
+      "meaning_en": "eggs of louse; nit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "pandak",
+      "meaning_en": "short",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "abuk",
+      "meaning_en": "dust (fine, dry particles)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ukai",
+      "meaning_en": "no",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "juara",
+      "meaning_en": "champion; winner",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "umai",
+      "meaning_en": "farm; farmland",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dadah",
+      "meaning_en": "drug",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "badu",
+      "meaning_en": "to stop; finish",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bacha",
+      "meaning_en": "read",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "lebuh",
+      "meaning_en": "when",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "peluh",
+      "meaning_en": "sweat (bodily fluid ejected through the skin to cool down the body)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chara",
+      "meaning_en": "manner, means, method",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "amau",
+      "meaning_en": "ash (solid remains of a fire)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ditu",
+      "meaning_en": "here",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tinggang",
+      "meaning_en": "to befall",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "labuh",
+      "meaning_en": "to fall",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "gawai",
+      "meaning_en": "festive, celebration",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "amal",
+      "meaning_en": "deed",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tepa",
+      "meaning_en": "present",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kandung",
+      "meaning_en": "fetus in the mother's womb.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "sigi",
+      "meaning_en": "indeed; in fact; really",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "nikau",
+      "meaning_en": "to throw",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngeli",
+      "meaning_en": "tooth",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "belimbing",
+      "meaning_en": "star fruit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "petara",
+      "meaning_en": "god",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "universiti",
+      "meaning_en": "university",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ukun",
+      "meaning_en": "to tidy up, to arrange",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "sipat",
+      "meaning_en": "to whip, beat",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "mabuk",
+      "meaning_en": "drunk; intoxicated",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "iyu",
+      "meaning_en": "shark",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kerita",
+      "meaning_en": "car",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tumu",
+      "meaning_en": "early",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "berita",
+      "meaning_en": "news",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chelum",
+      "meaning_en": "black",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lalu",
+      "meaning_en": "then (soon afterwards)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "menara",
+      "meaning_en": "tower",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dilah",
+      "meaning_en": "tongue",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jagu",
+      "meaning_en": "crocodile",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ikar",
+      "meaning_en": "acre",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kulat",
+      "meaning_en": "fungus; mushroom",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayung",
+      "meaning_en": "relatives",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kawin",
+      "meaning_en": "to marry",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "berapa",
+      "meaning_en": "how many, how much",
+      "meaning_ms": null,
+      "part_of_speech": "det",
+      "lesson_id": 2
+    },
+    {
+      "word": "dunya",
+      "meaning_en": "world",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "munyi",
+      "meaning_en": "sound (sensation perceived by the ear)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "tampi",
+      "meaning_en": "to winnow",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kupi",
+      "meaning_en": "coffee (beverage)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bisi",
+      "meaning_en": "to be present, to exist, be there",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "voluntia",
+      "meaning_en": "volunteer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tauka",
+      "meaning_en": "or",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "gitang",
+      "meaning_en": "to hang",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tulak",
+      "meaning_en": "to push",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "antu",
+      "meaning_en": "devil, demon (wicked spirit)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kurur",
+      "meaning_en": "breadfruit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "galong",
+      "meaning_en": "curling, rolling, billowing",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tulung",
+      "meaning_en": "help",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sawang",
+      "meaning_en": "a large hole",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "terung",
+      "meaning_en": "eggplant; brinjal; aubergine (Solanum melongena) (fruit of the plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "latak",
+      "meaning_en": "mud",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "labang",
+      "meaning_en": "pale",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "emperan",
+      "meaning_en": "riverbank",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kiba",
+      "meaning_en": "left (the west side of the body when one is facing north)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 3
+    },
+    {
+      "word": "tauk",
+      "meaning_en": "obsolete spelling of tau",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "perintah",
+      "meaning_en": "government",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chabi",
+      "meaning_en": "chilli",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayun",
+      "meaning_en": "cradle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "itung",
+      "meaning_en": "to count",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "barah",
+      "meaning_en": "wounded",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "adap",
+      "meaning_en": "aspect; situation",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pelajar",
+      "meaning_en": "education",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dinga",
+      "meaning_en": "to hear (to perceive with the ear)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "angus",
+      "meaning_en": "burnt; burn to ashes",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukung",
+      "meaning_en": "an earthworm, large and long, found in swamps, often used as bait for set lines.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "remang",
+      "meaning_en": "cloud",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "puji",
+      "meaning_en": "to praise",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "langkau",
+      "meaning_en": "hut",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "takah",
+      "meaning_en": "interval of time or space",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "emba",
+      "meaning_en": "threat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nemu",
+      "meaning_en": "to know",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rambu",
+      "meaning_en": "prepared for making up, plan.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "gadung",
+      "meaning_en": "green",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "idung",
+      "meaning_en": "nose",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "butul",
+      "meaning_en": "bottle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ketumbar",
+      "meaning_en": "coriander (dried seeds of Coriandrum sativum plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "talipaun",
+      "meaning_en": "telephone",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kitil",
+      "meaning_en": "kettle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sebut",
+      "meaning_en": "to call (by a name)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kangan",
+      "meaning_en": "a black-naped blue monarch flycatcher, a small bird of species Hypothymis azurea Boddaert",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "pegu",
+      "meaning_en": "nape (back of the neck)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bulu bansu",
+      "meaning_en": "eyebrow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "barat laut",
+      "meaning_en": "northwest (compass point)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jelu",
+      "meaning_en": "animal",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "adai",
+      "meaning_en": "not (negates meaning of verb)",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "kasau",
+      "meaning_en": "rafter",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "vaksin",
+      "meaning_en": "vaccine",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jimat",
+      "meaning_en": "careful",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "bangkai",
+      "meaning_en": "carcass, the body of a dead animal.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kayuh",
+      "meaning_en": "to row using oar",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "anjung",
+      "meaning_en": "to send, convey",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pukat",
+      "meaning_en": "seine",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jual",
+      "meaning_en": "to sell.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "setem",
+      "meaning_en": "stamp",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gayu",
+      "meaning_en": "long live",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "milih",
+      "meaning_en": "to choose (to pick; to make the choice)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "chelak",
+      "meaning_en": "printing",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nangi",
+      "meaning_en": "fear; afraid",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "ikak",
+      "meaning_en": "excessively fond of, besotted with",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "ninga",
+      "meaning_en": "to hear",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tagang",
+      "meaning_en": "restrain",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "kelab",
+      "meaning_en": "club",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "muzium",
+      "meaning_en": "museum",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pajak",
+      "meaning_en": "press, compress, cram in, beat down.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "landai",
+      "meaning_en": "gentle, gradual (not too steep)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tawil",
+      "meaning_en": "towel",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "wung",
+      "meaning_en": "waterfall",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ipul",
+      "meaning_en": "apple",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "liur",
+      "meaning_en": "saliva.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pasuk",
+      "meaning_en": "the position used to blunt attack and protect oneself",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tabung",
+      "meaning_en": "container (used to fill any liquid)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kanggan",
+      "meaning_en": "black cotton cloth, Chinese black calico.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sembah",
+      "meaning_en": "to worship",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "lantang",
+      "meaning_en": "happy, contented",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "adang",
+      "meaning_en": "preparation",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "andal",
+      "meaning_en": "convinced, positive",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "bujang",
+      "meaning_en": "single (male)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mata angin",
+      "meaning_en": "cardinal direction; compass point",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nanya",
+      "meaning_en": "to ask",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "padang bilun",
+      "meaning_en": "airport",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lebat",
+      "meaning_en": "thick",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "belian",
+      "meaning_en": "diamond:",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "dachin",
+      "meaning_en": "scales, stilyard",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bulan satu",
+      "meaning_en": "January",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kebal",
+      "meaning_en": "immune:",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kurikulum",
+      "meaning_en": "curriculum",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "diau",
+      "meaning_en": "to stay; to reside; to live in",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ulun",
+      "meaning_en": "slave",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ibun",
+      "meaning_en": "to watch over",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "lalau",
+      "meaning_en": "advice, counsel",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nambah",
+      "meaning_en": "to add",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "andau",
+      "meaning_en": "bridge",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "biak",
+      "meaning_en": "young",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ragum",
+      "meaning_en": "beard",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "sagin",
+      "meaning_en": "bracelet",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pemula",
+      "meaning_en": "lie",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ketawa",
+      "meaning_en": "to laugh",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "dagin",
+      "meaning_en": "meat (animal flesh used as food)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "utai",
+      "meaning_en": "thing",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "irup",
+      "meaning_en": "to drink",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rarang",
+      "meaning_en": "far apart, not close, some distance between or after an interval.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "semak",
+      "meaning_en": "near, close (at a little distance)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "kemisi",
+      "meaning_en": "holiday",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "edisyen",
+      "meaning_en": "edition",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ulah",
+      "meaning_en": "conduct; behaviour",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sekula",
+      "meaning_en": "school",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sepital",
+      "meaning_en": "hospital",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "indai",
+      "meaning_en": "mother",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "mensia",
+      "meaning_en": "person, human being",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "manyi",
+      "meaning_en": "bee",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tinduk",
+      "meaning_en": "to sleep",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "enggau",
+      "meaning_en": "and (used to connect two similar words, phrases, et cetera)",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 3
+    },
+    {
+      "word": "sayau",
+      "meaning_en": "love; compassion; affection",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngagai",
+      "meaning_en": "to chase",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "engkiang",
+      "meaning_en": "a kind of lizard",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "munsang",
+      "meaning_en": "civet",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ticak",
+      "meaning_en": "alternative form of tichak",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ukui",
+      "meaning_en": "dog",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "bukai",
+      "meaning_en": "other",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lemai",
+      "meaning_en": "evening",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bendar",
+      "meaning_en": "true",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "mayuh",
+      "meaning_en": "many; much; a lot",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 2
+    },
+    {
+      "word": "chapi",
+      "meaning_en": "cow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tichak",
+      "meaning_en": "lizard",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gerija",
+      "meaning_en": "church",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "genturung",
+      "meaning_en": "group",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gerempung",
+      "meaning_en": "association",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "serega",
+      "meaning_en": "heaven, paradise",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "demalam",
+      "meaning_en": "last night",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "kangau",
+      "meaning_en": "to call",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "enjuk",
+      "meaning_en": "to give",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kiruh",
+      "meaning_en": "busy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "manchal",
+      "meaning_en": "naughty",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "idup",
+      "meaning_en": "life",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Bup Kudus",
+      "meaning_en": "Holy Bible",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bup",
+      "meaning_en": "book",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bereta",
+      "meaning_en": "wealthy; rich",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "chelap",
+      "meaning_en": "cold",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "musin chelap",
+      "meaning_en": "winter",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "musin",
+      "meaning_en": "season",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "perau",
+      "meaning_en": "boat (water craft)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "musin ngetau",
+      "meaning_en": "harvest season",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "keterubah",
+      "meaning_en": "first",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "charik",
+      "meaning_en": "torn",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "regang",
+      "meaning_en": "cross",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mayau",
+      "meaning_en": "cat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "belaki",
+      "meaning_en": "to have husband",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 2
+    },
+    {
+      "word": "rumah panjai",
+      "meaning_en": "longhouse",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "panjai",
+      "meaning_en": "long",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tusah",
+      "meaning_en": "difficult; hard",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "nyamai",
+      "meaning_en": "delicious; tasty",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lempung",
+      "meaning_en": "light (in weight)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "bajik",
+      "meaning_en": "beautiful, good-looking, pretty",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "menua",
+      "meaning_en": "land",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "remaung",
+      "meaning_en": "tiger",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tanda regang",
+      "meaning_en": "sign of cross",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ensikal",
+      "meaning_en": "bicycle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lumur",
+      "meaning_en": "number",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "seleju",
+      "meaning_en": "snow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "deriba",
+      "meaning_en": "driver",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sekelim",
+      "meaning_en": "ice cream",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Peranchis",
+      "meaning_en": "France (a country in Europe)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Jipun",
+      "meaning_en": "Japan (a country in Asia)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Jereman",
+      "meaning_en": "Germany (a country in Europe)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "Gerika",
+      "meaning_en": "Greece (a country in Europe)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Ejip",
+      "meaning_en": "Egyptian (of, from or relating to Egypt)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "Masedonia",
+      "meaning_en": "Macedonia (a region of Europe)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengarap",
+      "meaning_en": "belief",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengerindu",
+      "meaning_en": "love",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sempama",
+      "meaning_en": "parable",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "diatu",
+      "meaning_en": "now",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "penusah",
+      "meaning_en": "difficulty; hardness",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "seruran",
+      "meaning_en": "always",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "penemu",
+      "meaning_en": "knowledge",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bejalai",
+      "meaning_en": "to walk",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tingki",
+      "meaning_en": "identity card",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tenggau",
+      "meaning_en": "to enlighten",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "beterang",
+      "meaning_en": "to announce; declare",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "penerang",
+      "meaning_en": "information",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nerang",
+      "meaning_en": "to lighten up",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "chukup",
+      "meaning_en": "enough, sufficient, adequate, ample, plenty",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengaga",
+      "meaning_en": "happiness; joy",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "melikat",
+      "meaning_en": "angel",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lelengau",
+      "meaning_en": "to miss, to yearn for, to long for",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngetau",
+      "meaning_en": "to harvest",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "mata panas",
+      "meaning_en": "sun",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "musin panas",
+      "meaning_en": "summer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bungai",
+      "meaning_en": "flower",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "musin bungai",
+      "meaning_en": "spring",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ragak",
+      "meaning_en": "noisy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "randau",
+      "meaning_en": "discussion",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sentuk",
+      "meaning_en": "until",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "besentuk",
+      "meaning_en": "touch against",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "betemu",
+      "meaning_en": "to meet",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ulih",
+      "meaning_en": "by",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngulihka",
+      "meaning_en": "to get something",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bejaku",
+      "meaning_en": "to talk; to speak",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pemanah",
+      "meaning_en": "goodness",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngemanahka",
+      "meaning_en": "to improve (make something better)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jaku karung",
+      "meaning_en": "A type of Iban poem of themes like love or heroism",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jaku nama",
+      "meaning_en": "noun",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jaku pengawa",
+      "meaning_en": "verb (word which represent an activity)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengawa",
+      "meaning_en": "work, duty",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jaku penyambung",
+      "meaning_en": "conjunction",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jaku turu",
+      "meaning_en": "compound word",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jampat",
+      "meaning_en": "fast, quick, rapid",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "jenila",
+      "meaning_en": "window",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "cherita",
+      "meaning_en": "story",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chunto",
+      "meaning_en": "example",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bepeniri",
+      "meaning_en": "opinionated",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "menira",
+      "meaning_en": "flag",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mipau",
+      "meaning_en": "thin",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "mupuk",
+      "meaning_en": "go away, leave",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tambai",
+      "meaning_en": "flag",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "terebai",
+      "meaning_en": "fly",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "hari tu",
+      "meaning_en": "today",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tuchuk",
+      "meaning_en": "to jab",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ensana",
+      "meaning_en": "the day before yesterday",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "entadu",
+      "meaning_en": "caterpillar",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "padah",
+      "meaning_en": "to tell",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "genteran",
+      "meaning_en": "paragraph",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengajar",
+      "meaning_en": "teacher",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bumai",
+      "meaning_en": "to farm",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "mua hari",
+      "meaning_en": "weather",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gaya hari",
+      "meaning_en": "weather",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sebaka",
+      "meaning_en": "alike",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "baka ni",
+      "meaning_en": "how",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengada",
+      "meaning_en": "birth",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "hari pengada",
+      "meaning_en": "birthday",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "penanggul",
+      "meaning_en": "problem",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "berap",
+      "meaning_en": "hug",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sengong",
+      "meaning_en": "with the sound which flow through nose while speaking",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "achang",
+      "meaning_en": "dove (a type of bird)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "jugam",
+      "meaning_en": "bear",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "buyah",
+      "meaning_en": "moth",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "endaraja",
+      "meaning_en": "rainbow",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "entekai",
+      "meaning_en": "pumpkin",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "emperaja",
+      "meaning_en": "darling (a calling for boyfriend/girlfriend)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "engkakah",
+      "meaning_en": "to laugh loudly",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rajang",
+      "meaning_en": "orchid",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "menyadi",
+      "meaning_en": "siblings",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kemanti",
+      "meaning_en": "rambutan",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngelala",
+      "meaning_en": "know (recognize people)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "nembiak",
+      "meaning_en": "children (young children)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "begagaika",
+      "meaning_en": "to chase something/someone",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pengagai",
+      "meaning_en": "chaser",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "merap",
+      "meaning_en": "to hug",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngelaluka",
+      "meaning_en": "to welcome",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bedau",
+      "meaning_en": "not yet",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "sigat",
+      "meaning_en": "handsome (good appearance of male)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "anchur",
+      "meaning_en": "to crash",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "perchaya",
+      "meaning_en": "to believe, to have trust",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pechuma",
+      "meaning_en": "free",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "inggar",
+      "meaning_en": "noisy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "irau",
+      "meaning_en": "worried",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "irit",
+      "meaning_en": "to drag",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ichar",
+      "meaning_en": "blind",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "intu",
+      "meaning_en": "to watch over",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "jepu",
+      "meaning_en": "wet",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kamah",
+      "meaning_en": "dirty (not clean)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kediri",
+      "meaning_en": "oneself",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nasit",
+      "meaning_en": "fate, destiny",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "empa",
+      "meaning_en": "to eat",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "nyadi",
+      "meaning_en": "to become",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "nyabak",
+      "meaning_en": "to cry",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "begulai",
+      "meaning_en": "to get along",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "nyeling",
+      "meaning_en": "to give a side-glance",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "nitih",
+      "meaning_en": "to follow",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngirup",
+      "meaning_en": "to drink",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngiga",
+      "meaning_en": "to find",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "merindang",
+      "meaning_en": "to entertain",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "beresi",
+      "meaning_en": "clean",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "insap",
+      "meaning_en": "cigarette",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nginsap",
+      "meaning_en": "to smoke",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bakih",
+      "meaning_en": "friend",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bebakih",
+      "meaning_en": "to befriend; to make friend",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "baruh",
+      "meaning_en": "under, below",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "kelala",
+      "meaning_en": "to recognize, to recall, to remember",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "aplikasyen",
+      "meaning_en": "application",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "informasyen",
+      "meaning_en": "information",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "komunikasyen",
+      "meaning_en": "communication",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "perati",
+      "meaning_en": "to observe, to notice",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kebuah",
+      "meaning_en": "reason",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nama kebuah",
+      "meaning_en": "For what cause, reason, or purpose.",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 6
+    },
+    {
+      "word": "keretas",
+      "meaning_en": "paper",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "guntin",
+      "meaning_en": "scissors",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "cheremin",
+      "meaning_en": "mirror",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "cheremin mata",
+      "meaning_en": "eyeglasses; spectacles",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "pagila",
+      "meaning_en": "tomorrow (The day after the present day.)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ensera",
+      "meaning_en": "myth, mythology",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "berandau",
+      "meaning_en": "to talk",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rengut",
+      "meaning_en": "fragrant (smells good)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "temedak",
+      "meaning_en": "chempedak (Artocarpus integer)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "serebak",
+      "meaning_en": "contemporary",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lelak",
+      "meaning_en": "tired",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "rangkai",
+      "meaning_en": "dry",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "landik",
+      "meaning_en": "clever",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lubah",
+      "meaning_en": "slow",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lenyau",
+      "meaning_en": "disappeared",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "likun",
+      "meaning_en": "safe, secured",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "sepu",
+      "meaning_en": "to blow",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "penyauh",
+      "meaning_en": "distance",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengerami",
+      "meaning_en": "celebration",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "pekit",
+      "meaning_en": "competition",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pelastik",
+      "meaning_en": "plastic",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengerai",
+      "meaning_en": "health",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sebedau",
+      "meaning_en": "before",
+      "meaning_ms": null,
+      "part_of_speech": "preposition",
+      "lesson_id": 6
+    },
+    {
+      "word": "bepeluh",
+      "meaning_en": "to sweat (to produce sweat)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "awakka",
+      "meaning_en": "so that",
+      "meaning_ms": null,
+      "part_of_speech": "conj",
+      "lesson_id": 6
+    },
+    {
+      "word": "pemakai",
+      "meaning_en": "food",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kesuling",
+      "meaning_en": "flute",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tekura",
+      "meaning_en": "turtle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "meredeka",
+      "meaning_en": "free from oppression (e.g. slavery)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "geladak",
+      "meaning_en": "rubbish",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pinsil",
+      "meaning_en": "pencil",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kelia",
+      "meaning_en": "before, earlier, previously",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 4
+    },
+    {
+      "word": "injin",
+      "meaning_en": "engine",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tunsang",
+      "meaning_en": "upside down",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ungkus",
+      "meaning_en": "expenditure, expense",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tikau",
+      "meaning_en": "to throw",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "rayat",
+      "meaning_en": "citizen, subject",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pemutus",
+      "meaning_en": "result",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tanchut",
+      "meaning_en": "trousers (UK), pants (US)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "setukin",
+      "meaning_en": "sock",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "selapuk",
+      "meaning_en": "hat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "miding",
+      "meaning_en": "a type of fern (Stenochlaena palustris)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "luching",
+      "meaning_en": "bell",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lelundai",
+      "meaning_en": "slow",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "tuchum",
+      "meaning_en": "smile",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "utai tanam",
+      "meaning_en": "plant",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "menaul",
+      "meaning_en": "eagle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "semaya",
+      "meaning_en": "promise",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tayar",
+      "meaning_en": "tyre (protective wheel covering)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengadang",
+      "meaning_en": "hope",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukut",
+      "meaning_en": "lichen, moss, flowerless, growing on stones, tree trunks, etc.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "auh",
+      "meaning_en": "echo",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ayap",
+      "meaning_en": "to disappear",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pasung",
+      "meaning_en": "to rape",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bamput",
+      "meaning_en": "to have sex",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "bangkang",
+      "meaning_en": "lead",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bekau",
+      "meaning_en": "trace, mark",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "asuh",
+      "meaning_en": "to order / ask (someone to do something)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "chukai",
+      "meaning_en": "tax, duty, tariff",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chirit",
+      "meaning_en": "diarrhoea",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bedarah",
+      "meaning_en": "to bleed (lose blood)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "emburi",
+      "meaning_en": "tadpole",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sibau",
+      "meaning_en": "Nephelium cuspidatum",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jematan",
+      "meaning_en": "bridge",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jebul",
+      "meaning_en": "bottle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengangat",
+      "meaning_en": "heat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ansul",
+      "meaning_en": "follow ; go after",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "titih",
+      "meaning_en": "follow; go along",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "tangkan",
+      "meaning_en": "follow; walk behind",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "jamah",
+      "meaning_en": "skill of hands",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ensilup",
+      "meaning_en": "lipstick",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kambin",
+      "meaning_en": "goat",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sawit",
+      "meaning_en": "oil palm",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "urau",
+      "meaning_en": "cloudy",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "rimpak",
+      "meaning_en": "shattered ((gloss|in small pieces))",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "andang",
+      "meaning_en": "curse",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jayau",
+      "meaning_en": "a love charm",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jegit",
+      "meaning_en": "frivolous; vain",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "sesmen",
+      "meaning_en": "assessment",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "penyalah",
+      "meaning_en": "fault",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "penyai",
+      "meaning_en": "badness,",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chakah",
+      "meaning_en": "energetically (in performing work)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "gempuru",
+      "meaning_en": "assembly",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chabul",
+      "meaning_en": "unable to control the mouth in saying things that should not be uttered",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "pungkal",
+      "meaning_en": "to do something for the fist time",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "sengayuh",
+      "meaning_en": "paddle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kain mandi",
+      "meaning_en": "towel",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "berapat",
+      "meaning_en": "to spar (martial arts)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "gerinang",
+      "meaning_en": "cockroach",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "injinir",
+      "meaning_en": "engineer",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "silibus",
+      "meaning_en": "syllabus",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "mujur",
+      "meaning_en": "successful;",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "entimun",
+      "meaning_en": "cucumber",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ensabi",
+      "meaning_en": "mustard greens",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "kachang",
+      "meaning_en": "beans",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nyur",
+      "meaning_en": "coconut",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lundai",
+      "meaning_en": "dangling",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "richah",
+      "meaning_en": "raucous",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "berita richah",
+      "meaning_en": "rumor; gossip",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "richah ati",
+      "meaning_en": "confused",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "kenang",
+      "meaning_en": "memory",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "paung",
+      "meaning_en": "cutting (of a plant)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "besemaya",
+      "meaning_en": "to promise",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kanchin",
+      "meaning_en": "button (knob or small disc serving as a fastener)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "seperis",
+      "meaning_en": "express",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ketup",
+      "meaning_en": "to bite",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ketup sima",
+      "meaning_en": "to bite lips",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "tupi kebal",
+      "meaning_en": "helmet",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tupi mata",
+      "meaning_en": "tear duct",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ai mata",
+      "meaning_en": "tear (drop of clear salty liquid from the eyes)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "kulit mata",
+      "meaning_en": "eyelid",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "igi mata",
+      "meaning_en": "eyeball",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "pelandai",
+      "meaning_en": "love song/poem",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nerusan",
+      "meaning_en": "to fall (for rain)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "punchak",
+      "meaning_en": "peak",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bawang mirah",
+      "meaning_en": "shallot",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bawang burak",
+      "meaning_en": "garlic",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lengka",
+      "meaning_en": "to release",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 3
+    },
+    {
+      "word": "ai manyi",
+      "meaning_en": "honey",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ai mati",
+      "meaning_en": "boiled water",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "ai liur",
+      "meaning_en": "saliva",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kerat",
+      "meaning_en": "to slice; cut",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "opis pos",
+      "meaning_en": "post office",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "butuh dilah",
+      "meaning_en": "uvula",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "butuh manyi",
+      "meaning_en": "sting",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kulit butuh",
+      "meaning_en": "foreskin",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "eklisia",
+      "meaning_en": "ecclesia",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sekeda",
+      "meaning_en": "some, part, portion, a few.",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "sakeda",
+      "meaning_en": "alternative form of sekeda",
+      "meaning_ms": null,
+      "part_of_speech": "pronoun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kayoh",
+      "meaning_en": "paddle. Usually combines with sa / se to form sengayoh (a paddle).",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "beremakai",
+      "meaning_en": "do a thing well, be efficient.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "temuai",
+      "meaning_en": "pay a visit, informal visitor",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngabang",
+      "meaning_en": "visit",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "engkat",
+      "meaning_en": "as far as, the limit.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "embing",
+      "meaning_en": "lead, walk alongside.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "sembiang",
+      "meaning_en": "Lord's Supper, Holy Communion",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "semela",
+      "meaning_en": "to make equal or alike.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngemata",
+      "meaning_en": "look after, keep an eye on.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "visyen",
+      "meaning_en": "vision",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "federesyen",
+      "meaning_en": "federation",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "komunikesyen",
+      "meaning_en": "communication",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengelantang",
+      "meaning_en": "ease, peace, leisure, convenience.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "pambar",
+      "meaning_en": "separated.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "ngembuan",
+      "meaning_en": "have, keep.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "teresang",
+      "meaning_en": "offering.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "menua tasik",
+      "meaning_en": "overseas",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "orang tasik",
+      "meaning_en": "foreigner",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "juluk",
+      "meaning_en": "intention",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tinchin",
+      "meaning_en": "ring",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "meredika",
+      "meaning_en": "independent",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "pinggai",
+      "meaning_en": "dish; plate",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chapak",
+      "meaning_en": "plate; dish",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kunchi",
+      "meaning_en": "key",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nyemetak",
+      "meaning_en": "definitely; clear (in speech)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "semetak",
+      "meaning_en": "definitely; clear; direct (in speech)",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "engkeman",
+      "meaning_en": "appropriate (to), suiting, fitting in",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukis",
+      "meaning_en": "drawing, painting",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "pelukis",
+      "meaning_en": "art materials, equipments used to make a drawing.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kibut",
+      "meaning_en": "to bite (to cut off a piece by clamping the teeth)",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "dambar",
+      "meaning_en": "resin",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "nyelipan",
+      "meaning_en": "centipede",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kerigai",
+      "meaning_en": "rib",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pansuh",
+      "meaning_en": "to cook",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "empelawa",
+      "meaning_en": "spider",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "dugal",
+      "meaning_en": "gastritis",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chechawir",
+      "meaning_en": "dragonfly",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ampin",
+      "meaning_en": "diaper",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "utai tumbuh",
+      "meaning_en": "plant",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "jelu siga",
+      "meaning_en": "wildlife",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bungai but",
+      "meaning_en": "rafflesia",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kenunsung",
+      "meaning_en": "hibiscus",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pansang",
+      "meaning_en": "to advance",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "kekura",
+      "meaning_en": "turtle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bingkul",
+      "meaning_en": "muscle",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "rusah",
+      "meaning_en": "burden",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngerusah",
+      "meaning_en": "to burden",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "palur",
+      "meaning_en": "dim",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "nanit",
+      "meaning_en": "fine",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "gegak",
+      "meaning_en": "crow (any bird of the genus Corvus)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "bekangau",
+      "meaning_en": "calling, summoning.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngangau",
+      "meaning_en": "call, summon., using a loud voice to get someone to hear and come.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "pengangau",
+      "meaning_en": "one who is calling.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 3
+    },
+    {
+      "word": "kanggar",
+      "meaning_en": "Spine-tailed Swift.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "kanggas",
+      "meaning_en": "having a sense of cold, but sweating.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngelukan",
+      "meaning_en": "slightly salty water",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 4
+    },
+    {
+      "word": "lukap",
+      "meaning_en": "turned back, turned up the edge of a mat.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukih",
+      "meaning_en": "an excuse",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "belukih",
+      "meaning_en": "playing around, teasing",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukau",
+      "meaning_en": "the sound of a person speaking but the words are indistinctly heard.",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 2
+    },
+    {
+      "word": "kelukis",
+      "meaning_en": "to draw or sketch using a pen or pencil",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngelukis",
+      "meaning_en": "to draw, sketch",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngeluku",
+      "meaning_en": "being assured, certain, determined, established, make permanent, settle firmly.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 2
+    },
+    {
+      "word": "changkul",
+      "meaning_en": "hoe",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukuk",
+      "meaning_en": "not straight, as the hunched back of an elderly person.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 2
+    },
+    {
+      "word": "lukuk-lukuk",
+      "meaning_en": "The manner of a person who is bent when sitting or walking is humpbacked.",
+      "meaning_ms": null,
+      "part_of_speech": "adverb",
+      "lesson_id": 2
+    },
+    {
+      "word": "melukuk",
+      "meaning_en": "bent, stooping, sitting hunched over",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "lukus",
+      "meaning_en": "burned or scalded skin.",
+      "meaning_ms": null,
+      "part_of_speech": "adjective",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngelukus",
+      "meaning_en": "burn, scald.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngelulap",
+      "meaning_en": "dip (darts) into ipuh poison to obtain potency to kill animals with darts.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "berara",
+      "meaning_en": "to end a quarrel; extinguish a fire.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngerara",
+      "meaning_en": "restrain people who are quarelling.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 4
+    },
+    {
+      "word": "pengerara",
+      "meaning_en": "a peacemaker, one who qualms an argument or quarrel, one who extinguishes a fire.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 3
+    },
+    {
+      "word": "terara",
+      "meaning_en": "capable of ending other people's quarrels, putting out the fire.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "rarah",
+      "meaning_en": "branches, leaves, ripe fruit: break away, drop off, fall, shed, split off.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "berarah",
+      "meaning_en": "fall, fall off, drop, of things such as leaves, branches of fruit from trees.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngerarah",
+      "meaning_en": "fall or drop something.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengerarah",
+      "meaning_en": "the fall of fruit",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "perarah",
+      "meaning_en": "a dropping off, falling from.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "terarah",
+      "meaning_en": "break off, split off by itself.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "rarak",
+      "meaning_en": "one of a set of drum (gendang) played in consort.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 3
+    },
+    {
+      "word": "rarat",
+      "meaning_en": "drag anchor, adrift, drift away, flow away, retreat, go downstream.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "berarat",
+      "meaning_en": "to drift; following the ebbing of an outgoing tide.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "ngerarat",
+      "meaning_en": "to throw into the water to drift away",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 3
+    },
+    {
+      "word": "pengerarat",
+      "meaning_en": "drift, of a boat floating on the water; the direction of the movement of water.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 4
+    },
+    {
+      "word": "rarat-serarat",
+      "meaning_en": "drifting and drifting, descending, going down.",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "rarau",
+      "meaning_en": "an unidentified type of clinging vine.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tebuk",
+      "meaning_en": "carved out hole.",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "baucha",
+      "meaning_en": "voucher",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "bedus",
+      "meaning_en": "lamb",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "chemara",
+      "meaning_en": "wig",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "gerepu",
+      "meaning_en": "fork",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "penyanding",
+      "meaning_en": "reference",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "tayuk",
+      "meaning_en": "praying mantis",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 2
+    },
+    {
+      "word": "tabuh",
+      "meaning_en": "music",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "singkamiga",
+      "meaning_en": "space",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Hari Satu",
+      "meaning_en": "Monday",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Hari Dua",
+      "meaning_en": "Tuesday",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Hari Tiga",
+      "meaning_en": "Wednesday",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "pengabang",
+      "meaning_en": "guest (usually for festivity)",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "beranatung",
+      "meaning_en": "constellation",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "ngenchuri",
+      "meaning_en": "steal",
+      "meaning_ms": null,
+      "part_of_speech": "verb",
+      "lesson_id": 6
+    },
+    {
+      "word": "aksidin",
+      "meaning_en": "accident",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "Anglika",
+      "meaning_en": "Anglican",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    },
+    {
+      "word": "penama",
+      "meaning_en": "entrance",
+      "meaning_ms": null,
+      "part_of_speech": "noun",
+      "lesson_id": 6
+    }
+  ]
+}

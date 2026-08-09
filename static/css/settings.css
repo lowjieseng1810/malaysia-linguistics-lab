@@ -1,0 +1,91 @@
+.settings-page {
+  max-width: 720px;
+  margin: 0 auto 48px;
+  padding: 8px 4px 40px;
+}
+
+.settings-header {
+  margin-bottom: 18px;
+}
+
+.settings-eyebrow {
+  color: rgba(239, 215, 126, 0.78);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.settings-header h1 {
+  margin: 8px 0 6px;
+  color: #fff;
+}
+
+.settings-header p {
+  margin: 0;
+  color: rgba(220, 232, 226, 0.74);
+}
+
+.settings-card {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(160deg, rgba(10, 34, 26, 0.92), rgba(5, 16, 14, 0.88));
+}
+
+.settings-toggle,
+.settings-select {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.settings-toggle strong,
+.settings-select strong {
+  display: block;
+  color: #fff;
+}
+
+.settings-toggle small,
+.settings-select small {
+  display: block;
+  margin-top: 3px;
+  color: rgba(210, 224, 216, 0.68);
+  font-size: 0.78rem;
+}
+
+.settings-select select {
+  min-width: 140px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 215, 126, 0.28);
+  background: rgba(18, 48, 38, 0.85);
+  color: #fff;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.settings-save {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #d9b44a, #efd77e);
+  color: #183226;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.settings-status {
+  color: rgba(239, 215, 126, 0.8);
+  font-size: 0.82rem;
+}

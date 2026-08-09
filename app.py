@@ -1,3 +1,9 @@
+# ================= ENVIRONMENT (must load before Composer / tutor imports) =================
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from flask import (
     Flask,
     render_template,
@@ -6,34 +12,106 @@ from flask import (
     session,
     flash,
     url_for,
-    jsonify
+    jsonify,
+    abort
 )
 
 from werkzeug.security import (
     generate_password_hash,
     check_password_hash
 )
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from authlib.integrations.flask_client import OAuth
-from dotenv import load_dotenv
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
+from database import (
+    init_content_tables,
+    seed_tutor_content,
+    enrich_vocabulary_from_quiz_stems,
+    sync_missing_vocabulary_from_course,
+    import_verified_vocabulary_packs,
+    vocabulary_counts_by_language,
+    vocabulary_coverage_report,
+    TARGET_VOCAB_PER_LANGUAGE,
+)
+from composer import (
+    print_composer_startup_status,
+    refresh_composer_enabled,
+    run_composer_health_check,
+)
+from tutor_service import answer_tutor_query
+from tutor_debug import (
+    is_debug_enabled,
+    database_diagnostics,
+    find_duplicates,
+    run_selfcheck,
+)
+from retrieval import (
+    RetrievalError,
+    dictionary_search,
+    dictionary_word_by_id,
+    dictionary_random_word,
+)
+from language_registry import get_language_keys, resolve_language, display_name
+from quiz_service import (
+    start_quiz_session,
+    quiz_session_state,
+    submit_quiz_session_answer,
+    quiz_session_results,
+    restart_quiz_session,
+    clear_quiz_session,
+    start_daily_quiz_session,
+    daily_quiz_status,
+)
+from learning_memory import get_user_mastery_summary, get_quiz_history
+from achievements import (
+    init_achievement_tables,
+    evaluate_achievements,
+    get_achievements_gallery,
+    pop_pending_achievement_notifications,
+    mark_achievements_notified,
+    set_explorer_milestone,
+    record_dictionary_view,
+    record_activity_day,
+    get_activity_streak,
+    get_mascot_preferences,
+    update_mascot_preferences,
+    collect_user_stats,
+)
+from heritage_facts import pick_heritage_fact
 
 
 import hashlib
 import json
 import os
+import random
+import re
+import requests
 import secrets
 import sqlite3
 import time
 
 
+# Re-read composer flags now that .env is loaded
+refresh_composer_enabled()
 
-# ================= ENVIRONMENT =================
 
-load_dotenv()
+def _report_composer_on_startup():
+    """Print status + health check once per process (supports flask reloader)."""
+    # Parent reloader process sets WERKZEUG_RUN_MAIN to empty / unset then child to "true"
+    if os.environ.get("WERKZEUG_RUN_MAIN") == "false":
+        return
+    if os.environ.get("_MMLE_COMPOSER_STARTUP_DONE") == "1":
+        return
+    os.environ["_MMLE_COMPOSER_STARTUP_DONE"] = "1"
+    try:
+        print_composer_startup_status()
+        run_composer_health_check()
+    except Exception as exc:
+        print(f"Composer startup report failed: {exc}")
 
 
 # ================= APP =================
@@ -51,6 +129,50 @@ if not secret_key:
 
 
 app.config["SECRET_KEY"] = secret_key
+
+_FLASK_ENV = (os.getenv("FLASK_ENV") or "development").strip().lower()
+_FORCE_HTTPS = (os.getenv("FORCE_HTTPS") or "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+_TRUST_PROXY = (os.getenv("TRUST_PROXY") or "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+
+# Reject known placeholder secrets when deploying as production.
+if _FLASK_ENV == "production" and secret_key.strip().lower() in {
+    "change-me-to-a-long-random-value",
+    "change-me",
+    "secret",
+    "dev",
+}:
+    raise RuntimeError(
+        "SECRET_KEY looks like a placeholder. "
+        "Set a long random value before production deployment."
+    )
+
+# Prefer HTTPS URL generation when forced (reverse-proxy / production TLS).
+if _FORCE_HTTPS:
+    app.config["PREFERRED_URL_SCHEME"] = "https"
+
+# When behind Nginx/Cloudflare/etc., honour X-Forwarded-* so request.is_secure
+# and url_for(_external=True) reflect the public HTTPS scheme.
+if _TRUST_PROXY:
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app,
+        x_for=1,
+        x_proto=1,
+        x_host=1,
+        x_prefix=1,
+    )
+
+# Composer readiness (also re-run from __main__)
+_report_composer_on_startup()
 
 
 # ================= CSRF =================
@@ -73,20 +195,20 @@ limiter = Limiter(
 # ================= SESSION SECURITY =================
 
 app.config["SESSION_COOKIE_HTTPONLY"] = True
-
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+# Secure cookies only when HTTPS is forced or the deployment is marked
+# production. Keep False for local HTTP so sessions remain usable.
+app.config["SESSION_COOKIE_SECURE"] = _FORCE_HTTPS or (_FLASK_ENV == "production")
+app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 14
+app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
 
-# Keep this False for local HTTP development.
-# It becomes True only in production.
-
-app.config["SESSION_COOKIE_SECURE"] = (
-    os.getenv(
-        "FLASK_ENV",
-        "development"
-    ).lower()
-    == "production"
-)
+def _establish_login_session(user_id, username):
+    """Replace the session on login to prevent session fixation."""
+    session.clear()
+    session["user_id"] = user_id
+    session["username"] = username
+    session.permanent = True
 
 
 # ================= DATABASE =================
@@ -184,6 +306,18 @@ def register_google_oauth():
 register_google_oauth()
 
 
+# ================= AI TUTOR FEATURE FLAG =================
+
+AI_TUTOR_API_KEY = os.getenv("AI_TUTOR_API_KEY")
+
+AI_TUTOR_MODEL = os.getenv("AI_TUTOR_MODEL")
+
+AI_TUTOR_ENABLED = bool(
+    AI_TUTOR_API_KEY
+    and AI_TUTOR_MODEL
+)
+
+
 # ================= DATABASE FUNCTIONS =================
 
 def get_db():
@@ -193,6 +327,9 @@ def get_db():
     )
 
     conn.row_factory = sqlite3.Row
+    # Enforce FK constraints for this connection (SQLite defaults them OFF).
+    # Safe / non-destructive: only rejects invalid writes; does not migrate data.
+    conn.execute("PRAGMA foreign_keys = ON")
 
     return conn
 
@@ -202,6 +339,7 @@ def init_db():
     conn = sqlite3.connect(
         DATABASE
     )
+    conn.execute("PRAGMA foreign_keys = ON")
 
 
     # ================= USERS TABLE =================
@@ -407,6 +545,75 @@ def init_db():
         )
     """)
 
+
+    # ================= SAVED WORDS (FAVORITES) TABLE =================
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS saved_words (
+
+            id INTEGER
+            PRIMARY KEY
+            AUTOINCREMENT,
+
+            user_id INTEGER
+            NOT NULL,
+
+            vocabulary_id INTEGER
+            NOT NULL,
+
+            lang_key TEXT
+            NOT NULL,
+
+            created_at INTEGER
+            NOT NULL,
+
+            UNIQUE(
+                user_id,
+                vocabulary_id
+            ),
+
+            FOREIGN KEY (
+                user_id
+            )
+
+            REFERENCES users(id)
+            ON DELETE CASCADE
+
+        )
+    """)
+
+    conn.execute("""
+        CREATE INDEX
+        IF NOT EXISTS
+        idx_saved_words_user
+
+        ON saved_words (
+            user_id,
+            lang_key
+        )
+    """)
+
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS heritage_passport (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            lang_key TEXT NOT NULL,
+            discovered_at INTEGER NOT NULL,
+            UNIQUE(user_id, lang_key),
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    """)
+
+    conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_heritage_passport_user
+        ON heritage_passport (user_id)
+    """)
+
+    # Achievements, activity days, dictionary views, mascot prefs
+    init_achievement_tables(conn)
+
+    # ================= TUTOR CONTENT TABLES =================
+    init_content_tables(conn)
 
     conn.commit()
 
@@ -2518,6 +2725,1077 @@ def compute_language_comparison_summary(comparison_a, comparison_b):
     }
 
 
+# ================= AI TUTOR PROMPT BUILDER =================
+#
+# These helpers never call an AI API and never generate a reply.
+# They only read LANGUAGES / COURSE_DATA (already defined above) and
+# shape that data into a grounded context and a system prompt string.
+# This keeps the AI Tutor scoped to the four supported languages and
+# reduces hallucination by only ever offering the AI real course data.
+
+TUTOR_MAX_VOCABULARY_ITEMS = 8
+
+TUTOR_MAX_MISTAKE_ITEMS = 5
+
+TUTOR_MAX_HISTORY_TURNS = 12
+
+TUTOR_MAX_HISTORY_CHARS = 2000
+
+
+# ================= AI TUTOR DOMAIN RESTRICTION =================
+#
+# The tutor is a LANGUAGE & LINGUISTICS tutor. It is not limited to the
+# four supported course languages - it may discuss any language, and
+# any linguistics topic (phonetics, grammar, writing systems, language
+# families, etymology, etc). It must still refuse anything that is not
+# language-related at all (math, politics, coding, medicine, sports,
+# celebrities, ...). That refusal must happen WITHOUT calling the AI
+# provider, so this check runs purely on the server using plain
+# keyword/pattern matching - no external calls, no ambiguity. The
+# default (when a message matches neither list) is to ALLOW the
+# message through, since Priority 2 deliberately opens the door to any
+# language/linguistics question the keyword lists don't happen to
+# anticipate.
+
+TUTOR_OFFTOPIC_REFUSAL = (
+    "I'm your Language AI Tutor.\n\n"
+    "I can help with languages, linguistics, pronunciation, grammar, "
+    "vocabulary, writing systems, translation, language learning and "
+    "the lessons inside this website.\n\n"
+    "Please ask me anything language-related."
+)
+
+TUTOR_DOMAIN_KEYWORD_PATTERN = re.compile(
+    r"\b("
+    # ---------- this website's four languages & their context ----------
+    r"iban|kadazan|dusun|kadazandusun|bidayuh|mah\s*meri|"
+    r"malaysia\w*|sarawak|sabah|borneo|longhouse|indigenous|orang\s*asli|"
+    r"heritage|folklore|festival|ritual|custom\w*|tradition\w*|"
+    r"cultur\w*|community|preserv\w*|endanger\w*|"
+    # ---------- language / linguistics (any language, not just ours) ----------
+    r"pronoun[ce]e?|pronunciation|pronounced|vocabular\w*|\bvocab\b|"
+    r"grammar|translat\w*|meaning|greet\w*|\bphrase\b|dialect\w*|"
+    r"\blesson\w*|\bcourse\w*|\bquiz\w*|\blevel\b|\bword\w*|\bsentence\w*|"
+    r"\bspeak\w*|\bsay\b|\blanguage\w*|\btutor\b|\bexplain\b|\bexample\w*|"
+    r"\bcompar\w*|native\s*speaker|dialogue|conversation|"
+    r"linguist\w*|phonet\w*|phonolog\w*|morpholog\w*|\bsyntax\w*|semantic\w*|"
+    r"etymolog\w*|orthograph\w*|\bscript\b|alphabet\w*|writing\s*system\w*|"
+    r"\bipa\b|agglutinat\w*|\bvowel\w*|\bconsonant\w*|\bsyllable\w*|"
+    r"\bphoneme\w*|\bmorpheme\w*|\btonal\b|\btone\b|conjugat\w*|declens\w*|"
+    r"loanword\w*|\bcognate\w*|\bcreole\w*|\bpidgin\b|biling\w*|multiling\w*|"
+    r"sign\s*language|language\s*famil\w*|austronesian|malayo-polynesian|"
+    r"mother\s*tongue|second\s*language|"
+    # ---------- common world language names (not exhaustive by design) ----------
+    r"\benglish\b|\bmalay\b|bahasa|mandarin|cantonese|\bchinese\b|japanese|"
+    r"korean|\btamil\b|\bhindi\b|\barabic\b|\bspanish\b|\bfrench\b|german|"
+    r"tagalog|filipino|\bthai\b|vietnamese|indonesian|javanese|sundanese|"
+    r"punjabi|bengali|portuguese|italian|russian|\burdu\b|burmese|khmer|"
+    r"\blao\b|mongolian|turkish|persian|\bfarsi\b|swahili|hawaiian|maori|"
+    r"\blatin\b"
+    r")\b",
+    re.IGNORECASE
+)
+
+TUTOR_OFFTOPIC_KEYWORD_PATTERN = re.compile(
+    r"\b("
+    r"solve|equation|integral|derivative|algebra|geometry|trigonometry|"
+    r"calculate|calculus|\bmath\w*|"
+    r"python|javascript|typescript|\bjava\b|c\+\+|\bhtml\b|\bcss\b|\bsql\b|"
+    r"programming|source\s*code|algorithm|\bdebug\w*|compile|"
+    r"president|prime\s*minister|election\w*|government|politic\w*|"
+    r"senator|parliament|\bminister\b|congress|"
+    r"symptom\w*|diagnos\w*|treatment|medication|prescri\w*|surgery|"
+    r"\bmedicine\b|\bdisease\w*|\bcancer\b|\bvirus\b|\bcovid\b|\bdoctor\b|"
+    r"celebrit\w*|\bactor\b|\bactress\b|\bsinger\b|footballer|kpop|"
+    r"movie\s*star|stock\s*market|bitcoin|cryptocurrency|share\s*price|"
+    r"\bweather\b|"
+    r"write\s*(a|me)?\s*(poem|essay|story|code|program)|"
+    r"\bfootball\b|\bsoccer\b|basketball|\bcricket\b|\bnba\b|\bfifa\b|"
+    r"olympics|\bcars?\b|vehicle\w*|automobile\w*|"
+    r"\bwho\s+is\b|\bwho\s+was\b|\bnet\s*worth\b"
+    r")\b",
+    re.IGNORECASE
+)
+
+TUTOR_MATH_EXPRESSION_PATTERN = re.compile(
+    r"\d+\s*[\+\-\*/^]\s*\d+"
+)
+
+
+def is_tutor_message_in_domain(message):
+    """
+    Returns True when a free-form message is allowed to reach the AI
+    provider. Empty messages (used by quick actions) are always in
+    domain. Any message containing a language/linguistics keyword is
+    always in domain, even if it also mentions an off-topic word.
+    Otherwise, a message that matches an obvious off-topic pattern
+    (maths, politics, programming, medicine, sports, celebrities, ...)
+    is rejected before any API call is made. Anything that matches
+    NEITHER list defaults to allowed - this is intentional, since the
+    tutor is now allowed to discuss any language/linguistics topic,
+    which is impossible to enumerate exhaustively as a keyword list.
+    """
+
+    text = (message or "").strip()
+
+    if not text:
+        return True
+
+    if TUTOR_DOMAIN_KEYWORD_PATTERN.search(text):
+        return True
+
+    if (
+        TUTOR_OFFTOPIC_KEYWORD_PATTERN.search(text)
+        or TUTOR_MATH_EXPRESSION_PATTERN.search(text)
+    ):
+        return False
+
+    return True
+
+
+def get_tutor_language_facts(lang_key):
+    """
+    Returns the subset of LANGUAGES[lang_key] relevant for tutoring
+    (cultural context), or None if lang_key is not one of the four
+    supported languages.
+    """
+
+    language = LANGUAGES.get(lang_key)
+
+    if not language:
+        return None
+
+    return {
+        "display_name": language.get("display_name", lang_key),
+        "about": language.get("about", ""),
+        "speakers": language.get("speakers", ""),
+        "location": language.get("location", ""),
+        "preservation": language.get("preservation", ""),
+        "verification_status": language.get(
+            "verification_status",
+            "Under Review"
+        )
+    }
+
+
+def build_general_tutor_context():
+    """
+    Builds a grounded context covering ALL four supported languages at
+    once, sourced only from LANGUAGES / COURSE_DATA. Used for Free Chat
+    when no specific course/lesson is open, so general questions and
+    comparisons between the supported languages can still be answered
+    without ever inventing facts.
+    """
+
+    all_language_facts = []
+    sample_vocabulary = []
+
+    for known_lang_key in LANGUAGES.keys():
+
+        facts = get_tutor_language_facts(known_lang_key)
+
+        if facts:
+            facts = dict(facts)
+            facts["lang_key"] = known_lang_key
+            all_language_facts.append(facts)
+
+        for level_data in COURSE_DATA.get(known_lang_key, {}).values():
+
+            for step in level_data.get("steps", []):
+
+                term = step.get("word") or step.get("expression")
+                meaning = step.get("meaning")
+
+                if term and meaning:
+                    sample_vocabulary.append({
+                        "lang_key": known_lang_key,
+                        "term": term,
+                        "meaning": meaning,
+                        "note": step.get("note") or step.get("context") or ""
+                    })
+                    break
+
+    return {
+        "lang_key": None,
+        "level_num": None,
+        "general_mode": True,
+        "all_language_facts": all_language_facts,
+        "vocabulary": sample_vocabulary[:TUTOR_MAX_VOCABULARY_ITEMS],
+        "common_mistakes": []
+    }
+
+
+def extract_lesson_vocabulary(lang_key, level_num):
+    """
+    Shared vocabulary extraction used by both the grounded prompt
+    builder and the quiz generator, so both always see the exact same
+    real course data. Returns a flat list of {term, meaning, note}.
+    """
+
+    if level_num is not None:
+        levels_to_scan = [level_num]
+    else:
+        levels_to_scan = list(
+            COURSE_DATA.get(lang_key, {}).keys()
+        )
+
+    vocabulary = []
+
+    for scanned_level in levels_to_scan:
+
+        steps = (
+            COURSE_DATA.get(lang_key, {})
+            .get(scanned_level, {})
+            .get("steps", [])
+        )
+
+        for step in steps:
+
+            term = step.get("word") or step.get("expression")
+            meaning = step.get("meaning")
+
+            if term and meaning:
+                vocabulary.append({
+                    "term": term,
+                    "meaning": meaning,
+                    "note": step.get("note") or step.get("context") or ""
+                })
+
+    return vocabulary
+
+
+def build_tutor_grounded_context(lang_key, level_num, user_message, mode=None):
+    """
+    Builds the "ground truth" material the AI Tutor is allowed to use:
+    language facts, relevant vocabulary, and common learner mistakes -
+    all sourced directly from LANGUAGES / COURSE_DATA. Returns None if
+    lang_key is not one of the four supported languages and the mode
+    is not a general Free Chat request (Explain/Example/Quiz/Culture
+    still require a specific lesson to stay tightly grounded).
+    """
+
+    language_facts = get_tutor_language_facts(lang_key)
+
+    if not language_facts:
+
+        normalized_mode = (mode or "").strip().lower()
+
+        if normalized_mode in ("", "chat"):
+            return build_general_tutor_context()
+
+        return None
+
+    lowered_message = (user_message or "").lower()
+
+    if level_num is not None:
+        levels_to_scan = [level_num]
+    else:
+        levels_to_scan = list(
+            COURSE_DATA.get(lang_key, {}).keys()
+        )
+
+    all_vocabulary = extract_lesson_vocabulary(lang_key, level_num)
+    all_mistakes = []
+
+    for scanned_level in levels_to_scan:
+
+        steps = (
+            COURSE_DATA.get(lang_key, {})
+            .get(scanned_level, {})
+            .get("steps", [])
+        )
+
+        for step in steps:
+
+            # ---------- COMMON MISTAKE EXTRACTION ----------
+
+            wrong_feedback = step.get("wrongFeedback")
+            correct_feedback = step.get("correctFeedback")
+
+            if wrong_feedback:
+                all_mistakes.append({
+                    "question": step.get("question") or step.get("prompt") or "",
+                    "wrong_feedback": wrong_feedback,
+                    "correct_feedback": correct_feedback or ""
+                })
+
+            for turn in step.get("turns", []):
+
+                turn_wrong_feedback = turn.get("wrongFeedback")
+
+                if turn_wrong_feedback:
+                    all_mistakes.append({
+                        "question": turn.get("prompt", ""),
+                        "wrong_feedback": turn_wrong_feedback,
+                        "correct_feedback": turn.get("correctFeedback", "")
+                    })
+
+    matched_vocabulary = [
+        item
+        for item in all_vocabulary
+        if item["term"].lower() in lowered_message
+        or item["meaning"].lower() in lowered_message
+    ]
+
+    if matched_vocabulary:
+        vocabulary = matched_vocabulary[:TUTOR_MAX_VOCABULARY_ITEMS]
+    else:
+        vocabulary = all_vocabulary[:TUTOR_MAX_VOCABULARY_ITEMS]
+
+    return {
+        "lang_key": lang_key,
+        "level_num": level_num,
+        "language_facts": language_facts,
+        "vocabulary": vocabulary,
+        "common_mistakes": all_mistakes[:TUTOR_MAX_MISTAKE_ITEMS]
+    }
+
+
+def build_general_tutor_system_prompt(grounded_context):
+    """
+    Renders a system prompt covering all four supported languages at
+    once, for Free Chat requests made without a specific lesson open.
+    """
+
+    language_summaries = "\n\n".join(
+        f"{facts['display_name']} ({facts['lang_key']}):\n"
+        f"- About: {facts['about']}\n"
+        f"- Speakers: {facts['speakers']}\n"
+        f"- Location: {facts['location']}"
+        for facts in grounded_context["all_language_facts"]
+    ) or "No language facts available yet."
+
+    vocabulary_lines = "\n".join(
+        f"- [{item['lang_key']}] {item['term']} = {item['meaning']} "
+        f"({item['note']})".strip()
+        for item in grounded_context["vocabulary"]
+    ) or "No sample vocabulary available yet."
+
+    return (
+        "You are the AI Tutor inside Malaysian Linguistics Lab - "
+        "a knowledgeable, friendly LANGUAGE AND LINGUISTICS "
+        "tutor. This website's four focus languages are Iban, "
+        "Kadazan-Dusun, Bidayuh, and Mah Meri, but as a linguistics "
+        "tutor you can also discuss any other language in the world "
+        "and any linguistics topic.\n\n"
+
+        "No specific lesson is currently open, so this is a Free Chat "
+        "conversation. Here is background on the site's four "
+        "languages, for reference and comparisons:\n\n"
+
+        f"{language_summaries}\n\n"
+
+        "Sample ground truth vocabulary you may use for these four "
+        "languages:\n"
+        f"{vocabulary_lines}\n\n"
+
+        "HOW TO ANSWER - priority order:\n"
+        "1. FIRST, check if the facts/vocabulary above answer the "
+        "question. If so, answer using that verified data, and make "
+        "clear it comes from this course.\n"
+        "2. IF the question is about a language or linguistics topic "
+        "NOT covered above (any language in the world, phonetics, "
+        "grammar, morphology, syntax, etymology, writing systems, "
+        "language families, dialects, endangered languages, "
+        "orthography, comparative linguistics, language learning, "
+        "language history or culture), you MAY answer using your own "
+        "general knowledge. Say plainly when you're using general "
+        "knowledge rather than this course's verified data, and be "
+        "honest about uncertainty for obscure or hard-to-verify "
+        "claims (e.g. exact \"longest/shortest word\" records) rather "
+        "than confidently inventing specifics.\n"
+        "3. IF the question is not about language/linguistics at all "
+        "(e.g. maths, politics, programming, medicine, sports, "
+        "celebrities, general trivia), reply with EXACTLY this "
+        f"refusal and nothing else: \"{TUTOR_OFFTOPIC_REFUSAL}\" Do "
+        "not answer the off-topic question, even partially.\n\n"
+
+        "Be warm, natural, and conversational, like a helpful tutor "
+        "chatting with a student, and remember what was said earlier "
+        "in this same conversation.\n\n"
+
+        "Formatting style:\n"
+        "- Use Markdown: **bold** for key vocabulary/terms, bullet "
+        "or numbered lists, and a small table when comparing two "
+        "languages side by side.\n"
+        "- Keep replies concise and easy to read in a chat bubble - "
+        "avoid huge walls of text."
+    )
+
+
+def build_tutor_system_prompt(lang_key, level_num, user_message, mode=None):
+    """
+    Renders the final system prompt string from the grounded context.
+    Returns None if lang_key is not one of the four supported languages
+    and the request is not a general Free Chat request, so the caller
+    can short-circuit with a canned redirection reply instead of
+    calling the AI at all.
+    """
+
+    grounded_context = build_tutor_grounded_context(
+        lang_key,
+        level_num,
+        user_message,
+        mode
+    )
+
+    if not grounded_context:
+        return None
+
+    if grounded_context.get("general_mode"):
+        return build_general_tutor_system_prompt(grounded_context)
+
+    language_facts = grounded_context["language_facts"]
+
+    vocabulary_lines = "\n".join(
+        f"- {item['term']} = {item['meaning']} ({item['note']})".strip()
+        for item in grounded_context["vocabulary"]
+    ) or "No vocabulary matched this question yet."
+
+    mistake_lines = "\n".join(
+        f"- Common mistake: {item['wrong_feedback']} "
+        f"(Correct: {item['correct_feedback']})"
+        for item in grounded_context["common_mistakes"]
+    ) or "No recorded common mistakes for this level yet."
+
+    return (
+        "You are the AI Tutor inside Malaysian Linguistics Lab - "
+        "a knowledgeable, friendly LANGUAGE AND LINGUISTICS "
+        "tutor, not just a narrow course chatbot.\n\n"
+
+        f"Currently open lesson: {language_facts['display_name']}\n"
+        f"Content status: {language_facts['verification_status']}\n"
+        f"About: {language_facts['about']}\n"
+        f"Speakers: {language_facts['speakers']}\n"
+        f"Location: {language_facts['location']}\n"
+        f"Preservation notes: {language_facts['preservation']}\n\n"
+
+        "Verified lesson vocabulary (ground truth for this lesson):\n"
+        f"{vocabulary_lines}\n\n"
+
+        "Verified common learner mistakes for this lesson:\n"
+        f"{mistake_lines}\n\n"
+
+        "HOW TO ANSWER - priority order:\n"
+        "1. FIRST, check whether the lesson vocabulary/facts above "
+        "answer the question (for example \"What does Selamat datai "
+        "mean?\"). If so, answer using ONLY that verified data, and "
+        "make clear the answer comes from this lesson.\n"
+        "2. IF the lesson does not cover it, you MAY answer using "
+        "your own general knowledge of linguistics and world "
+        "languages - this is not limited to Iban/Kadazan-Dusun/"
+        "Bidayuh/Mah Meri. Allowed general-knowledge topics include: "
+        "any language in the world, linguistics, phonetics, "
+        "phonology, grammar, morphology, syntax, vocabulary, "
+        "etymology, writing systems, language families, dialects, "
+        "endangered languages, orthography, comparative linguistics, "
+        "language learning, language history, and language culture. "
+        "Clearly say when you're drawing on general knowledge rather "
+        "than this lesson's verified data, and be honest about "
+        "uncertainty for obscure or hard-to-verify claims (e.g. exact "
+        "\"longest/shortest word\" records) instead of confidently "
+        "inventing specifics.\n"
+        "3. IF a question is not about language/linguistics at all "
+        "(e.g. maths, politics, programming, medicine, sports, "
+        "celebrities, general trivia), reply with EXACTLY this "
+        f"refusal and nothing else: \"{TUTOR_OFFTOPIC_REFUSAL}\" Do "
+        "not answer the off-topic question, even partially.\n\n"
+
+        "Formatting style:\n"
+        "- Use Markdown: **bold** for key vocabulary/terms, bullet "
+        "or numbered lists, and a small table when comparing two "
+        "languages or forms side by side.\n"
+        "- Keep replies concise and easy to read in a chat bubble - "
+        "avoid huge walls of text."
+    )
+
+
+def sanitize_tutor_history(raw_history):
+    """
+    Validates and trims client-supplied conversation history so it can
+    be safely forwarded to the AI provider. Only "user"/"assistant"
+    roles with short string content are kept, capped to the most
+    recent TUTOR_MAX_HISTORY_TURNS entries.
+    """
+
+    if not isinstance(raw_history, list):
+        return []
+
+    cleaned = []
+
+    for entry in raw_history:
+
+        if not isinstance(entry, dict):
+            continue
+
+        role = entry.get("role")
+        content = entry.get("content")
+
+        if role not in ("user", "assistant"):
+            continue
+
+        if not isinstance(content, str) or not content.strip():
+            continue
+
+        cleaned.append({
+            "role": role,
+            "content": content.strip()[:TUTOR_MAX_HISTORY_CHARS]
+        })
+
+    return cleaned[-TUTOR_MAX_HISTORY_TURNS:]
+
+
+def call_openai(system_prompt, user_message, history=None):
+    """
+    Calls the OpenAI Responses API. Always returns either the parsed
+    JSON response (dict, on success) or a friendly plain-string error
+    message (on any failure) - never raises outside this function.
+    """
+
+    conversation_input = [
+        {
+            "role": "system",
+            "content": system_prompt
+        }
+    ]
+
+    for turn in sanitize_tutor_history(history):
+        conversation_input.append(turn)
+
+    conversation_input.append({
+        "role": "user",
+        "content": user_message
+    })
+
+    try:
+        response = requests.post(
+            "https://api.openai.com/v1/responses",
+
+            headers={
+                "Authorization": f"Bearer {AI_TUTOR_API_KEY}",
+                "Content-Type": "application/json"
+            },
+
+            json={
+                "model": AI_TUTOR_MODEL,
+                "input": conversation_input
+            },
+
+            timeout=30
+        )
+
+    except requests.exceptions.Timeout:
+        return "The tutor took too long to respond."
+
+    except requests.exceptions.RequestException:
+        return "Unable to reach the AI service."
+
+    except Exception:
+        return "Unable to reach the AI service."
+
+    if response.status_code == 401:
+        return "AI Tutor is not configured correctly."
+
+    if response.status_code == 429:
+        return "The tutor is busy. Please try again shortly."
+
+    if response.status_code >= 500:
+        return "The tutor is temporarily unavailable."
+
+    if response.status_code != 200:
+        return "The tutor could not generate a valid response."
+
+    try:
+        return response.json()
+
+    except ValueError:
+        return "The tutor could not generate a valid response."
+
+
+def extract_reply(response_json):
+    """
+    Extracts only the assistant's plain text from a Responses API
+    payload. Always returns a string, never raises.
+    """
+
+    try:
+        output_text = response_json.get("output_text")
+
+        if output_text:
+            return output_text
+
+        for output_item in response_json.get("output", []):
+
+            for content_piece in output_item.get("content", []):
+
+                text = content_piece.get("text")
+
+                if text:
+                    return text
+
+        return "The tutor could not generate a valid response."
+
+    except Exception:
+        return "The tutor could not generate a valid response."
+
+
+def get_tutor_quiz_steps(lang_key, level_num):
+    steps = []
+
+    if level_num is not None:
+        levels_to_scan = [level_num]
+    else:
+        levels_to_scan = list(
+            COURSE_DATA.get(lang_key, {}).keys()
+        )
+
+    for scanned_level in levels_to_scan:
+        for step in (
+            COURSE_DATA.get(lang_key, {})
+            .get(scanned_level, {})
+            .get("steps", [])
+        ):
+            def append_quiz_candidate(candidate_step, prompt_text=None):
+                if (
+                    not isinstance(candidate_step.get("options"), list)
+                    or not candidate_step.get("options")
+                    or not isinstance(candidate_step.get("correctIndex"), int)
+                ):
+                    return
+
+                question_text = (
+                    prompt_text
+                    or candidate_step.get("question")
+                    or candidate_step.get("prompt")
+                    or candidate_step.get("expression")
+                    or "Choose the correct answer."
+                )
+
+                steps.append({
+                    "question": question_text,
+                    "options": candidate_step.get("options", []),
+                    "correctIndex": candidate_step.get("correctIndex", 0),
+                    "correctFeedback": candidate_step.get("correctFeedback", ""),
+                    "wrongFeedback": candidate_step.get("wrongFeedback", "")
+                })
+
+            if (
+                step.get("type") == "quiz"
+            ):
+                append_quiz_candidate(step)
+
+            if step.get("type") in {"discover", "respond"}:
+                append_quiz_candidate(step)
+
+            if step.get("type") == "conversation":
+                for turn in step.get("turns", []):
+                    append_quiz_candidate(turn)
+
+    return steps
+
+
+TUTOR_QUIZ_MAX_DISTRACTORS = 3
+
+
+def generate_vocabulary_quiz_candidates(lang_key, level_num):
+    """
+    Generates extra multiple-choice quiz questions directly from the
+    lesson's real vocabulary (word/meaning pairs), in BOTH directions
+    ("what does X mean?" and "which word means Y?"). This is still
+    100% grounded in real COURSE_DATA - nothing is invented - but adds
+    quiz variety beyond only the hand-authored quiz/discover/respond
+    steps, and gives Quiz something to draw on even for lessons that
+    have no explicitly authored quiz question.
+    """
+
+    vocabulary = extract_lesson_vocabulary(lang_key, level_num)
+
+    seen_terms = set()
+    unique_vocabulary = []
+
+    for item in vocabulary:
+
+        key = item["term"].strip().lower()
+
+        if key in seen_terms:
+            continue
+
+        seen_terms.add(key)
+        unique_vocabulary.append(item)
+
+    if len(unique_vocabulary) < 4:
+        return []
+
+    candidates = []
+
+    for item in unique_vocabulary:
+
+        distractor_pool = [
+            other for other in unique_vocabulary
+            if other["term"] != item["term"]
+        ]
+
+        distractors = random.sample(
+            distractor_pool,
+            min(TUTOR_QUIZ_MAX_DISTRACTORS, len(distractor_pool))
+        )
+
+        note_suffix = f" {item['note']}".rstrip() if item.get("note") else ""
+
+        # ---------- word -> meaning ----------
+
+        options_forward = [item["meaning"]] + [
+            other["meaning"] for other in distractors
+        ]
+        random.shuffle(options_forward)
+
+        candidates.append({
+            "question": f"What does \u201c{item['term']}\u201d mean?",
+            "options": options_forward,
+            "correctIndex": options_forward.index(item["meaning"]),
+            "correctFeedback": (
+                f"\u201c{item['term']}\u201d means "
+                f"\u201c{item['meaning']}\u201d.{note_suffix}"
+            ),
+            "wrongFeedback": (
+                f"\u201c{item['term']}\u201d actually means "
+                f"\u201c{item['meaning']}\u201d.{note_suffix}"
+            )
+        })
+
+        # ---------- meaning -> word ----------
+
+        options_backward = [item["term"]] + [
+            other["term"] for other in distractors
+        ]
+        random.shuffle(options_backward)
+
+        candidates.append({
+            "question": f"Which word means \u201c{item['meaning']}\u201d?",
+            "options": options_backward,
+            "correctIndex": options_backward.index(item["term"]),
+            "correctFeedback": (
+                f"\u201c{item['term']}\u201d means "
+                f"\u201c{item['meaning']}\u201d.{note_suffix}"
+            ),
+            "wrongFeedback": (
+                f"The correct word is \u201c{item['term']}\u201d "
+                f"(\u201c{item['meaning']}\u201d).{note_suffix}"
+            )
+        })
+
+    return candidates
+
+
+def get_all_tutor_quiz_candidates(lang_key, level_num):
+    """
+    Combines hand-authored quiz-eligible steps with generated
+    vocabulary flashcard questions (both directions), so Quiz always
+    has a varied pool to draw from instead of repeating the same
+    handful of authored questions. Falls back to the whole language's
+    course data if this specific level has nothing quiz-eligible.
+    """
+
+    authored = get_tutor_quiz_steps(lang_key, level_num)
+    vocabulary_based = generate_vocabulary_quiz_candidates(lang_key, level_num)
+
+    if not authored and not vocabulary_based and level_num is not None:
+        authored = get_tutor_quiz_steps(lang_key, None)
+        vocabulary_based = generate_vocabulary_quiz_candidates(lang_key, None)
+
+    return authored + vocabulary_based
+
+
+def start_tutor_quiz(lang_key, level_num):
+    quiz_candidates = get_all_tutor_quiz_candidates(lang_key, level_num)
+
+    if not quiz_candidates:
+        return (
+            "I could not find a quiz question for this lesson yet. "
+            "Try Explain or Example for now."
+        )
+
+    score_key = f"{lang_key}|{level_num}"
+
+    # Avoid repeating a question that was just asked, for as long as
+    # there is enough variety in the pool to do so. Once the whole
+    # pool has been cycled through, it naturally starts reusing
+    # questions again (there's no infinite well of course data).
+    recent_by_key = session.get("tutor_quiz_recent") or {}
+    recently_asked = set(recent_by_key.get(score_key, []))
+
+    fresh_candidates = [
+        candidate for candidate in quiz_candidates
+        if candidate.get("question") not in recently_asked
+    ]
+
+    pool = fresh_candidates if fresh_candidates else quiz_candidates
+
+    selected_step = pool[secrets.randbelow(len(pool))]
+
+    question_text = selected_step.get("question", "")
+
+    recent_list = recent_by_key.get(score_key, [])
+    recent_list.append(question_text)
+
+    max_recent = max(1, min(6, len(quiz_candidates) - 1))
+    recent_by_key[score_key] = recent_list[-max_recent:]
+
+    session["tutor_quiz_recent"] = recent_by_key
+
+    session["tutor_quiz_state"] = {
+        "lang_key": lang_key,
+        "level_num": level_num,
+        "question": question_text,
+        "options": selected_step.get("options", []),
+        "correct_index": selected_step.get("correctIndex", 0),
+        "correct_feedback": selected_step.get("correctFeedback", ""),
+        "wrong_feedback": selected_step.get("wrongFeedback", "")
+    }
+
+    option_lines = "\n".join(
+        f"{index + 1}. {option}"
+        for index, option in enumerate(
+            selected_step.get("options", [])
+        )
+    )
+
+    existing_score = (session.get("tutor_quiz_scores") or {}).get(score_key)
+
+    question_number = (
+        existing_score.get("total", 0) + 1 if existing_score else 1
+    )
+
+    score_line = ""
+
+    if existing_score and existing_score.get("total"):
+        score_line = (
+            f"\ud83c\udfc6 Score so far: "
+            f"{existing_score['correct']}/{existing_score['total']}\n"
+        )
+
+    return (
+        f"\ud83e\udde9 Quiz time \u2014 Question {question_number}\n"
+        f"{question_text}\n\n"
+        f"{option_lines}\n\n"
+        f"{score_line}"
+        "Reply with the option number (e.g. \"1\") or the full answer text."
+    )
+
+
+TUTOR_QUIZ_CORRECT_ENCOURAGEMENT = [
+    "Great job!",
+    "Nicely done!",
+    "You're getting the hang of this!",
+    "Excellent work!",
+    "Awesome, keep it up!"
+]
+
+TUTOR_QUIZ_WRONG_ENCOURAGEMENT = [
+    "No worries, that's how learning works!",
+    "Close! Keep going, you'll get the next one.",
+    "Don't worry about it, mistakes help you learn.",
+    "That's okay, let's keep practicing!"
+]
+
+
+def grade_tutor_quiz_answer(user_message):
+    quiz_state = session.get("tutor_quiz_state")
+
+    if not quiz_state:
+        return None
+
+    options = quiz_state.get("options", [])
+
+    if not options:
+        session.pop("tutor_quiz_state", None)
+        return "The tutor could not generate a valid response."
+
+    answer_text = (user_message or "").strip().lower()
+
+    selected_index = None
+
+    if answer_text.isdigit():
+        option_number = int(answer_text)
+
+        if 1 <= option_number <= len(options):
+            selected_index = option_number - 1
+
+    if selected_index is None:
+        for index, option in enumerate(options):
+            if answer_text == str(option).strip().lower():
+                selected_index = index
+                break
+
+    if selected_index is None:
+        return (
+            "I didn't quite catch that \u2014 please reply with the "
+            "option number (e.g. \"1\") or the exact option text."
+        )
+
+    correct_index = quiz_state.get("correct_index")
+
+    is_correct = (selected_index == correct_index)
+
+    feedback = (
+        quiz_state.get("correct_feedback")
+        if is_correct
+        else quiz_state.get("wrong_feedback")
+    )
+
+    correct_option_text = ""
+
+    if (
+        not is_correct
+        and isinstance(correct_index, int)
+        and 0 <= correct_index < len(options)
+    ):
+        correct_option_text = str(options[correct_index])
+
+    score_key = (
+        f"{quiz_state.get('lang_key')}|{quiz_state.get('level_num')}"
+    )
+
+    quiz_scores = session.get("tutor_quiz_scores") or {}
+
+    score = dict(quiz_scores.get(score_key, {"correct": 0, "total": 0}))
+
+    score["total"] += 1
+
+    if is_correct:
+        score["correct"] += 1
+
+    quiz_scores[score_key] = score
+
+    session["tutor_quiz_scores"] = quiz_scores
+
+    session.pop("tutor_quiz_state", None)
+
+    if is_correct:
+        status_text = "\u2705 Correct!"
+        encouragement = TUTOR_QUIZ_CORRECT_ENCOURAGEMENT[
+            secrets.randbelow(len(TUTOR_QUIZ_CORRECT_ENCOURAGEMENT))
+        ]
+        explanation_line = f"{feedback}" if feedback else ""
+    else:
+        status_text = "\u274c Not quite."
+        encouragement = TUTOR_QUIZ_WRONG_ENCOURAGEMENT[
+            secrets.randbelow(len(TUTOR_QUIZ_WRONG_ENCOURAGEMENT))
+        ]
+        correct_line = (
+            f"The correct answer was: {correct_option_text}.\n"
+            if correct_option_text
+            else ""
+        )
+        explanation_line = f"{correct_line}{feedback}".strip()
+
+    explanation_block = (
+        f"\n\n{explanation_line}" if explanation_line else ""
+    )
+
+    return (
+        f"{status_text} {encouragement}"
+        f"{explanation_block}\n\n"
+        f"\ud83c\udfc6 Score: {score['correct']}/{score['total']}\n\n"
+        "Want another question? Press Quiz again, or ask me anything else."
+    )
+
+
+def get_mode_user_message(mode, user_message):
+    normalized_mode = (mode or "").strip().lower()
+
+    cleaned_user_message = (user_message or "").strip()
+
+    if cleaned_user_message:
+        return cleaned_user_message
+
+    mode_defaults = {
+        "explain": (
+            "Explain today's lesson like a teacher would: cover the "
+            "meaning, grammar, pronunciation, usage, common learner "
+            "mistakes, and any helpful notes, in plain beginner-"
+            "friendly language."
+        ),
+        "example": (
+            "Give a short, natural mini dialogue (2-4 lines) using "
+            "this lesson's vocabulary in a realistic everyday "
+            "situation, with a translation and the important "
+            "vocabulary words highlighted in bold."
+        ),
+        "culture": (
+            "Explain the cultural background related to this "
+            "language: historical/traditional background, traditions "
+            "or customs, an interesting fact, how the language is "
+            "used in modern daily life, the community who speaks it, "
+            "and its language preservation status."
+        )
+    }
+
+    return mode_defaults.get(
+        normalized_mode,
+        "Help me learn this lesson."
+    )
+
+
+def get_mode_system_instruction(mode):
+    normalized_mode = (mode or "").strip().lower()
+
+    mode_instructions = {
+        "explain": (
+            "Current mode is Explain - TEACHER STYLE. Structure your "
+            "answer with short labelled sections (use bold labels or "
+            "a bullet list) covering, where relevant: **Meaning**, "
+            "**Grammar**, **Pronunciation**, **Usage**, **Common "
+            "mistakes**, and a closing **Note**. Use the lesson's "
+            "verified vocabulary/facts first (priority 1); if the "
+            "lesson doesn't cover a part (e.g. pronunciation isn't "
+            "recorded), you may use general linguistic knowledge "
+            "(priority 2) and say so, rather than skipping it "
+            "silently. This mode is about deep, structured "
+            "understanding, NOT examples or dialogues."
+        ),
+        "example": (
+            "Current mode is Example - CONVERSATION STYLE. Do NOT "
+            "give a structured teacher-style breakdown. Instead, "
+            "write ONE short, natural mini dialogue (2-4 lines, "
+            "labelled A: / B:) set in a realistic everyday situation "
+            "using this lesson's real vocabulary, followed by a "
+            "plain-English translation of the dialogue. Bold the "
+            "important vocabulary word(s) the first time they appear. "
+            "Include pronunciation only if it is available; otherwise "
+            "do not guess. Keep it short and vivid, like a scene, not "
+            "a lecture."
+        ),
+        "culture": (
+            "Current mode is Culture - CULTURAL BACKGROUND STYLE. "
+            "Cover, briefly and only where supported by verified data "
+            "or well-established general knowledge: historical/"
+            "traditional **Background**, **Traditions** or customs, "
+            "an **Interesting fact**, **Modern usage** in daily life "
+            "today, the **Community** who speaks it, and its "
+            "**Preservation** status. Never invent specific customs, "
+            "festivals, or historical claims that are not backed by "
+            "the data given to you or solid general knowledge - if "
+            "unsure, say the detail isn't verified yet instead of "
+            "guessing. Do not teach vocabulary lists here unless a "
+            "word is essential to a cultural point."
+        ),
+        "chat": (
+            "Current mode is Free Chat. Have a natural, warm, helpful "
+            "conversation, like ChatGPT/Claude, covering any language "
+            "or linguistics topic (not just this course's languages). "
+            "Remember and refer back to what the learner said earlier "
+            "in this same conversation when relevant."
+        )
+    }
+
+    return mode_instructions.get(normalized_mode, "")
+
+
+# answer_tutor_query is imported from tutor_service
+# (Planner → Retriever → Validator → optional LLM rewrite)
+
+
 # ================= ROUTES =================
 
 # ================= EXPLORE UNLOCK DATA =================
@@ -2598,11 +3876,23 @@ EXPLORE_UNLOCKS = {
 
     },
 
-    "kadazan": {},
+    # Keys must match LANGUAGES / COURSE_DATA slugs (kadazan-dusun, not kadazan).
+    "kadazan-dusun": {},
 
-    "bidayuh": {}
+    "bidayuh": {},
+
+    "mah-meri": {},
 
 }
+
+# Seed tutor content tables from course data (no-op if already populated).
+# Also sync any new COURSE_DATA vocabulary into SQLite when the DB already exists.
+try:
+    seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
+    sync_missing_vocabulary_from_course(COURSE_DATA)
+    import_verified_vocabulary_packs()
+except Exception as _seed_exc:
+    print(f"[tutor seed] warning: {_seed_exc}")
 
 # ================= PASSWORD RESET TOOLS =================
 
@@ -2672,6 +3962,7 @@ def create_reset_token(user_id):
     "/forgot-password",
     methods=["GET", "POST"]
 )
+@limiter.limit("5 per minute", methods=["POST"])
 def forgot_password():
 
     if request.method == "POST":
@@ -2707,13 +3998,18 @@ def forgot_password():
                 _external=True
             )
 
-            print("\n")
-            print("=" * 70)
-            print("PASSWORD RESET LINK")
-            print(reset_link)
-            print("This link expires in 30 minutes.")
-            print("=" * 70)
-            print("\n")
+            # Dev-only console delivery — never emit reset links in production logs.
+            if (
+                os.getenv("FLASK_DEBUG", "false").lower() == "true"
+                or _FLASK_ENV == "development"
+            ):
+                print("\n")
+                print("=" * 70)
+                print("PASSWORD RESET LINK")
+                print(reset_link)
+                print("This link expires in 30 minutes.")
+                print("=" * 70)
+                print("\n")
 
 
         flash(
@@ -2912,6 +4208,7 @@ def home():
     "/register",
     methods=["GET", "POST"]
 )
+@limiter.limit("5 per minute", methods=["POST"])
 def register():
 
     if request.method == "POST":
@@ -3153,13 +4450,12 @@ def login():
             password
         ):
 
-            session["user_id"] = (
-                user["id"]
+            _establish_login_session(
+                user["id"],
+                user["username"],
             )
 
-            session["username"] = (
-                user["username"]
-            )
+            _achievement_hook(user["id"], "first_login")
 
             return redirect(
                 url_for("dashboard")
@@ -3392,12 +4688,9 @@ def google_callback():
     conn.close()
 
 
-    session.clear()
+    _establish_login_session(user_id, username)
 
-    session["user_id"] = user_id
-
-    session["username"] = username
-
+    _achievement_hook(user_id, "first_login")
 
     return redirect(
         url_for("dashboard")
@@ -3434,25 +4727,130 @@ def dashboard():
             LEVEL_TITLES
         )
 
-        percentage = round(
-            (
-                completed_count /
-                total_levels
-            ) * 100
+        # Clamp to 0–100 so orphan progress rows never produce >100% in the UI.
+        percentage = max(
+            0,
+            min(
+                100,
+                round(
+                    (
+                        completed_count /
+                        total_levels
+                    ) * 100
+                ) if total_levels else 0
+            )
         )
 
         language_progress[
             lang_key
         ] = {
-            "completed": completed_count,
+            "completed": min(completed_count, total_levels),
             "total": total_levels,
             "percentage": percentage
         }
 
+    # Real vocabulary / lesson / quiz counts + deep links for the World
+    # Explorer / Language Universe — never fabricated linguistic facts.
+    conn = get_db()
+    language_explorer_meta = {}
+    for lang_key, lang_info in LANGUAGES.items():
+        vocab_row = conn.execute(
+            "SELECT COUNT(*) AS c FROM vocabulary WHERE language = ?",
+            (lang_key,),
+        ).fetchone()
+        quiz_row = conn.execute(
+            "SELECT COUNT(*) AS c FROM quiz WHERE language = ?",
+            (lang_key,),
+        ).fetchone()
+        sample = conn.execute(
+            """
+            SELECT word, meaning_en
+            FROM vocabulary
+            WHERE language = ?
+              AND word IS NOT NULL AND TRIM(word) != ''
+            ORDER BY RANDOM()
+            LIMIT 1
+            """,
+            (lang_key,),
+        ).fetchone()
+        lesson_count = len(COURSE_DATA.get(lang_key, {}) or {})
+        sample_word = None
+        if sample and sample["word"]:
+            sample_word = {
+                "word": sample["word"],
+                "meaning": sample["meaning_en"] if sample["meaning_en"] else None,
+            }
+        language_explorer_meta[lang_key] = {
+            "key": lang_key,
+            "display_name": lang_info.get("display_name", lang_key),
+            "region": lang_info.get("region"),
+            "blurb": lang_info.get("blurb"),
+            "vocab_count": vocab_row["c"] if vocab_row else 0,
+            "lesson_count": lesson_count,
+            "quiz_count": quiz_row["c"] if quiz_row else 0,
+            "sample_word": sample_word,
+            "dictionary_url": url_for("dictionary_page", lang=lang_key),
+            "compare_url": url_for("compare_languages", a=lang_key),
+            "learn_url": url_for("language_page", lang_key=lang_key),
+            "quiz_url": url_for("quiz_page", lang=lang_key),
+        }
+    conn.close()
+
+    daily_status = daily_quiz_status(session["user_id"])
+
+    # Compact explorer stats derived only from real lesson + quiz progress.
+    mastery_summary = get_user_mastery_summary(user_id)
+    lessons_done = sum(int(p.get("completed") or 0) for p in language_progress.values())
+    overall_lesson_pct = 0
+    if language_progress:
+        overall_lesson_pct = int(
+            round(
+                sum(int(p.get("percentage") or 0) for p in language_progress.values())
+                / len(language_progress)
+            )
+        )
+    quiz_correct = int(mastery_summary.get("correct") or 0)
+    xp = lessons_done * 100 + quiz_correct * 25
+    level = max(1, 1 + (xp // 300))
+    xp_into_level = xp % 300
+    xp_next = 300
+    explorer_stats = {
+        "level": level,
+        "xp": xp,
+        "xp_current": xp_into_level,
+        "xp_next": xp_next,
+        "xp_pct": int(round((xp_into_level / xp_next) * 100)) if xp_next else 0,
+        # Canonical streak = consecutive active days (not quiz-answer streak).
+        "streak": get_activity_streak(user_id),
+        "points": xp,
+        "lesson_pct": overall_lesson_pct,
+        "quiz_mastery_pct": int(mastery_summary.get("mastery_pct") or 0),
+    }
+
+    heritage_passport = get_heritage_passport(user_id)
+    gallery = get_achievements_gallery(user_id)
+    collection_teaser = {
+        "earned": int(gallery.get("earned") or 0),
+        "total": int(gallery.get("total") or 0),
+        "percent": int(
+            round(
+                100
+                * int(gallery.get("earned") or 0)
+                / max(1, int(gallery.get("total") or 1))
+            )
+        ),
+        "streak": explorer_stats["streak"],
+    }
+
     return render_template(
         "dashboard.html",
         username=session["username"],
-        language_progress=language_progress
+        language_progress=language_progress,
+        language_explorer_meta=language_explorer_meta,
+        daily_quiz=daily_status,
+        explorer_stats=explorer_stats,
+        heritage_passport=heritage_passport,
+        collection_teaser=collection_teaser,
     )
 
 
@@ -3547,6 +4945,1021 @@ def api_compare_languages(lang_a, lang_b):
     })
 
 
+# ================= DICTIONARY / VOCABULARY LIBRARY =================
+
+_DICTIONARY_POS_OPTIONS = [
+    "greeting", "noun", "verb", "adjective", "animal", "food",
+    "number", "phrase", "expression",
+]
+_DICTIONARY_DIFFICULTY_OPTIONS = ["easy", "medium", "hard"]
+_DICTIONARY_SORT_OPTIONS = [
+    ("alpha", "A → Z"),
+    ("alpha_desc", "Z → A"),
+    ("length_desc", "Longest first"),
+    ("length_asc", "Shortest first"),
+    ("difficulty", "Difficulty"),
+]
+
+
+@app.route("/dictionary")
+def dictionary_page():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    lang_keys = get_language_keys() or list(LANGUAGES.keys())
+    vocab_counts = vocabulary_counts_by_language()
+    language_options = [
+        {
+            "lang_key": key,
+            "display_name": LANGUAGES.get(key, {}).get("display_name") or display_name(key),
+            "vocab_count": int(vocab_counts.get(key, 0)),
+        }
+        for key in lang_keys
+    ]
+    default_lang = request.args.get("lang") or (lang_keys[0] if lang_keys else "")
+    if default_lang not in lang_keys:
+        default_lang = lang_keys[0] if lang_keys else ""
+
+    return render_template(
+        "dictionary.html",
+        language_options=language_options,
+        default_lang=default_lang,
+        pos_options=_DICTIONARY_POS_OPTIONS,
+        difficulty_options=_DICTIONARY_DIFFICULTY_OPTIONS,
+        sort_options=_DICTIONARY_SORT_OPTIONS,
+        vocab_target=TARGET_VOCAB_PER_LANGUAGE,
+        vocab_coverage=vocabulary_coverage_report(),
+    )
+
+
+@app.route("/api/dictionary/search")
+def api_dictionary_search():
+
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    raw_lang = (request.args.get("language") or "").strip()
+    language = resolve_language(raw_lang) or (raw_lang if raw_lang in get_language_keys() else None)
+    if not language:
+        return jsonify({
+            "error": "unknown_language",
+            "message": f"'{raw_lang}' is not a language in this course database.",
+            "available_languages": list(get_language_keys()),
+        }), 400
+
+    query = (request.args.get("q") or "").strip()
+    pos = (request.args.get("pos") or "").strip() or None
+    difficulty = (request.args.get("difficulty") or "").strip() or None
+    sort = (request.args.get("sort") or "alpha").strip()
+    try:
+        limit = max(1, min(100, int(request.args.get("limit", 30))))
+    except (TypeError, ValueError):
+        limit = 30
+    try:
+        offset = max(0, int(request.args.get("offset", 0)))
+    except (TypeError, ValueError):
+        offset = 0
+
+    try:
+        result = dictionary_search(
+            language=language,
+            query=query,
+            part_of_speech=pos,
+            difficulty=difficulty,
+            sort=sort,
+            limit=limit,
+            offset=offset,
+        )
+    except RetrievalError:
+        return jsonify({
+            "error": "retrieval_error",
+            "message": "Could not search the dictionary right now.",
+        }), 400
+
+    result["language_display"] = display_name(language)
+    rows = result.get("rows") or []
+    saved_ids = get_saved_word_ids(session["user_id"], [r.get("id") for r in rows])
+    for r in rows:
+        r["is_saved"] = r.get("id") in saved_ids
+    return jsonify(result)
+
+
+@app.route("/api/dictionary/word/<int:word_id>")
+def api_dictionary_word(word_id):
+
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    raw_lang = (request.args.get("language") or "").strip()
+    language = resolve_language(raw_lang) or (raw_lang if raw_lang in get_language_keys() else None)
+    if not language:
+        return jsonify({
+            "error": "unknown_language",
+            "message": f"'{raw_lang}' is not a language in this course database.",
+            "available_languages": list(get_language_keys()),
+        }), 400
+
+    try:
+        row = dictionary_word_by_id(language, word_id)
+    except RetrievalError:
+        return jsonify({
+            "error": "retrieval_error",
+            "message": "Could not load this word right now.",
+        }), 400
+
+    if not row:
+        return jsonify({
+            "error": "not_found",
+            "message": "No word with this id exists for this language.",
+        }), 404
+
+    row["language_display"] = display_name(language)
+    row["source"] = (row.get("source_ref") or "").strip() or "course_database"
+    row["is_saved"] = bool(get_saved_word_ids(session["user_id"], [row.get("id")]))
+
+    lesson_id = row.get("lesson_id")
+    if lesson_id in LEVEL_TITLES:
+        row["lesson_url"] = url_for("level_page", lang_key=language, level_num=lesson_id)
+        row["lesson_title"] = LEVEL_TITLES[lesson_id]
+
+    word_id = row.get("id")
+    row["new_achievements"] = []
+    row["view_recorded"] = False
+    if isinstance(word_id, int):
+        # Record only — do NOT run evaluate_achievements here.
+        # The full sweep takes locks on users.db and was blocking Dictionary
+        # search/pagination after vocabulary expansion (multi-click modal bug).
+        row["view_recorded"] = bool(
+            record_dictionary_view(session["user_id"], word_id, language)
+        )
+
+    return jsonify(row)
+
+
+@app.route("/api/dictionary/random")
+def api_dictionary_random():
+    """Return one real vocabulary row (never fabricated)."""
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    raw_lang = (request.args.get("language") or "").strip()
+    language = None
+    if raw_lang:
+        language = resolve_language(raw_lang) or (
+            raw_lang if raw_lang in get_language_keys() else None
+        )
+        if not language:
+            return jsonify({
+                "error": "unknown_language",
+                "message": f"'{raw_lang}' is not a language in this course database.",
+                "available_languages": list(get_language_keys()),
+            }), 400
+
+    pos = (request.args.get("pos") or "").strip() or None
+    difficulty = (request.args.get("difficulty") or "").strip() or None
+    daily = (request.args.get("daily") or "").strip().lower() in ("1", "true", "yes")
+    seed = None
+    if daily:
+        from datetime import datetime, timezone
+        day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        seed = f"word|{day}|{session['user_id']}|{language or 'all'}"
+
+    exclude_ids = []
+    raw_exclude = (request.args.get("exclude") or "").strip()
+    if raw_exclude:
+        for part in raw_exclude.split(","):
+            part = part.strip()
+            if part.isdigit():
+                exclude_ids.append(int(part))
+
+    try:
+        row = dictionary_random_word(
+            language=language,
+            part_of_speech=pos,
+            difficulty=difficulty,
+            seed=seed,
+            exclude_ids=exclude_ids,
+        )
+    except RetrievalError:
+        return jsonify({
+            "error": "retrieval_error",
+            "message": "Could not load a random word right now.",
+        }), 400
+
+    if not row:
+        return jsonify({
+            "ok": False,
+            "reason": "empty",
+            "message": "No vocabulary is available for this filter yet.",
+        }), 200
+
+    lang_key = row.get("language") or language
+    row["language_display"] = display_name(lang_key) if lang_key else None
+    row["source"] = "course_database"
+    row["is_saved"] = bool(get_saved_word_ids(session["user_id"], [row.get("id")]))
+    row["learn_url"] = url_for("language_page", lang_key=lang_key) if lang_key else None
+    row["dictionary_url"] = (
+        url_for("dictionary_page", lang=lang_key, q=row.get("word") or "")
+        if lang_key
+        else url_for("dictionary_page")
+    )
+    word_id = row.get("id")
+    if isinstance(word_id, int) and lang_key:
+        record_dictionary_view(session["user_id"], word_id, lang_key)
+        row["new_achievements"] = evaluate_achievements(session["user_id"])
+    return jsonify({"ok": True, "word": row})
+
+
+# ================= SAVED WORDS (FAVORITES) =================
+
+def get_saved_word_ids(user_id, vocabulary_ids):
+    """Which of these vocabulary ids does this user currently have saved."""
+    vocabulary_ids = [v for v in (vocabulary_ids or []) if isinstance(v, int)]
+    if not vocabulary_ids:
+        return set()
+
+    conn = get_db()
+    placeholders = ",".join("?" for _ in vocabulary_ids)
+    rows = conn.execute(
+        f"""
+        SELECT vocabulary_id FROM saved_words
+        WHERE user_id = ? AND vocabulary_id IN ({placeholders})
+        """,
+        [user_id, *vocabulary_ids],
+    ).fetchall()
+    conn.close()
+    return {row["vocabulary_id"] for row in rows}
+
+
+def add_saved_word(user_id, vocabulary_id, lang_key):
+    conn = get_db()
+    conn.execute(
+        """
+        INSERT INTO saved_words (user_id, vocabulary_id, lang_key, created_at)
+        VALUES (?, ?, ?, strftime('%s','now'))
+        ON CONFLICT(user_id, vocabulary_id) DO NOTHING
+        """,
+        (user_id, vocabulary_id, lang_key),
+    )
+    conn.commit()
+    conn.close()
+
+
+def remove_saved_word(user_id, vocabulary_id):
+    conn = get_db()
+    conn.execute(
+        "DELETE FROM saved_words WHERE user_id = ? AND vocabulary_id = ?",
+        (user_id, vocabulary_id),
+    )
+    conn.commit()
+    conn.close()
+
+
+def list_saved_words(user_id, lang_key=None):
+    conn = get_db()
+    if lang_key:
+        rows = conn.execute(
+            """
+            SELECT v.*, sw.created_at AS saved_at, sw.lang_key AS saved_lang_key
+            FROM saved_words sw
+            JOIN vocabulary v ON v.id = sw.vocabulary_id
+            WHERE sw.user_id = ? AND sw.lang_key = ?
+            ORDER BY sw.created_at DESC
+            """,
+            (user_id, lang_key),
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            """
+            SELECT v.*, sw.created_at AS saved_at, sw.lang_key AS saved_lang_key
+            FROM saved_words sw
+            JOIN vocabulary v ON v.id = sw.vocabulary_id
+            WHERE sw.user_id = ?
+            ORDER BY sw.created_at DESC
+            """,
+            (user_id,),
+        ).fetchall()
+    conn.close()
+    return [dict(r) for r in rows]
+
+
+HERITAGE_PASSPORT_IMAGES = {
+    "iban": "iban_bg.png",
+    "kadazan-dusun": "kadazan_dusun_bg.png",
+    "bidayuh": "bidayuh_bg.png",
+    "mah-meri": "mah_meri_card_bg.png",
+}
+
+
+def get_heritage_passport(user_id):
+    """Build passport cards from existing LANGUAGES + discovered rows only."""
+    init_achievement_tables()
+    conn = get_db()
+    rows = conn.execute(
+        """
+        SELECT lang_key, discovered_at
+        FROM heritage_passport
+        WHERE user_id = ?
+        """,
+        (user_id,),
+    ).fetchall()
+    discovered = {row["lang_key"]: int(row["discovered_at"]) for row in rows}
+
+    cards = []
+    for lang_key, lang_info in LANGUAGES.items():
+        completed_levels = conn.execute(
+            """
+            SELECT COUNT(*) AS c FROM progress
+            WHERE user_id = ? AND lang_key = ? AND completed = 1
+            """,
+            (user_id, lang_key),
+        ).fetchone()["c"]
+        try:
+            vocab_explored = conn.execute(
+                """
+                SELECT COUNT(*) AS c FROM dictionary_views
+                WHERE user_id = ? AND lang_key = ?
+                """,
+                (user_id, lang_key),
+            ).fetchone()["c"]
+        except Exception:
+            vocab_explored = 0
+        saved_count = conn.execute(
+            """
+            SELECT COUNT(*) AS c FROM saved_words
+            WHERE user_id = ? AND lang_key = ?
+            """,
+            (user_id, lang_key),
+        ).fetchone()["c"]
+        vocab_total_row = conn.execute(
+            "SELECT COUNT(*) AS c FROM vocabulary WHERE language = ?",
+            (lang_key,),
+        ).fetchone()
+        vocab_total = int(vocab_total_row["c"]) if vocab_total_row else 0
+        lesson_total = len(COURSE_DATA.get(lang_key, {}) or {})
+        cards.append({
+            "key": lang_key,
+            "display_name": lang_info.get("display_name", lang_key),
+            "region": lang_info.get("region") or "",
+            "blurb": lang_info.get("blurb") or "",
+            "image": HERITAGE_PASSPORT_IMAGES.get(lang_key),
+            "discovered": lang_key in discovered,
+            "discovered_at": discovered.get(lang_key),
+            "lessons_completed": int(completed_levels),
+            "lessons_total": int(lesson_total),
+            "words_explored": int(vocab_explored),
+            "words_saved": int(saved_count),
+            "vocab_total": vocab_total,
+            "learn_url": url_for("language_page", lang_key=lang_key),
+            "dictionary_url": url_for("dictionary_page", lang=lang_key),
+        })
+    conn.close()
+    discovered_count = sum(1 for card in cards if card["discovered"])
+    return {
+        "cards": cards,
+        "discovered_count": discovered_count,
+        "total": len(cards),
+        "complete": bool(cards) and discovered_count >= len(cards),
+        "journey_path": [
+            "World",
+            "Malaysia",
+            "Place",
+            "Language",
+            "Words / Lessons",
+            "Heritage Discovered",
+        ],
+    }
+
+
+def mark_heritage_passport_discovery(user_id, lang_key):
+    if lang_key not in LANGUAGES:
+        return None
+    now = int(time.time())
+    conn = get_db()
+    existing = conn.execute(
+        """
+        SELECT discovered_at FROM heritage_passport
+        WHERE user_id = ? AND lang_key = ?
+        """,
+        (user_id, lang_key),
+    ).fetchone()
+    if existing:
+        conn.close()
+        passport = get_heritage_passport(user_id)
+        passport["newly_discovered"] = False
+        passport["language"] = lang_key
+        return passport
+    conn.execute(
+        """
+        INSERT INTO heritage_passport (user_id, lang_key, discovered_at)
+        VALUES (?, ?, ?)
+        """,
+        (user_id, lang_key, now),
+    )
+    conn.commit()
+    conn.close()
+    passport = get_heritage_passport(user_id)
+    passport["newly_discovered"] = True
+    passport["language"] = lang_key
+    return passport
+
+
+@app.route("/api/passport/discover", methods=["POST"])
+def api_passport_discover():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json(silent=True) or {}
+    raw_lang = (data.get("language") or "").strip()
+    language = resolve_language(raw_lang) or (
+        raw_lang if raw_lang in LANGUAGES else None
+    )
+    if not language or language not in LANGUAGES:
+        return jsonify({
+            "error": "unknown_language",
+            "message": "Language is not part of this course.",
+            "available_languages": list(LANGUAGES.keys()),
+        }), 400
+
+    user_id = session["user_id"]
+    passport = mark_heritage_passport_discovery(user_id, language)
+    if passport and passport.get("newly_discovered"):
+        set_explorer_milestone(user_id, "beacon_discovery")
+    record_activity_day(user_id)
+    new_achievements = evaluate_achievements(user_id)
+    payload = {"success": True, **passport, "new_achievements": new_achievements}
+    return jsonify(payload)
+
+
+def _achievement_hook(user_id, milestone_key=None):
+    """Record optional milestone, activity day, then evaluate unlocks."""
+    if milestone_key:
+        set_explorer_milestone(user_id, milestone_key)
+    record_activity_day(user_id)
+    return evaluate_achievements(user_id)
+
+
+@app.route("/achievements")
+def achievements_page():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    user_id = session["user_id"]
+    gallery = get_achievements_gallery(user_id)
+    stats = collect_user_stats(user_id)
+    points = int(stats.get("points") or 0)
+    total = int(gallery.get("total") or 0)
+    earned = int(gallery.get("earned") or 0)
+    collection = {
+        "earned": earned,
+        "total": total,
+        "percent": int(round((100 * earned / total))) if total else 0,
+        "streak": int(stats.get("streak") or 0),
+        "points": points,
+        "level": max(1, 1 + (points // 300)),
+    }
+    return render_template(
+        "achievements.html",
+        gallery=gallery,
+        collection=collection,
+        username=session.get("username"),
+    )
+
+
+@app.route("/settings")
+def settings_page():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    prefs = get_mascot_preferences(session["user_id"])
+    return render_template(
+        "settings.html",
+        mascot_prefs=prefs,
+        username=session.get("username"),
+    )
+
+
+@app.route("/api/achievements")
+def api_achievements_list():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    return jsonify(get_achievements_gallery(session["user_id"]))
+
+
+@app.route("/api/achievements/pending")
+def api_achievements_pending():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    pending = pop_pending_achievement_notifications(session["user_id"])
+    return jsonify({"pending": pending})
+
+
+@app.route("/api/achievements/ack", methods=["POST"])
+def api_achievements_ack():
+    """Mark achievement notifications as shown (prevents duplicate plaques)."""
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    data = request.get_json(silent=True) or {}
+    keys = data.get("keys") or []
+    if not isinstance(keys, list):
+        return jsonify({"error": "invalid_request"}), 400
+    mark_achievements_notified(session["user_id"], [str(k) for k in keys])
+    return jsonify({"success": True})
+
+
+@app.route("/api/achievements/evaluate", methods=["POST"])
+def api_achievements_evaluate():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    data = request.get_json(silent=True) or {}
+    milestone = (data.get("milestone") or "").strip() or None
+    allowed = {
+        None,
+        "first_login",
+        "world_explorer_visit",
+        "malaysia_arrived",
+        "beacon_discovery",
+    }
+    if milestone not in allowed:
+        return jsonify({"error": "invalid_milestone"}), 400
+    newly = _achievement_hook(session["user_id"], milestone)
+    return jsonify({"success": True, "new_achievements": newly})
+
+
+@app.route("/api/mascot/preferences", methods=["GET", "POST"])
+def api_mascot_preferences():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    if request.method == "GET":
+        return jsonify(get_mascot_preferences(session["user_id"]))
+    data = request.get_json(silent=True) or {}
+    prefs = update_mascot_preferences(session["user_id"], data)
+    return jsonify({"success": True, "preferences": prefs})
+
+
+@app.route("/api/mascot/fact")
+def api_mascot_fact():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    prefs = get_mascot_preferences(session["user_id"])
+    if not prefs.get("enabled") or not prefs.get("facts_enabled"):
+        return jsonify({"ok": False, "reason": "disabled"})
+    lang = (request.args.get("lang") or "").strip() or None
+    seed = f"{session['user_id']}:{int(time.time()) // 3600}:{lang or 'any'}"
+    fact = pick_heritage_fact(seed=seed, language=lang)
+    return jsonify({"ok": True, "fact": fact})
+
+
+@app.route("/favorites")
+def favorites_page():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    lang_keys = get_language_keys() or list(LANGUAGES.keys())
+    language_options = [
+        {"lang_key": key, "display_name": LANGUAGES.get(key, {}).get("display_name") or display_name(key)}
+        for key in lang_keys
+    ]
+    return render_template("favorites.html", language_options=language_options)
+
+
+@app.route("/api/favorites")
+def api_favorites_list():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    raw_lang = (request.args.get("language") or "").strip()
+    language = None
+    if raw_lang:
+        language = resolve_language(raw_lang) or (raw_lang if raw_lang in get_language_keys() else None)
+        if not language:
+            return jsonify({
+                "error": "unknown_language",
+                "message": f"'{raw_lang}' is not a language in this course database.",
+                "available_languages": list(get_language_keys()),
+            }), 400
+
+    rows = list_saved_words(session["user_id"], language)
+    for row in rows:
+        # vocabulary.language + saved_words.lang_key both exist after JOIN;
+        # normalize to a single client-facing lang_key so favorites JS never
+        # depends on which column SQLite returned first.
+        row["lang_key"] = row.get("saved_lang_key") or row.get("language") or ""
+        row["language_display"] = display_name(row["lang_key"])
+        row["is_saved"] = True
+    return jsonify({"rows": rows, "total": len(rows)})
+
+
+@app.route("/api/favorites/toggle", methods=["POST"])
+def api_favorites_toggle():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json(silent=True) or {}
+    vocabulary_id = data.get("vocabulary_id")
+    raw_lang = (data.get("language") or "").strip()
+
+    if not isinstance(vocabulary_id, int):
+        return jsonify({
+            "error": "invalid_request",
+            "message": "vocabulary_id must be an integer.",
+        }), 400
+
+    language = resolve_language(raw_lang) or (raw_lang if raw_lang in get_language_keys() else None)
+    if not language:
+        return jsonify({
+            "error": "unknown_language",
+            "message": f"'{raw_lang}' is not a language in this course database.",
+            "available_languages": list(get_language_keys()),
+        }), 400
+
+    # Re-verify the word actually belongs to this language before saving —
+    # never let a client save an id/language pair that doesn't exist.
+    try:
+        word_row = dictionary_word_by_id(language, vocabulary_id)
+    except RetrievalError:
+        return jsonify({
+            "error": "retrieval_error",
+            "message": "Could not verify this word right now.",
+        }), 400
+
+    if not word_row:
+        return jsonify({
+            "error": "not_found",
+            "message": "No word with this id exists for this language.",
+        }), 404
+
+    user_id = session["user_id"]
+    already_saved = bool(get_saved_word_ids(user_id, [vocabulary_id]))
+    if already_saved:
+        remove_saved_word(user_id, vocabulary_id)
+        return jsonify({"success": True, "saved": False})
+
+    add_saved_word(user_id, vocabulary_id, language)
+    record_activity_day(user_id)
+    newly = evaluate_achievements(user_id)
+    return jsonify({"success": True, "saved": True, "new_achievements": newly})
+
+
+# ================= STANDALONE QUIZ (non-AI, database-backed) =================
+#
+# This is a self-contained multi-question quiz product, deliberately
+# independent of the AI Tutor chat widget and of composer.py/GPT. It only
+# ever reads from the `quiz` table (via retrieval.get_quiz_questions) and
+# writes deterministic results to `user_progress` (via learning_memory).
+# It works identically whether or not an OpenAI API key is configured.
+
+_QUIZ_COUNT_OPTIONS = [5, 10]
+_QUIZ_DIFFICULTY_OPTIONS = [
+    ("", "Adaptive (recommended)"),
+    ("easy", "Easy"),
+    ("medium", "Medium"),
+    ("hard", "Hard"),
+]
+
+
+@app.route("/quiz")
+def quiz_page():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
+    lang_keys = get_language_keys() or list(LANGUAGES.keys())
+
+    languages = []
+    for key in lang_keys:
+        levels = get_levels(user_id, key)
+        languages.append({
+            "lang_key": key,
+            "display_name": LANGUAGES.get(key, {}).get("display_name") or display_name(key),
+            "levels": [
+                {"number": lvl["number"], "title": lvl["title"], "unlocked": lvl["unlocked"]}
+                for lvl in levels
+            ],
+        })
+
+    return render_template(
+        "quiz.html",
+        languages=languages,
+        count_options=_QUIZ_COUNT_OPTIONS,
+        difficulty_options=_QUIZ_DIFFICULTY_OPTIONS,
+    )
+
+
+def _quiz_level_is_unlocked(user_id, lang_key, level_num):
+    levels = get_levels(user_id, lang_key)
+    match = next((lvl for lvl in levels if lvl["number"] == level_num), None)
+    return bool(match and match["unlocked"])
+
+
+@app.route("/api/quiz/start", methods=["POST"])
+def api_quiz_start():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json(silent=True) or {}
+    mode = (data.get("mode") or "").strip().lower()
+    user_id = session["user_id"]
+
+    if mode == "daily":
+        unlocked = {}
+        for key in get_language_keys() or list(LANGUAGES.keys()):
+            unlocked[key] = [
+                lvl["number"]
+                for lvl in get_levels(user_id, key)
+                if lvl.get("unlocked")
+            ]
+        result = start_daily_quiz_session(
+            user_id=user_id,
+            unlocked_levels=unlocked,
+            count=5,
+        )
+        if not result.get("ok"):
+            return jsonify({
+                "ok": False,
+                "reason": result.get("reason", "no_questions"),
+                "message": "No verified quiz questions are available for today's challenge yet.",
+            }), 200
+        if result.get("lang_key"):
+            result["language_display"] = display_name(result["lang_key"])
+        return jsonify(result)
+
+    raw_lang = (data.get("lang_key") or "").strip()
+    language = resolve_language(raw_lang) or (raw_lang if raw_lang in get_language_keys() else None)
+    if not language:
+        return jsonify({
+            "error": "unknown_language",
+            "message": f"'{raw_lang}' is not a language in this course database.",
+            "available_languages": list(get_language_keys()),
+        }), 400
+
+    try:
+        level_num = int(data.get("level_num"))
+    except (TypeError, ValueError):
+        return jsonify({"error": "invalid_request", "message": "level_num is required."}), 400
+
+    if level_num not in LEVEL_TITLES:
+        return jsonify({"error": "invalid_request", "message": "Unknown level."}), 400
+
+    if not _quiz_level_is_unlocked(user_id, language, level_num):
+        return jsonify({"error": "locked", "message": "Complete the previous level to unlock this quiz."}), 403
+
+    difficulty = (data.get("difficulty") or "").strip() or None
+    try:
+        count = int(data.get("count") or 5)
+    except (TypeError, ValueError):
+        count = 5
+
+    result = start_quiz_session(
+        lang_key=language,
+        level_num=level_num,
+        user_id=user_id,
+        count=count,
+        difficulty=difficulty,
+    )
+    if not result.get("ok"):
+        return jsonify({
+            "ok": False,
+            "reason": result.get("reason", "no_questions"),
+            "message": "This lesson does not have verified quiz questions in the course database yet.",
+        }), 200
+
+    result["language_display"] = display_name(language)
+    return jsonify(result)
+
+
+@app.route("/api/quiz/daily/status")
+def api_quiz_daily_status():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    result = daily_quiz_status(session["user_id"])
+    if result.get("lang_key"):
+        result["language_display"] = display_name(result["lang_key"])
+    return jsonify(result)
+
+
+@app.route("/api/quiz/state")
+def api_quiz_state():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    result = quiz_session_state()
+    if result.get("ok") and result.get("lang_key"):
+        result["language_display"] = display_name(result["lang_key"])
+    return jsonify(result)
+
+
+@app.route("/api/quiz/answer", methods=["POST"])
+def api_quiz_answer():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    data = request.get_json(silent=True) or {}
+    answer_index = data.get("answer_index")
+    if not isinstance(answer_index, int):
+        return jsonify({"error": "invalid_request", "message": "answer_index must be an integer."}), 400
+
+    result = submit_quiz_session_answer(answer_index, user_id=session["user_id"])
+    if not result.get("ok"):
+        return jsonify(result), 409
+    record_activity_day(session["user_id"])
+    result["new_achievements"] = evaluate_achievements(session["user_id"])
+    return jsonify(result)
+
+
+@app.route("/api/quiz/results")
+def api_quiz_results():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    result = quiz_session_results()
+    if not result.get("ok"):
+        return jsonify(result), 404
+    if result.get("lang_key"):
+        result["language_display"] = display_name(result["lang_key"])
+    return jsonify(result)
+
+
+@app.route("/api/quiz/restart", methods=["POST"])
+def api_quiz_restart():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    result = restart_quiz_session(user_id=session["user_id"])
+    if not result.get("ok"):
+        return jsonify(result), 404
+    result["language_display"] = display_name(result["lang_key"]) if result.get("lang_key") else None
+    return jsonify(result)
+
+
+@app.route("/api/quiz/end", methods=["POST"])
+def api_quiz_end():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    clear_quiz_session()
+    return jsonify({"ok": True})
+
+
+# ================= AI TUTOR CHAT API =================
+
+@app.route("/api/tutor/chat", methods=["POST"])
+def tutor_chat():
+
+    if "user_id" not in session:
+        return jsonify({
+            "error": "Unauthorized"
+        }), 401
+
+    data = request.get_json(silent=True) or {}
+
+    user_message = data.get("message", "")
+
+    if not isinstance(user_message, str):
+        user_message = ""
+
+    lang_key = data.get("lang_key")
+
+    if not isinstance(lang_key, str) or not lang_key.strip():
+        lang_key = None
+
+    level_num_raw = data.get("level_num")
+
+    mode = data.get("mode")
+
+    if not isinstance(mode, str):
+        mode = None
+
+    level_num = None
+
+    if isinstance(level_num_raw, int):
+        level_num = level_num_raw
+
+    elif isinstance(level_num_raw, str):
+        stripped_level_num = level_num_raw.strip()
+
+        if stripped_level_num.isdigit():
+            level_num = int(stripped_level_num)
+
+    history = sanitize_tutor_history(data.get("history"))
+    quiz_continue = bool(data.get("quiz_continue"))
+
+    debug_on = is_debug_enabled(request)
+
+    # Defense in depth: no matter what goes wrong below, the user must
+    # always receive a friendly reply instead of a raw 500 with no body.
+    audit = None
+    no_evidence = None
+    status = "ok"
+    debug_trace = None
+    try:
+        result = answer_tutor_query(
+            lang_key=lang_key,
+            level_num=level_num,
+            user_message=user_message,
+            mode=mode,
+            history=history,
+            user_id=session.get("user_id"),
+            debug=debug_on,
+            quiz_continue=quiz_continue,
+        )
+        reply = result.get("reply") or ""
+        audit = result.get("audit")
+        no_evidence = result.get("no_evidence")
+        status = result.get("status") or "ok"
+        debug_trace = result.get("debug_trace")
+        quiz_card = result.get("quiz")
+        quiz_result = result.get("quiz_result")
+
+    except Exception:
+        reply = (
+            "Something went wrong on my end. Please try again, or use "
+            "Explain, Example, Quiz, or Culture."
+        )
+        status = "error"
+        quiz_card = None
+        quiz_result = None
+
+    if not reply and not quiz_card:
+        reply = (
+            "I could not generate a response just now. Please try again."
+        )
+
+    payload = {
+        "success": True,
+        "reply": reply,
+        "mode": "live",
+        "language": lang_key,
+        "level": level_num,
+        "status": status,
+        "retrieval": audit,
+    }
+    if no_evidence:
+        payload["no_evidence"] = no_evidence
+    if quiz_card:
+        payload["quiz"] = quiz_card
+    if quiz_result:
+        payload["quiz_result"] = quiz_result
+
+    # Developer-only debug envelope — does not alter the normal reply pipeline.
+    if debug_on:
+        payload["answer"] = reply
+        if debug_trace:
+            payload["debug"] = debug_trace
+        else:
+            payload["debug"] = {
+                "planner": {},
+                "retrieval": [],
+                "validator": {},
+                "composer": {},
+                "warnings": ["debug_trace_unavailable"],
+            }
+
+    return jsonify(payload)
+
+
+# ================= AI TUTOR DEBUG APIs (developer-only) =================
+
+@app.route("/api/tutor/debug/database", methods=["GET"])
+def tutor_debug_database():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    if not is_debug_enabled(request):
+        return jsonify({
+            "error": "Debug mode disabled. Set DEBUG_TUTOR=true on the server (and stay logged in)."
+        }), 403
+    return jsonify(database_diagnostics())
+
+
+@app.route("/api/tutor/debug/duplicates", methods=["GET"])
+def tutor_debug_duplicates():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    if not is_debug_enabled(request):
+        return jsonify({
+            "error": "Debug mode disabled. Set DEBUG_TUTOR=true on the server (and stay logged in)."
+        }), 403
+    return jsonify(find_duplicates())
+
+
+@app.route("/api/tutor/debug/selfcheck", methods=["GET"])
+def tutor_debug_selfcheck():
+    if "user_id" not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+    if not is_debug_enabled(request):
+        return jsonify({
+            "error": "Debug mode disabled. Set DEBUG_TUTOR=true on the server (and stay logged in)."
+        }), 403
+
+    def _answer(message, lang_key=None):
+        return answer_tutor_query(
+            lang_key=lang_key,
+            level_num=None,
+            user_message=message,
+            mode=None,
+            history=None,
+            user_id=session.get("user_id"),
+            debug=True,
+        )
+
+    return jsonify(run_selfcheck(_answer))
+
+
 # ================= LANGUAGE EXPLORE PAGE =================
 
 @app.route("/language/<lang_key>")
@@ -3562,10 +5975,7 @@ def language_page(lang_key):
     )
 
     if not language:
-        return (
-            "Language not found",
-            404
-        )
+        abort(404)
 
     learning_summary = (
         get_language_learning_summary(
@@ -3634,10 +6044,7 @@ def learn_page(lang_key):
     )
 
     if not language:
-        return (
-            "Language not found",
-            404
-        )
+        abort(404)
 
     levels_info = get_levels(
         session["user_id"],
@@ -3669,16 +6076,10 @@ def level_page(lang_key, level_num):
     )
 
     if not language:
-        return (
-            "Language not found",
-            404
-        )
+        abort(404)
 
     if level_num not in LEVEL_TITLES:
-        return (
-            "Level not found",
-            404
-        )
+        abort(404)
 
     course = COURSE_DATA.get(
         lang_key,
@@ -3688,10 +6089,7 @@ def level_page(lang_key, level_num):
     )
 
     if not course:
-        return (
-            "Course content not found",
-            404
-        )
+        abort(404)
 
     levels_info = get_levels(
         session["user_id"],
@@ -3708,10 +6106,7 @@ def level_page(lang_key, level_num):
     )
 
     if not requested_level:
-        return (
-            "Level not found",
-            404
-        )
+        abort(404)
 
     if not requested_level["unlocked"]:
 
@@ -3726,20 +6121,35 @@ def level_page(lang_key, level_num):
             )
         )
 
+    total_steps = len(
+        course["steps"]
+    )
+
+    replay_mode = str(
+        request.args.get("replay", "")
+    ).lower() in ("1", "true", "yes")
+
+    level_completed = bool(
+        requested_level["completed"]
+    )
+
     saved_step = get_saved_step(
         session["user_id"],
         lang_key,
         level_num
     )
 
-    total_steps = len(
-        course["steps"]
-    )
-
     saved_step = min(
         saved_step,
         total_steps
     )
+
+    # Completed = still openable. Review lands on the completion screen;
+    # Replay starts from step 0 without clearing historical completion.
+    if level_completed and replay_mode:
+        saved_step = 0
+    elif level_completed:
+        saved_step = total_steps
 
     return render_template(
         "level.html",
@@ -3750,7 +6160,9 @@ def level_page(lang_key, level_num):
             level_num
         ],
         course_steps=course["steps"],
-        saved_step=saved_step
+        saved_step=saved_step,
+        level_completed=level_completed,
+        replay_mode=replay_mode,
     )
 
 
@@ -3780,6 +6192,29 @@ def save_step(lang_key, level_num):
             "success": False,
             "message": "Course not found"
         }), 404
+
+    # A user must not be able to write step progress for a level they have
+    # not unlocked yet (e.g. by POSTing directly to this endpoint) — mirror
+    # the same guard used by level_page/complete_level.
+    levels_info = get_levels(
+        session["user_id"],
+        lang_key
+    )
+
+    requested_level = next(
+        (
+            level
+            for level in levels_info
+            if level["number"] == level_num
+        ),
+        None
+    )
+
+    if not requested_level or not requested_level["unlocked"]:
+        return jsonify({
+            "success": False,
+            "message": "Level is locked"
+        }), 403
 
     data = request.get_json(
         silent=True
@@ -3911,6 +6346,22 @@ def complete_level(lang_key, level_num):
         course["steps"]
     )
 
+    # Require the learner to have actually advanced through the lesson
+    # steps before marking the level complete (prevents a bare POST from
+    # unlocking the next level without studying). Idempotent re-complete
+    # of an already-completed level is still allowed.
+    if total_steps > 0 and not requested_level["completed"]:
+        saved_step = get_saved_step(
+            session["user_id"],
+            lang_key,
+            level_num
+        )
+        if saved_step < total_steps:
+            return jsonify({
+                "success": False,
+                "message": "Finish the lesson steps before marking this level complete."
+            }), 400
+
     conn = get_db()
 
     conn.execute(
@@ -3967,9 +6418,12 @@ def complete_level(lang_key, level_num):
     conn.commit()
     conn.close()
 
+    record_activity_day(session["user_id"])
+    newly = evaluate_achievements(session["user_id"])
     return jsonify({
         "success": True,
-        "message": "Progress saved"
+        "message": "Progress saved",
+        "new_achievements": newly,
     })
 
 # ================= PERSONAL PROFILE =================
@@ -4079,13 +6533,28 @@ def profile():
 
     if total_levels > 0:
 
-        overall_percentage = round(
-            (
-                completed_levels
-                / total_levels
-            )
-            * 100
+        overall_percentage = max(
+            0,
+            min(
+                100,
+                round(
+                    (
+                        completed_levels
+                        / total_levels
+                    )
+                    * 100
+                ),
+            ),
         )
+
+    # Quiz mastery is intentionally separate from course-level completion.
+    mastery_summary = get_user_mastery_summary(user_id)
+    quiz_history = get_quiz_history(user_id, limit=8)
+    for entry in quiz_history:
+        entry["language_display"] = display_name(entry.get("lang_key"))
+        entry["level_title"] = LEVEL_TITLES.get(entry.get("level_num"), f"Level {entry.get('level_num')}")
+
+    saved_count = len(list_saved_words(user_id))
 
     return render_template(
         "profile.html",
@@ -4105,7 +6574,13 @@ def profile():
             active_languages,
 
         overall_percentage=
-            overall_percentage
+            overall_percentage,
+
+        mastery_summary=mastery_summary,
+
+        quiz_history=quiz_history,
+
+        saved_words_count=saved_count,
     )
 
 # ================= ABOUT THE PROJECT =================
@@ -4143,10 +6618,7 @@ def suggest_correction(lang_key):
     )
 
     if not language:
-        return (
-            "Language not found",
-            404
-        )
+        abort(404)
 
     return render_template(
         "correction.html",
@@ -4172,10 +6644,7 @@ def language_sources(lang_key):
     )
 
     if not language:
-        return (
-            "Language not found",
-            404
-        )
+        abort(404)
 
     return render_template(
         "sources.html",
@@ -4184,7 +6653,28 @@ def language_sources(lang_key):
     )
 
 
-# ================= SECURITY HEADERS =================
+# ================= SECURITY HEADERS / HTTPS =================
+
+@app.before_request
+def _enforce_https_when_configured():
+    """Optional HTTP→HTTPS redirect for reverse-proxy production deploys.
+
+    Enabled only when FORCE_HTTPS=true. Relies on ProxyFix (TRUST_PROXY)
+    so the check uses the original client scheme and does not loop.
+    Skipped for local-looking hosts even if misconfigured.
+    """
+    if not _FORCE_HTTPS:
+        return None
+    host = (request.host or "").split(":")[0].lower()
+    if host in {"127.0.0.1", "localhost", "::1"}:
+        return None
+    if request.is_secure:
+        return None
+    url = request.url
+    if url.startswith("http://"):
+        return redirect("https://" + url[len("http://"):], code=301)
+    return None
+
 
 @app.after_request
 def add_security_headers(response):
@@ -4207,12 +6697,39 @@ def add_security_headers(response):
         "camera=(), microphone=(), geolocation=()"
     )
 
+    # CSP tuned for existing dashboard globe (Three.js CDN + inline boot
+    # scripts), YouTube iframe API, marked/DOMPurify, and SVG <object> map.
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "base-uri 'self'; "
+        "object-src 'self'; "
+        "frame-ancestors 'self'; "
+        "form-action 'self'; "
+        "img-src 'self' data: blob: https:; "
+        "font-src 'self' data:; "
+        "style-src 'self' 'unsafe-inline'; "
+        "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net "
+        "https://cdnjs.cloudflare.com https://www.youtube.com https://www.youtube-nocookie.com; "
+        "connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com "
+        "https://www.youtube.com; "
+        "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; "
+        "worker-src 'self' blob:; "
+        "media-src 'self' blob:;"
+    )
+
+    # HSTS only when the request is already HTTPS (or FORCE_HTTPS is on and
+    # the connection is secure via proxy). Never set on plain local HTTP.
+    if request.is_secure and (_FORCE_HTTPS or _FLASK_ENV == "production"):
+        response.headers["Strict-Transport-Security"] = (
+            "max-age=31536000; includeSubDomains"
+        )
+
     return response
 
 
 # ================= LOGOUT =================
 
-@app.route("/logout")
+@app.route("/logout", methods=["GET", "POST"])
 def logout():
 
     session.clear()
@@ -4222,11 +6739,60 @@ def logout():
     )
 
 
+# ================= ERROR PAGES =================
+# Friendly, on-brand error pages instead of raw tracebacks/blank responses.
+# JSON API requests (paths under /api/) keep returning JSON so existing
+# fetch()-based error handling in the frontend is unaffected.
+
+@app.errorhandler(404)
+def handle_not_found(error):
+    if request.path.startswith("/api/"):
+        return jsonify({"error": "not_found", "message": "This endpoint does not exist."}), 404
+    return render_template(
+        "error.html",
+        status_code=404,
+        heading="Page not found",
+        message="The page you're looking for doesn't exist or may have moved.",
+    ), 404
+
+
+@app.errorhandler(403)
+def handle_forbidden(error):
+    if request.path.startswith("/api/"):
+        return jsonify({"error": "forbidden", "message": "You don't have access to this."}), 403
+    return render_template(
+        "error.html",
+        status_code=403,
+        heading="Access denied",
+        message="You don't have permission to view this page.",
+    ), 403
+
+
+@app.errorhandler(500)
+def handle_server_error(error):
+    if request.path.startswith("/api/"):
+        return jsonify({"error": "server_error", "message": "Something went wrong on our end."}), 500
+    return render_template(
+        "error.html",
+        status_code=500,
+        heading="Something went wrong",
+        message="An unexpected error occurred. Please try again in a moment.",
+    ), 500
+
+
 # ================= START =================
 
 if __name__ == "__main__":
 
     init_db()
+    seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
+    sync_missing_vocabulary_from_course(COURSE_DATA)
+    import_verified_vocabulary_packs()
+
+    refresh_composer_enabled()
+    # Status/health already printed on import for flask run; print again for python app.py
+    os.environ.pop("_MMLE_COMPOSER_STARTUP_DONE", None)
+    _report_composer_on_startup()
 
     debug_mode = (
         os.getenv(
@@ -4236,6 +6802,13 @@ if __name__ == "__main__":
         == "true"
     )
 
+    # Never expose the interactive debugger on a production-labelled deploy.
+    if _FLASK_ENV == "production":
+        debug_mode = False
+
     app.run(
-        debug=debug_mode
+        debug=debug_mode,
+        threaded=True,
+        # Bind loopback by default; production should use a reverse proxy + WSGI.
+        host=os.getenv("FLASK_HOST", "127.0.0.1"),
     )

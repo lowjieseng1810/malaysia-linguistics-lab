@@ -1,0 +1,134 @@
+{
+  "notes": "Provenance ledger for dictionary vocabulary. Pack JSON files in this folder are imported by import_verified_vocabulary_packs() in database.py. No fabricated indigenous glosses.",
+  "target_per_language": 250,
+  "in_repo_verified_sources": [
+    {
+      "id": "course_database",
+      "description": "Harvested from COURSE_DATA discover/respond/vocabulary/conversation steps in app.py",
+      "languages": ["iban", "kadazan-dusun", "bidayuh", "mah-meri"]
+    },
+    {
+      "id": "course_quiz_stem",
+      "description": "Word/meaning pairs inferred from verified quiz stems already present in SQLite",
+      "languages": ["iban", "kadazan-dusun", "bidayuh", "mah-meri"]
+    }
+  ],
+  "external_packs_present": [
+    {
+      "id": "abvd_iban",
+      "file": "abvd_iban.json",
+      "language": "iban",
+      "license": "CC BY 4.0",
+      "source_ref": "ABVD Iban (id=28); Blust from Richards (1981); Greenhill, Blust & Gray (2008)"
+    },
+    {
+      "id": "abvd_kadazan_dusun_bundu",
+      "file": "abvd_kadazan_dusun.json",
+      "language": "kadazan-dusun",
+      "dialect_variant": "Bundu Dusun (Central Dusun / Ranau)",
+      "license": "CC BY 4.0",
+      "source_ref": "ABVD Bundu Dusun / Central Dusun (id=495); ISO-639-3:dtp"
+    },
+    {
+      "id": "abvd_kadazan_dusun_taginambur",
+      "file": "abvd_kadazan_dusun_taginambur.json",
+      "language": "kadazan-dusun",
+      "dialect_variant": "Kadazan Dusun (Taginambur, Kota Belud)",
+      "license": "CC BY 4.0",
+      "source_ref": "ABVD Taginambur (id=934); ISO-639-3:kzs"
+    },
+    {
+      "id": "abvd_bidayuh_singhi",
+      "file": "abvd_bidayuh.json",
+      "language": "bidayuh",
+      "dialect_variant": "Singhi / Bau Bidayuh",
+      "license": "CC BY 4.0",
+      "source_ref": "ABVD Singhi (id=125); Reijffert (1956); ISO-639-3:sne"
+    },
+    {
+      "id": "kaikki_en_iban",
+      "file": "kaikki_en_wiktionary_iban.json",
+      "language": "iban",
+      "license": "CC BY-SA (Wiktionary via wiktextract/kaikki.org)",
+      "source_ref": "kaikki.org English Wiktionary Iban extract"
+    },
+    {
+      "id": "kaikki_ms_iban",
+      "file": "kaikki_ms_wiktionary_iban.json",
+      "language": "iban",
+      "license": "CC BY-SA (ms.wiktionary via wiktextract/kaikki.org)",
+      "source_ref": "ms.wiktionary Bahasa Iban extract via kaikki.org"
+    },
+    {
+      "id": "kaikki_ms_kadazandusun",
+      "file": "kaikki_ms_wiktionary_kadazandusun.json",
+      "language": "kadazan-dusun",
+      "dialect_variant": "Kadazandusun (ms.wiktionary)",
+      "license": "CC BY-SA",
+      "source_ref": "ms.wiktionary Bahasa Kadazandusun extract via kaikki.org"
+    },
+    {
+      "id": "kaikki_ms_kadazan",
+      "file": "kaikki_ms_wiktionary_kadazan.json",
+      "language": "kadazan-dusun",
+      "dialect_variant": "Kadazan (ms.wiktionary)",
+      "license": "CC BY-SA",
+      "source_ref": "ms.wiktionary Bahasa Kadazan extract via kaikki.org"
+    },
+    {
+      "id": "kaikki_ms_bidayuh_varieties",
+      "file": "kaikki_ms_wiktionary_bidayuh_varieties.json",
+      "language": "bidayuh",
+      "dialect_policy": "Preserve Biatah / Bau / Bukar-Sadong / Serian / Jagoi labels from ms.wiktionary",
+      "license": "CC BY-SA",
+      "source_ref": "ms.wiktionary Bidayuh variety extracts via kaikki.org"
+    },
+    {
+      "id": "kaikki_ms_mah_meri",
+      "file": "kaikki_ms_wiktionary_mah_meri.json",
+      "language": "mah-meri",
+      "license": "CC BY-SA",
+      "source_ref": "ms.wiktionary Mah Meri extract via kaikki.org (sparse)"
+    },
+    {
+      "id": "asjp_bidayuh_cluster",
+      "files": [
+        "asjp_bidayuh_biatah.json",
+        "asjp_bidayuh_bau.json",
+        "asjp_bidayuh_singhi.json",
+        "asjp_bidayuh_bukar_sadong.json"
+      ],
+      "language": "bidayuh",
+      "license": "CC BY 4.0 (ASJP/CLLD)",
+      "source_ref": "ASJP Database wordlists (CLLD); ASJP orthography preserved"
+    },
+    {
+      "id": "asjp_mah_meri",
+      "file": "asjp_mah_meri.json",
+      "language": "mah-meri",
+      "license": "CC BY 4.0 (ASJP/CLLD)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD)"
+    },
+    {
+      "id": "skeat_1896_besisi",
+      "file": "skeat_1896_besisi_mah_meri.json",
+      "language": "mah-meri",
+      "dialect_variant": "Besisi (historical; Mah Meri heritage)",
+      "license": "Public domain (1896)",
+      "source_ref": "Skeat, W.W. (1896). A Vocabulary of the Besisi Dialect. JSBRAS 29: 13–31"
+    }
+  ],
+  "not_used_due_to_license_or_access": [
+    "Kruspe (2010) A Dictionary of Mah Meri as Spoken at Bukit Bangkong (commercial copyright)",
+    "DBNA / SIL modern Bidayuh learner wordlists (copyright / purchase)",
+    "Borneo Dictionary website scrapes (no clear open license)",
+    "GPT-invented translations (explicitly forbidden)"
+  ],
+  "dialect_policy": {
+    "bidayuh": "Preserve source variety labels (Singhi/Bau, Biatah, Bukar-Sadong, etc.). Do not silently merge varieties.",
+    "kadazan-dusun": "Preserve Bundu/Central Dusun vs Taginambur/Kadazan labels.",
+    "iban": "Attach dialect_variant only when a pack source specifies one.",
+    "mah-meri": "Label Skeat forms as historical Besisi; ASJP as Mah Meri (ASJP orthography)."
+  },
+  "rebuild": "python qa_temp/_build_vocab_packs.py then restart app (or call import_verified_vocabulary_packs())"
+}

@@ -33,6 +33,36 @@ let loadingValue = 0;
 
     if (typeof THREE === "undefined") {
         console.error("Three.js did not load.");
+        globeStage.innerHTML =
+            '<div class="globe-fallback" role="status">' +
+            '<p><strong>3D globe unavailable</strong></p>' +
+            '<p>Three.js did not load. You can still explore languages from the cards above.</p>' +
+            '</div>';
+        return;
+    }
+
+    // Graceful fallback when WebGL is blocked / unsupported.
+    try {
+        const testCanvas = document.createElement("canvas");
+        const gl =
+            testCanvas.getContext("webgl") ||
+            testCanvas.getContext("experimental-webgl");
+        if (!gl) {
+            throw new Error("WebGL unavailable");
+        }
+    } catch (webglError) {
+        console.warn("WebGL unavailable; showing explorer fallback.", webglError);
+        globeStage.innerHTML =
+            '<div class="globe-fallback" role="status">' +
+            '<p><strong>3D globe unavailable on this device</strong></p>' +
+            '<p>Your browser does not support WebGL. Use the language cards above, ' +
+            'or open the Dictionary, Quiz, and Compare tools from the dashboard.</p>' +
+            '</div>';
+        if (exploreButton) {
+            exploreButton.disabled = true;
+            exploreButton.setAttribute("aria-disabled", "true");
+            exploreButton.title = "3D explorer requires WebGL";
+        }
         return;
     }
 
@@ -174,7 +204,7 @@ const loadingBrand =
     document.createElement("div");
 
 loadingBrand.textContent =
-    "Malaysian Minority Languages Explorer";
+    "Malaysian Linguistics Lab";
 
 loadingBrand.style.color =
     "#ffffff";
@@ -472,8 +502,19 @@ globeContainer.style.bottom =
     globeContainer.style.cursor =
         "grab";
 
+    globeContainer.style.pointerEvents =
+        "auto";
+
+    globeContainer.setAttribute(
+        "aria-label",
+        "Interactive Earth globe"
+    );
+
 const vignetteOverlay =
     document.createElement("div");
+
+vignetteOverlay.className =
+    "earth-globe-vignette";
 
 vignetteOverlay.style.position =
     "absolute";
@@ -488,12 +529,14 @@ vignetteOverlay.style.zIndex =
     "5";
 
 vignetteOverlay.style.background =
-    "radial-gradient(circle at center, transparent 45%, rgba(0,0,0,0.18) 100%)";
+    "radial-gradient(circle at 52% 48%, transparent 52%, rgba(0,0,0,0.22) 100%)";
 
 vignetteOverlay.style.mixBlendMode =
-    "multiply";
+    "normal";
 
-    globeStage.appendChild(
+    /* Vignette stays inside the WebGL host so mobile stacked
+       welcome/status chrome is never covered by it. */
+    globeContainer.appendChild(
         vignetteOverlay
     );
 
@@ -522,16 +565,13 @@ const camera =
         300
     );
 
+ /* Closer camera = larger cinematic Earth (~55–65% of hero height). */
+ const EARTH_ORBIT_RADIUS = 4.32;
+
  camera.position.set(
     0,
     0,
-    6.1
-);
-
-camera.position.set(
-    0,
-    0,
-    6.1
+    EARTH_ORBIT_RADIUS
 );
     
 /* =========================================
@@ -541,7 +581,9 @@ camera.position.set(
     const renderer =
         new THREE.WebGLRenderer({
             antialias: true,
-            alpha: true
+            alpha: true,
+            /* Needed so QA / compositing can sample the canvas. */
+            preserveDrawingBuffer: true
         });
 
     renderer.setPixelRatio(
@@ -558,8 +600,14 @@ camera.position.set(
    CINEMATIC OUTPUT
    ========================================= */
 
-renderer.outputColorSpace =
-    THREE.SRGBColorSpace;
+/* Three r128 uses outputEncoding; newer builds use outputColorSpace. */
+if (THREE.SRGBColorSpace) {
+    renderer.outputColorSpace =
+        THREE.SRGBColorSpace;
+} else if (THREE.sRGBEncoding) {
+    renderer.outputEncoding =
+        THREE.sRGBEncoding;
+}
 
 
 /*
@@ -571,7 +619,7 @@ renderer.toneMapping =
     THREE.ACESFilmicToneMapping;
 
 renderer.toneMappingExposure =
-    1.05;
+    1.28;
 
 
 /*
@@ -620,7 +668,7 @@ globeContainer.appendChild(
        ========================================= */
 
     const starCount =
-        2200;
+        3200;
 
     const starPositions =
         new Float32Array(
@@ -634,8 +682,8 @@ globeContainer.appendChild(
     ) {
 
         const radius =
-            35 +
-            Math.random() * 90;
+            32 +
+            Math.random() * 95;
 
         const theta =
             Math.random() *
@@ -681,11 +729,12 @@ globeContainer.appendChild(
 
     const starMaterial =
         new THREE.PointsMaterial({
-            color: 0xffffff,
-            size: 0.055,
+            color: 0xf4f7ff,
+            size: 0.1,
             sizeAttenuation: true,
             transparent: true,
-            opacity: 0.9
+            opacity: 1,
+            depthWrite: false
         });
 
     const stars =
@@ -810,8 +859,13 @@ const earthDayTexture =
         "earth_day_8k.jpg"
     );
 
-earthDayTexture.colorSpace =
-    THREE.SRGBColorSpace;
+if (THREE.SRGBColorSpace) {
+    earthDayTexture.colorSpace =
+        THREE.SRGBColorSpace;
+} else if (THREE.sRGBEncoding) {
+    earthDayTexture.encoding =
+        THREE.sRGBEncoding;
+}
 
 earthDayTexture.anisotropy =
     renderer.capabilities.getMaxAnisotropy();
@@ -888,9 +942,9 @@ const earthMaterial =
 
         },
 
-        transparent: false,
+        transparent: true,
         depthWrite: true,
-      
+
         vertexShader: `
 
             varying vec2 vUv;
@@ -1188,18 +1242,19 @@ const earthMaterial =
                     );
 
 
+                /* Restrained ocean glint — avoid a fake white disk on the sea. */
                 vec3 oceanReflection =
     vec3(
-        0.62,
-        0.78,
-        0.92
+        0.55,
+        0.72,
+        0.88
     ) *
     (
         sharpSpecular *
-        0.92 +
+        0.22 +
 
         broadSpecular *
-        0.10
+        0.05
     ) *
     oceanMask *
     max(
@@ -1392,7 +1447,7 @@ const earthMaterial =
                 vec3 cityLights =
     cityColor *
     cityMask *
-    3.8 *
+    4.1 *
     nightAmount;
 
 
@@ -1450,7 +1505,7 @@ const earthMaterial =
                     (
                         1.0 +
                         finalColor *
-                        0.11
+                        0.15
                     );
 
                 finalColor =
@@ -1459,7 +1514,7 @@ const earthMaterial =
                             finalColor,
                             vec3(0.0)
                         ),
-                        vec3(0.95)
+                        vec3(0.93)
                     );
 
                 float opacity =
@@ -1515,7 +1570,7 @@ let cloudsRevealProgress = 0.0;
 
 const atmosphereGeometry =
     new THREE.SphereGeometry(
-        1.028,
+        1.022,
         128,
         128
     );
@@ -1630,24 +1685,12 @@ float rim =
                     );
 
 
-                /* BRIGHT BLUE DAY EDGE */
-
-             vec3 dayColor =
-vec3(
-1.0,
-0.995,
-0.985
-);
-
-                /* VERY DARK NIGHT EDGE */
+                /* Soft volumetric day rim — avoid plastic white membrane */
+                vec3 dayColor =
+                    vec3(0.28, 0.52, 0.82);
 
                 vec3 nightColor =
-                    vec3(
-                        0.003,
-                        0.018,
-                        0.055
-                    );
-
+                    vec3(0.01, 0.04, 0.09);
 
                 vec3 atmosphereColor =
                     mix(
@@ -1656,47 +1699,34 @@ vec3(
                         daylight
                     );
 
-
-                /* SUNSET TERMINATOR */
-
                 float sunsetBand =
                     1.0 -
                     smoothstep(
                         0.0,
-                        0.11,
-                        abs(
-                            sunDot
-                        )
+                        0.14,
+                        abs(sunDot)
                     );
-
 
                 vec3 sunsetColor =
-                    vec3(
-                        1.0,
-                        0.20,
-                        0.025
-                    );
-
+                    vec3(0.72, 0.28, 0.08);
 
                 atmosphereColor =
                     mix(
                         atmosphereColor,
                         sunsetColor,
-                        sunsetBand * 0.52
+                        sunsetBand * 0.28
                     );
-
 
                 float alpha =
                     rim *
                     (
-                     0.010 +
-daylight * 0.18
+                        0.012 +
+                        daylight * 0.11
                     );
 
-
-alpha +=
-    rim *
-    sunsetBand * 0.10;
+                alpha +=
+                    rim *
+                    sunsetBand * 0.07;
 
 gl_FragColor =
     vec4(
@@ -1738,7 +1768,7 @@ earthSystem.add(
 
 const outerAtmosphereGeometry =
     new THREE.SphereGeometry(
-    1.055,
+    1.085,
     128,
     128
 );
@@ -1836,41 +1866,29 @@ float outerRim =
     pow(
         1.0 -
         viewDot,
-        3.65
+        4.35
     );
-              
-               
-                    float daylight =
+
+                float daylight =
                     smoothstep(
                         -0.35,
                         0.25,
                         sunDot
                     );
 
-
+                /* Soft cinematic halo — no hard white ring */
                 vec3 glowColor =
                     mix(
-                        vec3(
-                            0.005,
-                            0.025,
-                            0.07
-                        ),
-
-                       vec3(
-   0.90,
-0.93,
-0.98
-),
-
+                        vec3(0.01, 0.03, 0.08),
+                        vec3(0.22, 0.42, 0.72),
                         daylight
                     );
-
 
                 float alpha =
                     outerRim *
                     (
-                       0.004 +
-daylight * 0.08
+                        0.008 +
+                        daylight * 0.07
                     );
 
 
@@ -1925,8 +1943,13 @@ earthSystem.add(
         )
     );
 
-moonTexture.colorSpace =
-    THREE.SRGBColorSpace;
+if (THREE.SRGBColorSpace) {
+    moonTexture.colorSpace =
+        THREE.SRGBColorSpace;
+} else if (THREE.sRGBEncoding) {
+    moonTexture.encoding =
+        THREE.sRGBEncoding;
+}
 
 const moonMaterial =
     new THREE.MeshStandardMaterial({
@@ -1950,6 +1973,10 @@ const moonMaterial =
         0.55,
         -2.2
     );
+
+    /* Keep the distant sun light only — a nearby bright moon disk reads as a
+       fake UI sun against the Earth hero. */
+    moon.visible = false;
    
         spaceWorld.add(
         moon
@@ -1960,8 +1987,13 @@ const moonMaterial =
    Evolving, non-rotating cloud pattern
    ========================================= */
 
-earthCloudTexture.colorSpace =
-    THREE.SRGBColorSpace;
+if (THREE.SRGBColorSpace) {
+    earthCloudTexture.colorSpace =
+        THREE.SRGBColorSpace;
+} else if (THREE.sRGBEncoding) {
+    earthCloudTexture.encoding =
+        THREE.sRGBEncoding;
+}
 
 earthCloudTexture.anisotropy =
     renderer.capabilities.getMaxAnisotropy();
@@ -1978,9 +2010,37 @@ earthCloudTexture.wrapS =
 earthCloudTexture.wrapT =
     THREE.ClampToEdgeWrapping;
 
+/* Restore original cloud mesh (required for
+   a complete Earth; animate() also expects it). */
 
+const cloudGeometry =
+    new THREE.SphereGeometry(
+        1.018,
+        128,
+        128
+    );
 
-  
+const cloudMaterial =
+    new THREE.MeshPhongMaterial({
+        map: earthCloudTexture,
+        transparent: true,
+        opacity: 0.5,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+        blending: THREE.NormalBlending,
+        shininess: 8,
+        specular: 0x334455,
+        color: 0xedf3f8
+    });
+
+const clouds =
+    new THREE.Mesh(
+        cloudGeometry,
+        cloudMaterial
+    );
+
+earth.add(clouds);
+
     /* =========================================
    SUN
    ========================================= */
@@ -2006,49 +2066,20 @@ const sunMaterial =
     );
 
 sun.position.set(
-      -11,
-    5.6,
-    -12
+    7.5,
+    2.8,
+    12
 );
+
+/* Keep a distant light anchor for shaders/lights, but never show
+   a flat white disk in the hero. */
+sun.visible = false;
 
 spaceWorld.add(
     sun
 );
 
-
-/* =========================================
-   SUN GLOW
-   ========================================= */
-
-const sunGlowGeometry =
-    new THREE.SphereGeometry(
-        1.75,
-        64,
-        64
-    );
-
-const sunGlowMaterial =
-    new THREE.MeshBasicMaterial({
-
-        color: 0xfff4dd,
-
-        transparent: true,
-
-        opacity: 0.18,
-
-        side: THREE.BackSide
-
-    });
-
-const sunGlow =
-    new THREE.Mesh(
-        sunGlowGeometry,
-        sunGlowMaterial
-    );
-
-sun.add(
-    sunGlow
-);
+const sunGlow = null;
 
 
 /* =========================================
@@ -2070,8 +2101,8 @@ const realSunWorldPosition =
 
 const ambientLight =
     new THREE.AmbientLight(
-        0x8eb9ad,
-        0.12
+        0x6f98a8,
+        0.2
     );
 
 scene.add(
@@ -2081,8 +2112,8 @@ scene.add(
 
 const sunLight =
     new THREE.DirectionalLight(
-        0xfff1cf,
-        5.2
+        0xfff2dc,
+        4.15
     );
 
 sunLight.position.copy(
@@ -2096,8 +2127,8 @@ scene.add(
 
 const earthFillLight =
     new THREE.DirectionalLight(
-        0x4a9b87,
-        0.18
+        0x3d7f9a,
+        0.32
     );
 
 earthFillLight.position.set(
@@ -2109,29 +2140,49 @@ earthFillLight.position.set(
 scene.add(
     earthFillLight
 );
+
+/* Soft rim fill for spherical depth without plastic bloom */
+const earthRimLight =
+    new THREE.DirectionalLight(
+        0xa8c8e0,
+        0.22
+    );
+
+earthRimLight.position.set(
+    -5,
+    1.5,
+    -3
+);
+
+scene.add(
+    earthRimLight
+);
     
 /* =========================================
        INITIAL WORLD COMPOSITION
        ========================================= */
 
+  /* Placeholder orientation — replaced with deterministic SEA/Malaysia
+     facing once MALAYSIA_FRONT_YAW is computed below. */
+  /* Keep near canvas center — large X offset foreshortens into an oval. */
   earthSystem.position.set(
-    1.45,
-    -0.99,
+    0.12,
+    -0.02,
     0
 );
 
 earthSystem.scale.setScalar(
-    0.92
+    1.24
 );
     
 earthSystem.rotation.x =
-    0.13;
+    0.15;
 
 earthSystem.rotation.y =
-    -0.08;
+    0;
 
 earthSystem.rotation.z =
-    -0.08;
+    -0.06;
 
 
     /* =========================================
@@ -2150,108 +2201,115 @@ earthSystem.rotation.z =
     let previousPointerY = 0;
 
 
+    /* Drag inertia (applied in animate). */
+    let dragVelocityYaw = 0;
+    let dragVelocityPitch = 0;
+    /* Post-Malaysia arrival: spin the planet while camera stays fixed. */
+    let revealSpinYaw = 0;
+    let revealSpinPitch = 0;
+    let revealUserInteracted = false;
+
     globeContainer.addEventListener(
         "pointerdown",
         function (event) {
-
             if (flightActive) {
                 return;
             }
 
+            /* Ignore non-primary buttons and UI chrome. */
+            if (event.button != null && event.button !== 0) {
+                return;
+            }
+
             dragging = true;
+            dragVelocityYaw = 0;
+            dragVelocityPitch = 0;
+            previousPointerX = event.clientX;
+            previousPointerY = event.clientY;
+            globeContainer.style.cursor = "grabbing";
 
-            previousPointerX =
-                event.clientX;
+            try {
+                globeContainer.setPointerCapture(event.pointerId);
+            } catch (captureError) {
+                /* Older browsers may reject capture — drag still works. */
+            }
 
-            previousPointerY =
-                event.clientY;
-
-            globeContainer.style.cursor =
-                "grabbing";
-
-            globeContainer.setPointerCapture(
-                event.pointerId
-            );
-        }
+            /* Prevent page scroll while dragging on touch. */
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+        },
+        { passive: false }
     );
-
 
     globeContainer.addEventListener(
         "pointermove",
         function (event) {
-
-            if (
-                !dragging ||
-                flightActive
-            ) {
+            if (!dragging || flightActive) {
                 return;
             }
 
-            const deltaX =
-                event.clientX -
-                previousPointerX;
+            const deltaX = event.clientX - previousPointerX;
+            const deltaY = event.clientY - previousPointerY;
 
-            const deltaY =
-                event.clientY -
-                previousPointerY;
-
-          targetYaw -=
-    deltaX * 0.0026;
-
-targetPitch +=
-    deltaY * 0.0020;
-            
-                targetPitch =
-                Math.max(
-                    -0.60,
-                    Math.min(
-                        0.60,
-                        targetPitch
-                    )
+            if (heroState === HERO_STATE.REVEAL) {
+                /* Grab-to-rotate: drag left → surface moves left. */
+                revealUserInteracted = true;
+                revealSpinYaw -= deltaX * 0.0042;
+                revealSpinPitch += deltaY * 0.0032;
+                revealSpinPitch = Math.max(
+                    -0.45,
+                    Math.min(0.45, revealSpinPitch)
                 );
+                dragVelocityYaw = -deltaX * 0.00038;
+                dragVelocityPitch = deltaY * 0.0003;
+            } else {
+                /* Orbit yaw: drag left → Earth content follows left. */
+                targetYaw -= deltaX * 0.0028;
+                targetPitch += deltaY * 0.0022;
+                targetPitch = Math.max(
+                    -0.60,
+                    Math.min(0.60, targetPitch)
+                );
+                dragVelocityYaw = -deltaX * 0.00022;
+                dragVelocityPitch = deltaY * 0.00016;
+            }
 
-            previousPointerX =
-                event.clientX;
+            previousPointerX = event.clientX;
+            previousPointerY = event.clientY;
 
-            previousPointerY =
-                event.clientY;
-        }
+            if (event.cancelable) {
+                event.preventDefault();
+            }
+        },
+        { passive: false }
     );
 
-
-    function stopDragging(
-        event
-    ) {
-
+    function stopDragging(event) {
         dragging = false;
-
-        globeContainer.style.cursor =
-            flightActive
-                ? "default"
-                : "grab";
+        globeContainer.style.cursor = flightActive ? "default" : "grab";
 
         if (
             event &&
-            globeContainer.hasPointerCapture(
-                event.pointerId
-            )
+            globeContainer.hasPointerCapture &&
+            globeContainer.hasPointerCapture(event.pointerId)
         ) {
-            globeContainer.releasePointerCapture(
-                event.pointerId
-            );
+            try {
+                globeContainer.releasePointerCapture(event.pointerId);
+            } catch (releaseError) {
+                /* no-op */
+            }
         }
     }
 
-
-    globeContainer.addEventListener(
-        "pointerup",
-        stopDragging
-    );
-
-    globeContainer.addEventListener(
-        "pointercancel",
-        stopDragging
-    );
+    globeContainer.addEventListener("pointerup", stopDragging);
+    globeContainer.addEventListener("pointercancel", stopDragging);
+    globeContainer.addEventListener("lostpointercapture", function () {
+        dragging = false;
+        if (!flightActive) {
+            globeContainer.style.cursor = "grab";
+        }
+    });
 
 
     /* =========================================
@@ -2280,14 +2338,10 @@ targetPitch +=
     */
 
     const MALAYSIA_FLIGHT_LAT =
-        THREE.MathUtils.degToRad(
-            4.21
-        );
+        THREE.MathUtils.degToRad(3.14);
 
     const MALAYSIA_FLIGHT_LON =
-        THREE.MathUtils.degToRad(
-            101.976
-        );
+        THREE.MathUtils.degToRad(101.69);
 
     const malaysiaFlightLocalDirection =
         new THREE.Vector3(
@@ -2388,10 +2442,13 @@ targetPitch +=
 
         })();
 
-    console.log(
-    "MALAYSIA_FRONT_YAW =",
-    MALAYSIA_FRONT_YAW
-);
+    /* Deterministic WORLD idle: Malaysia / Southeast Asia front-facing. */
+    const IDLE_SEA_YAW_OFFSET = 0.10;
+    earthSystem.rotation.x = 0.14;
+    earthSystem.rotation.y =
+        MALAYSIA_FRONT_YAW + IDLE_SEA_YAW_OFFSET;
+    earthSystem.rotation.z = -0.05;
+    earth.rotation.y = 0;
     
         /*
        earth.rotation.y (the mesh's own idle
@@ -2453,15 +2510,14 @@ targetPitch +=
 
         malaysiaMarkerCreated = true;
 
+        /*
+         * Peninsular Malaysia (near KL) — compact so the glow cannot read as
+         * Sumatra / Indonesia. Same lat/lon → local vector convention as flight.
+         */
         const malaysiaLat =
-            THREE.MathUtils.degToRad(
-                4.21
-            );
-
-      const malaysiaLon =
-    THREE.MathUtils.degToRad(
-        108
-    );
+            THREE.MathUtils.degToRad(3.14);
+        const malaysiaLon =
+            THREE.MathUtils.degToRad(101.69);
 
         const markerDir =
             new THREE.Vector3(
@@ -2471,118 +2527,76 @@ targetPitch +=
             ).normalize();
 
         const markerPosition =
-            markerDir.clone().multiplyScalar(
-                1.02
-            );
+            markerDir.clone().multiplyScalar(1.018);
 
-        malaysiaMarkerBasePosition.copy(
-            markerPosition
-        );
+        malaysiaMarkerBasePosition.copy(markerPosition);
+        malaysiaMarkerDirection.copy(markerDir);
 
-        malaysiaMarkerDirection.copy(
+        malaysiaMarkerGroup = new THREE.Group();
+        malaysiaMarkerGroup.position.copy(markerPosition);
+        malaysiaMarkerGroup.quaternion.setFromUnitVectors(
+            new THREE.Vector3(0, 1, 0),
             markerDir
         );
 
-        malaysiaMarkerGroup =
-            new THREE.Group();
-
-        malaysiaMarkerGroup.position.copy(
-            markerPosition
-        );
-
-        const orientation =
-            new THREE.Quaternion().setFromUnitVectors(
-                new THREE.Vector3(0, 1, 0),
-                markerDir
+        /* Tight white halo — stays on the peninsula, not a SEA-wide blob. */
+        malaysiaMarkerGlow =
+            new THREE.Mesh(
+                new THREE.SphereGeometry(0.048, 28, 28),
+                new THREE.MeshBasicMaterial({
+                    color: 0xf2fbff,
+                    transparent: true,
+                    opacity: 0,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                })
             );
+        malaysiaMarkerGlow.position.set(0, 0.012, 0);
 
-malaysiaMarkerRing =
-    new THREE.Mesh(
-
-        new THREE.TorusGeometry(
-            0.38,
-            0.004,
-            24,
-            128
-        ),
-
-        new THREE.MeshStandardMaterial({
-            color: 0xffd77a,
-            metalness: 0.78,
-            roughness: 0.22,
-            emissive: 0x191100,
-            emissiveIntensity: 0.08,
-            transparent: true,
-            opacity: 0,
-            depthWrite: false
-        })
-
-    );
-     
-            malaysiaMarkerRing.quaternion.copy(
-            orientation
-        );
-
-        malaysiaMarkerRing.rotation.x +=
-            Math.PI * 0.5;
-
-        malaysiaMarkerGroup.add(
-            malaysiaMarkerRing
-        );
+        malaysiaMarkerRing =
+            new THREE.Mesh(
+                new THREE.TorusGeometry(0.026, 0.0032, 12, 48),
+                new THREE.MeshBasicMaterial({
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                })
+            );
+        malaysiaMarkerRing.rotation.x = Math.PI / 2;
+        malaysiaMarkerRing.position.set(0, 0.01, 0);
 
         malaysiaMarkerCore =
             new THREE.Mesh(
-                new THREE.SphereGeometry(
-                    0.028,
-                    18,
-                    18
-                ),
+                new THREE.SphereGeometry(0.011, 16, 16),
                 new THREE.MeshStandardMaterial({
-                    color: 0xfff3c0,
-                    metalness: 0.18,
-                    roughness: 0.45,
-                    emissive: 0x0b0500,
-                    emissiveIntensity: 0.12,
+                    color: 0xffe566,
+                    metalness: 0.05,
+                    roughness: 0.35,
+                    emissive: 0xffc020,
+                    emissiveIntensity: 1.15,
                     transparent: true,
                     opacity: 0,
                     depthWrite: false
                 })
             );
+        malaysiaMarkerCore.position.set(0, 0.008, 0);
 
-        malaysiaMarkerGroup.add(
-            malaysiaMarkerCore
+        malaysiaMarkerGroup.add(malaysiaMarkerGlow);
+        malaysiaMarkerGroup.add(malaysiaMarkerRing);
+        malaysiaMarkerGroup.add(malaysiaMarkerCore);
+
+        const malaysiaFocusLight = new THREE.PointLight(
+            0xfff0c8,
+            1.05,
+            0.85,
+            2.0
         );
+        malaysiaFocusLight.position.set(0, 0.09, 0);
+        malaysiaMarkerGroup.add(malaysiaFocusLight);
 
-        malaysiaMarkerGlow =
-            new THREE.Mesh(
-                new THREE.TorusGeometry(
-                    0.18,
-                    0.01,
-                    16,
-                    128
-                ),
-                new THREE.MeshBasicMaterial({
-                    color: 0xffe5a4,
-                    transparent: true,
-                    opacity: 0,
-                    blending: THREE.AdditiveBlending,
-                    depthWrite: false,
-                    side: THREE.DoubleSide
-                })
-            );
-
-        malaysiaMarkerGlow.quaternion.copy(
-            orientation
-        );
-
-        malaysiaMarkerGlow.rotation.x +=
-            Math.PI * 0.5;
-
-        malaysiaMarkerGroup.add(
-            malaysiaMarkerGlow
-        );
-
-        malaysiaMarkerGroup.visible = false;
+        malaysiaMarkerGroup.visible = true;
 
         earth.add(
             malaysiaMarkerGroup
@@ -2604,6 +2618,9 @@ malaysiaMarkerRing =
                 performance.now();
         }
     }
+
+    /* Soft Malaysia focus is part of the initial WORLD scene. */
+    revealMalaysiaMarker();
 
     window.addEventListener(
         "earthMalaysiaFlightComplete",
@@ -2860,7 +2877,7 @@ earthSystem.rotation.y =
         */
 
         if (
-            rawProgress >= 0.65
+            rawProgress >= 0.48
         ) {
             revealMalaysiaMarker();
         }
@@ -2899,8 +2916,9 @@ earthSystem.rotation.y =
            closes in on Malaysia.
         */
 
-        clouds.material.opacity =
-            progress * 0.7;
+        if (typeof clouds !== "undefined" && clouds && clouds.material) {
+            clouds.material.opacity = progress * 0.7;
+        }
 
         camera.position.z =
             THREE.MathUtils.lerp(
@@ -3000,6 +3018,12 @@ console.log(
 
 
     flightActive = false;
+    revealSpinYaw = earthSystem.rotation.y;
+    revealSpinPitch = 0;
+    revealUserInteracted = false;
+    dragVelocityYaw = 0;
+    dragVelocityPitch = 0;
+    globeContainer.style.cursor = "grab";
 
             window.dispatchEvent(
                 new CustomEvent(
@@ -3016,10 +3040,14 @@ console.log(
 
     function resizeEarth() {
 
+        /* Size from the WebGL container itself so camera aspect
+           matches the displayed canvas box (prevents oval Earth). */
         const width =
+            globeContainer.clientWidth ||
             globeStage.clientWidth;
 
         const height =
+            globeContainer.clientHeight ||
             globeStage.clientHeight;
 
         if (!width || !height) {
@@ -3031,11 +3059,11 @@ console.log(
 
         camera.updateProjectionMatrix();
 
-        renderer.setSize(
-            width,
-            height,
-            false
-        );
+        renderer.setSize(width, height, true);
+        renderer.domElement.style.width = "100%";
+        renderer.domElement.style.height = "100%";
+        renderer.domElement.style.display = "block";
+        renderer.domElement.style.aspectRatio = "auto";
     }
 
 
@@ -3045,6 +3073,15 @@ console.log(
         "resize",
         resizeEarth
     );
+
+    if (typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(function () {
+            resizeEarth();
+            window.dispatchEvent(new CustomEvent("earthGlobeLayout"));
+        });
+        ro.observe(globeContainer);
+        ro.observe(globeStage);
+    }
 
 /* =========================================
    CINEMATIC STAR FIELD
@@ -3168,11 +3205,11 @@ function createStarLayer(
 
 const distantStars =
     createStarLayer(
-        3200,
-        35,
-        75,
-        0.055,
-        0.72
+        5200,
+        34,
+        86,
+        0.085,
+        0.96
     );
 
 
@@ -3185,11 +3222,11 @@ scene.add(
 
 const brightStars =
     createStarLayer(
-        420,
-        30,
-        65,
-        0.105,
-        0.92
+        820,
+        28,
+        72,
+        0.18,
+        1.0
     );
 
 
@@ -3199,12 +3236,12 @@ scene.add(
 
 const spaceDust =
     createStarLayer(
-        1800,
+        2400,
         26,
-        85,
-        0.02,
-        0.18,
-        0xc8dbe8
+        90,
+        0.03,
+        0.38,
+        0xd0e4f2
     );
 
 scene.add(
@@ -3220,9 +3257,9 @@ const nebulaGeometry =
 
 const nebulaMaterial =
     new THREE.MeshBasicMaterial({
-        color: 0x1a3247,
+        color: 0x243656,
         transparent: true,
-        opacity: 0.045,
+        opacity: 0.055,
         side: THREE.BackSide,
         depthWrite: false
     });
@@ -3236,6 +3273,24 @@ const nebula =
 scene.add(
     nebula
 );
+
+/* Soft secondary depth haze — optional, never required for Earth. */
+let warmNebula = null;
+try {
+    const warmNebulaGeometry = new THREE.SphereGeometry(50, 24, 24);
+    const warmNebulaMaterial = new THREE.MeshBasicMaterial({
+        color: 0x2a2418,
+        transparent: true,
+        opacity: 0.03,
+        side: THREE.BackSide,
+        depthWrite: false
+    });
+    warmNebula = new THREE.Mesh(warmNebulaGeometry, warmNebulaMaterial);
+    warmNebula.rotation.z = 0.4;
+    scene.add(warmNebula);
+} catch (warmNebulaError) {
+    warmNebula = null;
+}
        
    
    
@@ -3327,126 +3382,135 @@ if (heroLoaded) {
                     revealProgress
                 );
 
-clouds.material.opacity =
-    (flightActive ||
-        heroState === HERO_STATE.REVEAL)
-        ? clouds.material.opacity
-        : Math.max(
-            0,
-            0.85 -
-                cloudsRevealProgress
-        );
+            if (typeof clouds !== "undefined" && clouds && clouds.material) {
+                clouds.material.opacity =
+                    (flightActive ||
+                        heroState === HERO_STATE.REVEAL)
+                        ? clouds.material.opacity
+                        : Math.max(
+                            0,
+                            0.85 -
+                                cloudsRevealProgress
+                        );
+            }
         }
 
 
-        if (
-            !flightActive &&
-            heroState !== HERO_STATE.REVEAL
-        ) {
+        if (!flightActive && heroState !== HERO_STATE.REVEAL) {
+            if (!dragging) {
+                targetYaw += dragVelocityYaw;
+                targetPitch += dragVelocityPitch;
+                dragVelocityYaw *= 0.92;
+                dragVelocityPitch *= 0.92;
 
-            targetYaw +=
-                Math.sin(
-                    time * 0.00012
-                ) * 0.00012;
-
-            targetPitch +=
-                Math.cos(
-                    time * 0.00009
-                ) * 0.00006;
-
-            targetPitch =
-                Math.max(
-                    -0.60,
-                    Math.min(
-                        0.60,
-                        targetPitch
-                    )
-                );
-
-            viewYaw +=
-                (
-                    targetYaw -
-                    viewYaw
-                ) * 0.06;
-
-            viewPitch +=
-                (
-                    targetPitch -
-                    viewPitch
-                ) * 0.06;
-
-            earth.rotation.y +=
-                0.0018;
-       
-      
-       
+                targetYaw +=
+                    Math.sin(time * 0.00012) * 0.00012;
+                targetPitch +=
+                    Math.cos(time * 0.00009) * 0.00006;
             }
 
+            targetPitch = Math.max(-0.60, Math.min(0.60, targetPitch));
 
-        const orbitRadius = 6.1;
+            viewYaw += (targetYaw - viewYaw) * 0.06;
+            viewPitch += (targetPitch - viewPitch) * 0.06;
 
-/*
-   Once the Malaysia flight has finished
-   (heroState REVEAL), leave the camera
-   exactly where updateMalaysiaFlight put
-   it. Otherwise this unconditional orbit
-   formula runs every frame and immediately
-   snaps the camera back out to the wide
-   idle orbit, undoing the "finish centered
-   on Malaysia" result right after arrival.
-*/
+            if (!dragging) {
+                /* Slow idle spin — keep SEA readable longer on first view. */
+                earth.rotation.y += 0.00055;
+            }
+        }
 
-if (
-    heroState !==
-    HERO_STATE.REVEAL
-) {
+        /* After Malaysia arrival: keep camera, let the user spin the planet. */
+        if (!flightActive && heroState === HERO_STATE.REVEAL) {
+            if (!dragging) {
+                revealSpinYaw += dragVelocityYaw;
+                revealSpinPitch += dragVelocityPitch;
+                dragVelocityYaw *= 0.93;
+                dragVelocityPitch *= 0.93;
+                revealSpinPitch = Math.max(
+                    -0.45,
+                    Math.min(0.45, revealSpinPitch)
+                );
+                /* Soft idle spin only until the user takes control. */
+                if (!revealUserInteracted) {
+                    revealSpinYaw += 0.00055;
+                }
+            }
 
-camera.position.x =
-    earthSystem.position.x +
-    Math.sin(viewYaw) *
-    Math.cos(viewPitch) *
-    orbitRadius;
+            earthSystem.rotation.y = revealSpinYaw;
+            earthSystem.rotation.x =
+                0.20 + revealSpinPitch * 0.45;
+        }
 
-camera.position.y =
-    earthSystem.position.y +
-    Math.sin(viewPitch) *
-    orbitRadius;
+        const orbitRadius = EARTH_ORBIT_RADIUS;
 
-camera.position.z =
-    earthSystem.position.z +
-    Math.cos(viewYaw) *
-    Math.cos(viewPitch) *
-    orbitRadius;
+        /*
+           Once the Malaysia flight has finished
+           (heroState REVEAL), leave the camera
+           exactly where updateMalaysiaFlight put
+           it. Drag rotates the Earth instead.
+        */
+        if (heroState !== HERO_STATE.REVEAL) {
+            camera.position.x =
+                earthSystem.position.x +
+                Math.sin(viewYaw) *
+                Math.cos(viewPitch) *
+                orbitRadius;
 
-camera.lookAt(
-    earthSystem.position.x,
-    earthSystem.position.y + 0.2,
-    earthSystem.position.z
-);
+            camera.position.y =
+                earthSystem.position.y +
+                Math.sin(viewPitch) *
+                orbitRadius;
 
-}
-       
+            camera.position.z =
+                earthSystem.position.z +
+                Math.cos(viewYaw) *
+                Math.cos(viewPitch) *
+                orbitRadius;
+
+            camera.lookAt(
+                earthSystem.position.x,
+                earthSystem.position.y,
+                earthSystem.position.z
+            );
+        }
+
             /* SLOW SPACE MOTION */
+        try {
+            if (typeof stars !== "undefined" && stars) {
+                stars.rotation.y += 0.000035;
+            }
+            if (typeof distantStars !== "undefined" && distantStars) {
+                distantStars.rotation.y += 0.000018;
+            }
+            if (typeof brightStars !== "undefined" && brightStars) {
+                brightStars.rotation.y += 0.00001;
+            }
+            if (typeof spaceDust !== "undefined" && spaceDust) {
+                spaceDust.rotation.y += 0.000022;
+            }
+        } catch (spaceMotionError) {
+            /* Optional space layers must never kill the Earth render loop. */
+        }
 
-        stars.rotation.y +=
-            0.000035;
-
-       distantStars.rotation.y +=
-    0.000015;
-
-brightStars.rotation.y +=
-    0.000008;
-
-spaceDust.rotation.y +=
-    0.000022;
-
-nebula.rotation.y +=
-    0.000006;
-
-brightStars.material.opacity =
-    0.86 +
-    Math.sin(time * 0.002) *
-    0.05;
+        try {
+            if (typeof nebula !== "undefined" && nebula) {
+                nebula.rotation.y += 0.000006;
+            }
+            if (warmNebula) {
+                warmNebula.rotation.y -= 0.000004;
+            }
+            if (
+                typeof brightStars !== "undefined" &&
+                brightStars &&
+                brightStars.material
+            ) {
+                brightStars.material.opacity =
+                    0.86 + Math.sin(time * 0.002) * 0.05;
+            }
+        } catch (nebulaError) {
+            /* Optional nebula pulse must never kill Earth rendering. */
+        }
 
 
 
@@ -3464,6 +3528,32 @@ brightStars.material.opacity =
                     ),
                     1
                 );
+
+            /* Occlude Malaysia focus when it rotates behind the planet. */
+            malaysiaMarkerGroup.getWorldPosition(malaysiaMarkerTempOffset);
+            const myEarthCenter = new THREE.Vector3();
+            const myCamPos = new THREE.Vector3();
+            earth.getWorldPosition(myEarthCenter);
+            camera.getWorldPosition(myCamPos);
+            const myFacing = malaysiaMarkerTempOffset
+                .clone()
+                .sub(myEarthCenter)
+                .normalize()
+                .dot(
+                    myCamPos
+                        .clone()
+                        .sub(myEarthCenter)
+                        .normalize()
+                );
+            const frontFade =
+                myFacing > 0.12
+                    ? Math.max(
+                        0.2,
+                        Math.min(1, (myFacing - 0.08) / 0.5)
+                    )
+                    : 0;
+            const visibleFade = markerFade * frontFade;
+            malaysiaMarkerGroup.visible = frontFade > 0;
 
             const pulse =
                 1 +
@@ -3500,24 +3590,21 @@ brightStars.material.opacity =
                     pulse
                 );
 
-            if (
-                malaysiaMarkerRing &&
-                malaysiaMarkerCore &&
-                malaysiaMarkerGlow
-            ) {
-                malaysiaMarkerRing.material.opacity =
-                    0.85 * markerFade;
-
+            if (malaysiaMarkerCore && malaysiaMarkerCore.material) {
                 malaysiaMarkerCore.material.opacity =
-                    0.65 * markerFade;
-
+                    0.95 * visibleFade;
+                if (malaysiaMarkerCore.material.emissiveIntensity != null) {
+                    malaysiaMarkerCore.material.emissiveIntensity =
+                        1.05 + Math.sin(time * 0.0026) * 0.18;
+                }
+            }
+            if (malaysiaMarkerRing && malaysiaMarkerRing.material) {
+                malaysiaMarkerRing.material.opacity =
+                    (0.55 + Math.sin(time * 0.0024) * 0.1) * visibleFade;
+            }
+            if (malaysiaMarkerGlow && malaysiaMarkerGlow.material) {
                 malaysiaMarkerGlow.material.opacity =
-                    0.35 * markerFade *
-                    (0.84 +
-                        Math.sin(
-                            time * 0.0033
-                        ) *
-                        0.16);
+                    (0.28 + Math.sin(time * 0.0018) * 0.06) * visibleFade;
             }
         }
        
@@ -3529,27 +3616,18 @@ brightStars.material.opacity =
     
 
 
-        /* MOON ORBIT */
-
-        const moonTime =
-            time * 0.00012;
-
-        moon.position.x =
-            Math.cos(
-                moonTime
-            ) * 2.8;
-
-        moon.position.z =
-            Math.sin(
-                moonTime
-            ) * 2.8 -
-            0.8;
-
-        moon.position.y =
-            0.7 +
-            Math.sin(
-                moonTime * 0.7
-            ) * 0.35;
+        /* MOON ORBIT — optional; must never stop Earth rendering */
+        try {
+            if (typeof moon !== "undefined" && moon) {
+                const moonTime = time * 0.00012;
+                moon.position.x = Math.cos(moonTime) * 2.8;
+                moon.position.z = Math.sin(moonTime) * 2.8 - 0.8;
+                moon.position.y =
+                    0.7 + Math.sin(moonTime * 0.7) * 0.35;
+            }
+        } catch (moonOrbitError) {
+            /* Ignore optional moon motion failures. */
+        }
 
 
         /* =========================================
@@ -3628,25 +3706,20 @@ camera.getWorldPosition(
 
 /* =========================================
    UPDATE CLOUD SHADER
+   (optional — cloud mesh may be absent)
    ========================================= */
 
-cloudMaterial.uniforms
-    .sunWorldPosition
-    .value
-    .copy(
-        realSunWorldPosition
-    );
-
-camera.getWorldPosition(
-    cloudMaterial.uniforms
-        .cameraWorldPosition
-        .value
-);
-
-cloudMaterial.uniforms
-    .uTime
-    .value =
-    time * 0.001;
+if (typeof cloudMaterial !== "undefined" && cloudMaterial && cloudMaterial.uniforms) {
+    if (cloudMaterial.uniforms.sunWorldPosition) {
+        cloudMaterial.uniforms.sunWorldPosition.value.copy(realSunWorldPosition);
+    }
+    if (cloudMaterial.uniforms.cameraWorldPosition) {
+        camera.getWorldPosition(cloudMaterial.uniforms.cameraWorldPosition.value);
+    }
+    if (cloudMaterial.uniforms.uTime) {
+        cloudMaterial.uniforms.uTime.value = time * 0.001;
+    }
+}
 
 /* =========================================
    RENDER SCENE
@@ -3680,10 +3753,11 @@ if (
 
 }
 
-   renderer.render(
-    scene,
-    camera
-);
+    try {
+        renderer.render(scene, camera);
+    } catch (renderError) {
+        console.warn("[earth-globe] render frame skipped", renderError);
+    }
 
     }
 
@@ -3694,6 +3768,97 @@ if (
 
     animate(
         performance.now()
+    );
+
+    /* Lightweight bridge for Language Universe overlay.
+       Does not replace Earth — only exposes projection helpers. */
+    window.EarthExplorer = {
+        isHeroReady: function () {
+            return !!heroLoaded;
+        },
+        getDomElement: function () {
+            return renderer.domElement;
+        },
+        getContainer: function () {
+            return globeContainer;
+        },
+        /* Test/helper: spin the Earth mesh so lat/lon projections must move. */
+        _nudgeYaw: function (amount) {
+            const a = amount == null ? 0.55 : amount;
+            earth.rotation.y += a;
+            targetYaw += a * 0.25;
+            viewYaw += a * 0.25;
+            if (heroState === HERO_STATE.REVEAL) {
+                revealSpinYaw += a;
+                earthSystem.rotation.y = revealSpinYaw;
+            }
+            earth.updateMatrixWorld(true);
+        },
+        projectLatLon: (function () {
+            const localDir = new THREE.Vector3();
+            const worldPoint = new THREE.Vector3();
+            const earthCenter = new THREE.Vector3();
+            const cameraPos = new THREE.Vector3();
+            const surfaceNormal = new THREE.Vector3();
+            const toCamera = new THREE.Vector3();
+            const projected = new THREE.Vector3();
+
+            return function (latDeg, lonDeg, radius) {
+                const lat = THREE.MathUtils.degToRad(latDeg);
+                const lon = THREE.MathUtils.degToRad(lonDeg);
+                const r = radius == null ? 1.04 : radius;
+
+                localDir.set(
+                    Math.cos(lat) * Math.cos(lon),
+                    Math.sin(lat),
+                    -Math.cos(lat) * Math.sin(lon)
+                ).normalize();
+                worldPoint.copy(localDir).multiplyScalar(r);
+                earth.localToWorld(worldPoint);
+
+                earth.getWorldPosition(earthCenter);
+                camera.getWorldPosition(cameraPos);
+                surfaceNormal.copy(worldPoint).sub(earthCenter).normalize();
+                toCamera.copy(cameraPos).sub(earthCenter).normalize();
+
+                /* True front-face occlusion (not NDC z). */
+                const facing = surfaceNormal.dot(toCamera);
+                const onFront = facing > 0.12;
+
+                projected.copy(worldPoint).project(camera);
+
+                /*
+                 * Map NDC → pixels using the WebGL container box, then offset into
+                 * globe-stage space for absolutely-positioned HTML markers.
+                 * Using globeStage dimensions alone breaks in mobile landscape where
+                 * welcome/status chrome shares the grid but Earth does not.
+                 */
+                const stageRect = globeStage.getBoundingClientRect();
+                const containerRect = globeContainer.getBoundingClientRect();
+                const width = containerRect.width || globeStage.clientWidth || 1;
+                const height = containerRect.height || globeStage.clientHeight || 1;
+                const offsetX = containerRect.left - stageRect.left;
+                const offsetY = containerRect.top - stageRect.top;
+                const inFrustum =
+                    projected.z > -1 &&
+                    projected.z < 1 &&
+                    projected.x >= -1.15 &&
+                    projected.x <= 1.15 &&
+                    projected.y >= -1.15 &&
+                    projected.y <= 1.15;
+
+                return {
+                    x: (projected.x * 0.5 + 0.5) * width + offsetX,
+                    y: (-projected.y * 0.5 + 0.5) * height + offsetY,
+                    visible: onFront && inFrustum,
+                    facing: facing
+                };
+            };
+        })()
+    };
+
+    window.dispatchEvent(
+        new CustomEvent("earthExplorerReady")
     );
 
 });

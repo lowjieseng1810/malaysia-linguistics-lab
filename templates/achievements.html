@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Your Heritage Collection | Malaysian Linguistics Lab{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/achievements.css') }}">
+
+{% set col = collection or {} %}
+<main class="achievements-page">
+  <nav class="collection-album-nav" aria-label="Collection navigation">
+    <a href="{{ url_for('dashboard') }}">← Explorer</a>
+    <a href="{{ url_for('dashboard') }}#heritage-passport">Heritage Passport</a>
+    <a class="is-current" href="{{ url_for('achievements_page') }}">Achievements</a>
+    <a href="{{ url_for('settings_page') }}">Mascot Settings</a>
+  </nav>
+
+  <header class="achievements-header">
+    <span class="achievements-eyebrow">Heritage stamp album</span>
+    <h1>Your Heritage Collection</h1>
+    <p>Collect postage stamps earned through real exploration, learning, and discovery across Malaysia’s living languages.</p>
+
+    <div class="achievements-summary" aria-label="Collection summary">
+      <div class="achievements-summary-item">
+        <strong>{{ col.earned or gallery.earned }} / {{ col.total or gallery.total }}</strong>
+        <span>collected</span>
+      </div>
+      <div class="achievements-summary-item">
+        <strong>{{ col.percent or 0 }}%</strong>
+        <span>complete</span>
+      </div>
+      <div class="achievements-summary-item achievements-summary-item--streak">
+        <strong>
+          <span class="streak-flame streak-flame--sm" aria-hidden="true">
+            <svg viewBox="0 0 24 28" width="16" height="18" focusable="false">
+              <path fill="url(#achFlameGrad)" d="M12 2c1.2 4.2-2.2 6.2-2.2 9.4 0 2.2 1.5 3.8 3.4 3.8.4 0 .8-.1 1.1-.2-.2 2.6-2.1 4.4-4.5 4.4-3.2 0-5.4-2.6-5.4-5.8C4.4 8.4 9.2 5.8 12 2z"/>
+              <path fill="#ffe7a8" opacity="0.85" d="M13.2 14.2c.1 1.6-1 2.7-2.2 2.7-1.5 0-2.5-1.2-2.5-2.7 0-1.7 1.8-2.8 2.9-4.2.2 1.6.7 2.8 1.8 4.2z"/>
+            </svg>
+          </span>
+          {{ col.streak or 0 }}
+        </strong>
+        <span>day streak</span>
+      </div>
+      <div class="achievements-summary-item">
+        <strong>{{ col.points or 0 }}</strong>
+        <span>points</span>
+      </div>
+      <div class="achievements-summary-item">
+        <strong>{{ col.level or 1 }}</strong>
+        <span>explorer level</span>
+      </div>
+    </div>
+    <div class="achievements-progress-track" aria-hidden="true">
+      <span class="achievements-progress-fill" data-progress-pct="{{ col.percent or 0 }}"></span>
+    </div>
+  </header>
+
+  {% for category in gallery.categories %}
+  {% set cat_items = gallery.entries | selectattr('category', 'equalto', category.key) | list %}
+  {% if cat_items %}
+  <section class="achievement-category achievement-category--{{ category.key }}" aria-labelledby="cat-{{ category.key }}">
+    <div class="achievement-category-head">
+      <h2 id="cat-{{ category.key }}">{{ category.label }}</h2>
+      <span>{{ cat_items | selectattr('unlocked', 'equalto', true) | list | length }} / {{ cat_items | length }}</span>
+    </div>
+    <div class="achievement-album-shelf">
+      {% for item in cat_items %}
+      <button type="button"
+              class="postage-stamp achievement-stamp postage-stamp--{{ category.key }} postage-stamp--rarity-{{ item.rarity or 'common' }} {% if item.unlocked %}is-unlocked{% else %}is-locked{% endif %}"
+              id="stamp-{{ item.key }}"
+              data-key="{{ item.key }}"
+              data-title="{{ item.title }}"
+              data-description="{{ item.description }}"
+              data-icon="{{ item.icon }}"
+              data-category="{{ category.label }}"
+              data-category-key="{{ category.key }}"
+              data-face-value="{{ item.face_value or 10 }}"
+              data-issue-year="{{ item.issue_year or '2026' }}"
+              data-rarity="{{ item.rarity or 'common' }}"
+              data-unlocked="{{ 'true' if item.unlocked else 'false' }}"
+              data-unlocked-at="{{ item.unlocked_at or '' }}"
+              aria-label="{{ item.title }} — {% if item.unlocked %}collected{% else %}locked{% endif %}">
+        <span class="postage-stamp-body" aria-hidden="true"></span>
+        <span class="postage-stamp-frame" aria-hidden="true"></span>
+        <span class="postage-stamp-foil" aria-hidden="true"></span>
+        <span class="postage-stamp-postmark" aria-hidden="true"></span>
+        <span class="postage-stamp-face">
+          <span class="postage-stamp-value">{{ item.face_value or 10 }}</span>
+          <span class="postage-stamp-emblem" aria-hidden="true">
+            <span class="achievement-icon achievement-icon--{{ item.icon }}"></span>
+          </span>
+          <strong class="postage-stamp-title">{{ item.title }}</strong>
+          <small class="postage-stamp-desc">{{ item.description }}</small>
+          <span class="postage-stamp-rarity" aria-label="Rarity {{ item.rarity or 'common' }}">{{ (item.rarity or 'common')|replace('_', ' ')|upper }}</span>
+          {% if item.unlocked and item.earned_date_label %}
+          <span class="postage-stamp-meta">
+            <span class="postage-stamp-status">Earned</span>
+            <span class="postage-stamp-earned">{{ item.earned_date_label }}</span>
+          </span>
+          {% else %}
+          <span class="postage-stamp-meta">
+            <span class="postage-stamp-status">To unlock</span>
+          </span>
+          {% endif %}
+          <span class="postage-stamp-year" title="Issue series">Series {{ item.issue_year or '2026' }}</span>
+        </span>
+      </button>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</main>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+    <linearGradient id="achFlameGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d6b04d"/>
+      <stop offset="45%" stop-color="#f0a35a"/>
+      <stop offset="100%" stop-color="#ffd98a"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="achievement-detail-backdrop" id="achievement-detail-backdrop" hidden>
+  <div class="achievement-detail" role="dialog" aria-modal="true" aria-labelledby="achievement-detail-title">
+    <button type="button" class="achievement-detail-close" id="achievement-detail-close" aria-label="Close">×</button>
+    <div class="achievement-detail-stamp-host" id="achievement-detail-stamp-host"></div>
+    <p class="achievement-detail-eyebrow" id="achievement-detail-state">Locked</p>
+    <p class="achievement-detail-category" id="achievement-detail-category"></p>
+    <h2 id="achievement-detail-title">Achievement</h2>
+    <p id="achievement-detail-description"></p>
+    <p class="achievement-detail-date" id="achievement-detail-date" hidden></p>
+    <a class="achievement-detail-link" href="{{ url_for('dashboard') }}#heritage-passport">Return to Explorer →</a>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/achievements-page.js') }}"></script>
+{% endblock %}

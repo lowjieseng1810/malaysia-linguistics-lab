@@ -1,0 +1,313 @@
+{
+  "language": "mah-meri",
+  "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0",
+  "dialect_variant": "Mah Meri (ASJP)",
+  "entries": [
+    {
+      "word": "3735",
+      "meaning_en": "2.83 101.50 2990 mhm mhe 1 I",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hi7",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hEh",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "muy",
+      "meaning_en": "one",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hmah",
+      "meaning_en": "two",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hma7",
+      "meaning_en": "person",
+      "part_of_speech": "noun",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kah",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "caw",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "cih",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "t3koh",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dawun",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "maham",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "j37ak",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "t3N",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mEnt",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "muh",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "j3moy",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "lidah",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "lutut",
+      "meaning_en": "knee",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "thi7",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tuh",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "g3rih",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "cadow",
+      "meaning_en": "drink",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "c3lEw",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kay3k",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "k3b3s",
+      "meaning_en": "die",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dow",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batu7",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "us",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gunoN",
+      "meaning_en": "mountain",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "d3y",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hm3c",
+      "meaning_en": "full",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mpay",
+      "meaning_en": "new",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "g3lah",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Mah Meri (ASJP)",
+      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
+    }
+  ]
+}

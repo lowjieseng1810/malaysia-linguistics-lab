@@ -13,6 +13,7 @@ google_client_secret.json
 # LOCAL DATABASES AND USER DATA
 # ==========================================
 
+logs/
 users.db
 users_backup.db
 *.db-journal
@@ -80,3 +81,14 @@ htmlcov/
 # ==========================================
 
 *.log
+debug-*.log
+
+
+# ==========================================
+# MANUAL QA / SCRATCH SCRIPTS (not shipped tests)
+# ==========================================
+
+qa_temp/
+
+# Large raw vocabulary downloads (rebuild packs from these locally)
+data/vocabulary/raw/

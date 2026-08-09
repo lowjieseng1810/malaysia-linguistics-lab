@@ -1,0 +1,649 @@
+/* =========================================
+   Malaysian Language Universe
+   Cinematic overlay — sits ABOVE the Earth,
+   never replaces or covers the WebGL canvas.
+   ========================================= */
+
+#three-earth-container {
+    position: absolute !important;
+    inset: 0;
+    z-index: 4 !important;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    touch-action: none;
+}
+
+#three-earth-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.globe-stage {
+    background:
+        radial-gradient(
+            ellipse 90% 70% at 50% 48%,
+            rgba(18, 52, 42, 0.55) 0%,
+            rgba(6, 18, 16, 0.88) 42%,
+            rgba(2, 6, 8, 0.98) 100%
+        ),
+        radial-gradient(
+            circle at 18% 22%,
+            rgba(48, 92, 120, 0.16) 0%,
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 82% 70%,
+            rgba(90, 48, 28, 0.1) 0%,
+            transparent 38%
+        ),
+        #020806;
+}
+
+.globe-stage::before {
+    z-index: 1;
+    width: min(720px, 78vw);
+    height: min(720px, 78vw);
+    background:
+        radial-gradient(
+            circle,
+            rgba(110, 220, 170, 0.14) 0%,
+            rgba(48, 166, 116, 0.06) 36%,
+            rgba(16, 79, 57, 0.02) 58%,
+            transparent 74%
+        );
+    filter: blur(34px);
+}
+
+.globe-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle at 12% 18%,
+            rgba(255, 255, 255, 0.045) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 78% 30%,
+            rgba(255, 255, 255, 0.03) 0 1px,
+            transparent 2px
+        ),
+        radial-gradient(
+            circle at 40% 82%,
+            rgba(239, 215, 126, 0.04) 0 1px,
+            transparent 2px
+        );
+    background-size: 180px 180px, 260px 260px, 320px 320px;
+    opacity: 0.7;
+}
+
+.language-universe {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+}
+
+.universe-markers {
+    position: absolute;
+    inset: 0;
+    z-index: 32;
+    pointer-events: none;
+}
+
+.universe-marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    /* No transform transition — markers must stay locked to globe projection */
+    transition:
+        opacity 0.22s ease,
+        filter 0.35s ease;
+    will-change: transform, opacity;
+}
+
+.language-universe.markers-visible .universe-marker:not(.is-occluded) {
+    pointer-events: auto;
+}
+
+/* Living-language signal: luminous core + soft halo (elegant, not oversized) */
+.universe-marker-core {
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle at 38% 30%,
+            #ffffff 0%,
+            #fff4c8 28%,
+            #f0d070 58%,
+            #c9962a 100%
+        );
+    box-shadow:
+        0 0 6px rgba(255, 252, 230, 0.98),
+        0 0 16px rgba(255, 230, 140, 0.72),
+        0 0 28px rgba(239, 215, 126, 0.38),
+        0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.universe-marker-halo {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 248, 210, 0.62) 0%,
+            rgba(255, 228, 140, 0.28) 40%,
+            rgba(239, 215, 126, 0.08) 62%,
+            transparent 76%
+        );
+    pointer-events: none;
+}
+
+.universe-marker-pulse {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 246, 200, 0.55);
+    box-shadow: 0 0 16px rgba(255, 228, 140, 0.4);
+    animation: universePulse 3.6s ease-out infinite;
+    pointer-events: none;
+}
+
+.universe-marker-orbit {
+    display: none;
+}
+
+.language-universe.markers-visible .universe-marker:not(.is-occluded):not(.is-selected) {
+    filter: saturate(1.12) brightness(1.18);
+}
+
+.universe-marker-label {
+    position: absolute;
+    left: 26px;
+    top: 50%;
+    transform: translateY(-50%);
+    min-width: max-content;
+    padding: 7px 11px;
+    border-radius: 12px;
+    background: rgba(4, 14, 12, 0.78);
+    border: 1px solid rgba(239, 215, 126, 0.24);
+    color: rgba(236, 244, 240, 0.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(8px);
+}
+
+.universe-marker-label strong {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    color: #f3e2a4;
+}
+
+.universe-marker-label span {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.68rem;
+    color: rgba(210, 224, 216, 0.72);
+}
+
+.universe-marker:hover .universe-marker-label,
+.universe-marker:focus-visible .universe-marker-label,
+.universe-marker.is-selected .universe-marker-label {
+    opacity: 1;
+}
+
+.universe-marker:focus-visible {
+    outline: 2px solid rgba(239, 215, 126, 0.85);
+    outline-offset: 4px;
+}
+
+.universe-marker.is-selected .universe-marker-core {
+    box-shadow:
+        0 0 0 1px rgba(255, 244, 210, 0.55),
+        0 0 14px rgba(239, 215, 126, 0.55);
+    transform: scale(1.12);
+}
+
+.universe-marker.is-selected .universe-marker-halo {
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 236, 180, 0.42) 0%,
+            rgba(239, 215, 126, 0.12) 48%,
+            transparent 74%
+        );
+}
+
+.universe-marker.is-dimmed {
+    filter: brightness(0.55) saturate(0.7);
+}
+
+.universe-marker.is-discovered .universe-marker-pulse {
+    animation: universeDiscover 1.4s ease-out 1;
+}
+
+@keyframes universePulse {
+    0% {
+        transform: scale(0.7);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.85);
+        opacity: 0;
+    }
+}
+
+@keyframes universeOrbit {
+    0% {
+        transform: rotateX(58deg) rotateZ(0deg);
+    }
+    100% {
+        transform: rotateX(58deg) rotateZ(360deg);
+    }
+}
+
+@keyframes universeDiscover {
+    0% {
+        transform: scale(0.6);
+        opacity: 1;
+        border-color: #fff4c2;
+    }
+    100% {
+        transform: scale(2.6);
+        opacity: 0;
+    }
+}
+
+.universe-profile {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-42%) translateX(12px);
+    width: min(320px, calc(100% - 40px));
+    padding: 22px 22px 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(239, 215, 126, 0.22);
+    background:
+        linear-gradient(
+            160deg,
+            rgba(8, 24, 20, 0.92),
+            rgba(3, 10, 9, 0.88)
+        );
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+    color: rgba(236, 244, 240, 0.92);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.35s ease,
+        transform 0.4s ease;
+    z-index: 40;
+    backdrop-filter: blur(14px);
+}
+
+.universe-profile.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-42%) translateX(0);
+}
+
+.universe-profile-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: rgba(236, 244, 240, 0.7);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.universe-profile-eyebrow {
+    margin: 0 0 6px;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(239, 215, 126, 0.78);
+}
+
+.universe-profile h3 {
+    margin: 0;
+    font-size: 1.55rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #f6e7b0;
+}
+
+.universe-profile-region {
+    margin: 6px 0 0;
+    font-size: 0.86rem;
+    color: rgba(210, 224, 216, 0.72);
+}
+
+.universe-profile-blurb {
+    margin: 14px 0 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: rgba(228, 238, 232, 0.82);
+}
+
+.universe-profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.universe-profile-stats span {
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(190, 208, 198, 0.62);
+}
+
+.universe-profile-stats strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.05rem;
+    color: #f0e0a0;
+    font-weight: 650;
+}
+
+.universe-profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.universe-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(239, 215, 126, 0.28);
+    color: rgba(244, 234, 196, 0.92);
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.universe-action:hover,
+.universe-action:focus-visible {
+    background: rgba(239, 215, 126, 0.12);
+    border-color: rgba(239, 215, 126, 0.55);
+    transform: translateY(-1px);
+}
+
+.universe-action--primary {
+    background: rgba(239, 215, 126, 0.16);
+}
+
+.universe-discover-bar {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    z-index: 45;
+    pointer-events: auto;
+}
+
+/* Discover controls only during / after the journey, not on first paint */
+.language-universe.is-journeying .universe-discover-bar,
+.language-universe.is-malaysia-focus .universe-discover-bar {
+    display: flex;
+    opacity: 0.85;
+}
+
+.universe-discover-btn {
+    pointer-events: auto;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(239, 215, 126, 0.35);
+    background: rgba(8, 22, 18, 0.78);
+    color: #f3e2a4;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.universe-discover-btn:hover,
+.universe-discover-btn:focus-visible {
+    background: rgba(239, 215, 126, 0.14);
+    transform: translateY(-1px);
+}
+
+.universe-discover-btn--ghost {
+    border-color: rgba(255, 255, 255, 0.16);
+    color: rgba(228, 238, 232, 0.82);
+}
+
+.universe-word-toast {
+    position: absolute;
+    left: 28px;
+    bottom: 88px;
+    width: min(280px, calc(100% - 56px));
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(239, 215, 126, 0.22);
+    background: rgba(5, 16, 13, 0.88);
+    color: rgba(236, 244, 240, 0.92);
+    z-index: 46;
+    pointer-events: auto;
+    backdrop-filter: blur(12px);
+}
+
+.universe-word-eyebrow {
+    margin: 0;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(239, 215, 126, 0.75);
+}
+
+.universe-word-term {
+    margin: 8px 0 0;
+    font-size: 1.35rem;
+    color: #f6e7b0;
+    font-weight: 600;
+}
+
+.universe-word-meaning {
+    margin: 6px 0 0;
+    font-size: 0.9rem;
+    color: rgba(210, 224, 216, 0.78);
+}
+
+.universe-word-toast a {
+    display: inline-block;
+    margin-top: 12px;
+    color: #efd77e;
+    font-size: 0.82rem;
+}
+
+/*
+ * Composition hierarchy:
+ * 1 Earth · 2 selection/discovery · 3 journey chrome · 4 supporting copy
+ * Story chrome stays a thin top strip so it never buries the globe.
+ */
+/* Stage sizing for the universe hero is owned by universe-landing.css */
+
+.world-explorer-content {
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(720px, 92%);
+    max-width: min(720px, 92%);
+    gap: 10px;
+    z-index: 26;
+    align-items: center;
+    pointer-events: none;
+}
+
+.world-explorer-content .explorer-stage-label {
+    letter-spacing: 0.28em;
+    font-size: 0.66rem;
+    color: rgba(239, 215, 126, 0.78);
+}
+
+.world-explorer-content h3 {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.5vw, 1.18rem);
+    max-width: 28ch;
+    line-height: 1.25;
+    font-weight: 620;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55);
+}
+
+/* Supporting copy stays out of the Earth plane */
+.world-explorer-content > p {
+    display: none;
+}
+
+.explorer-route {
+    width: min(420px, 94%);
+    margin-top: 2px;
+    justify-content: center;
+    opacity: 0.88;
+    gap: 8px;
+}
+
+.explorer-route-step span:last-child {
+    max-width: 88px;
+    font-size: 0.6rem;
+}
+
+.explore-world-button {
+    align-self: center;
+    margin: 4px 0 0;
+    min-height: 44px;
+    padding: 10px 18px;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.explore-world-button:hover,
+.explore-world-button:focus-visible {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+}
+
+.world-explorer-card.is-travelling .world-explorer-content {
+    opacity: 0.18;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(-6px);
+}
+
+.world-explorer-card.has-arrived:not(.is-malaysia-view) .world-explorer-content {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.world-explorer-card.is-malaysia-view .world-explorer-content {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.globe-status {
+    z-index: 28;
+    top: 18px;
+    right: 18px;
+}
+
+.universe-discover-bar {
+    bottom: 22px;
+}
+
+@media (max-width: 900px) {
+    .universe-profile {
+        right: 16px;
+        left: 16px;
+        top: auto;
+        bottom: 92px;
+        width: auto;
+        transform: translateY(16px);
+    }
+
+    .universe-profile.is-open {
+        transform: translateY(0);
+    }
+
+    .universe-word-toast {
+        left: 16px;
+        right: 16px;
+        width: auto;
+        bottom: auto;
+        top: 120px;
+    }
+
+    .universe-discover-bar {
+        bottom: 16px;
+        width: calc(100% - 24px);
+    }
+
+    .universe-marker-label {
+        left: 50%;
+        top: -10px;
+        transform: translate(-50%, -100%);
+    }
+}
+
+@media (max-width: 560px) {
+    .globe-stage {
+        height: 760px;
+        padding-top: 120px;
+    }
+
+    .universe-discover-btn {
+        font-size: 0.7rem;
+        padding: 9px 12px;
+        letter-spacing: 0.05em;
+    }
+
+    .world-explorer-content {
+        width: min(920px, 94%);
+        gap: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .universe-marker-pulse,
+    .universe-marker-orbit,
+    .universe-marker.is-discovered .universe-marker-pulse {
+        animation: none;
+    }
+}

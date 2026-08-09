@@ -1,0 +1,157 @@
+/* Shared visual language for non-AI pages.
+   Lightweight consistency pass — does not rewrite layouts. */
+
+:root {
+    --mmle-green: #173d2e;
+    --mmle-green-deep: #0b1f1a;
+    --mmle-navy: #07141c;
+    --mmle-gold: #d6b04d;
+    --mmle-gold-soft: #efd77e;
+    --mmle-glass: rgba(8, 24, 20, 0.62);
+    --mmle-border: rgba(255, 255, 255, 0.12);
+    --mmle-radius: 18px;
+    --mmle-radius-sm: 14px;
+}
+
+/* Page shells that already use cards / panels */
+.dictionary-page,
+.favorites-page,
+.quiz-page,
+.compare-page,
+.profile-page,
+.language-page,
+.level-page,
+.dashboard-page {
+    --card-radius: var(--mmle-radius);
+}
+
+.dictionary-page .card,
+.favorites-page .card,
+.quiz-page .card,
+.compare-page .card,
+.profile-page .card,
+.dictionary-shell,
+.quiz-shell,
+.compare-shell,
+.profile-shell,
+.favorites-shell {
+    border-radius: var(--mmle-radius) !important;
+    border-color: var(--mmle-border) !important;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+/* Buttons / CTAs across product pages */
+.dictionary-page .btn-primary,
+.quiz-page .btn-primary,
+.compare-page .btn-primary,
+.profile-page .btn-primary,
+.favorites-page .btn-primary,
+.language-page .btn-primary,
+.level-page .btn-primary,
+.compare-languages-button {
+    border-radius: var(--mmle-radius-sm) !important;
+    border-color: rgba(214, 176, 77, 0.35) !important;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.dictionary-page .btn-primary:hover,
+.quiz-page .btn-primary:hover,
+.compare-page .btn-primary:hover,
+.profile-page .btn-primary:hover,
+.compare-languages-button:hover {
+    transform: translateY(-1px);
+}
+
+/* Navigation drawer polish */
+.site-menu-nav .site-menu-link {
+    border-radius: 14px;
+}
+
+.site-menu-link:hover,
+.site-menu-link:focus-visible {
+    border-color: rgba(239, 215, 126, 0.22);
+}
+
+.menu-link-icon svg {
+    opacity: 0.92;
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid rgba(239, 215, 126, 0.75);
+    outline-offset: 2px;
+}
+
+/* Dictionary archive polish */
+.dict-header h1,
+.quiz-header h1,
+.compare-header h1,
+.profile-header h1 {
+    letter-spacing: -0.02em;
+}
+
+.dict-controls,
+.dict-search-row,
+.quiz-setup-card,
+.quiz-play-card,
+.quiz-results {
+    border-radius: var(--mmle-radius) !important;
+}
+
+.dict-random-btn,
+.quiz-start-btn,
+.quiz-primary-btn,
+.dict-modal-save {
+    border-radius: var(--mmle-radius-sm) !important;
+}
+
+.dict-modal {
+    border: 1px solid rgba(239, 215, 126, 0.22) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45) !important;
+}
+
+.quiz-progress-bar-fill {
+    background: linear-gradient(90deg, #2f6b4f, #d6b04d) !important;
+}
+
+/* Shared heritage scrollbars — dark green track, warm-gold thumb */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(214, 176, 77, 0.42) rgba(8, 28, 22, 0.92);
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.dash-sidebar::-webkit-scrollbar,
+.heritage-passport::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+.dash-sidebar::-webkit-scrollbar-track,
+.heritage-passport::-webkit-scrollbar-track {
+    background: rgba(8, 28, 22, 0.92);
+    border-radius: 999px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+.dash-sidebar::-webkit-scrollbar-thumb,
+.heritage-passport::-webkit-scrollbar-thumb {
+    background: rgba(214, 176, 77, 0.38);
+    border-radius: 999px;
+    border: 2px solid rgba(8, 28, 22, 0.92);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+.dash-sidebar::-webkit-scrollbar-thumb:hover,
+.heritage-passport::-webkit-scrollbar-thumb:hover {
+    background: rgba(239, 215, 126, 0.55);
+}

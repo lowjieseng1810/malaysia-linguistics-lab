@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ language.display_name }} — Level {{ level_num }} | Malaysian Language Heritage Explorer{% endblock %}
+{% block title %}{{ language.display_name }} — Level {{ level_num }} | Malaysian Linguistics Lab{% endblock %}
 
 {% block content %}
 
@@ -13,6 +13,8 @@
       data-save-url="{{ url_for('complete_level', lang_key=lang_key, level_num=level_num) }}"
       data-save-step-url="{{ url_for('save_step', lang_key=lang_key, level_num=level_num) }}"
       data-saved-step="{{ saved_step }}"
+      data-level-completed="{{ 1 if level_completed else 0 }}"
+      data-replay-mode="{{ 1 if replay_mode else 0 }}"
       data-csrf-token="{{ csrf_token() }}">
 
     <div class="level-topbar">
@@ -116,11 +118,20 @@
                     Continue when you are ready.
                 </span>
 
-                <button type="button"
-                        class="primary-action-button"
-                        id="primary-action-button">
-                    Continue
-                </button>
+                <div class="learning-action-buttons">
+                    <button type="button"
+                            class="secondary-action-button"
+                            id="replay-action-button"
+                            hidden>
+                        Replay Journey
+                    </button>
+
+                    <button type="button"
+                            class="primary-action-button"
+                            id="primary-action-button">
+                        Continue
+                    </button>
+                </div>
 
             </div>
 
@@ -167,6 +178,12 @@ window.LEVEL_LESSON = {
         Number(
             lessonConfig.dataset.savedStep
         ) || 0,
+
+    levelCompleted:
+        lessonConfig.dataset.levelCompleted === "1",
+
+    replayMode:
+        lessonConfig.dataset.replayMode === "1",
 
     steps:
         courseSteps

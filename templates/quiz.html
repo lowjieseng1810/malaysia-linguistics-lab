@@ -1,0 +1,542 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz — Malaysian Linguistics Lab{% endblock %}
+
+{% block content %}
+
+<style>
+
+.quiz-header{
+  margin-bottom:22px;
+}
+
+.quiz-header h1{
+  font-size:1.7rem;
+  font-weight:750;
+  color:#ffffff;
+  margin-bottom:6px;
+}
+
+.quiz-header p{
+  color:var(--muted);
+  font-size:.95rem;
+  max-width:640px;
+}
+
+.quiz-setup-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.quiz-setup-grid label{
+  display:block;
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:rgba(235,243,238,.6);
+  margin-bottom:6px;
+}
+
+.quiz-setup-grid select{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:.9rem;
+}
+
+.quiz-setup-grid select option{
+  color:#111;
+}
+
+.quiz-start-btn, .quiz-primary-btn{
+  padding:12px 22px;
+  border-radius:12px;
+  border:1px solid rgba(217,180,74,.4);
+  background:rgba(217,180,74,.16);
+  color:#efd77e;
+  font-size:.92rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .18s ease;
+}
+
+.quiz-start-btn:hover, .quiz-primary-btn:hover{
+  background:rgba(217,180,74,.28);
+}
+
+.quiz-start-btn:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.quiz-secondary-btn{
+  padding:12px 22px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:.9rem;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.quiz-progress-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+  color:var(--muted);
+  font-size:.85rem;
+}
+
+.quiz-progress-bar{
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  overflow:hidden;
+  margin-bottom:22px;
+}
+
+.quiz-progress-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,#d9b44a,#efd77e);
+  transition:width .25s ease;
+}
+
+.quiz-question{
+  font-size:1.15rem;
+  color:#fff;
+  font-weight:650;
+  margin-bottom:18px;
+}
+
+.quiz-options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.quiz-option-btn{
+  text-align:left;
+  padding:13px 16px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
+  color:#fff;
+  font-size:.95rem;
+  cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+}
+
+.quiz-option-btn:hover:not(:disabled){
+  border-color:rgba(217,180,74,.4);
+}
+
+.quiz-option-btn:disabled{
+  cursor:default;
+}
+
+.quiz-option-btn.is-correct{
+  border-color:rgba(93,201,124,.7);
+  background:rgba(93,201,124,.14);
+  color:#a6ecb8;
+}
+
+.quiz-option-btn.is-wrong{
+  border-color:rgba(224,90,90,.7);
+  background:rgba(224,90,90,.14);
+  color:#f3aaaa;
+}
+
+.quiz-feedback{
+  padding:14px 16px;
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  margin-bottom:18px;
+  font-size:.9rem;
+  color:var(--muted);
+}
+
+.quiz-feedback.is-correct{
+  border-color:rgba(93,201,124,.4);
+  color:#a6ecb8;
+}
+
+.quiz-feedback.is-wrong{
+  border-color:rgba(224,90,90,.4);
+  color:#f3aaaa;
+}
+
+.quiz-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.quiz-results{
+  text-align:center;
+  padding:20px 10px;
+}
+
+.quiz-results .quiz-score-big{
+  font-size:2.6rem;
+  font-weight:800;
+  color:#efd77e;
+  margin-bottom:6px;
+}
+
+.quiz-results .quiz-score-sub{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.quiz-empty, .quiz-error{
+  text-align:center;
+  padding:40px 20px;
+  color:var(--muted);
+}
+
+.quiz-coaching{
+  background:rgba(217,180,74,.08);
+  border:1px solid rgba(217,180,74,.25);
+  border-radius:12px;
+  padding:12px 16px;
+  font-size:.88rem;
+  color:#efd77e;
+  margin-bottom:18px;
+}
+
+@media (max-width: 640px){
+  .quiz-setup-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .quiz-question{
+    font-size:1.02rem;
+  }
+  .quiz-actions{
+    flex-direction:column;
+  }
+  .quiz-actions button{
+    width:100%;
+  }
+}
+
+</style>
+
+<div class="quiz-header">
+  <h1>Practice Quiz</h1>
+  <p>
+    Deterministic, database-backed practice questions from your unlocked
+    lessons. Scored instantly, no AI required.
+  </p>
+</div>
+
+<div class="card" id="quiz-setup-card">
+
+  <div class="quiz-setup-grid">
+    <div>
+      <label for="quiz-lang">Language</label>
+      <select id="quiz-lang">
+        {% for lang in languages %}
+        <option value="{{ lang.lang_key }}">{{ lang.display_name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label for="quiz-level">Level</label>
+      <select id="quiz-level"></select>
+    </div>
+
+    <div>
+      <label for="quiz-difficulty">Difficulty</label>
+      <select id="quiz-difficulty">
+        {% for value, label in difficulty_options %}
+        <option value="{{ value }}">{{ label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div>
+      <label for="quiz-count">Questions</label>
+      <select id="quiz-count">
+        {% for n in count_options %}
+        <option value="{{ n }}">{{ n }} questions</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <button type="button" class="quiz-start-btn" id="quiz-start-btn">Start quiz</button>
+  <div id="quiz-setup-error" class="quiz-error" style="display:none;"></div>
+</div>
+
+<div class="card" id="quiz-play-card" style="display:none;">
+
+  <div class="quiz-progress-row">
+    <span id="quiz-progress-label"></span>
+    <span id="quiz-score-label"></span>
+  </div>
+  <div class="quiz-progress-bar">
+    <div class="quiz-progress-bar-fill" id="quiz-progress-fill" style="width:0%;"></div>
+  </div>
+
+  <div id="quiz-coaching" class="quiz-coaching" style="display:none;"></div>
+
+  <div class="quiz-question" id="quiz-question-text"></div>
+  <div class="quiz-options" id="quiz-options"></div>
+  <div class="quiz-feedback" id="quiz-feedback" style="display:none;"></div>
+
+  <div class="quiz-actions">
+    <button type="button" class="quiz-primary-btn" id="quiz-next-btn" style="display:none;">Next question →</button>
+  </div>
+
+</div>
+
+<div class="card" id="quiz-results-card" style="display:none;">
+  <div class="quiz-results">
+    <div class="quiz-score-big" id="quiz-final-pct"></div>
+    <div class="quiz-score-sub" id="quiz-final-sub"></div>
+    <div class="quiz-actions" style="justify-content:center;">
+      <button type="button" class="quiz-primary-btn" id="quiz-retry-btn">Retry same quiz</button>
+      <button type="button" class="quiz-secondary-btn" id="quiz-new-btn">New quiz</button>
+    </div>
+  </div>
+</div>
+
+<template id="quiz-languages-json">{{ languages | tojson }}</template>
+<script>
+(function () {
+
+  const levelsByLang = (function () {
+    var el = document.getElementById("quiz-languages-json");
+    var raw = el ? (el.innerHTML || el.textContent || "").trim() : "";
+    try {
+      return raw ? JSON.parse(raw) : {};
+    } catch (err) {
+      return {};
+    }
+  })();
+
+  const els = {
+    lang: document.getElementById("quiz-lang"),
+    level: document.getElementById("quiz-level"),
+    difficulty: document.getElementById("quiz-difficulty"),
+    count: document.getElementById("quiz-count"),
+    startBtn: document.getElementById("quiz-start-btn"),
+    setupCard: document.getElementById("quiz-setup-card"),
+    setupError: document.getElementById("quiz-setup-error"),
+    playCard: document.getElementById("quiz-play-card"),
+    progressLabel: document.getElementById("quiz-progress-label"),
+    scoreLabel: document.getElementById("quiz-score-label"),
+    progressFill: document.getElementById("quiz-progress-fill"),
+    coaching: document.getElementById("quiz-coaching"),
+    questionText: document.getElementById("quiz-question-text"),
+    options: document.getElementById("quiz-options"),
+    feedback: document.getElementById("quiz-feedback"),
+    nextBtn: document.getElementById("quiz-next-btn"),
+    resultsCard: document.getElementById("quiz-results-card"),
+    finalPct: document.getElementById("quiz-final-pct"),
+    finalSub: document.getElementById("quiz-final-sub"),
+    retryBtn: document.getElementById("quiz-retry-btn"),
+    newBtn: document.getElementById("quiz-new-btn"),
+  };
+
+  function csrfToken() {
+    const meta = document.querySelector('meta[name="csrf-token"]');
+    return meta ? meta.content : "";
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text == null ? "" : String(text);
+    return div.innerHTML;
+  }
+
+  function postJson(url, body) {
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-CSRFToken": csrfToken() },
+      body: JSON.stringify(body || {}),
+    }).then(function (r) { return r.json(); });
+  }
+
+  function populateLevels() {
+    const lang = levelsByLang.find(function (l) { return l.lang_key === els.lang.value; });
+    els.level.innerHTML = "";
+    if (!lang) return;
+    lang.levels.forEach(function (lvl) {
+      const opt = document.createElement("option");
+      opt.value = lvl.number;
+      opt.textContent = lvl.title + (lvl.unlocked ? "" : " (locked)");
+      opt.disabled = !lvl.unlocked;
+      els.level.appendChild(opt);
+    });
+    const firstUnlocked = lang.levels.find(function (l) { return l.unlocked; });
+    if (firstUnlocked) els.level.value = firstUnlocked.number;
+  }
+
+  els.lang.addEventListener("change", populateLevels);
+  populateLevels();
+
+  function showCard(which) {
+    els.setupCard.style.display = which === "setup" ? "" : "none";
+    els.playCard.style.display = which === "play" ? "" : "none";
+    els.resultsCard.style.display = which === "results" ? "" : "none";
+  }
+
+  function renderQuestion(state) {
+    const q = state.current_question;
+    els.progressLabel.textContent = "Question " + (state.index + 1) + " of " + state.total;
+    els.scoreLabel.textContent = "Score: " + state.score.correct + "/" + state.score.total;
+    els.progressFill.style.width = Math.round((state.index / state.total) * 100) + "%";
+    els.questionText.textContent = q.question;
+    els.feedback.style.display = "none";
+    els.nextBtn.style.display = "none";
+
+    els.options.innerHTML = "";
+    q.options.forEach(function (opt, i) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "quiz-option-btn";
+      btn.textContent = opt;
+      btn.addEventListener("click", function () { submitAnswer(i, btn); });
+      els.options.appendChild(btn);
+    });
+  }
+
+  function submitAnswer(index, btnEl) {
+    Array.from(els.options.children).forEach(function (b) { b.disabled = true; });
+
+    postJson("/api/quiz/answer", { answer_index: index }).then(function (data) {
+      if (!data.ok) {
+        els.feedback.style.display = "";
+        els.feedback.className = "quiz-feedback";
+        els.feedback.textContent = "Could not grade that answer. Please try starting a new quiz.";
+        return;
+      }
+
+      Array.from(els.options.children).forEach(function (b, i) {
+        if (i === data.correct_index) b.classList.add("is-correct");
+        else if (b === btnEl && !data.correct) b.classList.add("is-wrong");
+      });
+
+      els.feedback.style.display = "";
+      els.feedback.className = "quiz-feedback " + (data.correct ? "is-correct" : "is-wrong");
+      let msg = data.correct ? "✅ Correct!" : ("❌ Not quite — correct answer: " + data.correct_answer);
+      if (data.explanation) msg += " — " + data.explanation;
+      els.feedback.textContent = msg;
+
+      els.scoreLabel.textContent = "Score: " + data.score.correct + "/" + data.score.total;
+
+      if (window.reportNewAchievements && data.new_achievements) {
+        window.reportNewAchievements(data.new_achievements);
+      }
+      if (data.finished) {
+        window.dispatchEvent(
+          new CustomEvent("mascotCompanionEvent", { detail: { type: "quiz_completed" } })
+        );
+        els.nextBtn.textContent = "See results →";
+        els.nextBtn.style.display = "";
+        els.nextBtn.onclick = showResults;
+      } else {
+        els.nextBtn.textContent = "Next question →";
+        els.nextBtn.style.display = "";
+        els.nextBtn.onclick = function () { renderQuestion(data); };
+      }
+    });
+  }
+
+  function showResults() {
+    fetch("/api/quiz/results").then(function (r) { return r.json(); }).then(function (data) {
+      if (!data.ok) return;
+      showCard("results");
+      els.finalPct.textContent = data.percentage + "%";
+      var masteryNote = data.history_recorded
+        ? " Saved to your quiz mastery history on Profile."
+        : "";
+      els.finalSub.textContent =
+        data.score.correct + " / " + data.score.total + " correct — " +
+        (data.language_display || data.lang_key || "") +
+        ". Lesson unlock progress is separate." + masteryNote;
+    });
+  }
+
+  function beginSession(payload) {
+    els.setupError.style.display = "none";
+    els.startBtn.disabled = true;
+    els.startBtn.textContent = "Starting…";
+
+    return postJson("/api/quiz/start", payload).then(function (data) {
+      els.startBtn.disabled = false;
+      els.startBtn.textContent = "Start quiz";
+
+      if (!data.ok) {
+        els.setupError.style.display = "";
+        els.setupError.textContent = data.message || "This lesson does not have quiz questions available yet.";
+        return;
+      }
+
+      showCard("play");
+      if (data.coaching_note) {
+        els.coaching.style.display = "";
+        els.coaching.textContent = data.coaching_note;
+      } else {
+        els.coaching.style.display = "none";
+      }
+      renderQuestion(data);
+    }).catch(function () {
+      els.startBtn.disabled = false;
+      els.startBtn.textContent = "Start quiz";
+      els.setupError.style.display = "";
+      els.setupError.textContent = "Could not start the quiz right now. Please try again.";
+    });
+  }
+
+  els.startBtn.addEventListener("click", function () {
+    beginSession({
+      lang_key: els.lang.value,
+      level_num: parseInt(els.level.value, 10),
+      difficulty: els.difficulty.value,
+      count: parseInt(els.count.value, 10),
+    });
+  });
+
+  els.retryBtn.addEventListener("click", function () {
+    postJson("/api/quiz/restart", {}).then(function (data) {
+      if (!data.ok) {
+        showCard("setup");
+        return;
+      }
+      showCard("play");
+      els.coaching.style.display = "none";
+      renderQuestion(data);
+    });
+  });
+
+  els.newBtn.addEventListener("click", function () {
+    postJson("/api/quiz/end", {}).then(function () {
+      showCard("setup");
+    });
+  });
+
+  showCard("setup");
+
+  /* Deep-link: /quiz?mode=daily */
+  var params = new URLSearchParams(window.location.search || "");
+  if ((params.get("mode") || "").toLowerCase() === "daily") {
+    beginSession({ mode: "daily", count: 5 });
+  }
+
+})();
+</script>
+
+{% endblock %}

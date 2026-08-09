@@ -1,0 +1,358 @@
+{
+  "language": "bidayuh",
+  "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0",
+  "dialect_variant": "Biatah Bidayuh (ASJP)",
+  "entries": [
+    {
+      "word": "aku",
+      "meaning_en": "1.25 110.00 72380 bit bth 1 I",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ku",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kam",
+      "meaning_en": "you",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kieh",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ata",
+      "meaning_en": "we",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ni",
+      "meaning_en": "one",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "duwuh",
+      "meaning_en": "two",
+      "part_of_speech": "number",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "iken",
+      "meaning_en": "fish",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kasoN",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "akak",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "jutis",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tNenkayuh",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dawun",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kurit",
+      "meaning_en": "skin",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "deya",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "turaN",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kajit",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batuh",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "unduN",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "jipuh",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "jura",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "taNan",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "sisuh",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hati",
+      "meaning_en": "liver",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "nok",
+      "meaning_en": "drink",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mok",
+      "meaning_en": "drink",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tiNga",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "diNah",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kabus",
+      "meaning_en": "die",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "munug",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tep",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batuhanu",
+      "meaning_en": "sun",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bitaN",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "pin",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "apui",
+      "meaning_en": "fire",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "aran",
+      "meaning_en": "path",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "siNarum",
+      "meaning_en": "night",
+      "part_of_speech": "pronoun",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bauh",
+      "meaning_en": "new",
+      "part_of_speech": "adjective",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "adun",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 4,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
+      "dialect_variant": "Biatah Bidayuh (ASJP)",
+      "source_ref": "ASJP Database wordlist Biatah Bidayuh (CLLD); CC BY 4.0"
+    }
+  ]
+}
