@@ -100,6 +100,37 @@ and seeds it with the course vocabulary/grammar/culture/quiz content.
 Delete `users.db` at any time to fully reset local data — it will be
 recreated automatically on the next run.
 
+### Deployment / Database Persistence
+
+Local development uses SQLite at `<project_root>/users.db` when
+`DATABASE_PATH` is unset.
+
+Render’s default filesystem is **ephemeral**: anything written outside a
+persistent disk (including a relative `users.db`) is lost on redeploy,
+restart, or when traffic hits another instance with its own empty disk.
+That can look like “registration succeeded but login fails” because the
+login request no longer sees the same SQLite file.
+
+For production on Render (or similar) while still using SQLite:
+
+1. Attach a **persistent disk** to the web service (example mount: `/var/data`).
+2. Set the environment variable to the database file on that disk:
+
+```
+DATABASE_PATH=/var/data/users.db
+```
+
+3. Keep the service at **one instance**. SQLite is a single-host file
+   database; multiple instances each get their own disk view and will not
+   share users.
+
+Both `app.py` and `database.py` resolve the same absolute path via
+`DATABASE_PATH` (or the local project-root fallback). Do **not** commit
+`users.db` or WAL/SHM sidecars — Render creates the file on the disk.
+
+If you need multiple instances or stronger durability, use a managed
+database such as PostgreSQL instead of SQLite.
+
 ### Production HTTPS (deployment-ready)
 
 Do **not** expose `python app.py` / the Flask development server to the

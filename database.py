@@ -9,7 +9,10 @@ import unicodedata
 from pathlib import Path
 from typing import Any, Iterable
 
-DATABASE = "users.db"
+from db_path import resolve_database_path
+
+# Same absolute path rules as app.py (DATABASE_PATH env or project-root users.db).
+DATABASE = resolve_database_path()
 VOCAB_PACK_DIR = Path(__file__).resolve().parent / "data" / "vocabulary"
 TARGET_VOCAB_PER_LANGUAGE = 250
 COURSE_LANGUAGES = ("iban", "kadazan-dusun", "bidayuh", "mah-meri")

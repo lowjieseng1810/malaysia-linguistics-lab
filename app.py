@@ -37,6 +37,8 @@ from database import (
     vocabulary_coverage_report,
     TARGET_VOCAB_PER_LANGUAGE,
 )
+from db_path import resolve_database_path
+import database as _database_module
 from composer import (
     print_composer_startup_status,
     refresh_composer_enabled,
@@ -213,7 +215,11 @@ def _establish_login_session(user_id, username):
 
 # ================= DATABASE =================
 
-DATABASE = "users.db"
+# Prefer DATABASE_PATH (absolute) on Render persistent disk; local fallback is
+# <project>/users.db. Keep app.py and database.py on the exact same path.
+DATABASE = resolve_database_path(app.root_path)
+_database_module.DATABASE = DATABASE
+print(f"[db] SQLite path: {DATABASE}")
 
 
 # ================= GOOGLE OAUTH =================
