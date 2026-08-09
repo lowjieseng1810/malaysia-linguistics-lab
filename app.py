@@ -3885,6 +3885,16 @@ EXPLORE_UNLOCKS = {
 
 }
 
+# Ensure the full app schema exists for WSGI/Gunicorn (e.g. Render).
+# `init_db()` is CREATE TABLE IF NOT EXISTS / additive ALTER only — safe for
+# existing local users.db. Without this, only `python app.py` (__main__) ever
+# created the `users` table, so POST /login failed with "no such table: users".
+try:
+    init_db()
+except Exception as _init_db_exc:
+    print(f"[db init] error: {_init_db_exc}")
+    raise
+
 # Seed tutor content tables from course data (no-op if already populated).
 # Also sync any new COURSE_DATA vocabulary into SQLite when the DB already exists.
 try:
