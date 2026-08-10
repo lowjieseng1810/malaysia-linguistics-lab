@@ -1,223 +1,218 @@
-# Malaysia Linguistics Lab — Exploring Malaysia's Languages Through Technology
+# Malaysia Linguistics Lab
 
-**Malaysia Linguistics Lab** is a Flask web app for learning four Malaysian minority/indigenous languages —
-**Iban**, **Kadazan-Dusun**, **Bidayuh**, and **Mah Meri** — through
-structured lessons, a searchable dictionary, quizzes, progress tracking, an
-interactive 3D language-family globe, and an optional GPT-powered AI tutor.
+**Malaysia Linguistics Lab** is a Flask web application for exploring and learning four Malaysian minority and indigenous languages — **Iban**, **Kadazan-Dusun**, **Bidayuh**, and **Mah Meri** — through structured lessons, a searchable dictionary, quizzes, progress tracking, a 3D World Explorer, and an optional AI tutor.
 
-> **Honesty note:** the AI Tutor depends on the OpenAI API and is
-> **optional**. Every other feature — dictionary, favorites, quizzes,
-> lessons, progress, comparison, and the world explorer — is built on local
-> Python logic and a local SQLite database, and works fully **without** an
-> OpenAI API key or any internet-dependent AI service.
+- **Live Demo:** [https://malaysialinguisticslab.onrender.com](https://malaysialinguisticslab.onrender.com)
+- **License:** MIT
+
+---
+
+## Overview
+
+Malaysia’s living languages carry community knowledge, place, and identity. This project brings a small set of those languages into an interactive learning space: encounter vocabulary and phrases in course levels, look words up in a shared dictionary, practice with quizzes, track progress, and explore language origins on a map and globe.
+
+Course lesson text lives in application data (`COURSE_DATA` in `app.py`). Dictionary, quiz, favorites, and related features use database tables seeded from that content. The optional AI Tutor is separate: chat answers go through OpenAI when configured, while the rest of the product does not require an AI API key.
+
+---
 
 ## Features
 
-| Area | What it does |
+- **Language lessons** — Level-based learning paths per language (vocabulary, discovery, response, and quiz-style steps), with unlocks and step progress saved per account.
+- **Dictionary** — Searchable vocabulary with language filters, sorting, pagination, word detail, and a random-word discovery card on the dashboard.
+- **Saved Words / Favorites** — Save and manage dictionary entries on a personal Saved Words page.
+- **Practice Quiz** — Deterministic, database-backed quizzes (language, level, difficulty, question count) with grading and results.
+- **Daily Quiz** — A daily challenge mode (`/quiz?mode=daily`) using the same quiz engine.
+- **Progress tracking** — Lesson completion and unlock state on language/learn pages; quiz mastery and related history on the profile.
+- **Achievements** — Collectible achievement stamps earned through exploration and learning.
+- **Heritage Passport** — Dashboard passport cards for discovering languages as you explore.
+- **Language comparison** — Side-by-side comparison of two supported languages.
+- **World Explorer** — Interactive Three.js Earth on the dashboard, with Malaysia exploration and deep links into learning content (WebGL required for the 3D view; other features remain available without it).
+- **AI Tutor (optional)** — In-app chat companion powered by OpenAI when an API key is set; core learning features keep working if the key is missing.
+- **Accounts** — Registration and login with email/password, password reset, CSRF-protected sessions, optional Google OAuth when `google_client_secret.json` is present, plus profile and mascot settings pages.
+
+---
+
+## Live Demo
+
+A deployed demo is available at:
+
+**[https://malaysialinguisticslab.onrender.com](https://malaysialinguisticslab.onrender.com)**
+
+The demo runs on Render. Expect normal free-tier cold starts after idle periods. Create your own account on the demo; do not rely on it for private or production data.
+
+---
+
+## Technology
+
+| Layer | Stack |
 |---|---|
-| **Lessons** | Structured, level-based lessons per language with vocabulary, grammar, and culture steps; progress and unlocks are persisted per user. |
-| **Dictionary** | Full-text vocabulary search across all four languages with language/POS/difficulty filters, sorting (A→Z, Z→A, longest/shortest, difficulty), pagination, and a word-detail view with IPA, examples, and culture notes where recorded. |
-| **Favorites** | Save/unsave any dictionary word to a personal, per-user "Saved Words" page. |
-| **Standalone Quiz** | A deterministic, database-backed quiz product (no AI involved): pick a language, level, difficulty, and question count; get instant feedback, a score, and a shareable results screen with retry. |
-| **Progress** | Two clearly separated metrics: **lesson completion** (unlocks levels on the dashboard/profile) and **quiz mastery** (practice accuracy, streaks, weak areas, recent quiz session history on the profile). |
-| **Language Comparison** | Side-by-side comparison of any two supported languages (region, family, vitality, writing system, sample vocabulary, available levels). |
-| **World Explorer** | An interactive 3D globe (Three.js) for discovering each language's origin, with live vocabulary counts and deep links into the dictionary/comparison pages. |
-| **AI Tutor (optional)** | A GPT-backed chat tutor that explains, teaches, and answers language questions, grounded by the same SQLite course data. Falls back to a clear "AI unavailable" message if no API key/credits are configured — it never blocks the rest of the site. |
-| **Accounts** | Email/password registration and login (with Google OAuth as an optional extra if configured), password reset, and CSRF-protected session-based auth. |
+| Backend | Python, Flask |
+| Templates | Jinja2 (`templates/`) |
+| Frontend | HTML/CSS/JavaScript (`static/`) |
+| 3D explorer | Three.js (CDN) + `static/js/earth-globe.js` |
+| Database | **SQLite** locally (`users.db`); **PostgreSQL** when `DATABASE_URL` is set (production) |
+| Auth extras | Flask-WTF (CSRF), Flask-Limiter, Authlib (optional Google OAuth) |
+| AI Tutor | OpenAI Python client (`composer.py`) when `AI_TUTOR_API_KEY` / `OPENAI_API_KEY` is set |
+| Production server | Gunicorn (see `requirements.txt`) |
 
-## Architecture
+---
 
-Two independent systems share the same course data:
-
-1. **Course content** (`LANGUAGES`, `COURSE_DATA`, `EXPLORE_UNLOCKS` in
-   [`app.py`](app.py)) is the single source of truth for lesson/quiz text.
-   It's plain Python data, not stored in the database.
-2. **AI Tutor pipeline** ([`tutor_service.py`](tutor_service.py)) seeds that
-   same course data into SQLite (`vocabulary`, `grammar`, `culture`, `quiz`
-   tables — schema in [`database.py`](database.py)) once at startup, then
-   answers tutor questions with a strict
-   **Planner → Retriever → Validator → optional LLM rewrite** flow. The LLM
-   is only ever allowed to rephrase already-validated database facts; it
-   never answers directly from its own knowledge, and it is never required
-   for the dictionary, quiz, favorites, progress, comparison, or explorer
-   features to work.
-
-See [`AGENTS.md`](AGENTS.md) for a deeper breakdown of the AI Tutor pipeline
-and file layout, aimed at contributors/agents working on the codebase.
-
-## Getting started
+## Getting Started
 
 ### Requirements
 
 - Python 3.10+
-- No external services required for the core product. An OpenAI API key is
-  only needed if you want the AI Tutor chat to give live GPT answers instead
-  of its offline fallback message.
+- No external services for core learning features
+- An OpenAI API key only if you want live AI Tutor replies
 
 ### Setup
 
 ```bash
-git clone <this-repo>
-cd malaysian_minority_languages_explorer
+git clone https://github.com/lowjieseng1810/malaysia-linguistics-lab.git
+cd malaysia-linguistics-lab
 
 python -m venv venv
-venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS/Linux
+# Windows
+venv\Scripts\activate
+# macOS / Linux
+# source venv/bin/activate
 
 pip install -r requirements.txt
 
-copy .env.example .env       # Windows
-# cp .env.example .env       # macOS/Linux
+# Windows
+copy .env.example .env
+# macOS / Linux
+# cp .env.example .env
 ```
 
-Edit `.env` and set at minimum:
+Edit `.env` and set at least:
 
 ```
 SECRET_KEY=<a long random string>
 ```
 
-Generate one with:
+Generate a key:
 
 ```bash
 python -c "import secrets; print(secrets.token_hex(32))"
 ```
 
-All other variables in `.env.example` are optional — see the comments in
-that file for what each one does. Leaving `AI_TUTOR_API_KEY` blank is fine;
-the app runs normally and the AI Tutor simply reports itself as
-unavailable.
-
-### Run
+### Run locally
 
 ```bash
 python app.py
 ```
 
-Then open `http://127.0.0.1:5000`.
+Open [http://127.0.0.1:5000](http://127.0.0.1:5000).
 
-On first run, `init_db()` creates the database schema and seeds course
-vocabulary/grammar/culture/quiz content.
+On first run, `init_db()` creates schema and seeds course vocabulary/grammar/culture/quiz content as needed.
 
-### Database (PostgreSQL production / SQLite local)
+### Database: local SQLite vs production PostgreSQL
 
-**Production (Render):** set `DATABASE_URL` to your Render PostgreSQL
-internal URL. The app uses PostgreSQL whenever `DATABASE_URL` is set.
-Do **not** commit `.env` or paste real URLs into the repo.
+- **Local development:** leave `DATABASE_URL` unset. The app uses SQLite at `<project_root>/users.db` (optional override: `DATABASE_PATH`).
+- **Production:** set `DATABASE_URL` to your PostgreSQL URL. The app uses Postgres whenever that variable is set. Render may provide `postgres://…`; the app normalizes it to `postgresql://…`.
 
-```
-DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
-```
-
-Render may show `postgres://…`; the app normalizes that to
-`postgresql://…` automatically. Never log `DATABASE_URL`.
-
-**Local development:** leave `DATABASE_URL` unset. The app falls back to
-SQLite at `<project_root>/users.db` (optional override:
-`DATABASE_PATH=/absolute/path/to/users.db`). Delete local `users.db` only
-if you intentionally want a full local reset.
-
-**Why PostgreSQL on Render:** the free web filesystem is ephemeral (no
-persistent disk on Free). SQLite files there do not reliably survive
-redeploys or multiple instances. Managed Postgres keeps users, progress,
-favorites, and related data durable and shareable across instances.
-
-**Notes:**
-- Schema init is idempotent (`CREATE IF NOT EXISTS` / additive columns).
-- Content seeding is largely no-op when vocabulary already exists.
-- Optional one-off copy from local SQLite → Postgres:
-  `python qa_temp/migrate_sqlite_to_postgres.py` (requires `DATABASE_URL`;
-  does not delete `users.db`; never logs password hashes).
-- Free Render Postgres expires after 30 days unless upgraded.
-
-### Production HTTPS (deployment-ready)
-
-Do **not** expose `python app.py` / the Flask development server to the
-public internet. Terminate TLS at a reverse proxy (Nginx, Caddy, etc.) or
-a platform load balancer, and run the app with a WSGI server (e.g.
-Waitress/Gunicorn) behind it.
-
-On the app side, set in `.env`:
-
-```
-FLASK_ENV=production
-FLASK_DEBUG=false
-SECRET_KEY=<long random value>
-TRUST_PROXY=true
-FORCE_HTTPS=true
-```
-
-- `TRUST_PROXY=true` — honour `X-Forwarded-Proto` / `Host` from the proxy
-  (required so Secure cookies and redirects see HTTPS correctly).
-- `FORCE_HTTPS=true` — redirect HTTP→HTTPS (localhost skipped), Prefer
-  HTTPS URL generation, Secure session cookies, and HSTS on secure
-  responses.
-
-**Remaining step on the server (not done in this repo):** obtain a trusted
-certificate for your domain (e.g. Let’s Encrypt via Certbot or your host’s
-managed TLS), point the proxy at the WSGI app, and forward
-`X-Forwarded-Proto` / `X-Forwarded-For`. A self-signed cert is fine for
-local experiments only — not production.
+Do not commit `.env` or real database URLs. Schema init is idempotent (`CREATE IF NOT EXISTS` / additive columns).
 
 ### Optional: Google sign-in
 
-Google OAuth only activates if a valid `google_client_secret.json` (Google
-Cloud OAuth client credentials) is placed in the project root. If it's
-missing or invalid, the app logs a warning at startup and simply omits the
-"Sign in with Google" option — email/password accounts still work fully.
+Place a valid Google OAuth client file as `google_client_secret.json` in the project root. If it is missing or invalid, Google sign-in is skipped and email/password auth still works. Never commit that file.
 
-## Project structure
+### Production notes
+
+Do not expose the Flask development server publicly. Use a WSGI server (for example Gunicorn) behind TLS termination. For reverse-proxy HTTPS setups, see `TRUST_PROXY` and `FORCE_HTTPS` in `.env.example`.
+
+---
+
+## Environment Variables
+
+Copy [`.env.example`](.env.example) to `.env` and supply your own values. Never commit real credentials.
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `SECRET_KEY` | **Yes** | Signs session cookies and CSRF tokens |
+| `FLASK_DEBUG` | No | Debug mode (keep `false` on public hosts) |
+| `FLASK_ENV` | No | `development` or `production` |
+| `FLASK_HOST` | No | Bind host for `python app.py` |
+| `DATABASE_PATH` | No | Override local SQLite file path |
+| `DATABASE_URL` | No | PostgreSQL URL (enables Postgres instead of SQLite) |
+| `TRUST_PROXY` | No | Honour `X-Forwarded-*` behind a reverse proxy |
+| `FORCE_HTTPS` | No | Prefer HTTPS redirects / Secure cookies |
+| `AI_TUTOR_API_KEY` | No | OpenAI key for AI Tutor chat (`OPENAI_API_KEY` also accepted) |
+| `AI_TUTOR_MODEL` | No | Model name when the tutor is enabled |
+| `DEBUG_TUTOR` | No | Enables `/api/tutor/debug/*` for logged-in users when `true` |
+
+`.env.example` contains placeholders only. Use your own API keys, OAuth client file, and database credentials.
+
+---
+
+## AI Tutor
+
+The AI Tutor is **optional**.
+
+- With a valid `AI_TUTOR_API_KEY` (or `OPENAI_API_KEY`), chat replies are generated via OpenAI (`compose_general_tutor_response()` in `composer.py`), orchestrated by `tutor_service.py`.
+- Without a key (or if the API is unavailable), the tutor reports that AI is unavailable; **dictionary, favorites, practice/daily quiz, lessons, progress, comparison, achievements, and World Explorer continue to work**.
+- In-tutor quiz actions remain deterministic (`quiz_service.py`) and do not require the LLM for grading.
+- Course content is still stored in the database for dictionary/quiz/lessons; it is not used as a mandatory refuse-gate for ordinary tutor chat.
+
+---
+
+## Project Structure
 
 ```
-app.py                 Flask routes, auth, dashboard, dictionary/quiz/favorites APIs
-database.py             SQLite schema + seeding for the AI Tutor's content tables
-tutor_service.py        AI Tutor orchestration (planner -> retrieval -> validator -> composer)
-planner.py               Classifies user questions into structured retrieval operations
-retrieval.py             Executes SQL / dictionary search, returns rows + query used
-validator.py             Rejects zero/low-confidence evidence before any LLM call
-composer.py               OpenAI API integration (only ever rephrases validated facts)
-quiz_service.py          Deterministic quiz logic for both the chat quiz and standalone quiz
-learning_memory.py       Per-user quiz mastery / weak-area tracking
-language_registry.py     Canonical language keys, display names, aliases
-templates/               Jinja2 templates (dashboard, dictionary, quiz, favorites, compare, ...)
-static/js, static/css    Frontend behavior and styling
-qa_temp/                 Manual QA/acceptance scripts used during development (not shipped tests)
+app.py                 Flask app: routes, auth, course data, init_db
+db.py                  SQLite / PostgreSQL connection layer
+database.py            Content table seeding (vocabulary, grammar, culture, quiz)
+quiz_service.py        Practice and daily quiz session logic
+tutor_service.py       AI Tutor chat orchestration
+composer.py            OpenAI client for tutor replies
+achievements.py        Achievement definitions and evaluation
+language_registry.py   Language keys and display names from DB content
+learning_memory.py     Quiz mastery / weak-area helpers
+templates/             Jinja2 pages (dashboard, lessons, dictionary, quiz, …)
+static/js              Frontend (earth-globe, level, dashboard, tutor, …)
+static/css             Stylesheets
+requirements.txt       Python dependencies
+.env.example           Environment variable template (no secrets)
+AGENTS.md              Contributor/agent notes for this codebase
 ```
+
+---
 
 ## Testing
 
-There is no `pytest` suite; instead there are runnable Python scripts under
-`qa_temp/` that exercise the real Flask app + SQLite database via Flask's
-test client:
+This repository does **not** ship an automated `pytest` suite.
 
-```bash
-python qa_temp/non_ai_acceptance.py   # dictionary, favorites, quiz, progress, lessons, compare, explorer, security
-python qa_temp/test_dictionary_suite.py
-python qa_temp/robustness_audit.py
-```
+Practical checks you can run locally:
 
-These do **not** require an OpenAI API key — they specifically cover the
-non-AI product surface.
+1. Create `.env` from `.env.example`, set `SECRET_KEY`, install dependencies, and run `python app.py`.
+2. Exercise dictionary, favorites, practice/daily quiz, a lesson level, compare, achievements, and profile while logged in.
+3. Confirm the AI Tutor shows an unavailable state when no API key is set, and replies when a valid key is configured.
+4. Optionally run Python’s compiler check on modules you change, for example:
+   `python -m py_compile app.py`
 
-## Known limitations
+Development-only scratch scripts may exist under `qa_temp/` locally; that folder is gitignored and is not part of the public test surface.
 
-- The AI Tutor depends on OpenAI API availability/quota. If the API key is
-  missing or billing/quota is exhausted, the Tutor chat falls back to its
-  offline path — **dictionary, favorites, standalone quiz, lessons,
-  progress, comparison, and the world explorer keep working fully**.
-- Vocabulary coverage varies by language and is limited to what has been
-  manually curated in `COURSE_DATA` — the dictionary does not claim to be
-  an exhaustive lexicon, and missing IPA/examples are left blank rather
-  than invented.
-- Linguistic classifications (family, vitality status, speaker estimates)
-  shown on the comparison/explorer pages are general reference information
-  and may be refined as the project incorporates more community/linguistic
-  sources.
-- The 3D World Explorer requires WebGL; devices without it see a clear
-  fallback message and can still use every other learning feature.
+---
+
+## Known Limitations
+
+- The AI Tutor depends on OpenAI availability and quota when enabled; without a key, only the tutor chat is limited.
+- Vocabulary and course coverage are curated for the four supported languages and are not an exhaustive lexicon.
+- Linguistic metadata on comparison/explorer surfaces (family, region, vitality-style notes) is general reference material and may be refined over time.
+- The 3D World Explorer needs WebGL; unsupported devices see a fallback and can still use other features.
+- Free hosted demos (including Render free tier) may sleep when idle and are not a substitute for your own deployment.
+
+---
 
 ## Contributing
 
-Issues and pull requests are welcome. Please keep the separation described
-above (course data vs. AI Tutor pipeline) intact, and avoid hardcoding
-answers for individual test questions — the retrieval/validator layers are
-meant to generalize.
+Issues and pull requests are welcome.
+
+Please keep course content and the optional AI Tutor as separate concerns, avoid committing secrets (`.env`, `google_client_secret.json`, local `users.db`), and prefer small, reviewable changes. See [`AGENTS.md`](AGENTS.md) for codebase conventions aimed at contributors.
+
+---
+
+## License
+
+This project is licensed under the **MIT License**.
