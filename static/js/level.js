@@ -112,8 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let answerChecked = false;
 
-    let progressSaved =
-        savedStep >= lessonData.steps.length;
+    // Completion POST is independent of step cursor. Using step count here
+    // skipped /complete-level after refresh when steps were saved but the
+    // level was never marked complete (next level stayed locked).
+    let progressSaved = !!lessonData.levelCompleted;
 
     let progressSaving = false;
 

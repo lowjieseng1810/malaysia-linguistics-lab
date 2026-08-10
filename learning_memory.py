@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Optional
 
-from db import get_db
+from db import get_db, row_to_dict
 
 
 def init_user_progress_table(conn=None) -> None:
@@ -121,7 +121,7 @@ def get_lesson_stats(
         (user_id, language, lesson_id),
     ).fetchall()
     conn.close()
-    items = [dict(r) for r in rows]
+    items = [row_to_dict(r) for r in rows]
     total_correct = sum(int(r["correct"]) for r in items)
     total_wrong = sum(int(r["wrong"]) for r in items)
     weak = sorted(
@@ -202,7 +202,7 @@ def get_user_mastery_summary(user_id: int) -> dict[str, Any]:
     ).fetchall()
     conn.close()
 
-    items = [dict(r) for r in rows]
+    items = [row_to_dict(r) for r in rows]
     total_correct = sum(int(r["correct"]) for r in items)
     total_wrong = sum(int(r["wrong"]) for r in items)
     answered = total_correct + total_wrong
@@ -325,4 +325,4 @@ def get_quiz_history(user_id: int, limit: int = 10) -> list[dict[str, Any]]:
         (user_id, max(1, min(50, int(limit)))),
     ).fetchall()
     conn.close()
-    return [dict(r) for r in rows]
+    return [row_to_dict(r) for r in rows]

@@ -320,9 +320,10 @@
     var el = document.getElementById("quiz-languages-json");
     var raw = el ? (el.innerHTML || el.textContent || "").trim() : "";
     try {
-      return raw ? JSON.parse(raw) : {};
+      var parsed = raw ? JSON.parse(raw) : [];
+      return Array.isArray(parsed) ? parsed : [];
     } catch (err) {
-      return {};
+      return [];
     }
   })();
 
@@ -530,8 +531,18 @@
 
   showCard("setup");
 
-  /* Deep-link: /quiz?mode=daily */
+  /* Deep-link: /quiz?mode=daily and/or ?lang=iban */
   var params = new URLSearchParams(window.location.search || "");
+  var deepLang = (params.get("lang") || params.get("language") || "").trim();
+  if (deepLang && els.lang) {
+    var matchOpt = Array.from(els.lang.options || []).find(function (opt) {
+      return opt.value === deepLang;
+    });
+    if (matchOpt) {
+      els.lang.value = deepLang;
+      populateLevels();
+    }
+  }
   if ((params.get("mode") || "").toLowerCase() === "daily") {
     beginSession({ mode: "daily", count: 5 });
   }

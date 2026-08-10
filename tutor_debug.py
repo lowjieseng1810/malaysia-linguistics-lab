@@ -14,7 +14,7 @@ import time
 from collections import defaultdict
 from typing import Any, Optional
 
-from db import get_db
+from db import get_db, row_to_dict
 from language_registry import display_name, get_language_keys
 
 
@@ -548,7 +548,7 @@ def find_duplicates() -> dict[str, Any]:
         ORDER BY language, id
         """
     ).fetchall()
-    items = [dict(r) for r in rows]
+    items = [row_to_dict(r) for r in rows]
 
     # Within-language duplicate words
     by_lang_word: dict[tuple, list] = defaultdict(list)

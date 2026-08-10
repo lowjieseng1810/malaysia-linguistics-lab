@@ -11,7 +11,7 @@ import re
 import time
 from typing import Optional
 
-from db import get_db
+from db import get_db, row_value
 
 _CACHE: Optional[dict] = None
 _CACHE_TS: float = 0.0
@@ -87,7 +87,16 @@ def _load_keys_from_db() -> list[str]:
             ORDER BY lang
             """
         ).fetchall()
-        return [str(r[0]).strip() for r in rows if r[0]]
+        # PG dict_row has no integer keys — use column name (first SELECT alias).
+        keys: list[str] = []
+        for r in rows:
+            raw = row_value(r, "lang", "language", index=0)
+            if raw is None:
+                continue
+            text = str(raw).strip()
+            if text:
+                keys.append(text)
+        return keys
     finally:
         conn.close()
 

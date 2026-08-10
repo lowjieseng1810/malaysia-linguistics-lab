@@ -367,6 +367,41 @@ document.body.appendChild(
     loadingOverlay
 );
 
+/**
+ * Always clear the full-viewport loader. If Three init throws or textures hang
+ * before animate() runs, this overlay otherwise blocks every click (sidebar,
+ * Dictionary, Quiz, etc.).
+ */
+function dismissHeroLoadingOverlay() {
+    const el =
+        document.getElementById("hero-loading-overlay") ||
+        loadingOverlay;
+    if (!el || !el.parentNode) {
+        return;
+    }
+    try {
+        el.style.pointerEvents = "none";
+        el.style.opacity = "0";
+        el.remove();
+    } catch (dismissError) {
+        console.warn("[earth-globe] overlay dismiss failed", dismissError);
+        try {
+            el.remove();
+        } catch (ignored) {
+            /* ignore */
+        }
+    }
+    if (!heroLoaded) {
+        heroLoaded = true;
+        loadCompleteTime = performance.now();
+    }
+}
+
+const heroOverlayFailsafeId = window.setTimeout(function () {
+    console.warn("[earth-globe] forcing hero loader dismiss (timeout)");
+    dismissHeroLoadingOverlay();
+}, 6000);
+
 const loadingAudio = {
     start: () => {},
     progress: () => {},
@@ -453,6 +488,7 @@ loadingManager.onError =
         );
     };
 
+    try {
 
     /* =========================================
        REMOVE OLD THREE CONTAINER
@@ -3366,11 +3402,8 @@ if (heroLoaded) {
                     String(1 - fade);
 
                 if (fade >= 1) {
-                    if (
-                        loadingOverlay.parentNode
-                    ) {
-                        loadingOverlay.remove();
-                    }
+                    window.clearTimeout(heroOverlayFailsafeId);
+                    dismissHeroLoadingOverlay();
                 }
             }
 
@@ -3866,6 +3899,26 @@ if (
     window.dispatchEvent(
         new CustomEvent("earthExplorerReady")
     );
+
+    } catch (earthInitError) {
+        console.error(
+            "[earth-globe] init failed; clearing loader so navigation stays usable.",
+            earthInitError
+        );
+        window.clearTimeout(heroOverlayFailsafeId);
+        dismissHeroLoadingOverlay();
+        if (globeStage) {
+            globeStage.innerHTML =
+                '<div class="globe-fallback" role="status">' +
+                '<p><strong>3D globe could not start</strong></p>' +
+                '<p>You can still use Dictionary, Quiz, Achievements, and the language cards.</p>' +
+                '</div>';
+        }
+        if (exploreButton) {
+            exploreButton.disabled = true;
+            exploreButton.setAttribute("aria-disabled", "true");
+        }
+    }
 
 });
 

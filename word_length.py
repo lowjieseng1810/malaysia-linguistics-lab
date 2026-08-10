@@ -10,6 +10,8 @@ from __future__ import annotations
 import re
 import unicodedata
 
+from db import row_to_dict
+
 
 def normalized_word_form(word: str) -> str:
     """
@@ -53,7 +55,7 @@ def rank_rows_by_word_length(
     """
     enriched: list[dict] = []
     for row in rows or []:
-        item = dict(row)
+        item = row_to_dict(row)
         item["word_len"] = normalized_word_length(item.get("word") or "")
         enriched.append(item)
 

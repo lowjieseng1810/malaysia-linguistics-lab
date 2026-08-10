@@ -12,7 +12,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Optional, TYPE_CHECKING
 
-from db import get_db
+from db import get_db, row_to_dict
 from word_length import (
     COMPLETE_SCAN_NOTE,
     normalized_word_length,
@@ -117,7 +117,7 @@ def _resolve_target_language(
 
 
 def _rows_to_dicts(rows) -> list[dict]:
-    return [dict(row) for row in rows]
+    return [row_to_dict(row) for row in rows]
 
 
 def _format_sql(sql: str, params: list[Any]) -> str:
@@ -175,7 +175,7 @@ def _run_query(sql: str, params: list[Any], fetch_one: bool = False) -> list[dic
     try:
         if fetch_one:
             row = conn.execute(sql, params).fetchone()
-            return [dict(row)] if row else []
+            return [row_to_dict(row)] if row else []
         rows = conn.execute(sql, params).fetchall()
         return _rows_to_dicts(rows)
     finally:
@@ -964,7 +964,7 @@ def execute_plan(plan: "TutorPlan") -> EvidenceBundle:
             if key in seen:
                 continue
             seen.add(key)
-            tagged = dict(row)
+            tagged = row_to_dict(row)
             tagged["_source_op"] = hit.name
             tagged["_source_table"] = hit.table
             # Preserve which language this op targeted

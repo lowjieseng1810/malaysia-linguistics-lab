@@ -478,6 +478,7 @@
             {% set pct = language_progress[lang_key].percentage if language_progress.get(lang_key) else 0 %}
             <a class="language-card {{ card_class.get(lang_key, lang_key ~ '-card') }} living-world-card"
                href="{{ meta.learn_url }}"
+               data-progress="{{ pct }}"
                aria-label="Open {{ meta.display_name }} language course">
                 <div class="language-card-content living-world-content">
                     <span class="language-region">{{ meta.region or '' }}</span>

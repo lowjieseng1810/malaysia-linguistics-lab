@@ -130,6 +130,58 @@ def adapt_sql(sql: str) -> str:
     return out
 
 
+def row_value(row: Any, *names: str, index: Optional[int] = None) -> Any:
+    """Read a column from SQLite Row or PostgreSQL dict_row safely.
+
+    Prefer named columns. Fall back to positional index only for sequence-like
+    rows (sqlite3.Row / tuple). Never use ``row[0]`` on dict rows — that raises
+    ``KeyError: 0`` under psycopg ``dict_row``.
+    """
+    if row is None:
+        return None
+
+    if isinstance(row, dict):
+        for name in names:
+            if name in row:
+                return row[name]
+        lower_map = {str(k).lower(): v for k, v in row.items()}
+        for name in names:
+            if name.lower() in lower_map:
+                return lower_map[name.lower()]
+        if index is not None:
+            values = list(row.values())
+            if 0 <= index < len(values):
+                return values[index]
+        return None
+
+    for name in names:
+        try:
+            return row[name]
+        except (KeyError, IndexError, TypeError):
+            continue
+
+    if index is not None:
+        try:
+            return row[index]
+        except (KeyError, IndexError, TypeError):
+            return None
+    return None
+
+
+def row_to_dict(row: Any) -> dict:
+    """Normalize a DB row to a plain dict (SQLite Row or PG dict_row)."""
+    if row is None:
+        return {}
+    if isinstance(row, dict):
+        return dict(row)
+    try:
+        return dict(row)
+    except Exception:
+        if hasattr(row, "keys"):
+            return {k: row[k] for k in row.keys()}
+        return {str(i): v for i, v in enumerate(row)}
+
+
 class _CursorProxy:
     """Thin cursor wrapper with lastrowid helper for both backends."""
 
@@ -194,7 +246,7 @@ class DbConnection:
             if wants_id:
                 row = cur.fetchone()
                 if row is not None:
-                    last_id = row["id"] if isinstance(row, dict) else row[0]
+                    last_id = row_value(row, "id", index=0)
             return _CursorProxy(cur, self.dialect, last_id)
 
         if params is None:
@@ -279,17 +331,18 @@ def table_columns(conn: DbConnection, table: str) -> set[str]:
         ).fetchall()
         names = set()
         for row in rows:
-            if isinstance(row, dict):
-                names.add(str(row["column_name"]).lower())
-            else:
-                names.add(str(row[0]).lower())
+            val = row_value(row, "column_name", index=0)
+            if val is not None:
+                names.add(str(val).lower())
         return names
 
     rows = conn.execute(f"PRAGMA table_info({table})").fetchall()
     names = set()
     for row in rows:
-        # sqlite3.Row: index 1 is name
-        names.add(str(row[1]).lower())
+        # sqlite3.Row: index 1 is name (cid, name, type, ...)
+        val = row_value(row, "name", index=1)
+        if val is not None:
+            names.add(str(val).lower())
     return names
 
 

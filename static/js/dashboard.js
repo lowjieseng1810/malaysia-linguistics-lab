@@ -1785,6 +1785,14 @@ document.addEventListener("DOMContentLoaded", function () {
             return 0;
         }
 
+        // Prefer explicit data-progress on language cards (dashboard cards no
+        // longer render a .progress-fill control).
+        if (originalCard.dataset && originalCard.dataset.progress != null) {
+            const fromData = Number(originalCard.dataset.progress);
+            if (!Number.isNaN(fromData)) {
+                return fromData;
+            }
+        }
 
         const progressElement =
             originalCard.querySelector(
@@ -1798,7 +1806,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const progressValue =
-            Number(progressElement.value);
+            Number(
+                progressElement.value != null
+                    ? progressElement.value
+                    : progressElement.getAttribute("data-progress")
+            );
 
 
         if (Number.isNaN(progressValue)) {
@@ -3329,6 +3341,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             function onFlightComplete() {
 
+                if (
+                    explorerCard.classList.contains("has-arrived") ||
+                    explorerCard.dataset.flightCompleteHandled === "1"
+                ) {
+                    return;
+                }
+                explorerCard.dataset.flightCompleteHandled = "1";
+
                 window.removeEventListener(
                     "earthMalaysiaFlightComplete",
                     onFlightComplete
@@ -3381,6 +3401,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 "earthMalaysiaFlightComplete",
                 onFlightComplete
             );
+
+            // If the Earth flight never finishes (WebGL stall / missing event),
+            // still open Malaysia so the CTA is not permanently disabled.
+            window.setTimeout(function () {
+                if (
+                    !explorerCard.classList.contains("has-arrived") &&
+                    transitionRunning
+                ) {
+                    console.warn(
+                        "[dashboard] Malaysia flight timed out; forcing arrival."
+                    );
+                    onFlightComplete();
+                }
+            }, 12000);
 
             explorerCard.dataset.explorerState =
                 "entering";

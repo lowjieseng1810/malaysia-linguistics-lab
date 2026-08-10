@@ -393,11 +393,13 @@ def composer_mode_for(plan, evidence_mode: str = "database") -> str:
 
 
 def _sanitize_rows(rows: list[dict], limit: int = 40) -> list[dict]:
+    from db import row_to_dict
+
     clean = []
     drop = {"audio_path", "image_path"}
     for row in rows[:limit]:
         item = {
-            k: v for k, v in dict(row).items()
+            k: v for k, v in row_to_dict(row).items()
             if not str(k).startswith("_") and k not in drop and v not in (None, "")
         }
         if item:
