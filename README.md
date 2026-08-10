@@ -95,41 +95,39 @@ python app.py
 
 Then open `http://127.0.0.1:5000`.
 
-On first run, `init_db()` creates `users.db` (SQLite) in the project root
-and seeds it with the course vocabulary/grammar/culture/quiz content.
-Delete `users.db` at any time to fully reset local data — it will be
-recreated automatically on the next run.
+On first run, `init_db()` creates the database schema and seeds course
+vocabulary/grammar/culture/quiz content.
 
-### Deployment / Database Persistence
+### Database (PostgreSQL production / SQLite local)
 
-Local development uses SQLite at `<project_root>/users.db` when
-`DATABASE_PATH` is unset.
-
-Render’s default filesystem is **ephemeral**: anything written outside a
-persistent disk (including a relative `users.db`) is lost on redeploy,
-restart, or when traffic hits another instance with its own empty disk.
-That can look like “registration succeeded but login fails” because the
-login request no longer sees the same SQLite file.
-
-For production on Render (or similar) while still using SQLite:
-
-1. Attach a **persistent disk** to the web service (example mount: `/var/data`).
-2. Set the environment variable to the database file on that disk:
+**Production (Render):** set `DATABASE_URL` to your Render PostgreSQL
+internal URL. The app uses PostgreSQL whenever `DATABASE_URL` is set.
+Do **not** commit `.env` or paste real URLs into the repo.
 
 ```
-DATABASE_PATH=/var/data/users.db
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE
 ```
 
-3. Keep the service at **one instance**. SQLite is a single-host file
-   database; multiple instances each get their own disk view and will not
-   share users.
+Render may show `postgres://…`; the app normalizes that to
+`postgresql://…` automatically. Never log `DATABASE_URL`.
 
-Both `app.py` and `database.py` resolve the same absolute path via
-`DATABASE_PATH` (or the local project-root fallback). Do **not** commit
-`users.db` or WAL/SHM sidecars — Render creates the file on the disk.
+**Local development:** leave `DATABASE_URL` unset. The app falls back to
+SQLite at `<project_root>/users.db` (optional override:
+`DATABASE_PATH=/absolute/path/to/users.db`). Delete local `users.db` only
+if you intentionally want a full local reset.
 
-If you need multiple instances or stronger durability, use a managed
-database such as PostgreSQL instead of SQLite.
+**Why PostgreSQL on Render:** the free web filesystem is ephemeral (no
+persistent disk on Free). SQLite files there do not reliably survive
+redeploys or multiple instances. Managed Postgres keeps users, progress,
+favorites, and related data durable and shareable across instances.
+
+**Notes:**
+- Schema init is idempotent (`CREATE IF NOT EXISTS` / additive columns).
+- Content seeding is largely no-op when vocabulary already exists.
+- Optional one-off copy from local SQLite → Postgres:
+  `python qa_temp/migrate_sqlite_to_postgres.py` (requires `DATABASE_URL`;
+  does not delete `users.db`; never logs password hashes).
+- Free Render Postgres expires after 30 days unless upgraded.
 
 ### Production HTTPS (deployment-ready)
 

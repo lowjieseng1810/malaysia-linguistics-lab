@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Optional
 
-from database import get_db
+from db import get_db
 
 
 def init_user_progress_table(conn=None) -> None:

@@ -10,17 +10,20 @@ chat.
 
 - Install from [`requirements.txt`](requirements.txt) (`flask`, `flask-wtf`,
   `flask-limiter`, `authlib`, `python-dotenv`, `werkzeug`, `requests`,
-  `openai` — OpenAI client lives in [composer.py](composer.py)).
+  `openai`, `psycopg` — OpenAI client lives in [composer.py](composer.py)).
 - Entry point: `python app.py` (from this folder). Requires a `.env` with at
   least `SECRET_KEY` (app raises `RuntimeError` at import time if missing).
   See [`.env.example`](.env.example) for optional keys (`FLASK_DEBUG`,
-  `FLASK_ENV`, `AI_TUTOR_API_KEY`, `AI_TUTOR_MODEL`, `DEBUG_TUTOR`).
+  `FLASK_ENV`, `DATABASE_URL`, `DATABASE_PATH`, `AI_TUTOR_API_KEY`,
+  `AI_TUTOR_MODEL`, `DEBUG_TUTOR`).
 - Google OAuth is optional — only registers if `google_client_secret.json`
   exists and is valid; otherwise it just logs a warning and skips it.
-- SQLite DB is `users.db`, auto-created/migrated by `init_db()` in
-  [app.py](app.py) on first run (adds columns via `ALTER TABLE` if missing —
-  don't assume a fixed schema, check `init_db()` for the current one).
-  Delete `users.db` to fully reset local data.
+- Database access goes through [`db.py`](db.py): if `DATABASE_URL` is set,
+  use **PostgreSQL** (production / Render); otherwise use local **SQLite**
+  `users.db` (optional `DATABASE_PATH`). Schema is created/migrated by
+  `init_db()` in [app.py](app.py) (`CREATE IF NOT EXISTS` / additive
+  columns — never DROP users). Delete local `users.db` only to reset local
+  data.
 - Non-AI product surface (dictionary, favorites, `/quiz`, lessons, compare,
   explorer, profile) works fully without an OpenAI key. See [`README.md`](README.md).
 
@@ -35,7 +38,7 @@ chat.
    There is no mandatory course-database retrieval or domain gate before GPT
    can answer. The in-tutor Quiz button / active-quiz grading remain
    deterministic via [quiz_service.py](quiz_service.py).
-   Course content is still seeded into SQLite (`vocabulary`, `grammar`,
+   Course content is still seeded into the database (`vocabulary`, `grammar`,
    `culture`, `quiz` — [database.py](database.py)) for dictionary / standalone
    quiz / lessons — not as a tutor answer gate.
    Tutor turns are audited to [logs/tutor_retrieval.jsonl](logs/tutor_retrieval.jsonl).

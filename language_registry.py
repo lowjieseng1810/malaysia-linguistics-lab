@@ -11,7 +11,7 @@ import re
 import time
 from typing import Optional
 
-from database import get_db
+from db import get_db
 
 _CACHE: Optional[dict] = None
 _CACHE_TS: float = 0.0

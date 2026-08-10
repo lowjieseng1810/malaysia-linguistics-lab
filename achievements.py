@@ -1,6 +1,6 @@
 """Persistent, idempotent achievement definitions and unlock engine.
 
-Uses only verifiable SQLite activity — never fabricates progress.
+Uses only verifiable activity data — never fabricates progress.
 """
 
 from __future__ import annotations
@@ -9,7 +9,7 @@ import time
 from datetime import datetime
 from typing import Any
 
-from database import get_db
+from db import get_db
 
 # Category keys used by the gallery UI.
 CATEGORIES = (

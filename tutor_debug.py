@@ -14,7 +14,7 @@ import time
 from collections import defaultdict
 from typing import Any, Optional
 
-from database import get_db
+from db import get_db
 from language_registry import display_name, get_language_keys
 
 

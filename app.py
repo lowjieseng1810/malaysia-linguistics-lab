@@ -37,8 +37,15 @@ from database import (
     vocabulary_coverage_report,
     TARGET_VOCAB_PER_LANGUAGE,
 )
-from db_path import resolve_database_path
-import database as _database_module
+from db import (
+    describe_backend,
+    get_db,
+    get_sqlite_path,
+    is_postgres,
+    set_sqlite_path,
+    startup_lock,
+    table_columns,
+)
 from composer import (
     print_composer_startup_status,
     refresh_composer_enabled,
@@ -93,7 +100,6 @@ import random
 import re
 import requests
 import secrets
-import sqlite3
 import time
 
 
@@ -215,11 +221,11 @@ def _establish_login_session(user_id, username):
 
 # ================= DATABASE =================
 
-# Prefer DATABASE_PATH (absolute) on Render persistent disk; local fallback is
-# <project>/users.db. Keep app.py and database.py on the exact same path.
-DATABASE = resolve_database_path(app.root_path)
-_database_module.DATABASE = DATABASE
-print(f"[db] SQLite path: {DATABASE}")
+# Production: DATABASE_URL → PostgreSQL. Local: SQLite under project root
+# (optional DATABASE_PATH). Never log credentials.
+if not is_postgres():
+    set_sqlite_path(get_sqlite_path(app.root_path))
+print(f"[db] Backend: {describe_backend()}")
 
 
 # ================= GOOGLE OAUTH =================
@@ -326,26 +332,9 @@ AI_TUTOR_ENABLED = bool(
 
 # ================= DATABASE FUNCTIONS =================
 
-def get_db():
-
-    conn = sqlite3.connect(
-        DATABASE
-    )
-
-    conn.row_factory = sqlite3.Row
-    # Enforce FK constraints for this connection (SQLite defaults them OFF).
-    # Safe / non-destructive: only rejects invalid writes; does not migrate data.
-    conn.execute("PRAGMA foreign_keys = ON")
-
-    return conn
-
-
 def init_db():
 
-    conn = sqlite3.connect(
-        DATABASE
-    )
-    conn.execute("PRAGMA foreign_keys = ON")
+    conn = get_db()
 
 
     # ================= USERS TABLE =================
@@ -368,15 +357,7 @@ def init_db():
     """)
 
 
-    user_columns = {
-
-        row[1]
-
-        for row in conn.execute(
-            "PRAGMA table_info(users)"
-        ).fetchall()
-
-    }
+    user_columns = table_columns(conn, "users")
 
 
     if "provider" not in user_columns:
@@ -3893,22 +3874,20 @@ EXPLORE_UNLOCKS = {
 
 # Ensure the full app schema exists for WSGI/Gunicorn (e.g. Render).
 # `init_db()` is CREATE TABLE IF NOT EXISTS / additive ALTER only — safe for
-# existing local users.db. Without this, only `python app.py` (__main__) ever
-# created the `users` table, so POST /login failed with "no such table: users".
+# existing data. Startup lock reduces duplicate seed races across workers.
 try:
-    init_db()
+    with startup_lock():
+        init_db()
+        # Seed tutor content tables from course data (no-op if already populated).
+        try:
+            seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
+            sync_missing_vocabulary_from_course(COURSE_DATA)
+            import_verified_vocabulary_packs()
+        except Exception as _seed_exc:
+            print(f"[tutor seed] warning: {_seed_exc}")
 except Exception as _init_db_exc:
     print(f"[db init] error: {_init_db_exc}")
     raise
-
-# Seed tutor content tables from course data (no-op if already populated).
-# Also sync any new COURSE_DATA vocabulary into SQLite when the DB already exists.
-try:
-    seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
-    sync_missing_vocabulary_from_course(COURSE_DATA)
-    import_verified_vocabulary_packs()
-except Exception as _seed_exc:
-    print(f"[tutor seed] warning: {_seed_exc}")
 
 # ================= PASSWORD RESET TOOLS =================
 

@@ -1,34 +1,24 @@
-"""SQLite helpers for user data and tutor content tables."""
+"""Database helpers for user data and tutor content tables.
+
+Uses the unified ``db`` layer (PostgreSQL via DATABASE_URL, else local SQLite).
+"""
 
 from __future__ import annotations
 
 import json
 import re
-import sqlite3
 import unicodedata
 from pathlib import Path
 from typing import Any, Iterable
 
-from db_path import resolve_database_path
+from db import get_db, table_columns
 
-# Same absolute path rules as app.py (DATABASE_PATH env or project-root users.db).
-DATABASE = resolve_database_path()
 VOCAB_PACK_DIR = Path(__file__).resolve().parent / "data" / "vocabulary"
 TARGET_VOCAB_PER_LANGUAGE = 250
 COURSE_LANGUAGES = ("iban", "kadazan-dusun", "bidayuh", "mah-meri")
 
 
-def get_db() -> sqlite3.Connection:
-    conn = sqlite3.connect(DATABASE, timeout=60)
-    conn.row_factory = sqlite3.Row
-    # SQLite disables FK enforcement unless requested per-connection.
-    conn.execute("PRAGMA foreign_keys = ON")
-    # WAL lets Dictionary reads proceed while other writers finish.
-    conn.execute("PRAGMA journal_mode=WAL")
-    return conn
-
-
-def init_content_tables(conn: sqlite3.Connection | None = None) -> None:
+def init_content_tables(conn=None) -> None:
     own = conn is None
     if own:
         conn = get_db()
@@ -114,11 +104,11 @@ def init_content_tables(conn: sqlite3.Connection | None = None) -> None:
         conn.close()
 
 
-def _vocab_columns(conn: sqlite3.Connection) -> set[str]:
-    return {row[1] for row in conn.execute("PRAGMA table_info(vocabulary)").fetchall()}
+def _vocab_columns(conn) -> set[str]:
+    return table_columns(conn, "vocabulary")
 
 
-def _ensure_vocabulary_provenance_columns(conn: sqlite3.Connection) -> None:
+def _ensure_vocabulary_provenance_columns(conn) -> None:
     """Minimal compatible extension: source + dialect metadata."""
     cols = _vocab_columns(conn)
     if "source_ref" not in cols:
@@ -194,7 +184,7 @@ def _normalize_vocab_word(word: str) -> str:
     return text
 
 
-def _upsert_vocab(conn: sqlite3.Connection, row: dict[str, Any]) -> bool:
+def _upsert_vocab(conn, row: dict[str, Any]) -> bool:
     """Insert a vocabulary row if missing. Returns True when inserted."""
     _ensure_vocabulary_provenance_columns(conn)
     word = _normalize_vocab_word(row.get("word") or "")
@@ -241,7 +231,7 @@ def _upsert_vocab(conn: sqlite3.Connection, row: dict[str, Any]) -> bool:
     return True
 
 
-def _insert_vocab(conn: sqlite3.Connection, row: dict[str, Any]) -> bool:
+def _insert_vocab(conn, row: dict[str, Any]) -> bool:
     """Compatibility alias used by sync/enrich helpers."""
     return _upsert_vocab(conn, row)
 
@@ -788,7 +778,7 @@ def enrich_vocabulary_from_quiz_stems(conn=None) -> dict[str, int]:
     return {"inserted": inserted, "skipped": skipped, "vocabulary": total}
 
 
-def vocabulary_counts_by_language(conn: sqlite3.Connection | None = None) -> dict[str, int]:
+def vocabulary_counts_by_language(conn=None) -> dict[str, int]:
     own = conn is None
     if own:
         conn = get_db()
@@ -809,7 +799,7 @@ def vocabulary_counts_by_language(conn: sqlite3.Connection | None = None) -> dic
     return counts
 
 
-def vocabulary_coverage_report(conn: sqlite3.Connection | None = None) -> dict[str, Any]:
+def vocabulary_coverage_report(conn=None) -> dict[str, Any]:
     """Honest coverage vs the 250/language learning target."""
     counts = vocabulary_counts_by_language(conn)
     per_language = {}

@@ -12,7 +12,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Optional, TYPE_CHECKING
 
-from database import get_db
+from db import get_db
 from word_length import (
     COMPLETE_SCAN_NOTE,
     normalized_word_length,

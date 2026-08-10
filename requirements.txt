@@ -7,3 +7,4 @@ Authlib>=1.7,<2
 requests>=2.34,<3
 openai>=2.53,<3
 gunicorn>=26,<27
+psycopg[binary]>=3.2,<4

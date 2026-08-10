@@ -1,8 +1,7 @@
-"""Single source of truth for the SQLite database file path.
+"""Single source of truth for the local SQLite database file path.
 
-Both app.py and database.py must resolve the same absolute path:
-- If DATABASE_PATH is set in the environment, use that (e.g. Render disk).
-- Otherwise fall back to <project_root>/users.db for local development.
+Used only when DATABASE_URL is unset (local development fallback).
+Production on Render should set DATABASE_URL for PostgreSQL instead.
 """
 
 from __future__ import annotations
