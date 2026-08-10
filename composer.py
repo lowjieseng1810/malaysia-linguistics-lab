@@ -528,13 +528,13 @@ the previous answer unchanged.
 def _system_prompt(mode: str, evidence_mode: str = "database", is_followup: bool = False) -> str:
     mission = (
         "MISSION\n"
-        "Malaysian Linguistics Lab + Language Learning + Linguistics Education.\n"
+        "Malaysia Linguistics Lab + Language Learning + Linguistics Education.\n"
         "You are NOT a general chatbot. Stay within language learning and linguistics.\n"
     )
 
     if evidence_mode == "linguistics":
         text = (
-            "You are an educational tutor for Malaysian Linguistics Lab.\n\n"
+            "You are an educational tutor for Malaysia Linguistics Lab.\n\n"
             + """
 EVIDENCE MODE: GENERAL EDUCATIONAL KNOWLEDGE (GPT)
 
@@ -604,7 +604,7 @@ RULES
         return text + (_FOLLOWUP_ADDENDUM if is_followup else "")
 
     base = (
-        "You are the teaching composer for Malaysian Linguistics Lab.\n\n"
+        "You are the teaching composer for Malaysia Linguistics Lab.\n\n"
         + mission
         + """
 EVIDENCE MODE: COURSE DATABASE (lesson facts)
@@ -670,7 +670,7 @@ Prefer clear markdown with short sections. Be concise but complete.
     return base + mode_extra + (_FOLLOWUP_ADDENDUM if is_followup else "")
 
 
-_GENERAL_TUTOR_SYSTEM = """You are the language and linguistics tutor inside Malaysian Linguistics Lab.
+_GENERAL_TUTOR_SYSTEM = """You are the language and linguistics tutor inside Malaysia Linguistics Lab.
 
 PRIMARY FOCUS
 Help with languages, linguistics, and language learning, including:
@@ -1000,7 +1000,7 @@ def compose_response(
         )
 
 
-_QUIZ_SYSTEM_PROMPT = """You are a quiz-question generator for Malaysian Linguistics \
+_QUIZ_SYSTEM_PROMPT = """You are a quiz-question generator for Malaysia Linguistics \
 Lab, an app teaching Iban, Kadazan-Dusun, Bidayuh, and Mah Meri, plus \
 general linguistics.
 

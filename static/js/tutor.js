@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Linguistics Lab
+   Malaysia Linguistics Lab
    AI Tutor Widget — Client Interaction
    ========================================= */
 

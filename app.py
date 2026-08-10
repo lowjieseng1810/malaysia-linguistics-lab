@@ -3059,7 +3059,7 @@ def build_general_tutor_system_prompt(grounded_context):
     ) or "No sample vocabulary available yet."
 
     return (
-        "You are the AI Tutor inside Malaysian Linguistics Lab - "
+        "You are the AI Tutor inside Malaysia Linguistics Lab - "
         "a knowledgeable, friendly LANGUAGE AND LINGUISTICS "
         "tutor. This website's four focus languages are Iban, "
         "Kadazan-Dusun, Bidayuh, and Mah Meri, but as a linguistics "
@@ -3146,7 +3146,7 @@ def build_tutor_system_prompt(lang_key, level_num, user_message, mode=None):
     ) or "No recorded common mistakes for this level yet."
 
     return (
-        "You are the AI Tutor inside Malaysian Linguistics Lab - "
+        "You are the AI Tutor inside Malaysia Linguistics Lab - "
         "a knowledgeable, friendly LANGUAGE AND LINGUISTICS "
         "tutor, not just a narrow course chatbot.\n\n"
 
@@ -4839,7 +4839,7 @@ def dashboard():
 
     return render_template(
         "dashboard.html",
-        username=session["username"],
+        username=session.get("username") or "Explorer",
         language_progress=language_progress,
         language_explorer_meta=language_explorer_meta,
         daily_quiz=daily_status,
@@ -5388,11 +5388,23 @@ def api_passport_discover():
 
 
 def _achievement_hook(user_id, milestone_key=None):
-    """Record optional milestone, activity day, then evaluate unlocks."""
-    if milestone_key:
-        set_explorer_milestone(user_id, milestone_key)
-    record_activity_day(user_id)
-    return evaluate_achievements(user_id)
+    """Record optional milestone, activity day, then evaluate unlocks.
+
+    Never raise into the request path — achievement failures must not break
+    login, logout, or page navigation.
+    """
+    try:
+        if milestone_key:
+            set_explorer_milestone(user_id, milestone_key)
+        record_activity_day(user_id)
+        return evaluate_achievements(user_id)
+    except Exception:
+        app.logger.exception(
+            "achievement hook failed (user_id=%s, milestone=%s)",
+            user_id,
+            milestone_key,
+        )
+        return []
 
 
 @app.route("/achievements")
@@ -6726,12 +6738,38 @@ def add_security_headers(response):
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
+    """Clear the session and always send the user to the login page.
 
-    session.clear()
+    Must not touch the database or any user object after clearing the
+    session — a failure here previously could surface as a branded 500
+    while the browser still held a logged-in cookie from a racing request.
+    """
+    try:
+        # Drop auth + tutor/quiz ephemeral state explicitly before clear
+        # so a partial failure cannot leave a half-logged-in session.
+        for key in (
+            "user_id",
+            "username",
+            "tutor_quiz_state",
+            "tutor_quiz_scores",
+            "tutor_quiz_recent",
+        ):
+            session.pop(key, None)
+        session.clear()
+        session.modified = True
+    except Exception:
+        app.logger.exception("logout session clear failed")
+        try:
+            session.clear()
+            session.modified = True
+        except Exception:
+            pass
 
-    return redirect(
-        url_for("login")
-    )
+    response = redirect(url_for("login"))
+    # Ensure intermediaries do not cache a logged-in shell as the login page.
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    return response
 
 
 # ================= ERROR PAGES =================
@@ -6767,12 +6805,22 @@ def handle_forbidden(error):
 def handle_server_error(error):
     if request.path.startswith("/api/"):
         return jsonify({"error": "server_error", "message": "Something went wrong on our end."}), 500
-    return render_template(
-        "error.html",
-        status_code=500,
-        heading="Something went wrong",
-        message="An unexpected error occurred. Please try again in a moment.",
-    ), 500
+    try:
+        return render_template(
+            "error.html",
+            status_code=500,
+            heading="Something went wrong",
+            message="An unexpected error occurred. Please try again in a moment.",
+        ), 500
+    except Exception:
+        app.logger.exception("error page render failed")
+        return (
+            "<!doctype html><title>500</title>"
+            "<h1>Something went wrong</h1>"
+            "<p><a href='/login'>Back to login</a></p>",
+            500,
+            {"Content-Type": "text/html; charset=utf-8"},
+        )
 
 
 # ================= START =================

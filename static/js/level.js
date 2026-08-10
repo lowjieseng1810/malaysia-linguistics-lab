@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Linguistics Lab
+   Malaysia Linguistics Lab
    Universal Journey Learning Engine
    ========================================= */
 

@@ -1,6 +1,6 @@
 /* =========================================
    MAH MERI RESEARCH CONTENT DATA
-   Malaysian Linguistics Lab
+   Malaysia Linguistics Lab
    ========================================= */
 
 window.MAH_MERI_DATA = {

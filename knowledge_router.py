@@ -8,7 +8,7 @@ Policy:
 - Lesson-specific heritage-language facts → DB-authoritative; never invent
 - Empty DB must not invent language facts; must not block non-language questions
 
-Mission: Malaysian Linguistics Lab + Language Learning + Linguistics Education
+Mission: Malaysia Linguistics Lab + Language Learning + Linguistics Education
          + general educational help when the question is not a language-fact claim.
 """
 

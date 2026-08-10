@@ -1,4 +1,4 @@
-# Malaysian Linguistics Lab Mascot Design Spec
+# Malaysia Linguistics Lab Mascot Design Spec
 
 ## Project Intent
 

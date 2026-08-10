@@ -1,4 +1,4 @@
-"""Unified database access for Malaysian Linguistics Lab.
+"""Unified database access for Malaysia Linguistics Lab.
 
 Production (Render): set DATABASE_URL → PostgreSQL via psycopg.
 Local development: leave DATABASE_URL unset → SQLite file via db_path.
@@ -121,6 +121,9 @@ def adapt_sql(sql: str) -> str:
 
     # excluded.col → EXCLUDED.col (PostgreSQL conflict pseudo-table)
     out = re.sub(r"(?i)\bexcluded\.", "EXCLUDED.", out)
+
+    # SQLite RANDOM() → PostgreSQL random()
+    out = re.sub(r"(?i)\bRANDOM\s*\(\s*\)", "random()", out)
 
     # Bind markers ? → %s (application SQL uses ? only as placeholders)
     out = out.replace("?", "%s")

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ status_code }} — Malaysian Linguistics Lab{% endblock %}
+{% block title %}{{ status_code }} — Malaysia Linguistics Lab{% endblock %}
 
 {% block content %}
 
@@ -61,10 +61,10 @@
   <h1>{{ heading }}</h1>
   <p>{{ message }}</p>
   <div class="error-actions">
-    {% if session.username %}
+    {% if session.get('username') %}
     <a href="{{ url_for('dashboard') }}">Back to dashboard</a>
     {% else %}
-    <a href="{{ url_for('home') }}">Back to home</a>
+    <a href="{{ url_for('login') }}">Back to login</a>
     {% endif %}
   </div>
 </div>

@@ -204,7 +204,7 @@ const loadingBrand =
     document.createElement("div");
 
 loadingBrand.textContent =
-    "Malaysian Linguistics Lab";
+    "Malaysia Linguistics Lab";
 
 loadingBrand.style.color =
     "#ffffff";
@@ -730,11 +730,12 @@ globeContainer.appendChild(
     const starMaterial =
         new THREE.PointsMaterial({
             color: 0xf4f7ff,
-            size: 0.1,
+            size: 0.18,
             sizeAttenuation: true,
             transparent: true,
-            opacity: 1,
-            depthWrite: false
+            opacity: 0.92,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
         });
 
     const stars =
@@ -1555,22 +1556,17 @@ let cloudsRevealProgress = 0.0;
 
 
 /* =========================================
-   CINEMATIC ATMOSPHERE
+   CINEMATIC ATMOSPHERE — thin pale-blue limb rim
    ========================================= */
-
-/* =========================================
-   CINEMATIC DOUBLE-LAYER ATMOSPHERE
-   ========================================= */
-
 
 /* =========================================
    INNER ATMOSPHERE
-   Thin bright edge close to Earth
+   Very thin Fresnel rim close to Earth
    ========================================= */
 
 const atmosphereGeometry =
     new THREE.SphereGeometry(
-        1.022,
+        1.012,
         128,
         128
     );
@@ -1665,32 +1661,26 @@ const atmosphereMaterial =
                     );
 
 
-                /* STRONGER VISIBLE RIM */
-
-float rim =
-    pow(
-        1.0 -
-        viewDot,
-        2.55
-    );
-
-
-                /* DAY / NIGHT CONTROL */
+                /* Tight Fresnel — limb only, not a translucent shell */
+                float rim =
+                    pow(
+                        1.0 - viewDot,
+                        5.2
+                    );
 
                 float daylight =
                     smoothstep(
-                        -0.30,
-                        0.28,
+                        -0.22,
+                        0.35,
                         sunDot
                     );
 
-
-                /* Soft volumetric day rim — avoid plastic white membrane */
+                /* Pale luminous blue — avoid gray / deep navy wash */
                 vec3 dayColor =
-                    vec3(0.28, 0.52, 0.82);
+                    vec3(0.62, 0.82, 1.0);
 
                 vec3 nightColor =
-                    vec3(0.01, 0.04, 0.09);
+                    vec3(0.22, 0.38, 0.62);
 
                 vec3 atmosphereColor =
                     mix(
@@ -1703,35 +1693,33 @@ float rim =
                     1.0 -
                     smoothstep(
                         0.0,
-                        0.14,
+                        0.12,
                         abs(sunDot)
                     );
-
-                vec3 sunsetColor =
-                    vec3(0.72, 0.28, 0.08);
 
                 atmosphereColor =
                     mix(
                         atmosphereColor,
-                        sunsetColor,
-                        sunsetBand * 0.28
+                        vec3(0.72, 0.55, 0.42),
+                        sunsetBand * 0.12
                     );
 
+                /* Mostly transparent; edge-only glow */
                 float alpha =
                     rim *
                     (
-                        0.012 +
+                        0.055 +
                         daylight * 0.11
                     );
 
                 alpha +=
                     rim *
-                    sunsetBand * 0.07;
+                    sunsetBand * 0.025;
 
 gl_FragColor =
     vec4(
         atmosphereColor,
-        alpha
+        clamp(alpha, 0.0, 0.22)
     );
             }
 
@@ -1763,12 +1751,12 @@ earthSystem.add(
 
 /* =========================================
    OUTER ATMOSPHERE GLOW
-   Large soft cinematic halo
+   Subtle pale limb whisper — not a thick bubble
    ========================================= */
 
 const outerAtmosphereGeometry =
     new THREE.SphereGeometry(
-    1.085,
+    1.038,
     128,
     128
 );
@@ -1866,36 +1854,36 @@ float outerRim =
     pow(
         1.0 -
         viewDot,
-        4.35
+        6.4
     );
 
                 float daylight =
                     smoothstep(
-                        -0.35,
-                        0.25,
+                        -0.28,
+                        0.32,
                         sunDot
                     );
 
-                /* Soft cinematic halo — no hard white ring */
+                /* Soft pale-blue limb whisper */
                 vec3 glowColor =
                     mix(
-                        vec3(0.01, 0.03, 0.08),
-                        vec3(0.22, 0.42, 0.72),
+                        vec3(0.18, 0.32, 0.55),
+                        vec3(0.55, 0.78, 1.0),
                         daylight
                     );
 
                 float alpha =
                     outerRim *
                     (
-                        0.008 +
-                        daylight * 0.07
+                        0.012 +
+                        daylight * 0.045
                     );
 
 
                 gl_FragColor =
                     vec4(
                         glowColor,
-                        alpha
+                        clamp(alpha, 0.0, 0.12)
                     );
             }
 
@@ -3188,7 +3176,10 @@ function createStarLayer(
                 true,
 
             depthWrite:
-                false
+                false,
+
+            blending:
+                THREE.AdditiveBlending
 
         });
 
@@ -3201,15 +3192,15 @@ function createStarLayer(
 }
 
 
-/* 大量细小远星 */
-
+/* Dense distant field — ~3x brighter than original, varied / not uniform */
 const distantStars =
     createStarLayer(
         5200,
         34,
         86,
-        0.085,
-        0.96
+        0.16,
+        0.88,
+        0xd8e4ff
     );
 
 
@@ -3218,15 +3209,15 @@ scene.add(
 );
 
 
-/* 少量较亮星星 */
-
+/* Mid bright layer — clearer hierarchy above the distant field */
 const brightStars =
     createStarLayer(
-        820,
+        780,
         28,
         72,
-        0.18,
-        1.0
+        0.36,
+        1.0,
+        0xf0f5ff
     );
 
 
@@ -3234,14 +3225,29 @@ scene.add(
     brightStars
 );
 
+/* Sparse cinematic hero stars — noticeably brighter than the field */
+const heroStars =
+    createStarLayer(
+        36,
+        30,
+        68,
+        1.05,
+        1.0,
+        0xffffff
+    );
+
+scene.add(
+    heroStars
+);
+
 const spaceDust =
     createStarLayer(
-        2400,
+        1600,
         26,
         90,
-        0.03,
-        0.38,
-        0xd0e4f2
+        0.04,
+        0.32,
+        0xc4d6ea
     );
 
 scene.add(

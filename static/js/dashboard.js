@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Linguistics Lab
+   Malaysia Linguistics Lab
    Dashboard — Living Malaysia Explorer
    ========================================= */
 
@@ -726,14 +726,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const LABEL_SEARCH_ANGLES_DEG = buildAngleOrder(200);
     /* Sarawak must read as "below the state region" — bias hard toward straight down. */
     const SARAWAK_ANGLES_DEG = buildAngleOrder(90);
-    /* Selangor sits on the west coast — prefer ocean just outside the peninsula
-       (left / down-left), never onto land. */
-    const SELANGOR_ANGLES_DEG = buildAngleOrder(200);
-    /* Desktop Selangor: prefer due-west / WSW ocean so the card sits immediately
-       outside the peninsula with a short leader, never over the map. */
-    const SELANGOR_DESKTOP_ANGLES_DEG = buildAngleOrder(195);
-    /* Extra breathing room west of the rendered land edge (anti-aliased coast). */
-    const DESKTOP_SELANGOR_LAND_GAP_PX = 10;
+    /* Selangor sits on the west coast — prefer a short leader just outside the
+       coast (down / down-left), never onto peninsula land or mid-ocean. */
+    const SELANGOR_ANGLES_DEG = buildAngleOrder(125);
+    /* Desktop Selangor: keep the card near the beacon (below / slightly left),
+       not parked at the map's far-west ocean edge. */
+    const SELANGOR_DESKTOP_ANGLES_DEG = buildAngleOrder(115);
+    /* Max leader length so the card stays visually attached to Selangor. */
+    const DESKTOP_SELANGOR_MAX_DIST_PX = 118;
 
     function clampRectToWrap(rect, wrapRect, pad) {
         const w = rect.right - rect.left;
@@ -945,11 +945,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const bcx = beaconRect.left + beaconRect.width * 0.5;
         const bcy = beaconRect.top + beaconRect.height * 0.5;
         const wrapBound = ctx.wrapRect;
-        const edgePad = 24;
-        const minLeft = Math.ceil(wrapBound.left + edgePad);
-        const maxLeft = Math.min(bcx - 40, wrapBound.right - edgePad - w);
-        const minTop = Math.ceil(wrapBound.top + edgePad);
-        const maxTop = Math.floor(wrapBound.bottom - edgePad - h);
+        const edgePad = 16;
+        const maxDist = Math.min(
+            DESKTOP_SELANGOR_MAX_DIST_PX,
+            Math.max(72, wrapBound.width * 0.2)
+        );
+        /* Search only near the beacon — never park the card in open sea. */
+        const minLeft = Math.ceil(Math.max(wrapBound.left + edgePad, bcx - maxDist - w * 0.35));
+        const maxLeft = Math.min(bcx + 28, wrapBound.right - edgePad - w);
+        const minTop = Math.ceil(Math.max(wrapBound.top + edgePad, bcy - 24));
+        const maxTop = Math.floor(Math.min(wrapBound.bottom - edgePad - h, bcy + maxDist));
 
         function blockedByObstacles(cand, allowSoft) {
             for (let oi = 0; oi < obstacles.length; oi += 1) {
@@ -978,7 +983,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         function isValid(cand, allowSoft) {
-            if (cand.left < minLeft - 0.5 || cand.top < minTop - 0.5) {
+            if (cand.left < wrapBound.left + edgePad - 0.5 || cand.top < wrapBound.top + edgePad - 0.5) {
                 return false;
             }
             if (cand.right > wrapBound.right - edgePad + 0.5) {
@@ -987,16 +992,18 @@ document.addEventListener("DOMContentLoaded", function () {
             if (cand.bottom > wrapBound.bottom - edgePad + 0.5) {
                 return false;
             }
-            if ((cand.left + cand.right) / 2 > bcx - 8) {
+            const ccx = (cand.left + cand.right) / 2;
+            const ccy = (cand.top + cand.bottom) / 2;
+            if (Math.hypot(ccx - bcx, ccy - bcy) > maxDist + 8) {
                 return false;
             }
-            /* Inflate east/north so anti-aliased coast tips cannot nick the card. */
+            /* Inflate slightly so anti-aliased coast tips cannot nick the card. */
             if (
                 rectOverlapsLand(ctx, {
-                    left: cand.left,
-                    top: cand.top - 6,
-                    right: cand.right + 14,
-                    bottom: cand.bottom
+                    left: cand.left - 2,
+                    top: cand.top - 4,
+                    right: cand.right + 6,
+                    bottom: cand.bottom + 2
                 })
             ) {
                 return false;
@@ -1009,27 +1016,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let best = null;
         let bestScore = Infinity;
-        for (let left = minLeft; left <= maxLeft; left += 2) {
-            for (let top = Math.max(minTop, bcy - 36); top <= Math.min(maxTop, bcy + 96); top += 2) {
-                const cand = {
-                    left: left,
-                    top: top,
-                    right: left + w,
-                    bottom: top + h
-                };
-                if (!isValid(cand, false) && !isValid(cand, true)) {
-                    continue;
-                }
-                const dist = Math.hypot(
-                    (cand.left + cand.right) / 2 - bcx,
-                    (cand.top + cand.bottom) / 2 - bcy
-                );
-                /* Prefer lower-left of the beacon (readable diagonal gold leader). */
-                const belowBias = top + h * 0.5 >= bcy - 2 ? 0 : 14;
-                const score = dist + belowBias;
-                if (score < bestScore) {
-                    bestScore = score;
-                    best = cand;
+        if (minLeft <= maxLeft && minTop <= maxTop) {
+            for (let left = minLeft; left <= maxLeft; left += 2) {
+                for (let top = minTop; top <= maxTop; top += 2) {
+                    const cand = {
+                        left: left,
+                        top: top,
+                        right: left + w,
+                        bottom: top + h
+                    };
+                    if (!isValid(cand, false) && !isValid(cand, true)) {
+                        continue;
+                    }
+                    const dist = Math.hypot(
+                        (cand.left + cand.right) / 2 - bcx,
+                        (cand.top + cand.bottom) / 2 - bcy
+                    );
+                    /* Prefer slightly below the beacon (short diagonal gold leader). */
+                    const belowBias = top + h * 0.5 >= bcy - 2 ? 0 : 18;
+                    const score = dist + belowBias;
+                    if (score < bestScore) {
+                        bestScore = score;
+                        best = cand;
+                    }
                 }
             }
         }
@@ -1039,10 +1048,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const fallback = clampSelangorDesktopRect(
             {
-                left: minLeft,
-                top: bcy + 18,
-                right: minLeft + w,
-                bottom: bcy + 18 + h
+                left: bcx - w * 0.35,
+                top: bcy + 28,
+                right: bcx - w * 0.35 + w,
+                bottom: bcy + 28 + h
             },
             wrapBound,
             edgePad
@@ -1061,31 +1070,47 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
+    /*
+     * Connector geometry from the ACTUAL rendered label box and the CSS
+     * .beacon-connector pivot (left: 11px; top: 11px; transform-origin: left center).
+     * Pivot Y = 11 + connectorHeight/2 (Selangor height 2px → 12; others 1px → 11.5).
+     */
     function updateConnector(btn, label) {
-        const coreX = 12;
-        const coreY = 12;
-        const br = btn.getBoundingClientRect();
-        let targetX = coreX + 69;
-        let targetY = coreY + 26;
-        if (label) {
-            const lr = label.getBoundingClientRect();
-            const lcx = lr.left + lr.width * 0.5 - br.left;
-            const lcy = lr.top + lr.height * 0.42 - br.top;
-            /*
-             * Desktop Selangor: aim at the top edge of the card (same clean
-             * beacon→card termination used by Sarawak below its marker).
-             */
-            if (btn.classList.contains("selangor-beacon") && lr.top > br.top) {
-                targetX = lr.left + lr.width * 0.62 - br.left;
-                targetY = lr.top - br.top + 3;
-            } else {
-                targetX = lcx;
-                targetY = lcy;
-            }
+        if (!btn || !label) {
+            return;
         }
-        const dx = targetX - coreX;
-        const dy = targetY - coreY;
-        const len = Math.max(18, Math.hypot(dx, dy));
+        void label.offsetWidth;
+        const br = btn.getBoundingClientRect();
+        const lr = label.getBoundingClientRect();
+        if (br.width < 1 || lr.width < 1) {
+            return;
+        }
+
+        const labelLocalX = lr.left - br.left;
+        const labelLocalY = lr.top - br.top;
+        const labelW = lr.width;
+        const labelH = lr.height;
+
+        const isSelangor = btn.classList.contains("selangor-beacon");
+        const connectorHeight = isSelangor ? 2 : 1;
+        const pivotX = 11;
+        const pivotY = 11 + connectorHeight / 2;
+
+        let targetX;
+        let targetY;
+        if (isSelangor) {
+            /* Top-center of the painted Selangor card. */
+            targetX = labelLocalX + labelW / 2;
+            targetY = labelLocalY;
+        } else {
+            /* Sabah / Sarawak: aim at the painted card interior. */
+            targetX = labelLocalX + labelW / 2;
+            targetY = labelLocalY + labelH * 0.42;
+        }
+
+        const dx = targetX - pivotX;
+        const dy = targetY - pivotY;
+        const len = Math.max(1, Math.hypot(dx, dy));
         const ang = (Math.atan2(dy, dx) * 180) / Math.PI;
         btn.style.setProperty("--conn-len", len.toFixed(1) + "px");
         btn.style.setProperty("--conn-ang", ang.toFixed(2) + "deg");
@@ -1212,6 +1237,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 placementRect: placementRect,
                 scale: scale
             };
+            /*
+             * Incomplete SVG land (common for the first 1–2s after <object>
+             * load) makes rectOverlapsLand() under-detect coast, so the
+             * first "clear" spot can sit on land — then a later pass with
+             * full land pushes Selangor into open sea. Wait until enough
+             * land shapes exist before land-aware placement.
+             */
+            if (ctx.landEls.length < 8) {
+                ctx = null;
+            }
         }
 
         const obstacles = [];
@@ -1339,13 +1374,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 lx = rect.left - beaconRect.left;
                 ly = rect.top - beaconRect.top;
             } else {
-                /* SVG geometry not ready yet — safe generic fallback near the beacon. */
-                lx = region === "selangor" ? 10 * scale : -w - 18 * scale;
-                ly = region === "sarawak" ? 40 * scale : -h - 20 * scale;
+                /*
+                 * SVG land not ready — keep interim placement near the final
+                 * bias so a later land-aware pass does not jump above→below
+                 * (which previously froze a stale connector aimed upward).
+                 */
+                if (region === "selangor") {
+                    lx = 8 * scale;
+                    ly = 28 * scale;
+                } else {
+                    lx = -w - 18 * scale;
+                    ly = 40 * scale;
+                }
             }
 
             btn.style.setProperty("--label-x", lx.toFixed(1) + "px");
             btn.style.setProperty("--label-y", ly.toFixed(1) + "px");
+            /* Layout first, then connector from the painted label box. */
             updateConnector(btn, label);
             obstacles.push(label.getBoundingClientRect());
         });
@@ -1355,6 +1400,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     let beaconGeoListenersBound = false;
+    let beaconGeoPlacementStable = false;
+    let beaconGeoStableWrapWidth = 0;
 
     function positionExplorationBeaconsFromGeo() {
         const scene = document.getElementById("miniature-map-scene");
@@ -1386,7 +1433,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selangor.dataset.geoLon = String(geo.lon);
         selangor.dataset.geoSource = geo.source;
 
-        function applyPlacement() {
+        function applyPlacement(forceRelayout) {
             const svgDoc = resolveMalaysiaSvgDoc(mapObject);
             if (!svgDoc) {
                 return false;
@@ -1419,6 +1466,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let penMaxX = -Infinity;
             let penMaxY = -Infinity;
             const landNodes = svgDoc.querySelectorAll("path, polygon");
+            let penLandCount = 0;
             for (let i = 0; i < landNodes.length; i += 1) {
                 const el = landNodes[i];
                 if (el.id === "sabah" || el.id === "sarawak") {
@@ -1436,14 +1484,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (box.x > Math.min(sarawakBox.x, sabahBox.x) - 20) {
                     continue;
                 }
+                penLandCount += 1;
                 penMinX = Math.min(penMinX, box.x);
                 penMinY = Math.min(penMinY, box.y);
                 penMaxX = Math.max(penMaxX, box.x + box.width);
                 penMaxY = Math.max(penMaxY, box.y + box.height);
             }
 
-            if (!isFinite(penMinX) || penMaxX - penMinX < 40) {
+            if (!isFinite(penMinX) || penMaxX - penMinX < 40 || penLandCount < 4) {
                 return false;
+            }
+
+            const wrapWidth = wrap.getBoundingClientRect().width;
+            if (
+                beaconGeoPlacementStable &&
+                !forceRelayout &&
+                Math.abs(wrapWidth - beaconGeoStableWrapWidth) < 2
+            ) {
+                layoutBeaconLabelsAndConnectors();
+                return true;
             }
 
             const uLon =
@@ -1496,13 +1555,22 @@ document.addEventListener("DOMContentLoaded", function () {
             );
             if (okSel && okSabah && okSarawak) {
                 layoutBeaconLabelsAndConnectors();
+                const landReady = collectSvgLandElements(svgDoc).length >= 8;
+                if (!landReady) {
+                    /* Beacons are placed, but label land-tests are not trustworthy
+                       yet — keep retrying so we do not freeze a mid-ocean drift. */
+                    return false;
+                }
+                beaconGeoPlacementStable = true;
+                beaconGeoStableWrapWidth = wrapWidth;
+                return true;
             }
-            return okSel && okSabah && okSarawak;
+            return false;
         }
 
         function tryPlace(attempt) {
             prefetchMalaysiaSvg(mapObject).then(function () {
-                if (applyPlacement()) {
+                if (applyPlacement(false)) {
                     return;
                 }
                 if (attempt < 72) {
@@ -1527,16 +1595,23 @@ document.addEventListener("DOMContentLoaded", function () {
             cachedMalaysiaSvgDoc = mapObject.contentDocument;
         }
 
-        mapObject.addEventListener(
-            "load",
-            function () {
-                cachedMalaysiaSvgDoc = mapObject.contentDocument;
-                schedulePlacement();
-            },
-            { once: true }
-        );
+        if (!beaconGeoListenersBound) {
+            mapObject.addEventListener(
+                "load",
+                function () {
+                    cachedMalaysiaSvgDoc = mapObject.contentDocument;
+                    beaconGeoPlacementStable = false;
+                    schedulePlacement();
+                },
+                { once: true }
+            );
+        }
 
-        schedulePlacement();
+        if (!beaconGeoPlacementStable) {
+            schedulePlacement();
+        } else {
+            applyPlacement(false);
+        }
 
         if (beaconGeoListenersBound) {
             return;
@@ -1546,7 +1621,8 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener(
             "resize",
             function () {
-                if (applyPlacement()) {
+                beaconGeoPlacementStable = false;
+                if (applyPlacement(true)) {
                     layoutBeaconLabelsAndConnectors();
                 }
             },
@@ -1556,7 +1632,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "orientationchange",
             function () {
                 window.setTimeout(function () {
-                    if (applyPlacement()) {
+                    beaconGeoPlacementStable = false;
+                    if (applyPlacement(true)) {
                         layoutBeaconLabelsAndConnectors();
                     }
                 }, 280);

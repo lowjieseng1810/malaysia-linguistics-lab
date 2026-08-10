@@ -1,6 +1,6 @@
 # AGENTS.md
 
-**Malaysian Linguistics Lab** — Flask web app teaching four Malaysian
+**Malaysia Linguistics Lab** — Flask web app teaching four Malaysian
 minority/indigenous languages (Iban, Kadazan-Dusun, Bidayuh, Mah Meri):
 lessons, searchable dictionary, favorites, standalone practice quiz, progress
 tracking, language comparison, a 3D world explorer, and an optional AI tutor

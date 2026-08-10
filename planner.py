@@ -31,7 +31,7 @@ NO_EVIDENCE_MESSAGE = (
 )
 
 OFF_TOPIC_MESSAGE = (
-    "I'm your Malaysian Linguistics Lab tutor.\n\n"
+    "I'm your Malaysia Linguistics Lab tutor.\n\n"
     "I can answer questions about vocabulary, grammar, pronunciation, "
     "culture and lessons.\n\n"
     "I can't answer unrelated questions."

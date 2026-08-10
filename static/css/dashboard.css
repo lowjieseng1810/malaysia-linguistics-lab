@@ -1,5 +1,5 @@
 /* =========================================
-   Malaysian Linguistics Lab
+   Malaysia Linguistics Lab
    Dashboard Page
    ========================================= */
 
@@ -6586,7 +6586,7 @@ transform:none;
    cutting off the leading text/number
    ("1" in "1 living language"). */
 
-.selangor-beacon .beacon-label {
+.selangor-beacon:not(.is-geo-placed) .beacon-label {
     left: calc(100% + 3px) !important;
     right: auto !important;
 
@@ -6606,7 +6606,7 @@ transform:none;
    connector style, angled down-right
    toward the label's position) */
 
-.selangor-beacon::after {
+.selangor-beacon:not(.is-geo-placed)::after {
     content: "";
 
     position: absolute;
@@ -9055,14 +9055,14 @@ transform:none;
 
     /* left/top come from geo placement in dashboard.js (Mah Meri lat/lon). */
 
-    .selangor-beacon .beacon-label {
+    .selangor-beacon:not(.is-geo-placed) .beacon-label {
         left: calc(100% + 2px) !important;
         top: calc(100% + 28px) !important;
         width: min(140px, 42vw) !important;
         font-size: 0.72rem;
     }
 
-    .selangor-beacon::after {
+    .selangor-beacon:not(.is-geo-placed)::after {
         width: 48px;
         top: 16px;
         left: 10px;
@@ -9073,7 +9073,7 @@ transform:none;
      * Sarawak label: up + left so it never covers
      * “Select a glowing signal” at the map bottom.
      */
-    .sarawak-beacon .beacon-label {
+    .sarawak-beacon:not(.is-geo-placed) .beacon-label {
         top: -6px !important;
         bottom: auto !important;
         left: auto !important;
@@ -9083,7 +9083,7 @@ transform:none;
         text-align: right !important;
     }
 
-    .sarawak-beacon::after {
+    .sarawak-beacon:not(.is-geo-placed)::after {
         top: 12px !important;
         bottom: auto !important;
         left: auto !important;
@@ -9093,7 +9093,7 @@ transform:none;
         transform-origin: right center !important;
     }
 
-    .sabah-beacon .beacon-label {
+    .sabah-beacon:not(.is-geo-placed) .beacon-label {
         top: auto !important;
         bottom: calc(100% + 8px) !important;
         right: 0 !important;
@@ -9116,7 +9116,7 @@ transform:none;
         height: min(42vh, 300px) !important;
     }
 
-    .selangor-beacon .beacon-label {
+    .selangor-beacon:not(.is-geo-placed) .beacon-label {
         width: min(128px, 46vw) !important;
         top: calc(100% + 22px) !important;
     }

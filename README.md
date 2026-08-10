@@ -1,6 +1,6 @@
-# Malaysian Linguistics Lab — Exploring Malaysia's Languages Through Technology
+# Malaysia Linguistics Lab — Exploring Malaysia's Languages Through Technology
 
-**Malaysian Linguistics Lab** is a Flask web app for learning four Malaysian minority/indigenous languages —
+**Malaysia Linguistics Lab** is a Flask web app for learning four Malaysian minority/indigenous languages —
 **Iban**, **Kadazan-Dusun**, **Bidayuh**, and **Mah Meri** — through
 structured lessons, a searchable dictionary, quizzes, progress tracking, an
 interactive 3D language-family globe, and an optional GPT-powered AI tutor.

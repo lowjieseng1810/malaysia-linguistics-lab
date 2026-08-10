@@ -255,7 +255,7 @@ def supported_languages_message(unsupported: str | None = None) -> str:
     if unsupported:
         lines.append(
             f"**{unsupported}** is not currently available in the "
-            "Malaysian Linguistics Lab database."
+            "Malaysia Linguistics Lab database."
         )
         lines.append("")
     lines.append("Supported languages include:")
