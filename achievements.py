@@ -816,7 +816,12 @@ def mark_achievements_notified(user_id: int, keys: list[str] | None = None) -> N
 
 
 def pop_pending_achievement_notifications(user_id: int) -> list[dict[str, Any]]:
-    """Return newly unlocked achievements not yet shown, then mark notified."""
+    """Return newly unlocked achievements not yet shown.
+
+    Does **not** mark ``notified`` — the client must POST ``/api/achievements/ack``
+    after the plaque is actually displayed so a failed/off-screen render cannot
+    permanently swallow the unlock toast.
+    """
     init_achievement_tables()
     conn = get_db()
     rows = conn.execute(
@@ -832,7 +837,6 @@ def pop_pending_achievement_notifications(user_id: int) -> list[dict[str, Any]]:
     if not rows:
         return []
     keys = [row["achievement_key"] for row in rows]
-    mark_achievements_notified(user_id, keys)
     unlocked_total = len(get_unlocked_keys(user_id))
     total = len(ACHIEVEMENT_DEFS)
     pending = []
@@ -856,6 +860,7 @@ def pop_pending_achievement_notifications(user_id: int) -> list[dict[str, Any]]:
                 "earned_date_label": format_earned_date(int(row["unlocked_at"])),
                 "earned": start_earned + index + 1,
                 "total": total,
+                "newly_unlocked": True,
             }
         )
     return pending

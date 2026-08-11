@@ -43,6 +43,7 @@ from db import (
     get_sqlite_path,
     is_postgres,
     row_to_dict,
+    row_value,
     set_sqlite_path,
     startup_lock,
     table_columns,
@@ -218,6 +219,71 @@ def _establish_login_session(user_id, username):
     session["user_id"] = user_id
     session["username"] = username
     session.permanent = True
+
+
+def _lookup_auth_user(identifier: str):
+    """Find a user by username or email (case-insensitive).
+
+    Older accounts often try email at login; the form historically only
+    matched exact username. Email lookup remains secondary so usernames
+    that happen to contain '@' still resolve first as usernames.
+    """
+    ident = (identifier or "").strip()
+    if not ident:
+        return None
+
+    conn = get_db()
+    try:
+        user = conn.execute(
+            """
+            SELECT *
+            FROM users
+            WHERE LOWER(username) = LOWER(?)
+            """,
+            (ident,),
+        ).fetchone()
+        if user:
+            return user
+
+        if "@" in ident:
+            user = conn.execute(
+                """
+                SELECT *
+                FROM users
+                WHERE email IS NOT NULL
+                  AND TRIM(email) != ''
+                  AND LOWER(email) = LOWER(?)
+                """,
+                (ident,),
+            ).fetchone()
+            if user:
+                return user
+        return None
+    finally:
+        conn.close()
+
+
+def _password_hash_matches(stored_hash, password: str) -> bool:
+    """Verify a password against a stored Werkzeug hash without raising."""
+    if not password:
+        return False
+    if stored_hash is None:
+        return False
+    if isinstance(stored_hash, bytes):
+        try:
+            stored_hash = stored_hash.decode("utf-8")
+        except Exception:
+            return False
+    if not isinstance(stored_hash, str):
+        return False
+    stored_hash = stored_hash.strip()
+    # Reject placeholders / corrupt values (e.g. single-char QA stubs).
+    if len(stored_hash) < 20 or ("$" not in stored_hash and ":" not in stored_hash):
+        return False
+    try:
+        return bool(check_password_hash(stored_hash, password))
+    except Exception:
+        return False
 
 
 # ================= DATABASE =================
@@ -420,6 +486,27 @@ def init_db():
             email
         )
     """)
+
+    # Case-insensitive email uniqueness for non-empty emails (idempotent).
+    # Older DBs may already have the plain email index above; this adds a
+    # stronger uniqueness guard without dropping existing rows/columns.
+    try:
+        conn.execute("""
+            CREATE UNIQUE INDEX
+            IF NOT EXISTS
+            idx_users_email_lower_unique
+
+            ON users (LOWER(email))
+
+            WHERE email IS NOT NULL
+              AND TRIM(email) != ''
+        """)
+    except Exception:
+        # Duplicate emails already present — keep login working; skip unique.
+        app.logger.warning(
+            "Could not create idx_users_email_lower_unique "
+            "(possible legacy duplicate emails)."
+        )
 
 
     # ================= PROGRESS TABLE =================
@@ -4412,46 +4499,47 @@ def login():
 
     if request.method == "POST":
 
-        username = request.form[
-            "username"
-        ].strip()
+        identifier = request.form.get(
+            "username",
+            "",
+        ).strip()
 
-        password = request.form[
-            "password"
-        ]
+        password = request.form.get(
+            "password",
+            "",
+        )
 
-        conn = get_db()
+        user = _lookup_auth_user(identifier)
 
-        user = conn.execute(
-            """
-            SELECT *
-            FROM users
-            WHERE username = ?
-            """,
-            (username,)
-        ).fetchone()
-
-        conn.close()
-
-        if user and check_password_hash(
-            user["password"],
-            password
+        if user and _password_hash_matches(
+            row_value(user, "password"),
+            password,
         ):
-
+            user_id = row_value(user, "id")
+            username = row_value(user, "username")
             _establish_login_session(
-                user["id"],
-                user["username"],
+                user_id,
+                username,
             )
-
-            _achievement_hook(user["id"], "first_login")
-
+            _achievement_hook(user_id, "first_login")
             return redirect(
                 url_for("dashboard")
             )
 
-        flash(
-            "Invalid username or password"
+        provider = (
+            (row_value(user, "provider") or "local").strip().lower()
+            if user
+            else "local"
         )
+        if user and provider == "google":
+            flash(
+                "This account uses Google sign-in. "
+                "Please continue with Google below."
+            )
+        else:
+            flash(
+                "Invalid username or password"
+            )
 
     return render_template(
         "login.html"

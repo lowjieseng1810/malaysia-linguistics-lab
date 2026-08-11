@@ -211,6 +211,33 @@
 }
 
 /* ---------- Hanging board: fixed high anchors + hemp ropes + board ---------- */
+
+/* Viewport-fixed overlay so plaques appear immediately on every page. */
+.heritage-plaque-host,
+.heritage-plaque-host--overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 2400;
+  pointer-events: none;
+}
+
+.heritage-plaque-host .heritage-plaque.is-visible {
+  pointer-events: auto;
+}
+
+body.heritage-plaque-active {
+  overflow-x: hidden;
+}
+
+body.heritage-plaque-dragging {
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
 .heritage-plaque {
   /* --plaque-y aliases board top; anchors stay fixed in host space */
   --anchor-y: -460px;
@@ -346,9 +373,33 @@
   transform-origin: 50% 0;
   will-change: transform, top;
   cursor: grab;
-  touch-action: none; /* allow touch-drag of the suspended board */
+  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.heritage-plaque-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 5;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 236, 210, 0.22);
+  border-radius: 999px;
+  background: rgba(20, 14, 10, 0.45);
+  color: #f3ead8;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.heritage-plaque-close:hover,
+.heritage-plaque-close:focus-visible {
+  background: rgba(40, 28, 18, 0.7);
+  outline: 2px solid rgba(214, 176, 77, 0.55);
+  outline-offset: 2px;
 }
 
 .heritage-plaque-board.is-dragging {
@@ -556,5 +607,14 @@
 
   .heritage-trigger-speech {
     transition: opacity 0.2s ease;
+  }
+
+  .heritage-plaque-board {
+    cursor: default;
+  }
+
+  body.heritage-plaque-dragging {
+    overflow: auto;
+    touch-action: auto;
   }
 }

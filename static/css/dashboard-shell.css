@@ -233,13 +233,15 @@ body:has(.dash-shell) .container {
 }
 
 .heritage-plaque-host {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 0;
+    /* Achievement plaques use a viewport overlay from achievement-notify.css.
+       Keep this rule as a no-op fallback so older absolute host styles cannot
+       clip or bury the hanging board. */
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     overflow: visible;
-    z-index: 55;
+    z-index: 2400;
     pointer-events: none;
 }
 

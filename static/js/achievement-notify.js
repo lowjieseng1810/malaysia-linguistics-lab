@@ -60,6 +60,10 @@
   let cooldownTickTimer = null;
   let cooldownStartedAt = 0;
   let keycapLabelDefault = "Heritage";
+  /* Keys already queued or successfully displayed this page lifetime. */
+  const seenKeys = new Set();
+  let activeShowCleanup = null;
+  let resizeBound = false;
 
   /* Drag / pendulum state — only while DISPLAYING; never extends the hold timer. */
   let sessionAnchorY = 0;
@@ -86,28 +90,32 @@
   };
 
   function contentWidth() {
-    const main = document.getElementById("dash-main") || document.querySelector(".dash-main");
-    const hostEl = contentHost();
-    const w =
-      (hostEl && hostEl.getBoundingClientRect().width) ||
-      (main && main.getBoundingClientRect().width) ||
-      (window.innerWidth || 1200) * 0.7;
-    return Math.max(280, w);
+    const vw = window.innerWidth || 1200;
+    return Math.max(280, vw);
   }
 
   function physicsLimits() {
     const narrow = (window.innerWidth || 1200) < 720;
-    const cw = contentWidth();
-    /* Large suspended arc: ~18–28% of content width (desktop), ~15–22% (mobile). */
-    const maxX = Math.round(cw * (narrow ? 0.18 : 0.26));
+    const vw = window.innerWidth || 1200;
+    const vh = window.innerHeight || 800;
+    const panelW = Math.min(520, Math.max(260, vw - 28));
+    /*
+     * Large intentional travel: allow the board to move across most of the
+     * viewport while keeping a margin so the panel (and close/action controls)
+     * stay fully on-screen.
+     */
+    const maxX = Math.max(
+      narrow ? 110 : 160,
+      Math.floor(vw / 2 - panelW / 2 - (narrow ? 10 : 16))
+    );
     return {
       narrow: narrow,
-      contentW: cw,
+      contentW: contentWidth(),
+      panelW: panelW,
       maxX: maxX,
-      /* Keep angles in a believable wooden-sign band; length carries the arc. */
-      maxAmpDeg: narrow ? 22 : 28,
-      maxDragYDown: narrow ? 40 : 56,
-      maxDragYUp: narrow ? 28 : 40,
+      maxAmpDeg: narrow ? 38 : 44,
+      maxDragYDown: Math.max(120, Math.floor(vh * (narrow ? 0.58 : 0.66))),
+      maxDragYUp: Math.max(80, Math.floor(vh * (narrow ? 0.38 : 0.48))),
       /* Angular pendulum — heavy wooden sign (slow period, light damping). */
       gravity: narrow ? 8.6 : 6.8,
       damping: narrow ? 0.38 : 0.26
@@ -144,11 +152,28 @@
   }
 
   function contentHost() {
-    return (
-      document.getElementById("heritage-plaque-host") ||
-      document.getElementById("dash-main") ||
-      document.querySelector(".dash-main")
-    );
+    let hostEl = document.getElementById("heritage-plaque-host");
+    /* Always use a viewport-fixed overlay on <body> so plaques show on every
+       page (quiz/dictionary/lessons), not only dashboard layouts. */
+    if (hostEl && hostEl.parentElement !== document.body) {
+      document.body.appendChild(hostEl);
+    }
+    if (hostEl) {
+      hostEl.classList.add("heritage-plaque-host", "heritage-plaque-host--overlay");
+    }
+    return hostEl;
+  }
+
+  function ensureOverlayHost() {
+    let hostEl = contentHost();
+    if (!hostEl) {
+      hostEl = document.createElement("div");
+      hostEl.id = "heritage-plaque-host";
+      hostEl.className = "heritage-plaque-host heritage-plaque-host--overlay";
+      hostEl.setAttribute("aria-hidden", "true");
+      document.body.appendChild(hostEl);
+    }
+    return hostEl;
   }
 
   function setTriggerBusy() {
@@ -214,18 +239,7 @@
 
   function ensureRoot() {
     if (root && document.body.contains(root)) return root;
-    host = contentHost();
-    if (!host) {
-      host = document.createElement("div");
-      host.id = "heritage-plaque-host";
-      host.className = "heritage-plaque-host";
-      const main = document.querySelector(".dash-main");
-      if (main) {
-        main.insertBefore(host, main.firstChild);
-      } else {
-        document.body.appendChild(host);
-      }
-    }
+    host = ensureOverlayHost();
     root = document.createElement("div");
     root.id = "heritage-plaque";
     root.className = "heritage-plaque";
@@ -238,6 +252,7 @@
       '<span class="heritage-plaque-rope heritage-plaque-rope--left" aria-hidden="true"></span>' +
       '<span class="heritage-plaque-rope heritage-plaque-rope--right" aria-hidden="true"></span>' +
       '<div class="heritage-plaque-board">' +
+      '<button type="button" class="heritage-plaque-close" aria-label="Dismiss achievement">×</button>' +
       '<div class="heritage-plaque-stamp-slot"></div>' +
       '<div class="heritage-plaque-glints" aria-hidden="true"></div>' +
       '<div class="heritage-plaque-copy">' +
@@ -249,6 +264,15 @@
       '<a class="heritage-plaque-action" href="/achievements">View Achievements →</a>' +
       "</div></div>";
     host.appendChild(root);
+    const closeBtn = root.querySelector(".heritage-plaque-close");
+    if (closeBtn && !closeBtn.dataset.bound) {
+      closeBtn.dataset.bound = "1";
+      closeBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        forceDismissCurrent();
+      });
+    }
     return root;
   }
 
@@ -256,37 +280,28 @@
     const vh = window.innerHeight || 800;
     const vw = window.innerWidth || 1200;
     const narrow = vw < 720;
-    const hostEl = contentHost();
+    const hostEl = ensureOverlayHost();
     if (hostEl) {
       void hostEl.offsetTop;
     }
+    /* Overlay host is viewport-fixed, so host-local Y ≈ viewport Y. */
     const hostTop = hostEl ? hostEl.getBoundingClientRect().top : 0;
 
-    /*
-     * Geometry is solved in VIEWPORT space first (navbar → visible landing),
-     * then converted into host-local Y for absolute CSS. That keeps the plaque
-     * on-screen when the dashboard is scrolled, without sticky pinning.
-     */
     const navbar = document.querySelector(".navbar");
     const navBottom = navbar
       ? navbar.getBoundingClientRect().bottom
       : Math.min(72, vh * 0.1);
 
     const limits = physicsLimits();
-    const anchorVp = navBottom - (narrow ? 2 : 4);
+    const anchorVp = Math.max(8, navBottom - (narrow ? 2 : 4));
     const startVp = anchorVp + INITIAL_ROPE;
-    /*
-     * Rope length must support a large horizontal arc at a believable angle:
-     *   maxX ≈ L * sin(θ)  →  L ≥ maxX / sin(θ)
-     * Lower the rest point within the safe viewport band when needed.
-     */
-    const idealDeg = narrow ? 20 : 24;
+    const idealDeg = narrow ? 34 : 40;
     const needLen = Math.ceil(limits.maxX / Math.sin((idealDeg * Math.PI) / 180));
-    const minTravelVp = Math.max(narrow ? 190 : 260, needLen - INITIAL_ROPE);
-    /* Lower rest so L·sin(θ) can reach the viewport-% arc without forcing huge angles. */
-    const maxRestVp = Math.min(vh * (narrow ? 0.58 : 0.6), vh - (narrow ? 140 : 140));
+    const minTravelVp = Math.max(narrow ? 220 : 300, needLen - INITIAL_ROPE);
+    /* Rest mid/lower viewport so the board can travel a large vertical band. */
+    const maxRestVp = Math.min(vh * (narrow ? 0.7 : 0.72), vh - (narrow ? 110 : 120));
     const restVp = Math.min(
-      Math.max(startVp + minTravelVp, vh * (narrow ? 0.36 : 0.4)),
+      Math.max(startVp + minTravelVp, vh * (narrow ? 0.42 : 0.48)),
       maxRestVp
     );
 
@@ -296,14 +311,13 @@
     const travel = Math.max(12, restY - startY);
     const restLen = Math.max(12, restY - anchorY);
     const ampRad = (limits.maxAmpDeg * Math.PI) / 180;
-    /* Cap horizontal target to what this rope length can do at the amp band. */
     const geomMaxX = Math.floor(restLen * Math.sin(ampRad));
     return {
       travel: travel,
       restY: restY,
       startY: startY,
       anchorY: anchorY,
-      maxX: Math.min(limits.maxX, geomMaxX),
+      maxX: Math.min(limits.maxX, Math.max(geomMaxX, Math.floor(limits.maxX * 0.85))),
       maxAmpDeg: limits.maxAmpDeg
     };
   }
@@ -506,6 +520,23 @@
     return Math.min(ampCap, geomCap);
   }
 
+  function dragBounds() {
+    const limits = physicsLimits();
+    const vh = window.innerHeight || 800;
+    const maxX = Math.max(48, Math.min(sessionMaxX || limits.maxX, limits.maxX));
+    const minY = Math.max(sessionAnchorY + 36, 12);
+    const maxY = Math.min(
+      sessionRestY + limits.maxDragYDown,
+      vh - 72
+    );
+    const upFloor = sessionRestY - limits.maxDragYUp;
+    return {
+      maxX: maxX,
+      minY: Math.max(minY, upFloor),
+      maxY: Math.max(minY + 40, maxY)
+    };
+  }
+
   /**
    * While dragging, drive the rigid board directly from pointer geometry.
    * setPose keeps both rope endpoints on the real eyelets (not a single-L pendulum
@@ -513,16 +544,12 @@
    */
   function applyDragPose(boardX, boardY) {
     const limits = physicsLimits();
-    const maxTheta = maxSwingTheta();
-    const L = Math.max(sessionRestLen, 48);
-    const maxX = L * Math.sin(maxTheta);
-    const x = Math.max(-maxX, Math.min(maxX, boardX));
-    const minY = sessionAnchorY + L * 0.82;
-    const maxY = sessionAnchorY + L + limits.maxDragYDown;
-    const y = Math.max(minY, Math.min(maxY, boardY));
+    const bounds = dragBounds();
+    const x = Math.max(-bounds.maxX, Math.min(bounds.maxX, boardX));
+    const y = Math.max(bounds.minY, Math.min(bounds.maxY, boardY));
     const rot = Math.max(
       -limits.maxAmpDeg,
-      Math.min(limits.maxAmpDeg, x * 0.12)
+      Math.min(limits.maxAmpDeg, x * 0.05)
     );
     setPose(y, x, rot, 1, sessionAnchorY);
     swingTheta = Math.atan2(x, Math.max(24, y - sessionAnchorY));
@@ -580,8 +607,17 @@
       if (reduced) return;
       if (state !== STATE.DISPLAYING) return;
       if (event.button != null && event.button !== 0) return;
+      /* Keep buttons/links/text controls clickable — do not start a drag. */
+      if (
+        event.target &&
+        event.target.closest &&
+        event.target.closest("a, button, input, textarea, select, label")
+      ) {
+        return;
+      }
       /* Touch + mouse: capture so the suspended board can be dragged on all devices. */
       event.preventDefault();
+      document.body.classList.add("heritage-plaque-dragging");
       drag.active = true;
       drag.pointerId = event.pointerId;
       drag.startClientX = event.clientX - drag.x;
@@ -605,17 +641,20 @@
       if (state !== STATE.DISPLAYING) {
         endDrag();
         board.classList.remove("is-dragging");
+        document.body.classList.remove("heritage-plaque-dragging");
         return;
       }
+      event.preventDefault();
       const now = performance.now();
       const dt = Math.max(8, now - drag.lastT);
-      const limits = physicsLimits();
+      const bounds = dragBounds();
       let nx = event.clientX - drag.startClientX;
       let ny = event.clientY - drag.startClientY;
-      const maxTheta = maxSwingTheta();
-      const maxX = Math.max(sessionRestLen, 48) * Math.sin(maxTheta);
-      nx = Math.max(-maxX, Math.min(maxX, nx));
-      ny = Math.max(-limits.maxDragYUp, Math.min(limits.maxDragYDown, ny));
+      nx = Math.max(-bounds.maxX, Math.min(bounds.maxX, nx));
+      ny = Math.max(
+        bounds.minY - sessionRestY,
+        Math.min(bounds.maxY - sessionRestY, ny)
+      );
       drag.vx = ((event.clientX - drag.lastClientX) / dt) * 16;
       drag.vy = ((event.clientY - drag.lastClientY) / dt) * 16;
       drag.lastClientX = event.clientX;
@@ -632,11 +671,12 @@
       endDrag();
       board.classList.remove("is-dragging");
       board.style.touchAction = "";
+      document.body.classList.remove("heritage-plaque-dragging");
       /* Keep angular inertia — several progressively smaller swings. */
-      drag.vx = Math.max(-36, Math.min(36, drag.vx));
-      drag.vy = Math.max(-14, Math.min(14, drag.vy));
+      drag.vx = Math.max(-48, Math.min(48, drag.vx));
+      drag.vy = Math.max(-24, Math.min(24, drag.vy));
       /* Convert horizontal release velocity into a heavy angular kick. */
-      swingOmega = Math.max(-2.4, Math.min(2.4, drag.vx / 48));
+      swingOmega = Math.max(-2.8, Math.min(2.8, drag.vx / 48));
       if (Math.abs(swingOmega) < 0.35 && Math.abs(swingTheta) > 0.08) {
         /* Letting go near an extreme still returns with weight. */
         swingOmega += (swingTheta > 0 ? -0.55 : 0.55);
@@ -716,6 +756,8 @@
         resolve();
         return;
       }
+      let finished = false;
+      let forceRetract = false;
       state = STATE.ENTERING;
       setTriggerBusy();
       hideSpeech();
@@ -724,12 +766,15 @@
       drag.y = 0;
       drag.vx = 0;
       drag.vy = 0;
+      document.body.classList.remove("heritage-plaque-dragging");
 
       const rarity = fillBoard(item);
       lastShown = item;
       document.body.classList.add("heritage-plaque-active");
       if (host) host.setAttribute("aria-hidden", "false");
       bindBoardDrag();
+      /* Ack only after the plaque is on-screen — prevents lost toasts. */
+      markShownAndAck(item);
 
       window.dispatchEvent(
         new CustomEvent("mascotCompanionEvent", {
@@ -790,6 +835,9 @@
         setDualRopeSwingPose(0, fromY, 1, anchorY, fromLen);
 
         function finish() {
+          if (finished) return;
+          finished = true;
+          activeShowCleanup = null;
           if (animFrame) {
             window.cancelAnimationFrame(animFrame);
             animFrame = null;
@@ -797,6 +845,7 @@
           endDrag();
           const board = root && root.querySelector(".heritage-plaque-board");
           if (board) board.classList.remove("is-dragging");
+          document.body.classList.remove("heritage-plaque-dragging");
           setDualRopeSwingPose(0, anchorY + Math.max(8, fromLen * 0.4), 0, anchorY, fromLen);
           if (root) root.classList.remove("is-visible");
           document.body.classList.remove("heritage-plaque-active");
@@ -804,6 +853,11 @@
           enterCooldown();
           resolve();
         }
+
+        activeShowCleanup = function () {
+          forceRetract = true;
+          if (reduced || !animFrame) finish();
+        };
 
         if (reduced) {
           setDualRopeSwingPose(0, restY, 1, anchorY, restLen);
@@ -828,8 +882,14 @@
         let retractStartRot = 0;
 
         function frame(ts) {
+          if (finished) return;
           if (start == null) start = ts;
-          const t = ts - start;
+          let t = ts - start;
+          if (forceRetract && t < holdEnd) {
+            start = ts - holdEnd;
+            t = holdEnd;
+            forceRetract = false;
+          }
           const dtSec =
             lastFrameTs == null
               ? 0.016
@@ -902,6 +962,7 @@
               endDrag();
               const board = root && root.querySelector(".heritage-plaque-board");
               if (board) board.classList.remove("is-dragging");
+              document.body.classList.remove("heritage-plaque-dragging");
               retractStartX = lastPose.x;
               retractStartY = lastPose.y;
               retractStartRot = lastPose.rot;
@@ -979,6 +1040,12 @@
     }
   }
 
+  function forceDismissCurrent() {
+    if (typeof activeShowCleanup === "function") {
+      activeShowCleanup();
+    }
+  }
+
   function ackKeys(keys) {
     if (!keys.length) return;
     fetch("/api/achievements/ack", {
@@ -995,16 +1062,22 @@
   function enqueue(items, opts) {
     const options = opts || {};
     const list = Array.isArray(items) ? items : items ? [items] : [];
-    const accepted = [];
     list.forEach(function (item) {
       if (!item || !item.title) return;
-      if (queue.some(function (q) { return q.key === item.key; })) return;
+      const key = item.key || item.title;
+      if (key && seenKeys.has(key) && !options.allowReplay) return;
+      if (queue.some(function (q) { return (q.key || q.title) === key; })) return;
       if (lastShown && lastShown.key === item.key && options.skipDuplicateRecent) return;
       queue.push(item);
-      accepted.push(item.key);
     });
-    if (accepted.length && !options.skipAck) ackKeys(accepted);
+    /* Ack only after the plaque is actually shown (see showOne). */
     if (canInteract()) drain();
+  }
+
+  function markShownAndAck(item) {
+    if (!item || !item.key) return;
+    seenKeys.add(item.key);
+    ackKeys([item.key]);
   }
 
   function hideSpeech() {
@@ -1196,11 +1269,35 @@
       if (!response.ok) return;
       const data = await response.json();
       if (data && data.pending && data.pending.length) {
-        enqueue(data.pending, { skipAck: true });
+        enqueue(data.pending);
       }
     } catch (err) {
       /* ignore */
     }
+  }
+
+  function bindResizeClamp() {
+    if (resizeBound) return;
+    resizeBound = true;
+    window.addEventListener("resize", function () {
+      if (!root || !root.classList.contains("is-visible")) return;
+      const layout = layoutMetrics();
+      const limits = physicsLimits();
+      sessionMaxAmp = layout.maxAmpDeg || limits.maxAmpDeg;
+      sessionMaxX = layout.maxX || limits.maxX;
+      sessionRestY = layout.restY;
+      sessionAnchorY = layout.anchorY;
+      sessionRestLen = Math.max(12, layout.restY - layout.anchorY);
+      if (state === STATE.DISPLAYING && !drag.active) {
+        const bounds = dragBounds();
+        drag.x = Math.max(-bounds.maxX, Math.min(bounds.maxX, drag.x));
+        drag.y = Math.max(
+          bounds.minY - sessionRestY,
+          Math.min(bounds.maxY - sessionRestY, drag.y)
+        );
+        applyDragPose(drag.x, sessionRestY + drag.y);
+      }
+    });
   }
 
   window.HeritageAchievements = {
@@ -1218,6 +1315,7 @@
       holdMsFor: holdMsFor
     },
     _layoutMetrics: layoutMetrics,
+    _physicsLimits: physicsLimits,
     _debugPose: function () {
       if (!root) return null;
       return {
@@ -1234,6 +1332,7 @@
         dragX: drag.x,
         dragY: drag.y,
         maxAmp: sessionMaxAmp,
+        maxX: sessionMaxX,
         visible: root.classList.contains("is-visible"),
         state: state
       };
@@ -1245,7 +1344,9 @@
   };
 
   document.addEventListener("DOMContentLoaded", function () {
+    ensureOverlayHost();
     bindTrigger();
+    bindResizeClamp();
     pullPending();
   });
 
