@@ -186,6 +186,19 @@
     outline-offset: 2px;
 }
 
+/* Flash messages must remain readable even if CDN Bootstrap CSS is blocked. */
+.login-page .alert,
+.alert.alert-info {
+    display: block;
+    margin: 0 0 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(88, 196, 180, 0.35);
+    background: rgba(12, 48, 42, 0.92);
+    color: #efd77e;
+    font-weight: 600;
+}
+
 .login-divider {
     display: flex;
     align-items: center;

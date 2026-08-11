@@ -934,12 +934,9 @@ const earthCloudTexture =
         "earth_clouds.png",
         "earth_clouds.png"
     );
-    
-      const earthNightTexture =
-    loadTextureWithLogging(
-        "earth_night.png",
-        "earth_night.png"
-    );
+
+    // Night/city-light texture intentionally not loaded — night side uses
+    // darkened day albedo only (no urban light layer).
     
     const earthGeometry =
         new THREE.SphereGeometry(
@@ -959,10 +956,6 @@ const earthMaterial =
 
             dayTexture: {
                 value: earthDayTexture
-            },
-
-            nightTexture: {
-                value: earthNightTexture
             },
 
             sunWorldPosition: {
@@ -1019,7 +1012,6 @@ const earthMaterial =
         fragmentShader: `
 
             uniform sampler2D dayTexture;
-            uniform sampler2D nightTexture;
 
             uniform vec3 sunWorldPosition;
             uniform vec3 cameraWorldPosition;
@@ -1066,14 +1058,6 @@ const earthMaterial =
                     smoothstep(
                         -0.10,
                         0.20,
-                        NdotL
-                    );
-
-                float nightAmount =
-                    1.0 -
-                    smoothstep(
-                        -0.16,
-                        0.07,
                         NdotL
                     );
 
@@ -1425,67 +1409,6 @@ const earthMaterial =
 
 
                 /* =================================
-                   CITY LIGHTS
-                   ================================= */
-
-                vec3 nightSample =
-                    texture2D(
-                        nightTexture,
-                        vUv
-                    ).rgb;
-
-
-                float cityBrightness =
-                    max(
-                        nightSample.r,
-                        max(
-                            nightSample.g,
-                            nightSample.b
-                        )
-                    );
-
-
-                /*
-                   Remove purple / blue background
-                   from night texture
-                */
-
-              float cityMask =
-    smoothstep(
-        0.105,
-        0.54,
-        cityBrightness
-    );
-
-                vec3 warmCity =
-                    vec3(
-                        1.0,
-                        0.55,
-                        0.20
-                    );
-
-
-                vec3 whiteCity =
-                    vec3(
-                        1.0,
-                        0.91,
-                        0.68
-                    );
-
-
-                vec3 cityColor =
-                    mix(
-                        warmCity,
-                        whiteCity,
-                        cityBrightness
-                    );
-
-
-                /* City / night-light layer disabled (keep day/night shading). */
-                vec3 cityLights = vec3(0.0);
-
-
-                /* =================================
                    TERMINATOR SUNSET
                    ================================= */
 
@@ -1520,10 +1443,6 @@ const earthMaterial =
                         dayColor,
                         dayAmount
                     );
-
-
-                finalColor +=
-                    cityLights;
 
 
                 finalColor +=
