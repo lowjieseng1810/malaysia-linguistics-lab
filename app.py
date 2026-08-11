@@ -224,6 +224,27 @@ limiter = Limiter(
 )
 
 
+def _deduct_failed_login(response):
+    """Count only failed password-login POSTs toward the per-IP budget.
+
+    Successful logins redirect to the dashboard. Counting those requests made a
+    normal login → logout → login cycle consume the shared brute-force budget
+    (and shared NAT/IP testing made 5/minute easy to hit). CSRF/session checks
+    stay unchanged; this only decides whether a completed POST increments the
+    limiter storage.
+    """
+    if request.method != "POST":
+        return False
+    # Do not re-count limiter rejections.
+    if response.status_code == 429:
+        return False
+    # Successful authentication redirects away from /login.
+    if response.status_code in (301, 302, 303, 307, 308):
+        return False
+    # Failed credential checks re-render the login page (200).
+    return True
+
+
 def _establish_login_session(user_id, username):
     """Replace the session on login to prevent session fixation."""
     session.clear()
@@ -4531,9 +4552,11 @@ def register():
     "/login",
     methods=["GET", "POST"]
 )
-
-@limiter.limit("5 per minute", methods=["POST"])
-
+@limiter.limit(
+    "5 per minute",
+    methods=["POST"],
+    deduct_when=_deduct_failed_login,
+)
 def login():
 
     if request.method == "POST":
