@@ -22,7 +22,8 @@ chat.
   local `google_client_secret.json` exists; otherwise it logs a warning and
   skips it. Login/Register hide the Google button unless OAuth is configured.
   On Render set `TRUST_PROXY=true` and `FORCE_HTTPS=true` so OAuth callbacks
-  use HTTPS on the custom domain.
+  use HTTPS on the custom domain. `FORCE_HTTPS` also enables ProxyFix so the
+  origin HTTP hop does not drop session cookies (required for CSRF login).
 - Database access goes through [`db.py`](db.py): if `DATABASE_URL` is set,
   use **PostgreSQL** (production / Render); otherwise use local **SQLite**
   `users.db` (optional `DATABASE_PATH`). Schema is created/migrated by

@@ -170,22 +170,44 @@ if _FLASK_ENV == "production" and secret_key.strip().lower() in {
 if _FORCE_HTTPS:
     app.config["PREFERRED_URL_SCHEME"] = "https"
 
-# When behind Nginx/Cloudflare/etc., honour X-Forwarded-* so request.is_secure
-# and url_for(_external=True) reflect the public HTTPS scheme.
-if _TRUST_PROXY:
+# Honour X-Forwarded-* behind Render/Cloudflare.
+# FORCE_HTTPS without ProxyFix makes request.is_secure=False on the origin
+# HTTP hop, which 301-loops and never sets a session cookie — later login
+# POSTs then fail with "The CSRF session token is missing."
+# Do not enable x_prefix unless the app is mounted under a URL subpath.
+_USE_PROXY_FIX = _TRUST_PROXY or _FORCE_HTTPS
+if _USE_PROXY_FIX:
     app.wsgi_app = ProxyFix(
         app.wsgi_app,
         x_for=1,
         x_proto=1,
         x_host=1,
-        x_prefix=1,
     )
 
 # Composer readiness (also re-run from __main__)
 _report_composer_on_startup()
 
+# ================= SESSION SECURITY =================
+# Configure session cookies BEFORE CSRFProtect so the first request can
+# persist the CSRF secret in a cookie the browser will actually store.
+
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+# Secure cookies when we know clients use HTTPS (explicit FORCE_HTTPS, or
+# production behind a trusted proxy). Avoid Secure-only cookies on a bare
+# production label without proxy trust — the origin hop is often plain HTTP.
+app.config["SESSION_COOKIE_SECURE"] = bool(
+    _FORCE_HTTPS or (_FLASK_ENV == "production" and _USE_PROXY_FIX)
+)
+app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 14
+app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
 # ================= CSRF =================
+
+# Keep CSRF enabled for state-changing methods only. Never validate GET/HEAD.
+app.config["WTF_CSRF_METHODS"] = {"POST", "PUT", "PATCH", "DELETE"}
+# Behind CDN/proxy, Referer is often omitted; token validation remains active.
+app.config["WTF_CSRF_SSL_STRICT"] = not _USE_PROXY_FIX
 
 csrf = CSRFProtect()
 
@@ -200,17 +222,6 @@ limiter = Limiter(
     app=app,
     default_limits=[]
 )
-
-
-# ================= SESSION SECURITY =================
-
-app.config["SESSION_COOKIE_HTTPONLY"] = True
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-# Secure cookies only when HTTPS is forced or the deployment is marked
-# production. Keep False for local HTTP so sessions remain usable.
-app.config["SESSION_COOKIE_SECURE"] = _FORCE_HTTPS or (_FLASK_ENV == "production")
-app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 14
-app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
 
 def _establish_login_session(user_id, username):
@@ -6779,9 +6790,10 @@ def language_sources(lang_key):
 def _enforce_https_when_configured():
     """Optional HTTP→HTTPS redirect for reverse-proxy production deploys.
 
-    Enabled only when FORCE_HTTPS=true. Relies on ProxyFix (TRUST_PROXY)
-    so the check uses the original client scheme and does not loop.
-    Skipped for local-looking hosts even if misconfigured.
+    Enabled only when FORCE_HTTPS=true. Relies on ProxyFix (enabled when
+    TRUST_PROXY or FORCE_HTTPS is set) so the check uses the original
+    client scheme and does not loop. Skipped for local-looking hosts
+    even if misconfigured.
     """
     if not _FORCE_HTTPS:
         return None
