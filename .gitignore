@@ -7,6 +7,13 @@
 !.env.example
 
 google_client_secret.json
+client_secret*.json
+*_client_secret.json
+
+# Production / local credential sidecars (never commit)
+*_database_url.env
+*database*credentials*
+.render/
 
 
 # ==========================================
@@ -14,8 +21,7 @@ google_client_secret.json
 # ==========================================
 
 logs/
-users.db
-users_backup.db
+*.db
 *.db-journal
 *.sqlite
 *.sqlite3
@@ -89,6 +95,14 @@ debug-*.log
 # ==========================================
 
 qa_temp/
+*_probe*.py
+*_prod_*.env
+
+# Accidental one-shot account restore payloads (never re-commit)
+account_bootstrap_data.py
 
 # Large raw vocabulary downloads (rebuild packs from these locally)
 data/vocabulary/raw/
+
+# Accidental zip backups of static assets (use source .js/.css/.png/.jpg)
+*.zip

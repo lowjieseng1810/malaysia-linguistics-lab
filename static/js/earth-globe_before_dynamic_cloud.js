@@ -1389,11 +1389,8 @@ const earthMaterial =
                     );
 
 
-                vec3 cityLights =
-    cityColor *
-    cityMask *
-    3.8 *
-    nightAmount;
+                /* City / night-light layer disabled (keep day/night shading). */
+                vec3 cityLights = vec3(0.0);
 
 
                 /* =================================

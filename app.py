@@ -4003,20 +4003,6 @@ try:
             import_verified_vocabulary_packs()
         except Exception as _seed_exc:
             print(f"[tutor seed] warning: {_seed_exc}")
-        # One-shot restore of known local accounts that were never migrated
-        # into production Postgres (or were overwritten by probe signups).
-        try:
-            from account_bootstrap import apply_local_account_bootstrap
-
-            _bootstrap_status = apply_local_account_bootstrap()
-            if _bootstrap_status.get("applied"):
-                print(
-                    "[account bootstrap] applied "
-                    f"updated={_bootstrap_status.get('updated')} "
-                    f"inserted={_bootstrap_status.get('inserted')}"
-                )
-        except Exception as _bootstrap_exc:
-            print(f"[account bootstrap] warning: {_bootstrap_exc}")
 except Exception as _init_db_exc:
     print(f"[db init] error: {_init_db_exc}")
     raise

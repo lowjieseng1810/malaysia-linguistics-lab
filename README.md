@@ -180,6 +180,7 @@ The AI Tutor is **optional**.
 ```
 app.py                 Flask app: routes, auth, course data, init_db
 db.py                  SQLite / PostgreSQL connection layer
+db_path.py             Local SQLite path helper
 database.py            Content table seeding (vocabulary, grammar, culture, quiz)
 quiz_service.py        Practice and daily quiz session logic
 tutor_service.py       AI Tutor chat orchestration
@@ -190,18 +191,31 @@ learning_memory.py     Quiz mastery / weak-area helpers
 templates/             Jinja2 pages (dashboard, lessons, dictionary, quiz, …)
 static/js              Frontend (earth-globe, level, dashboard, tutor, …)
 static/css             Stylesheets
+static/images          Product imagery and Earth textures
+data/vocabulary        Curated vocabulary packs
+tests/                 Focused auth/CSRF regression tests
 requirements.txt       Python dependencies
 .env.example           Environment variable template (no secrets)
 AGENTS.md              Contributor/agent notes for this codebase
+LICENSE                MIT License
 ```
 
 ---
 
 ## Testing
 
-This repository does **not** ship an automated `pytest` suite.
+Focused unit tests (no full `pytest` suite) cover authentication CSRF/session
+behaviour:
 
-Practical checks you can run locally:
+```bash
+python -m unittest tests.test_auth_csrf -v
+```
+
+Optional local OAuth/auth smoke scripts may exist under `qa_temp/` on a
+developer machine; that folder is gitignored and is not part of the public
+test surface.
+
+Practical manual checks:
 
 1. Create `.env` from `.env.example`, set `SECRET_KEY`, install dependencies, and run `python app.py`.
 2. Exercise dictionary, favorites, practice/daily quiz, a lesson level, compare, achievements, and profile while logged in.
@@ -209,7 +223,15 @@ Practical checks you can run locally:
 4. Optionally run Python’s compiler check on modules you change, for example:
    `python -m py_compile app.py`
 
-Development-only scratch scripts may exist under `qa_temp/` locally; that folder is gitignored and is not part of the public test surface.
+---
+
+## Password reset (development)
+
+Forgot-password creates a time-limited reset token when a matching local
+account email exists. **Reset links are written to the server console only
+when `FLASK_ENV=development` or `FLASK_DEBUG=true`.** Production does not
+send reset email out of the box; deployers who need email delivery must add
+their own mailer.
 
 ---
 

@@ -7439,33 +7439,14 @@ transform:none;
    9. RESTRAINED CITY LIGHTS
    ========================================= */
 
+/* Legacy CSS overlay — unused in markup; kept inert (no visible city lights). */
 .earth-city-lights {
-    position: absolute;
-    z-index: 2;
-
-    inset: 0;
-
-    border-radius: inherit;
-
-    pointer-events: none;
-
-    opacity: 0.55;
-
-    mix-blend-mode: screen;
-
-    background:
-        radial-gradient(circle 1.4px at 78% 62%, rgba(255, 214, 150, 0.85), transparent 100%),
-        radial-gradient(circle 1px at 81% 66%, rgba(255, 214, 150, 0.6), transparent 100%),
-        radial-gradient(circle 1.2px at 74% 58%, rgba(255, 214, 150, 0.7), transparent 100%),
-        radial-gradient(circle 1px at 86% 70%, rgba(255, 214, 150, 0.5), transparent 100%),
-        radial-gradient(circle 1.4px at 69% 72%, rgba(255, 214, 150, 0.65), transparent 100%),
-        radial-gradient(circle 1px at 90% 60%, rgba(255, 214, 150, 0.45), transparent 100%),
-        radial-gradient(circle 1.1px at 64% 66%, rgba(255, 214, 150, 0.55), transparent 100%),
-        radial-gradient(circle 1px at 83% 76%, rgba(255, 214, 150, 0.4), transparent 100%);
-
-    animation:
-        livingCityLightsBreath
-        8s ease-in-out infinite;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    background: none !important;
+    animation: none !important;
 }
 
 

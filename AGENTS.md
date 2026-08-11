@@ -59,14 +59,13 @@ mandatory planner/retrieval refuse path for ordinary questions.
 - `app_backup.py`, `app_backup2.py`, `app_before_courses.py`,
   `app_wrong_courses.py` are stale snapshots of `app.py`, gitignored and not
   imported by anything — don't edit them expecting an effect.
-- No automated test suite. [qa_temp/verify_pipeline.py](qa_temp/verify_pipeline.py)
-  and [qa_temp/verify_rag.py](qa_temp/verify_rag.py) are manual one-off
-  scripts for sanity-checking the tutor pipeline (`python qa_temp/verify_pipeline.py`).
+- Focused auth/CSRF unit tests live under [`tests/`](tests/). Local scratch
+  scripts may exist under `qa_temp/` (gitignored) and are not part of the
+  shipped test surface.
 - CSRF protection (`flask-wtf`) and login rate limiting (`flask-limiter`,
   5/min) are already wired up in [app.py](app.py) — reuse `csrf`/`limiter`,
   don't add a second CSRF/rate-limit mechanism.
 - Password reset tokens are hashed (SHA-256) and time-limited (30 min);
   see `create_reset_token()`/`hash_reset_token()` in [app.py](app.py).
-- Sibling folders at the Desktop level (`malaysian_minority_languages_explorer - Copy`,
-  `- Copy (2)`, `- Copy (3)`) are unrelated manual backups outside this git
-  repo — ignore them unless the user explicitly asks to compare/restore.
+  Reset links are printed to the server console only in development /
+  `FLASK_DEBUG`; production does not email them out of the box.
