@@ -1,15 +1,33 @@
 # Malaysia Linguistics Lab
 
-**Malaysia Linguistics Lab** is a Flask web application for exploring and learning four Malaysian minority and indigenous languages — **Iban**, **Kadazan-Dusun**, **Bidayuh**, and **Mah Meri** — through structured lessons, a searchable dictionary, quizzes, progress tracking, a 3D World Explorer, and an optional AI tutor.
+### Explore Malaysia's Living Languages
 
-- **Live Demo:** [https://malaysialinguisticslab.onrender.com](https://malaysialinguisticslab.onrender.com)
-- **License:** MIT
+An interactive open-source platform for discovering Malaysia's minority and indigenous languages through language, place, culture, voice, and community.
+
+**Live Demo:** [https://malaysialinguisticlab.com](https://malaysialinguisticlab.com)
+
+[Live Demo](https://malaysialinguisticlab.com) · [GitHub](https://github.com/lowjieseng1810/malaysia-linguistics-lab) · [Report a Bug](https://github.com/lowjieseng1810/malaysia-linguistics-lab/issues)
+
+**License:** MIT
 
 ---
 
-## Overview
+## What makes it different?
 
-Malaysia’s living languages carry community knowledge, place, and identity. This project brings a small set of those languages into an interactive learning space: encounter vocabulary and phrases in course levels, look words up in a shared dictionary, practice with quizzes, track progress, and explore language origins on a map and globe.
+Malaysia is home to many living languages that receive far less digital representation than major world languages.
+
+Malaysia Linguistics Lab turns that linguistic diversity into an interactive exploration experience.
+
+### Explore
+
+- Where languages are spoken
+- Interactive geographic exploration
+- Language and voice content
+- Vocabulary and learning
+- Cultural context
+- Interactive learning activities
+
+The product currently focuses on four languages — **Iban**, **Kadazan-Dusun**, **Bidayuh**, and **Mah Meri** — through structured lessons, a searchable dictionary, quizzes, progress tracking, a 3D World Explorer, and an optional AI tutor.
 
 Course lesson text lives in application data (`COURSE_DATA` in `app.py`). Dictionary, quiz, favorites, and related features use database tables seeded from that content. The optional AI Tutor is separate: chat answers go through OpenAI when configured, while the rest of the product does not require an AI API key.
 
@@ -34,11 +52,9 @@ Course lesson text lives in application data (`COURSE_DATA` in `app.py`). Dictio
 
 ## Live Demo
 
-A deployed demo is available at:
+**[https://malaysialinguisticlab.com](https://malaysialinguisticlab.com)**
 
-**[https://malaysialinguisticslab.onrender.com](https://malaysialinguisticslab.onrender.com)**
-
-The demo runs on Render. Expect normal free-tier cold starts after idle periods. Create your own account on the demo; do not rely on it for private or production data.
+Create your own account on the demo; do not rely on it for private or production data. Hosted demos may have cold starts after idle periods.
 
 ---
 
@@ -193,7 +209,7 @@ static/js              Frontend (earth-globe, level, dashboard, tutor, …)
 static/css             Stylesheets
 static/images          Product imagery and Earth textures
 data/vocabulary        Curated vocabulary packs
-tests/                 Focused auth/CSRF regression tests
+tests/                 Focused auth/CSRF and login rate-limit regression tests
 requirements.txt       Python dependencies
 .env.example           Environment variable template (no secrets)
 AGENTS.md              Contributor/agent notes for this codebase
@@ -205,10 +221,10 @@ LICENSE                MIT License
 ## Testing
 
 Focused unit tests (no full `pytest` suite) cover authentication CSRF/session
-behaviour:
+behaviour and login rate-limit regressions:
 
 ```bash
-python -m unittest tests.test_auth_csrf -v
+python -m unittest tests.test_auth_csrf tests.test_login_rate_limit -v
 ```
 
 Optional local OAuth/auth smoke scripts may exist under `qa_temp/` on a
