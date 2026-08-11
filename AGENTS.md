@@ -15,9 +15,14 @@ chat.
   least `SECRET_KEY` (app raises `RuntimeError` at import time if missing).
   See [`.env.example`](.env.example) for optional keys (`FLASK_DEBUG`,
   `FLASK_ENV`, `DATABASE_URL`, `DATABASE_PATH`, `AI_TUTOR_API_KEY`,
-  `AI_TUTOR_MODEL`, `DEBUG_TUTOR`).
-- Google OAuth is optional — only registers if `google_client_secret.json`
-  exists and is valid; otherwise it just logs a warning and skips it.
+  `AI_TUTOR_MODEL`, `DEBUG_TUTOR`, `TRUST_PROXY`, `FORCE_HTTPS`,
+  `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`).
+- Google OAuth is optional — registers when `GOOGLE_CLIENT_ID` +
+  `GOOGLE_CLIENT_SECRET` are set (preferred on Render), or when a valid
+  local `google_client_secret.json` exists; otherwise it logs a warning and
+  skips it. Login/Register hide the Google button unless OAuth is configured.
+  On Render set `TRUST_PROXY=true` and `FORCE_HTTPS=true` so OAuth callbacks
+  use HTTPS on the custom domain.
 - Database access goes through [`db.py`](db.py): if `DATABASE_URL` is set,
   use **PostgreSQL** (production / Render); otherwise use local **SQLite**
   `users.db` (optional `DATABASE_PATH`). Schema is created/migrated by

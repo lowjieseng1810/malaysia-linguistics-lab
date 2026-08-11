@@ -302,87 +302,114 @@ GOOGLE_CLIENT_SECRET_FILE = os.path.join(
     "google_client_secret.json"
 )
 
-
 oauth = OAuth(app)
+GOOGLE_OAUTH_ENABLED = False
+
+
+def _load_google_oauth_credentials():
+    """Resolve Google OAuth credentials for production or local development.
+
+    Preference order:
+    1. ``GOOGLE_CLIENT_ID`` + ``GOOGLE_CLIENT_SECRET`` environment variables
+       (Render / production-safe)
+    2. Optional local ``google_client_secret.json`` (gitignored; local only)
+
+    Returns ``(client_id, client_secret, source)`` or ``(None, None, None)``.
+    """
+    env_id = (os.getenv("GOOGLE_CLIENT_ID") or "").strip()
+    env_secret = (os.getenv("GOOGLE_CLIENT_SECRET") or "").strip()
+    if env_id and env_secret:
+        return env_id, env_secret, "environment"
+
+    if os.path.exists(GOOGLE_CLIENT_SECRET_FILE):
+        try:
+            with open(
+                GOOGLE_CLIENT_SECRET_FILE,
+                "r",
+                encoding="utf-8",
+            ) as file:
+                google_config = json.load(file)
+        except (OSError, json.JSONDecodeError) as exc:
+            print(
+                "Google OAuth secret file could not be read:",
+                exc,
+            )
+            return None, None, None
+
+        web_config = google_config.get("web", {}) or {}
+        file_id = (web_config.get("client_id") or "").strip()
+        file_secret = (web_config.get("client_secret") or "").strip()
+        if file_id and file_secret:
+            return file_id, file_secret, "json_file"
+
+        print(
+            "Google OAuth configuration file is incomplete "
+            "(missing web.client_id / web.client_secret)."
+        )
+        return None, None, None
+
+    return None, None, None
 
 
 def register_google_oauth():
+    """Register the Authlib Google client when credentials are available."""
+    global GOOGLE_OAUTH_ENABLED
 
-    if not os.path.exists(
-        GOOGLE_CLIENT_SECRET_FILE
-    ):
-
+    client_id, client_secret, source = _load_google_oauth_credentials()
+    if not client_id or not client_secret:
+        GOOGLE_OAUTH_ENABLED = False
         print(
-            "Google OAuth secret file "
-            "was not found."
+            "Google OAuth is not configured. "
+            "Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET "
+            "(recommended for Render), or place a valid "
+            "google_client_secret.json in the project root for local use."
         )
-
-        return
-
-
-    with open(
-        GOOGLE_CLIENT_SECRET_FILE,
-        "r",
-        encoding="utf-8"
-    ) as file:
-
-        google_config = json.load(
-            file
-        )
-
-
-    web_config = google_config.get(
-        "web",
-        {}
-    )
-
-
-    client_id = web_config.get(
-        "client_id"
-    )
-
-
-    client_secret = web_config.get(
-        "client_secret"
-    )
-
-
-    if (
-        not client_id
-        or not client_secret
-    ):
-
-        print(
-            "Google OAuth configuration "
-            "is incomplete."
-        )
-
-        return
-
+        return False
 
     oauth.register(
-
         name="google",
-
         client_id=client_id,
-
         client_secret=client_secret,
-
         server_metadata_url=(
             "https://accounts.google.com/"
             ".well-known/"
             "openid-configuration"
         ),
-
         client_kwargs={
-            "scope":
-            "openid email profile"
-        }
-
+            "scope": "openid email profile"
+        },
     )
+    GOOGLE_OAUTH_ENABLED = True
+    print(f"Google OAuth registered (source={source}).")
+    return True
+
+
+def google_oauth_configured() -> bool:
+    """True when the Google Authlib client was successfully registered."""
+    return bool(GOOGLE_OAUTH_ENABLED and "google" in getattr(oauth, "_clients", {}))
+
+
+def _oauth_redirect_uri():
+    """Absolute callback URL for Google OAuth.
+
+    Behind Render (or any TLS-terminating proxy), prefer HTTPS so the
+    redirect_uri matches Google Cloud Console entries for the custom domain.
+    Requires TRUST_PROXY=true so Host / X-Forwarded-* are honoured.
+    """
+    kwargs = {"_external": True}
+    if _FORCE_HTTPS or _FLASK_ENV == "production":
+        kwargs["_scheme"] = "https"
+    return url_for("google_callback", **kwargs)
 
 
 register_google_oauth()
+
+
+@app.context_processor
+def inject_auth_template_flags():
+    return {
+        "google_oauth_enabled": google_oauth_configured(),
+    }
 
 
 # ================= AI TUTOR FEATURE FLAG =================
@@ -4483,7 +4510,8 @@ def register():
 
 
     return render_template(
-        "register.html"
+        "register.html",
+        google_oauth_enabled=google_oauth_configured(),
     )
 
 # ================= LOGIN =================
@@ -4532,17 +4560,24 @@ def login():
             else "local"
         )
         if user and provider == "google":
-            flash(
-                "This account uses Google sign-in. "
-                "Please continue with Google below."
-            )
+            if google_oauth_configured():
+                flash(
+                    "This account uses Google sign-in. "
+                    "Please continue with Google below."
+                )
+            else:
+                flash(
+                    "This account uses Google sign-in, "
+                    "but Google login is not available on this server right now."
+                )
         else:
             flash(
                 "Invalid username or password"
             )
 
     return render_template(
-        "login.html"
+        "login.html",
+        google_oauth_enabled=google_oauth_configured(),
     )
 
 # ================= GOOGLE LOGIN =================
@@ -4550,7 +4585,7 @@ def login():
 @app.route("/login/google")
 def google_login():
 
-    if "google" not in oauth._clients:
+    if not google_oauth_configured():
 
         flash(
             "Google login is not available."
@@ -4560,10 +4595,7 @@ def google_login():
             url_for("login")
         )
 
-    redirect_uri = url_for(
-        "google_callback",
-        _external=True
-    )
+    redirect_uri = _oauth_redirect_uri()
 
     return oauth.google.authorize_redirect(
         redirect_uri

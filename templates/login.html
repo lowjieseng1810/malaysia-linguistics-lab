@@ -104,7 +104,8 @@ Login | Malaysia Linguistics Lab
     </form>
 
 
-    <!-- DIVIDER -->
+    {% if google_oauth_enabled %}
+    <!-- DIVIDER + GOOGLE (only when OAuth is configured) -->
 
     <div
         class="login-divider"
@@ -169,6 +170,7 @@ Login | Malaysia Linguistics Lab
         </span>
 
     </a>
+    {% endif %}
 
 
     <!-- REGISTER -->

@@ -28,7 +28,7 @@ Course lesson text lives in application data (`COURSE_DATA` in `app.py`). Dictio
 - **Language comparison** — Side-by-side comparison of two supported languages.
 - **World Explorer** — Interactive Three.js Earth on the dashboard, with Malaysia exploration and deep links into learning content (WebGL required for the 3D view; other features remain available without it).
 - **AI Tutor (optional)** — In-app chat companion powered by OpenAI when an API key is set; core learning features keep working if the key is missing.
-- **Accounts** — Registration and login with email/password, password reset, CSRF-protected sessions, optional Google OAuth when `google_client_secret.json` is present, plus profile and mascot settings pages.
+- **Accounts** — Registration and login with email/password, password reset, CSRF-protected sessions, optional Google OAuth (`GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` or local `google_client_secret.json`), plus profile and mascot settings pages.
 
 ---
 
@@ -116,7 +116,23 @@ Do not commit `.env` or real database URLs. Schema init is idempotent (`CREATE I
 
 ### Optional: Google sign-in
 
-Place a valid Google OAuth client file as `google_client_secret.json` in the project root. If it is missing or invalid, Google sign-in is skipped and email/password auth still works. Never commit that file.
+Prefer environment variables (required for Render / production):
+
+```bash
+GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-client-secret
+TRUST_PROXY=true
+FORCE_HTTPS=true
+```
+
+Local development may instead use a gitignored `google_client_secret.json` in the project root (Google Cloud “Download JSON” for a Web application client). If neither env vars nor the JSON file are present, Google sign-in is disabled and the Google button is hidden.
+
+In Google Cloud Console, add authorized redirect URIs for your production hosts, for example:
+
+- `https://malaysialinguisticlab.com/login/google/callback`
+- `https://www.malaysialinguisticlab.com/login/google/callback`
+
+Never commit OAuth secrets.
 
 ### Production notes
 
@@ -138,6 +154,8 @@ Copy [`.env.example`](.env.example) to `.env` and supply your own values. Never 
 | `DATABASE_URL` | No | PostgreSQL URL (enables Postgres instead of SQLite) |
 | `TRUST_PROXY` | No | Honour `X-Forwarded-*` behind a reverse proxy |
 | `FORCE_HTTPS` | No | Prefer HTTPS redirects / Secure cookies |
+| `GOOGLE_CLIENT_ID` | No | Google OAuth client ID (production) |
+| `GOOGLE_CLIENT_SECRET` | No | Google OAuth client secret (production) |
 | `AI_TUTOR_API_KEY` | No | OpenAI key for AI Tutor chat (`OPENAI_API_KEY` also accepted) |
 | `AI_TUTOR_MODEL` | No | Model name when the tutor is enabled |
 | `DEBUG_TUTOR` | No | Enables `/api/tutor/debug/*` for logged-in users when `true` |
