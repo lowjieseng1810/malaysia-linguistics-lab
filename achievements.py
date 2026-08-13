@@ -9,7 +9,7 @@ import time
 from datetime import datetime
 from typing import Any
 
-from db import get_db
+from db import ensure_column, get_db
 
 # Category keys used by the gallery UI.
 CATEGORIES = (
@@ -319,6 +319,19 @@ def init_achievement_tables(conn=None) -> None:
 
         CREATE INDEX IF NOT EXISTS idx_user_achievements_user
             ON user_achievements (user_id);
+        """
+    )
+
+    # Additive: older local DBs may have user_achievements without notified.
+    ensure_column(
+        conn,
+        "user_achievements",
+        "notified",
+        "INTEGER NOT NULL DEFAULT 0",
+    )
+
+    conn.executescript(
+        """
 
         CREATE TABLE IF NOT EXISTS user_activity_days (
             user_id INTEGER NOT NULL,
@@ -722,6 +735,29 @@ def evaluate_achievements(user_id: int) -> list[dict[str, Any]]:
     return newly
 
 
+def mark_unlocked_as_delivered(
+    user_id: int, items: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Persist that these unlocks were sent to the client for display.
+
+    Distinguishes newly unlocked from already-delivered so a later
+    ``/api/achievements/pending`` fetch cannot replay the same plaque.
+    """
+    keys = [
+        str(item["key"])
+        for item in items
+        if isinstance(item, dict) and item.get("key")
+    ]
+    if keys:
+        mark_achievements_notified(user_id, keys)
+    return items
+
+
+def evaluate_achievements_for_display(user_id: int) -> list[dict[str, Any]]:
+    """Evaluate unlocks and mark them delivered for a JSON ``new_achievements`` body."""
+    return mark_unlocked_as_delivered(user_id, evaluate_achievements(user_id))
+
+
 def format_earned_date(unlocked_at: int | None) -> str | None:
     """Compact stamp-face date from real unlock timestamp (never fabricated)."""
     if unlocked_at is None:
@@ -816,26 +852,44 @@ def mark_achievements_notified(user_id: int, keys: list[str] | None = None) -> N
 
 
 def pop_pending_achievement_notifications(user_id: int) -> list[dict[str, Any]]:
-    """Return newly unlocked achievements not yet shown.
+    """Return newly unlocked achievements not yet shown, then mark them delivered.
 
-    Does **not** mark ``notified`` — the client must POST ``/api/achievements/ack``
-    after the plaque is actually displayed so a failed/off-screen render cannot
-    permanently swallow the unlock toast.
+    ``notified = 0`` means the client has not yet been given this unlock to
+    display. This claim is atomic for the current connection so refresh,
+    navigation, and re-login cannot treat the same row as newly unlocked again.
+
+    ``POST /api/achievements/ack`` remains idempotent (already-notified rows
+    stay notified).
     """
     init_achievement_tables()
     conn = get_db()
-    rows = conn.execute(
-        """
-        SELECT achievement_key, unlocked_at
-        FROM user_achievements
-        WHERE user_id = ? AND notified = 0
-        ORDER BY unlocked_at ASC
-        """,
-        (user_id,),
-    ).fetchall()
-    conn.close()
-    if not rows:
-        return []
+    try:
+        rows = conn.execute(
+            """
+            SELECT achievement_key, unlocked_at
+            FROM user_achievements
+            WHERE user_id = ? AND notified = 0
+            ORDER BY unlocked_at ASC
+            """,
+            (user_id,),
+        ).fetchall()
+        if not rows:
+            conn.commit()
+            return []
+        keys = [row["achievement_key"] for row in rows]
+        placeholders = ",".join("?" for _ in keys)
+        conn.execute(
+            f"""
+            UPDATE user_achievements
+            SET notified = 1
+            WHERE user_id = ? AND notified = 0
+              AND achievement_key IN ({placeholders})
+            """,
+            (user_id, *keys),
+        )
+        conn.commit()
+    finally:
+        conn.close()
     keys = [row["achievement_key"] for row in rows]
     unlocked_total = len(get_unlocked_keys(user_id))
     total = len(ACHIEVEMENT_DEFS)

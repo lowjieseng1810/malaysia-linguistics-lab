@@ -1051,6 +1051,7 @@
     fetch("/api/achievements/ack", {
       method: "POST",
       credentials: "same-origin",
+      keepalive: true,
       headers: {
         "Content-Type": "application/json",
         "X-CSRFToken": csrf()

@@ -81,9 +81,11 @@ from learning_memory import get_user_mastery_summary, get_quiz_history
 from achievements import (
     init_achievement_tables,
     evaluate_achievements,
+    evaluate_achievements_for_display,
     get_achievements_gallery,
     pop_pending_achievement_notifications,
     mark_achievements_notified,
+    mark_unlocked_as_delivered,
     set_explorer_milestone,
     record_dictionary_view,
     record_activity_day,
@@ -5309,7 +5311,7 @@ def api_dictionary_random():
     word_id = row.get("id")
     if isinstance(word_id, int) and lang_key:
         record_dictionary_view(session["user_id"], word_id, lang_key)
-        row["new_achievements"] = evaluate_achievements(session["user_id"])
+        row["new_achievements"] = evaluate_achievements_for_display(session["user_id"])
     return jsonify({"ok": True, "word": row})
 
 
@@ -5529,7 +5531,7 @@ def api_passport_discover():
     if passport and passport.get("newly_discovered"):
         set_explorer_milestone(user_id, "beacon_discovery")
     record_activity_day(user_id)
-    new_achievements = evaluate_achievements(user_id)
+    new_achievements = evaluate_achievements_for_display(user_id)
     payload = {"success": True, **passport, "new_achievements": new_achievements}
     return jsonify(payload)
 
@@ -5636,7 +5638,10 @@ def api_achievements_evaluate():
     if milestone not in allowed:
         return jsonify({"error": "invalid_milestone"}), 400
     newly = _achievement_hook(session["user_id"], milestone)
-    return jsonify({"success": True, "new_achievements": newly})
+    return jsonify({
+        "success": True,
+        "new_achievements": mark_unlocked_as_delivered(session["user_id"], newly),
+    })
 
 
 @app.route("/api/mascot/preferences", methods=["GET", "POST"])
@@ -5750,7 +5755,7 @@ def api_favorites_toggle():
 
     add_saved_word(user_id, vocabulary_id, language)
     record_activity_day(user_id)
-    newly = evaluate_achievements(user_id)
+    newly = evaluate_achievements_for_display(user_id)
     return jsonify({"success": True, "saved": True, "new_achievements": newly})
 
 
@@ -5915,7 +5920,7 @@ def api_quiz_answer():
     if not result.get("ok"):
         return jsonify(result), 409
     record_activity_day(session["user_id"])
-    result["new_achievements"] = evaluate_achievements(session["user_id"])
+    result["new_achievements"] = evaluate_achievements_for_display(session["user_id"])
     return jsonify(result)
 
 
@@ -6573,7 +6578,7 @@ def complete_level(lang_key, level_num):
     conn.close()
 
     record_activity_day(session["user_id"])
-    newly = evaluate_achievements(session["user_id"])
+    newly = evaluate_achievements_for_display(session["user_id"])
     return jsonify({
         "success": True,
         "message": "Progress saved",
