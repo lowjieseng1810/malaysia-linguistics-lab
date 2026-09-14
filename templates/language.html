@@ -679,8 +679,10 @@
 
                     {% if image.image_url %}
 
-                        <div class="community-image-wrap"
-                             style="--gallery-bg: url('{{ image.image_url }}');">
+                        {% set mah_meri_photo = 'mah_meri' in image.image_url %}
+
+                        <div class="community-image-wrap{% if mah_meri_photo %} community-image-wrap--intrinsic{% endif %}"
+                             {% if not mah_meri_photo %}style="--gallery-bg: url('{{ image.image_url }}');"{% endif %}>
                             <img class="community-image"
                                  src="{{ image.image_url }}"
                                  alt="{{ image.title }}"
@@ -1117,22 +1119,45 @@
     object-position: center 30% !important;
 }
 
-/* Mah Meri gallery — show each photo complete (no stretch) and
-   fill leftover frame with the blurred copy, not solid black bars. */
-.community-image-wrap:has(img[src*="mah_meri_"]) {
-    background: #04140d !important;
+/* Mah Meri gallery — wrap hugs the photo. No fixed frame,
+   no contain letterboxing, no blurred/dark filler. */
+.community-gallery-grid:has(.community-image-wrap--intrinsic) {
+    align-items: start;
 }
 
-.community-gallery-card:nth-child(1) img[src*="mah_meri_community"],
-.community-gallery-card:nth-child(2) img[src*="mah_meri_mask"],
-.community-gallery-card:nth-child(3) img[src*="mah_meri_location_map"] {
-    object-fit: contain !important;
-    object-position: center center !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+.community-gallery-card .community-image-wrap--intrinsic {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    background: none !important;
+    display: block !important;
+    padding: 0 !important;
+}
+
+.community-gallery-card .community-image-wrap--intrinsic::before,
+.community-gallery-card .community-image-wrap--intrinsic::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    filter: none !important;
+}
+
+.community-gallery-card .community-image-wrap--intrinsic .community-image,
+.community-image-wrap--intrinsic img[src*="mah_meri_community"],
+.community-image-wrap--intrinsic img[src*="mah_meri_mask"],
+.community-image-wrap--intrinsic img[src*="mah_meri_location_map"] {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: unset !important;
+    object-position: unset !important;
     transform: none !important;
+    display: block !important;
 }
 
 </style>

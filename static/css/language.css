@@ -1666,19 +1666,44 @@
 }
 
 
-/* MAH MERI — complete image in the frame (no black bars, no stretch).
-   Portrait community/mask photos and the landscape map all use contain;
-   the blurred --gallery-bg fill covers leftover space. */
+/* MAH MERI — container follows the source aspect ratio.
+   The photo is width:100% / height:auto so it fills the wrap
+   with no contain letterboxing, cover crop, or blurred fill. */
 
-.community-gallery-card:nth-child(1) img[src*="mah_meri_community"],
-.community-gallery-card:nth-child(2) img[src*="mah_meri_mask"],
-.community-gallery-card:nth-child(3) img[src*="mah_meri_location_map"] {
-    object-fit: contain !important;
-    object-position: center center !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
+.community-gallery-grid:has(.community-image-wrap--intrinsic) {
+    align-items: start;
 }
 
+.community-image-wrap--intrinsic {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    background: none !important;
+    display: block !important;
+}
+
+.community-image-wrap--intrinsic::before,
+.community-image-wrap--intrinsic::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    filter: none !important;
+}
+
+.community-image-wrap--intrinsic .community-image {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: unset !important;
+    object-position: unset !important;
+    transform: none !important;
+    display: block !important;
+}
 
 /* NO ZOOM ON HOVER */
 
@@ -1693,6 +1718,11 @@
 
     .community-image-wrap {
         height: 280px !important;
+    }
+
+    .community-image-wrap--intrinsic {
+        height: auto !important;
+        min-height: 0 !important;
     }
 
 }
