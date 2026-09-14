@@ -679,7 +679,8 @@
 
                     {% if image.image_url %}
 
-                        <div class="community-image-wrap">
+                        <div class="community-image-wrap"
+                             style="--gallery-bg: url('{{ image.image_url }}');">
                             <img class="community-image"
                                  src="{{ image.image_url }}"
                                  alt="{{ image.title }}"
@@ -1114,6 +1115,24 @@
    move the visible crop slightly downward to show more of the man's head */
 .community-image-wrap img[src*="bidayuh_rope_making"] {
     object-position: center 30% !important;
+}
+
+/* Mah Meri gallery — show each photo complete (no stretch) and
+   fill leftover frame with the blurred copy, not solid black bars. */
+.community-image-wrap:has(img[src*="mah_meri_"]) {
+    background: #04140d !important;
+}
+
+.community-gallery-card:nth-child(1) img[src*="mah_meri_community"],
+.community-gallery-card:nth-child(2) img[src*="mah_meri_mask"],
+.community-gallery-card:nth-child(3) img[src*="mah_meri_location_map"] {
+    object-fit: contain !important;
+    object-position: center center !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
 }
 
 </style>

@@ -1666,24 +1666,17 @@
 }
 
 
-/* FIRST IMAGE — KEEP THE CHILDREN VISIBLE */
+/* MAH MERI — complete image in the frame (no black bars, no stretch).
+   Portrait community/mask photos and the landscape map all use contain;
+   the blurred --gallery-bg fill covers leftover space. */
 
-.community-gallery-card:nth-child(1) .community-image {
-    object-position: center 35% !important;
-}
-
-
-/* SECOND IMAGE — KEEP THE FULL MASK CENTERED */
-
-.community-gallery-card:nth-child(2) .community-image {
-    object-position: center 48% !important;
-}
-
-
-/* THIRD IMAGE — MAP FILLS THE FRAME */
-
-.community-gallery-card:nth-child(3) .community-image {
+.community-gallery-card:nth-child(1) img[src*="mah_meri_community"],
+.community-gallery-card:nth-child(2) img[src*="mah_meri_mask"],
+.community-gallery-card:nth-child(3) img[src*="mah_meri_location_map"] {
+    object-fit: contain !important;
     object-position: center center !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
 }
 
 
