@@ -1129,9 +1129,9 @@ def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
                 )
             WHERE language = 'mah-meri'
               AND LOWER(TRIM(word)) = LOWER(TRIM(?))
-              AND COALESCE(source_ref, '') LIKE '%wiktionary%'
+              AND COALESCE(source_ref, '') LIKE ?
             """,
-            (word,),
+            (word, "%wiktionary%"),
         )
         updated += 1
     pos_map = (payload.get("asjp_pos_from_gloss") or {}).get("map") or {}
@@ -1144,9 +1144,9 @@ def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
             SET part_of_speech = ?
             WHERE language = 'mah-meri'
               AND LOWER(TRIM(word)) = LOWER(TRIM(?))
-              AND COALESCE(source_ref, '') LIKE '%ASJP%'
+              AND COALESCE(source_ref, '') LIKE ?
             """,
-            (pos, word),
+            (pos, word, "%ASJP%"),
         )
         updated += 1
     conn.commit()

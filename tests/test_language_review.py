@@ -151,6 +151,56 @@ class LanguageReviewTests(unittest.TestCase):
         )
         self.assertEqual(issues, [])
 
+    def test_repair_sql_is_safe_for_psycopg_placeholders(self):
+        import inspect
+
+        import db as dbmod
+        from database import apply_mah_meri_vocabulary_repairs
+        from psycopg._queries import _query2pg
+
+        source = inspect.getsource(apply_mah_meri_vocabulary_repairs)
+        self.assertNotIn("LIKE '%", source)
+        self.assertNotIn('LIKE "%', source)
+
+        queries = [
+            """
+            UPDATE vocabulary
+            SET meaning_ms = COALESCE(NULLIF(TRIM(meaning_ms), ''), meaning_en),
+                review_status = 'needs_verification',
+                review_note = COALESCE(
+                    NULLIF(TRIM(review_note), ''),
+                    'Wiktionary source is Malay. English translation is not in this extract.'
+                )
+            WHERE language = 'mah-meri'
+              AND LOWER(TRIM(word)) = LOWER(TRIM(?))
+              AND COALESCE(source_ref, '') LIKE ?
+            """,
+            """
+            UPDATE vocabulary
+            SET part_of_speech = ?
+            WHERE language = 'mah-meri'
+              AND LOWER(TRIM(word)) = LOWER(TRIM(?))
+              AND COALESCE(source_ref, '') LIKE ?
+            """,
+        ]
+        previous = dbmod._dialect
+        dbmod._dialect = "postgres"
+        try:
+            for sql in queries:
+                adapted = dbmod.adapt_sql(sql)
+                _query2pg(adapted.encode("utf-8"), "utf-8")
+                self.assertNotRegex(adapted, r"%(?![st])")
+        finally:
+            dbmod._dialect = previous
+
+    def test_apply_repairs_runs_on_sqlite_startup(self):
+        from database import apply_mah_meri_vocabulary_repairs
+
+        result = apply_mah_meri_vocabulary_repairs()
+        self.assertIn("deleted", result)
+        self.assertIn("updated", result)
+
+
 
 if __name__ == "__main__":
     unittest.main()
