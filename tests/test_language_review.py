@@ -26,6 +26,7 @@ os.environ.setdefault("FLASK_ENV", "development")
 os.environ.pop("GOOGLE_CLIENT_ID", None)
 os.environ.pop("GOOGLE_CLIENT_SECRET", None)
 os.environ.pop("DATABASE_URL", None)
+os.environ.pop("ADMIN_USERNAMES", None)
 
 
 def _csrf(html: str) -> str:
@@ -516,6 +517,111 @@ class ReviewerPermissionTests(unittest.TestCase):
             self.assertEqual(resp.status_code, 200, key)
             self.assertIn("Language Review", resp.get_data(as_text=True))
             self.assertIn("Review Queue", resp.get_data(as_text=True))
+
+    def test_student_sees_review_menu_and_stays_read_only(self):
+        self._insert_user("student_user", "StudentPass1", "student")
+        self._login_as("student_user", "StudentPass1")
+        dash = self.client.get("/dashboard").get_data(as_text=True)
+        self.assertIn('href="/review"', dash)
+        self.assertRegex(dash, r">\s*Review\s*<")
+        self.assertIn("id=\"navbar-user\"", dash)
+        hub = self.client.get("/review")
+        self.assertEqual(hub.status_code, 200)
+        hub_html = hub.get_data(as_text=True)
+        self.assertIn("read-only", hub_html.lower())
+        self.assertIn("Open read-only review", hub_html)
+        self.assertNotIn("Open Reviewer Management", hub_html)
+        token = self._token("/language/mah-meri/review")
+        vocab_id, _ = self._queue_vocab("mah-meri")
+        mutate = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "student must not save",
+            },
+        )
+        self.assertEqual(mutate.status_code, 403)
+
+    def test_reviewer_review_menu_goes_to_assigned_queue_only(self):
+        from reviewer_auth import grant_reviewer_access
+
+        self._insert_user("scoped_reviewer", "ReviewPass1", "student")
+        grant_reviewer_access("scoped_reviewer", "mah-meri", "academic", granted_by=1)
+        self._login_as("scoped_reviewer", "ReviewPass1")
+        menu = self.client.get("/dashboard").get_data(as_text=True)
+        self.assertIn('href="/review"', menu)
+        resp = self.client.get("/review", follow_redirects=False)
+        self.assertEqual(resp.status_code, 302)
+        location = resp.headers.get("Location", "")
+        self.assertIn("/language/mah-meri/review", location)
+        self.assertIn("queue", location)
+        token = self._token("/language/mah-meri/review")
+        other_id, _ = self._queue_vocab("iban")
+        blocked = self.client.post(
+            "/language/iban/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(other_id),
+                "status": "academically_reviewed",
+                "note": "out of scope",
+            },
+        )
+        self.assertEqual(blocked.status_code, 403)
+
+    def test_admin_review_hub_and_env_username_can_mutate(self):
+        self._insert_user("owner_account", "OwnerPass1", "student")
+        os.environ["ADMIN_USERNAMES"] = '"owner_account"'
+        try:
+            from reviewer_auth import admin_usernames_from_env, get_user_access
+            from db import get_db
+
+            self.assertIn("owner_account", admin_usernames_from_env())
+            self._login_as("owner_account", "OwnerPass1")
+            dash = self.client.get("/dashboard").get_data(as_text=True)
+            self.assertIn('href="/review"', dash)
+            self.assertRegex(dash, r">\s*Review\s*<")
+            self.assertIn("Reviewer Management", dash)
+            hub = self.client.get("/review")
+            self.assertEqual(hub.status_code, 200)
+            html = hub.get_data(as_text=True)
+            self.assertIn("Review Queue", html)
+            self.assertIn("Reviewer Management", html)
+            self.assertIn("Mah Meri", html)
+            conn = get_db()
+            user = conn.execute(
+                "SELECT id, role FROM users WHERE username = ?",
+                ("owner_account",),
+            ).fetchone()
+            conn.close()
+            access = get_user_access(user["id"])
+            self.assertTrue(access["is_admin"])
+            self.assertEqual(access["role"], "admin")
+            token = self._token("/language/mah-meri/review")
+            vocab_id, _ = self._queue_vocab("mah-meri")
+            saved = self.client.post(
+                "/language/mah-meri/review/vocabulary",
+                data={
+                    "csrf_token": token,
+                    "vocab_id": str(vocab_id),
+                    "status": "academically_reviewed",
+                    "note": "admin queue edit",
+                },
+                follow_redirects=False,
+            )
+            self.assertEqual(saved.status_code, 302)
+        finally:
+            os.environ.pop("ADMIN_USERNAMES", None)
+
+    def test_logout_still_works_and_review_requires_login(self):
+        self._insert_user("student_user", "StudentPass1", "student")
+        self._login_as("student_user", "StudentPass1")
+        out = self.client.get("/logout", follow_redirects=False)
+        self.assertIn(out.status_code, (302, 303))
+        review = self.client.get("/review", follow_redirects=False)
+        self.assertEqual(review.status_code, 302)
+        self.assertIn("/login", review.headers.get("Location", ""))
 
 
 

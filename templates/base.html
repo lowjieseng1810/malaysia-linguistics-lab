@@ -217,10 +217,22 @@ font-size:.88rem;
 
 white-space:nowrap;
 
+background:transparent;
+
+border:0;
+
+padding:0;
+
+cursor:pointer;
+
+font-family:inherit;
+
 }
 
-.navbar-user strong{
-color:#ffffff;
+.navbar-user:hover,
+.navbar-user:focus-visible{
+color:#efd77e;
+outline:none;
 }
 
 
@@ -1027,12 +1039,17 @@ Malaysia Linguistics Lab
 
 {% if session.username %}
 
-<span class="navbar-user">
+<button
+type="button"
+class="navbar-user"
+id="navbar-user"
+aria-controls="site-menu"
+aria-expanded="false">
 
 Hello,
 <strong>{{ session.username }}</strong>
 
-</span>
+</button>
 
 {% endif %}
 
@@ -1157,6 +1174,35 @@ Return to the main explorer
 </span>
 
 </a>
+
+
+{% if session.username %}
+<a
+href="{{ url_for('review_hub') }}"
+class="site-menu-link">
+
+<span class="menu-link-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4.5h10A1.5 1.5 0 0 1 18.5 6v14L12 16.7 5.5 20V6A1.5 1.5 0 0 1 7 4.5z"/><path d="M9 9h6M9 12h4"/></svg>
+</span>
+
+<span class="menu-link-copy">
+
+<strong>
+Review
+</strong>
+
+<small>
+{{ review_nav_caption or "Language documentation" }}
+</small>
+
+</span>
+
+<span class="menu-link-arrow">
+→
+</span>
+
+</a>
+{% endif %}
 
 
 <a
@@ -1673,6 +1719,9 @@ function(){
 const menuToggle =
 document.getElementById("menu-toggle");
 
+const navbarUser =
+document.getElementById("navbar-user");
+
 const menuClose =
 document.getElementById("menu-close");
 
@@ -1707,6 +1756,10 @@ menuToggle.setAttribute(
 "true"
 );
 
+if (navbarUser) {
+navbarUser.setAttribute("aria-expanded", "true");
+}
+
 siteMenu.setAttribute(
 "aria-hidden",
 "false"
@@ -1736,6 +1789,10 @@ menuToggle.setAttribute(
 "aria-expanded",
 "false"
 );
+
+if (navbarUser) {
+navbarUser.setAttribute("aria-expanded", "false");
+}
 
 siteMenu.setAttribute(
 "aria-hidden",
@@ -1768,6 +1825,17 @@ openMenu();
 
 }
 );
+
+
+if (navbarUser) {
+navbarUser.addEventListener("click", function () {
+if (siteMenu.classList.contains("is-open")) {
+closeMenu();
+} else {
+openMenu();
+}
+});
+}
 
 
 menuClose.addEventListener(

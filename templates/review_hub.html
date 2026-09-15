@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Review | Malaysia Linguistics Lab{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
+
+<main class="review-page">
+  <a class="review-back" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
+
+  <header class="review-header">
+    <span class="review-kicker">Language Review &amp; Documentation</span>
+    <h1>Review</h1>
+    <p class="review-lead">
+      {% if is_admin %}
+        Choose a review queue or open Reviewer Management. Admin access follows
+        the signed-in username and optional ADMIN_USERNAMES configuration.
+      {% elif can_edit_any %}
+        These are the language queues assigned to your username.
+      {% else %}
+        This workspace is read-only. An administrator must grant reviewer access
+        to your username before review status or notes can be changed.
+      {% endif %}
+    </p>
+  </header>
+
+  {% if is_admin %}
+  <section class="review-pathways">
+    <article class="review-card" style="margin:0;">
+      <h2>Review Queue</h2>
+      <p>Open a language workspace and edit review state for every course language.</p>
+    </article>
+    <article class="review-card" style="margin:0;">
+      <h2>Reviewer Management</h2>
+      <p>Grant or revoke reviewer access by username. Reviewers do not need to share an email address.</p>
+      <p><a class="review-cta" href="{{ url_for('admin_reviewers') }}" style="display:inline-block;text-decoration:none;">Open Reviewer Management</a></p>
+    </article>
+  </section>
+  {% endif %}
+
+  <section>
+    {% for card in cards %}
+    <article class="review-card">
+      <div class="review-section-head">
+        <h2>{{ card.display_name }}</h2>
+        <p class="review-status-readonly">{% if card.can_edit %}Can edit{% else %}Read-only{% endif %}</p>
+      </div>
+      <p>
+        {% if card.can_edit %}
+          Open the Review Queue for this language.
+        {% else %}
+          View the documentation workspace. Review status cannot be changed from this account.
+        {% endif %}
+      </p>
+      <p>
+        <a class="review-cta" href="{{ card.href }}" style="display:inline-block;text-decoration:none;margin-top:12px;">
+          {% if card.can_edit %}Open Review Queue{% else %}Open read-only review{% endif %}
+        </a>
+      </p>
+    </article>
+    {% endfor %}
+  </section>
+</main>
+{% endblock %}
