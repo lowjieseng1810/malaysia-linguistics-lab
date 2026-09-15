@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}{{ payload.display_name }} review | Malaysia Linguistics Lab{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
+
+<main class="review-page" data-lang="{{ payload.lang_key }}">
+  <a class="review-back" href="{{ url_for('language_page', lang_key=payload.lang_key) }}">← Back to {{ payload.display_name }}</a>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="review-flash">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <header class="review-header">
+    <span class="review-kicker">Language Review &amp; Documentation</span>
+    <h1>{{ payload.display_name }}</h1>
+    <p class="review-lead">
+      {% if payload.family %}{{ payload.family }}. {% endif %}
+      {% if payload.region %}{{ payload.region }}. {% endif %}
+      A compact review workspace for academics, researchers, and organisations.
+    </p>
+    <div class="review-stats">
+      <div class="review-stat"><span>Current entries</span><strong>{{ payload.summary.entry_count }}</strong></div>
+      <div class="review-stat"><span>Needs verification</span><strong>{{ payload.summary.needs_verification_count }}</strong></div>
+      <div class="review-stat"><span>Technical issues</span><strong>{{ payload.summary.technical_issue_count }}</strong></div>
+      <div class="review-stat"><span>Academic review</span><strong>{{ payload.summary.academic_review }}</strong></div>
+      <div class="review-stat"><span>Community review</span><strong>{{ payload.summary.community_review }}</strong></div>
+    </div>
+    <p class="review-method">{{ payload.summary.method_note }}</p>
+  </header>
+
+  <div class="review-tabs" role="tablist">
+    <button class="review-tab" role="tab" aria-selected="true" data-tab="overview">Overview &amp; Culture</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="vocabulary">Vocabulary</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="issues">Issues</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="sources">Sources</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="academic">Academic Review</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="collaboration">Collaboration</button>
+  </div>
+
+  <section class="review-panel" id="panel-overview" role="tabpanel">
+    {% for section in payload.sections %}
+    <article class="review-card" data-section="{{ section.key }}">
+      <div class="review-section-head">
+        <h2>{{ section.title }}</h2>
+        <form method="post" action="{{ url_for('language_review_section', lang_key=payload.lang_key) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="section_key" value="{{ section.key }}">
+          <label>
+            Review state
+            <select name="status" onchange="this.form.submit()">
+              {% for choice in payload.section_status_choices %}
+              <option value="{{ choice.id }}" {% if section.status == choice.id %}selected{% endif %}>{{ choice.label }}</option>
+              {% endfor %}
+            </select>
+          </label>
+        </form>
+      </div>
+      <p>{{ section.body }}</p>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="review-panel" id="panel-vocabulary" role="tabpanel" hidden>
+    <div class="review-toolbar">
+      <input type="search" id="vocab-q" placeholder="Search term, Malay, English, or source">
+      <select id="vocab-filter">
+        {% for filt in payload.filters %}
+        <option value="{{ filt.id }}">{{ filt.label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <p class="review-muted" id="vocab-count"></p>
+    <div class="review-table-wrap">
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>{{ payload.display_name }} term</th>
+            <th>Malay</th>
+            <th>English</th>
+            <th>Source</th>
+            <th>Status</th>
+            <th>Issues</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="vocab-body"></tbody>
+      </table>
+    </div>
+    <div class="review-pager">
+      <button type="button" id="vocab-prev">Previous</button>
+      <span id="vocab-page"></span>
+      <button type="button" id="vocab-next">Next</button>
+    </div>
+  </section>
+
+  <section class="review-panel" id="panel-issues" role="tabpanel" hidden>
+    <div class="review-card">
+      <h2>Automated data-quality queue</h2>
+      <p>
+        Technical issues are extraction or encoding problems. Suspicious items need a person.
+        An unusual {{ payload.display_name }} form is not labelled wrong just because it looks unfamiliar.
+      </p>
+    </div>
+    {% if payload.issues %}
+    <div class="review-table-wrap">
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Gloss</th>
+            <th>Severity</th>
+            <th>Detected issues</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in payload.issues %}
+          <tr>
+            <td>{{ row.word }}</td>
+            <td>{{ row.meaning_en or row.meaning_ms or "—" }}</td>
+            <td>{% if row.has_technical %}Technical{% else %}Needs verification{% endif %}</td>
+            <td>{% for issue in row.issues %}<span class="review-badge {% if issue.severity == 'technical' %}is-issue{% endif %}">{{ issue.label }}</span> {% endfor %}</td>
+            <td>{{ row.source_ref or "—" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="review-card"><p>No automated technical flags are currently queued for this language. Human review is still required.</p></div>
+    {% endif %}
+  </section>
+
+  <section class="review-panel" id="panel-sources" role="tabpanel" hidden>
+    <div class="review-card">
+      <h2>Vocabulary provenance</h2>
+      <p>Counts are from stored dictionary rows. Bibliographic fields are only shown when the project actually recorded them.</p>
+      <ul>
+        {% for group in payload.provenance_groups %}
+        <li>{{ group.source_ref }} — {{ group.count }} entries</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% if payload.pack_sources %}
+    <div class="review-card">
+      <h2>Verified pack ledger</h2>
+      {% for src in payload.pack_sources %}
+      <p><strong>{{ src.id }}</strong> — {{ src.source_ref }}{% if src.license %} ({{ src.license }}){% endif %}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if payload.listed_sources %}
+    <div class="review-card">
+      <h2>Language-page source list</h2>
+      <ul>
+        {% for item in payload.listed_sources %}
+        <li>
+          {% if item is mapping %}
+            {{ item.title or item.name }}
+            {% if item.organization %}<span class="review-muted"> — {{ item.organization }}</span>{% endif %}
+            {% if item.url %}<a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">link</a>{% endif %}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    <p class="review-muted">Use Cite on a vocabulary row to copy a short attribution. Do not treat this workspace as a complete bibliography.</p>
+  </section>
+
+  <section class="review-panel" id="panel-academic" role="tabpanel" hidden>
+    <div class="review-card">
+      <h2>Suggested academic review set</h2>
+      <p>{{ payload.academic_set.intro }}</p>
+      <p class="review-muted">You are being asked to review the language/culture overview, a small vocabulary sample, one beginner lesson where available, and selected flagged items — not every dictionary row.</p>
+    </div>
+    <div class="review-card">
+      <h3>Sample vocabulary</h3>
+      {% for row in payload.academic_set.vocabulary %}
+      <div class="review-sample-item">
+        <strong>{{ row.word }}</strong>
+        — {{ row.meaning_en or row.meaning_ms or "—" }}
+        <span class="review-badge">{{ row.review_status_label }}</span>
+        {% if row.issue_labels %}<span class="review-muted">{{ row.issue_labels | join(', ') }}</span>{% endif %}
+      </div>
+      {% else %}
+      <p>No vocabulary rows are stored for this language yet.</p>
+      {% endfor %}
+    </div>
+    {% if payload.academic_set.lesson %}
+    <div class="review-card">
+      <h3>Beginner lesson sample — {{ payload.academic_set.lesson.title }}</h3>
+      {% for item in payload.academic_set.lesson.vocabulary %}
+      <p>{{ item.word }} — {{ item.meaning }}</p>
+      {% endfor %}
+      {% if payload.academic_set.lesson.exercise %}
+      <p><strong>Exercise:</strong> {{ payload.academic_set.lesson.exercise[0].question }}</p>
+      {% endif %}
+      <p><strong>Answer key</strong></p>
+      {% for ans in payload.academic_set.lesson.answer_key %}
+      <p class="review-muted">{{ ans.question }} → {{ ans.answer }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="review-card">
+      <h3>Reviewer notes</h3>
+      <form class="review-form" method="post" action="{{ url_for('language_review_academic', lang_key=payload.lang_key) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="checks">
+          {% for cat in payload.academic_set.categories %}
+          <label><input type="checkbox" name="categories" value="{{ cat }}"> {{ cat }}</label>
+          {% endfor %}
+        </div>
+        <label>Comments
+          <textarea name="comments" maxlength="4000" placeholder="Keep comments specific. This is not a formal peer-review system."></textarea>
+        </label>
+        <button type="submit">Save review note</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="review-panel" id="panel-collaboration" role="tabpanel" hidden>
+    <div class="review-card">
+      <h2>{{ payload.collaboration.headline }}</h2>
+      <p>{{ payload.collaboration.intro }}</p>
+      <div class="review-pathways">
+        {% for path in payload.collaboration.pathways %}
+        <article class="review-card" style="margin:0;">
+          <h3>{{ path.title }}</h3>
+          <p>{{ path.blurb }}</p>
+        </article>
+        {% endfor %}
+      </div>
+      <p class="review-muted">{{ payload.collaboration.disclaimer }}</p>
+      <form class="review-form" method="post" action="{{ url_for('language_review_collaborate', lang_key=payload.lang_key) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label>How would you like to take part?
+          <select name="pathway">
+            {% for path in payload.collaboration.pathways %}
+            <option value="{{ path.id }}">{{ path.title }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label>Organisation or affiliation (optional)
+          <input type="text" name="organisation" maxlength="200">
+        </label>
+        <label>Message
+          <textarea name="message" maxlength="2000" placeholder="A short note is enough. This records interest; it is not an automatic partnership."></textarea>
+        </label>
+        <button type="submit" class="review-cta">Register interest in a review or pilot</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script id="review-vocab-data" type="application/json">{{ payload.vocabulary | tojson }}</script>
+<script src="{{ url_for('static', filename='js/language-review.js') }}"></script>
+{% endblock %}

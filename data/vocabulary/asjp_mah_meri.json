@@ -4,15 +4,6 @@
   "dialect_variant": "Mah Meri (ASJP)",
   "entries": [
     {
-      "word": "3735",
-      "meaning_en": "2.83 101.50 2990 mhm mhe 1 I",
-      "part_of_speech": "pronoun",
-      "lesson_id": 4,
-      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
-      "dialect_variant": "Mah Meri (ASJP)",
-      "source_ref": "ASJP Database wordlist Mah Meri (CLLD); CC BY 4.0"
-    },
-    {
       "word": "hi7",
       "meaning_en": "you",
       "part_of_speech": "pronoun",
@@ -60,7 +51,7 @@
     {
       "word": "kah",
       "meaning_en": "fish",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "noun",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",
@@ -195,7 +186,7 @@
     {
       "word": "g3rih",
       "meaning_en": "liver",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "noun",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",
@@ -204,7 +195,7 @@
     {
       "word": "cadow",
       "meaning_en": "drink",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "verb",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",
@@ -231,7 +222,7 @@
     {
       "word": "k3b3s",
       "meaning_en": "die",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "verb",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",
@@ -258,7 +249,7 @@
     {
       "word": "us",
       "meaning_en": "fire",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "noun",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",
@@ -267,7 +258,7 @@
     {
       "word": "gunoN",
       "meaning_en": "mountain",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "noun",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",
@@ -276,7 +267,7 @@
     {
       "word": "d3y",
       "meaning_en": "night",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "noun",
       "lesson_id": 4,
       "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ); not converted to standard learner spelling.",
       "dialect_variant": "Mah Meri (ASJP)",

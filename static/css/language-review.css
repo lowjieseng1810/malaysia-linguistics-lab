@@ -1,0 +1,347 @@
+/* Language Review & Documentation — shared across all languages */
+
+.review-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 18px 18px 72px;
+    color: rgba(236, 244, 240, 0.94);
+}
+
+.review-page a.review-back {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #efd77e;
+    text-decoration: none;
+    font-size: 0.88rem;
+}
+
+.review-header {
+    padding: 22px 24px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 20px;
+    background:
+        linear-gradient(160deg, rgba(16, 52, 40, 0.78), rgba(7, 24, 18, 0.72));
+    margin-bottom: 18px;
+}
+
+.review-kicker {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #efd77e;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.review-header h1 {
+    margin: 0 0 8px;
+    font-size: 1.55rem;
+    font-weight: 720;
+    color: #fff;
+}
+
+.review-header .review-lead {
+    margin: 0 0 16px;
+    max-width: 46rem;
+    color: rgba(238, 246, 241, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.review-stats {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.review-stat {
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.16);
+}
+
+.review-stat span {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(235, 243, 238, 0.55);
+    margin-bottom: 4px;
+}
+
+.review-stat strong {
+    font-size: 0.92rem;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.review-method {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(238, 246, 241, 0.64);
+}
+
+.review-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.review-tab {
+    flex: 0 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(12, 40, 30, 0.55);
+    color: rgba(236, 244, 240, 0.88);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.84rem;
+    cursor: pointer;
+}
+
+.review-tab[aria-selected="true"] {
+    background: rgba(214, 176, 77, 0.18);
+    border-color: rgba(239, 215, 126, 0.45);
+    color: #efd77e;
+}
+
+.review-panel[hidden] {
+    display: none;
+}
+
+.review-card {
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    background: rgba(8, 32, 24, 0.55);
+    margin-bottom: 12px;
+}
+
+.review-card h2,
+.review-card h3 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.review-card p {
+    margin: 0;
+    color: rgba(238, 246, 241, 0.74);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.review-section-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.review-section-head label {
+    font-size: 0.72rem;
+    color: rgba(235, 243, 238, 0.55);
+}
+
+.review-section-head select {
+    margin-top: 4px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    padding: 6px 8px;
+}
+
+.review-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.review-toolbar input,
+.review-toolbar select {
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    padding: 9px 12px;
+    font-size: 0.88rem;
+}
+
+.review-toolbar input {
+    flex: 1 1 220px;
+}
+
+.review-table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.review-table th,
+.review-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    vertical-align: top;
+    text-align: left;
+}
+
+.review-table th {
+    color: rgba(235, 243, 238, 0.55);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.review-table td {
+    color: rgba(236, 244, 240, 0.9);
+}
+
+.review-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #efd77e;
+}
+
+.review-badge.is-issue {
+    color: #f3c4a4;
+    border-color: rgba(243, 196, 164, 0.35);
+}
+
+.review-cite {
+    border: 0;
+    background: transparent;
+    color: #efd77e;
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 0;
+}
+
+.review-pager {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.82rem;
+}
+
+.review-pager button {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.review-form label {
+    display: block;
+    font-size: 0.78rem;
+    margin: 10px 0 4px;
+    color: rgba(235, 243, 238, 0.7);
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    padding: 9px 12px;
+}
+
+.review-form textarea {
+    min-height: 90px;
+}
+
+.review-form .checks {
+    display: grid;
+    gap: 6px;
+    margin: 8px 0 12px;
+}
+
+.review-form button,
+.review-cta {
+    margin-top: 12px;
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #d9b44a, #efd77c);
+    color: #1a1406;
+    font-weight: 700;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.review-muted {
+    color: rgba(238, 246, 241, 0.6);
+    font-size: 0.84rem;
+}
+
+.review-pathways {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 12px 0 16px;
+}
+
+.review-flash {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(214, 176, 77, 0.16);
+    color: #efd77e;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+}
+
+.review-sample-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 0.88rem;
+}
+
+@media (max-width: 900px) {
+    .review-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .review-pathways {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 620px) {
+    .review-page {
+        padding: 12px 12px 56px;
+    }
+    .review-header h1 {
+        font-size: 1.28rem;
+    }
+    .review-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+    .review-stat:last-child {
+        grid-column: 1 / -1;
+    }
+}

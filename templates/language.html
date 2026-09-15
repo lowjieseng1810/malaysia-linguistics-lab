@@ -67,6 +67,14 @@
 
 
                 <a class="secondary-language-button"
+                   href="{{ url_for(
+                       'language_review_page',
+                       lang_key=lang_key
+                   ) }}">
+                    Language Review &amp; Documentation
+                </a>
+
+                <a class="secondary-language-button"
                    href="#language-story">
                     Explore the Language
                 </a>
@@ -898,6 +906,14 @@
                 </span>
             </a>
 
+
+            <a class="secondary-language-button"
+               href="{{ url_for(
+                   'language_review_page',
+                   lang_key=lang_key
+               ) }}">
+                Language Review
+            </a>
 
             <a class="secondary-language-button"
                href="{{ url_for(

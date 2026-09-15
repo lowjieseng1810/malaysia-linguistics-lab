@@ -8,6 +8,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -94,6 +95,9 @@ def init_content_tables(conn=None) -> None:
         """
     )
     _ensure_vocabulary_provenance_columns(conn)
+    init_review_tables(conn)
+    apply_mah_meri_vocabulary_repairs(conn)
+    apply_default_review_statuses(conn)
     # Learning memory for adaptive tutoring + standalone quiz history
     from learning_memory import init_user_progress_table, init_quiz_history_table
 
@@ -115,6 +119,12 @@ def _ensure_vocabulary_provenance_columns(conn) -> None:
         conn.execute("ALTER TABLE vocabulary ADD COLUMN source_ref TEXT")
     if "dialect_variant" not in cols:
         conn.execute("ALTER TABLE vocabulary ADD COLUMN dialect_variant TEXT")
+    if "review_status" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN review_status TEXT")
+    if "review_note" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN review_note TEXT")
+    if "is_newly_added" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN is_newly_added INTEGER DEFAULT 0")
     # Tag legacy course/quiz rows once so provenance is never silent.
     conn.execute(
         """
@@ -942,6 +952,8 @@ def import_verified_vocabulary_packs(
                     duplicates += 1
 
     conn.commit()
+    apply_mah_meri_vocabulary_repairs(conn)
+    apply_default_review_statuses(conn)
     coverage = vocabulary_coverage_report(conn)
     conn.close()
     return {
@@ -951,3 +963,300 @@ def import_verified_vocabulary_packs(
         "files": files_seen,
         "coverage": coverage,
     }
+
+
+def init_review_tables(conn=None) -> None:
+    own = conn is None
+    if own:
+        conn = get_db()
+    conn.executescript(
+        """
+        CREATE TABLE IF NOT EXISTS language_section_reviews (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            language TEXT NOT NULL,
+            section_key TEXT NOT NULL,
+            status TEXT NOT NULL,
+            updated_by INTEGER,
+            updated_at TEXT
+        );
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_section_reviews_lang_key
+            ON language_section_reviews (language, section_key);
+
+        CREATE TABLE IF NOT EXISTS academic_review_notes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            language TEXT NOT NULL,
+            user_id INTEGER,
+            categories TEXT,
+            comments TEXT,
+            created_at TEXT
+        );
+
+        CREATE TABLE IF NOT EXISTS collaboration_interest (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            language TEXT NOT NULL,
+            user_id INTEGER,
+            pathway TEXT NOT NULL,
+            organisation TEXT,
+            message TEXT,
+            created_at TEXT
+        );
+        """
+    )
+    if own:
+        conn.commit()
+        conn.close()
+
+
+def list_vocabulary_for_language(language: str, conn=None) -> list[dict[str, Any]]:
+    own = conn is None
+    if own:
+        conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    rows = conn.execute(
+        """
+        SELECT * FROM vocabulary
+        WHERE language = ?
+        ORDER BY LOWER(word), id
+        """,
+        (language,),
+    ).fetchall()
+    out = [dict(r) for r in rows]
+    if own:
+        conn.close()
+    return out
+
+
+def apply_default_review_statuses(conn=None) -> None:
+    own = conn is None
+    if own:
+        conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    conn.execute(
+        """
+        UPDATE vocabulary
+        SET review_status = 'needs_verification'
+        WHERE (review_status IS NULL OR TRIM(review_status) = '')
+          AND (
+            source_ref IS NULL
+            OR source_ref IN ('course_database', 'course_quiz_stem')
+          )
+        """
+    )
+    conn.execute(
+        """
+        UPDATE vocabulary
+        SET review_status = 'source_derived'
+        WHERE (review_status IS NULL OR TRIM(review_status) = '')
+          AND source_ref IS NOT NULL
+          AND TRIM(source_ref) != ''
+          AND source_ref NOT IN ('course_database', 'course_quiz_stem')
+        """
+    )
+    conn.commit()
+    if own:
+        conn.close()
+
+
+def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
+    """Apply documented Mah Meri pack repairs to stored rows. Idempotent."""
+    own = conn is None
+    if own:
+        conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    path = VOCAB_PACK_DIR / "mah_meri_pack_repairs.json"
+    if not path.is_file():
+        if own:
+            conn.close()
+        return {"deleted": 0, "updated": 0}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    deleted = 0
+    updated = 0
+    for item in payload.get("delete") or []:
+        conn.execute(
+            """
+            DELETE FROM vocabulary
+            WHERE language = ?
+              AND LOWER(TRIM(word)) = LOWER(TRIM(?))
+              AND COALESCE(source_ref, '') LIKE ?
+            """,
+            (
+                item["language"],
+                item["word"],
+                f"%{item.get('source_ref_contains') or ''}%",
+            ),
+        )
+        deleted += 1
+    for item in payload.get("update") or []:
+        sets = item.get("set") or {}
+        if not sets:
+            continue
+        assignments = []
+        values: list[Any] = []
+        for key in (
+            "meaning_en",
+            "meaning_ms",
+            "part_of_speech",
+            "review_status",
+            "review_note",
+        ):
+            if key in sets:
+                assignments.append(f"{key} = ?")
+                values.append(sets[key])
+        if not assignments:
+            continue
+        where = "language = ? AND LOWER(TRIM(word)) = LOWER(TRIM(?))"
+        values.extend([item["language"], item["word"]])
+        if item.get("source_ref_contains"):
+            where += " AND COALESCE(source_ref, '') LIKE ?"
+            values.append(f"%{item['source_ref_contains']}%")
+        if item.get("from_meaning_en"):
+            where += " AND meaning_en = ?"
+            values.append(item["from_meaning_en"])
+        conn.execute(
+            f"UPDATE vocabulary SET {', '.join(assignments)} WHERE {where}",
+            values,
+        )
+        updated += 1
+    for word in (payload.get("kaikki_malay_to_ms_field") or {}).get("words") or []:
+        conn.execute(
+            """
+            UPDATE vocabulary
+            SET meaning_ms = COALESCE(NULLIF(TRIM(meaning_ms), ''), meaning_en),
+                review_status = 'needs_verification',
+                review_note = COALESCE(
+                    NULLIF(TRIM(review_note), ''),
+                    'Wiktionary source is Malay. English translation is not in this extract.'
+                )
+            WHERE language = 'mah-meri'
+              AND LOWER(TRIM(word)) = LOWER(TRIM(?))
+              AND COALESCE(source_ref, '') LIKE '%wiktionary%'
+            """,
+            (word,),
+        )
+        updated += 1
+    pos_map = (payload.get("asjp_pos_from_gloss") or {}).get("map") or {}
+    for word, pos in pos_map.items():
+        if not pos:
+            continue
+        conn.execute(
+            """
+            UPDATE vocabulary
+            SET part_of_speech = ?
+            WHERE language = 'mah-meri'
+              AND LOWER(TRIM(word)) = LOWER(TRIM(?))
+              AND COALESCE(source_ref, '') LIKE '%ASJP%'
+            """,
+            (pos, word),
+        )
+        updated += 1
+    conn.commit()
+    if own:
+        conn.close()
+    return {"deleted": deleted, "updated": updated}
+
+
+def set_section_review_status(
+    language: str,
+    section_key: str,
+    status: str,
+    user_id: int | None = None,
+) -> None:
+    conn = get_db()
+    init_review_tables(conn)
+    existing = conn.execute(
+        """
+        SELECT id FROM language_section_reviews
+        WHERE language = ? AND section_key = ?
+        """,
+        (language, section_key),
+    ).fetchone()
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    if existing:
+        conn.execute(
+            """
+            UPDATE language_section_reviews
+            SET status = ?, updated_by = ?, updated_at = ?
+            WHERE language = ? AND section_key = ?
+            """,
+            (status, user_id, now, language, section_key),
+        )
+    else:
+        conn.execute(
+            """
+            INSERT INTO language_section_reviews
+                (language, section_key, status, updated_by, updated_at)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (language, section_key, status, user_id, now),
+        )
+    conn.commit()
+    conn.close()
+
+
+def list_section_review_statuses(language: str) -> dict[str, str]:
+    conn = get_db()
+    init_review_tables(conn)
+    rows = conn.execute(
+        """
+        SELECT section_key, status FROM language_section_reviews
+        WHERE language = ?
+        """,
+        (language,),
+    ).fetchall()
+    conn.close()
+    return {r["section_key"]: r["status"] for r in rows}
+
+
+def save_academic_review_note(
+    language: str,
+    categories: list[str],
+    comments: str,
+    user_id: int | None = None,
+) -> None:
+    conn = get_db()
+    init_review_tables(conn)
+    conn.execute(
+        """
+        INSERT INTO academic_review_notes
+            (language, user_id, categories, comments, created_at)
+        VALUES (?, ?, ?, ?, ?)
+        """,
+        (
+            language,
+            user_id,
+            json.dumps(categories),
+            comments,
+            datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        ),
+    )
+    conn.commit()
+    conn.close()
+
+
+def save_collaboration_interest(
+    language: str,
+    pathway: str,
+    organisation: str,
+    message: str,
+    user_id: int | None = None,
+) -> None:
+    conn = get_db()
+    init_review_tables(conn)
+    conn.execute(
+        """
+        INSERT INTO collaboration_interest
+            (language, user_id, pathway, organisation, message, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+        """,
+        (
+            language,
+            user_id,
+            pathway,
+            organisation,
+            message,
+            datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        ),
+    )
+    conn.commit()
+    conn.close()
+

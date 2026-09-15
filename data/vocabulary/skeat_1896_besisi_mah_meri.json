@@ -7,7 +7,7 @@
       "word": "Tés",
       "meaning_en": "Boil",
       "meaning_ms": "Bara",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "verb",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
       "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
@@ -15,11 +15,11 @@
     {
       "word": "Ding dioi",
       "meaning_en": "Bamboo",
-      "meaning_ms": "buluh pe | | | rindu",
+      "meaning_ms": "Buluh",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Original Malay field was OCR table bleed 'buluh pe | | | rindu'. Restored Malay 'Buluh' from the surviving 'buluh' fragment plus English 'Bamboo'."
     },
     {
       "word": "Tih",
@@ -140,12 +140,12 @@
     },
     {
       "word": "Ding",
-      "meaning_en": "BamBoo",
+      "meaning_en": "Bamboo",
       "meaning_ms": "Buluh",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR mixed-case 'BamBoo' → 'Bamboo' (Malay Buluh)."
     },
     {
       "word": "chhim",
@@ -289,7 +289,7 @@
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. English field 'OS Mavites CoME' is not a recoverable OCR form. Malay 'Mari' ('come') is retained; English left as stored. Needs human reading of Skeat (1896)."
     },
     {
       "word": "Gnahek",
@@ -311,12 +311,12 @@
     },
     {
       "word": "Akon",
-      "meaning_en": "CouGH",
+      "meaning_en": "Cough",
       "meaning_ms": "Bato’",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR mixed-case 'CouGH' → 'Cough' (Malay Bato’)."
     },
     {
       "word": "Bayak",
@@ -329,12 +329,12 @@
     },
     {
       "word": "Tét",
-      "meaning_en": "CuT",
+      "meaning_en": "Cut",
       "meaning_ms": "Potong",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR mixed-case 'CuT' → 'Cut' (Malay Potong)."
     },
     {
       "word": "Dian",
@@ -347,21 +347,21 @@
     },
     {
       "word": "domok",
-      "meaning_en": "DarT",
+      "meaning_en": "Dart",
       "meaning_ms": "anak sumpitan",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR mixed-case 'DarT' → 'Dart' (Malay anak sumpitan)."
     },
     {
       "word": "Hagam",
-      "meaning_en": "DarK",
+      "meaning_en": "Dark",
       "meaning_ms": "Glap",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR mixed-case 'DarK' → 'Dark' (Malay Glap)."
     },
     {
       "word": "Chohoi",
@@ -401,12 +401,12 @@
     },
     {
       "word": "Seh",
-      "meaning_en": "Disappear To",
+      "meaning_en": "Disappear",
       "meaning_ms": "Hilang",
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed Skeat table-header 'To' after 'Disappear' (Malay Hilang)."
     },
     {
       "word": "Kle",
@@ -419,27 +419,27 @@
     },
     {
       "word": "Chau",
-      "meaning_en": "DoGa",
+      "meaning_en": "Dog",
       "meaning_ms": "Anjing",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'DoGa' → 'Dog' (Malay Anjing)."
     },
     {
       "word": "choh",
-      "meaning_en": "DoGa",
+      "meaning_en": "Dog",
       "meaning_ms": "Anjing",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'DoGa' → 'Dog' (Malay Anjing)."
     },
     {
       "word": "Béng",
       "meaning_en": "Drink",
       "meaning_ms": "Minum",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "verb",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
       "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
@@ -448,19 +448,19 @@
       "word": "cha",
       "meaning_en": "Drink",
       "meaning_ms": "Minum",
-      "part_of_speech": "pronoun",
+      "part_of_speech": "verb",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
       "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
     },
     {
       "word": "Pésuit",
-      "meaning_en": "EscaPE",
+      "meaning_en": "Escape",
       "meaning_ms": "Lepas",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'EscaPE' → 'Escape' (Malay Lepas)."
     },
     {
       "word": "Koh",
@@ -716,21 +716,21 @@
     },
     {
       "word": "Ang",
-      "meaning_en": "GAPE To",
+      "meaning_en": "Gape",
       "meaning_ms": "Nganga",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed table-header 'To'; OCR 'GAPE' → 'Gape' (Malay Nganga)."
     },
     {
       "word": "Hantuk",
-      "meaning_en": "GuHosT",
+      "meaning_en": "Ghost",
       "meaning_ms": "Hantu",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'GuHosT' → 'Ghost' (Malay Hantu)."
     },
     {
       "word": "Gehéng",
@@ -761,12 +761,12 @@
     },
     {
       "word": "Piong",
-      "meaning_en": "HEAR To",
+      "meaning_en": "Hear",
       "meaning_ms": "Dengar",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed table-header 'To'; OCR 'HEAR' → 'Hear' (Malay Dengar)."
     },
     {
       "word": "Tahoh",
@@ -797,12 +797,12 @@
     },
     {
       "word": "Sré",
-      "meaning_en": "KNOow To",
+      "meaning_en": "Know",
       "meaning_ms": "Tahu",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'KNOow To' → 'Know' (Malay Tahu)."
     },
     {
       "word": "Hinong",
@@ -824,12 +824,12 @@
     },
     {
       "word": "Hamtr",
-      "meaning_en": "LEAP To",
+      "meaning_en": "Leap",
       "meaning_ms": "Lompat",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed table-header 'To'; OCR 'LEAP' → 'Leap' (Malay Lompat)."
     },
     {
       "word": "Kejdl",
@@ -878,7 +878,7 @@
     },
     {
       "word": "Ayau",
-      "meaning_en": "MEw TO",
+      "meaning_en": "Mew",
       "meaning_ms": "Mengiau",
       "part_of_speech": "expression",
       "lesson_id": 4,
@@ -887,21 +887,21 @@
     },
     {
       "word": "Pé",
-      "meaning_en": "MiDDAY",
+      "meaning_en": "Midday",
       "meaning_ms": "Tengah hari",
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'MiDDAY' → 'Midday' (Malay Tengah hari)."
     },
     {
       "word": "haru",
-      "meaning_en": "Mix To",
+      "meaning_en": "Mix",
       "meaning_ms": "Kachau",
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed table-header 'To' (Malay Kachau)."
     },
     {
       "word": "Munyet",
@@ -950,12 +950,12 @@
     },
     {
       "word": "Muh",
-      "meaning_en": "NosE",
+      "meaning_en": "Nose",
       "meaning_ms": "Hidong",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'NosE' → 'Nose' (Malay Hidong)."
     },
     {
       "word": "Web vor Woa",
@@ -1238,12 +1238,12 @@
     },
     {
       "word": "Daging",
-      "meaning_en": "PorRK",
+      "meaning_en": "Pork",
       "meaning_ms": "Daging babi",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'PorRK' → 'Pork' (Malay Daging babi)."
     },
     {
       "word": "Gambar",
@@ -1310,12 +1310,12 @@
     },
     {
       "word": "Chok main",
-      "meaning_en": "TO Games",
-      "meaning_ms": "Ber-main | | | main",
+      "meaning_en": "Games",
+      "meaning_ms": "Bermain",
       "part_of_speech": "verb",
       "lesson_id": 3,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed table-header 'TO' from English 'TO Games' and pipe-bleed Malay 'Ber-main | | | main'."
     },
     {
       "word": "Kochok",
@@ -1463,12 +1463,12 @@
     },
     {
       "word": "Angkit",
-      "meaning_en": "RAIsE",
+      "meaning_en": "Raise",
       "meaning_ms": "Angkat",
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'RAIsE' → 'Raise' (Malay Angkat)."
     },
     {
       "word": "Kaneh",
@@ -1491,11 +1491,11 @@
     {
       "word": "Karak",
       "meaning_en": "Behind",
-      "meaning_ms": "Ting | | --- | --- | | | gal",
+      "meaning_ms": "",
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Malay field was markdown/OCR debris 'Ting | | --- | --- | | | gal'. Debris removed. Correct Malay gloss not recoverable from the fragment; English 'Behind' kept as source-derived."
     },
     {
       "word": "Tih kanan",
@@ -1751,12 +1751,12 @@
     },
     {
       "word": "Bégas",
-      "meaning_en": "SwiFT",
+      "meaning_en": "Swift",
       "meaning_ms": "Chepat",
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'SwiFT' → 'Swift' (Malay Chepat)."
     },
     {
       "word": "Nisom",
@@ -1805,12 +1805,12 @@
     },
     {
       "word": "Gil",
-      "meaning_en": "TAKE To",
+      "meaning_en": "Take",
       "meaning_ms": "Ambil",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Removed table-header 'To' (Malay Ambil)."
     },
     {
       "word": "Légf",
@@ -2057,21 +2057,21 @@
     },
     {
       "word": "ris",
-      "meaning_en": "WowunD",
+      "meaning_en": "Wound",
       "meaning_ms": "Luka",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'WowunD' → 'Wound' (Malay Luka)."
     },
     {
       "word": "prés",
-      "meaning_en": "WowunD",
+      "meaning_en": "Wound",
       "meaning_ms": "Luka",
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. OCR 'WowunD' → 'Wound' (Malay Luka)."
     },
     {
       "word": "Sdrat",
@@ -2116,7 +2116,7 @@
       "part_of_speech": "pronoun",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Headword mixed-case 'RAachin' may be OCR; gloss 'Poison' kept. Needs page check."
     },
     {
       "word": "Peha",
@@ -2143,7 +2143,7 @@
       "part_of_speech": "expression",
       "lesson_id": 4,
       "dialect_variant": "Besisi (historical name; Mah Meri heritage)",
-      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi."
+      "culture_note": "Historical Besisi vocabulary from Skeat (1896). Spelling reflects colonial-era orthography; variety labeled Besisi. Headword 'Src' and gloss 'Stand Star' look like extraction damage. Not corrected without the printed page."
     },
     {
       "word": "Budi",

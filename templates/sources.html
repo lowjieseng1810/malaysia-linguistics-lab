@@ -100,6 +100,7 @@
   {% endif %}
 
   <div class="src-actions">
+    <a href="{{ url_for('language_review_page', lang_key=lang_key) }}">Language review &amp; documentation</a>
     <a href="{{ url_for('suggest_correction', lang_key=lang_key) }}">Suggest a correction</a>
     <a href="{{ url_for('safety') }}">Safety &amp; sources</a>
     <a href="{{ url_for('dictionary_page', lang=lang_key) }}">Open dictionary</a>

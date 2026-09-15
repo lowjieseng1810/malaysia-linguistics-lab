@@ -1,0 +1,275 @@
+{
+  "notes": "Traceable technical repairs for Mah Meri packs. Each item cites the original stored value and the restored source-derived reading. No invented lexemes. English restorations are case/OCR normalisations of the existing English column, confirmed against the accompanying Malay gloss from Skeat (1896).",
+  "delete": [
+    {
+      "language": "mah-meri",
+      "word": "3735",
+      "source_ref_contains": "ASJP",
+      "reason": "ASJP header/ID parsed as a headword; meaning field holds coordinates and ISO codes, not the 1sg form. The actual first-person form was not recovered from the pack. Do not invent it."
+    }
+  ],
+  "update": [
+    {
+      "language": "mah-meri",
+      "word": "Ding dioi",
+      "source_ref_contains": "Skeat",
+      "set": {
+        "meaning_en": "Bamboo",
+        "meaning_ms": "Buluh",
+        "review_status": "technically_corrected",
+        "review_note": "Original Malay field was OCR table bleed 'buluh pe | | | rindu'. Restored Malay 'Buluh' from the surviving 'buluh' fragment plus English 'Bamboo'."
+      }
+    },
+    {
+      "language": "mah-meri",
+      "word": "Chok main",
+      "source_ref_contains": "Skeat",
+      "set": {
+        "meaning_en": "Games",
+        "meaning_ms": "Bermain",
+        "review_status": "technically_corrected",
+        "review_note": "Removed table-header 'TO' from English 'TO Games' and pipe-bleed Malay 'Ber-main | | | main'."
+      }
+    },
+    {
+      "language": "mah-meri",
+      "word": "Karak",
+      "source_ref_contains": "Skeat",
+      "set": {
+        "meaning_ms": "",
+        "review_status": "needs_verification",
+        "review_note": "Malay field was markdown/OCR debris 'Ting | | --- | --- | | | gal'. Debris removed. Correct Malay gloss not recoverable from the fragment; English 'Behind' kept as source-derived."
+      }
+    },
+    {
+      "language": "mah-meri",
+      "word": "Ding",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "BamBoo",
+      "set": {"meaning_en": "Bamboo", "review_status": "technically_corrected", "review_note": "OCR mixed-case 'BamBoo' → 'Bamboo' (Malay Buluh)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Akon",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "CouGH",
+      "set": {"meaning_en": "Cough", "review_status": "technically_corrected", "review_note": "OCR mixed-case 'CouGH' → 'Cough' (Malay Bato’)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Tét",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "CuT",
+      "set": {"meaning_en": "Cut", "review_status": "technically_corrected", "review_note": "OCR mixed-case 'CuT' → 'Cut' (Malay Potong)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "domok",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "DarT",
+      "set": {"meaning_en": "Dart", "review_status": "technically_corrected", "review_note": "OCR mixed-case 'DarT' → 'Dart' (Malay anak sumpitan)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Hagam",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "DarK",
+      "set": {"meaning_en": "Dark", "review_status": "technically_corrected", "review_note": "OCR mixed-case 'DarK' → 'Dark' (Malay Glap)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Seh",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "Disappear To",
+      "set": {"meaning_en": "Disappear", "review_status": "technically_corrected", "review_note": "Removed Skeat table-header 'To' after 'Disappear' (Malay Hilang)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Chau",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "DoGa",
+      "set": {"meaning_en": "Dog", "review_status": "technically_corrected", "review_note": "OCR 'DoGa' → 'Dog' (Malay Anjing)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "choh",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "DoGa",
+      "set": {"meaning_en": "Dog", "review_status": "technically_corrected", "review_note": "OCR 'DoGa' → 'Dog' (Malay Anjing)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Pésuit",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "EscaPE",
+      "set": {"meaning_en": "Escape", "review_status": "technically_corrected", "review_note": "OCR 'EscaPE' → 'Escape' (Malay Lepas)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Ang",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "GAPE To",
+      "set": {"meaning_en": "Gape", "review_status": "technically_corrected", "review_note": "Removed table-header 'To'; OCR 'GAPE' → 'Gape' (Malay Nganga)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Hantuk",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "GuHosT",
+      "set": {"meaning_en": "Ghost", "review_status": "technically_corrected", "review_note": "OCR 'GuHosT' → 'Ghost' (Malay Hantu)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Piong",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "HEAR To",
+      "set": {"meaning_en": "Hear", "review_status": "technically_corrected", "review_note": "Removed table-header 'To'; OCR 'HEAR' → 'Hear' (Malay Dengar)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Sré",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "KNOow To",
+      "set": {"meaning_en": "Know", "review_status": "technically_corrected", "review_note": "OCR 'KNOow To' → 'Know' (Malay Tahu)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Hamtr",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "LEAP To",
+      "set": {"meaning_en": "Leap", "review_status": "technically_corrected", "review_note": "Removed table-header 'To'; OCR 'LEAP' → 'Leap' (Malay Lompat)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Pé",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "MiDDAY",
+      "set": {"meaning_en": "Midday", "review_status": "technically_corrected", "review_note": "OCR 'MiDDAY' → 'Midday' (Malay Tengah hari)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "haru",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "Mix To",
+      "set": {"meaning_en": "Mix", "review_status": "technically_corrected", "review_note": "Removed table-header 'To' (Malay Kachau)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Muh",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "NosE",
+      "set": {"meaning_en": "Nose", "review_status": "technically_corrected", "review_note": "OCR 'NosE' → 'Nose' (Malay Hidong)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Daging",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "PorRK",
+      "set": {"meaning_en": "Pork", "review_status": "technically_corrected", "review_note": "OCR 'PorRK' → 'Pork' (Malay Daging babi)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Angkit",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "RAIsE",
+      "set": {"meaning_en": "Raise", "review_status": "technically_corrected", "review_note": "OCR 'RAIsE' → 'Raise' (Malay Angkat)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Bégas",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "SwiFT",
+      "set": {"meaning_en": "Swift", "review_status": "technically_corrected", "review_note": "OCR 'SwiFT' → 'Swift' (Malay Chepat)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Gil",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "TAKE To",
+      "set": {"meaning_en": "Take", "review_status": "technically_corrected", "review_note": "Removed table-header 'To' (Malay Ambil)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "ris",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "WowunD",
+      "set": {"meaning_en": "Wound", "review_status": "technically_corrected", "review_note": "OCR 'WowunD' → 'Wound' (Malay Luka)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "prés",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "WowunD",
+      "set": {"meaning_en": "Wound", "review_status": "technically_corrected", "review_note": "OCR 'WowunD' → 'Wound' (Malay Luka)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Ayau",
+      "source_ref_contains": "Skeat",
+      "from_meaning_en": "MEw TO",
+      "set": {"meaning_en": "Mew", "review_status": "technically_corrected", "review_note": "Removed table-header 'TO'; OCR 'MEw' → 'Mew' (Malay Mengiau)."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Béng",
+      "source_ref_contains": "Skeat",
+      "set": {"part_of_speech": "verb", "review_status": "technically_corrected", "review_note": "POS was pronoun; gloss Drink / Minum is verbal."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "cha",
+      "source_ref_contains": "Skeat",
+      "set": {"part_of_speech": "verb", "review_note": "POS was pronoun; gloss Drink / Minum is verbal."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "Tés",
+      "source_ref_contains": "Skeat",
+      "set": {"part_of_speech": "verb", "review_note": "POS was pronoun; gloss Boil / Bara needs sense check but POS is not pronominal."}
+    },
+    {
+      "language": "mah-meri",
+      "word": "O-h",
+      "source_ref_contains": "Skeat",
+      "set": {
+        "review_status": "needs_verification",
+        "review_note": "English field 'OS Mavites CoME' is not a recoverable OCR form. Malay 'Mari' ('come') is retained; English left as stored. Needs human reading of Skeat (1896)."
+      }
+    },
+    {
+      "language": "mah-meri",
+      "word": "Src",
+      "source_ref_contains": "Skeat",
+      "set": {
+        "review_status": "needs_verification",
+        "review_note": "Headword 'Src' and gloss 'Stand Star' look like extraction damage. Not corrected without the printed page."
+      }
+    },
+    {
+      "language": "mah-meri",
+      "word": "RAachin",
+      "source_ref_contains": "Skeat",
+      "set": {
+        "review_status": "needs_verification",
+        "review_note": "Headword mixed-case 'RAachin' may be OCR; gloss 'Poison' kept. Needs page check."
+      }
+    }
+  ],
+  "kaikki_malay_to_ms_field": {
+    "note": "ms.wiktionary extracts stored Malay definitions in meaning_en. Move that text to meaning_ms. Do not invent English.",
+    "words": ["cado", "kenon", "kadey", "kaping", "ca", "duk", "hatop", "tebel"]
+  },
+  "asjp_pos_from_gloss": {
+    "note": "ASJP importer assigned POS with a keyword heuristic. Correct only when the English gloss is unambiguous.",
+    "map": {
+      "kah": "noun",
+      "cadow": "verb",
+      "k3b3s": "verb",
+      "us": "noun",
+      "gunoN": "noun",
+      "d3y": "noun",
+      "g3rih": "noun",
+      "Tés": null
+    }
+  }
+}

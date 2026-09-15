@@ -36,6 +36,9 @@ from database import (
     vocabulary_counts_by_language,
     vocabulary_coverage_report,
     TARGET_VOCAB_PER_LANGUAGE,
+    set_section_review_status,
+    save_academic_review_note,
+    save_collaboration_interest,
 )
 from db import (
     describe_backend,
@@ -67,6 +70,7 @@ from retrieval import (
     dictionary_random_word,
 )
 from language_registry import get_language_keys, resolve_language, display_name
+from review_service import build_language_review_payload
 from quiz_service import (
     start_quiz_session,
     quiz_session_state,
@@ -1255,14 +1259,22 @@ LANGUAGES = {
 
         "sources": [
             {
-                "title": "Mah Meri language documentation",
-                "organization": "Linguistic research source to be added",
-                "url": ""
+                "title": "Skeat, W.W. (1896). A Vocabulary of the Besisi Dialect",
+                "organization": "Journal of the Straits Branch of the Royal Asiatic Society 29: 13–31",
+                "url": "",
+                "note": "Public domain. Historical Besisi (Mah Meri heritage variety). Colonial-era spelling."
             },
             {
-                "title": "Research on Mah Meri language vitality",
-                "organization": "Academic research source to be added",
-                "url": ""
+                "title": "ASJP Database wordlist — Mah Meri",
+                "organization": "ASJP / CLLD (CC BY 4.0)",
+                "url": "https://asjp.clld.org/",
+                "note": "ASJP orthography preserved; not converted to a learner spelling."
+            },
+            {
+                "title": "ms.wiktionary Mah Meri / Besisi extract",
+                "organization": "kaikki.org / wiktextract (CC BY-SA)",
+                "url": "https://kaikki.org/",
+                "note": "Sparse. Malay glosses; English often still needs verification."
             }
         ]
     }
@@ -6784,6 +6796,126 @@ def suggest_correction(lang_key):
         language=language,
         lang_key=lang_key
     )
+
+
+# ================= LANGUAGE REVIEW =================
+
+_REVIEW_SECTION_STATUSES = {
+    "academic_review_pending",
+    "reviewed",
+    "needs_revision",
+    "community_review_pending",
+}
+_REVIEW_PATHWAYS = {
+    "academic_review",
+    "community_review",
+    "language_consultation",
+    "student_pilot",
+    "educational_feedback",
+    "cultural_context",
+}
+
+
+def _require_language(lang_key):
+    if "user_id" not in session:
+        return redirect(url_for("login")), None
+    language = LANGUAGES.get(lang_key)
+    if not language:
+        abort(404)
+    return None, language
+
+
+@app.route("/language/<lang_key>/review")
+def language_review_page(lang_key):
+    bounced, language = _require_language(lang_key)
+    if bounced:
+        return bounced
+    payload = build_language_review_payload(
+        lang_key,
+        language,
+        COURSE_DATA,
+        family=LANGUAGE_FAMILY.get(lang_key),
+    )
+    return render_template(
+        "language_review.html",
+        payload=payload,
+        language=language,
+        lang_key=lang_key,
+    )
+
+
+@app.route(
+    "/language/<lang_key>/review/section",
+    methods=["POST"],
+)
+def language_review_section(lang_key):
+    bounced, language = _require_language(lang_key)
+    if bounced:
+        return bounced
+    section_key = (request.form.get("section_key") or "").strip()
+    status = (request.form.get("status") or "").strip()
+    allowed_sections = {
+        "language_overview",
+        "community",
+        "location",
+        "preservation",
+        "course_intent",
+    }
+    if section_key not in allowed_sections or status not in _REVIEW_SECTION_STATUSES:
+        abort(400)
+    set_section_review_status(
+        lang_key,
+        section_key,
+        status,
+        session.get("user_id"),
+    )
+    flash("Section review state saved. This is a workspace note, not formal authentication.")
+    return redirect(url_for("language_review_page", lang_key=lang_key) + "#overview")
+
+
+@app.route(
+    "/language/<lang_key>/review/academic-note",
+    methods=["POST"],
+)
+def language_review_academic(lang_key):
+    bounced, language = _require_language(lang_key)
+    if bounced:
+        return bounced
+    categories = request.form.getlist("categories")
+    comments = (request.form.get("comments") or "").strip()
+    if not comments and not categories:
+        flash("Add a comment or choose a review category.")
+        return redirect(url_for("language_review_page", lang_key=lang_key) + "#academic")
+    save_academic_review_note(
+        lang_key,
+        categories,
+        comments,
+        session.get("user_id"),
+    )
+    flash("Review note saved for this language workspace.")
+    return redirect(url_for("language_review_page", lang_key=lang_key) + "#academic")
+
+
+@app.route(
+    "/language/<lang_key>/review/collaborate",
+    methods=["POST"],
+)
+def language_review_collaborate(lang_key):
+    bounced, language = _require_language(lang_key)
+    if bounced:
+        return bounced
+    pathway = (request.form.get("pathway") or "").strip()
+    if pathway not in _REVIEW_PATHWAYS:
+        abort(400)
+    save_collaboration_interest(
+        lang_key,
+        pathway,
+        (request.form.get("organisation") or "").strip(),
+        (request.form.get("message") or "").strip(),
+        session.get("user_id"),
+    )
+    flash("Interest recorded. This is not a partnership announcement.")
+    return redirect(url_for("language_review_page", lang_key=lang_key) + "#collaboration")
 
 
 # ================= SOURCES PAGE =================
