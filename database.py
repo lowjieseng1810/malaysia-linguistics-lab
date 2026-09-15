@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
-from db import get_db, table_columns
+from db import get_db, table_columns, ensure_column
 
 VOCAB_PACK_DIR = Path(__file__).resolve().parent / "data" / "vocabulary"
 TARGET_VOCAB_PER_LANGUAGE = 250
@@ -1023,6 +1023,9 @@ def init_review_tables(conn=None) -> None:
             ON vocabulary_review_history (vocabulary_id, id);
         """
     )
+    ensure_column(conn, "vocabulary_review_history", "review_actor_type", "TEXT")
+    ensure_column(conn, "vocabulary_review_history", "review_kind", "TEXT")
+    ensure_column(conn, "vocabulary_review_history", "invite_label", "TEXT")
     if own:
         conn.commit()
         conn.close()
@@ -1243,6 +1246,9 @@ def update_vocabulary_review(
     reviewer_user_id: int | None,
     reviewer_username: str | None,
     reviewer_role: str | None,
+    review_actor_type: str | None = None,
+    review_kind: str | None = None,
+    invite_label: str | None = None,
 ) -> dict[str, Any] | None:
     conn = get_db()
     _ensure_vocabulary_provenance_columns(conn)
@@ -1283,8 +1289,9 @@ def update_vocabulary_review(
         """
         INSERT INTO vocabulary_review_history
             (vocabulary_id, language, previous_status, new_status, note,
-             reviewer_user_id, reviewer_username, reviewer_role, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+             reviewer_user_id, reviewer_username, reviewer_role, created_at,
+             review_actor_type, review_kind, invite_label)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             vocab_id,
@@ -1296,6 +1303,9 @@ def update_vocabulary_review(
             reviewer_username,
             reviewer_role,
             now,
+            review_actor_type,
+            review_kind,
+            invite_label,
         ),
     )
     conn.commit()

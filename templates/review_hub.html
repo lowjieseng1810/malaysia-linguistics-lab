@@ -35,6 +35,11 @@
       <p>Grant or revoke reviewer access by username. Reviewers do not need to share an email address.</p>
       <p><a class="review-cta" href="{{ url_for('admin_reviewers') }}" style="display:inline-block;text-decoration:none;">Open Reviewer Management</a></p>
     </article>
+    <article class="review-card" style="margin:0;">
+      <h2>Review Invitations</h2>
+      <p>Create a private language-scoped link for reviewers who should not need an account.</p>
+      <p><a class="review-cta" href="{{ url_for('admin_review_invitations') }}" style="display:inline-block;text-decoration:none;">Open Review Invitations</a></p>
+    </article>
   </section>
   {% endif %}
 

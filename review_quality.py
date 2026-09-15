@@ -19,6 +19,7 @@ STATUS_ACADEMIC_REVIEW_PENDING = "academic_review_pending"
 STATUS_COMMUNITY_REVIEW_PENDING = "community_review_pending"
 STATUS_REVIEWED = "reviewed"
 STATUS_ACADEMICALLY_REVIEWED = "academically_reviewed"
+STATUS_COMMUNITY_REVIEWED = "community_reviewed"
 STATUS_NEEDS_REVISION = "needs_revision"
 
 STATUS_LABELS = {
@@ -29,6 +30,7 @@ STATUS_LABELS = {
     STATUS_COMMUNITY_REVIEW_PENDING: "Community review pending",
     STATUS_REVIEWED: "Academically reviewed",
     STATUS_ACADEMICALLY_REVIEWED: "Academically reviewed",
+    STATUS_COMMUNITY_REVIEWED: "Community reviewed",
     STATUS_NEEDS_REVISION: "Needs revision",
 }
 
@@ -221,7 +223,7 @@ def classify_entry(
 ) -> str:
     """Bucket: technical | suspicious | source_ok | reviewed."""
     stored = (row.get("review_status") or "").strip()
-    if stored in {STATUS_REVIEWED, STATUS_ACADEMICALLY_REVIEWED}:
+    if stored in {STATUS_REVIEWED, STATUS_ACADEMICALLY_REVIEWED, STATUS_COMMUNITY_REVIEWED}:
         return "reviewed"
     found = issues if issues is not None else detect_entry_issues(row)
     if any(i["severity"] == SEVERITY_TECHNICAL for i in found):

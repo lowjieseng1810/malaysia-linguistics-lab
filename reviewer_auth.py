@@ -52,6 +52,7 @@ VOCAB_MUTATION_STATUSES = frozenset(
         "academic_review_pending",
         "community_review_pending",
         "academically_reviewed",
+        "community_reviewed",
         "reviewed",
         "source_derived",
         "technically_corrected",

@@ -624,6 +624,269 @@ class ReviewerPermissionTests(unittest.TestCase):
         self.assertIn("/login", review.headers.get("Location", ""))
 
 
+class ReviewInviteTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        LanguageReviewTests.setUpClass()
+        cls.app_module = LanguageReviewTests.app_module
+        cls.app = LanguageReviewTests.app
+
+    def setUp(self):
+        self.client = self.app.test_client()
+
+    def _insert_admin(self):
+        ReviewerPermissionTests._insert_user(
+            self, "invite_admin", "AdminPass1", "admin"
+        )
+        ReviewerPermissionTests._login_as(self, "invite_admin", "AdminPass1")
+
+    def _token(self, path):
+        return _csrf(self.client.get(path).get_data(as_text=True))
+
+    def _create_invite(self, language="mah-meri", kind="academic", days=7, label="Mah Meri FLL review"):
+        from review_invite import create_review_invite
+
+        result = create_review_invite(language, kind, days, label, created_by=1)
+        self.assertTrue(result.get("ok"), result)
+        return result
+
+    def _queue_id(self, language="mah-meri"):
+        from db import get_db
+
+        conn = get_db()
+        row = conn.execute(
+            """
+            SELECT id FROM vocabulary
+            WHERE language = ?
+              AND (review_status IS NULL OR review_status != 'academically_reviewed')
+            ORDER BY id LIMIT 1
+            """,
+            (language,),
+        ).fetchone()
+        conn.close()
+        self.assertIsNotNone(row)
+        return int(row["id"])
+
+    def test_valid_invite_opens_scoped_queue(self):
+        invite = self._create_invite()
+        public = self.client.get("/language/mah-meri/review", follow_redirects=False)
+        self.assertEqual(public.status_code, 302)
+        self.assertIn("/login", public.headers.get("Location", ""))
+        opened = self.client.get(
+            f"/review/invite/{invite['token']}", follow_redirects=False
+        )
+        self.assertEqual(opened.status_code, 302)
+        location = opened.headers.get("Location", "")
+        self.assertIn("/review/workspace/mah-meri", location)
+        self.assertIn("queue", location)
+        page = self.client.get("/review/workspace/mah-meri")
+        self.assertEqual(page.status_code, 200)
+        body = page.get_data(as_text=True)
+        self.assertIn("Private Academic Review Access", body)
+        self.assertIn("Review Queue", body)
+        self.assertIn("review-select-trigger", body)
+        still_public = self.client.get("/language/mah-meri/review", follow_redirects=False)
+        self.assertEqual(still_public.status_code, 302)
+
+    def test_invalid_expired_and_revoked_tokens_rejected(self):
+        from db import get_db
+        from review_invite import revoke_review_invite
+
+        missing = self.client.get("/review/invite/not-a-valid-token", follow_redirects=False)
+        self.assertEqual(missing.status_code, 404)
+
+        expired = self._create_invite(label="expired")
+        conn = get_db()
+        conn.execute(
+            "UPDATE review_invitations SET expires_at = ? WHERE id = ?",
+            ("2000-01-01T00:00:00+00:00", expired["invite_id"]),
+        )
+        conn.commit()
+        conn.close()
+        expired_resp = self.client.get(
+            f"/review/invite/{expired['token']}", follow_redirects=False
+        )
+        self.assertEqual(expired_resp.status_code, 403)
+
+        live = self._create_invite(label="revoke-me")
+        revoke_review_invite(live["invite_id"], revoked_by=1)
+        revoked = self.client.get(
+            f"/review/invite/{live['token']}", follow_redirects=False
+        )
+        self.assertEqual(revoked.status_code, 403)
+
+    def test_invite_cannot_modify_other_language_or_community_status(self):
+        invite = self._create_invite()
+        self.client.get(f"/review/invite/{invite['token']}")
+        token = self._token("/review/workspace/mah-meri")
+        iban_id = self._queue_id("iban")
+        other = self.client.post(
+            "/review/workspace/iban/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(iban_id),
+                "status": "academically_reviewed",
+                "note": "should fail",
+            },
+        )
+        self.assertEqual(other.status_code, 403)
+        mah_id = self._queue_id("mah-meri")
+        community = self.client.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(mah_id),
+                "status": "community_reviewed",
+                "note": "academic cannot set this",
+            },
+        )
+        self.assertEqual(community.status_code, 400)
+
+    def test_invite_cannot_use_admin_or_become_admin(self):
+        invite = self._create_invite()
+        self.client.get(f"/review/invite/{invite['token']}")
+        admin_page = self.client.get("/admin/reviewers", follow_redirects=False)
+        self.assertIn(admin_page.status_code, (302, 403))
+        if admin_page.status_code == 302:
+            self.assertIn("/login", admin_page.headers.get("Location", ""))
+        invites_page = self.client.get("/admin/review-invitations", follow_redirects=False)
+        self.assertIn(invites_page.status_code, (302, 403))
+        token = self._token("/review/workspace/mah-meri")
+        grant = self.client.post(
+            "/admin/reviewers/grant",
+            data={
+                "csrf_token": token,
+                "username": "anyone",
+                "language": "mah-meri",
+                "reviewer_kind": "academic",
+            },
+            follow_redirects=False,
+        )
+        self.assertIn(grant.status_code, (302, 403))
+
+    def test_invite_mutations_csrf_history_and_queue(self):
+        from db import get_db
+
+        invite = self._create_invite()
+        self.client.get(f"/review/invite/{invite['token']}")
+        vocab_id = self._queue_id("mah-meri")
+        bare = self.client.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "no csrf",
+            },
+        )
+        self.assertEqual(bare.status_code, 400)
+        token = self._token("/review/workspace/mah-meri")
+        saved = self.client.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "Checked in private invitation.",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(saved.status_code, 200)
+        html = saved.get_data(as_text=True)
+        self.assertNotIn(f'data-vocab-id="{vocab_id}"', html)
+        self.assertIn("Academically reviewed", html)
+        conn = get_db()
+        history = conn.execute(
+            """
+            SELECT review_actor_type, review_kind, reviewer_role, new_status
+            FROM vocabulary_review_history
+            WHERE vocabulary_id = ?
+            ORDER BY id DESC
+            """,
+            (vocab_id,),
+        ).fetchone()
+        row = conn.execute(
+            "SELECT review_status FROM vocabulary WHERE id = ?",
+            (vocab_id,),
+        ).fetchone()
+        conn.close()
+        self.assertEqual(history["review_actor_type"], "private_review_link")
+        self.assertEqual(history["review_kind"], "academic")
+        self.assertEqual(history["reviewer_role"], "private_review_link")
+        self.assertEqual(history["new_status"], "academically_reviewed")
+        self.assertEqual(row["review_status"], "academically_reviewed")
+
+    def test_end_session_and_revoke_invalidate_invite(self):
+        invite = self._create_invite(label="session-end")
+        self.client.get(f"/review/invite/{invite['token']}")
+        token = self._token("/review/workspace/mah-meri")
+        ended = self.client.post(
+            "/review/workspace/end",
+            data={"csrf_token": token},
+            follow_redirects=False,
+        )
+        self.assertEqual(ended.status_code, 302)
+        blocked = self.client.get("/review/workspace/mah-meri")
+        self.assertEqual(blocked.status_code, 403)
+
+        live = self._create_invite(label="live-then-revoke")
+        self.client.get(f"/review/invite/{live['token']}")
+        self.assertEqual(self.client.get("/review/workspace/mah-meri").status_code, 200)
+        from review_invite import revoke_review_invite
+
+        revoke_review_invite(live["invite_id"], revoked_by=1)
+        self.assertEqual(self.client.get("/review/workspace/mah-meri").status_code, 403)
+
+    def test_admin_can_create_invite_and_existing_roles_unchanged(self):
+        self._insert_admin()
+        page = self.client.get("/admin/review-invitations")
+        self.assertEqual(page.status_code, 200)
+        body = page.get_data(as_text=True)
+        self.assertIn("Create Review Invitation", body)
+        token = self._token("/admin/review-invitations")
+        created = self.client.post(
+            "/admin/review-invitations/create",
+            data={
+                "csrf_token": token,
+                "language": "mah-meri",
+                "reviewer_kind": "academic",
+                "expires_days": "7",
+                "label": "Mah Meri FLL review",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(created.status_code, 200)
+        created_html = created.get_data(as_text=True)
+        self.assertIn("Copy private review link", created_html)
+        self.assertIn("/review/invite/", created_html)
+        ReviewerPermissionTests._insert_user(
+            self, "invite_student", "StudentPass1", "student"
+        )
+        student = self.app.test_client()
+        login = student.get("/login")
+        student.post(
+            "/login",
+            data={
+                "csrf_token": _csrf(login.get_data(as_text=True)),
+                "username": "invite_student",
+                "password": "StudentPass1",
+            },
+        )
+        mutate = student.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": _csrf(
+                    student.get("/language/mah-meri/review").get_data(as_text=True)
+                ),
+                "vocab_id": "1",
+                "status": "academically_reviewed",
+            },
+        )
+        self.assertEqual(mutate.status_code, 403)
+        admin_review = self.client.get("/language/mah-meri/review")
+        self.assertEqual(admin_review.status_code, 200)
+        self.assertIn("review-select-trigger", admin_review.get_data(as_text=True))
+
+
 
 
 if __name__ == "__main__":

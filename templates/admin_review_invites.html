@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Review Invitations | Malaysia Linguistics Lab{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
+
+<main class="review-page">
+  <a class="review-back" href="{{ url_for('admin_reviewers') }}">← Reviewer Management</a>
+
+  <header class="review-header">
+    <span class="review-kicker">Admin</span>
+    <h1>Review Invitations</h1>
+    <p class="review-lead">
+      Create a private, language-scoped review link for pre-launch academic or community review.
+      Recipients do not need an account. Anyone with the link can review that language until the
+      invitation expires or is revoked.
+    </p>
+  </header>
+
+  <section class="review-card">
+    <h2>Create Review Invitation</h2>
+    <form class="review-form" method="post" action="{{ url_for('admin_review_invitations_create') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label>Language
+        <select name="language" class="review-native-select">
+          {% for language in languages %}
+          <option value="{{ language.id }}">{{ language.label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Review type
+        <select name="reviewer_kind" class="review-native-select">
+          {% for kind in kinds %}
+          <option value="{{ kind.id }}">{{ kind.label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Expires
+        <select name="expires_days" class="review-native-select">
+          <option value="1">1 day</option>
+          <option value="7" selected>7 days</option>
+          <option value="14">14 days</option>
+          <option value="30">30 days</option>
+        </select>
+      </label>
+      <label>Label (optional)
+        <input type="text" name="label" maxlength="120" placeholder="Mah Meri FLL review">
+      </label>
+      <button type="submit">Create invitation</button>
+    </form>
+  </section>
+
+  {% if created_link %}
+  <section class="review-card">
+    <h2>Copy private review link</h2>
+    <p class="review-muted">
+      Anyone with this private link can review the assigned language until it expires or is revoked.
+      Share it only with the intended reviewer. This full link is shown only once.
+    </p>
+    {% if created_label %}<p>Label: {{ created_label }}</p>{% endif %}
+    <label>Private review link
+      <input type="text" id="invite-link-field" readonly value="{{ created_link }}">
+    </label>
+    <button type="button" class="review-cta" id="copy-invite-link">Copy private review link</button>
+  </section>
+  <script>
+    (function () {
+      var btn = document.getElementById("copy-invite-link");
+      var field = document.getElementById("invite-link-field");
+      if (!btn || !field) return;
+      btn.addEventListener("click", function () {
+        if (navigator.clipboard) navigator.clipboard.writeText(field.value);
+        else { field.select(); document.execCommand("copy"); }
+      });
+    })();
+  </script>
+  {% endif %}
+
+  <section class="review-card">
+    <h2>Existing invitations</h2>
+    {% if invites %}
+    <div class="review-table-wrap">
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>Language</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Expires</th>
+            <th>Last used</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for invite in invites %}
+          <tr>
+            <td>{{ invite.label or "—" }}</td>
+            <td>{{ invite.language_label }}</td>
+            <td>{{ invite.kind_label }}</td>
+            <td>{{ invite.status_label }}</td>
+            <td>{{ invite.expires_at }}</td>
+            <td>{{ invite.last_used_at or "—" }}</td>
+            <td>
+              {% if invite.public_status == 'active' %}
+              <form method="post" action="{{ url_for('admin_review_invitations_revoke') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="invite_id" value="{{ invite.id }}">
+                <button type="submit" class="review-cite">Revoke</button>
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="review-muted">No invitations yet.</p>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}

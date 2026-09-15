@@ -62,7 +62,7 @@ QUEUE_STATUSES = {
     "community_review_pending",
 }
 
-DONE_REVIEW_STATUSES = {"reviewed", "academically_reviewed"}
+DONE_REVIEW_STATUSES = {"reviewed", "academically_reviewed", "community_reviewed"}
 
 VOCAB_STATUS_CHOICES = (
     ("needs_verification", "Needs verification"),
