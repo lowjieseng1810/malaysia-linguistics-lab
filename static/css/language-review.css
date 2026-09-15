@@ -156,10 +156,122 @@
 .review-section-head select {
     margin-top: 4px;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.06);
-    color: #fff;
+    border: 1px solid rgba(239, 215, 126, 0.45);
+    background: #123428;
+    color: #efd77e;
     padding: 6px 8px;
+}
+
+.review-status-readonly {
+    margin: 0;
+    color: #efd77e;
+    font-size: 0.88rem;
+}
+
+.review-select {
+    position: relative;
+    display: inline-block;
+    min-width: 17.5rem;
+    max-width: 100%;
+    vertical-align: top;
+}
+
+.review-select-trigger {
+    width: 100%;
+    text-align: left;
+    background: #123428;
+    color: #efd77e;
+    border: 1px solid rgba(239, 215, 126, 0.5);
+    border-radius: 10px;
+    padding: 8px 36px 8px 12px;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    cursor: pointer;
+    appearance: none;
+}
+
+.review-select-value {
+    display: block;
+    color: #efd77e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.review-select-menu {
+    position: fixed;
+    z-index: 80;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    background: #0f2e25;
+    border: 1px solid rgba(239, 215, 126, 0.45);
+    border-radius: 12px;
+    max-height: 240px;
+    overflow-y: auto;
+    min-width: 17.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.review-select-menu[hidden] {
+    display: none !important;
+}
+
+.review-select-option {
+    color: #ecf4f0;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.review-select-option[aria-selected="true"],
+.review-select-option:hover,
+.review-select-option:focus {
+    color: #efd77e;
+    background: rgba(214, 176, 77, 0.16);
+    outline: none;
+}
+
+.review-native-select,
+.review-toolbar select,
+.review-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    color-scheme: dark;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 215, 126, 0.45);
+    background: #123428;
+    color: #efd77e;
+    padding: 9px 12px;
+    min-width: 12rem;
+}
+
+.review-native-select option,
+.review-toolbar select option,
+.review-form select option {
+    background: #0f2e25;
+    color: #efd77e;
+}
+
+.review-queue-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.review-queue-head h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.review-history {
+    margin: 8px 0 0;
+    padding-left: 18px;
+    color: rgba(238, 246, 241, 0.64);
+    font-size: 0.8rem;
 }
 
 .review-toolbar {

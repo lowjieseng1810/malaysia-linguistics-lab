@@ -1,11 +1,25 @@
 {% extends "base.html" %}
 
+{% macro review_select(name, current, choices, form_submit=false) %}
+<div class="review-select{% if form_submit %} review-select--autosubmit{% endif %}">
+  <button type="button" class="review-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+    <span class="review-select-value">{% for choice in choices %}{% if choice.id == current %}{{ choice.label }}{% endif %}{% endfor %}{% if current not in choices|map(attribute='id')|list %}{{ current }}{% endif %}</span>
+  </button>
+  <ul class="review-select-menu" role="listbox" hidden>
+    {% for choice in choices %}
+    <li role="option" class="review-select-option" data-value="{{ choice.id }}" aria-selected="{% if choice.id == current %}true{% else %}false{% endif %}">{{ choice.label }}</li>
+    {% endfor %}
+  </ul>
+  <input type="hidden" name="{{ name }}" value="{{ current }}">
+</div>
+{% endmacro %}
+
 {% block title %}{{ payload.display_name }} review | Malaysia Linguistics Lab{% endblock %}
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
 
-<main class="review-page" data-lang="{{ payload.lang_key }}">
+<main class="review-page" data-lang="{{ payload.lang_key }}" data-can-edit="{% if can_edit %}1{% else %}0{% endif %}">
   <a class="review-back" href="{{ url_for('language_page', lang_key=payload.lang_key) }}">← Back to {{ payload.display_name }}</a>
 
   {% with messages = get_flashed_messages() %}
@@ -23,6 +37,11 @@
       {% if payload.family %}{{ payload.family }}. {% endif %}
       {% if payload.region %}{{ payload.region }}. {% endif %}
       A compact review workspace for academics, researchers, and organisations.
+      {% if can_edit and reviewer_kind_label %}
+        Signed in as {{ reviewer_kind_label }}.
+      {% elif not can_edit %}
+        This page is read-only unless an administrator grants reviewer access to your username.
+      {% endif %}
     </p>
     <div class="review-stats">
       <div class="review-stat"><span>Current entries</span><strong>{{ payload.summary.entry_count }}</strong></div>
@@ -36,6 +55,7 @@
 
   <div class="review-tabs" role="tablist">
     <button class="review-tab" role="tab" aria-selected="true" data-tab="overview">Overview &amp; Culture</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="queue">Review Queue</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="vocabulary">Vocabulary</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="issues">Issues</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="sources">Sources</button>
@@ -48,28 +68,86 @@
     <article class="review-card" data-section="{{ section.key }}">
       <div class="review-section-head">
         <h2>{{ section.title }}</h2>
+        {% if can_edit %}
         <form method="post" action="{{ url_for('language_review_section', lang_key=payload.lang_key) }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <input type="hidden" name="section_key" value="{{ section.key }}">
           <label>
             Review state
-            <select name="status" onchange="this.form.submit()">
-              {% for choice in payload.section_status_choices %}
-              <option value="{{ choice.id }}" {% if section.status == choice.id %}selected{% endif %}>{{ choice.label }}</option>
-              {% endfor %}
-            </select>
+            {{ review_select('status', section.status, payload.section_status_choices, true) }}
           </label>
         </form>
+        {% else %}
+        <p class="review-status-readonly">{{ section.status_label }}</p>
+        {% endif %}
       </div>
       <p>{{ section.body }}</p>
     </article>
     {% endfor %}
   </section>
 
+  <section class="review-panel" id="panel-queue" role="tabpanel" hidden>
+    <div class="review-card">
+      <h2>Review Queue</h2>
+      <p>
+        Items leave this queue when their status is set to Academically reviewed.
+        They remain in Vocabulary with source, timestamp, reviewer role, notes, and history.
+      </p>
+    </div>
+    {% if payload.review_queue %}
+      {% for row in payload.review_queue[:80] %}
+      <article class="review-card review-queue-item" data-vocab-id="{{ row.id }}">
+        <div class="review-queue-head">
+          <h3>{{ row.word }}</h3>
+          <span class="review-badge">{{ row.review_status_label }}</span>
+        </div>
+        <p>{{ row.meaning_en or row.meaning_ms or "—" }}</p>
+        <p class="review-muted">Source: {{ row.source_ref or "source not recorded" }}</p>
+        {% if row.reviewed_at or row.reviewed_by_username or row.review_note %}
+        <p class="review-muted">
+          {% if row.reviewed_at %}Last review: {{ row.reviewed_at }}{% endif %}
+          {% if row.reviewed_by_role %} · {{ row.reviewed_by_role }}{% endif %}
+          {% if row.reviewed_by_username %} · {{ row.reviewed_by_username }}{% endif %}
+        </p>
+        {% endif %}
+        {% if row.review_note %}<p>{{ row.review_note }}</p>{% endif %}
+        {% if row.history %}
+        <ul class="review-history">
+          {% for event in row.history %}
+          <li>
+            {{ event.created_at }}:
+            {{ event.previous_status or "—" }} → {{ event.new_status }}
+            {% if event.reviewer_role %} ({{ event.reviewer_role }}){% endif %}
+            {% if event.note %} — {{ event.note }}{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% if can_edit %}
+        <form class="review-form" method="post" action="{{ url_for('language_review_vocabulary', lang_key=payload.lang_key) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="vocab_id" value="{{ row.id }}">
+          <label>
+            Review status
+            {{ review_select('status', row.review_status if row.review_status != 'reviewed' else 'academically_reviewed', payload.vocab_status_choices) }}
+          </label>
+          <label>Reviewer notes
+            <textarea name="note" maxlength="2000" placeholder="Optional note stored with this review.">{{ row.review_note or '' }}</textarea>
+          </label>
+          <button type="submit">Save review</button>
+        </form>
+        {% endif %}
+      </article>
+      {% endfor %}
+    {% else %}
+    <div class="review-card"><p>No items are currently in the review queue for this language.</p></div>
+    {% endif %}
+  </section>
+
   <section class="review-panel" id="panel-vocabulary" role="tabpanel" hidden>
     <div class="review-toolbar">
       <input type="search" id="vocab-q" placeholder="Search term, Malay, English, or source">
-      <select id="vocab-filter">
+      <select id="vocab-filter" class="review-native-select">
         {% for filt in payload.filters %}
         <option value="{{ filt.id }}">{{ filt.label }}</option>
         {% endfor %}
@@ -85,6 +163,7 @@
             <th>English</th>
             <th>Source</th>
             <th>Status</th>
+            <th>Reviewer</th>
             <th>Issues</th>
             <th></th>
           </tr>
@@ -212,6 +291,7 @@
     {% endif %}
     <div class="review-card">
       <h3>Reviewer notes</h3>
+      {% if can_edit %}
       <form class="review-form" method="post" action="{{ url_for('language_review_academic', lang_key=payload.lang_key) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="checks">
@@ -224,6 +304,9 @@
         </label>
         <button type="submit">Save review note</button>
       </form>
+      {% else %}
+      <p class="review-muted">Reviewer notes can be saved after an administrator grants access to your username.</p>
+      {% endif %}
     </div>
   </section>
 
@@ -243,7 +326,7 @@
       <form class="review-form" method="post" action="{{ url_for('language_review_collaborate', lang_key=payload.lang_key) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <label>How would you like to take part?
-          <select name="pathway">
+          <select name="pathway" class="review-native-select">
             {% for path in payload.collaboration.pathways %}
             <option value="{{ path.id }}">{{ path.title }}</option>
             {% endfor %}

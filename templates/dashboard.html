@@ -193,6 +193,9 @@
             <span class="dash-stat" title="Progress points from lessons and quiz answers">
                 {{ stats.points or 0 }} points
             </span>
+            {% if is_admin %}
+            <a class="dash-stat" href="{{ url_for('admin_reviewers') }}">Reviewer Management</a>
+            {% endif %}
         </div>
     </header>
 

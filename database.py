@@ -125,6 +125,12 @@ def _ensure_vocabulary_provenance_columns(conn) -> None:
         conn.execute("ALTER TABLE vocabulary ADD COLUMN review_note TEXT")
     if "is_newly_added" not in cols:
         conn.execute("ALTER TABLE vocabulary ADD COLUMN is_newly_added INTEGER DEFAULT 0")
+    if "reviewed_at" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN reviewed_at TEXT")
+    if "reviewed_by_username" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN reviewed_by_username TEXT")
+    if "reviewed_by_role" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN reviewed_by_role TEXT")
     # Tag legacy course/quiz rows once so provenance is never silent.
     conn.execute(
         """
@@ -1000,6 +1006,21 @@ def init_review_tables(conn=None) -> None:
             message TEXT,
             created_at TEXT
         );
+
+        CREATE TABLE IF NOT EXISTS vocabulary_review_history (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            vocabulary_id INTEGER NOT NULL,
+            language TEXT NOT NULL,
+            previous_status TEXT,
+            new_status TEXT,
+            note TEXT,
+            reviewer_user_id INTEGER,
+            reviewer_username TEXT,
+            reviewer_role TEXT,
+            created_at TEXT
+        );
+        CREATE INDEX IF NOT EXISTS idx_vocab_review_history_vocab
+            ON vocabulary_review_history (vocabulary_id, id);
         """
     )
     if own:
@@ -1153,6 +1174,137 @@ def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
     if own:
         conn.close()
     return {"deleted": deleted, "updated": updated}
+
+
+def get_vocabulary_entry(vocab_id: int, language: str | None = None) -> dict[str, Any] | None:
+    conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    if language:
+        row = conn.execute(
+            "SELECT * FROM vocabulary WHERE id = ? AND language = ?",
+            (vocab_id, language),
+        ).fetchone()
+    else:
+        row = conn.execute(
+            "SELECT * FROM vocabulary WHERE id = ?",
+            (vocab_id,),
+        ).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+
+def list_vocabulary_review_history(vocab_id: int, limit: int = 20) -> list[dict[str, Any]]:
+    conn = get_db()
+    init_review_tables(conn)
+    rows = conn.execute(
+        """
+        SELECT * FROM vocabulary_review_history
+        WHERE vocabulary_id = ?
+        ORDER BY id DESC
+        """,
+        (vocab_id,),
+    ).fetchall()
+    conn.close()
+    out = [dict(r) for r in rows]
+    return out[:limit]
+
+
+def list_vocabulary_review_history_for_language(
+    language: str, vocab_ids: Iterable[int]
+) -> dict[int, list[dict[str, Any]]]:
+    ids = [int(i) for i in vocab_ids if i is not None]
+    if not ids:
+        return {}
+    conn = get_db()
+    init_review_tables(conn)
+    placeholders = ",".join("?" for _ in ids)
+    rows = conn.execute(
+        f"""
+        SELECT * FROM vocabulary_review_history
+        WHERE language = ? AND vocabulary_id IN ({placeholders})
+        ORDER BY id DESC
+        """,
+        (language, *ids),
+    ).fetchall()
+    conn.close()
+    grouped: dict[int, list[dict[str, Any]]] = {}
+    for row in rows:
+        item = dict(row)
+        vid = int(item.get("vocabulary_id") or 0)
+        grouped.setdefault(vid, []).append(item)
+    return grouped
+
+
+def update_vocabulary_review(
+    vocab_id: int,
+    language: str,
+    new_status: str,
+    note: str,
+    reviewer_user_id: int | None,
+    reviewer_username: str | None,
+    reviewer_role: str | None,
+) -> dict[str, Any] | None:
+    conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    init_review_tables(conn)
+    row = conn.execute(
+        "SELECT * FROM vocabulary WHERE id = ? AND language = ?",
+        (vocab_id, language),
+    ).fetchone()
+    if not row:
+        conn.close()
+        return None
+    current = dict(row)
+    previous = (current.get("review_status") or "").strip()
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    note_text = (note or "").strip()
+    stored_note = note_text or (current.get("review_note") or "")
+    conn.execute(
+        """
+        UPDATE vocabulary
+        SET review_status = ?,
+            review_note = ?,
+            reviewed_at = ?,
+            reviewed_by_username = ?,
+            reviewed_by_role = ?
+        WHERE id = ? AND language = ?
+        """,
+        (
+            new_status,
+            stored_note,
+            now,
+            reviewer_username,
+            reviewer_role,
+            vocab_id,
+            language,
+        ),
+    )
+    conn.execute(
+        """
+        INSERT INTO vocabulary_review_history
+            (vocabulary_id, language, previous_status, new_status, note,
+             reviewer_user_id, reviewer_username, reviewer_role, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            vocab_id,
+            language,
+            previous,
+            new_status,
+            note_text,
+            reviewer_user_id,
+            reviewer_username,
+            reviewer_role,
+            now,
+        ),
+    )
+    conn.commit()
+    updated = conn.execute(
+        "SELECT * FROM vocabulary WHERE id = ?",
+        (vocab_id,),
+    ).fetchone()
+    conn.close()
+    return dict(updated) if updated else None
 
 
 def set_section_review_status(

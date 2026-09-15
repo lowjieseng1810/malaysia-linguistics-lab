@@ -201,6 +201,324 @@ class LanguageReviewTests(unittest.TestCase):
         self.assertIn("updated", result)
 
 
+class ReviewerPermissionTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        LanguageReviewTests.setUpClass()
+        cls.app_module = LanguageReviewTests.app_module
+        cls.app = LanguageReviewTests.app
+
+    def setUp(self):
+        self.client = self.app.test_client()
+    def _insert_user(self, username, password, role=None):
+        from db import get_db
+        from reviewer_auth import ensure_reviewer_schema
+
+        conn = get_db()
+        ensure_reviewer_schema(conn)
+        existing = conn.execute(
+            "SELECT id FROM users WHERE username = ?", (username,)
+        ).fetchone()
+        if not existing:
+            cols = [r[1] for r in conn.execute("PRAGMA table_info(users)").fetchall()]
+            if "email" in cols:
+                conn.execute(
+                    """
+                    INSERT INTO users (username, password, email, provider, role)
+                    VALUES (?, ?, ?, ?, ?)
+                    """,
+                    (
+                        username,
+                        generate_password_hash(password),
+                        f"{username}@example.com",
+                        "local",
+                        role or "student",
+                    ),
+                )
+            else:
+                conn.execute(
+                    "INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
+                    (username, generate_password_hash(password), role or "student"),
+                )
+        elif role:
+            conn.execute(
+                "UPDATE users SET role = ? WHERE username = ?",
+                (role, username),
+            )
+        conn.commit()
+        conn.close()
+
+    def _login_as(self, username, password):
+        page = self.client.get("/login")
+        resp = self.client.post(
+            "/login",
+            data={
+                "csrf_token": _csrf(page.get_data(as_text=True)),
+                "username": username,
+                "password": password,
+            },
+        )
+        self.assertNotIn(resp.status_code, (400, 401, 403, 500))
+
+    def _token(self, path="/login"):
+        return _csrf(self.client.get(path).get_data(as_text=True))
+
+    def _queue_vocab(self, language="mah-meri"):
+        from db import get_db
+
+        conn = get_db()
+        row = conn.execute(
+            """
+            SELECT id, word, review_status FROM vocabulary
+            WHERE language = ?
+              AND (review_status = 'needs_verification' OR review_status = 'source_derived')
+            ORDER BY id
+            LIMIT 1
+            """,
+            (language,),
+        ).fetchone()
+        conn.close()
+        self.assertIsNotNone(row)
+        return int(row["id"]), row["word"]
+
+    def test_student_cannot_change_review_status_or_call_mutations(self):
+        self._insert_user("student_user", "StudentPass1", "student")
+        self._login_as("student_user", "StudentPass1")
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        self.assertIn("Review Queue", html)
+        self.assertIn("read-only", html)
+        self.assertNotIn("review-select-trigger", html)
+        token = self._token("/language/mah-meri/review")
+        vocab_id, _ = self._queue_vocab("mah-meri")
+        section = self.client.post(
+            "/language/mah-meri/review/section",
+            data={
+                "csrf_token": token,
+                "section_key": "community",
+                "status": "academically_reviewed",
+            },
+        )
+        self.assertEqual(section.status_code, 403)
+        vocab = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "should fail",
+            },
+        )
+        self.assertEqual(vocab.status_code, 403)
+        note = self.client.post(
+            "/language/mah-meri/review/academic-note",
+            data={
+                "csrf_token": token,
+                "comments": "should fail",
+            },
+        )
+        self.assertEqual(note.status_code, 403)
+
+    def test_student_cannot_grant_themselves_reviewer_access(self):
+        self._insert_user("student_user", "StudentPass1", "student")
+        self._login_as("student_user", "StudentPass1")
+        token = self._token("/login")
+        resp = self.client.post(
+            "/admin/reviewers/grant",
+            data={
+                "csrf_token": token,
+                "username": "student_user",
+                "language": "mah-meri",
+                "reviewer_kind": "academic",
+            },
+        )
+        self.assertEqual(resp.status_code, 403)
+        from reviewer_auth import get_user_access
+        from db import get_db
+
+        conn = get_db()
+        user = conn.execute(
+            "SELECT id, role FROM users WHERE username = ?", ("student_user",)
+        ).fetchone()
+        conn.close()
+        access = get_user_access(user["id"])
+        self.assertEqual(access["role"], "student")
+        self.assertFalse(access["can_edit_any"])
+
+    def test_reviewer_scope_is_language_limited(self):
+        from reviewer_auth import grant_reviewer_access
+
+        self._insert_user("site_admin", "AdminPass1", "admin")
+        self._insert_user("roshidah_hassan", "ReviewPass1", "student")
+        grant_reviewer_access(
+            "roshidah_hassan", "mah-meri", "academic", granted_by=1
+        )
+        self._login_as("roshidah_hassan", "ReviewPass1")
+        mah = self.client.get("/language/mah-meri/review")
+        self.assertEqual(mah.status_code, 200)
+        body = mah.get_data(as_text=True)
+        self.assertIn("Review Queue", body)
+        self.assertIn("review-select-trigger", body)
+        self.assertIn("Academically reviewed", body)
+        token = self._token("/language/mah-meri/review")
+        vocab_id, word = self._queue_vocab("mah-meri")
+        ok = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "Checked against source.",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(ok.status_code, 200)
+        reviewed_page = ok.get_data(as_text=True)
+        self.assertNotIn(f'data-vocab-id="{vocab_id}"', reviewed_page)
+        self.assertIn("Academically reviewed", reviewed_page)
+        vocab_json = re.search(
+            r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
+            reviewed_page,
+            re.S,
+        )
+        self.assertIsNotNone(vocab_json)
+        import json
+
+        rows = json.loads(vocab_json.group(1))
+        match = next(r for r in rows if r.get("id") == vocab_id)
+        self.assertEqual(match["review_status"], "academically_reviewed")
+        self.assertEqual(match["review_status_label"], "Academically reviewed")
+        self.assertIn("Checked against source", match.get("review_note") or "")
+        self.assertTrue(match.get("history"))
+
+        from db import get_db
+
+        conn = get_db()
+        history = conn.execute(
+            "SELECT * FROM vocabulary_review_history WHERE vocabulary_id = ?",
+            (vocab_id,),
+        ).fetchall()
+        conn.close()
+        self.assertTrue(history)
+
+        for other in ("iban", "bidayuh", "kadazan-dusun"):
+            other_id, _ = self._queue_vocab(other)
+            blocked = self.client.post(
+                f"/language/{other}/review/vocabulary",
+                data={
+                    "csrf_token": token,
+                    "vocab_id": str(other_id),
+                    "status": "academically_reviewed",
+                    "note": "out of scope",
+                },
+            )
+            self.assertEqual(blocked.status_code, 403, other)
+            section = self.client.post(
+                f"/language/{other}/review/section",
+                data={
+                    "csrf_token": token,
+                    "section_key": "community",
+                    "status": "academically_reviewed",
+                },
+            )
+            self.assertEqual(section.status_code, 403, other)
+
+    def test_admin_grants_and_revokes_by_username(self):
+        from reviewer_auth import get_user_access, list_reviewer_grants
+
+        self._insert_user("site_admin", "AdminPass1", "admin")
+        self._insert_user("scoped_reviewer", "ReviewPass1", "student")
+        self._login_as("site_admin", "AdminPass1")
+        admin_page = self.client.get("/admin/reviewers")
+        self.assertEqual(admin_page.status_code, 200)
+        body = admin_page.get_data(as_text=True)
+        self.assertIn("Reviewer Management", body)
+        self.assertIn("Grant Access", body)
+        token = self._token("/admin/reviewers")
+        grant = self.client.post(
+            "/admin/reviewers/grant",
+            data={
+                "csrf_token": token,
+                "username": "scoped_reviewer",
+                "language": "iban",
+                "reviewer_kind": "community",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(grant.status_code, 200)
+        self.assertIn("scoped_reviewer", grant.get_data(as_text=True))
+        grants = [g for g in list_reviewer_grants() if g["username"] == "scoped_reviewer"]
+        self.assertTrue(grants)
+        self.assertEqual(grants[0]["language"], "iban")
+        self.assertEqual(grants[0]["reviewer_kind"], "community")
+        from db import get_db
+
+        conn = get_db()
+        user = conn.execute(
+            "SELECT id FROM users WHERE username = ?", ("scoped_reviewer",)
+        ).fetchone()
+        conn.close()
+        access = get_user_access(user["id"])
+        self.assertTrue(access["can_edit_any"])
+        self.assertIn("iban", access["active_languages"])
+        self.assertNotIn("mah-meri", access["active_languages"])
+
+        revoke = self.client.post(
+            "/admin/reviewers/revoke",
+            data={
+                "csrf_token": token,
+                "scope_id": str(grants[0]["id"]),
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(revoke.status_code, 200)
+        access = get_user_access(user["id"])
+        self.assertFalse(access["can_edit_any"])
+        self.assertEqual(access["role"], "student")
+
+    def test_dropdown_is_visible_overlay_and_does_not_use_white_native_control(self):
+        from pathlib import Path
+        from reviewer_auth import grant_reviewer_access
+
+        css = (ROOT / "static" / "css" / "language-review.css").read_text(encoding="utf-8")
+        self.assertIn(".review-select-menu", css)
+        self.assertIn("position: fixed", css)
+        self.assertIn("z-index: 80", css)
+        self.assertIn("color: #efd77e", css)
+        js = (ROOT / "static" / "js" / "language-review.js").read_text(encoding="utf-8")
+        self.assertIn('menu.style.position = "fixed"', js)
+        self.assertNotRegex(js, r"REVIEWER_TOKEN|shared.secret|access_key")
+
+        self._insert_user("dropdown_reviewer", "ReviewPass1", "student")
+        grant_reviewer_access("dropdown_reviewer", "mah-meri", "academic", granted_by=1)
+        self._login_as("dropdown_reviewer", "ReviewPass1")
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        self.assertIn("review-select-value", html)
+        self.assertIn("Needs verification", html)
+        self.assertIn("Academically reviewed", html)
+        self.assertIn('aria-haspopup="listbox"', html)
+        self.assertNotRegex(
+            html,
+            r'<select name="status" onchange="this.form.submit()"',
+        )
+
+    def test_existing_auth_and_learner_pages_still_work(self):
+        self._insert_user("student_user", "StudentPass1", "student")
+        self._login_as("student_user", "StudentPass1")
+        login = self.client.get("/login")
+        self.assertEqual(login.status_code, 200)
+        learner = self.client.get("/language/mah-meri")
+        self.assertEqual(learner.status_code, 200)
+        self.assertIn("Language Review", learner.get_data(as_text=True))
+        dictionary = self.client.get("/dictionary")
+        self.assertIn(dictionary.status_code, (200, 302))
+        for key in ("mah-meri", "iban", "bidayuh", "kadazan-dusun"):
+            resp = self.client.get(f"/language/{key}/review")
+            self.assertEqual(resp.status_code, 200, key)
+            self.assertIn("Language Review", resp.get_data(as_text=True))
+            self.assertIn("Review Queue", resp.get_data(as_text=True))
+
+
+
 
 if __name__ == "__main__":
     unittest.main()

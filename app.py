@@ -39,6 +39,8 @@ from database import (
     set_section_review_status,
     save_academic_review_note,
     save_collaboration_interest,
+    update_vocabulary_review,
+    get_vocabulary_entry,
 )
 from db import (
     describe_backend,
@@ -70,6 +72,20 @@ from retrieval import (
     dictionary_random_word,
 )
 from language_registry import get_language_keys, resolve_language, display_name
+from reviewer_auth import (
+    KIND_LABELS,
+    LANGUAGE_LABELS,
+    VOCAB_MUTATION_STATUSES,
+    apply_env_admin_for_user,
+    can_mutate_language,
+    ensure_reviewer_schema,
+    get_user_access,
+    grant_reviewer_access,
+    list_reviewer_grants,
+    normalize_vocab_status,
+    reviewer_role_label_for_language,
+    revoke_reviewer_access,
+)
 from review_service import build_language_review_payload
 from quiz_service import (
     start_quiz_session,
@@ -257,6 +273,7 @@ def _establish_login_session(user_id, username):
     session["user_id"] = user_id
     session["username"] = username
     session.permanent = True
+    apply_env_admin_for_user(user_id, username)
 
 
 def _lookup_auth_user(identifier: str):
@@ -445,8 +462,13 @@ register_google_oauth()
 
 @app.context_processor
 def inject_auth_template_flags():
+    access = None
+    if session.get("user_id"):
+        access = get_user_access(session.get("user_id"))
     return {
         "google_oauth_enabled": google_oauth_configured(),
+        "is_admin": bool(access and access.get("is_admin")),
+        "can_edit_reviews": bool(access and access.get("can_edit_any")),
     }
 
 
@@ -572,6 +594,8 @@ def init_db():
             "Could not create idx_users_email_lower_unique "
             "(possible legacy duplicate emails)."
         )
+
+    ensure_reviewer_schema(conn)
 
 
     # ================= PROGRESS TABLE =================
@@ -6803,6 +6827,7 @@ def suggest_correction(lang_key):
 _REVIEW_SECTION_STATUSES = {
     "academic_review_pending",
     "reviewed",
+    "academically_reviewed",
     "needs_revision",
     "community_review_pending",
 }
@@ -6825,22 +6850,43 @@ def _require_language(lang_key):
     return None, language
 
 
+def _require_review_mutate(lang_key):
+    bounced, language = _require_language(lang_key)
+    if bounced:
+        return bounced, None, None
+    access = get_user_access(session.get("user_id"))
+    if not can_mutate_language(access, lang_key):
+        abort(403)
+    return None, language, access
+
+
 @app.route("/language/<lang_key>/review")
 def language_review_page(lang_key):
     bounced, language = _require_language(lang_key)
     if bounced:
         return bounced
+    access = get_user_access(session.get("user_id"))
+    can_edit = can_mutate_language(access, lang_key)
     payload = build_language_review_payload(
         lang_key,
         language,
         COURSE_DATA,
         family=LANGUAGE_FAMILY.get(lang_key),
+        can_edit=can_edit,
     )
+    kind = reviewer_role_label_for_language(access, lang_key) if can_edit else None
+    reviewer_kind_label = None
+    if access.get("is_admin"):
+        reviewer_kind_label = "Admin"
+    elif kind:
+        reviewer_kind_label = KIND_LABELS.get(kind, kind)
     return render_template(
         "language_review.html",
         payload=payload,
         language=language,
         lang_key=lang_key,
+        can_edit=can_edit,
+        reviewer_kind_label=reviewer_kind_label,
     )
 
 
@@ -6849,11 +6895,11 @@ def language_review_page(lang_key):
     methods=["POST"],
 )
 def language_review_section(lang_key):
-    bounced, language = _require_language(lang_key)
+    bounced, language, access = _require_review_mutate(lang_key)
     if bounced:
         return bounced
     section_key = (request.form.get("section_key") or "").strip()
-    status = (request.form.get("status") or "").strip()
+    status = normalize_vocab_status((request.form.get("status") or "").strip())
     allowed_sections = {
         "language_overview",
         "community",
@@ -6874,11 +6920,43 @@ def language_review_section(lang_key):
 
 
 @app.route(
+    "/language/<lang_key>/review/vocabulary",
+    methods=["POST"],
+)
+def language_review_vocabulary(lang_key):
+    bounced, language, access = _require_review_mutate(lang_key)
+    if bounced:
+        return bounced
+    try:
+        vocab_id = int(request.form.get("vocab_id") or 0)
+    except (TypeError, ValueError):
+        abort(400)
+    status = normalize_vocab_status((request.form.get("status") or "").strip())
+    if status not in VOCAB_MUTATION_STATUSES:
+        abort(400)
+    entry = get_vocabulary_entry(vocab_id, lang_key)
+    if not entry:
+        abort(404)
+    note = (request.form.get("note") or "").strip()
+    update_vocabulary_review(
+        vocab_id,
+        lang_key,
+        status,
+        note,
+        session.get("user_id"),
+        session.get("username"),
+        reviewer_role_label_for_language(access, lang_key),
+    )
+    flash("Vocabulary review saved.")
+    return redirect(url_for("language_review_page", lang_key=lang_key) + "#queue")
+
+
+@app.route(
     "/language/<lang_key>/review/academic-note",
     methods=["POST"],
 )
 def language_review_academic(lang_key):
-    bounced, language = _require_language(lang_key)
+    bounced, language, access = _require_review_mutate(lang_key)
     if bounced:
         return bounced
     categories = request.form.getlist("categories")
@@ -6916,6 +6994,60 @@ def language_review_collaborate(lang_key):
     )
     flash("Interest recorded. This is not a partnership announcement.")
     return redirect(url_for("language_review_page", lang_key=lang_key) + "#collaboration")
+
+
+def _require_admin():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    access = get_user_access(session.get("user_id"))
+    if not access.get("is_admin"):
+        abort(403)
+    return None
+
+
+@app.route("/admin/reviewers")
+def admin_reviewers():
+    bounced = _require_admin()
+    if bounced:
+        return bounced
+    return render_template(
+        "admin_reviewers.html",
+        grants=list_reviewer_grants(),
+        languages=[
+            {"id": key, "label": LANGUAGE_LABELS.get(key, key)}
+            for key in LANGUAGE_LABELS
+        ],
+        kinds=[{"id": key, "label": label} for key, label in KIND_LABELS.items()],
+    )
+
+
+@app.route("/admin/reviewers/grant", methods=["POST"])
+def admin_reviewers_grant():
+    bounced = _require_admin()
+    if bounced:
+        return bounced
+    result = grant_reviewer_access(
+        request.form.get("username") or "",
+        (request.form.get("language") or "").strip(),
+        (request.form.get("reviewer_kind") or "").strip(),
+        session.get("user_id"),
+    )
+    flash(result.get("message") or result.get("error") or "Could not grant access.")
+    return redirect(url_for("admin_reviewers"))
+
+
+@app.route("/admin/reviewers/revoke", methods=["POST"])
+def admin_reviewers_revoke():
+    bounced = _require_admin()
+    if bounced:
+        return bounced
+    try:
+        scope_id = int(request.form.get("scope_id") or 0)
+    except (TypeError, ValueError):
+        abort(400)
+    result = revoke_reviewer_access(scope_id, session.get("user_id"))
+    flash(result.get("message") or result.get("error") or "Could not revoke access.")
+    return redirect(url_for("admin_reviewers"))
 
 
 # ================= SOURCES PAGE =================

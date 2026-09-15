@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Reviewer Management | Malaysia Linguistics Lab{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
+
+<main class="review-page">
+  <a class="review-back" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for msg in messages %}
+        <div class="review-flash">{{ msg }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <header class="review-header">
+    <span class="review-kicker">Admin</span>
+    <h1>Reviewer Management</h1>
+    <p class="review-lead">
+      Grant reviewer access by the person’s existing username. Do not ask reviewers to share an email address.
+      They then log in normally and can edit review state for the languages you assign.
+    </p>
+  </header>
+
+  <section class="review-card">
+    <h2>Add Reviewer</h2>
+    <form class="review-form" method="post" action="{{ url_for('admin_reviewers_grant') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label>Username
+        <input type="text" name="username" maxlength="30" required autocomplete="off" placeholder="existing_username">
+      </label>
+      <label>Role
+        <select name="reviewer_kind" class="review-native-select">
+          {% for kind in kinds %}
+          <option value="{{ kind.id }}">{{ kind.label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Language
+        <select name="language" class="review-native-select">
+          {% for language in languages %}
+          <option value="{{ language.id }}">{{ language.label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button type="submit">Grant Access</button>
+    </form>
+  </section>
+
+  <section class="review-card">
+    <h2>Existing reviewers</h2>
+    {% if grants %}
+    <div class="review-table-wrap">
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Language scope</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for grant in grants %}
+          <tr>
+            <td>{{ grant.username }}</td>
+            <td>{{ grant.kind_label }}</td>
+            <td>{{ grant.language_label }}</td>
+            <td>{{ grant.status_label }}</td>
+            <td>
+              {% if grant.status == 'active' %}
+              <form method="post" action="{{ url_for('admin_reviewers_revoke') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="scope_id" value="{{ grant.id }}">
+                <button type="submit" class="review-cite">Revoke</button>
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="review-muted">No reviewer grants yet. Add an existing username above.</p>
+    {% endif %}
+  </section>
+</main>
+{% endblock %}

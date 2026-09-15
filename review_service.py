@@ -12,6 +12,7 @@ from database import (
     VOCAB_PACK_DIR,
     list_section_review_statuses,
     list_vocabulary_for_language,
+    list_vocabulary_review_history_for_language,
 )
 from review_quality import (
     STATUS_LABELS,
@@ -31,7 +32,7 @@ SECTION_KEYS = (
 
 SECTION_STATUS_CHOICES = (
     ("academic_review_pending", "Review pending"),
-    ("reviewed", "Reviewed"),
+    ("academically_reviewed", "Academically reviewed"),
     ("needs_revision", "Needs revision"),
     ("community_review_pending", "Community review pending"),
 )
@@ -49,8 +50,26 @@ FILTERS = (
     ("all", "All"),
     ("needs_verification", "Needs verification"),
     ("technical_issues", "Technical issues"),
-    ("reviewed", "Reviewed"),
+    ("reviewed", "Academically reviewed"),
     ("newly_added", "Newly added"),
+    ("source_derived", "Source-derived"),
+)
+
+QUEUE_STATUSES = {
+    "needs_verification",
+    "needs_revision",
+    "academic_review_pending",
+    "community_review_pending",
+}
+
+DONE_REVIEW_STATUSES = {"reviewed", "academically_reviewed"}
+
+VOCAB_STATUS_CHOICES = (
+    ("needs_verification", "Needs verification"),
+    ("needs_revision", "Needs revision"),
+    ("academically_reviewed", "Academically reviewed"),
+    ("community_review_pending", "Community review pending"),
+    ("academic_review_pending", "Academic review pending"),
     ("source_derived", "Source-derived"),
 )
 
@@ -115,8 +134,17 @@ def _decorate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         item["has_technical"] = any(i["severity"] == "technical" for i in issues)
         item["source_derived"] = source_derived
         item["is_newly_added"] = newly
+        item["in_review_queue"] = _in_review_queue(status, bucket)
         out.append(item)
     return out
+
+
+def _in_review_queue(status: str, bucket: str) -> bool:
+    if status in DONE_REVIEW_STATUSES:
+        return False
+    if status in QUEUE_STATUSES:
+        return True
+    return bucket in {"technical", "suspicious"}
 
 
 def _academic_vocab_sample(rows: list[dict[str, Any]], limit: int = 12) -> list[dict[str, Any]]:
@@ -201,6 +229,7 @@ def build_language_review_payload(
     language: dict[str, Any],
     course_data: dict,
     family: str | None = None,
+    can_edit: bool = False,
 ) -> dict[str, Any]:
     display = language.get("display_name") or lang_key
     raw_rows = list_vocabulary_for_language(lang_key)
@@ -209,18 +238,15 @@ def build_language_review_payload(
         row["citation"] = _cite_vocab(row, display)
 
     technical = [r for r in rows if r.get("has_technical")]
-    needs_ver = [
-        r
-        for r in rows
-        if r.get("review_status") in {
-            "needs_verification",
-            "needs_revision",
-            "academic_review_pending",
-            "community_review_pending",
-        }
-        or r["bucket"] in {"technical", "suspicious"}
-    ]
-    reviewed = [r for r in rows if r.get("review_status") == "reviewed"]
+    needs_ver = [r for r in rows if r.get("in_review_queue")]
+    reviewed = [r for r in rows if r.get("review_status") in DONE_REVIEW_STATUSES]
+    history_map = list_vocabulary_review_history_for_language(
+        lang_key,
+        [r.get("id") for r in rows if r.get("in_review_queue") or r.get("review_status") in DONE_REVIEW_STATUSES],
+    )
+    for row in rows:
+        row["history"] = history_map.get(int(row.get("id") or 0), [])[:8]
+    queue = [r for r in rows if r.get("in_review_queue")]
 
     section_saved = list_section_review_statuses(lang_key)
     sections = []
@@ -244,15 +270,18 @@ def build_language_review_payload(
         "course_intent": "What this platform teaches",
     }
     for key, fallback_title in SECTION_KEYS:
+        status = (
+            "academically_reviewed"
+            if (section_saved.get(key) or "") == "reviewed"
+            else (section_saved.get(key) or "academic_review_pending")
+        )
         sections.append(
             {
                 "key": key,
                 "title": title_by_key.get(key) or fallback_title,
                 "body": body_by_key.get(key) or "",
-                "status": section_saved.get(key) or "academic_review_pending",
-                "status_label": status_label(
-                    section_saved.get(key) or "academic_review_pending"
-                ),
+                "status": status,
+                "status_label": status_label(status),
             }
         )
 
@@ -301,6 +330,11 @@ def build_language_review_payload(
             {"id": a, "label": b} for a, b in SECTION_STATUS_CHOICES
         ],
         "vocabulary": rows,
+        "review_queue": queue,
+        "can_edit": bool(can_edit),
+        "vocab_status_choices": [
+            {"id": a, "label": b} for a, b in VOCAB_STATUS_CHOICES
+        ],
         "filters": [{"id": a, "label": b} for a, b in FILTERS],
         "issues": technical
         + [r for r in rows if r["bucket"] == "suspicious" and not r.get("has_technical")],
@@ -337,20 +371,10 @@ def filter_vocabulary(rows: list[dict[str, Any]], filt: str) -> list[dict[str, A
         return rows
     if filt == "technical_issues":
         return [r for r in rows if r.get("has_technical")]
-    if filt == "needs_verification":
-        return [
-            r
-            for r in rows
-            if r.get("review_status") in {
-                "needs_verification",
-                "needs_revision",
-                "academic_review_pending",
-                "community_review_pending",
-            }
-            or r.get("bucket") in {"technical", "suspicious"}
-        ]
     if filt == "reviewed":
-        return [r for r in rows if r.get("review_status") == "reviewed"]
+        return [r for r in rows if r.get("review_status") in DONE_REVIEW_STATUSES]
+    if filt == "needs_verification":
+        return [r for r in rows if r.get("in_review_queue")]
     if filt == "newly_added":
         return [r for r in rows if r.get("is_newly_added")]
     if filt == "source_derived":
