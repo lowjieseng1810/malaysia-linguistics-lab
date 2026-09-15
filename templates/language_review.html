@@ -20,7 +20,15 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
 
 <main class="review-page" data-lang="{{ payload.lang_key }}" data-can-edit="{% if can_edit %}1{% else %}0{% endif %}">
+  {% if invite_mode %}
+  <div class="review-flash" role="status">{{ invite_banner }}</div>
+  <form method="post" action="{{ url_for('review_invite_end') }}" style="margin-bottom:12px;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="review-cite">End private review session</button>
+  </form>
+  {% else %}
   <a class="review-back" href="{{ url_for('language_page', lang_key=payload.lang_key) }}">← Back to {{ payload.display_name }}</a>
+  {% endif %}
 
   <header class="review-header">
     <span class="review-kicker">Language Review &amp; Documentation</span>
@@ -29,8 +37,10 @@
       {% if payload.family %}{{ payload.family }}. {% endif %}
       {% if payload.region %}{{ payload.region }}. {% endif %}
       A compact review workspace for academics, researchers, and organisations.
-      {% if can_edit and reviewer_kind_label %}
+      {% if can_edit and reviewer_kind_label and not invite_mode %}
         Signed in as {{ reviewer_kind_label }}.
+      {% elif invite_mode %}
+        This is a private review invitation, not public website access.
       {% elif not can_edit %}
         This page is read-only unless an administrator grants reviewer access to your username.
       {% endif %}
@@ -61,7 +71,7 @@
       <div class="review-section-head">
         <h2>{{ section.title }}</h2>
         {% if can_edit %}
-        <form method="post" action="{{ url_for('language_review_section', lang_key=payload.lang_key) }}">
+        <form method="post" action="{{ review_section_action or url_for('language_review_section', lang_key=payload.lang_key) }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <input type="hidden" name="section_key" value="{{ section.key }}">
           <label>
@@ -116,7 +126,7 @@
         </ul>
         {% endif %}
         {% if can_edit %}
-        <form class="review-form" method="post" action="{{ url_for('language_review_vocabulary', lang_key=payload.lang_key) }}">
+        <form class="review-form" method="post" action="{{ review_vocab_action or url_for('language_review_vocabulary', lang_key=payload.lang_key) }}">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <input type="hidden" name="vocab_id" value="{{ row.id }}">
           <label>
@@ -284,7 +294,7 @@
     <div class="review-card">
       <h3>Reviewer notes</h3>
       {% if can_edit %}
-      <form class="review-form" method="post" action="{{ url_for('language_review_academic', lang_key=payload.lang_key) }}">
+      <form class="review-form" method="post" action="{{ review_academic_action or url_for('language_review_academic', lang_key=payload.lang_key) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <div class="checks">
           {% for cat in payload.academic_set.categories %}
@@ -315,6 +325,9 @@
         {% endfor %}
       </div>
       <p class="review-muted">{{ payload.collaboration.disclaimer }}</p>
+      {% if invite_mode %}
+      <p class="review-muted">Collaboration registration is not part of this private invitation.</p>
+      {% else %}
       <form class="review-form" method="post" action="{{ url_for('language_review_collaborate', lang_key=payload.lang_key) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <label>How would you like to take part?
@@ -332,6 +345,7 @@
         </label>
         <button type="submit" class="review-cta">Register interest in a review or pilot</button>
       </form>
+      {% endif %}
     </div>
   </section>
 </main>

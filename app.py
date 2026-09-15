@@ -89,6 +89,24 @@ from reviewer_auth import (
     reviewer_role_label_for_language,
     revoke_reviewer_access,
 )
+from review_invite import (
+    ACTOR_PRIVATE_LINK,
+    SESSION_INVITE_ID,
+    actor_display,
+    allowed_section_statuses,
+    allowed_vocab_statuses,
+    banner_text,
+    create_review_invite,
+    ensure_invite_schema,
+    get_invite_by_id,
+    invite_is_usable,
+    list_review_invites,
+    lookup_invite_by_token,
+    revoke_review_invite,
+    section_choices_for_kind,
+    touch_invite_use,
+    vocab_choices_for_kind,
+)
 from review_service import build_language_review_payload
 from quiz_service import (
     start_quiz_session,
@@ -279,6 +297,34 @@ def _establish_login_session(user_id, username):
     apply_env_admin_for_user(user_id, username)
 
 
+def _clear_invite_session():
+    session.pop(SESSION_INVITE_ID, None)
+
+
+def _current_invite():
+    invite_id = session.get(SESSION_INVITE_ID)
+    if not invite_id:
+        return None
+    try:
+        invite_id = int(invite_id)
+    except (TypeError, ValueError):
+        _clear_invite_session()
+        return None
+    invite = get_invite_by_id(invite_id)
+    ok, _reason = invite_is_usable(invite)
+    if not ok:
+        _clear_invite_session()
+        return None
+    return invite
+
+
+def _establish_invite_session(invite):
+    """Start a CSRF-capable temporary review session from a validated invite."""
+    session.clear()
+    session[SESSION_INVITE_ID] = invite["id"]
+    session.permanent = True
+
+
 def _lookup_auth_user(identifier: str):
     """Find a user by username or email (case-insensitive).
 
@@ -466,6 +512,7 @@ register_google_oauth()
 @app.context_processor
 def inject_auth_template_flags():
     access = None
+    invite = _current_invite()
     if session.get("user_id"):
         apply_env_admin_for_user(session.get("user_id"), session.get("username"))
         access = get_user_access(session.get("user_id"))
@@ -474,6 +521,7 @@ def inject_auth_template_flags():
         "is_admin": bool(access and access.get("is_admin")),
         "can_edit_reviews": bool(access and access.get("can_edit_any")),
         "review_nav_caption": _review_nav_caption(access) if session.get("user_id") else "",
+        "private_review_invite": invite,
     }
 
 
@@ -611,6 +659,7 @@ def init_db():
         )
 
     ensure_reviewer_schema(conn)
+    ensure_invite_schema(conn)
 
 
     # ================= PROGRESS TABLE =================
@@ -6845,6 +6894,7 @@ _REVIEW_SECTION_STATUSES = {
     "academically_reviewed",
     "needs_revision",
     "community_review_pending",
+    "community_reviewed",
 }
 _REVIEW_PATHWAYS = {
     "academic_review",
@@ -6909,6 +6959,204 @@ def review_hub():
         is_admin=bool(access.get("is_admin")),
         can_edit_any=bool(access.get("can_edit_any")),
     )
+
+
+def _require_invite_workspace(lang_key):
+    language = LANGUAGES.get(lang_key)
+    if not language:
+        abort(404)
+    invite = _current_invite()
+    if not invite:
+        abort(403)
+    if invite.get("language") != lang_key:
+        abort(403)
+    return language, invite
+
+
+def _invite_mutation_attrs(invite):
+    kind = invite.get("reviewer_kind")
+    return {
+        "reviewer_username": actor_display(kind),
+        "reviewer_role": ACTOR_PRIVATE_LINK,
+        "review_actor_type": ACTOR_PRIVATE_LINK,
+        "review_kind": kind,
+        "invite_label": invite.get("label"),
+    }
+
+
+@app.route("/review/invite/<token>")
+@limiter.limit("20 per minute")
+def review_invite_open(token):
+    invite = lookup_invite_by_token(token)
+    ok, reason = invite_is_usable(invite)
+    if not ok:
+        if reason == "invalid":
+            abort(404)
+        abort(403)
+    _establish_invite_session(invite)
+    touch_invite_use(invite["id"])
+    return redirect(
+        url_for("review_invite_workspace", lang_key=invite["language"]) + "#queue"
+    )
+
+
+@app.route("/review/workspace/<lang_key>")
+def review_invite_workspace(lang_key):
+    language, invite = _require_invite_workspace(lang_key)
+    kind = invite.get("reviewer_kind")
+    payload = build_language_review_payload(
+        lang_key,
+        language,
+        COURSE_DATA,
+        family=LANGUAGE_FAMILY.get(lang_key),
+        can_edit=True,
+    )
+    payload["vocab_status_choices"] = vocab_choices_for_kind(kind)
+    payload["section_status_choices"] = section_choices_for_kind(kind)
+    return render_template(
+        "language_review.html",
+        payload=payload,
+        language=language,
+        lang_key=lang_key,
+        can_edit=True,
+        reviewer_kind_label=invite.get("kind_label"),
+        invite_mode=True,
+        invite_banner=banner_text(invite),
+        review_section_action=url_for("review_invite_section", lang_key=lang_key),
+        review_vocab_action=url_for("review_invite_vocabulary", lang_key=lang_key),
+        review_academic_action=url_for("review_invite_academic", lang_key=lang_key),
+    )
+
+
+@app.route("/review/workspace/<lang_key>/section", methods=["POST"])
+def review_invite_section(lang_key):
+    language, invite = _require_invite_workspace(lang_key)
+    section_key = (request.form.get("section_key") or "").strip()
+    status = normalize_vocab_status((request.form.get("status") or "").strip())
+    allowed_sections = {
+        "language_overview",
+        "community",
+        "location",
+        "preservation",
+        "course_intent",
+    }
+    if section_key not in allowed_sections:
+        abort(400)
+    if status not in allowed_section_statuses(invite.get("reviewer_kind")):
+        abort(400)
+    set_section_review_status(lang_key, section_key, status, None)
+    flash("Section review state saved. This is a workspace note, not formal authentication.")
+    return redirect(url_for("review_invite_workspace", lang_key=lang_key) + "#overview")
+
+
+@app.route("/review/workspace/<lang_key>/vocabulary", methods=["POST"])
+def review_invite_vocabulary(lang_key):
+    language, invite = _require_invite_workspace(lang_key)
+    try:
+        vocab_id = int(request.form.get("vocab_id") or 0)
+    except (TypeError, ValueError):
+        abort(400)
+    status = normalize_vocab_status((request.form.get("status") or "").strip())
+    if status not in allowed_vocab_statuses(invite.get("reviewer_kind")):
+        abort(400)
+    entry = get_vocabulary_entry(vocab_id, lang_key)
+    if not entry:
+        abort(404)
+    attrs = _invite_mutation_attrs(invite)
+    update_vocabulary_review(
+        vocab_id,
+        lang_key,
+        status,
+        (request.form.get("note") or "").strip(),
+        None,
+        attrs["reviewer_username"],
+        attrs["reviewer_role"],
+        review_actor_type=attrs["review_actor_type"],
+        review_kind=attrs["review_kind"],
+        invite_label=attrs["invite_label"],
+    )
+    touch_invite_use(invite["id"])
+    flash("Vocabulary review saved.")
+    return redirect(url_for("review_invite_workspace", lang_key=lang_key) + "#queue")
+
+
+@app.route("/review/workspace/<lang_key>/academic-note", methods=["POST"])
+def review_invite_academic(lang_key):
+    language, invite = _require_invite_workspace(lang_key)
+    categories = request.form.getlist("categories")
+    comments = (request.form.get("comments") or "").strip()
+    if not comments and not categories:
+        flash("Add a comment or choose a review category.")
+        return redirect(url_for("review_invite_workspace", lang_key=lang_key) + "#academic")
+    save_academic_review_note(lang_key, categories, comments, None)
+    flash("Review note saved for this language workspace.")
+    return redirect(url_for("review_invite_workspace", lang_key=lang_key) + "#academic")
+
+
+@app.route("/review/workspace/end", methods=["POST"])
+def review_invite_end():
+    _clear_invite_session()
+    flash("Private review session ended.")
+    return redirect(url_for("login"))
+
+
+@app.route("/admin/review-invitations")
+def admin_review_invitations():
+    bounced = _require_admin()
+    if bounced:
+        return bounced
+    return render_template(
+        "admin_review_invites.html",
+        invites=list_review_invites(),
+        languages=[
+            {"id": key, "label": LANGUAGE_LABELS.get(key, key)}
+            for key in LANGUAGE_LABELS
+        ],
+        kinds=[{"id": key, "label": label} for key, label in KIND_LABELS.items()],
+        created_link=session.pop("created_invite_link", None),
+        created_label=session.pop("created_invite_label", None),
+    )
+
+
+@app.route("/admin/review-invitations/create", methods=["POST"])
+def admin_review_invitations_create():
+    bounced = _require_admin()
+    if bounced:
+        return bounced
+    result = create_review_invite(
+        (request.form.get("language") or "").strip(),
+        (request.form.get("reviewer_kind") or "").strip(),
+        request.form.get("expires_days") or 7,
+        request.form.get("label") or "",
+        session.get("user_id"),
+    )
+    if not result.get("ok"):
+        flash(result.get("error") or "Could not create invitation.")
+        return redirect(url_for("admin_review_invitations"))
+    token = result["token"]
+    session["created_invite_link"] = url_for(
+        "review_invite_open", token=token, _external=True
+    )
+    session["created_invite_label"] = (request.form.get("label") or "").strip()
+    flash(
+        "Invitation created. Anyone with this private link can review the assigned "
+        "language until it expires or is revoked. Share it only with the intended reviewer."
+    )
+    return redirect(url_for("admin_review_invitations"))
+
+
+@app.route("/admin/review-invitations/revoke", methods=["POST"])
+def admin_review_invitations_revoke():
+    bounced = _require_admin()
+    if bounced:
+        return bounced
+    try:
+        invite_id = int(request.form.get("invite_id") or 0)
+    except (TypeError, ValueError):
+        abort(400)
+    result = revoke_review_invite(invite_id, session.get("user_id"))
+    flash(result.get("message") or result.get("error") or "Could not revoke invitation.")
+    return redirect(url_for("admin_review_invitations"))
 
 
 @app.route("/language/<lang_key>/review")
