@@ -87,6 +87,7 @@ from reviewer_auth import (
     normalize_vocab_status,
     review_workspace_languages,
     reviewer_role_label_for_language,
+    review_open_mode,
     revoke_reviewer_access,
 )
 from review_invite import (
@@ -522,6 +523,7 @@ def inject_auth_template_flags():
         "can_edit_reviews": bool(access and access.get("can_edit_any")),
         "review_nav_caption": _review_nav_caption(access) if session.get("user_id") else "",
         "private_review_invite": invite,
+        "review_open_mode": review_open_mode(),
     }
 
 
@@ -530,6 +532,8 @@ def _review_nav_caption(access):
         return "Language documentation"
     if access.get("is_admin"):
         return "Review queues and reviewer access"
+    if review_open_mode():
+        return "Pre-launch open review"
     if access.get("can_edit_any"):
         return "Open your assigned review queue"
     return "Read-only language documentation"
@@ -7177,6 +7181,8 @@ def language_review_page(lang_key):
     reviewer_kind_label = None
     if access.get("is_admin"):
         reviewer_kind_label = "Admin"
+    elif review_open_mode() and can_edit:
+        reviewer_kind_label = "Logged-in reviewer"
     elif kind:
         reviewer_kind_label = KIND_LABELS.get(kind, kind)
     return render_template(

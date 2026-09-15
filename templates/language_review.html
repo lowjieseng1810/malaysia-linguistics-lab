@@ -19,7 +19,7 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/language-review.css') }}">
 
-<main class="review-page" data-lang="{{ payload.lang_key }}" data-can-edit="{% if can_edit %}1{% else %}0{% endif %}">
+<main class="review-page" data-lang="{{ payload.lang_key }}" data-can-edit="{% if can_edit %}1{% else %}0{% endif %}" data-vocab-post="{{ url_for('language_review_vocabulary', lang_key=payload.lang_key) }}">
   {% if invite_mode %}
   <div class="review-flash" role="status">{{ invite_banner }}</div>
   <form method="post" action="{{ url_for('review_invite_end') }}" style="margin-bottom:12px;">
@@ -39,6 +39,7 @@
       A compact review workspace for academics, researchers, and organisations.
       {% if can_edit and reviewer_kind_label and not invite_mode %}
         Signed in as {{ reviewer_kind_label }}.
+        {% if review_open_mode %} Pre-launch open review is on: any logged-in account can save review status.{% endif %}
       {% elif invite_mode %}
         This is a private review invitation, not public website access.
       {% elif not can_edit %}
@@ -351,5 +352,6 @@
 </main>
 
 <script id="review-vocab-data" type="application/json">{{ payload.vocabulary | tojson }}</script>
+<script id="review-status-choices" type="application/json">{{ payload.vocab_status_choices | tojson }}</script>
 <script src="{{ url_for('static', filename='js/language-review.js') }}"></script>
 {% endblock %}

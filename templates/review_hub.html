@@ -15,6 +15,9 @@
       {% if is_admin %}
         Choose a review queue or open Reviewer Management. Admin access follows
         the signed-in username and optional ADMIN_USERNAMES configuration.
+      {% elif review_open_mode %}
+        Pre-launch open review is on. Any logged-in account can save review status.
+        Sign out and the workspace is read-only again.
       {% elif can_edit_any %}
         These are the language queues assigned to your username.
       {% else %}
