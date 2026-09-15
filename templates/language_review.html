@@ -22,14 +22,6 @@
 <main class="review-page" data-lang="{{ payload.lang_key }}" data-can-edit="{% if can_edit %}1{% else %}0{% endif %}">
   <a class="review-back" href="{{ url_for('language_page', lang_key=payload.lang_key) }}">← Back to {{ payload.display_name }}</a>
 
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for msg in messages %}
-        <div class="review-flash">{{ msg }}</div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-
   <header class="review-header">
     <span class="review-kicker">Language Review &amp; Documentation</span>
     <h1>{{ payload.display_name }}</h1>

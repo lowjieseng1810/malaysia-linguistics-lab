@@ -188,6 +188,9 @@
     line-height: 1.35;
     cursor: pointer;
     appearance: none;
+    -webkit-appearance: none;
+    font-weight: 600;
+    margin-top: 4px;
 }
 
 .review-select-value {
@@ -395,7 +398,7 @@
     margin: 8px 0 12px;
 }
 
-.review-form button,
+.review-form button:not(.review-select-trigger),
 .review-cta {
     margin-top: 12px;
     border: 0;

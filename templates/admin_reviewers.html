@@ -8,14 +8,6 @@
 <main class="review-page">
   <a class="review-back" href="{{ url_for('dashboard') }}">← Back to dashboard</a>
 
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      {% for msg in messages %}
-        <div class="review-flash">{{ msg }}</div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-
   <header class="review-header">
     <span class="review-kicker">Admin</span>
     <h1>Reviewer Management</h1>
