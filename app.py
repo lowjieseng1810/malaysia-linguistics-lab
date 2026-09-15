@@ -1,7 +1,9 @@
 # ================= ENVIRONMENT (must load before Composer / tutor imports) =================
 
 from dotenv import load_dotenv
+from pathlib import Path as _EnvPath
 
+load_dotenv(_EnvPath(__file__).resolve().parent / ".env")
 load_dotenv()
 
 from flask import (
@@ -83,6 +85,7 @@ from reviewer_auth import (
     grant_reviewer_access,
     list_reviewer_grants,
     normalize_vocab_status,
+    review_workspace_languages,
     reviewer_role_label_for_language,
     revoke_reviewer_access,
 )
@@ -464,12 +467,24 @@ register_google_oauth()
 def inject_auth_template_flags():
     access = None
     if session.get("user_id"):
+        apply_env_admin_for_user(session.get("user_id"), session.get("username"))
         access = get_user_access(session.get("user_id"))
     return {
         "google_oauth_enabled": google_oauth_configured(),
         "is_admin": bool(access and access.get("is_admin")),
         "can_edit_reviews": bool(access and access.get("can_edit_any")),
+        "review_nav_caption": _review_nav_caption(access) if session.get("user_id") else "",
     }
+
+
+def _review_nav_caption(access):
+    if not access:
+        return "Language documentation"
+    if access.get("is_admin"):
+        return "Review queues and reviewer access"
+    if access.get("can_edit_any"):
+        return "Open your assigned review queue"
+    return "Read-only language documentation"
 
 
 # ================= AI TUTOR FEATURE FLAG =================
@@ -6858,6 +6873,42 @@ def _require_review_mutate(lang_key):
     if not can_mutate_language(access, lang_key):
         abort(403)
     return None, language, access
+
+
+@app.route("/review")
+def review_hub():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    apply_env_admin_for_user(session.get("user_id"), session.get("username"))
+    access = get_user_access(session.get("user_id"))
+    lang_keys = review_workspace_languages(access)
+    if (
+        access.get("can_edit_any")
+        and not access.get("is_admin")
+        and len(lang_keys) == 1
+    ):
+        return redirect(
+            url_for("language_review_page", lang_key=lang_keys[0]) + "#queue"
+        )
+    cards = []
+    for key in lang_keys:
+        language = LANGUAGES.get(key) or {}
+        cards.append(
+            {
+                "lang_key": key,
+                "display_name": language.get("display_name")
+                or LANGUAGE_LABELS.get(key, key),
+                "can_edit": can_mutate_language(access, key),
+                "href": url_for("language_review_page", lang_key=key) + "#queue",
+            }
+        )
+    return render_template(
+        "review_hub.html",
+        access=access,
+        cards=cards,
+        is_admin=bool(access.get("is_admin")),
+        can_edit_any=bool(access.get("can_edit_any")),
+    )
 
 
 @app.route("/language/<lang_key>/review")

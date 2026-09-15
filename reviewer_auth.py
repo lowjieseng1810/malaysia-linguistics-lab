@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import re
 from datetime import datetime, timezone
 from typing import Any
 
@@ -58,11 +59,26 @@ VOCAB_MUTATION_STATUSES = frozenset(
 )
 
 
+_ADMIN_NAME_SPLIT = re.compile(r"[,;\n]+")
+
+
 def admin_usernames_from_env() -> set[str]:
+    """Parse ADMIN_USERNAMES (comma-separated, case-insensitive).
+
+    Strips wrapping quotes so Render/dotenv values like ``"xky"`` still match.
+    Never hard-codes a username; the environment list is the only source.
+    """
     raw = (os.environ.get("ADMIN_USERNAMES") or "").strip()
     if not raw:
         return set()
-    return {part.strip().lower() for part in raw.split(",") if part.strip()}
+    if len(raw) >= 2 and raw[0] == raw[-1] and raw[0] in {'"', "'"}:
+        raw = raw[1:-1].strip()
+    names = set()
+    for part in _ADMIN_NAME_SPLIT.split(raw):
+        name = part.strip().strip("\"'").lower()
+        if name:
+            names.add(name)
+    return names
 
 
 def ensure_reviewer_schema(conn=None) -> None:
@@ -173,6 +189,7 @@ def get_user_access(user_id: int | None) -> dict[str, Any]:
     conn = get_db()
     try:
         ensure_reviewer_schema(conn)
+        conn.commit()
         user = conn.execute(
             "SELECT id, username, role FROM users WHERE id = ?",
             (user_id,),
@@ -183,6 +200,12 @@ def get_user_access(user_id: int | None) -> dict[str, Any]:
         role = normalize_role(row_value(user, "role"))
         if (username or "").strip().lower() in admin_usernames_from_env():
             role = ROLE_ADMIN
+            if normalize_role(row_value(user, "role")) != ROLE_ADMIN:
+                conn.execute(
+                    "UPDATE users SET role = ? WHERE id = ?",
+                    (ROLE_ADMIN, user_id),
+                )
+                conn.commit()
         scopes = [
             row_to_dict(r)
             for r in conn.execute(
@@ -221,6 +244,22 @@ def get_user_access(user_id: int | None) -> dict[str, Any]:
         }
     finally:
         conn.close()
+
+
+def review_workspace_languages(access: dict[str, Any]) -> list[str]:
+    """Languages the user should see in the Review hub.
+
+    Admins and students see every course language (students stay read-only).
+    Reviewers see only active scopes.
+    """
+    if access.get("is_admin") or not access.get("can_edit_any"):
+        return list(COURSE_LANGUAGES)
+    ordered = []
+    active = access.get("active_languages") or set()
+    for key in COURSE_LANGUAGES:
+        if key in active:
+            ordered.append(key)
+    return ordered
 
 
 def can_mutate_language(access: dict[str, Any], lang_key: str) -> bool:
