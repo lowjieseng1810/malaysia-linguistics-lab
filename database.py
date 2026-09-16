@@ -98,6 +98,7 @@ def init_content_tables(conn=None) -> None:
     init_review_tables(conn)
     apply_mah_meri_vocabulary_repairs(conn)
     apply_default_review_statuses(conn)
+    migrate_automated_review_notes(conn)
     # Learning memory for adaptive tutoring + standalone quiz history
     from learning_memory import init_user_progress_table, init_quiz_history_table
 
@@ -131,6 +132,8 @@ def _ensure_vocabulary_provenance_columns(conn) -> None:
         conn.execute("ALTER TABLE vocabulary ADD COLUMN reviewed_by_username TEXT")
     if "reviewed_by_role" not in cols:
         conn.execute("ALTER TABLE vocabulary ADD COLUMN reviewed_by_role TEXT")
+    if "issue_context" not in cols:
+        conn.execute("ALTER TABLE vocabulary ADD COLUMN issue_context TEXT")
     # Tag legacy course/quiz rows once so provenance is never silent.
     conn.execute(
         """
@@ -960,6 +963,7 @@ def import_verified_vocabulary_packs(
     conn.commit()
     apply_mah_meri_vocabulary_repairs(conn)
     apply_default_review_statuses(conn)
+    migrate_automated_review_notes(conn)
     coverage = vocabulary_coverage_report(conn)
     conn.close()
     return {
@@ -1116,16 +1120,20 @@ def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
             continue
         assignments = []
         values: list[Any] = []
+        mapped = dict(sets)
+        if "review_note" in mapped and "issue_context" not in mapped:
+            mapped["issue_context"] = mapped.pop("review_note")
         for key in (
             "meaning_en",
             "meaning_ms",
             "part_of_speech",
             "review_status",
+            "issue_context",
             "review_note",
         ):
-            if key in sets:
+            if key in mapped:
                 assignments.append(f"{key} = ?")
-                values.append(sets[key])
+                values.append(mapped[key])
         if not assignments:
             continue
         where = "language = ? AND LOWER(TRIM(word)) = LOWER(TRIM(?))"
@@ -1147,8 +1155,8 @@ def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
             UPDATE vocabulary
             SET meaning_ms = COALESCE(NULLIF(TRIM(meaning_ms), ''), meaning_en),
                 review_status = 'needs_verification',
-                review_note = COALESCE(
-                    NULLIF(TRIM(review_note), ''),
+                issue_context = COALESCE(
+                    NULLIF(TRIM(issue_context), ''),
                     'Wiktionary source is Malay. English translation is not in this extract.'
                 )
             WHERE language = 'mah-meri'
@@ -1177,6 +1185,47 @@ def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:
     if own:
         conn.close()
     return {"deleted": deleted, "updated": updated}
+
+
+def migrate_automated_review_notes(conn=None) -> int:
+    """Move identifiable automated explanations out of review_note.
+
+    Genuine human notes and review history rows are left unchanged.
+    """
+    from review_notes import is_automated_issue_explanation
+
+    own = conn is None
+    if own:
+        conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    rows = conn.execute(
+        """
+        SELECT id, review_note, issue_context
+        FROM vocabulary
+        WHERE review_note IS NOT NULL AND TRIM(review_note) != ''
+        """
+    ).fetchall()
+    moved = 0
+    for row in rows:
+        item = dict(row)
+        note = (item.get("review_note") or "").strip()
+        if not is_automated_issue_explanation(note):
+            continue
+        existing = (item.get("issue_context") or "").strip()
+        context = existing or note
+        conn.execute(
+            """
+            UPDATE vocabulary
+            SET issue_context = ?, review_note = NULL
+            WHERE id = ?
+            """,
+            (context, item["id"]),
+        )
+        moved += 1
+    conn.commit()
+    if own:
+        conn.close()
+    return moved
 
 
 def get_vocabulary_entry(vocab_id: int, language: str | None = None) -> dict[str, Any] | None:
@@ -1264,7 +1313,6 @@ def update_vocabulary_review(
     previous = (current.get("review_status") or "").strip()
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     note_text = (note or "").strip()
-    stored_note = note_text or (current.get("review_note") or "")
     conn.execute(
         """
         UPDATE vocabulary
@@ -1277,7 +1325,7 @@ def update_vocabulary_review(
         """,
         (
             new_status,
-            stored_note,
+            note_text,
             now,
             reviewer_username,
             reviewer_role,

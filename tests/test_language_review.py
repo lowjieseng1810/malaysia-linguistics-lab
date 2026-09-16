@@ -169,8 +169,8 @@ class LanguageReviewTests(unittest.TestCase):
             UPDATE vocabulary
             SET meaning_ms = COALESCE(NULLIF(TRIM(meaning_ms), ''), meaning_en),
                 review_status = 'needs_verification',
-                review_note = COALESCE(
-                    NULLIF(TRIM(review_note), ''),
+                issue_context = COALESCE(
+                    NULLIF(TRIM(issue_context), ''),
                     'Wiktionary source is Malay. English translation is not in this extract.'
                 )
             WHERE language = 'mah-meri'
@@ -1014,6 +1014,296 @@ class ReviewInviteTests(unittest.TestCase):
         admin_review = self.client.get("/language/mah-meri/review")
         self.assertEqual(admin_review.status_code, 200)
         self.assertIn("review-select-trigger", admin_review.get_data(as_text=True))
+
+
+class ReviewNoteContextTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        LanguageReviewTests.setUpClass()
+        cls.app_module = LanguageReviewTests.app_module
+        cls.app = LanguageReviewTests.app
+
+    def setUp(self):
+        self.client = self.app.test_client()
+        os.environ.pop("REVIEW_OPEN_MODE", None)
+
+    def test_automated_explanations_are_not_human_notes(self):
+        from review_notes import is_automated_issue_explanation, split_review_note_fields
+
+        auto = "Wiktionary source is Malay. English translation is not in this extract."
+        damage = "Headword 'Src' and gloss 'Stand Star' look like extraction damage. Not corrected without the printed page."
+        self.assertTrue(is_automated_issue_explanation(auto))
+        self.assertTrue(is_automated_issue_explanation(damage))
+        self.assertTrue(is_automated_issue_explanation("Possible pedagogical bridge form."))
+        self.assertTrue(is_automated_issue_explanation("Possible truncation/OCR artefact."))
+        self.assertFalse(is_automated_issue_explanation("Checked against the printed Skeat page."))
+        context, human = split_review_note_fields(auto)
+        self.assertIn("Wiktionary source is Malay", context)
+        self.assertEqual(human, "")
+        context, human = split_review_note_fields(
+            auto + "\nPlease keep the Malay gloss."
+        )
+        self.assertIn("Wiktionary source is Malay", context)
+        self.assertEqual(human, "Please keep the Malay gloss.")
+        context, human = split_review_note_fields(
+            "",
+            issues=[
+                {
+                    "label": "Pedagogical bridge form",
+                    "detail": "This item comes from a beginner lesson that uses a Malay/multilingual bridge expression. It is not automatically a Mah Meri lexeme.",
+                }
+            ],
+        )
+        self.assertIn("Pedagogical bridge form", context)
+        self.assertEqual(human, "")
+
+    def test_issue_context_is_readonly_and_notes_start_empty(self):
+        from reviewer_auth import grant_reviewer_access
+        from db import get_db
+
+        ReviewerPermissionTests._insert_user(self, "note_reviewer", "ReviewPass1", "student")
+        grant_reviewer_access("note_reviewer", "mah-meri", "academic", granted_by=1)
+        ReviewerPermissionTests._login_as(self, "note_reviewer", "ReviewPass1")
+
+        conn = get_db()
+        wiki = conn.execute(
+            """
+            SELECT id, word FROM vocabulary
+            WHERE language = 'mah-meri'
+              AND (
+                COALESCE(issue_context, '') LIKE '%Wiktionary source is Malay%'
+                OR COALESCE(review_note, '') LIKE '%Wiktionary source is Malay%'
+              )
+            ORDER BY id LIMIT 1
+            """
+        ).fetchone()
+        src = conn.execute(
+            """
+            SELECT id, word FROM vocabulary
+            WHERE language = 'mah-meri' AND LOWER(TRIM(word)) = 'src'
+            LIMIT 1
+            """
+        ).fetchone()
+        course = conn.execute(
+            """
+            SELECT id, word FROM vocabulary
+            WHERE language = 'mah-meri'
+              AND source_ref = 'course_database'
+              AND LOWER(TRIM(word)) = 'selamat'
+            LIMIT 1
+            """
+        ).fetchone()
+        conn.close()
+        self.assertIsNotNone(wiki)
+        self.assertIsNotNone(src)
+        self.assertIsNotNone(course)
+
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        self.assertIn("Issue context", html)
+        self.assertIn("Add your review comments here…", html)
+        self.assertIn('aria-readonly="true"', html)
+        self.assertIn("Wiktionary source is Malay", html)
+        self.assertIn("look like extraction damage", html)
+        self.assertNotRegex(
+            html,
+            r'name="note"[^>]*>\s*Wiktionary source is Malay',
+        )
+        self.assertNotRegex(
+            html,
+            r'name="note"[^>]*>\s*Headword \'Src\'',
+        )
+        import json
+
+        vocab_json = re.search(
+            r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
+            html,
+            re.S,
+        )
+        self.assertIsNotNone(vocab_json)
+        rows = json.loads(vocab_json.group(1))
+        wiki_row = next(r for r in rows if r.get("id") == wiki["id"])
+        src_row = next(r for r in rows if r.get("id") == src["id"])
+        self.assertIn("Wiktionary source is Malay", wiki_row.get("issue_context") or "")
+        self.assertEqual((wiki_row.get("reviewer_note") or "").strip(), "")
+        self.assertEqual((wiki_row.get("review_note") or "").strip(), "")
+        self.assertIn("extraction damage", src_row.get("issue_context") or "")
+        self.assertEqual((src_row.get("reviewer_note") or "").strip(), "")
+
+        empty_queue = None
+        article = None
+        for match in re.finditer(
+            r'<article class="review-card review-queue-item" data-vocab-id="(\d+)"(.*?)</article>',
+            html,
+            re.S,
+        ):
+            block = match.group(2)
+            if "Issue context" not in block:
+                continue
+            if not re.search(
+                r'<textarea name="note"[^>]*placeholder="Add your review comments here…">\s*</textarea>',
+                block,
+            ):
+                continue
+            empty_queue = {"id": int(match.group(1))}
+            article = match
+            break
+        self.assertIsNotNone(empty_queue)
+        self.assertIsNotNone(article)
+        block = article.group(2)
+        self.assertIn("Issue context", block)
+        self.assertRegex(
+            block,
+            r'<textarea name="note"[^>]*placeholder="Add your review comments here…">\s*</textarea>',
+        )
+        self.assertNotRegex(
+            block,
+            r'name="note"[^>]*>\s*Wiktionary source is Malay',
+        )
+        json_row = next(r for r in rows if r.get("id") == empty_queue["id"])
+        self.assertTrue((json_row.get("issue_context") or "").strip())
+        self.assertEqual((json_row.get("reviewer_note") or "").strip(), "")
+
+        token = _csrf(html)
+        genuine = "Human reviewer: Malay gloss matches the lesson."
+        saved = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(empty_queue["id"]),
+                "status": "needs_verification",
+                "note": genuine,
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(saved.status_code, 200)
+        saved_html = saved.get_data(as_text=True)
+        self.assertIn(genuine, saved_html)
+        saved_article = re.search(
+            rf'<article class="review-card review-queue-item" data-vocab-id="{empty_queue["id"]}"(.*?)</article>',
+            saved_html,
+            re.S,
+        )
+        self.assertIsNotNone(saved_article)
+        self.assertIn(genuine, saved_article.group(1))
+        self.assertIn("Reviewer notes", saved_article.group(1))
+        saved_json = re.search(
+            r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
+            saved_html,
+            re.S,
+        )
+        saved_rows = json.loads(saved_json.group(1))
+        saved_row = next(r for r in saved_rows if r.get("id") == empty_queue["id"])
+        self.assertEqual(saved_row.get("reviewer_note"), genuine)
+        self.assertTrue(saved_row.get("history"))
+        from db import get_db as gdb
+
+        conn = gdb()
+        history = conn.execute(
+            "SELECT note FROM vocabulary_review_history WHERE vocabulary_id = ?",
+            (empty_queue["id"],),
+        ).fetchall()
+        stored = conn.execute(
+            "SELECT review_note, issue_context FROM vocabulary WHERE id = ?",
+            (empty_queue["id"],),
+        ).fetchone()
+        conn.close()
+        self.assertTrue(any((row["note"] == genuine) for row in history))
+        self.assertEqual(stored["review_note"], genuine)
+
+    def test_migrate_moves_automated_note_without_touching_human_or_history(self):
+        from database import migrate_automated_review_notes
+        from db import get_db
+
+        conn = get_db()
+        conn.execute(
+            """
+            INSERT INTO vocabulary (
+                language, lesson_id, word, meaning_en, meaning_ms,
+                review_status, review_note, source_ref
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                "mah-meri",
+                1,
+                "zz-auto-note",
+                "test",
+                "ujian",
+                "needs_verification",
+                "Wiktionary source is Malay. English translation is not in this extract.",
+                "course_database",
+            ),
+        )
+        conn.execute(
+            """
+            INSERT INTO vocabulary (
+                language, lesson_id, word, meaning_en, meaning_ms,
+                review_status, review_note, source_ref
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                "mah-meri",
+                1,
+                "zz-human-note",
+                "test",
+                "ujian",
+                "needs_verification",
+                "I compared this with the community speaker recording.",
+                "course_database",
+            ),
+        )
+        conn.commit()
+        auto_id = conn.execute(
+            "SELECT id FROM vocabulary WHERE word = ?", ("zz-auto-note",)
+        ).fetchone()["id"]
+        human_id = conn.execute(
+            "SELECT id FROM vocabulary WHERE word = ?", ("zz-human-note",)
+        ).fetchone()["id"]
+        conn.execute(
+            """
+            INSERT INTO vocabulary_review_history
+                (vocabulary_id, language, previous_status, new_status, note,
+                 reviewer_username, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                human_id,
+                "mah-meri",
+                "needs_verification",
+                "needs_verification",
+                "I compared this with the community speaker recording.",
+                "elder",
+                "2026-01-01T00:00:00+00:00",
+            ),
+        )
+        conn.commit()
+        conn.close()
+
+        moved = migrate_automated_review_notes()
+        self.assertGreaterEqual(moved, 1)
+        conn = get_db()
+        auto = conn.execute(
+            "SELECT review_note, issue_context FROM vocabulary WHERE id = ?",
+            (auto_id,),
+        ).fetchone()
+        human = conn.execute(
+            "SELECT review_note, issue_context FROM vocabulary WHERE id = ?",
+            (human_id,),
+        ).fetchone()
+        hist = conn.execute(
+            "SELECT note FROM vocabulary_review_history WHERE vocabulary_id = ?",
+            (human_id,),
+        ).fetchone()
+        conn.close()
+        self.assertFalse((auto["review_note"] or "").strip())
+        self.assertIn("Wiktionary source is Malay", auto["issue_context"] or "")
+        self.assertEqual(
+            human["review_note"],
+            "I compared this with the community speaker recording.",
+        )
+        self.assertEqual(
+            hist["note"],
+            "I compared this with the community speaker recording.",
+        )
 
 
 

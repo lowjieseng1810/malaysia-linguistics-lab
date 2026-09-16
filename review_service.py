@@ -21,6 +21,7 @@ from review_quality import (
     detect_entry_issues,
     status_label,
 )
+from review_notes import decorate_review_note_fields
 
 SECTION_KEYS = (
     ("language_overview", "Language overview"),
@@ -135,6 +136,7 @@ def _decorate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         item["source_derived"] = source_derived
         item["is_newly_added"] = newly
         item["in_review_queue"] = _in_review_queue(status, bucket)
+        decorate_review_note_fields(item)
         out.append(item)
     return out
 
