@@ -150,6 +150,15 @@
     statusChoices = [];
   }
 
+  function issueContext(row) {
+    if (!row.issue_context) return "";
+    return (
+      '<div class="review-issue-context" aria-readonly="true">' +
+      '<span class="review-issue-context-label">Issue context</span>' +
+      "<p>" + escapeHtml(row.issue_context) + "</p></div>"
+    );
+  }
+
   function statusEditor(row) {
     if (!canEdit || !vocabPost) return "";
     var current = row.review_status === "reviewed" ? "academically_reviewed" : (row.review_status || "needs_verification");
@@ -157,12 +166,14 @@
       var selected = choice.id === current ? " selected" : "";
       return '<option value="' + escapeHtml(choice.id) + '"' + selected + ">" + escapeHtml(choice.label) + "</option>";
     }).join("");
+    var humanNote = row.reviewer_note || "";
     return (
       '<form class="review-form review-vocab-inline" method="post" action="' + escapeHtml(vocabPost) + '">' +
       '<input type="hidden" name="csrf_token" value="' + escapeHtml(csrf) + '">' +
       '<input type="hidden" name="vocab_id" value="' + escapeHtml(row.id) + '">' +
       '<label>Review status<select name="status" class="review-native-select">' + options + "</select></label>" +
-      '<label>Reviewer notes<textarea name="note" maxlength="2000">' + escapeHtml(row.review_note || "") + "</textarea></label>" +
+      '<label>Reviewer notes<textarea name="note" maxlength="2000" placeholder="Add your review comments here…">' +
+      escapeHtml(humanNote) + "</textarea></label>" +
       '<button type="submit">Save review</button></form>'
     );
   }
@@ -224,6 +235,8 @@
         row.source_ref,
         row.review_status_label,
         row.reviewed_by_username,
+        row.issue_context,
+        row.reviewer_note,
         (row.issue_labels || []).join(" ")
       ].join(" ").toLowerCase();
       return blob.indexOf(query) !== -1;
@@ -268,7 +281,7 @@
         "<td>" + escapeHtml(row.meaning_ms) + "</td>" +
         "<td>" + escapeHtml(row.meaning_en) + "</td>" +
         "<td>" + escapeHtml(row.source_ref) + "</td>" +
-        "<td>" + escapeHtml(row.review_status_label) + history + statusEditor(row) + "</td>" +
+        "<td>" + escapeHtml(row.review_status_label) + history + issueContext(row) + statusEditor(row) + "</td>" +
         "<td>" + escapeHtml(reviewer || "—") + "</td>" +
         "<td>" + (issues || "—") + "</td>" +
         '<td><button type="button" class="review-cite" data-cite="' +

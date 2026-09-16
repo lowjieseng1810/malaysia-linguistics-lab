@@ -106,14 +106,22 @@
         </div>
         <p>{{ row.meaning_en or row.meaning_ms or "—" }}</p>
         <p class="review-muted">Source: {{ row.source_ref or "source not recorded" }}</p>
-        {% if row.reviewed_at or row.reviewed_by_username or row.review_note %}
+        {% if row.issue_context %}
+        <div class="review-issue-context" aria-readonly="true">
+          <span class="review-issue-context-label">Issue context</span>
+          <p>{{ row.issue_context }}</p>
+        </div>
+        {% endif %}
+        {% if row.reviewed_at or row.reviewed_by_username or row.reviewer_note %}
         <p class="review-muted">
           {% if row.reviewed_at %}Last review: {{ row.reviewed_at }}{% endif %}
           {% if row.reviewed_by_role %} · {{ row.reviewed_by_role }}{% endif %}
           {% if row.reviewed_by_username %} · {{ row.reviewed_by_username }}{% endif %}
         </p>
         {% endif %}
-        {% if row.review_note %}<p>{{ row.review_note }}</p>{% endif %}
+        {% if row.reviewer_note %}
+        <p class="review-human-note"><span class="review-issue-context-label">Reviewer notes</span> {{ row.reviewer_note }}</p>
+        {% endif %}
         {% if row.history %}
         <ul class="review-history">
           {% for event in row.history %}
@@ -135,7 +143,7 @@
             {{ review_select('status', row.review_status if row.review_status != 'reviewed' else 'academically_reviewed', payload.vocab_status_choices) }}
           </label>
           <label>Reviewer notes
-            <textarea name="note" maxlength="2000" placeholder="Optional note stored with this review.">{{ row.review_note or '' }}</textarea>
+            <textarea name="note" maxlength="2000" placeholder="Add your review comments here…">{{ row.reviewer_note or '' }}</textarea>
           </label>
           <button type="submit">Save review</button>
         </form>

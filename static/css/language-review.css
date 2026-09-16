@@ -419,9 +419,32 @@
     cursor: pointer;
 }
 
-.review-muted {
-    color: rgba(238, 246, 241, 0.6);
+.review-issue-context {
+    margin: 10px 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(239, 215, 126, 0.35);
+    background: #123428;
+}
+
+.review-issue-context-label {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #efd77e;
+    margin-bottom: 4px;
+}
+
+.review-issue-context p,
+.review-human-note {
+    margin: 0;
+    color: rgba(236, 244, 240, 0.88);
     font-size: 0.84rem;
+}
+
+.review-human-note {
+    margin: 8px 0;
 }
 
 .review-pathways {
