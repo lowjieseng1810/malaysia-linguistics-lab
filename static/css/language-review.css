@@ -392,6 +392,15 @@
     min-height: 90px;
 }
 
+.review-vocab-inline {
+    margin-top: 8px;
+    min-width: 16rem;
+}
+
+.review-vocab-inline textarea {
+    min-height: 54px;
+}
+
 .review-form .checks {
     display: grid;
     gap: 6px;

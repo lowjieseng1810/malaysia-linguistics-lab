@@ -27,6 +27,7 @@ os.environ.pop("GOOGLE_CLIENT_ID", None)
 os.environ.pop("GOOGLE_CLIENT_SECRET", None)
 os.environ.pop("DATABASE_URL", None)
 os.environ.pop("ADMIN_USERNAMES", None)
+os.environ.pop("REVIEW_OPEN_MODE", None)
 
 
 def _csrf(html: str) -> str:
@@ -211,6 +212,8 @@ class ReviewerPermissionTests(unittest.TestCase):
 
     def setUp(self):
         self.client = self.app.test_client()
+        os.environ.pop("REVIEW_OPEN_MODE", None)
+
     def _insert_user(self, username, password, role=None):
         from db import get_db
         from reviewer_auth import ensure_reviewer_schema
@@ -543,6 +546,132 @@ class ReviewerPermissionTests(unittest.TestCase):
             },
         )
         self.assertEqual(mutate.status_code, 403)
+
+    def test_logged_out_review_mutation_is_rejected(self):
+        guest = self.app.test_client()
+        login_html = guest.get("/login").get_data(as_text=True)
+        token = _csrf(login_html)
+        vocab_id, _ = self._queue_vocab("mah-meri")
+        from db import get_db
+
+        conn = get_db()
+        before = conn.execute(
+            "SELECT review_status FROM vocabulary WHERE id = ?", (vocab_id,)
+        ).fetchone()["review_status"]
+        conn.close()
+        resp = guest.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "anonymous must fail",
+            },
+        )
+        self.assertNotIn(resp.status_code, (200, 204))
+        self.assertIn(resp.status_code, (302, 400, 401, 403))
+        conn = get_db()
+        after = conn.execute(
+            "SELECT review_status FROM vocabulary WHERE id = ?", (vocab_id,)
+        ).fetchone()["review_status"]
+        conn.close()
+        self.assertEqual(after, before)
+
+    def test_open_mode_lets_logged_in_student_mark_academically_reviewed(self):
+        os.environ["REVIEW_OPEN_MODE"] = "true"
+        try:
+            self._insert_user("open_mode_student", "StudentPass1", "student")
+            self._login_as("open_mode_student", "StudentPass1")
+            html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+            self.assertIn('data-can-edit="1"', html)
+            self.assertIn("review-select-trigger", html)
+            self.assertIn("Needs verification", html)
+            self.assertIn("Academically reviewed", html)
+            self.assertIn("Pre-launch open review", html)
+            self.assertIn(
+                "review-vocab-inline",
+                (ROOT / "static" / "js" / "language-review.js").read_text(encoding="utf-8"),
+            )
+            token = self._token("/language/mah-meri/review")
+            vocab_id, _ = self._queue_vocab("mah-meri")
+            missing_csrf = self.client.post(
+                "/language/mah-meri/review/vocabulary",
+                data={
+                    "vocab_id": str(vocab_id),
+                    "status": "academically_reviewed",
+                    "note": "csrf required",
+                },
+            )
+            self.assertEqual(missing_csrf.status_code, 400)
+            ok = self.client.post(
+                "/language/mah-meri/review/vocabulary",
+                data={
+                    "csrf_token": token,
+                    "vocab_id": str(vocab_id),
+                    "status": "academically_reviewed",
+                    "note": "Open-mode student review.",
+                },
+                follow_redirects=True,
+            )
+            self.assertEqual(ok.status_code, 200)
+            reviewed_page = ok.get_data(as_text=True)
+            self.assertNotIn(f'data-vocab-id="{vocab_id}"', reviewed_page)
+            self.assertIn("Academically reviewed", reviewed_page)
+            vocab_json = re.search(
+                r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
+                reviewed_page,
+                re.S,
+            )
+            self.assertIsNotNone(vocab_json)
+            import json
+
+            rows = json.loads(vocab_json.group(1))
+            match = next(r for r in rows if r.get("id") == vocab_id)
+            self.assertEqual(match["review_status"], "academically_reviewed")
+            self.assertEqual(match["review_status_label"], "Academically reviewed")
+            self.assertFalse(match.get("in_review_queue"))
+            self.assertIn("Open-mode student review", match.get("review_note") or "")
+            self.assertTrue(match.get("history"))
+            from db import get_db
+
+            conn = get_db()
+            history = conn.execute(
+                "SELECT previous_status, new_status FROM vocabulary_review_history WHERE vocabulary_id = ?",
+                (vocab_id,),
+            ).fetchall()
+            conn.close()
+            self.assertTrue(history)
+            self.assertTrue(
+                any(
+                    (row["new_status"] == "academically_reviewed")
+                    for row in history
+                )
+            )
+
+            section = self.client.post(
+                "/language/mah-meri/review/section",
+                data={
+                    "csrf_token": token,
+                    "section_key": "community",
+                    "status": "academically_reviewed",
+                },
+                follow_redirects=True,
+            )
+            self.assertEqual(section.status_code, 200)
+        finally:
+            os.environ.pop("REVIEW_OPEN_MODE", None)
+
+        self._login_as("open_mode_student", "StudentPass1")
+        closed = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": self._token("/language/mah-meri/review"),
+                "vocab_id": str(vocab_id),
+                "status": "needs_verification",
+                "note": "should 403 when open mode is off",
+            },
+        )
+        self.assertEqual(closed.status_code, 403)
 
     def test_reviewer_review_menu_goes_to_assigned_queue_only(self):
         from reviewer_auth import grant_reviewer_access

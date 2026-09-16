@@ -232,19 +232,31 @@ def get_user_access(user_id: int | None) -> dict[str, Any]:
                 kind_by_language[lang] = kind
         is_admin = role == ROLE_ADMIN
         is_reviewer = is_admin or role == ROLE_REVIEWER or bool(active)
+        open_mode = review_open_mode()
         return {
             "user_id": user_id,
             "username": username,
             "role": ROLE_ADMIN if is_admin else (ROLE_REVIEWER if active else role),
             "scopes": scopes,
-            "active_languages": languages if not is_admin else set(COURSE_LANGUAGES),
+            "active_languages": (
+                set(COURSE_LANGUAGES)
+                if is_admin or open_mode
+                else languages
+            ),
             "kind_by_language": kind_by_language,
             "is_admin": is_admin,
             "is_reviewer": is_reviewer,
-            "can_edit_any": is_admin or bool(active),
+            "can_edit_any": is_admin or bool(active) or open_mode,
+            "review_open_mode": open_mode,
         }
     finally:
         conn.close()
+
+
+def review_open_mode() -> bool:
+    """Temporary pre-launch switch: any logged-in user may mutate reviews."""
+    raw = (os.environ.get("REVIEW_OPEN_MODE") or "").strip().lower()
+    return raw in {"1", "true", "yes", "on"}
 
 
 def review_workspace_languages(access: dict[str, Any]) -> list[str]:
@@ -253,7 +265,7 @@ def review_workspace_languages(access: dict[str, Any]) -> list[str]:
     Admins and students see every course language (students stay read-only).
     Reviewers see only active scopes.
     """
-    if access.get("is_admin") or not access.get("can_edit_any"):
+    if access.get("is_admin") or access.get("review_open_mode") or not access.get("can_edit_any"):
         return list(COURSE_LANGUAGES)
     ordered = []
     active = access.get("active_languages") or set()
@@ -264,6 +276,10 @@ def review_workspace_languages(access: dict[str, Any]) -> list[str]:
 
 
 def can_mutate_language(access: dict[str, Any], lang_key: str) -> bool:
+    if not access or not access.get("user_id"):
+        return False
+    if review_open_mode():
+        return True
     if access.get("is_admin"):
         return True
     return lang_key in (access.get("active_languages") or set())
