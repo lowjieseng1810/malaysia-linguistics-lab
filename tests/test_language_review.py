@@ -115,6 +115,7 @@ class LanguageReviewTests(unittest.TestCase):
             self.assertIn("Vocabulary", body)
             self.assertIn("Academic Review", body)
             self.assertIn("Collaboration", body)
+            self.assertIn("Recent Reviews", body)
 
     def test_mah_meri_corrupt_asjp_id_removed(self):
         from review_quality import detect_entry_issues
@@ -276,6 +277,7 @@ class ReviewerPermissionTests(unittest.TestCase):
             SELECT id, word, review_status FROM vocabulary
             WHERE language = ?
               AND (review_status = 'needs_verification' OR review_status = 'source_derived')
+              AND COALESCE(review_status, '') != 'pedagogical_bridge'
             ORDER BY id
             LIMIT 1
             """,
@@ -377,7 +379,9 @@ class ReviewerPermissionTests(unittest.TestCase):
         )
         self.assertEqual(ok.status_code, 200)
         reviewed_page = ok.get_data(as_text=True)
-        self.assertNotIn(f'data-vocab-id="{vocab_id}"', reviewed_page)
+        queue_panel = re.search(r'id="panel-queue"(.*?)id="panel-recent"', reviewed_page, re.S)
+        self.assertIsNotNone(queue_panel)
+        self.assertNotIn(f'data-vocab-id="{vocab_id}"', queue_panel.group(1))
         self.assertIn("Academically reviewed", reviewed_page)
         vocab_json = re.search(
             r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
@@ -615,7 +619,9 @@ class ReviewerPermissionTests(unittest.TestCase):
             )
             self.assertEqual(ok.status_code, 200)
             reviewed_page = ok.get_data(as_text=True)
-            self.assertNotIn(f'data-vocab-id="{vocab_id}"', reviewed_page)
+            queue_panel = re.search(r'id="panel-queue"(.*?)id="panel-recent"', reviewed_page, re.S)
+            self.assertIsNotNone(queue_panel)
+            self.assertNotIn(f'data-vocab-id="{vocab_id}"', queue_panel.group(1))
             self.assertIn("Academically reviewed", reviewed_page)
             vocab_json = re.search(
                 r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
@@ -787,7 +793,12 @@ class ReviewInviteTests(unittest.TestCase):
             """
             SELECT id FROM vocabulary
             WHERE language = ?
-              AND (review_status IS NULL OR review_status != 'academically_reviewed')
+              AND review_status IN (
+                'needs_verification', 'needs_revision',
+                'academic_review_pending', 'community_review_pending',
+                'source_derived', 'technically_corrected'
+              )
+              AND COALESCE(review_status, '') != 'pedagogical_bridge'
             ORDER BY id LIMIT 1
             """,
             (language,),
@@ -921,7 +932,11 @@ class ReviewInviteTests(unittest.TestCase):
         )
         self.assertEqual(saved.status_code, 200)
         html = saved.get_data(as_text=True)
-        self.assertNotIn(f'data-vocab-id="{vocab_id}"', html)
+        queue_panel = re.search(r'id="panel-queue"(.*?)id="panel-recent"', html, re.S)
+        self.assertIsNotNone(queue_panel)
+        self.assertNotIn(f'data-vocab-id="{vocab_id}"', queue_panel.group(1))
+        self.assertIn("Recent Reviews", html)
+        self.assertIn(f'data-vocab-id="{vocab_id}"', html)
         self.assertIn("Academically reviewed", html)
         conn = get_db()
         history = conn.execute(
@@ -1303,6 +1318,251 @@ class ReviewNoteContextTests(unittest.TestCase):
         self.assertEqual(
             hist["note"],
             "I compared this with the community speaker recording.",
+        )
+
+
+class ReviewQueueWorkflowTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        LanguageReviewTests.setUpClass()
+        cls.app_module = LanguageReviewTests.app_module
+        cls.app = LanguageReviewTests.app
+
+    def setUp(self):
+        self.client = self.app.test_client()
+        os.environ.pop("REVIEW_OPEN_MODE", None)
+
+    def _json_rows(self, html):
+        import json
+
+        match = re.search(
+            r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
+            html,
+            re.S,
+        )
+        self.assertIsNotNone(match)
+        return json.loads(match.group(1))
+
+    def test_pedagogical_bridges_leave_queue_but_stay_in_vocabulary(self):
+        from review_quality import is_course_pedagogical_bridge
+        from reviewer_auth import grant_reviewer_access
+
+        ReviewerPermissionTests._insert_user(self, "bridge_reviewer", "ReviewPass1", "student")
+        grant_reviewer_access("bridge_reviewer", "mah-meri", "academic", granted_by=1)
+        ReviewerPermissionTests._login_as(self, "bridge_reviewer", "ReviewPass1")
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        self.assertIn("Pedagogical bridge", html)
+        self.assertIn("Recent Reviews", html)
+        rows = self._json_rows(html)
+        bridges = [
+            r for r in rows
+            if r.get("is_pedagogical_bridge") or r.get("review_status") == "pedagogical_bridge"
+        ]
+        self.assertGreaterEqual(len(bridges), 8)
+        names = {(r.get("word") or "").strip().lower() for r in bridges}
+        for expected in ("anak", "bapa", "ibu", "selamat", "terima kasih", "ya", "tak"):
+            self.assertIn(expected, names, expected)
+        queue_ids = {r["id"] for r in rows if r.get("in_review_queue")}
+        for row in bridges:
+            self.assertNotIn(row["id"], queue_ids)
+            self.assertFalse(row.get("in_review_queue"))
+            self.assertIn("not treated as a Mah Meri lexical item", row.get("issue_context") or "")
+            self.assertEqual((row.get("reviewer_note") or "").strip(), "")
+        queue_panel = re.search(r'id="panel-queue"(.*?)id="panel-recent"', html, re.S).group(1)
+        for row in bridges:
+            self.assertNotIn(f'data-vocab-id="{row["id"]}"', queue_panel)
+        self.assertTrue(any(r.get("word") == "anak" for r in rows))
+        self.assertFalse(
+            is_course_pedagogical_bridge(
+                {
+                    "language": "mah-meri",
+                    "word": "anak",
+                    "source_ref": "Skeat, W.W. (1896). A Vocabulary of the Besisi Dialect.",
+                }
+            )
+        )
+
+    def test_uncertain_source_items_remain_in_review_queue(self):
+        from reviewer_auth import grant_reviewer_access
+
+        ReviewerPermissionTests._insert_user(self, "bridge_reviewer", "ReviewPass1", "student")
+        grant_reviewer_access("bridge_reviewer", "mah-meri", "academic", granted_by=1)
+        ReviewerPermissionTests._login_as(self, "bridge_reviewer", "ReviewPass1")
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        rows = self._json_rows(html)
+        queue = [r for r in rows if r.get("in_review_queue")]
+        self.assertGreater(len(queue), 0)
+        words = {(r.get("word") or "").strip() for r in queue}
+        for marker in ("Src", "RAachin", "O-h"):
+            match = next((r for r in rows if (r.get("word") or "").strip() == marker), None)
+            self.assertIsNotNone(match, marker)
+            self.assertTrue(match.get("in_review_queue"), marker)
+        d3y = next((r for r in rows if (r.get("word") or "").strip() == "d3y"), None)
+        self.assertIsNotNone(d3y)
+        self.assertEqual(d3y.get("review_status"), "source_derived")
+        self.assertTrue(
+            any(
+                "wiktionary" in (r.get("source_ref") or "").lower()
+                and r.get("in_review_queue")
+                for r in queue
+            )
+        )
+
+    def test_recent_reviews_reopen_returns_item_to_queue_and_keeps_history(self):
+        from reviewer_auth import grant_reviewer_access
+        from db import get_db
+
+        ReviewerPermissionTests._insert_user(self, "reopen_reviewer", "ReviewPass1", "student")
+        grant_reviewer_access("reopen_reviewer", "mah-meri", "academic", granted_by=1)
+        ReviewerPermissionTests._login_as(self, "reopen_reviewer", "ReviewPass1")
+        vocab_id, _ = ReviewerPermissionTests._queue_vocab(self, "mah-meri")
+        token = _csrf(self.client.get("/language/mah-meri/review").get_data(as_text=True))
+        first = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "First academic pass.",
+                "return_to": "queue",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(first.status_code, 200)
+        html = first.get_data(as_text=True)
+        recent = re.search(r'id="panel-recent"(.*?)id="panel-vocabulary"', html, re.S)
+        self.assertIsNotNone(recent)
+        self.assertIn(f'data-vocab-id="{vocab_id}"', recent.group(1))
+        self.assertIn("Review again", recent.group(1))
+        self.assertIn("First academic pass.", recent.group(1))
+        queue = re.search(r'id="panel-queue"(.*?)id="panel-recent"', html, re.S)
+        self.assertNotIn(f'data-vocab-id="{vocab_id}"', queue.group(1))
+        token = _csrf(html)
+        second = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "needs_verification",
+                "note": "Changed my mind.",
+                "return_to": "recent",
+            },
+            follow_redirects=False,
+        )
+        self.assertEqual(second.status_code, 302)
+        self.assertTrue(second.headers.get("Location", "").endswith("#recent"))
+        page = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        queue = re.search(r'id="panel-queue"(.*?)id="panel-recent"', page, re.S)
+        self.assertIn(f'data-vocab-id="{vocab_id}"', queue.group(1))
+        rows = self._json_rows(page)
+        match = next(r for r in rows if r["id"] == vocab_id)
+        self.assertTrue(match.get("in_review_queue"))
+        self.assertEqual(match.get("reviewer_note"), "Changed my mind.")
+        conn = get_db()
+        history = conn.execute(
+            """
+            SELECT previous_status, new_status, note
+            FROM vocabulary_review_history
+            WHERE vocabulary_id = ?
+            ORDER BY id
+            """,
+            (vocab_id,),
+        ).fetchall()
+        conn.close()
+        self.assertGreaterEqual(len(history), 2)
+        self.assertEqual(history[0]["new_status"], "academically_reviewed")
+        self.assertEqual(history[-1]["previous_status"], "academically_reviewed")
+        self.assertEqual(history[-1]["new_status"], "needs_verification")
+        self.assertEqual(history[-1]["note"], "Changed my mind.")
+
+    def test_private_invite_reuse_revisit_and_scope(self):
+        from db import get_db
+        from review_invite import create_review_invite, revoke_review_invite
+
+        invite = create_review_invite(
+            "mah-meri", "academic", 7, "Professor reuse", created_by=1
+        )
+        self.assertTrue(invite.get("ok"), invite)
+        guest = self.app.test_client()
+        opened = guest.get(f"/review/invite/{invite['token']}", follow_redirects=False)
+        self.assertEqual(opened.status_code, 302)
+        self.assertIn("/review/workspace/mah-meri", opened.headers.get("Location", ""))
+        page = guest.get("/review/workspace/mah-meri")
+        self.assertEqual(page.status_code, 200)
+        self.assertNotIn("login", page.headers.get("Location", "").lower())
+        html = page.get_data(as_text=True)
+        self.assertIn("Private Academic Review Access", html)
+        self.assertNotIn("Reviewer Management", html)
+        rows = self._json_rows(html)
+        vocab_id = next(r["id"] for r in rows if r.get("in_review_queue"))
+        token = _csrf(html)
+        saved = guest.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "Invite first pass.",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(saved.status_code, 200)
+        again = guest.get(f"/review/invite/{invite['token']}", follow_redirects=False)
+        self.assertEqual(again.status_code, 302)
+        reuse = guest.get("/review/workspace/mah-meri")
+        self.assertEqual(reuse.status_code, 200)
+        reuse_html = reuse.get_data(as_text=True)
+        recent = re.search(r'id="panel-recent"(.*?)id="panel-vocabulary"', reuse_html, re.S)
+        self.assertIn(f'data-vocab-id="{vocab_id}"', recent.group(1))
+        self.assertIn("Invite first pass.", recent.group(1))
+        token = _csrf(reuse_html)
+        reopen = guest.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "needs_revision",
+                "note": "Invite second pass.",
+                "return_to": "recent",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(reopen.status_code, 200)
+        reopen_html = reopen.get_data(as_text=True)
+        queue = re.search(r'id="panel-queue"(.*?)id="panel-recent"', reopen_html, re.S)
+        self.assertIn(f'data-vocab-id="{vocab_id}"', queue.group(1))
+        iban = create_review_invite("iban", "academic", 7, "Iban only", created_by=1)
+        other = self.app.test_client()
+        other.get(f"/review/invite/{iban['token']}")
+        iban_page = other.get("/review/workspace/iban").get_data(as_text=True)
+        self.assertNotIn(f'data-vocab-id="{vocab_id}"', iban_page)
+        mah_via_iban = other.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "csrf_token": _csrf(iban_page),
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+            },
+        )
+        self.assertEqual(mah_via_iban.status_code, 403)
+        expired = create_review_invite("mah-meri", "academic", 7, "expired-prof", created_by=1)
+        conn = get_db()
+        conn.execute(
+            "UPDATE review_invitations SET expires_at = ? WHERE id = ?",
+            ("2000-01-01T00:00:00+00:00", expired["invite_id"]),
+        )
+        conn.commit()
+        conn.close()
+        self.assertEqual(
+            guest.get(f"/review/invite/{expired['token']}", follow_redirects=False).status_code,
+            403,
+        )
+        live = create_review_invite("mah-meri", "academic", 7, "revoke-prof", created_by=1)
+        guest.get(f"/review/invite/{live['token']}")
+        revoke_review_invite(live["invite_id"], revoked_by=1)
+        self.assertEqual(
+            guest.get(f"/review/invite/{live['token']}", follow_redirects=False).status_code,
+            403,
         )
 
 

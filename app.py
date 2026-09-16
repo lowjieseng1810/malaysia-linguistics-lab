@@ -6919,6 +6919,13 @@ def _require_language(lang_key):
     return None, language
 
 
+def _review_return_hash():
+    dest = (request.form.get("return_to") or "queue").strip()
+    if dest not in {"queue", "recent", "vocabulary", "overview"}:
+        dest = "queue"
+    return "#" + dest
+
+
 def _require_review_mutate(lang_key):
     bounced, language = _require_language(lang_key)
     if bounced:
@@ -7014,6 +7021,7 @@ def review_invite_workspace(lang_key):
         COURSE_DATA,
         family=LANGUAGE_FAMILY.get(lang_key),
         can_edit=True,
+        invite=invite,
     )
     payload["vocab_status_choices"] = vocab_choices_for_kind(kind)
     payload["section_status_choices"] = section_choices_for_kind(kind)
@@ -7081,7 +7089,7 @@ def review_invite_vocabulary(lang_key):
     )
     touch_invite_use(invite["id"])
     flash("Vocabulary review saved.")
-    return redirect(url_for("review_invite_workspace", lang_key=lang_key) + "#queue")
+    return redirect(url_for("review_invite_workspace", lang_key=lang_key) + _review_return_hash())
 
 
 @app.route("/review/workspace/<lang_key>/academic-note", methods=["POST"])
@@ -7253,7 +7261,7 @@ def language_review_vocabulary(lang_key):
         reviewer_role_label_for_language(access, lang_key),
     )
     flash("Vocabulary review saved.")
-    return redirect(url_for("language_review_page", lang_key=lang_key) + "#queue")
+    return redirect(url_for("language_review_page", lang_key=lang_key) + _review_return_hash())
 
 
 @app.route(

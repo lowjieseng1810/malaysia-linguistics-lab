@@ -19,6 +19,7 @@ from review_quality import (
     classify_entry,
     default_status_for_row,
     detect_entry_issues,
+    is_course_pedagogical_bridge,
     status_label,
 )
 from review_notes import decorate_review_note_fields
@@ -54,6 +55,7 @@ FILTERS = (
     ("reviewed", "Academically reviewed"),
     ("newly_added", "Newly added"),
     ("source_derived", "Source-derived"),
+    ("pedagogical_bridge", "Pedagogical bridge"),
 )
 
 QUEUE_STATUSES = {
@@ -72,6 +74,7 @@ VOCAB_STATUS_CHOICES = (
     ("community_review_pending", "Community review pending"),
     ("academic_review_pending", "Academic review pending"),
     ("source_derived", "Source-derived"),
+    ("pedagogical_bridge", "Pedagogical bridge"),
 )
 
 
@@ -135,13 +138,18 @@ def _decorate_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         item["has_technical"] = any(i["severity"] == "technical" for i in issues)
         item["source_derived"] = source_derived
         item["is_newly_added"] = newly
-        item["in_review_queue"] = _in_review_queue(status, bucket)
+        item["is_pedagogical_bridge"] = is_course_pedagogical_bridge(item, issues)
+        item["in_review_queue"] = _in_review_queue(item)
         decorate_review_note_fields(item)
         out.append(item)
     return out
 
 
-def _in_review_queue(status: str, bucket: str) -> bool:
+def _in_review_queue(item: dict[str, Any]) -> bool:
+    status = item.get("review_status") or ""
+    bucket = item.get("bucket") or ""
+    if item.get("is_pedagogical_bridge") or status == "pedagogical_bridge":
+        return False
     if status in DONE_REVIEW_STATUSES:
         return False
     if status in QUEUE_STATUSES:
@@ -166,13 +174,13 @@ def _academic_vocab_sample(rows: list[dict[str, Any]], limit: int = 12) -> list[
             if count >= n or len(picked) >= limit:
                 return
 
-    take(lambda r: r.get("has_technical"), 3)
-    take(lambda r: r["bucket"] == "suspicious" and not r.get("has_technical"), 2)
+    take(lambda r: r.get("has_technical") and not r.get("is_pedagogical_bridge"), 3)
+    take(lambda r: r["bucket"] == "suspicious" and not r.get("has_technical") and not r.get("is_pedagogical_bridge"), 2)
     # spread by first letter / gloss length as a crude category spread
-    take(lambda r: r.get("source_derived") and (r.get("part_of_speech") == "noun"), 2)
-    take(lambda r: r.get("source_derived") and (r.get("part_of_speech") in {"verb", "pronoun", "number"}), 2)
-    take(lambda r: r.get("source_derived"), 4)
-    take(lambda r: True, limit)
+    take(lambda r: r.get("source_derived") and (r.get("part_of_speech") == "noun") and not r.get("is_pedagogical_bridge"), 2)
+    take(lambda r: r.get("source_derived") and (r.get("part_of_speech") in {"verb", "pronoun", "number"}) and not r.get("is_pedagogical_bridge"), 2)
+    take(lambda r: r.get("source_derived") and not r.get("is_pedagogical_bridge"), 4)
+    take(lambda r: not r.get("is_pedagogical_bridge"), limit)
     return picked[:limit]
 
 
@@ -226,12 +234,38 @@ def collaboration_copy(display_name: str) -> dict[str, Any]:
     }
 
 
+def _history_matches_invite(row: dict[str, Any], invite: dict[str, Any]) -> bool:
+    label = (invite.get("label") or "").strip()
+    for event in row.get("history") or []:
+        if (event.get("review_actor_type") or "") != "private_review_link":
+            continue
+        event_label = (event.get("invite_label") or "").strip()
+        if label and event_label == label:
+            return True
+        if not label and not event_label:
+            return True
+    return False
+
+
+def _recent_reviews(rows: list[dict[str, Any]], invite: dict[str, Any] | None) -> list[dict[str, Any]]:
+    recent = []
+    for row in rows:
+        if not (row.get("reviewed_at") or row.get("history")):
+            continue
+        if invite and not _history_matches_invite(row, invite):
+            continue
+        recent.append(row)
+    recent.sort(key=lambda r: (r.get("reviewed_at") or "", int(r.get("id") or 0)), reverse=True)
+    return recent
+
+
 def build_language_review_payload(
     lang_key: str,
     language: dict[str, Any],
     course_data: dict,
     family: str | None = None,
     can_edit: bool = False,
+    invite: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     display = language.get("display_name") or lang_key
     raw_rows = list_vocabulary_for_language(lang_key)
@@ -239,16 +273,18 @@ def build_language_review_payload(
     for row in rows:
         row["citation"] = _cite_vocab(row, display)
 
-    technical = [r for r in rows if r.get("has_technical")]
+    technical = [r for r in rows if r.get("has_technical") and not r.get("is_pedagogical_bridge")]
     needs_ver = [r for r in rows if r.get("in_review_queue")]
     reviewed = [r for r in rows if r.get("review_status") in DONE_REVIEW_STATUSES]
+    bridges = [r for r in rows if r.get("is_pedagogical_bridge") or r.get("review_status") == "pedagogical_bridge"]
     history_map = list_vocabulary_review_history_for_language(
         lang_key,
-        [r.get("id") for r in rows if r.get("in_review_queue") or r.get("review_status") in DONE_REVIEW_STATUSES],
+        [r.get("id") for r in rows],
     )
     for row in rows:
-        row["history"] = history_map.get(int(row.get("id") or 0), [])[:8]
+        row["history"] = history_map.get(int(row.get("id") or 0), [])[:12]
     queue = [r for r in rows if r.get("in_review_queue")]
+    recent = _recent_reviews(rows, invite)
 
     section_saved = list_section_review_statuses(lang_key)
     sections = []
@@ -316,6 +352,7 @@ def build_language_review_payload(
         "summary": {
             "entry_count": len(rows),
             "needs_verification_count": len(needs_ver),
+            "pedagogical_bridge_count": len(bridges),
             "technical_issue_count": len(technical),
             "reviewed_count": len(reviewed),
             "academic_review": academic_status,
@@ -333,13 +370,20 @@ def build_language_review_payload(
         ],
         "vocabulary": rows,
         "review_queue": queue,
+        "recent_reviews": recent,
         "can_edit": bool(can_edit),
         "vocab_status_choices": [
             {"id": a, "label": b} for a, b in VOCAB_STATUS_CHOICES
         ],
         "filters": [{"id": a, "label": b} for a, b in FILTERS],
         "issues": technical
-        + [r for r in rows if r["bucket"] == "suspicious" and not r.get("has_technical")],
+        + [
+            r
+            for r in rows
+            if r["bucket"] == "suspicious"
+            and not r.get("has_technical")
+            and not r.get("is_pedagogical_bridge")
+        ],
         "provenance_groups": provenance_groups,
         "pack_sources": pack_sources,
         "listed_sources": listed,
@@ -381,4 +425,10 @@ def filter_vocabulary(rows: list[dict[str, Any]], filt: str) -> list[dict[str, A
         return [r for r in rows if r.get("is_newly_added")]
     if filt == "source_derived":
         return [r for r in rows if r.get("source_derived")]
+    if filt == "pedagogical_bridge":
+        return [
+            r
+            for r in rows
+            if r.get("is_pedagogical_bridge") or r.get("review_status") == "pedagogical_bridge"
+        ]
     return rows

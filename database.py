@@ -98,6 +98,7 @@ def init_content_tables(conn=None) -> None:
     init_review_tables(conn)
     apply_mah_meri_vocabulary_repairs(conn)
     apply_default_review_statuses(conn)
+    apply_pedagogical_bridge_statuses(conn)
     migrate_automated_review_notes(conn)
     # Learning memory for adaptive tutoring + standalone quiz history
     from learning_memory import init_user_progress_table, init_quiz_history_table
@@ -963,6 +964,7 @@ def import_verified_vocabulary_packs(
     conn.commit()
     apply_mah_meri_vocabulary_repairs(conn)
     apply_default_review_statuses(conn)
+    apply_pedagogical_bridge_statuses(conn)
     migrate_automated_review_notes(conn)
     coverage = vocabulary_coverage_report(conn)
     conn.close()
@@ -1083,6 +1085,54 @@ def apply_default_review_statuses(conn=None) -> None:
     conn.commit()
     if own:
         conn.close()
+
+
+def apply_pedagogical_bridge_statuses(conn=None) -> int:
+    """Mark course-sourced Mah Meri Malay/multilingual bridges.
+
+    Does not delete rows, change glosses, or overwrite a human review status.
+    """
+    from review_quality import COURSE_BRIDGE_SOURCES, normalize_bridge_word, _BRIDGE_MALAY
+
+    own = conn is None
+    if own:
+        conn = get_db()
+    _ensure_vocabulary_provenance_columns(conn)
+    rows = conn.execute(
+        """
+        SELECT id, word, source_ref, review_status, reviewed_at, language
+        FROM vocabulary
+        WHERE language = 'mah-meri'
+          AND source_ref IN ('course_database', 'course_quiz_stem')
+        """
+    ).fetchall()
+    protected = {
+        "academically_reviewed",
+        "community_reviewed",
+        "reviewed",
+        "needs_revision",
+        "pedagogical_bridge",
+    }
+    updated = 0
+    for row in rows:
+        item = dict(row)
+        if (item.get("reviewed_at") or "").strip():
+            continue
+        if (item.get("review_status") or "").strip() in protected:
+            continue
+        if normalize_bridge_word(item.get("word") or "") not in _BRIDGE_MALAY:
+            continue
+        if (item.get("source_ref") or "").strip() not in COURSE_BRIDGE_SOURCES:
+            continue
+        conn.execute(
+            "UPDATE vocabulary SET review_status = ? WHERE id = ?",
+            ("pedagogical_bridge", item["id"]),
+        )
+        updated += 1
+    conn.commit()
+    if own:
+        conn.close()
+    return updated
 
 
 def apply_mah_meri_vocabulary_repairs(conn=None) -> dict[str, int]:

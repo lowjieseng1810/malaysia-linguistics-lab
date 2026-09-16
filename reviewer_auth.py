@@ -56,6 +56,7 @@ VOCAB_MUTATION_STATUSES = frozenset(
         "reviewed",
         "source_derived",
         "technically_corrected",
+        "pedagogical_bridge",
     }
 )
 
