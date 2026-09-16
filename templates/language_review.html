@@ -3,7 +3,7 @@
 {% macro review_select(name, current, choices, form_submit=false) %}
 <div class="review-select{% if form_submit %} review-select--autosubmit{% endif %}">
   <button type="button" class="review-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-    <span class="review-select-value">{% for choice in choices %}{% if choice.id == current %}{{ choice.label }}{% endif %}{% endfor %}{% if current not in choices|map(attribute='id')|list %}{{ current }}{% endif %}</span>
+    <span class="review-select-value">{% set ns = namespace(found=false) %}{% for choice in choices %}{% if choice.id == current %}{{ choice.label }}{% set ns.found = true %}{% endif %}{% endfor %}{% if not ns.found %}{{ payload.status_labels.get(current, current) }}{% endif %}</span>
   </button>
   <ul class="review-select-menu" role="listbox" hidden>
     {% for choice in choices %}
