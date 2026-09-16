@@ -6892,6 +6892,15 @@ def suggest_correction(lang_key):
 
 # ================= LANGUAGE REVIEW =================
 
+_REVIEW_SECTION_KEYS = {
+    "language_overview",
+    "community",
+    "location",
+    "preservation",
+    "course_intent",
+    "beginner_lesson",
+    "lesson_exercise",
+}
 _REVIEW_SECTION_STATUSES = {
     "academic_review_pending",
     "reviewed",
@@ -6919,11 +6928,17 @@ def _require_language(lang_key):
     return None, language
 
 
-def _review_return_hash():
-    dest = (request.form.get("return_to") or "queue").strip()
-    if dest not in {"queue", "recent", "vocabulary", "overview"}:
-        dest = "queue"
+def _review_return_hash(default="queue"):
+    dest = (request.form.get("return_to") or default).strip()
+    if dest not in {"queue", "recent", "vocabulary", "overview", "academic"}:
+        dest = default
     return "#" + dest
+
+
+def _section_review_note():
+    if "note" not in request.form:
+        return None
+    return (request.form.get("note") or "").strip()
 
 
 def _require_review_mutate(lang_key):
@@ -7045,20 +7060,18 @@ def review_invite_section(lang_key):
     language, invite = _require_invite_workspace(lang_key)
     section_key = (request.form.get("section_key") or "").strip()
     status = normalize_vocab_status((request.form.get("status") or "").strip())
-    allowed_sections = {
-        "language_overview",
-        "community",
-        "location",
-        "preservation",
-        "course_intent",
-    }
-    if section_key not in allowed_sections:
+    if section_key not in _REVIEW_SECTION_KEYS:
         abort(400)
     if status not in allowed_section_statuses(invite.get("reviewer_kind")):
         abort(400)
-    set_section_review_status(lang_key, section_key, status, None)
+    set_section_review_status(
+        lang_key, section_key, status, None, note=_section_review_note()
+    )
     flash("Section review state saved. This is a workspace note, not formal authentication.")
-    return redirect(url_for("review_invite_workspace", lang_key=lang_key) + "#overview")
+    return redirect(
+        url_for("review_invite_workspace", lang_key=lang_key)
+        + _review_return_hash("overview")
+    )
 
 
 @app.route("/review/workspace/<lang_key>/vocabulary", methods=["POST"])
@@ -7213,23 +7226,20 @@ def language_review_section(lang_key):
         return bounced
     section_key = (request.form.get("section_key") or "").strip()
     status = normalize_vocab_status((request.form.get("status") or "").strip())
-    allowed_sections = {
-        "language_overview",
-        "community",
-        "location",
-        "preservation",
-        "course_intent",
-    }
-    if section_key not in allowed_sections or status not in _REVIEW_SECTION_STATUSES:
+    if section_key not in _REVIEW_SECTION_KEYS or status not in _REVIEW_SECTION_STATUSES:
         abort(400)
     set_section_review_status(
         lang_key,
         section_key,
         status,
         session.get("user_id"),
+        note=_section_review_note(),
     )
     flash("Section review state saved. This is a workspace note, not formal authentication.")
-    return redirect(url_for("language_review_page", lang_key=lang_key) + "#overview")
+    return redirect(
+        url_for("language_review_page", lang_key=lang_key)
+        + _review_return_hash("overview")
+    )
 
 
 @app.route(

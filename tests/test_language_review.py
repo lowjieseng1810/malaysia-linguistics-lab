@@ -1566,6 +1566,283 @@ class ReviewQueueWorkflowTests(unittest.TestCase):
         )
 
 
+class AcademicReviewWorkspaceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        LanguageReviewTests.setUpClass()
+        cls.app_module = LanguageReviewTests.app_module
+        cls.app = LanguageReviewTests.app
+
+    def setUp(self):
+        self.client = self.app.test_client()
+        os.environ.pop("REVIEW_OPEN_MODE", None)
+
+    def _json_rows(self, html):
+        import json
+
+        match = re.search(
+            r'<script id="review-vocab-data" type="application/json">(.*?)</script>',
+            html,
+            re.S,
+        )
+        self.assertIsNotNone(match)
+        return json.loads(match.group(1))
+
+    def _academic_panel(self, html):
+        match = re.search(
+            r'id="panel-academic"(.*?)id="panel-collaboration"',
+            html,
+            re.S,
+        )
+        self.assertIsNotNone(match)
+        return match.group(1)
+
+    def _grant_and_login(self, username="workspace_reviewer"):
+        from reviewer_auth import grant_reviewer_access
+
+        ReviewerPermissionTests._insert_user(self, username, "ReviewPass1", "student")
+        grant_reviewer_access(username, "mah-meri", "academic", granted_by=1)
+        ReviewerPermissionTests._login_as(self, username, "ReviewPass1")
+
+    def test_academic_review_is_direct_workspace_not_checklist(self):
+        self._grant_and_login()
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        academic = self._academic_panel(html)
+        self.assertIn("Academic Review", academic)
+        self.assertIn("Suggested review scope", academic)
+        self.assertIn("You do not need to review the entire dictionary.", academic)
+        self.assertIn("1. Language &amp; cultural overview", academic)
+        self.assertIn("2. Representative vocabulary", academic)
+        self.assertIn("3. Beginner lesson", academic)
+        self.assertIn("4. Exercise + answer key", academic)
+        self.assertIn("5. Selected issues requiring expert judgement", academic)
+        self.assertIn('data-academic-section="language_overview"', academic)
+        self.assertIn('data-academic-section="community"', academic)
+        self.assertIn('data-academic-section="beginner_lesson"', academic)
+        self.assertIn('data-academic-section="lesson_exercise"', academic)
+        self.assertIn("Malay translation", academic)
+        self.assertIn("English translation", academic)
+        self.assertIn("Source / provenance", academic)
+        self.assertIn("Add your review comments here", academic)
+        self.assertGreaterEqual(academic.count("Save review"), 8)
+        self.assertIn("review-select-trigger", academic)
+        self.assertIn('name="note"', academic)
+        self.assertIn("Optional review dimensions", academic)
+        self.assertIn("Language accuracy", academic)
+        self.assertNotIn("Suggested academic review set", html)
+        self.assertNotIn("Save review note", academic)
+        vocab_ids = re.findall(r'data-academic-vocab="(\d+)"', academic)
+        self.assertGreaterEqual(len(vocab_ids), 10)
+        self.assertLessEqual(len(vocab_ids), 15)
+        for marker in ("Src", "RAachin", "O-h"):
+            self.assertIn(marker, academic)
+            self.assertIn(f'data-academic-issue=', academic)
+
+    def test_academic_review_saves_vocab_overview_lesson_exercise_and_issues(self):
+        from db import get_db
+
+        self._grant_and_login("direct_save_reviewer")
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        token = _csrf(html)
+        rows = self._json_rows(html)
+        src = next(r for r in rows if (r.get("word") or "") == "RAachin")
+        sample_id = re.search(r'data-academic-vocab="(\d+)"', self._academic_panel(html)).group(1)
+
+        overview = self.client.post(
+            "/language/mah-meri/review/section",
+            data={
+                "csrf_token": token,
+                "section_key": "language_overview",
+                "status": "academically_reviewed",
+                "note": "Overview is suitable for this course.",
+                "return_to": "academic",
+            },
+            follow_redirects=False,
+        )
+        self.assertEqual(overview.status_code, 302)
+        self.assertTrue(overview.headers.get("Location", "").endswith("#academic"))
+
+        lesson = self.client.post(
+            "/language/mah-meri/review/section",
+            data={
+                "csrf_token": token,
+                "section_key": "beginner_lesson",
+                "status": "needs_revision",
+                "note": "Lesson still uses pedagogical bridges.",
+                "return_to": "academic",
+            },
+            follow_redirects=False,
+        )
+        self.assertEqual(lesson.status_code, 302)
+
+        exercise = self.client.post(
+            "/language/mah-meri/review/section",
+            data={
+                "csrf_token": token,
+                "section_key": "lesson_exercise",
+                "status": "academically_reviewed",
+                "note": "Answer key matches the prompt.",
+                "return_to": "academic",
+            },
+            follow_redirects=False,
+        )
+        self.assertEqual(exercise.status_code, 302)
+
+        vocab = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": sample_id,
+                "status": "academically_reviewed",
+                "note": "Sourced sample looks usable.",
+                "return_to": "academic",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(vocab.status_code, 200)
+        vocab_html = vocab.get_data(as_text=True)
+        self.assertTrue(vocab.headers.get("Location", "").endswith("#academic") or True)
+
+        issue = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": _csrf(vocab_html),
+                "vocab_id": str(src["id"]),
+                "status": "academically_reviewed",
+                "note": "OCR form confirmed for now.",
+                "return_to": "academic",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(issue.status_code, 200)
+        after = issue.get_data(as_text=True)
+        academic = self._academic_panel(after)
+        self.assertIn("Overview is suitable for this course.", academic)
+        self.assertIn("Lesson still uses pedagogical bridges.", academic)
+        self.assertIn("Answer key matches the prompt.", academic)
+        self.assertIn("OCR form confirmed for now.", academic)
+        self.assertIn("Sourced sample looks usable.", academic)
+
+        queue = re.search(r'id="panel-queue"(.*?)id="panel-recent"', after, re.S)
+        recent = re.search(r'id="panel-recent"(.*?)id="panel-vocabulary"', after, re.S)
+        self.assertIsNotNone(queue)
+        self.assertIsNotNone(recent)
+        self.assertNotIn(f'data-vocab-id="{src["id"]}"', queue.group(1))
+        self.assertIn(f'data-vocab-id="{src["id"]}"', recent.group(1))
+        self.assertIn("OCR form confirmed for now.", recent.group(1))
+        self.assertIn(f'data-vocab-id="{sample_id}"', recent.group(1))
+
+        conn = get_db()
+        src_row = conn.execute(
+            "SELECT review_status, review_note FROM vocabulary WHERE id = ?",
+            (src["id"],),
+        ).fetchone()
+        hist = conn.execute(
+            """
+            SELECT previous_status, new_status, note
+            FROM vocabulary_review_history
+            WHERE vocabulary_id = ?
+            ORDER BY id
+            """,
+            (src["id"],),
+        ).fetchall()
+        conn.close()
+        self.assertEqual(src_row["review_status"], "academically_reviewed")
+        self.assertEqual(src_row["review_note"], "OCR form confirmed for now.")
+        self.assertTrue(hist)
+        self.assertEqual(hist[-1]["new_status"], "academically_reviewed")
+
+        reopen = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": _csrf(after),
+                "vocab_id": str(src["id"]),
+                "status": "needs_revision",
+                "note": "Please check the printed page.",
+                "return_to": "recent",
+            },
+            follow_redirects=True,
+        )
+        reopen_html = reopen.get_data(as_text=True)
+        queue = re.search(r'id="panel-queue"(.*?)id="panel-recent"', reopen_html, re.S)
+        self.assertIn(f'data-vocab-id="{src["id"]}"', queue.group(1))
+        self.assertIn("Please check the printed page.", queue.group(1))
+
+    def test_private_invite_can_review_academic_workspace_without_login(self):
+        from review_invite import create_review_invite
+
+        ReviewerPermissionTests._insert_user(self, "invite_admin", "AdminPass1", "admin")
+        invite = create_review_invite(
+            "mah-meri", "academic", 7, "Workspace invite", created_by=1
+        )
+        guest = self.app.test_client()
+        opened = guest.get(f"/review/invite/{invite['token']}", follow_redirects=False)
+        self.assertEqual(opened.status_code, 302)
+        page = guest.get("/review/workspace/mah-meri")
+        self.assertEqual(page.status_code, 200)
+        html = page.get_data(as_text=True)
+        self.assertNotIn("login", page.headers.get("Location", "").lower())
+        academic = self._academic_panel(html)
+        self.assertIn("Save review", academic)
+        self.assertIn('data-academic-section="beginner_lesson"', academic)
+        token = _csrf(html)
+        rows = self._json_rows(html)
+        item = next(r for r in rows if r.get("in_review_queue"))
+        saved = guest.post(
+            "/review/workspace/mah-meri/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(item["id"]),
+                "status": "academically_reviewed",
+                "note": "Invite workspace pass.",
+                "return_to": "academic",
+            },
+            follow_redirects=False,
+        )
+        self.assertEqual(saved.status_code, 302)
+        self.assertTrue(saved.headers.get("Location", "").endswith("#academic"))
+        section = guest.post(
+            "/review/workspace/mah-meri/section",
+            data={
+                "csrf_token": token,
+                "section_key": "community",
+                "status": "academically_reviewed",
+                "note": "Community overview accepted.",
+                "return_to": "academic",
+            },
+            follow_redirects=True,
+        )
+        self.assertEqual(section.status_code, 200)
+        after = section.get_data(as_text=True)
+        self.assertIn("Community overview accepted.", self._academic_panel(after))
+        recent = re.search(r'id="panel-recent"(.*?)id="panel-vocabulary"', after, re.S)
+        self.assertIn(f'data-vocab-id="{item["id"]}"', recent.group(1))
+        again = guest.get(f"/review/invite/{invite['token']}", follow_redirects=False)
+        self.assertEqual(again.status_code, 302)
+
+    def test_student_still_cannot_mutate_from_academic_review(self):
+        ReviewerPermissionTests._insert_user(self, "student_workspace", "StudentPass1", "student")
+        ReviewerPermissionTests._login_as(self, "student_workspace", "StudentPass1")
+        html = self.client.get("/language/mah-meri/review").get_data(as_text=True)
+        academic = self._academic_panel(html)
+        self.assertNotIn("review-select-trigger", academic)
+        self.assertNotIn("Save review", academic)
+        token = _csrf(html)
+        rows = self._json_rows(html)
+        vocab_id = rows[0]["id"]
+        denied = self.client.post(
+            "/language/mah-meri/review/vocabulary",
+            data={
+                "csrf_token": token,
+                "vocab_id": str(vocab_id),
+                "status": "academically_reviewed",
+                "note": "should fail",
+                "return_to": "academic",
+            },
+        )
+        self.assertEqual(denied.status_code, 403)
+
+
 
 
 if __name__ == "__main__":

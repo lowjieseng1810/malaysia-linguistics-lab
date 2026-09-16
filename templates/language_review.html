@@ -3,7 +3,7 @@
 {% macro review_select(name, current, choices, form_submit=false) %}
 <div class="review-select{% if form_submit %} review-select--autosubmit{% endif %}">
   <button type="button" class="review-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-    <span class="review-select-value">{% for choice in choices %}{% if choice.id == current %}{{ choice.label }}{% endif %}{% endfor %}{% if current not in choices|map(attribute='id')|list %}{{ current }}{% endif %}</span>
+    <span class="review-select-value">{% set ns = namespace(found=false) %}{% for choice in choices %}{% if choice.id == current %}{{ choice.label }}{% set ns.found = true %}{% endif %}{% endfor %}{% if not ns.found %}{{ payload.status_labels.get(current, current) }}{% endif %}</span>
   </button>
   <ul class="review-select-menu" role="listbox" hidden>
     {% for choice in choices %}
@@ -14,20 +14,63 @@
 </div>
 {% endmacro %}
 
-{% macro vocab_review_form(row, return_to) %}
-<form class="review-form{% if return_to == 'recent' %} review-form-recent{% endif %}" method="post" action="{{ review_vocab_action or url_for('language_review_vocabulary', lang_key=payload.lang_key) }}"{% if return_to == 'recent' %} hidden{% endif %}>
+{% macro vocab_review_form(row, return_to, status_choices=None) %}
+<form class="review-form review-form--workspace{% if return_to == 'recent' %} review-form-recent{% endif %}" method="post" action="{{ review_vocab_action or url_for('language_review_vocabulary', lang_key=payload.lang_key) }}"{% if return_to == 'recent' %} hidden{% endif %}>
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
   <input type="hidden" name="vocab_id" value="{{ row.id }}">
   <input type="hidden" name="return_to" value="{{ return_to }}">
   <label>
     Review status
-    {{ review_select('status', row.review_status if row.review_status != 'reviewed' else 'academically_reviewed', payload.vocab_status_choices) }}
+    {{ review_select('status', row.review_status if row.review_status != 'reviewed' else 'academically_reviewed', status_choices or payload.vocab_status_choices) }}
   </label>
   <label>Reviewer notes
     <textarea name="note" maxlength="2000" placeholder="Add your review comments here…">{{ row.reviewer_note or '' }}</textarea>
   </label>
   <button type="submit">Save review</button>
 </form>
+{% endmacro %}
+
+{% macro section_review_form(section_key, status, note, return_to='academic') %}
+<form class="review-form review-form--workspace" method="post" action="{{ review_section_action or url_for('language_review_section', lang_key=payload.lang_key) }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <input type="hidden" name="section_key" value="{{ section_key }}">
+  <input type="hidden" name="return_to" value="{{ return_to }}">
+  <label>
+    Review status
+    {{ review_select('status', status if status != 'reviewed' else 'academically_reviewed', payload.academic_set.section_status_choices or payload.section_status_choices) }}
+  </label>
+  <label>Reviewer notes
+    <textarea name="note" maxlength="2000" placeholder="Add your review comments here…">{{ note or '' }}</textarea>
+  </label>
+  <button type="submit">Save review</button>
+</form>
+{% endmacro %}
+
+{% macro vocab_term_card(row, term_label) %}
+<dl class="review-term-meta">
+  <div>
+    <dt>{{ term_label }}</dt>
+    <dd>{{ row.word }}</dd>
+  </div>
+  <div>
+    <dt>Malay translation</dt>
+    <dd>{{ row.meaning_ms or "—" }}</dd>
+  </div>
+  <div>
+    <dt>English translation</dt>
+    <dd>{{ row.meaning_en or "—" }}</dd>
+  </div>
+  <div>
+    <dt>Source / provenance</dt>
+    <dd>{{ row.source_ref or "source not recorded" }}</dd>
+  </div>
+</dl>
+{% if row.issue_context %}
+<div class="review-issue-context" aria-readonly="true">
+  <span class="review-issue-context-label">Issue context</span>
+  <p>{{ row.issue_context }}</p>
+</div>
+{% endif %}
 {% endmacro %}
 
 {% block title %}{{ payload.display_name }} review | Malaysia Linguistics Lab{% endblock %}
@@ -323,59 +366,135 @@
     <p class="review-muted">Use Cite on a vocabulary row to copy a short attribution. Do not treat this workspace as a complete bibliography.</p>
   </section>
 
-  <section class="review-panel" id="panel-academic" role="tabpanel" hidden>
-    <div class="review-card">
-      <h2>Suggested academic review set</h2>
+  <section class="review-panel review-panel--academic" id="panel-academic" role="tabpanel" hidden>
+    <div class="review-card review-academic-intro">
+      <h2>Academic Review</h2>
       <p>{{ payload.academic_set.intro }}</p>
-      <p class="review-muted">You are being asked to review the language/culture overview, a small vocabulary sample, one beginner lesson where available, and selected flagged items — not every dictionary row.</p>
+      <p class="review-scope-kicker">{{ payload.academic_set.scope_title }}</p>
+      <p>{{ payload.academic_set.scope_body }}</p>
     </div>
-    <div class="review-card">
-      <h3>Sample vocabulary</h3>
-      {% for row in payload.academic_set.vocabulary %}
-      <div class="review-sample-item">
-        <strong>{{ row.word }}</strong>
-        — {{ row.meaning_en or row.meaning_ms or "—" }}
-        <span class="review-badge">{{ row.review_status_label }}</span>
-        {% if row.issue_labels %}<span class="review-muted">{{ row.issue_labels | join(', ') }}</span>{% endif %}
-      </div>
+
+    <div class="review-workspace-section" id="academic-overview">
+      <h2 class="review-workspace-heading">1. Language &amp; cultural overview</h2>
+      {% for section in payload.academic_set.overview_sections %}
+      <article class="review-card review-workspace-item" data-academic-section="{{ section.key }}">
+        <h3>{{ section.title }}</h3>
+        <p>{{ section.body }}</p>
+        {% if can_edit %}
+        {{ section_review_form(section.key, section.status, section.reviewer_note) }}
+        {% else %}
+        <p class="review-status-readonly">{{ section.status_label }}</p>
+        {% endif %}
+      </article>
       {% else %}
-      <p>No vocabulary rows are stored for this language yet.</p>
+      <div class="review-card"><p>No overview content is stored for this language yet.</p></div>
       {% endfor %}
     </div>
-    {% if payload.academic_set.lesson %}
-    <div class="review-card">
-      <h3>Beginner lesson sample — {{ payload.academic_set.lesson.title }}</h3>
-      {% for item in payload.academic_set.lesson.vocabulary %}
-      <p>{{ item.word }} — {{ item.meaning }}</p>
+
+    <div class="review-workspace-section" id="academic-vocabulary">
+      <h2 class="review-workspace-heading">2. Representative vocabulary</h2>
+      <p class="review-muted">A small sourced sample — not the full dictionary. Review each card here.</p>
+      {% for row in payload.academic_set.vocabulary %}
+      <article class="review-card review-workspace-item" data-academic-vocab="{{ row.id }}" data-vocab-id="{{ row.id }}">
+        {{ vocab_term_card(row, payload.display_name ~ ' term') }}
+        {% if can_edit %}
+        {{ vocab_review_form(row, 'academic', payload.academic_set.vocab_status_choices) }}
+        {% else %}
+        <p class="review-status-readonly">{{ row.review_status_label }}</p>
+        {% endif %}
+      </article>
+      {% else %}
+      <div class="review-card"><p>No vocabulary rows are stored for this language yet.</p></div>
       {% endfor %}
-      {% if payload.academic_set.lesson.exercise %}
-      <p><strong>Exercise:</strong> {{ payload.academic_set.lesson.exercise[0].question }}</p>
+    </div>
+
+    <div class="review-workspace-section" id="academic-lesson">
+      <h2 class="review-workspace-heading">3. Beginner lesson</h2>
+      {% if payload.academic_set.lesson %}
+      <article class="review-card review-workspace-item" data-academic-section="beginner_lesson">
+        <h3>{{ payload.academic_set.lesson.title }}</h3>
+        {% for item in payload.academic_set.lesson.vocabulary %}
+        <p>{{ item.word }} — {{ item.meaning }}</p>
+        {% endfor %}
+        {% if can_edit %}
+        {{ section_review_form('beginner_lesson', payload.academic_set.lesson_status, payload.academic_set.lesson_note) }}
+        {% else %}
+        <p class="review-status-readonly">{{ payload.status_labels.get(payload.academic_set.lesson_status, payload.academic_set.lesson_status) }}</p>
+        {% endif %}
+      </article>
+      {% else %}
+      <div class="review-card"><p>No beginner lesson is stored for this language yet.</p></div>
       {% endif %}
-      <p><strong>Answer key</strong></p>
-      {% for ans in payload.academic_set.lesson.answer_key %}
-      <p class="review-muted">{{ ans.question }} → {{ ans.answer }}</p>
+    </div>
+
+    <div class="review-workspace-section" id="academic-exercise">
+      <h2 class="review-workspace-heading">4. Exercise + answer key</h2>
+      {% if payload.academic_set.lesson and payload.academic_set.lesson.exercise %}
+      <article class="review-card review-workspace-item" data-academic-section="lesson_exercise">
+        {% if payload.academic_set.lesson.exercise.instruction %}
+        <p class="review-muted">{{ payload.academic_set.lesson.exercise.instruction }}</p>
+        {% endif %}
+        <p><strong>Exercise:</strong> {{ payload.academic_set.lesson.exercise.question }}</p>
+        {% if payload.academic_set.lesson.exercise.options %}
+        <ul class="review-exercise-options">
+          {% for opt in payload.academic_set.lesson.exercise.options %}
+          <li>{{ opt }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <p><strong>Answer key</strong></p>
+        {% for ans in payload.academic_set.lesson.answer_key %}
+        <p class="review-muted">{{ ans.question }} → {{ ans.answer }}</p>
+        {% endfor %}
+        {% if can_edit %}
+        {{ section_review_form('lesson_exercise', payload.academic_set.exercise_status, payload.academic_set.exercise_note) }}
+        {% else %}
+        <p class="review-status-readonly">{{ payload.status_labels.get(payload.academic_set.exercise_status, payload.academic_set.exercise_status) }}</p>
+        {% endif %}
+      </article>
+      {% else %}
+      <div class="review-card"><p>No beginner exercise is stored for this language yet.</p></div>
+      {% endif %}
+    </div>
+
+    <div class="review-workspace-section" id="academic-issues">
+      <h2 class="review-workspace-heading">5. Selected issues requiring expert judgement</h2>
+      <p class="review-muted">Unresolved historical, source, or OCR forms. Review them here without opening Issues.</p>
+      {% for row in payload.academic_set.expert_issues %}
+      <article class="review-card review-workspace-item" data-academic-issue="{{ row.id }}" data-vocab-id="{{ row.id }}">
+        {{ vocab_term_card(row, payload.display_name ~ ' term') }}
+        {% if can_edit %}
+        {{ vocab_review_form(row, 'academic', payload.academic_set.vocab_status_choices) }}
+        {% else %}
+        <p class="review-status-readonly">{{ row.review_status_label }}</p>
+        {% endif %}
+      </article>
+      {% else %}
+      <div class="review-card"><p>No flagged expert-judgement items are currently selected for this language.</p></div>
       {% endfor %}
     </div>
-    {% endif %}
-    <div class="review-card">
-      <h3>Reviewer notes</h3>
+
+    <details class="review-card review-dimensions">
+      <summary>Optional review dimensions</summary>
+      <p class="review-muted">Metadata for this pass — not a substitute for reviewing the content above.</p>
       {% if can_edit %}
-      <form class="review-form" method="post" action="{{ review_academic_action or url_for('language_review_academic', lang_key=payload.lang_key) }}">
+      <form class="review-form review-form--compact" method="post" action="{{ review_academic_action or url_for('language_review_academic', lang_key=payload.lang_key) }}">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <div class="checks">
+        <p class="review-dimensions-label">Review dimensions considered</p>
+        <div class="checks checks--compact">
           {% for cat in payload.academic_set.categories %}
-          <label><input type="checkbox" name="categories" value="{{ cat }}"> {{ cat }}</label>
+          <label><input type="checkbox" name="categories" value="{{ cat }}"{% if cat in payload.academic_set.selected_categories %} checked{% endif %}> {{ cat }}</label>
           {% endfor %}
         </div>
-        <label>Comments
-          <textarea name="comments" maxlength="4000" placeholder="Keep comments specific. This is not a formal peer-review system."></textarea>
+        <label>Other comments
+          <textarea name="comments" maxlength="4000" placeholder="Optional overall comment.">{{ payload.academic_set.dimension_comments }}</textarea>
         </label>
-        <button type="submit">Save review note</button>
+        <button type="submit">Save dimensions</button>
       </form>
       {% else %}
       <p class="review-muted">Reviewer notes can be saved after an administrator grants access to your username.</p>
       {% endif %}
-    </div>
+    </details>
   </section>
 
   <section class="review-panel" id="panel-collaboration" role="tabpanel" hidden>

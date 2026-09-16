@@ -10,7 +10,8 @@ from typing import Any
 from database import (
     COURSE_LANGUAGES,
     VOCAB_PACK_DIR,
-    list_section_review_statuses,
+    get_latest_academic_review_note,
+    list_section_reviews,
     list_vocabulary_for_language,
     list_vocabulary_review_history_for_language,
 )
@@ -76,6 +77,21 @@ VOCAB_STATUS_CHOICES = (
     ("source_derived", "Source-derived"),
     ("pedagogical_bridge", "Pedagogical bridge"),
 )
+
+ACADEMIC_WORKSPACE_SECTION_CHOICES = (
+    ("academic_review_pending", "Review pending"),
+    ("academically_reviewed", "Academically reviewed"),
+    ("needs_revision", "Needs revision"),
+)
+
+ACADEMIC_WORKSPACE_VOCAB_CHOICES = (
+    ("academic_review_pending", "Review pending"),
+    ("needs_verification", "Needs verification"),
+    ("academically_reviewed", "Academically reviewed"),
+    ("needs_revision", "Needs revision"),
+)
+
+EXPERT_JUDGEMENT_HEADWORDS = ("src", "raachin", "o-h")
 
 
 def _pack_sources() -> list[dict[str, Any]]:
@@ -157,30 +173,95 @@ def _in_review_queue(item: dict[str, Any]) -> bool:
     return bucket in {"technical", "suspicious"}
 
 
-def _academic_vocab_sample(rows: list[dict[str, Any]], limit: int = 12) -> list[dict[str, Any]]:
+def _section_state(section_full: dict[str, dict[str, str]], key: str) -> tuple[str, str]:
+    saved = section_full.get(key) or {}
+    status = saved.get("status") or "academic_review_pending"
+    if status == "reviewed":
+        status = "academically_reviewed"
+    return status, saved.get("note") or ""
+
+
+def _academic_expert_issues(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    wanted = {key: None for key in EXPERT_JUDGEMENT_HEADWORDS}
+    extras: list[dict[str, Any]] = []
+    for row in rows:
+        if row.get("is_pedagogical_bridge"):
+            continue
+        key = (row.get("word") or "").strip().lower()
+        if key in wanted and wanted[key] is None:
+            wanted[key] = row
+        elif row.get("has_technical") or (
+            row.get("bucket") == "suspicious" and row.get("in_review_queue")
+        ):
+            extras.append(row)
+    picked = [wanted[key] for key in EXPERT_JUDGEMENT_HEADWORDS if wanted[key]]
+    seen = {row.get("id") for row in picked}
+    for row in extras:
+        if len(picked) >= 6:
+            break
+        rid = row.get("id")
+        if rid in seen:
+            continue
+        if wanted.get((row.get("word") or "").strip().lower()):
+            continue
+        # Only pad when a named historical/OCR form is missing.
+        if any(wanted[key] is None for key in EXPERT_JUDGEMENT_HEADWORDS):
+            picked.append(row)
+            seen.add(rid)
+    return picked
+
+
+def _academic_vocab_sample(
+    rows: list[dict[str, Any]],
+    exclude_ids: set[int] | None = None,
+    lesson_words: set[str] | None = None,
+    limit: int = 14,
+) -> list[dict[str, Any]]:
     picked: list[dict[str, Any]] = []
-    seen: set[int] = set()
+    seen: set[int] = set(exclude_ids or set())
+    lesson_words = {w.strip().lower() for w in (lesson_words or set()) if w}
+
+    def eligible(row: dict[str, Any]) -> bool:
+        rid = row.get("id")
+        if rid in seen:
+            return False
+        if row.get("is_pedagogical_bridge") or row.get("review_status") == "pedagogical_bridge":
+            return False
+        return True
 
     def take(pred, n: int) -> None:
         count = 0
         for row in rows:
-            rid = row.get("id")
-            if rid in seen:
+            if not eligible(row):
                 continue
             if pred(row):
                 picked.append(row)
-                seen.add(rid)
+                seen.add(row.get("id"))
                 count += 1
             if count >= n or len(picked) >= limit:
                 return
 
-    take(lambda r: r.get("has_technical") and not r.get("is_pedagogical_bridge"), 3)
-    take(lambda r: r["bucket"] == "suspicious" and not r.get("has_technical") and not r.get("is_pedagogical_bridge"), 2)
-    # spread by first letter / gloss length as a crude category spread
-    take(lambda r: r.get("source_derived") and (r.get("part_of_speech") == "noun") and not r.get("is_pedagogical_bridge"), 2)
-    take(lambda r: r.get("source_derived") and (r.get("part_of_speech") in {"verb", "pronoun", "number"}) and not r.get("is_pedagogical_bridge"), 2)
-    take(lambda r: r.get("source_derived") and not r.get("is_pedagogical_bridge"), 4)
-    take(lambda r: not r.get("is_pedagogical_bridge"), limit)
+    take(
+        lambda r: r.get("source_derived")
+        and (r.get("word") or "").strip().lower() in lesson_words,
+        2,
+    )
+    take(
+        lambda r: r.get("source_derived") and (r.get("part_of_speech") == "noun"),
+        4,
+    )
+    take(
+        lambda r: r.get("source_derived")
+        and (r.get("part_of_speech") in {"verb", "pronoun", "number", "adjective"}),
+        3,
+    )
+    take(lambda r: r.get("source_derived"), 4)
+    take(
+        lambda r: r.get("in_review_queue") and not r.get("has_technical"),
+        2,
+    )
+    take(lambda r: r.get("in_review_queue"), 2)
+    take(lambda r: True, limit)
     return picked[:limit]
 
 
@@ -206,12 +287,101 @@ def _lesson_sample(course_data: dict, lang_key: str) -> dict[str, Any] | None:
                 "answer": correct,
             }
         )
+    primary = quizzes[:1]
+    exercise = None
+    if primary:
+        q = primary[0]
+        opts = q.get("options") or []
+        idx = q.get("correctIndex", 0)
+        correct = opts[idx] if isinstance(idx, int) and 0 <= idx < len(opts) else ""
+        exercise = {
+            "question": q.get("question") or q.get("prompt") or "",
+            "instruction": q.get("instruction") or "",
+            "options": opts,
+            "answer": correct,
+        }
     return {
         "level": first_key,
         "title": (vocab[0].get("title") if vocab else None) or f"Level {first_key}",
         "vocabulary": vocab,
-        "exercise": quizzes[:1],
+        "exercise": exercise,
         "answer_key": answer_key,
+    }
+
+
+def _academic_set(
+    display: str,
+    lang_key: str,
+    course_data: dict,
+    rows: list[dict[str, Any]],
+    sections: list[dict[str, Any]],
+    section_full: dict[str, dict[str, str]],
+    invite: dict[str, Any] | None,
+) -> dict[str, Any]:
+    overview_keys = ["language_overview", "community"]
+    lesson = _lesson_sample(course_data, lang_key)
+    expert_issues = _academic_expert_issues(rows)
+    exclude_ids = {row.get("id") for row in expert_issues if row.get("id") is not None}
+    lesson_words = {
+        (item.get("word") or "").strip().lower()
+        for item in ((lesson or {}).get("vocabulary") or [])
+        if item.get("word")
+    }
+    lesson_status, lesson_note = _section_state(section_full, "beginner_lesson")
+    exercise_status, exercise_note = _section_state(section_full, "lesson_exercise")
+    latest = get_latest_academic_review_note(lang_key) or {}
+    community_invite = (invite or {}).get("reviewer_kind") == "community"
+    section_choices = (
+        (
+            ("community_review_pending", "Review pending"),
+            ("community_reviewed", "Community reviewed"),
+            ("needs_revision", "Needs revision"),
+        )
+        if community_invite
+        else ACADEMIC_WORKSPACE_SECTION_CHOICES
+    )
+    vocab_choices = (
+        (
+            ("needs_verification", "Needs verification"),
+            ("community_review_pending", "Review pending"),
+            ("community_reviewed", "Community reviewed"),
+            ("needs_revision", "Needs revision"),
+        )
+        if community_invite
+        else ACADEMIC_WORKSPACE_VOCAB_CHOICES
+    )
+    categories = [
+        "Language accuracy",
+        "Translation quality",
+        "Cultural accuracy/sensitivity",
+        "Educational suitability",
+        "Source/provenance",
+        "Other comments",
+    ]
+    return {
+        "intro": (
+            f"Open the selected {display} content here, judge it, add a note, and save. "
+            "You do not need to leave this tab to record a decision."
+        ),
+        "scope_title": "Suggested review scope",
+        "scope_body": (
+            "This is a representative sample intended to make academic review efficient. "
+            "You do not need to review the entire dictionary."
+        ),
+        "overview_keys": overview_keys,
+        "overview_sections": [s for s in sections if s.get("key") in overview_keys],
+        "vocabulary": _academic_vocab_sample(rows, exclude_ids, lesson_words),
+        "expert_issues": expert_issues,
+        "lesson": lesson,
+        "lesson_status": lesson_status,
+        "lesson_note": lesson_note,
+        "exercise_status": exercise_status,
+        "exercise_note": exercise_note,
+        "section_status_choices": [{"id": a, "label": b} for a, b in section_choices],
+        "vocab_status_choices": [{"id": a, "label": b} for a, b in vocab_choices],
+        "categories": categories,
+        "selected_categories": latest.get("categories") or [],
+        "dimension_comments": latest.get("comments") or "",
     }
 
 
@@ -286,7 +456,7 @@ def build_language_review_payload(
     queue = [r for r in rows if r.get("in_review_queue")]
     recent = _recent_reviews(rows, invite)
 
-    section_saved = list_section_review_statuses(lang_key)
+    section_full = list_section_reviews(lang_key)
     sections = []
     body_by_key = {
         "language_overview": language.get("about") or "",
@@ -308,11 +478,7 @@ def build_language_review_payload(
         "course_intent": "What this platform teaches",
     }
     for key, fallback_title in SECTION_KEYS:
-        status = (
-            "academically_reviewed"
-            if (section_saved.get(key) or "") == "reviewed"
-            else (section_saved.get(key) or "academic_review_pending")
-        )
+        status, note = _section_state(section_full, key)
         sections.append(
             {
                 "key": key,
@@ -320,6 +486,7 @@ def build_language_review_payload(
                 "body": body_by_key.get(key) or "",
                 "status": status,
                 "status_label": status_label(status),
+                "reviewer_note": note,
             }
         )
 
@@ -388,24 +555,15 @@ def build_language_review_payload(
         "pack_sources": pack_sources,
         "listed_sources": listed,
         "gallery": language.get("gallery") or [],
-        "academic_set": {
-            "intro": (
-                f"This is a representative sample for {display}, not a complete "
-                "evaluation of every dictionary row. It is intended to make "
-                "academic review efficient."
-            ),
-            "overview_keys": ["language_overview", "community"],
-            "vocabulary": _academic_vocab_sample(rows),
-            "lesson": _lesson_sample(course_data, lang_key),
-            "categories": [
-                "Language accuracy",
-                "Translation quality",
-                "Cultural accuracy/sensitivity",
-                "Educational suitability",
-                "Source/provenance",
-                "Other comments",
-            ],
-        },
+        "academic_set": _academic_set(
+            display,
+            lang_key,
+            course_data,
+            rows,
+            sections,
+            section_full,
+            invite,
+        ),
         "collaboration": collaboration_copy(display),
         "status_labels": STATUS_LABELS,
         "course_languages": list(COURSE_LANGUAGES),
