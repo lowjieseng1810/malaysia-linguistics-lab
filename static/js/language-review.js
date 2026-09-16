@@ -3,6 +3,7 @@
   var panels = {
     overview: document.getElementById("panel-overview"),
     queue: document.getElementById("panel-queue"),
+    recent: document.getElementById("panel-recent"),
     vocabulary: document.getElementById("panel-vocabulary"),
     issues: document.getElementById("panel-issues"),
     sources: document.getElementById("panel-sources"),
@@ -137,6 +138,20 @@
 
   document.querySelectorAll(".review-select").forEach(bindSelect);
 
+  document.querySelectorAll(".review-again").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var card = btn.closest(".review-recent-item");
+      if (!card) return;
+      var form = card.querySelector(".review-form-recent");
+      if (!form) return;
+      form.hidden = !form.hidden;
+      if (!form.hidden) {
+        var trigger = form.querySelector(".review-select-trigger");
+        if (trigger) trigger.focus();
+      }
+    });
+  });
+
   var pageRoot = document.querySelector(".review-page");
   var canEdit = pageRoot && pageRoot.getAttribute("data-can-edit") === "1";
   var vocabPost = (pageRoot && pageRoot.getAttribute("data-vocab-post")) || "";
@@ -223,10 +238,12 @@
           return false;
         }
         if (doneStatuses.indexOf(row.review_status) !== -1) return false;
+        if (row.is_pedagogical_bridge || row.review_status === "pedagogical_bridge") return false;
       }
       if (mode === "reviewed" && doneStatuses.indexOf(row.review_status) === -1) return false;
       if (mode === "newly_added" && !row.is_newly_added) return false;
       if (mode === "source_derived" && !row.source_derived) return false;
+      if (mode === "pedagogical_bridge" && !row.is_pedagogical_bridge && row.review_status !== "pedagogical_bridge") return false;
       if (!query) return true;
       var blob = [
         row.word,

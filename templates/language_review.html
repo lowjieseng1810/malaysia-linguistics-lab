@@ -14,6 +14,22 @@
 </div>
 {% endmacro %}
 
+{% macro vocab_review_form(row, return_to) %}
+<form class="review-form{% if return_to == 'recent' %} review-form-recent{% endif %}" method="post" action="{{ review_vocab_action or url_for('language_review_vocabulary', lang_key=payload.lang_key) }}"{% if return_to == 'recent' %} hidden{% endif %}>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <input type="hidden" name="vocab_id" value="{{ row.id }}">
+  <input type="hidden" name="return_to" value="{{ return_to }}">
+  <label>
+    Review status
+    {{ review_select('status', row.review_status if row.review_status != 'reviewed' else 'academically_reviewed', payload.vocab_status_choices) }}
+  </label>
+  <label>Reviewer notes
+    <textarea name="note" maxlength="2000" placeholder="Add your review comments here…">{{ row.reviewer_note or '' }}</textarea>
+  </label>
+  <button type="submit">Save review</button>
+</form>
+{% endmacro %}
+
 {% block title %}{{ payload.display_name }} review | Malaysia Linguistics Lab{% endblock %}
 
 {% block content %}
@@ -49,9 +65,9 @@
     <div class="review-stats">
       <div class="review-stat"><span>Current entries</span><strong>{{ payload.summary.entry_count }}</strong></div>
       <div class="review-stat"><span>Needs verification</span><strong>{{ payload.summary.needs_verification_count }}</strong></div>
+      <div class="review-stat"><span>Pedagogical bridge</span><strong>{{ payload.summary.pedagogical_bridge_count }}</strong></div>
       <div class="review-stat"><span>Technical issues</span><strong>{{ payload.summary.technical_issue_count }}</strong></div>
-      <div class="review-stat"><span>Academic review</span><strong>{{ payload.summary.academic_review }}</strong></div>
-      <div class="review-stat"><span>Community review</span><strong>{{ payload.summary.community_review }}</strong></div>
+      <div class="review-stat"><span>Academically reviewed</span><strong>{{ payload.summary.reviewed_count }}</strong></div>
     </div>
     <p class="review-method">{{ payload.summary.method_note }}</p>
   </header>
@@ -59,6 +75,7 @@
   <div class="review-tabs" role="tablist">
     <button class="review-tab" role="tab" aria-selected="true" data-tab="overview">Overview &amp; Culture</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="queue">Review Queue</button>
+    <button class="review-tab" role="tab" aria-selected="false" data-tab="recent">Recent Reviews</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="vocabulary">Vocabulary</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="issues">Issues</button>
     <button class="review-tab" role="tab" aria-selected="false" data-tab="sources">Sources</button>
@@ -93,8 +110,10 @@
     <div class="review-card">
       <h2>Review Queue</h2>
       <p>
-        Items leave this queue when their status is set to Academically reviewed.
-        They remain in Vocabulary with source, timestamp, reviewer role, notes, and history.
+        Items that still need academic or source verification. Pedagogical bridge
+        forms from beginner lessons stay in Vocabulary and are not listed here.
+        Saving Academically reviewed removes an item from this queue; you can
+        reopen it later from Recent Reviews.
       </p>
     </div>
     {% if payload.review_queue %}
@@ -135,23 +154,61 @@
         </ul>
         {% endif %}
         {% if can_edit %}
-        <form class="review-form" method="post" action="{{ review_vocab_action or url_for('language_review_vocabulary', lang_key=payload.lang_key) }}">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="vocab_id" value="{{ row.id }}">
-          <label>
-            Review status
-            {{ review_select('status', row.review_status if row.review_status != 'reviewed' else 'academically_reviewed', payload.vocab_status_choices) }}
-          </label>
-          <label>Reviewer notes
-            <textarea name="note" maxlength="2000" placeholder="Add your review comments here…">{{ row.reviewer_note or '' }}</textarea>
-          </label>
-          <button type="submit">Save review</button>
-        </form>
+        {{ vocab_review_form(row, 'queue') }}
         {% endif %}
       </article>
       {% endfor %}
     {% else %}
     <div class="review-card"><p>No items are currently in the review queue for this language.</p></div>
+    {% endif %}
+  </section>
+
+  <section class="review-panel" id="panel-recent" role="tabpanel" hidden>
+    <div class="review-card">
+      <h2>Recent Reviews</h2>
+      <p>
+        Items already reviewed in this workspace. Use Review again to change a
+        previous decision. History is kept in full.
+      </p>
+    </div>
+    {% if payload.recent_reviews %}
+      {% for row in payload.recent_reviews[:80] %}
+      <article class="review-card review-recent-item" data-vocab-id="{{ row.id }}" data-recent="1">
+        <div class="review-queue-head">
+          <h3>{{ row.word }}</h3>
+          <span class="review-badge">{{ row.review_status_label }}</span>
+        </div>
+        <p class="review-muted">Current status: {{ row.review_status_label }}</p>
+        <p class="review-muted">Reviewed at: {{ row.reviewed_at or "—" }}</p>
+        <p class="review-muted">Reviewer type: {{ row.reviewed_by_role or "—" }}</p>
+        <p class="review-muted">Source: {{ row.source_ref or "source not recorded" }}</p>
+        {% if row.issue_context %}
+        <div class="review-issue-context" aria-readonly="true">
+          <span class="review-issue-context-label">Issue context</span>
+          <p>{{ row.issue_context }}</p>
+        </div>
+        {% endif %}
+        <p class="review-human-note"><span class="review-issue-context-label">Reviewer notes</span> {{ row.reviewer_note or "—" }}</p>
+        {% if row.history %}
+        <ul class="review-history">
+          {% for event in row.history %}
+          <li>
+            {{ event.created_at }}:
+            {{ event.previous_status or "—" }} → {{ event.new_status }}
+            {% if event.reviewer_role %} ({{ event.reviewer_role }}){% endif %}
+            {% if event.note %} — {{ event.note }}{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% if can_edit %}
+        <button type="button" class="review-cite review-again">Review again</button>
+        {{ vocab_review_form(row, 'recent') }}
+        {% endif %}
+      </article>
+      {% endfor %}
+    {% else %}
+    <div class="review-card"><p>No completed reviews are listed for this workspace yet.</p></div>
     {% endif %}
   </section>
 

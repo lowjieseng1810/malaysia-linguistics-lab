@@ -21,6 +21,7 @@ STATUS_REVIEWED = "reviewed"
 STATUS_ACADEMICALLY_REVIEWED = "academically_reviewed"
 STATUS_COMMUNITY_REVIEWED = "community_reviewed"
 STATUS_NEEDS_REVISION = "needs_revision"
+STATUS_PEDAGOGICAL_BRIDGE = "pedagogical_bridge"
 
 STATUS_LABELS = {
     STATUS_SOURCE_DERIVED: "Source-derived",
@@ -32,6 +33,7 @@ STATUS_LABELS = {
     STATUS_ACADEMICALLY_REVIEWED: "Academically reviewed",
     STATUS_COMMUNITY_REVIEWED: "Community reviewed",
     STATUS_NEEDS_REVISION: "Needs revision",
+    STATUS_PEDAGOGICAL_BRIDGE: "Pedagogical bridge",
 }
 
 SEVERITY_TECHNICAL = "technical"
@@ -52,15 +54,56 @@ _MIXED_OCR = re.compile(r"[a-z][A-Z]|[A-Z]{2,}[a-z]+[A-Z]")
 _TRAILING_TO = re.compile(r"\s+To$", re.I)
 _LEADING_TO = re.compile(r"^TO\s+", re.I)
 
-# Malay-looking closed-class items used as pedagogical bridges in COURSE_DATA.
+COURSE_BRIDGE_SOURCES = frozenset({"course_database", "course_quiz_stem"})
+
+# Malay/multilingual beginner-course bridges. Only applied when source_ref is a
+# course harvest — never because a historical/Wiktionary form merely looks familiar.
 _BRIDGE_MALAY = {
+    "anak",
+    "bapa",
+    "ibu",
     "selamat",
     "terima kasih",
+    "terima kasih.",
     "ya",
     "tak",
     "nama?",
     "nama saya ...",
+    "orang",
+    "kawan",
+    "keluarga",
+    "apa?",
+    "siapa?",
+    "di mana?",
+    "ya, terima kasih.",
+    "tak, terima kasih.",
+    "selamat datang.",
+    "selamat datang",
 }
+
+PEDAGOGICAL_BRIDGE_DETAIL = (
+    "Retained for educational use; not treated as a Mah Meri lexical item "
+    "for academic verification."
+)
+
+
+def normalize_bridge_word(word: str) -> str:
+    return re.sub(r"\s+", " ", (word or "").strip().lower())
+
+
+def is_course_pedagogical_bridge(
+    row: dict[str, Any],
+    issues: list[dict[str, str]] | None = None,
+) -> bool:
+    """True only for course-sourced beginner-lesson Malay/multilingual bridges."""
+    src = (row.get("source_ref") or "").strip()
+    if src not in COURSE_BRIDGE_SOURCES:
+        return False
+    if (row.get("language") or "").strip() != "mah-meri":
+        return False
+    if any((issue or {}).get("code") == "pedagogical_bridge" for issue in issues or []):
+        return True
+    return normalize_bridge_word(row.get("word") or "") in _BRIDGE_MALAY
 
 
 def _text(*parts: Any) -> str:
@@ -176,13 +219,16 @@ def detect_entry_issues(row: dict[str, Any]) -> list[dict[str, str]]:
             "No source_ref is stored for this row.",
         )
     lang = (row.get("language") or "").strip()
-    if lang == "mah-meri" and word.lower() in _BRIDGE_MALAY:
+    if (
+        lang == "mah-meri"
+        and src in COURSE_BRIDGE_SOURCES
+        and normalize_bridge_word(word) in _BRIDGE_MALAY
+    ):
         add(
             "pedagogical_bridge",
             SEVERITY_SUSPICIOUS,
-            "Pedagogical bridge form",
-            "This item comes from a beginner lesson that uses a Malay/multilingual "
-            "bridge expression. It is not automatically a Mah Meri lexeme.",
+            "Malay/multilingual bridge form",
+            PEDAGOGICAL_BRIDGE_DETAIL,
         )
     # Malay gloss parked in the English field (ms.wiktionary extracts).
     if (
@@ -226,6 +272,8 @@ def classify_entry(
     if stored in {STATUS_REVIEWED, STATUS_ACADEMICALLY_REVIEWED, STATUS_COMMUNITY_REVIEWED}:
         return "reviewed"
     found = issues if issues is not None else detect_entry_issues(row)
+    if is_course_pedagogical_bridge(row, found):
+        return "pedagogical"
     if any(i["severity"] == SEVERITY_TECHNICAL for i in found):
         return "technical"
     if stored in {
@@ -244,10 +292,12 @@ def default_status_for_row(row: dict[str, Any], issues: list[dict[str, str]]) ->
     stored = (row.get("review_status") or "").strip()
     if stored:
         return stored
+    if is_course_pedagogical_bridge(row, issues):
+        return STATUS_PEDAGOGICAL_BRIDGE
     if any(i["severity"] == SEVERITY_TECHNICAL for i in issues):
         return STATUS_NEEDS_VERIFICATION
     src = (row.get("source_ref") or "").strip()
-    if src in {"course_database", "course_quiz_stem"}:
+    if src in COURSE_BRIDGE_SOURCES:
         return STATUS_NEEDS_VERIFICATION
     if src:
         return STATUS_SOURCE_DERIVED
