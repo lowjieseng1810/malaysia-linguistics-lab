@@ -1032,6 +1032,7 @@ def init_review_tables(conn=None) -> None:
     ensure_column(conn, "vocabulary_review_history", "review_actor_type", "TEXT")
     ensure_column(conn, "vocabulary_review_history", "review_kind", "TEXT")
     ensure_column(conn, "vocabulary_review_history", "invite_label", "TEXT")
+    ensure_column(conn, "language_section_reviews", "note", "TEXT")
     if own:
         conn.commit()
         conn.close()
@@ -1420,6 +1421,7 @@ def set_section_review_status(
     section_key: str,
     status: str,
     user_id: int | None = None,
+    note: str | None = None,
 ) -> None:
     conn = get_db()
     init_review_tables(conn)
@@ -1432,22 +1434,32 @@ def set_section_review_status(
     ).fetchone()
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     if existing:
-        conn.execute(
-            """
-            UPDATE language_section_reviews
-            SET status = ?, updated_by = ?, updated_at = ?
-            WHERE language = ? AND section_key = ?
-            """,
-            (status, user_id, now, language, section_key),
-        )
+        if note is None:
+            conn.execute(
+                """
+                UPDATE language_section_reviews
+                SET status = ?, updated_by = ?, updated_at = ?
+                WHERE language = ? AND section_key = ?
+                """,
+                (status, user_id, now, language, section_key),
+            )
+        else:
+            conn.execute(
+                """
+                UPDATE language_section_reviews
+                SET status = ?, note = ?, updated_by = ?, updated_at = ?
+                WHERE language = ? AND section_key = ?
+                """,
+                (status, note, user_id, now, language, section_key),
+            )
     else:
         conn.execute(
             """
             INSERT INTO language_section_reviews
-                (language, section_key, status, updated_by, updated_at)
-            VALUES (?, ?, ?, ?, ?)
+                (language, section_key, status, note, updated_by, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?)
             """,
-            (language, section_key, status, user_id, now),
+            (language, section_key, status, note or "", user_id, now),
         )
     conn.commit()
     conn.close()
@@ -1465,6 +1477,55 @@ def list_section_review_statuses(language: str) -> dict[str, str]:
     ).fetchall()
     conn.close()
     return {r["section_key"]: r["status"] for r in rows}
+
+
+def list_section_reviews(language: str) -> dict[str, dict[str, str]]:
+    conn = get_db()
+    init_review_tables(conn)
+    rows = conn.execute(
+        """
+        SELECT section_key, status, note FROM language_section_reviews
+        WHERE language = ?
+        """,
+        (language,),
+    ).fetchall()
+    conn.close()
+    out: dict[str, dict[str, str]] = {}
+    for row in rows:
+        out[row["section_key"]] = {
+            "status": row["status"] or "",
+            "note": row["note"] or "",
+        }
+    return out
+
+
+def get_latest_academic_review_note(language: str) -> dict[str, Any] | None:
+    conn = get_db()
+    init_review_tables(conn)
+    row = conn.execute(
+        """
+        SELECT categories, comments, created_at
+        FROM academic_review_notes
+        WHERE language = ?
+        ORDER BY id DESC
+        LIMIT 1
+        """,
+        (language,),
+    ).fetchone()
+    conn.close()
+    if not row:
+        return None
+    try:
+        categories = json.loads(row["categories"] or "[]")
+    except (TypeError, json.JSONDecodeError):
+        categories = []
+    if not isinstance(categories, list):
+        categories = []
+    return {
+        "categories": [str(c) for c in categories],
+        "comments": row["comments"] or "",
+        "created_at": row["created_at"] or "",
+    }
 
 
 def save_academic_review_note(

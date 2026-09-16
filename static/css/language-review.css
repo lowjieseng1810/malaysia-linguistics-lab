@@ -463,10 +463,114 @@
     font-size: 0.88rem;
 }
 
-.review-sample-item {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+.review-workspace-heading {
+    margin: 18px 0 10px;
+    font-size: 1.08rem;
+    color: #efd77e;
+    letter-spacing: 0.02em;
+}
+
+.review-academic-intro p + p {
+    margin-top: 10px;
+}
+
+.review-scope-kicker {
+    margin-top: 12px !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #efd77e !important;
+    font-weight: 700;
+}
+
+.review-term-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 14px;
+    margin: 0 0 10px;
+}
+
+.review-term-meta dt {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(235, 243, 238, 0.55);
+    margin-bottom: 2px;
+}
+
+.review-term-meta dd {
+    margin: 0;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 650;
+    overflow-wrap: anywhere;
+}
+
+.review-workspace-item .review-form--workspace {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.review-form--workspace textarea {
+    min-height: 72px;
+}
+
+.review-exercise-options {
+    margin: 8px 0 12px;
+    padding-left: 1.2rem;
+    color: rgba(238, 246, 241, 0.8);
     font-size: 0.88rem;
+}
+
+.review-dimensions {
+    margin-top: 16px;
+}
+
+.review-dimensions summary {
+    cursor: pointer;
+    color: #efd77e;
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.review-dimensions .review-muted {
+    margin: 8px 0 10px;
+}
+
+.review-dimensions-label {
+    margin: 8px 0 4px;
+    font-size: 0.78rem;
+    color: rgba(235, 243, 238, 0.7);
+}
+
+.checks--compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.checks--compact label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: rgba(236, 244, 240, 0.86);
+}
+
+.review-form--compact textarea {
+    min-height: 64px;
+}
+
+@media (max-width: 620px) {
+    .review-term-meta {
+        grid-template-columns: 1fr;
+    }
+    .review-select {
+        min-width: 0;
+        width: 100%;
+    }
 }
 
 @media (max-width: 900px) {
