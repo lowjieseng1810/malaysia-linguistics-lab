@@ -772,6 +772,21 @@ def compose_general_tutor_response(
             context_bits.append(f"Current UI language focus: {ui_language}.")
     if ui_lesson is not None:
         context_bits.append(f"Current UI lesson number: {ui_lesson}.")
+    if (ui_language or "").strip() == "mah-meri":
+        try:
+            from mah_meri_quiz import taught_context_rows
+
+            rows = taught_context_rows(level_num=ui_lesson)
+            if rows:
+                taught_line = "; ".join(
+                    f"{row['word']} = {row['meaning_en']}" for row in rows[:18]
+                )
+                context_bits.append(
+                    "Verified Mah Meri course items (use these forms/glosses only; "
+                    f"do not invent other Mah Meri words): {taught_line}"
+                )
+        except Exception:
+            pass
     if ui_page:
         context_bits.append(f"Current app page: {ui_page}.")
     if action_mode:
@@ -1059,12 +1074,12 @@ def generate_quiz_question(
         ask += f"Heritage language in focus: {language_display}\n"
     if language_display and "mah meri" in language_display.lower():
         ask += (
-            "Mah Meri rules: use ONLY word/gloss pairs from the course-database "
-            "context below. Prefer Mah Meri-specific attested forms, not Malay "
-            "look-alikes (Selamat, Terima kasih, Ya, Tak, Anak, Ibu, Bapa, Orang, "
-            "Kawan, Keluarga, Apa, Siapa). Do not invent Mah Meri vocabulary. "
-            "If context is insufficient, ask a conceptual linguistics question "
-            "instead of fabricating a translation.\n"
+            "Mah Meri rules: use ONLY word/gloss pairs from the course lesson "
+            "context below (items actually taught in the Mah Meri levels). "
+            "Do not invent Mah Meri vocabulary, etymology, pronunciation, or "
+            "grammar. Do not treat Mah Meri as Malay with different spellings. "
+            "If the context is insufficient, ask a conceptual question or skip "
+            "the translation quiz rather than fabricating a form.\n"
         )
     if difficulty:
         ask += f"Target difficulty: {difficulty}\n"

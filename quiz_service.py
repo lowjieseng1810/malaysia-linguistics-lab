@@ -50,9 +50,9 @@ def _course_context_rows(lang_key: Optional[str]) -> list[dict]:
         return []
     if lang_key == "mah-meri":
         try:
-            from mah_meri_quiz import verified_specific_vocab
+            from mah_meri_quiz import taught_context_rows
 
-            return verified_specific_vocab(limit=18)
+            return taught_context_rows(level_num=None)
         except Exception:
             pass
     try:
@@ -218,9 +218,14 @@ def _start_mah_meri_verified_tutor(
     from mah_meri_quiz import as_session_questions, build_mah_meri_mcqs
 
     rng = random.Random()
-    reverse_bias = 0.7 if (target_diff or "").lower() == "hard" else 0.55
-    mcqs = build_mah_meri_mcqs(6, rng=rng, reverse_bias=reverse_bias)
-    built = as_session_questions(mcqs, rng=rng, difficulty=target_diff or "hard")
+    mcqs = build_mah_meri_mcqs(
+        6,
+        rng=rng,
+        reverse_bias=None,
+        level_num=int(level_num) if level_num is not None else None,
+        levels=None if level_num is not None else [1, 2, 3],
+    )
+    built = as_session_questions(mcqs, rng=rng, difficulty=target_diff or "medium")
     if not built:
         return None
     recent = session.get("tutor_quiz_recent") or {}
@@ -253,8 +258,8 @@ def _start_mah_meri_verified_tutor(
         else ""
     )
     lines = [
-        "🧩 Quiz time — verified Mah Meri dictionary item",
-        "_This question uses documented Mah Meri vocabulary from the project database._",
+        "🧩 Quiz time — Mah Meri lesson item",
+        "_This question uses a form taught in the Mah Meri course levels, not an unrelated dictionary row._",
         "",
     ]
     if coaching:
@@ -280,8 +285,8 @@ def start_quiz(
     quiz_continue: bool = False,
 ) -> str:
     # AI Tutor Quiz action prefers GPT-generated MCQ; standalone Practice Quiz
-    # page never calls this path. Mah Meri uses verified dictionary items first
-    # so the tutor cannot drift into Malay look-alikes.
+    # page never calls this path. Mah Meri uses taught COURSE_DATA items first
+    # so the tutor quizzes the same set the lesson teaches.
     if lang_key == "mah-meri":
         mah_reply = _start_mah_meri_verified_tutor(
             level_num=level_num,
@@ -307,12 +312,6 @@ def start_quiz(
     questions = get_quiz_questions(lang_key, int(level_num), difficulty=target_diff)
     if not questions:
         questions = get_quiz_questions(lang_key, int(level_num))
-    if lang_key == "mah-meri":
-        from mah_meri_quiz import filter_quiz_table_rows
-
-        filtered = filter_quiz_table_rows(questions)
-        if filtered:
-            questions = filtered
     if not questions:
         return _start_gpt_quiz(
             lang_key=lang_key,
@@ -602,22 +601,20 @@ def _build_session_questions(
 ) -> list[dict]:
     rng = rng or random
     if lang_key == "mah-meri":
-        from mah_meri_quiz import (
-            as_session_questions,
-            build_mah_meri_mcqs,
-            filter_quiz_table_rows,
-        )
+        from mah_meri_quiz import as_session_questions, build_mah_meri_mcqs
 
-        reverse_bias = 0.7 if (difficulty or "").lower() == "hard" else 0.5
-        mcqs = build_mah_meri_mcqs(count, rng=rng, reverse_bias=reverse_bias)
-        built = as_session_questions(mcqs, rng=rng, difficulty=difficulty)
-        if len(built) >= count:
-            return built[:count]
-        table_rows = filter_quiz_table_rows(
-            get_quiz_questions(lang_key, int(level_num), limit=200)
+        reverse_override = None
+        if (difficulty or "").lower() == "easy":
+            reverse_override = 0.2
+        elif (difficulty or "").lower() == "hard":
+            reverse_override = 0.75
+        mcqs = build_mah_meri_mcqs(
+            count,
+            rng=rng,
+            reverse_bias=reverse_override,
+            level_num=int(level_num),
         )
-        extra = _session_questions_from_table(table_rows, count - len(built), difficulty, rng)
-        return (built + extra)[:count]
+        return as_session_questions(mcqs, rng=rng, difficulty=difficulty)[:count]
 
     pool = get_quiz_questions(lang_key, int(level_num), limit=200, difficulty=difficulty) if difficulty else []
     if not pool:
@@ -691,6 +688,7 @@ def _public_session_view(state: dict) -> dict:
             "difficulty": q.get("difficulty"),
             "quiz_id": q.get("quiz_id"),
             "source_lang": q.get("source_lang") or state.get("lang_key"),
+            "hint": q.get("hint") or "",
         }
     return {
         "lang_key": state.get("lang_key"),
@@ -927,8 +925,16 @@ def start_daily_quiz_session(
         return {"ok": False, "reason": "no_unlocked_levels"}
 
     if chosen_lang == "mah-meri":
-        built = _build_session_questions(chosen_lang, int(levels[0]), count, "hard", rng=rng)
-        primary_level = int(levels[0])
+        from mah_meri_quiz import as_session_questions, build_mah_meri_mcqs
+
+        primary_level = int(max(levels))
+        mcqs = build_mah_meri_mcqs(
+            count,
+            rng=rng,
+            reverse_bias=0.55,
+            levels=[int(n) for n in levels],
+        )
+        built = as_session_questions(mcqs, rng=rng, difficulty="daily")
     else:
         pool: list[tuple[str, int, dict]] = []
         for level_num in levels:

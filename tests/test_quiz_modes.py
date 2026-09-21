@@ -135,10 +135,10 @@ class QuizModeTests(unittest.TestCase):
         self.assertEqual(mah.get("lang_key"), "mah-meri")
         q = (mah.get("current_question") or {}).get("question") or ""
         self.assertTrue(q)
-        self.assertNotIn("Selamat", q)
-        self.assertNotIn("Terima kasih", q)
+        self.assertEqual((mah.get("current_question") or {}).get("source_lang"), "mah-meri")
         blob = q + " " + " ".join((mah.get("current_question") or {}).get("options") or [])
-        self.assertNotRegex(blob, r"\bAnak\b")
+        self.assertNotIn("Kadazan", blob)
+        self.assertNotIn("Bidayuh", blob)
 
         kad = self._start({"mode": "daily", "lang_key": "kadazan-dusun"}).get_json()
         self.assertTrue(kad.get("ok"), kad)
