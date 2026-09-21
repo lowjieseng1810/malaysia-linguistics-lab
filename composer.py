@@ -1057,6 +1057,15 @@ def generate_quiz_question(
     ask = f"Topic: {topic or 'general language learning'}\n"
     if language_display:
         ask += f"Heritage language in focus: {language_display}\n"
+    if language_display and "mah meri" in language_display.lower():
+        ask += (
+            "Mah Meri rules: use ONLY word/gloss pairs from the course-database "
+            "context below. Prefer Mah Meri-specific attested forms, not Malay "
+            "look-alikes (Selamat, Terima kasih, Ya, Tak, Anak, Ibu, Bapa, Orang, "
+            "Kawan, Keluarga, Apa, Siapa). Do not invent Mah Meri vocabulary. "
+            "If context is insufficient, ask a conceptual linguistics question "
+            "instead of fabricating a translation.\n"
+        )
     if difficulty:
         ask += f"Target difficulty: {difficulty}\n"
     if preferred_question_types:
