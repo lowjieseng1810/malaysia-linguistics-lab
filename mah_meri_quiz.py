@@ -215,11 +215,6 @@ def _hint(item: dict[str, Any], siblings: list[dict[str, Any]], reverse: bool) -
         )
     if contrast:
         return f"{base} Remember: {contrast}."
-    note = (item.get("note") or "").strip()
-    meaning = (item.get("meaning") or "").strip().lower()
-    word = (item.get("word") or "").strip().lower()
-    if note and meaning not in note.lower() and word not in note.lower():
-        return f"{base} Lesson note: {note}"
     return base
 
 
