@@ -3269,6 +3269,34 @@ def build_tutor_grounded_context(lang_key, level_num, user_message, mode=None):
         or item["meaning"].lower() in lowered_message
     ]
 
+    if lang_key == "mah-meri":
+        try:
+            from mah_meri_quiz import verified_specific_vocab
+
+            extra = [
+                {
+                    "term": (row.get("word") or "").strip(),
+                    "meaning": (row.get("meaning_en") or row.get("meaning_ms") or "").strip(),
+                    "note": "Documented Mah Meri dictionary item.",
+                }
+                for row in verified_specific_vocab(limit=16)
+                if (row.get("word") or "").strip()
+            ]
+            all_vocabulary = extra + [
+                item
+                for item in all_vocabulary
+                if item["term"].strip().lower()
+                not in {e["term"].strip().lower() for e in extra}
+            ]
+            matched_vocabulary = [
+                item
+                for item in all_vocabulary
+                if item["term"].lower() in lowered_message
+                or item["meaning"].lower() in lowered_message
+            ]
+        except Exception:
+            pass
+
     if matched_vocabulary:
         vocabulary = matched_vocabulary[:TUTOR_MAX_VOCABULARY_ITEMS]
     else:
@@ -3735,7 +3763,15 @@ def get_all_tutor_quiz_candidates(lang_key, level_num):
         authored = get_tutor_quiz_steps(lang_key, None)
         vocabulary_based = generate_vocabulary_quiz_candidates(lang_key, None)
 
-    return authored + vocabulary_based
+    combined = authored + vocabulary_based
+    if lang_key == "mah-meri":
+        from mah_meri_quiz import as_tutor_candidates, build_mah_meri_mcqs
+        import random as _random
+
+        mah = as_tutor_candidates(build_mah_meri_mcqs(12, rng=_random.Random(), reverse_bias=0.55))
+        if mah:
+            return mah + combined
+    return combined
 
 
 def start_tutor_quiz(lang_key, level_num):
@@ -5886,6 +5922,9 @@ def quiz_page():
         return redirect(url_for("login"))
 
     user_id = session["user_id"]
+    mode = (request.args.get("mode") or "").strip().lower()
+    if mode != "daily":
+        mode = "practice"
     lang_keys = get_language_keys() or list(LANGUAGES.keys())
 
     languages = []
@@ -5905,6 +5944,7 @@ def quiz_page():
         languages=languages,
         count_options=_QUIZ_COUNT_OPTIONS,
         difficulty_options=_QUIZ_DIFFICULTY_OPTIONS,
+        quiz_mode=mode,
     )
 
 
@@ -5924,17 +5964,26 @@ def api_quiz_start():
     user_id = session["user_id"]
 
     if mode == "daily":
-        unlocked = {}
-        for key in get_language_keys() or list(LANGUAGES.keys()):
-            unlocked[key] = [
+        raw_lang = (data.get("lang_key") or "").strip()
+        language = resolve_language(raw_lang) or (raw_lang if raw_lang in get_language_keys() else None)
+        if not language:
+            return jsonify({
+                "ok": False,
+                "reason": "language_required",
+                "message": "Choose a language before starting Daily Quiz.",
+            }), 200
+        unlocked = {
+            language: [
                 lvl["number"]
-                for lvl in get_levels(user_id, key)
+                for lvl in get_levels(user_id, language)
                 if lvl.get("unlocked")
             ]
+        }
         result = start_daily_quiz_session(
             user_id=user_id,
             unlocked_levels=unlocked,
             count=5,
+            lang_key=language,
         )
         if not result.get("ok"):
             return jsonify({
@@ -6384,8 +6433,15 @@ def level_page(lang_key, level_num):
             )
         )
 
+    if lang_key == "mah-meri":
+        from mah_meri_quiz import replace_mah_meri_lesson_quizzes
+
+        course_steps = replace_mah_meri_lesson_quizzes(list(course["steps"]), level_num)
+    else:
+        course_steps = course["steps"]
+
     total_steps = len(
-        course["steps"]
+        course_steps
     )
 
     replay_mode = str(
@@ -6422,7 +6478,7 @@ def level_page(lang_key, level_num):
         level_title=LEVEL_TITLES[
             level_num
         ],
-        course_steps=course["steps"],
+        course_steps=course_steps,
         saved_step=saved_step,
         level_completed=level_completed,
         replay_mode=replay_mode,

@@ -48,6 +48,13 @@ def _course_context_rows(lang_key: Optional[str]) -> list[dict]:
     """A few vocabulary rows to ground a GPT-generated question, if any exist."""
     if not lang_key:
         return []
+    if lang_key == "mah-meri":
+        try:
+            from mah_meri_quiz import verified_specific_vocab
+
+            return verified_specific_vocab(limit=18)
+        except Exception:
+            pass
     try:
         from retrieval import dictionary_search
 
@@ -202,6 +209,66 @@ def _start_gpt_quiz(
     return "\n".join(line for line in lines if line is not None)
 
 
+def _start_mah_meri_verified_tutor(
+    *,
+    level_num: Optional[int],
+    user_id: Optional[int],
+    target_diff: Optional[str],
+) -> Optional[str]:
+    from mah_meri_quiz import as_session_questions, build_mah_meri_mcqs
+
+    rng = random.Random()
+    reverse_bias = 0.7 if (target_diff or "").lower() == "hard" else 0.55
+    mcqs = build_mah_meri_mcqs(6, rng=rng, reverse_bias=reverse_bias)
+    built = as_session_questions(mcqs, rng=rng, difficulty=target_diff or "hard")
+    if not built:
+        return None
+    recent = session.get("tutor_quiz_recent") or {}
+    key = _score_key("mah-meri", level_num)
+    recent_questions = list(recent.get(key) or [])
+    pool = [q for q in built if q.get("question") not in recent_questions] or built
+    chosen = random.choice(pool)
+    session["tutor_quiz_state"] = {
+        "lang_key": "mah-meri",
+        "level_num": level_num,
+        "question": chosen["question"],
+        "options": chosen["options"],
+        "correct_index": chosen["correct_index"],
+        "correct_answer": chosen["options"][chosen["correct_index"]],
+        "explanation": chosen.get("explanation") or "",
+        "quiz_id": None,
+        "difficulty": chosen.get("difficulty") or target_diff or "hard",
+        "item_key": (chosen.get("question") or "")[:120],
+        "source": "database",
+    }
+    recent_questions.append(chosen.get("question"))
+    recent[key] = recent_questions[-12:]
+    session["tutor_quiz_recent"] = recent
+    scores = session.get("tutor_quiz_scores") or {}
+    score = scores.get(key) or {"correct": 0, "total": 0}
+    score_line = f"\n\n🏆 Score so far: {score['correct']}/{score['total']}" if score.get("total") else ""
+    coaching = (
+        weak_area_message(user_id, "mah-meri", int(level_num))
+        if level_num is not None
+        else ""
+    )
+    lines = [
+        "🧩 Quiz time — verified Mah Meri dictionary item",
+        "_This question uses documented Mah Meri vocabulary from the project database._",
+        "",
+    ]
+    if coaching:
+        lines.extend([coaching, ""])
+    lines.append(chosen["question"])
+    lines.append("")
+    for i, opt in enumerate(chosen["options"], start=1):
+        lines.append(f"{i}. {opt}")
+    if score_line:
+        lines.append(score_line)
+    lines.append('Reply with the option number (e.g. "1") or the full answer text.')
+    return "\n".join(line for line in lines if line is not None)
+
+
 def start_quiz(
     lang_key: Optional[str],
     level_num: Optional[int],
@@ -213,7 +280,16 @@ def start_quiz(
     quiz_continue: bool = False,
 ) -> str:
     # AI Tutor Quiz action prefers GPT-generated MCQ; standalone Practice Quiz
-    # page never calls this path.
+    # page never calls this path. Mah Meri uses verified dictionary items first
+    # so the tutor cannot drift into Malay look-alikes.
+    if lang_key == "mah-meri":
+        mah_reply = _start_mah_meri_verified_tutor(
+            level_num=level_num,
+            user_id=user_id,
+            target_diff=forced_difficulty,
+        )
+        if mah_reply:
+            return mah_reply
     if prefer_gpt or not lang_key or level_num is None:
         return _start_gpt_quiz(
             lang_key=lang_key,
@@ -231,6 +307,12 @@ def start_quiz(
     questions = get_quiz_questions(lang_key, int(level_num), difficulty=target_diff)
     if not questions:
         questions = get_quiz_questions(lang_key, int(level_num))
+    if lang_key == "mah-meri":
+        from mah_meri_quiz import filter_quiz_table_rows
+
+        filtered = filter_quiz_table_rows(questions)
+        if filtered:
+            questions = filtered
     if not questions:
         return _start_gpt_quiz(
             lang_key=lang_key,
@@ -515,15 +597,47 @@ def _build_session_questions(
     level_num: int,
     count: int,
     difficulty: Optional[str],
+    *,
+    rng=None,
 ) -> list[dict]:
+    rng = rng or random
+    if lang_key == "mah-meri":
+        from mah_meri_quiz import (
+            as_session_questions,
+            build_mah_meri_mcqs,
+            filter_quiz_table_rows,
+        )
+
+        reverse_bias = 0.7 if (difficulty or "").lower() == "hard" else 0.5
+        mcqs = build_mah_meri_mcqs(count, rng=rng, reverse_bias=reverse_bias)
+        built = as_session_questions(mcqs, rng=rng, difficulty=difficulty)
+        if len(built) >= count:
+            return built[:count]
+        table_rows = filter_quiz_table_rows(
+            get_quiz_questions(lang_key, int(level_num), limit=200)
+        )
+        extra = _session_questions_from_table(table_rows, count - len(built), difficulty, rng)
+        return (built + extra)[:count]
+
     pool = get_quiz_questions(lang_key, int(level_num), limit=200, difficulty=difficulty) if difficulty else []
     if not pool:
         pool = get_quiz_questions(lang_key, int(level_num), limit=200)
     if not pool:
         return []
+    return _session_questions_from_table(pool, count, difficulty, rng)
 
-    random.shuffle(pool)
-    chosen = pool[:count]
+
+def _session_questions_from_table(
+    pool: list[dict],
+    count: int,
+    difficulty: Optional[str],
+    rng,
+) -> list[dict]:
+    if not pool or count <= 0:
+        return []
+    shuffled_pool = list(pool)
+    rng.shuffle(shuffled_pool)
+    chosen = shuffled_pool[:count]
 
     built: list[dict] = []
     for q in chosen:
@@ -539,7 +653,7 @@ def _build_session_questions(
 
         correct = (q.get("correct_answer") or "").strip()
         shuffled = options[:]
-        random.shuffle(shuffled)
+        rng.shuffle(shuffled)
         if correct and correct.lower() not in [o.strip().lower() for o in shuffled]:
             shuffled[0] = correct
 
@@ -557,6 +671,7 @@ def _build_session_questions(
                 "correct_index": correct_index,
                 "explanation": q.get("explanation") or "",
                 "difficulty": q.get("difficulty") or difficulty or "medium",
+                "source_lang": q.get("language") or q.get("source_lang"),
             }
         )
     return built
@@ -575,9 +690,11 @@ def _public_session_view(state: dict) -> dict:
             "options": q["options"],
             "difficulty": q.get("difficulty"),
             "quiz_id": q.get("quiz_id"),
+            "source_lang": q.get("source_lang") or state.get("lang_key"),
         }
     return {
         "lang_key": state.get("lang_key"),
+        "mode": state.get("mode") or "practice",
         "level_num": state.get("level_num"),
         "difficulty": state.get("difficulty"),
         "index": idx,
@@ -610,6 +727,7 @@ def start_quiz_session(
         "lang_key": lang_key,
         "level_num": int(level_num),
         "difficulty": target_diff,
+        "mode": "practice",
         "questions": questions,
         "index": 0,
         "answers": [],
@@ -729,8 +847,8 @@ def clear_quiz_session() -> None:
     session.pop(_QUIZ_SESSION_KEY, None)
 
 
-def _daily_seed(user_id: Optional[int], day_key: str) -> str:
-    return f"daily|{day_key}|{user_id or 0}"
+def _daily_seed(user_id: Optional[int], day_key: str, lang_key: str = "") -> str:
+    return f"daily|{day_key}|{user_id or 0}|{lang_key or '*'}"
 
 
 def daily_quiz_status(user_id: int) -> dict:
@@ -775,9 +893,10 @@ def start_daily_quiz_session(
     user_id: int,
     unlocked_levels: dict[str, list[int]],
     count: int = 5,
+    lang_key: Optional[str] = None,
 ) -> dict:
     """
-    Date-seeded daily quiz using only verified quiz table rows.
+    Date-seeded daily quiz using verified rows for one selected language.
     Reuses the standalone quiz session machinery (no new tables).
     """
     from datetime import datetime, timezone
@@ -785,91 +904,72 @@ def start_daily_quiz_session(
 
     day_key = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     status = daily_quiz_status(user_id)
-    # Allow restart the same day (retry), but keep deterministic question set.
 
+    requested = (lang_key or "").strip()
     lang_keys = [k for k, levels in (unlocked_levels or {}).items() if levels]
+    if requested:
+        if requested not in lang_keys:
+            return {"ok": False, "reason": "language_locked"}
+        lang_keys = [requested]
     if not lang_keys:
         return {"ok": False, "reason": "no_unlocked_levels"}
+    if len(lang_keys) != 1:
+        return {"ok": False, "reason": "language_required"}
 
-    seed = _daily_seed(user_id, day_key)
+    chosen_lang = lang_keys[0]
+    seed = _daily_seed(user_id, day_key, chosen_lang)
     digest = hashlib.sha256(seed.encode("utf-8")).hexdigest()
     rng = random.Random(int(digest[:16], 16))
 
-    # Rotate featured language by day, then fall back across unlocked langs.
-    ordered = sorted(lang_keys)
-    featured = ordered[int(digest[16:20], 16) % len(ordered)]
-    candidate_langs = [featured] + [k for k in ordered if k != featured]
-
-    pool: list[tuple[str, int, dict]] = []
-    for lang_key in candidate_langs:
-        for level_num in unlocked_levels.get(lang_key) or []:
-            rows = get_quiz_questions(lang_key, int(level_num), limit=200)
-            for q in rows:
-                pool.append((lang_key, int(level_num), q))
-
-    if not pool:
-        return {"ok": False, "reason": "no_questions"}
-
-    rng.shuffle(pool)
     count = max(1, min(10, int(count or 5)))
+    levels = unlocked_levels.get(chosen_lang) or []
+    if not levels:
+        return {"ok": False, "reason": "no_unlocked_levels"}
 
-    # No duplicate quiz ids inside one daily set.
-    seen_ids: set = set()
-    chosen: list[tuple[str, int, dict]] = []
-    for item in pool:
-        qid = item[2].get("id")
-        if qid in seen_ids:
-            continue
-        seen_ids.add(qid)
-        chosen.append(item)
-        if len(chosen) >= count:
-            break
-
-    if not chosen:
-        return {"ok": False, "reason": "no_questions"}
-
-    built: list[dict] = []
-    primary_lang = chosen[0][0]
-    primary_level = chosen[0][1]
-    for lang_key, level_num, q in chosen:
-        options = [
-            (q.get("option_a") or ""),
-            (q.get("option_b") or ""),
-            (q.get("option_c") or ""),
-            (q.get("option_d") or ""),
-        ]
-        options = [opt for opt in options if str(opt).strip()]
-        if not options:
-            continue
-        correct = (q.get("correct_answer") or "").strip()
-        shuffled = options[:]
-        rng.shuffle(shuffled)
-        if correct and correct.lower() not in [o.strip().lower() for o in shuffled]:
-            shuffled[0] = correct
-        correct_index = 0
-        for i, opt in enumerate(shuffled):
-            if opt.strip().lower() == correct.lower():
-                correct_index = i
+    if chosen_lang == "mah-meri":
+        built = _build_session_questions(chosen_lang, int(levels[0]), count, "hard", rng=rng)
+        primary_level = int(levels[0])
+    else:
+        pool: list[tuple[str, int, dict]] = []
+        for level_num in levels:
+            rows = get_quiz_questions(chosen_lang, int(level_num), limit=200)
+            for q in rows:
+                pool.append((chosen_lang, int(level_num), q))
+        if not pool:
+            return {"ok": False, "reason": "no_questions"}
+        rng.shuffle(pool)
+        seen_ids: set = set()
+        chosen: list[tuple[str, int, dict]] = []
+        for item in pool:
+            qid = item[2].get("id")
+            if qid in seen_ids:
+                continue
+            seen_ids.add(qid)
+            chosen.append(item)
+            if len(chosen) >= count:
                 break
-        built.append(
-            {
-                "quiz_id": q.get("id"),
-                "question": q.get("question") or "Choose the correct answer.",
-                "options": shuffled,
-                "correct_index": correct_index,
-                "explanation": q.get("explanation") or "",
-                "difficulty": "daily",
-                "source_lang": lang_key,
-                "source_level": level_num,
-            }
-        )
+        if not chosen:
+            return {"ok": False, "reason": "no_questions"}
+        built = []
+        primary_level = chosen[0][1]
+        table_rows = [item[2] for item in chosen]
+        for q in table_rows:
+            q = dict(q)
+            q["source_lang"] = chosen_lang
+        built = _session_questions_from_table(table_rows, count, "daily", rng)
+        for item in built:
+            item["difficulty"] = "daily"
+            item["source_lang"] = chosen_lang
 
     if not built:
         return {"ok": False, "reason": "no_questions"}
+    for item in built:
+        item["difficulty"] = "daily"
+        item["source_lang"] = chosen_lang
 
-    weak = weak_area_message(user_id, primary_lang, int(primary_level))
+    weak = weak_area_message(user_id, chosen_lang, int(primary_level))
     state = {
-        "lang_key": primary_lang,
+        "lang_key": chosen_lang,
         "level_num": int(primary_level),
         "difficulty": "daily",
         "mode": "daily",

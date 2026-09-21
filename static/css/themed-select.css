@@ -1,0 +1,89 @@
+/* Dark-green custom select shared by Practice / Daily Quiz. */
+
+.themed-select {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.themed-select-native {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.themed-select-trigger {
+    width: 100%;
+    text-align: left;
+    background: #123428;
+    color: #efd77e;
+    border: 1px solid rgba(239, 215, 126, 0.5);
+    border-radius: 12px;
+    padding: 10px 36px 10px 12px;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    cursor: pointer;
+    appearance: none;
+    font-weight: 600;
+    background-image: linear-gradient(45deg, transparent 50%, #efd77e 50%),
+        linear-gradient(135deg, #efd77e 50%, transparent 50%);
+    background-position: calc(100% - 16px) calc(50% - 3px), calc(100% - 11px) calc(50% - 3px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+.themed-select-trigger:focus {
+    outline: 2px solid rgba(239, 215, 126, 0.65);
+    outline-offset: 2px;
+}
+
+.themed-select-value {
+    display: block;
+    color: #efd77e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.themed-select-menu {
+    position: fixed;
+    z-index: 80;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+    background: #0f2e25;
+    border: 1px solid rgba(239, 215, 126, 0.45);
+    border-radius: 12px;
+    max-height: 240px;
+    overflow-y: auto;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.themed-select-menu[hidden] {
+    display: none !important;
+}
+
+.themed-select-option {
+    color: #ecf4f0;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.themed-select-option[aria-disabled="true"] {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.themed-select-option[aria-selected="true"],
+.themed-select-option:hover,
+.themed-select-option:focus {
+    color: #efd77e;
+    background: rgba(214, 176, 77, 0.16);
+    outline: none;
+}

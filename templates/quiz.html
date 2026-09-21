@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Quiz — Malaysia Linguistics Lab{% endblock %}
+{% block title %}{% if quiz_mode == 'daily' %}Daily Quiz{% else %}Practice Quiz{% endif %} — Malaysia Linguistics Lab{% endblock %}
 
 {% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/themed-select.css') }}">
 
 <style>
 
@@ -44,14 +46,11 @@
   width:100%;
   padding:10px 12px;
   border-radius:12px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.06);
-  color:#fff;
+  border:1px solid rgba(239,215,126,.5);
+  background:#123428;
+  color:#efd77e;
   font-size:.9rem;
-}
-
-.quiz-setup-grid select option{
-  color:#111;
+  color-scheme:dark;
 }
 
 .quiz-start-btn, .quiz-primary-btn{
@@ -232,14 +231,18 @@
 </style>
 
 <div class="quiz-header">
-  <h1>Practice Quiz</h1>
-  <p>
+  <h1 id="quiz-title">{% if quiz_mode == 'daily' %}Daily Quiz{% else %}Practice Quiz{% endif %}</h1>
+  <p id="quiz-lead">
+    {% if quiz_mode == 'daily' %}
+    A short, language-specific challenge for today. Choose the language first, then start — questions are fetched only after you confirm.
+    {% else %}
     Deterministic, database-backed practice questions from your unlocked
     lessons. Scored instantly, no AI required.
+    {% endif %}
   </p>
 </div>
 
-<div class="card" id="quiz-setup-card">
+<div class="card" id="quiz-setup-card" data-quiz-mode="{{ quiz_mode }}">
 
   <div class="quiz-setup-grid">
     <div>
@@ -251,12 +254,12 @@
       </select>
     </div>
 
-    <div>
+    <div{% if quiz_mode == 'daily' %} hidden{% endif %}>
       <label for="quiz-level">Level</label>
       <select id="quiz-level"></select>
     </div>
 
-    <div>
+    <div{% if quiz_mode == 'daily' %} hidden{% endif %}>
       <label for="quiz-difficulty">Difficulty</label>
       <select id="quiz-difficulty">
         {% for value, label in difficulty_options %}
@@ -265,7 +268,7 @@
       </select>
     </div>
 
-    <div>
+    <div{% if quiz_mode == 'daily' %} hidden{% endif %}>
       <label for="quiz-count">Questions</label>
       <select id="quiz-count">
         {% for n in count_options %}
@@ -313,6 +316,7 @@
 </div>
 
 <template id="quiz-languages-json">{{ languages | tojson }}</template>
+<script src="{{ url_for('static', filename='js/themed-select.js') }}"></script>
 <script>
 (function () {
 
@@ -370,6 +374,9 @@
     }).then(function (r) { return r.json(); });
   }
 
+  const pageMode = (els.setupCard && els.setupCard.getAttribute("data-quiz-mode")) || "practice";
+  let requestSeq = 0;
+
   function populateLevels() {
     const lang = levelsByLang.find(function (l) { return l.lang_key === els.lang.value; });
     els.level.innerHTML = "";
@@ -383,10 +390,19 @@
     });
     const firstUnlocked = lang.levels.find(function (l) { return l.unlocked; });
     if (firstUnlocked) els.level.value = firstUnlocked.number;
+    if (window.rebuildThemedSelect) window.rebuildThemedSelect(els.level);
   }
 
-  els.lang.addEventListener("change", populateLevels);
+  els.lang.addEventListener("change", function () {
+    requestSeq += 1;
+    populateLevels();
+    postJson("/api/quiz/end", {});
+  });
   populateLevels();
+  ["quiz-lang", "quiz-level", "quiz-difficulty", "quiz-count"].forEach(function (id) {
+    var sel = document.getElementById(id);
+    if (sel && window.enhanceThemedSelect) window.enhanceThemedSelect(sel);
+  });
 
   function showCard(which) {
     els.setupCard.style.display = which === "setup" ? "" : "none";
@@ -472,17 +488,29 @@
   }
 
   function beginSession(payload) {
+    const seq = ++requestSeq;
     els.setupError.style.display = "none";
     els.startBtn.disabled = true;
     els.startBtn.textContent = "Starting…";
 
     return postJson("/api/quiz/start", payload).then(function (data) {
+      if (seq !== requestSeq) return;
       els.startBtn.disabled = false;
       els.startBtn.textContent = "Start quiz";
 
       if (!data.ok) {
         els.setupError.style.display = "";
         els.setupError.textContent = data.message || "This lesson does not have quiz questions available yet.";
+        return;
+      }
+      if ((data.mode || pageMode) !== pageMode) {
+        els.setupError.style.display = "";
+        els.setupError.textContent = "Quiz mode did not match this page. Please start again.";
+        return;
+      }
+      if (data.lang_key && data.lang_key !== els.lang.value) {
+        els.setupError.style.display = "";
+        els.setupError.textContent = "Questions did not match the selected language. Please start again.";
         return;
       }
 
@@ -495,6 +523,7 @@
       }
       renderQuestion(data);
     }).catch(function () {
+      if (seq !== requestSeq) return;
       els.startBtn.disabled = false;
       els.startBtn.textContent = "Start quiz";
       els.setupError.style.display = "";
@@ -503,12 +532,18 @@
   }
 
   els.startBtn.addEventListener("click", function () {
-    beginSession({
+    const payload = {
+      mode: pageMode,
       lang_key: els.lang.value,
-      level_num: parseInt(els.level.value, 10),
-      difficulty: els.difficulty.value,
-      count: parseInt(els.count.value, 10),
-    });
+    };
+    if (pageMode !== "daily") {
+      payload.level_num = parseInt(els.level.value, 10);
+      payload.difficulty = els.difficulty.value;
+      payload.count = parseInt(els.count.value, 10);
+    } else {
+      payload.count = 5;
+    }
+    beginSession(payload);
   });
 
   els.retryBtn.addEventListener("click", function () {
@@ -531,7 +566,6 @@
 
   showCard("setup");
 
-  /* Deep-link: /quiz?mode=daily and/or ?lang=iban */
   var params = new URLSearchParams(window.location.search || "");
   var deepLang = (params.get("lang") || params.get("language") || "").trim();
   if (deepLang && els.lang) {
@@ -541,11 +575,26 @@
     if (matchOpt) {
       els.lang.value = deepLang;
       populateLevels();
+      if (window.rebuildThemedSelect) window.rebuildThemedSelect(els.lang);
     }
   }
-  if ((params.get("mode") || "").toLowerCase() === "daily") {
-    beginSession({ mode: "daily", count: 5 });
-  }
+
+  fetch("/api/quiz/state").then(function (r) { return r.json(); }).then(function (data) {
+    if (!data || !data.ok) return;
+    if ((data.mode || "practice") !== pageMode) {
+      postJson("/api/quiz/end", {});
+      return;
+    }
+    if (data.lang_key && els.lang) {
+      els.lang.value = data.lang_key;
+      populateLevels();
+      if (window.rebuildThemedSelect) window.rebuildThemedSelect(els.lang);
+    }
+    if (!data.finished && data.current_question) {
+      showCard("play");
+      renderQuestion(data);
+    }
+  }).catch(function () {});
 
 })();
 </script>
