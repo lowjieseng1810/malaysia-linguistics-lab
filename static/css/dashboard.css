@@ -9398,10 +9398,8 @@ transform:none;
     }
 }
 
-.exploration-beacon.lang-beacon.is-geo-placed .beacon-label {
-    min-width: 108px !important;
-    max-width: 148px;
-    padding: 6px 8px !important;
+.exploration-beacon.lang-beacon {
+    display: none !important;
 }
 
 .exploration-beacon.lang-beacon.is-geo-placed .beacon-label strong {

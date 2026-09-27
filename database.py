@@ -95,6 +95,7 @@ def init_content_tables(conn=None) -> None:
         """
     )
     _ensure_vocabulary_provenance_columns(conn)
+    ensure_column(conn, "quiz", "hint", "TEXT")
     init_review_tables(conn)
     apply_mah_meri_vocabulary_repairs(conn)
     apply_default_review_statuses(conn)
@@ -354,6 +355,7 @@ def _collect_quiz_from_steps(
                     or step.get("note")
                     or ""
                 ),
+                "hint": (step.get("hint") or "").strip(),
                 "difficulty": step.get("difficulty") or "medium",
             }
         )
@@ -465,6 +467,218 @@ def sync_missing_vocabulary_from_course(course_data: dict) -> dict[str, int]:
     }
 
 
+_EXTENDED_COURSE_LANGS = (
+    "bookan",
+    "chewong",
+    "kristang",
+    "baba-malay",
+    "temoq",
+)
+_ASJP_LEARNER_LANGS = ("chewong", "temoq", "baba-malay", "kristang")
+
+
+def _quiz_norm_question(text: str) -> str:
+    return " ".join((text or "").strip().lower().split())
+
+
+def _insert_quiz_row(conn, row: dict) -> None:
+    cols = table_columns(conn, "quiz")
+    has_hint = "hint" in cols
+    if has_hint:
+        conn.execute(
+            """
+            INSERT INTO quiz (
+                lesson_id, language, question, option_a, option_b, option_c, option_d,
+                correct_answer, explanation, difficulty, hint
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                row["lesson_id"],
+                row["language"],
+                row["question"],
+                row["option_a"],
+                row["option_b"],
+                row["option_c"],
+                row["option_d"],
+                row["correct_answer"],
+                row["explanation"],
+                row["difficulty"],
+                row.get("hint") or "",
+            ),
+        )
+        return
+    conn.execute(
+        """
+        INSERT INTO quiz (
+            lesson_id, language, question, option_a, option_b, option_c, option_d,
+            correct_answer, explanation, difficulty
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            row["lesson_id"],
+            row["language"],
+            row["question"],
+            row["option_a"],
+            row["option_b"],
+            row["option_c"],
+            row["option_d"],
+            row["correct_answer"],
+            row["explanation"],
+            row["difficulty"],
+        ),
+    )
+
+
+def withdraw_asjp_learner_rows(conn=None) -> dict[str, int]:
+    """Remove ASJP encodings from learner dictionary/quiz for the new languages."""
+    own = conn is None
+    if own:
+        conn = get_db()
+    init_content_tables(conn)
+    deleted_vocab = 0
+    deleted_quiz = 0
+    for lang in _ASJP_LEARNER_LANGS:
+        cur = conn.execute(
+            """
+            DELETE FROM vocabulary
+            WHERE language = ?
+              AND COALESCE(source_ref, '') LIKE ?
+            """,
+            (lang, "%ASJP%"),
+        )
+        deleted_vocab += int(getattr(cur, "rowcount", 0) or 0)
+        cur = conn.execute(
+            """
+            DELETE FROM quiz
+            WHERE language = ?
+              AND (
+                    COALESCE(question, '') LIKE '%m3*%'
+                 OR COALESCE(question, '') LIKE '%a7oc%'
+                 OR COALESCE(option_a, '') LIKE '%m3*%'
+                 OR COALESCE(option_a, '') LIKE '%a7oc%'
+                 OR COALESCE(option_b, '') LIKE '%E*N%'
+                 OR COALESCE(correct_answer, '') LIKE '%m3*%'
+              )
+            """,
+            (lang,),
+        )
+        deleted_quiz += int(getattr(cur, "rowcount", 0) or 0)
+    conn.commit()
+    if own:
+        conn.close()
+    return {"vocabulary": deleted_vocab, "quiz": deleted_quiz}
+
+
+def sync_extended_course_quizzes(course_data: dict) -> dict[str, int]:
+    """Keep Practice/Daily quiz rows aligned with extended COURSE_DATA lessons."""
+    conn = get_db()
+    init_content_tables(conn)
+    withdraw_asjp_learner_rows(conn)
+
+    desired: list[dict] = []
+    for lang_key in _EXTENDED_COURSE_LANGS:
+        levels = (course_data or {}).get(lang_key) or {}
+        if not isinstance(levels, dict):
+            continue
+        for level_num, payload in levels.items():
+            if not isinstance(level_num, int):
+                try:
+                    level_num = int(level_num)
+                except (TypeError, ValueError):
+                    continue
+            steps = (payload or {}).get("steps") or []
+            desired.extend(_collect_quiz_from_steps(lang_key, level_num, steps))
+
+    wanted_keys: set[tuple[str, int, str]] = set()
+    inserted = 0
+    updated = 0
+    cols = table_columns(conn, "quiz")
+    has_hint = "hint" in cols
+    for row in desired:
+        key = (row["language"], int(row["lesson_id"]), _quiz_norm_question(row["question"]))
+        wanted_keys.add(key)
+        existing = conn.execute(
+            """
+            SELECT id FROM quiz
+            WHERE language = ?
+              AND lesson_id = ?
+              AND LOWER(TRIM(question)) = LOWER(TRIM(?))
+            LIMIT 1
+            """,
+            (row["language"], row["lesson_id"], row["question"]),
+        ).fetchone()
+        if existing:
+            if has_hint:
+                conn.execute(
+                    """
+                    UPDATE quiz
+                    SET option_a = ?, option_b = ?, option_c = ?, option_d = ?,
+                        correct_answer = ?, explanation = ?, difficulty = ?, hint = ?
+                    WHERE id = ?
+                    """,
+                    (
+                        row["option_a"],
+                        row["option_b"],
+                        row["option_c"],
+                        row["option_d"],
+                        row["correct_answer"],
+                        row["explanation"],
+                        row["difficulty"],
+                        row.get("hint") or "",
+                        existing["id"],
+                    ),
+                )
+            else:
+                conn.execute(
+                    """
+                    UPDATE quiz
+                    SET option_a = ?, option_b = ?, option_c = ?, option_d = ?,
+                        correct_answer = ?, explanation = ?, difficulty = ?
+                    WHERE id = ?
+                    """,
+                    (
+                        row["option_a"],
+                        row["option_b"],
+                        row["option_c"],
+                        row["option_d"],
+                        row["correct_answer"],
+                        row["explanation"],
+                        row["difficulty"],
+                        existing["id"],
+                    ),
+                )
+            updated += 1
+            continue
+        _insert_quiz_row(conn, row)
+        inserted += 1
+
+    removed = 0
+    for lang_key in _EXTENDED_COURSE_LANGS:
+        rows = conn.execute(
+            "SELECT id, lesson_id, question FROM quiz WHERE language = ?",
+            (lang_key,),
+        ).fetchall()
+        for existing in rows:
+            key = (
+                lang_key,
+                int(existing["lesson_id"]),
+                _quiz_norm_question(existing["question"]),
+            )
+            if key not in wanted_keys:
+                conn.execute("DELETE FROM quiz WHERE id = ?", (existing["id"],))
+                removed += 1
+
+    conn.commit()
+    total = conn.execute("SELECT COUNT(*) AS c FROM quiz").fetchone()["c"]
+    conn.close()
+    return {
+        "inserted": inserted,
+        "updated": updated,
+        "removed": removed,
+        "quiz": total,
+    }
+
+
 def seed_tutor_content(
     course_data: dict,
     languages: dict,
@@ -476,14 +690,17 @@ def seed_tutor_content(
 
     existing = conn.execute("SELECT COUNT(*) AS c FROM vocabulary").fetchone()["c"]
     if existing > 0:
-        # Keep dictionary coverage current when COURSE_DATA gains entries.
+        # Keep dictionary + quiz coverage current when COURSE_DATA gains entries.
         conn.close()
         synced = sync_missing_vocabulary_from_course(course_data or {})
+        quiz_synced = sync_extended_course_quizzes(course_data or {})
         return {
             "skipped": 1,
             "vocabulary": synced.get("vocabulary", existing),
             "synced_inserted": synced.get("inserted", 0),
             "enrich_inserted": synced.get("enrich_inserted", 0),
+            "quiz_inserted": quiz_synced.get("inserted", 0),
+            "quiz_removed": quiz_synced.get("removed", 0),
         }
 
     vocab_rows: list[dict] = []
@@ -649,26 +866,7 @@ def seed_tutor_content(
         )
 
     for row in quiz_rows:
-        conn.execute(
-            """
-            INSERT INTO quiz (
-                lesson_id, language, question, option_a, option_b, option_c, option_d,
-                correct_answer, explanation, difficulty
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                row["lesson_id"],
-                row["language"],
-                row["question"],
-                row["option_a"],
-                row["option_b"],
-                row["option_c"],
-                row["option_d"],
-                row["correct_answer"],
-                row["explanation"],
-                row["difficulty"],
-            ),
-        )
+        _insert_quiz_row(conn, row)
 
     conn.commit()
     # Harvest additional verified word/meaning pairs already present as
@@ -889,6 +1087,15 @@ def import_verified_vocabulary_packs(
 
     for path in sorted(root.glob("*.json")):
         if path.name.lower() in {"sources.json", "manifest.json"}:
+            continue
+        if path.name.lower() in {
+            "asjp_ceq_wong.json",
+            "asjp_temoq.json",
+            "asjp_malay_baba.json",
+            "asjp_papia_kristang.json",
+        }:
+            # Comparative transcription for new languages stays on disk for
+            # provenance; it is not imported as learner-facing dictionary rows.
             continue
         files_seen.append(path.name)
         try:

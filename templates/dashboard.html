@@ -562,7 +562,10 @@
             'baba-malay': 'baba-malay-record',
             'temoq': 'temoq-record'
         } %}
-        {% for lang_key, meta in language_explorer_meta.items() %}
+        {% set record_langs = ['iban', 'kadazan-dusun', 'bidayuh', 'mah-meri'] %}
+        {% for lang_key in record_langs %}
+        {% set meta = language_explorer_meta.get(lang_key) %}
+        {% if meta %}
         <a class="language-record-card {{ record_class.get(lang_key, lang_key ~ '-record') }}"
            href="{{ url_for('language_page', lang_key=lang_key) }}"
            aria-label="Explore {{ meta.display_name }}">
@@ -582,6 +585,7 @@
                 <small>{{ meta.state or meta.region }}</small>
             </div>
         </a>
+        {% endif %}
         {% endfor %}
     </div>
 

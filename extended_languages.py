@@ -106,15 +106,16 @@ EXTENDED_LANGUAGE_PROFILES = {
     "chewong": {
         "display_name": "Chewong",
         "aliases": ["Che Wong", "Cheq Wong", "Ceq Wong", "Siwang"],
-        "blurb": "A Northern Aslian language of Pahang, taught here from a published basic wordlist rather than invented forms.",
+        "blurb": "A Northern Aslian language of Pahang, taught from published community and documentation facts rather than invented spellings.",
         "region": "Pahang, Peninsular Malaysia",
         "community": "Chewong / Cheq Wong communities",
         "eyebrow": "Orang Asli language of Pahang",
         "about_title": "A Northern Aslian language with a documented basic lexicon",
         "about": (
-            "Chewong (also Cheq Wong, ISO 639-3 cwg) is an Austroasiatic Aslian language "
-            "associated with communities in Pahang. This course uses the ASJP Ceq Wong "
-            "40-item list (CC BY 4.0), preserving source spelling."
+            "Chewong (also Cheq Wong) is an Austroasiatic Northern Aslian language "
+            "associated with communities in Pahang. Lessons here teach community, place, "
+            "and documentation context. Raw comparative transcription is not used as "
+            "everyday student spelling."
         ),
         "speakers_title": "Chewong community",
         "speakers": (
@@ -128,11 +129,11 @@ EXTENDED_LANGUAGE_PROFILES = {
         ),
         "preservation_title": "Lexicon from an open comparative wordlist",
         "preservation": (
-            "Teaching items are a subset of the ASJP Ceq Wong list so lessons, quizzes, "
-            "and the dictionary stay aligned. Additional community lexicon work exists "
-            "in the wider literature but is not copied here without a reusable licence."
+            "Lessons teach community, place, and documentation limits rather than "
+            "displaying comparative transcription as everyday spelling."
         ),
         "verification_status": "Under Review",
+        "exclude_dictionary": True,
         "verification_note": (
             "Entries are verified against the ASJP Ceq Wong list, not against a community workshop. "
             "ASJP orthography is not everyday spelling."
@@ -228,8 +229,8 @@ EXTENDED_LANGUAGE_PROFILES = {
         ),
         "verification_status": "Under Review",
         "verification_note": (
-            "Lesson vocabulary is limited to the Wikikamus Swadesh list (CC BY-SA) plus the "
-            "ASJP Papia Kristang list. Not community-workshop verified in this project."
+            "Lesson vocabulary is limited to the Wikikamus Swadesh list (CC BY-SA) compiled "
+            "from Baxter & de Silva 2004. Not community-workshop verified in this project."
         ),
         "vitality": {
             "classification": "Living; small speaker community (ASJP lists 300 on that record)",
@@ -300,8 +301,8 @@ EXTENDED_LANGUAGE_PROFILES = {
         "about": (
             "Baba Malay (ISO 639-3 mbf) is a Malay-based contact language associated with "
             "Peranakan (Baba Nyonya) communities. Academic grammars describe Sinitic "
-            "substrate influence. Teaching forms here come from the ASJP Malay Baba list "
-            "(CC BY 4.0), which includes both Malay-overlapping and distinctive items such as lu ‘you’."
+            "substrate influence. Learner vocabulary stays under review here because the "
+            "bundled comparative list is not a community orthography."
         ),
         "speakers_title": "Peranakan communities",
         "speakers": (
@@ -318,9 +319,10 @@ EXTENDED_LANGUAGE_PROFILES = {
         "preservation_title": "Heritage, glossary work, and education",
         "preservation": (
             "Published grammars and lexicons document Baba Malay for education and research. "
-            "This course only teaches the bundled ASJP list so dictionary, lessons, and quizzes match."
+            "This course does not display raw comparative transcription as ordinary dictionary words."
         ),
         "verification_status": "Under Review",
+        "exclude_dictionary": True,
         "verification_note": (
             "ASJP Malay Baba forms are source-verified, not community-workshop verified. "
             "Some items overlap Malay; that overlap is historically expected, not an error."
@@ -387,9 +389,9 @@ EXTENDED_LANGUAGE_PROFILES = {
         "eyebrow": "Orang Asli language of Pahang",
         "about_title": "A Southern Aslian language with sparse public lexicon",
         "about": (
-            "Temoq (ISO 639-3 tmo) is classified as Southern Aslian (Austroasiatic). "
-            "This course uses the ASJP Temoq wordlist (compiler Julia Bischoffberger; "
-            "source Benjamin 1976), CC BY 4.0, without inventing extra vocabulary."
+            "Temoq is classified as Southern Aslian (Austroasiatic). "
+            "Lessons teach community, geography, and documentation limits. "
+            "Comparative transcription is not used as ordinary student spelling."
         ),
         "speakers_title": "Temoq community",
         "speakers": (
@@ -404,13 +406,15 @@ EXTENDED_LANGUAGE_PROFILES = {
         ),
         "preservation_title": "High documentation need, small open wordlist",
         "preservation": (
-            "Because reusable lexicon is limited, lessons stay inside the ASJP list. "
-            "That is a documentation constraint, not a claim that the language only has these words."
+            "Because reusable learner spelling is limited, lessons stay with documented "
+            "community and source facts. That is a documentation constraint, not a claim "
+            "that the language only has a handful of words."
         ),
         "verification_status": "Under Review",
+        "exclude_dictionary": True,
         "verification_note": (
-            "Only ASJP Temoq forms are treated as dictionary/lesson data. "
-            "No EGIDS grade is assigned in this course."
+            "No community orthography pack is bundled; comparative Temoq strings are not "
+            "shown as learner dictionary words. No EGIDS grade is assigned in this course."
         ),
         "vitality": {
             "classification": "Living (ASJP status field: alive); speaker count not given on that record",
