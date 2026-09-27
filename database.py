@@ -16,7 +16,7 @@ from db import get_db, table_columns, ensure_column
 
 VOCAB_PACK_DIR = Path(__file__).resolve().parent / "data" / "vocabulary"
 TARGET_VOCAB_PER_LANGUAGE = 250
-COURSE_LANGUAGES = ("iban", "kadazan-dusun", "bidayuh", "mah-meri")
+from language_catalog import COURSE_LANGUAGES
 
 
 def init_content_tables(conn=None) -> None:
@@ -301,6 +301,8 @@ def _collect_vocab_from_steps(
             if isinstance(idx, int) and 0 <= idx < len(options):
                 add(options[idx], step.get("responseMeaning", ""), step.get("hint", ""))
         elif step_type == "vocabulary":
+            if step.get("exclude_from_dictionary"):
+                continue
             add(step.get("word", ""), step.get("meaning", ""), step.get("note", ""))
         elif step_type == "conversation":
             for turn in step.get("turns") or []:

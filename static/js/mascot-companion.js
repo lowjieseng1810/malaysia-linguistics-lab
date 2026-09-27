@@ -1343,11 +1343,11 @@
     },
     passport_complete: function () {
       rememberAction("passport_complete", {});
-      showSpeech("Four languages. Your passport is complete!", "celebrating", 5600, {
+      showSpeech("Nine languages. Your passport is complete!", "celebrating", 5600, {
         priority: true,
         pose: "hug"
       });
-      speak("Four languages. Your passport is complete!", true);
+      speak("Nine languages. Your passport is complete!", true);
       markContextSpoken();
     },
     lesson_completed: function (detail) {

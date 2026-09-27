@@ -1,0 +1,280 @@
+{
+  "language": "baba-malay",
+  "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0",
+  "dialect_variant": "Malay Baba",
+  "asjp_id": "MALAY_BABA",
+  "asjp_lat": 1.28,
+  "asjp_lon": 103.83,
+  "entries": [
+    {
+      "word": "saya",
+      "meaning_en": "i",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "lu",
+      "meaning_en": "you",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kita",
+      "meaning_en": "we",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "satu",
+      "meaning_en": "one",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dua",
+      "meaning_en": "two",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "oraN",
+      "meaning_en": "person",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ikan",
+      "meaning_en": "fish",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kau",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "pokoh",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "daun",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kulit",
+      "meaning_en": "skin",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "darah",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tanduk",
+      "meaning_en": "horn",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mata5a",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hidoN",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gigi",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "lidah",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "taNan",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hati",
+      "meaning_en": "liver",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "minum",
+      "meaning_en": "drink",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "teNok",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "deNar",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dataN",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bintaN",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ayer",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "batu",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "api",
+      "meaning_en": "fire",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bermalam",
+      "meaning_en": "night",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "penuh",
+      "meaning_en": "full",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "baharu",
+      "meaning_en": "new",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Malay Baba",
+      "source_ref": "ASJP Database wordlist Malay Baba / Baba Malay (CLLD); CC BY 4.0"
+    }
+  ]
+}

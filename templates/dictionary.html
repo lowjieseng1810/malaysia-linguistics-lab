@@ -433,7 +433,7 @@
 <div class="dict-header">
   <h1>Dictionary &amp; Vocabulary Library</h1>
   <p>
-    Search and browse verified course vocabulary across all four languages.
+    Search and browse verified course vocabulary across all nine languages.
     Every entry comes from the course database — nothing is invented.
     Counts reflect real verified entries, not a padded target.
     Use filters, search, or <strong>Discover a Word</strong> to explore.
@@ -444,7 +444,7 @@
   {% for opt in language_options %}
   <div class="dict-lang-total" data-lang="{{ opt.lang_key }}">
     <strong>{{ opt.display_name }}</strong>
-    <span>{{ opt.vocab_count }} verified words</span>
+    <span>{% if opt.has_dictionary is defined and not opt.has_dictionary %}Lexicon not bundled{% else %}{{ opt.vocab_count }} verified words{% endif %}</span>
   </div>
   {% endfor %}
 </div>
@@ -457,8 +457,8 @@
       <label for="dict-lang">Language</label>
       <select id="dict-lang">
         {% for opt in language_options %}
-        <option value="{{ opt.lang_key }}" {% if opt.lang_key == default_lang %}selected{% endif %}>
-          {{ opt.display_name }} ({{ opt.vocab_count }})
+        <option value="{{ opt.lang_key }}" {% if opt.lang_key == default_lang %}selected{% endif %} data-has-dictionary="{{ 'true' if opt.has_dictionary is not defined or opt.has_dictionary else 'false' }}">
+          {{ opt.display_name }} ({% if opt.has_dictionary is defined and not opt.has_dictionary %}docs only{% else %}{{ opt.vocab_count }}{% endif %})
         </option>
         {% endfor %}
       </select>
@@ -630,8 +630,17 @@
       const shown = (data.rows || []).length;
 
       if (total === 0) {
-        els.count.textContent = "No matching words found.";
-        els.results.innerHTML = '<div class="dict-empty">No words match these filters yet in the course database.</div>';
+        const langSel = document.getElementById("dict-lang");
+        const selected = langSel && langSel.options[langSel.selectedIndex];
+        const hasDict = !selected || selected.getAttribute("data-has-dictionary") !== "false";
+        if (!hasDict) {
+          els.count.textContent = "No bundled lexicon for this language.";
+          els.results.innerHTML =
+            '<div class="dict-empty">Bookan is taught from published documentation facts, not a reusable wordlist. This course does not invent Bookan vocabulary. Open the Bookan lessons and sources instead.</div>';
+        } else {
+          els.count.textContent = "No matching words found.";
+          els.results.innerHTML = '<div class="dict-empty">No words match these filters yet in the course database.</div>';
+        }
         els.pagination.hidden = true;
         return;
       }

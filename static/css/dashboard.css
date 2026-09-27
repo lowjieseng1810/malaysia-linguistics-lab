@@ -3226,16 +3226,16 @@ transform:none;
     }
 
     .miniature-map-scene {
-        min-height: 430px;
+        min-height: 560px;
 
         border-radius: 21px;
     }
 
     .real-malaysia-map-wrap {
-        top: 60px;
-        right: -15px;
-        bottom: 62px;
-        left: -15px;
+        top: 48px;
+        right: 4px;
+        bottom: 48px;
+        left: 4px;
     }
 
     .sarawak-beacon {
@@ -3249,9 +3249,9 @@ transform:none;
     }
 
     .beacon-label {
-        min-width: 118px;
+        min-width: 88px;
 
-        padding: 7px 9px;
+        padding: 5px 7px;
     }
 
     .beacon-label strong {
@@ -8076,6 +8076,71 @@ transform:none;
     background-repeat: no-repeat;
 }
 
+.bookan-card,
+.chewong-card,
+.kristang-card,
+.baba-malay-card,
+.temoq-card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bookan-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/bookan_keningau.jpg");
+}
+
+.chewong-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/chewong_kuala_krau.jpg");
+}
+
+.kristang-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/kristang_settlement.jpg");
+}
+
+.baba-malay-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/baba_museum_exterior.jpg");
+}
+
+.temoq-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/temoq_tasik_chini.jpg");
+}
+
 /* =========================================
    LIVING LANGUAGE RECORD COLLECTION
    ========================================= */
@@ -8186,7 +8251,7 @@ transform:none;
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(3, minmax(0, 1fr));
 
     gap: 22px;
 }
@@ -8840,6 +8905,46 @@ transform:none;
         url("../images/mah_meri_record_art.png") !important;
 }
 
+.bookan-record .record-label,
+.chewong-record .record-label,
+.kristang-record .record-label,
+.baba-malay-record .record-label,
+.temoq-record .record-label {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.bookan-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/bookan_keningau.jpg") !important;
+}
+
+.chewong-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/chewong_community.jpg") !important;
+}
+
+.kristang-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/kristang_settlement.jpg") !important;
+}
+
+.baba-malay-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/baba_museum_exterior.jpg") !important;
+}
+
+.temoq-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/temoq_tasik_chini.jpg") !important;
+}
+
 
 /* =========================================
    PREMIUM INNER RING
@@ -8994,9 +9099,10 @@ transform:none;
     .miniature-map-scene {
         width: 100% !important;
         min-width: 0 !important;
-        min-height: min(38vh, 300px) !important;
-        height: min(38vh, 300px) !important;
-        max-height: 320px !important;
+        /* Tall enough for the landmass plus a 2-row/5-col label dock. */
+        min-height: 560px !important;
+        height: min(72vh, 620px) !important;
+        max-height: 660px !important;
         border-radius: 20px !important;
     }
 
@@ -9093,8 +9199,9 @@ transform:none;
 
 @media (max-width: 520px) {
     .miniature-map-scene {
-        min-height: min(42vh, 300px) !important;
-        height: min(42vh, 300px) !important;
+        min-height: 580px !important;
+        height: min(78vh, 640px) !important;
+        max-height: 680px !important;
     }
 
     .selangor-beacon:not(.is-geo-placed) .beacon-label {
@@ -9288,5 +9395,60 @@ transform:none;
     .exploration-beacon.is-geo-placed.sarawak-beacon .beacon-label small {
         margin-top: 1px;
         font-size: 0.5rem;
+    }
+}
+
+.exploration-beacon.lang-beacon.is-geo-placed .beacon-label {
+    min-width: 108px !important;
+    max-width: 148px;
+    padding: 6px 8px !important;
+}
+
+.exploration-beacon.lang-beacon.is-geo-placed .beacon-label strong {
+    font-size: 0.66rem;
+}
+
+@media (max-width: 640px) {
+    .miniature-map-scene .real-malaysia-map-wrap {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden;
+    }
+    .miniature-map-scene .real-malaysia-map-wrap .real-malaysia-map {
+        width: 100% !important;
+        height: 36% !important;
+        max-height: 36% !important;
+        transform: none !important;
+        align-self: flex-start !important;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label {
+        min-width: 0 !important;
+        max-width: min(148px, 46vw) !important;
+        padding: 4px 6px !important;
+        white-space: normal;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label strong,
+    .exploration-beacon.is-geo-placed .beacon-label small {
+        white-space: nowrap;
+        overflow: visible;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label strong {
+        font-size: 0.62rem;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label small {
+        margin-top: 1px;
+        font-size: 0.48rem;
+    }
+
+    .exploration-beacon.lang-beacon.is-geo-placed .beacon-label {
+        min-width: 0 !important;
+        max-width: min(148px, 46vw) !important;
+        padding: 4px 6px !important;
     }
 }

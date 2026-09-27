@@ -1,0 +1,370 @@
+{
+  "language": "chewong",
+  "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0",
+  "dialect_variant": "Ceq Wong",
+  "asjp_id": "CEQ_WONG",
+  "asjp_lat": 3.23,
+  "asjp_lon": 102.42,
+  "entries": [
+    {
+      "word": "iN",
+      "meaning_en": "i",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "m3*7",
+      "meaning_en": "you",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hE7",
+      "meaning_en": "we",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "no*i",
+      "meaning_en": "one",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ber",
+      "meaning_en": "two",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bri7",
+      "meaning_en": "person",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ki37",
+      "meaning_en": "fish",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "E*N",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "TE7",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "y3hu*7",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hale7",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ho7",
+      "meaning_en": "skin",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mh~3*m",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "y37eN",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "%tanok",
+      "meaning_en": "horn",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "hnt$3N",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mE*t",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mo*h",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "lmu*5",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "latek",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ktoN",
+      "meaning_en": "knee",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "Tos",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "%bu7",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ros",
+      "meaning_en": "liver",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "uh",
+      "meaning_en": "drink",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "yow",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kj3N",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "%kb3s",
+      "meaning_en": "die",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "t3s",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mE*t kto7",
+      "meaning_en": "sun",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "%bintaN",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "%tom",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tmo*7",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "os",
+      "meaning_en": "fire",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "%lboh",
+      "meaning_en": "path",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "Tba7",
+      "meaning_en": "mountain",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "btom",
+      "meaning_en": "night",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "b3k",
+      "meaning_en": "full",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "rE7",
+      "meaning_en": "new",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "To7",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Ceq Wong",
+      "source_ref": "ASJP Database wordlist Ceq Wong / Chewong (CLLD); CC BY 4.0"
+    }
+  ]
+}

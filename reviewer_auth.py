@@ -9,6 +9,7 @@ from typing import Any
 
 from database import COURSE_LANGUAGES
 from db import ensure_column, get_db, row_to_dict, row_value
+from language_catalog import DISPLAY_NAMES
 
 ROLE_STUDENT = "student"
 ROLE_REVIEWER = "reviewer"
@@ -24,12 +25,7 @@ KIND_LABELS = {
     KIND_COMMUNITY: "Community Reviewer",
 }
 
-LANGUAGE_LABELS = {
-    "mah-meri": "Mah Meri",
-    "iban": "Iban",
-    "bidayuh": "Bidayuh",
-    "kadazan-dusun": "Kadazan-Dusun",
-}
+LANGUAGE_LABELS = dict(DISPLAY_NAMES)
 
 SCOPE_ACTIVE = "active"
 SCOPE_REVOKED = "revoked"

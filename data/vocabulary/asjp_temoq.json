@@ -1,0 +1,298 @@
+{
+  "language": "temoq",
+  "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0",
+  "dialect_variant": "Temoq",
+  "asjp_id": "TEMOQ",
+  "asjp_lat": 4.0,
+  "asjp_lon": 102.5,
+  "entries": [
+    {
+      "word": "a7oc",
+      "meaning_en": "i",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "muy",
+      "meaning_en": "one",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "duwa7",
+      "meaning_en": "two",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "s3ma7",
+      "meaning_en": "person",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "c3rEh",
+      "meaning_en": "fish",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "cow",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "cih",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dawun",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kulit",
+      "meaning_en": "skin",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "maham",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "j37aN",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ntoN",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mont",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "muh",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "l3pEs",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "k3ltoN",
+      "meaning_en": "knee",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "thih",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "tuh",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "g3rEs",
+      "meaning_en": "liver",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "j37oh",
+      "meaning_en": "drink",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "eleN",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dENEN",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "k3bos",
+      "meaning_en": "die",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dak",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "t3mun",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "a7uh",
+      "meaning_en": "fire",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "d3Nay",
+      "meaning_en": "path",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "b3nom",
+      "meaning_en": "mountain",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "gayow",
+      "meaning_en": "night",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "s3boc",
+      "meaning_en": "full",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "arEh",
+      "meaning_en": "new",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "k3mah",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Temoq",
+      "source_ref": "ASJP Database wordlist Temoq (CLLD); CC BY 4.0"
+    }
+  ]
+}

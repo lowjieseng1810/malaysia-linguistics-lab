@@ -12,8 +12,25 @@
         iban: { lat: 2.3, lon: 113.0 },
         "kadazan-dusun": { lat: 5.9, lon: 116.2 },
         bidayuh: { lat: 1.35, lon: 110.35 },
-        "mah-meri": { lat: 2.86, lon: 101.35 }
+        "mah-meri": { lat: 2.86, lon: 101.35 },
+        bookan: { lat: 5.34, lon: 116.16 },
+        chewong: { lat: 3.23, lon: 102.42 },
+        kristang: { lat: 2.20, lon: 102.27 },
+        "baba-malay": { lat: 2.195, lon: 102.249 },
+        temoq: { lat: 4.00, lon: 102.50 }
     };
+
+    (function mergeMapCoords() {
+        const points = (window.LANGUAGE_MAP && window.LANGUAGE_MAP.points) || [];
+        points.forEach(function (p) {
+            if (!p || !p.key) {
+                return;
+            }
+            if (typeof p.lat === "number" && typeof p.lon === "number") {
+                LANGUAGE_COORDS[p.key] = { lat: p.lat, lon: p.lon };
+            }
+        });
+    }());
 
     const meta = window.LANGUAGE_EXPLORER_META || {};
     const languages = Object.keys(meta);
@@ -221,7 +238,9 @@
         const lessons = formatCount(info.lesson_count);
         const quizzes = formatCount(info.quiz_count);
 
-        if (vocab != null) {
+        if (info.has_dictionary === false) {
+            stats.push(`<div><span>Vocabulary</span><strong>Not bundled</strong></div>`);
+        } else if (vocab != null) {
             stats.push(`<div><span>Vocabulary</span><strong>${vocab}</strong></div>`);
         }
         if (lessons != null) {

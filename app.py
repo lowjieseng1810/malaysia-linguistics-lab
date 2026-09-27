@@ -3001,7 +3001,10 @@ TUTOR_DOMAIN_KEYWORD_PATTERN = re.compile(
     r"\b("
     # ---------- this website's four languages & their context ----------
     r"iban|kadazan|dusun|kadazandusun|bidayuh|mah\s*meri|"
-    r"malaysia\w*|sarawak|sabah|borneo|longhouse|indigenous|orang\s*asli|"
+    r"bookan|baukan|murut|chewong|che\s*wong|cheq\s*wong|ceq\s*wong|"
+    r"kristang|papia|creole|baba\s*malay|peranakan|temoq|"
+    r"malaysia\w*|sarawak|sabah|borneo|pahang|melaka|malacca|selangor|"
+    r"longhouse|indigenous|orang\s*asli|"
     r"heritage|folklore|festival|ritual|custom\w*|tradition\w*|"
     r"cultur\w*|community|preserv\w*|endanger\w*|"
     # ---------- language / linguistics (any language, not just ours) ----------
@@ -4153,6 +4156,11 @@ EXPLORE_UNLOCKS = {
 
 }
 
+from extended_languages import apply_extended_languages, map_payload
+
+apply_extended_languages(LANGUAGES, COURSE_DATA, LANGUAGE_FAMILY, EXPLORE_UNLOCKS)
+LANGUAGE_MAP = map_payload()
+
 # Ensure the full app schema exists for WSGI/Gunicorn (e.g. Render).
 # `init_db()` is CREATE TABLE IF NOT EXISTS / additive ALTER only — safe for
 # existing data. Startup lock reduces duplicate seed races across workers.
@@ -5064,6 +5072,9 @@ def dashboard():
                 "word": sample["word"],
                 "meaning": sample["meaning_en"] if sample["meaning_en"] else None,
             }
+        from language_catalog import MAP_COORDS
+
+        geo = MAP_COORDS.get(lang_key) or {}
         language_explorer_meta[lang_key] = {
             "key": lang_key,
             "display_name": lang_info.get("display_name", lang_key),
@@ -5077,6 +5088,13 @@ def dashboard():
             "compare_url": url_for("compare_languages", a=lang_key),
             "learn_url": url_for("language_page", lang_key=lang_key),
             "quiz_url": url_for("quiz_page", lang=lang_key),
+            "lat": geo.get("lat"),
+            "lon": geo.get("lon"),
+            "state": geo.get("state"),
+            "map_frame": geo.get("frame"),
+            "aliases": lang_info.get("aliases") or [],
+            "vitality": lang_info.get("vitality") or {},
+            "has_dictionary": not bool(lang_info.get("exclude_dictionary")),
         }
     conn.close()
 
@@ -5135,6 +5153,8 @@ def dashboard():
         explorer_stats=explorer_stats,
         heritage_passport=heritage_passport,
         collection_teaser=collection_teaser,
+        language_map=LANGUAGE_MAP,
+        language_count=len(LANGUAGES),
     )
 
 
@@ -5258,6 +5278,7 @@ def dictionary_page():
             "lang_key": key,
             "display_name": LANGUAGES.get(key, {}).get("display_name") or display_name(key),
             "vocab_count": int(vocab_counts.get(key, 0)),
+            "has_dictionary": not bool(LANGUAGES.get(key, {}).get("exclude_dictionary")),
         }
         for key in lang_keys
     ]
@@ -5533,6 +5554,11 @@ HERITAGE_PASSPORT_IMAGES = {
     "kadazan-dusun": "kadazan_dusun_bg.png",
     "bidayuh": "bidayuh_bg.png",
     "mah-meri": "mah_meri_card_bg.png",
+    "bookan": "bookan_keningau.jpg",
+    "chewong": "chewong_kuala_krau.jpg",
+    "kristang": "kristang_settlement.jpg",
+    "baba-malay": "baba_museum_exterior.jpg",
+    "temoq": "temoq_tasik_chini.jpg",
 }
 
 
@@ -6908,7 +6934,8 @@ def profile():
 def about_project():
 
     return render_template(
-        "about.html"
+        "about.html",
+        languages=LANGUAGES,
     )
 
 # ================ SAFETY & SOURCES ================

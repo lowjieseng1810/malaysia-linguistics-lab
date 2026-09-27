@@ -32,11 +32,11 @@ About the Project | Malaysia Linguistics Lab
         <div class="about-hero-meta">
 
             <span>
-                4 languages
+                {{ languages|length }} languages
             </span>
 
             <span>
-                12 learning levels
+                {{ (languages|length) * 3 }} learning levels
             </span>
 
             <span>
@@ -150,7 +150,7 @@ About the Project | Malaysia Linguistics Lab
                 </span>
 
                 <h2>
-                    Four languages across Malaysia
+                    Nine languages across Malaysia
                 </h2>
 
             </div>
@@ -159,78 +159,14 @@ About the Project | Malaysia Linguistics Lab
 
 
         <div class="about-language-grid">
-
-            <a href="{{ url_for('language_page', lang_key='iban') }}"
+            {% for lang_key, language in languages.items() %}
+            <a href="{{ url_for('language_page', lang_key=lang_key) }}"
                class="about-language-card">
-
-                <span>
-                    Sarawak
-                </span>
-
-                <strong>
-                    Iban
-                </strong>
-
-                <small>
-                    Explore course →
-                </small>
-
+                <span>{{ language.region }}</span>
+                <strong>{{ language.display_name }}</strong>
+                <small>Explore course →</small>
             </a>
-
-
-            <a href="{{ url_for('language_page', lang_key='kadazan-dusun') }}"
-               class="about-language-card">
-
-                <span>
-                    Sabah
-                </span>
-
-                <strong>
-                    Kadazan-Dusun
-                </strong>
-
-                <small>
-                    Explore course →
-                </small>
-
-            </a>
-
-
-            <a href="{{ url_for('language_page', lang_key='bidayuh') }}"
-               class="about-language-card">
-
-                <span>
-                    Sarawak
-                </span>
-
-                <strong>
-                    Bidayuh
-                </strong>
-
-                <small>
-                    Explore course →
-                </small>
-
-            </a>
-
-
-            <a href="{{ url_for('language_page', lang_key='mah-meri') }}"
-               class="about-language-card">
-
-                <span>
-                    Selangor
-                </span>
-
-                <strong>
-                    Mah Meri
-                </strong>
-
-                <small>
-                    Explore course →
-                </small>
-
-            </a>
-
+            {% endfor %}
         </div>
 
     </section>
