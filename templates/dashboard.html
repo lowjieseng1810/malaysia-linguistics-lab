@@ -493,8 +493,13 @@
                     <h3 class="language-name">{{ meta.display_name }}</h3>
                     <div class="living-world-stats" aria-label="Course coverage">
                         <div>
+                            {% if meta.has_dictionary is defined and not meta.has_dictionary %}
+                            <strong>—</strong>
+                            <span>Lexicon under review</span>
+                            {% else %}
                             <strong>{{ meta.vocab_count }}</strong>
                             <span>Words</span>
+                            {% endif %}
                         </div>
                         <div>
                             <strong>{{ meta.lesson_count }}</strong>

@@ -238,7 +238,9 @@
         const lessons = formatCount(info.lesson_count);
         const quizzes = formatCount(info.quiz_count);
 
-        if (vocab != null) {
+        if (info.has_dictionary === false) {
+            stats.push(`<div><span>Vocabulary</span><strong>Not bundled</strong></div>`);
+        } else if (vocab != null) {
             stats.push(`<div><span>Vocabulary</span><strong>${vocab}</strong></div>`);
         }
         if (lessons != null) {

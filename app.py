@@ -5094,6 +5094,7 @@ def dashboard():
             "map_frame": geo.get("frame"),
             "aliases": lang_info.get("aliases") or [],
             "vitality": lang_info.get("vitality") or {},
+            "has_dictionary": not bool(lang_info.get("exclude_dictionary")),
         }
     conn.close()
 
@@ -5277,6 +5278,7 @@ def dictionary_page():
             "lang_key": key,
             "display_name": LANGUAGES.get(key, {}).get("display_name") or display_name(key),
             "vocab_count": int(vocab_counts.get(key, 0)),
+            "has_dictionary": not bool(LANGUAGES.get(key, {}).get("exclude_dictionary")),
         }
         for key in lang_keys
     ]

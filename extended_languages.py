@@ -39,6 +39,7 @@ EXTENDED_LANGUAGE_PROFILES = {
             "not invent Bookan words; vocabulary stays under review until a reusable lexicon is bundled."
         ),
         "verification_status": "Under Review",
+        "exclude_dictionary": True,
         "verification_note": (
             "Language facts follow published survey and archive pages. No community-verified "
             "lexicon is claimed here. Do not mark Bookan dictionary rows as community verified."

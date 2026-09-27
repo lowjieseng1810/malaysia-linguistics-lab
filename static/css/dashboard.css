@@ -3226,16 +3226,16 @@ transform:none;
     }
 
     .miniature-map-scene {
-        min-height: 430px;
+        min-height: 560px;
 
         border-radius: 21px;
     }
 
     .real-malaysia-map-wrap {
-        top: 60px;
-        right: -15px;
-        bottom: 62px;
-        left: -15px;
+        top: 48px;
+        right: 4px;
+        bottom: 48px;
+        left: 4px;
     }
 
     .sarawak-beacon {
@@ -3249,9 +3249,9 @@ transform:none;
     }
 
     .beacon-label {
-        min-width: 118px;
+        min-width: 88px;
 
-        padding: 7px 9px;
+        padding: 5px 7px;
     }
 
     .beacon-label strong {
@@ -9099,9 +9099,10 @@ transform:none;
     .miniature-map-scene {
         width: 100% !important;
         min-width: 0 !important;
-        min-height: min(38vh, 300px) !important;
-        height: min(38vh, 300px) !important;
-        max-height: 320px !important;
+        /* Tall enough for the landmass plus a 2-row/5-col label dock. */
+        min-height: 560px !important;
+        height: min(72vh, 620px) !important;
+        max-height: 660px !important;
         border-radius: 20px !important;
     }
 
@@ -9198,8 +9199,9 @@ transform:none;
 
 @media (max-width: 520px) {
     .miniature-map-scene {
-        min-height: min(42vh, 300px) !important;
-        height: min(42vh, 300px) !important;
+        min-height: 580px !important;
+        height: min(78vh, 640px) !important;
+        max-height: 680px !important;
     }
 
     .selangor-beacon:not(.is-geo-placed) .beacon-label {
@@ -9406,7 +9408,47 @@ transform:none;
     font-size: 0.66rem;
 }
 
-.exploration-beacon.lang-beacon.is-label-hidden .beacon-label,
-.exploration-beacon.lang-beacon.is-label-hidden .beacon-connector {
-    display: none !important;
+@media (max-width: 640px) {
+    .miniature-map-scene .real-malaysia-map-wrap {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden;
+    }
+    .miniature-map-scene .real-malaysia-map-wrap .real-malaysia-map {
+        width: 100% !important;
+        height: 36% !important;
+        max-height: 36% !important;
+        transform: none !important;
+        align-self: flex-start !important;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label {
+        min-width: 0 !important;
+        max-width: min(148px, 46vw) !important;
+        padding: 4px 6px !important;
+        white-space: normal;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label strong,
+    .exploration-beacon.is-geo-placed .beacon-label small {
+        white-space: nowrap;
+        overflow: visible;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label strong {
+        font-size: 0.62rem;
+    }
+
+    .exploration-beacon.is-geo-placed .beacon-label small {
+        margin-top: 1px;
+        font-size: 0.48rem;
+    }
+
+    .exploration-beacon.lang-beacon.is-geo-placed .beacon-label {
+        min-width: 0 !important;
+        max-width: min(148px, 46vw) !important;
+        padding: 4px 6px !important;
+    }
 }

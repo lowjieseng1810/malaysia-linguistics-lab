@@ -1028,7 +1028,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const bcx = beaconRect.left + beaconRect.width * 0.5;
         const bcy = beaconRect.top + beaconRect.height * 0.5;
         const wrapBound = ctx.wrapRect;
-        const edgePad = 16;
+        const edgePad = 28;
         const maxDist = Math.min(
             DESKTOP_SELANGOR_MAX_DIST_PX,
             Math.max(72, wrapBound.width * 0.2)
@@ -1225,6 +1225,23 @@ document.addEventListener("DOMContentLoaded", function () {
             instruction && instruction.offsetParent
                 ? instruction.getBoundingClientRect()
                 : null;
+        const mapObjectEl = document.getElementById("real-malaysia-map");
+        const compactMap = wrapRect.width < 640 || wrapRect.height < 280;
+        if (mapObjectEl) {
+            if (compactMap) {
+                mapObjectEl.style.setProperty("height", "36%", "important");
+                mapObjectEl.style.setProperty("max-height", "36%", "important");
+                mapObjectEl.style.setProperty("width", "100%", "important");
+                mapObjectEl.style.setProperty("align-self", "flex-start");
+                wrap.style.setProperty("justify-content", "flex-start");
+                wrap.style.setProperty("align-items", "flex-start");
+            } else {
+                mapObjectEl.style.removeProperty("height");
+                mapObjectEl.style.removeProperty("max-height");
+                mapObjectEl.style.removeProperty("width");
+                mapObjectEl.style.removeProperty("align-self");
+            }
+        }
 
         /* --- Sabah: unchanged — exact original preset + nudge behavior. --- */
         const sabahBtn = scene.querySelector(".exploration-beacon.sabah-beacon.is-geo-placed");
@@ -1339,12 +1356,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (sabahLabelRect) {
             obstacles.push(sabahLabelRect);
         }
+        document.querySelectorAll(".mascot-companion, .ai-tutor-toggle-button").forEach(function (el) {
+            obstacles.push(el.getBoundingClientRect());
+        });
 
         /* Desktop-only: wrapRect.width ~728-880px on desktop vs. ~310px
            (portrait) / ~403px (landscape) — a wide margin below "scale"'s
            own 880px reference keeps this strictly desktop. */
         const isDesktopWide = wrapRect.width > 500;
-        const compactMap = wrapRect.width < 420 || wrapRect.height < 260;
 
         /*
          * Sarawak is placed first (with a hard "below the state" bias and a
@@ -1485,32 +1504,7 @@ document.addEventListener("DOMContentLoaded", function () {
             obstacles.push(label.getBoundingClientRect());
         });
 
-        if (compactMap) {
-            const corners = {
-                pahang: { left: wrapRect.left + 4, top: wrapRect.top + 4 },
-                sabah: { left: wrapRect.right - 122, top: wrapRect.top + 4 },
-                selangor: { left: wrapRect.left + 4, top: wrapRect.bottom - 50 },
-                sarawak: { left: wrapRect.right - 110, top: wrapRect.bottom - 50 },
-                melaka: { left: wrapRect.left + 4, top: wrapRect.bottom - 98 }
-            };
-            Object.keys(corners).forEach(function (region) {
-                const btn = scene.querySelector(
-                    ".exploration-beacon." + region + "-beacon.is-geo-placed"
-                );
-                const label = btn ? btn.querySelector(".beacon-label") : null;
-                if (!btn || !label) {
-                    return;
-                }
-                const br = btn.getBoundingClientRect();
-                const slot = corners[region];
-                btn.style.setProperty("--label-x", (slot.left - br.left).toFixed(1) + "px");
-                btn.style.setProperty("--label-y", (slot.top - br.top).toFixed(1) + "px");
-                updateConnector(btn, label);
-            });
-        }
-
         const extraOrder = ["bookan", "kristang", "baba-malay", "chewong", "temoq"];
-        const compactLabels = compactMap;
         extraOrder.forEach(function (langKey) {
             const btn = scene.querySelector(
                 ".exploration-beacon.lang-beacon[data-lang='" + langKey + "'].is-geo-placed"
@@ -1519,34 +1513,37 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!btn || !label) {
                 return;
             }
-            const showLangLabel = !compactLabels || btn.classList.contains("is-selected");
-            if (!showLangLabel) {
-                btn.classList.add("is-label-hidden");
-                return;
-            }
             btn.classList.remove("is-label-hidden");
             const beaconRect = btn.getBoundingClientRect();
             const size = label.getBoundingClientRect();
             const w = Math.max(size.width, 90);
             const h = Math.max(size.height, 36);
-            const anglePref = {
-                bookan: 70,
-                kristang: 105,
-                "baba-malay": 155,
-                chewong: 200,
-                temoq: 20
+            const oceanFrac = {
+                chewong: { x: 0.30, y: 0.06 },
+                temoq: { x: 0.40, y: 0.33 },
+                kristang: { x: 0.36, y: 0.78 },
+                "baba-malay": { x: 0.02, y: 0.58 },
+                bookan: { x: 0.80, y: 0.54 }
             };
             let lx;
             let ly;
-            if (ctx) {
+            const slot = oceanFrac[langKey];
+            if (slot) {
+                let left = wrapRect.left + wrapRect.width * slot.x;
+                let top = wrapRect.top + wrapRect.height * slot.y;
+                left = Math.max(wrapRect.left + 4, Math.min(left, wrapRect.right - w - 4));
+                top = Math.max(wrapRect.top + 4, Math.min(top, wrapRect.bottom - h - 4));
+                lx = left - beaconRect.left;
+                ly = top - beaconRect.top;
+            } else if (ctx) {
                 const rect = findClearLabelRect(
                     ctx,
                     beaconRect,
                     w,
                     h,
                     obstacles,
-                    buildAngleOrder(anglePref[langKey] || 90),
-                    compactLabels ? 0.12 : 0.04
+                    buildAngleOrder(90),
+                    0.16
                 );
                 lx = rect.left - beaconRect.left;
                 ly = rect.top - beaconRect.top;
@@ -1559,6 +1556,163 @@ document.addEventListener("DOMContentLoaded", function () {
             updateConnector(btn, label);
             obstacles.push(label.getBoundingClientRect());
         });
+
+        if (ctx && !compactMap) {
+            scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
+                const label = btn.querySelector(".beacon-label");
+                if (!label || btn.classList.contains("sabah-beacon")) {
+                    return;
+                }
+                let lr = label.getBoundingClientRect();
+                if (!rectOverlapsLand(ctx, lr)) {
+                    return;
+                }
+                const br = btn.getBoundingClientRect();
+                const placeBound = ctx.placementRect || wrapRect;
+                const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [1, -1], [-1, 1], [1, 1]];
+                let placed = null;
+                for (let step = 10; step <= 240 && !placed; step += 10) {
+                    for (let di = 0; di < dirs.length; di += 1) {
+                        const cand = clampRectToWrap(
+                            {
+                                left: lr.left + dirs[di][0] * step,
+                                top: lr.top + dirs[di][1] * step,
+                                right: lr.right + dirs[di][0] * step,
+                                bottom: lr.bottom + dirs[di][1] * step
+                            },
+                            placeBound,
+                            4
+                        );
+                        if (rectOverlapsLand(ctx, cand)) {
+                            continue;
+                        }
+                        placed = cand;
+                        break;
+                    }
+                }
+                if (placed) {
+                    btn.style.setProperty("--label-x", (placed.left - br.left).toFixed(1) + "px");
+                    btn.style.setProperty("--label-y", (placed.top - br.top).toFixed(1) + "px");
+                    updateConnector(btn, label);
+                }
+            });
+        }
+
+        if (compactMap) {
+            const order = [
+                "chewong",
+                "temoq",
+                "pahang",
+                "bookan",
+                "sabah",
+                "selangor",
+                "kristang",
+                "melaka",
+                "baba-malay",
+                "sarawak"
+            ];
+            const narrow = wrapRect.width < 420;
+            const cols = narrow ? 2 : 5;
+            const rows = narrow ? 5 : 2;
+            const dockTop = wrapRect.top + wrapRect.height * 0.40;
+            const avail = Math.max(rows * 34, wrapRect.bottom - dockTop - 6);
+            const cellW = (wrapRect.width - 10) / cols;
+            const cellH = avail / rows;
+            scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
+                const label = btn.querySelector(".beacon-label");
+                if (!label) {
+                    return;
+                }
+                btn.classList.remove("is-label-hidden");
+                const key = btn.getAttribute("data-lang") || btn.getAttribute("data-region");
+                const idx = order.indexOf(key);
+                if (idx < 0) {
+                    return;
+                }
+                const c = idx % cols;
+                const r = Math.floor(idx / cols);
+                const br = btn.getBoundingClientRect();
+                label.style.maxWidth = Math.max(72, cellW - 8) + "px";
+                const lw = Math.min(label.getBoundingClientRect().width || 88, cellW - 6);
+                const lh = Math.min(label.getBoundingClientRect().height || 34, cellH - 2);
+                let left = wrapRect.left + 5 + c * cellW + Math.max(0, (cellW - lw) * 0.5);
+                let top = dockTop + r * cellH + Math.max(0, (cellH - lh) * 0.12);
+                left = Math.max(wrapRect.left + 2, Math.min(left, wrapRect.right - lw - 2));
+                top = Math.max(dockTop, Math.min(top, wrapRect.bottom - lh - 2));
+                btn.style.setProperty("--label-x", (left - br.left).toFixed(1) + "px");
+                btn.style.setProperty("--label-y", (top - br.top).toFixed(1) + "px");
+                updateConnector(btn, label);
+            });
+        } else {
+            scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
+                const label = btn.querySelector(".beacon-label");
+                if (!label) {
+                    return;
+                }
+                const lr = label.getBoundingClientRect();
+                const br = btn.getBoundingClientRect();
+                let dx = 0;
+                let dy = 0;
+                if (lr.left < wrapRect.left + 2) {
+                    dx = wrapRect.left + 2 - lr.left;
+                }
+                if (lr.right > wrapRect.right - 2) {
+                    dx = wrapRect.right - 2 - lr.right;
+                }
+                if (lr.top < wrapRect.top + 2) {
+                    dy = wrapRect.top + 2 - lr.top;
+                }
+                if (lr.bottom > wrapRect.bottom - 2) {
+                    dy = wrapRect.bottom - 2 - lr.bottom;
+                }
+                if (dx || dy) {
+                    const lx = parseFloat(btn.style.getPropertyValue("--label-x")) || 0;
+                    const ly = parseFloat(btn.style.getPropertyValue("--label-y")) || 0;
+                    btn.style.setProperty("--label-x", (lx + dx).toFixed(1) + "px");
+                    btn.style.setProperty("--label-y", (ly + dy).toFixed(1) + "px");
+                    updateConnector(btn, label);
+                }
+            });
+        }
+
+        (function separateOverlappingLabels() {
+            const items = [];
+            scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
+                const label = btn.querySelector(".beacon-label");
+                if (!label || !label.offsetWidth) {
+                    return;
+                }
+                items.push({ btn: btn, label: label });
+            });
+            for (let iter = 0; iter < 14; iter += 1) {
+                let moved = false;
+                for (let i = 0; i < items.length; i += 1) {
+                    for (let j = i + 1; j < items.length; j += 1) {
+                        const a = items[i].label.getBoundingClientRect();
+                        const b = items[j].label.getBoundingClientRect();
+                        const ox = Math.max(0, Math.min(a.right, b.right) - Math.max(a.left, b.left));
+                        const oy = Math.max(0, Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top));
+                        if (ox * oy <= 8) {
+                            continue;
+                        }
+                        const pushX = ox > 0 ? ox + 6 : 0;
+                        const pushY = oy > 0 ? oy + 6 : 0;
+                        const br = items[j].btn.getBoundingClientRect();
+                        let left = b.left + (a.left <= b.left ? pushX : 0);
+                        let top = b.top + (a.top <= b.top ? pushY : 0);
+                        left = Math.max(wrapRect.left + 2, Math.min(left, wrapRect.right - (b.width || 80) - 2));
+                        top = Math.max(wrapRect.top + 2, Math.min(top, wrapRect.bottom - (b.height || 32) - 2));
+                        items[j].btn.style.setProperty("--label-x", (left - br.left).toFixed(1) + "px");
+                        items[j].btn.style.setProperty("--label-y", (top - br.top).toFixed(1) + "px");
+                        updateConnector(items[j].btn, items[j].label);
+                        moved = true;
+                    }
+                }
+                if (!moved) {
+                    break;
+                }
+            }
+        }());
 
         return true;
     }
@@ -2146,9 +2300,11 @@ document.addEventListener("DOMContentLoaded", function () {
             ? getLanguageExplorerMeta(options.langKey)
             : null;
 
-        const vocabCountText = meta && typeof meta.vocab_count === "number"
-            ? `${meta.vocab_count} words in the course dictionary`
-            : "";
+        const vocabCountText = meta && meta.has_dictionary === false
+            ? "No reusable lexicon is bundled; lessons use sourced documentation facts."
+            : (meta && typeof meta.vocab_count === "number"
+                ? `${meta.vocab_count} words in the course dictionary`
+                : "");
 
         const deepLinks = meta
             ? `
