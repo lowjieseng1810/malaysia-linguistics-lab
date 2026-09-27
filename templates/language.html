@@ -182,10 +182,17 @@
 
         </article>
 
+        {% if language.vitality %}
+        <article class="fact-card">
+            <span class="fact-label">Vitality (source-specific)</span>
+            <strong>{{ language.vitality.classification }}</strong>
+            {% if language.vitality.source %}
+            <small>{{ language.vitality.year }} · {{ language.vitality.system }}</small>
+            {% endif %}
+        </article>
+        {% endif %}
+
     </section>
-
-
-    <!-- ================= LANGUAGE FAMILY TREE ================= -->
 
     <section class="family-tree-section"
              aria-labelledby="family-tree-heading">

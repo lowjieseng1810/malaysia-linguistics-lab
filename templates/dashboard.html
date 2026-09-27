@@ -467,7 +467,7 @@
                     Choose a language world to continue learning.
                 </p>
             </div>
-            <span class="language-count">4 languages</span>
+            <span class="language-count">{{ language_count }} languages</span>
         </div>
 
         <div class="language-grid living-language-worlds">
@@ -475,7 +475,12 @@
                 'iban': 'iban-card',
                 'kadazan-dusun': 'kadazan-card',
                 'bidayuh': 'bidayuh-card',
-                'mah-meri': 'mah-meri-card'
+                'mah-meri': 'mah-meri-card',
+                'bookan': 'bookan-card',
+                'chewong': 'chewong-card',
+                'kristang': 'kristang-card',
+                'baba-malay': 'baba-malay-card',
+                'temoq': 'temoq-card'
             } %}
             {% for lang_key, meta in language_explorer_meta.items() %}
             {% set pct = language_progress[lang_key].percentage if language_progress.get(lang_key) else 0 %}
@@ -541,196 +546,38 @@
 
 
     <div class="language-record-grid">
-
-
-        <!-- IBAN RECORD -->
-
-        <a class="language-record-card iban-record"
-           href="{{ url_for('language_page', lang_key='iban') }}"
-           aria-label="Explore Iban">
-
+        {% set record_class = {
+            'iban': 'iban-record',
+            'kadazan-dusun': 'kadazan-record',
+            'bidayuh': 'bidayuh-record',
+            'mah-meri': 'mah-meri-record',
+            'bookan': 'bookan-record',
+            'chewong': 'chewong-record',
+            'kristang': 'kristang-record',
+            'baba-malay': 'baba-malay-record',
+            'temoq': 'temoq-record'
+        } %}
+        {% for lang_key, meta in language_explorer_meta.items() %}
+        <a class="language-record-card {{ record_class.get(lang_key, lang_key ~ '-record') }}"
+           href="{{ url_for('language_page', lang_key=lang_key) }}"
+           aria-label="Explore {{ meta.display_name }}">
             <div class="language-record">
-
                 <span class="record-groove groove-one"></span>
                 <span class="record-groove groove-two"></span>
                 <span class="record-groove groove-three"></span>
-
                 <span class="record-label">
-
-                    <strong>
-                        Iban
-                    </strong>
-
-                    <small>
-                        Sarawak
-                    </small>
-
+                    <strong>{{ meta.display_name }}</strong>
+                    <small>{{ meta.state or meta.region }}</small>
                 </span>
-
                 <span class="record-centre"></span>
-
             </div>
-
             <div class="record-card-content">
-
-                <span>
-                    Living Language 01
-                </span>
-
-                <strong>
-                    Iban
-                </strong>
-
-                <small>
-                    Sarawak
-                </small>
-
+                <span>Living Language {{ '%02d'|format(loop.index) }}</span>
+                <strong>{{ meta.display_name }}</strong>
+                <small>{{ meta.state or meta.region }}</small>
             </div>
-
         </a>
-
-
-        <!-- KADAZAN-DUSUN RECORD -->
-
-        <a class="language-record-card kadazan-record"
-           href="{{ url_for('language_page', lang_key='kadazan-dusun') }}"
-           aria-label="Explore Kadazan-Dusun">
-
-            <div class="language-record">
-
-                <span class="record-groove groove-one"></span>
-                <span class="record-groove groove-two"></span>
-                <span class="record-groove groove-three"></span>
-
-                <span class="record-label">
-
-                    <strong>
-                        Kadazan
-                    </strong>
-
-                    <small>
-                        Sabah
-                    </small>
-
-                </span>
-
-                <span class="record-centre"></span>
-
-            </div>
-
-            <div class="record-card-content">
-
-                <span>
-                    Living Language 02
-                </span>
-
-                <strong>
-                    Kadazan-Dusun
-                </strong>
-
-                <small>
-                    Sabah
-                </small>
-
-            </div>
-
-        </a>
-
-
-        <!-- BIDAYUH RECORD -->
-
-        <a class="language-record-card bidayuh-record"
-           href="{{ url_for('language_page', lang_key='bidayuh') }}"
-           aria-label="Explore Bidayuh">
-
-            <div class="language-record">
-
-                <span class="record-groove groove-one"></span>
-                <span class="record-groove groove-two"></span>
-                <span class="record-groove groove-three"></span>
-
-                <span class="record-label">
-
-                    <strong>
-                        Bidayuh
-                    </strong>
-
-                    <small>
-                        Sarawak
-                    </small>
-
-                </span>
-
-                <span class="record-centre"></span>
-
-            </div>
-
-            <div class="record-card-content">
-
-                <span>
-                    Living Language 03
-                </span>
-
-                <strong>
-                    Bidayuh
-                </strong>
-
-                <small>
-                    Sarawak
-                </small>
-
-            </div>
-
-        </a>
-
-
-        <!-- MAH MERI RECORD -->
-
-        <a class="language-record-card mah-meri-record"
-           href="{{ url_for('language_page', lang_key='mah-meri') }}"
-           aria-label="Explore Mah Meri">
-
-            <div class="language-record">
-
-                <span class="record-groove groove-one"></span>
-                <span class="record-groove groove-two"></span>
-                <span class="record-groove groove-three"></span>
-
-                <span class="record-label">
-
-                    <strong>
-                        Mah Meri
-                    </strong>
-
-                    <small>
-                        Selangor
-                    </small>
-
-                </span>
-
-                <span class="record-centre"></span>
-
-            </div>
-
-            <div class="record-card-content">
-
-                <span>
-                    Living Language 04
-                </span>
-
-                <strong>
-                    Mah Meri
-                </strong>
-
-                <small>
-                    Selangor
-                </small>
-
-            </div>
-
-        </a>
-
-
+        {% endfor %}
     </div>
 
 </section>
@@ -746,6 +593,7 @@
 <script src="{{ url_for('static', filename='js/earth-globe.js') }}"></script>
 
 <template id="language-explorer-meta-json">{{ language_explorer_meta | tojson }}</template>
+<template id="language-map-json">{{ language_map | tojson }}</template>
 <script>
 (function () {
     var el = document.getElementById("language-explorer-meta-json");
@@ -754,6 +602,13 @@
         window.LANGUAGE_EXPLORER_META = raw ? JSON.parse(raw) : {};
     } catch (err) {
         window.LANGUAGE_EXPLORER_META = {};
+    }
+    var mapEl = document.getElementById("language-map-json");
+    var mapRaw = mapEl ? (mapEl.innerHTML || mapEl.textContent || "").trim() : "";
+    try {
+        window.LANGUAGE_MAP = mapRaw ? JSON.parse(mapRaw) : { points: [], state_counts: {} };
+    } catch (err) {
+        window.LANGUAGE_MAP = { points: [], state_counts: {} };
     }
 })();
 </script>

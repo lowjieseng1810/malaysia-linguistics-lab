@@ -1,0 +1,361 @@
+{
+  "language": "kristang",
+  "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0",
+  "dialect_variant": "Papia Kristang",
+  "asjp_id": "PAPIA_KRISTANG",
+  "asjp_lat": 2.2,
+  "asjp_lon": 102.27,
+  "entries": [
+    {
+      "word": "yo",
+      "meaning_en": "i",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bos",
+      "meaning_en": "you",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "nus",
+      "meaning_en": "we",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "Nua",
+      "meaning_en": "one",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "dos",
+      "meaning_en": "two",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "je*ti",
+      "meaning_en": "person",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "pesi",
+      "meaning_en": "fish",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kaCoru",
+      "meaning_en": "dog",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "piolu",
+      "meaning_en": "louse",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "albi",
+      "meaning_en": "tree",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "fola",
+      "meaning_en": "leaf",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kaska",
+      "meaning_en": "skin",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "sa*Ni",
+      "meaning_en": "blood",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "osu",
+      "meaning_en": "bone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ubida",
+      "meaning_en": "ear",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "olu",
+      "meaning_en": "eye",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "naris",
+      "meaning_en": "nose",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "de*ti",
+      "meaning_en": "tooth",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "li*Nu",
+      "meaning_en": "tongue",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "nz~elu",
+      "meaning_en": "knee",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "maN",
+      "meaning_en": "hand",
+      "part_of_speech": "expression",
+      "lesson_id": 2,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mama",
+      "meaning_en": "breast",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "fildu",
+      "meaning_en": "liver",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "bebeh",
+      "meaning_en": "drink",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "olah",
+      "meaning_en": "see",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "ubih",
+      "meaning_en": "hear",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mureh",
+      "meaning_en": "die",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "beN",
+      "meaning_en": "come",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "sol",
+      "meaning_en": "sun",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "strela",
+      "meaning_en": "star",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "agu",
+      "meaning_en": "water",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "pedra",
+      "meaning_en": "stone",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "fogu",
+      "meaning_en": "fire",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "kami5u",
+      "meaning_en": "path",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "mo*ta5a",
+      "meaning_en": "mountain",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "a*uti",
+      "meaning_en": "night",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "Ceu",
+      "meaning_en": "full",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "nubu",
+      "meaning_en": "new",
+      "part_of_speech": "expression",
+      "lesson_id": 3,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    },
+    {
+      "word": "nomi",
+      "meaning_en": "name",
+      "part_of_speech": "expression",
+      "lesson_id": 1,
+      "culture_note": "ASJP orthography preserved from source (e.g. N≈ŋ, 7≈ʔ); not converted to a standard learner spelling.",
+      "dialect_variant": "Papia Kristang",
+      "source_ref": "ASJP Database wordlist Papia Kristang (CLLD); CC BY 4.0"
+    }
+  ]
+}

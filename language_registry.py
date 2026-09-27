@@ -11,6 +11,7 @@ import re
 import time
 from typing import Optional
 
+from language_catalog import COURSE_LANGUAGES, DISPLAY_NAMES, LANGUAGE_ALIASES
 from db import get_db, row_value
 
 _CACHE: Optional[dict] = None
@@ -113,10 +114,18 @@ def refresh_registry(force: bool = False) -> dict:
         return _CACHE
 
     keys = _load_keys_from_db()
+    for catalog_key in COURSE_LANGUAGES:
+        if catalog_key not in keys:
+            keys.append(catalog_key)
     alias_map: dict[str, str] = {}
     for key in keys:
         for alias in _aliases_for_key(key):
             alias_map.setdefault(alias, key)
+        display = DISPLAY_NAMES.get(key)
+        if display:
+            alias_map.setdefault(_normalize_alias(display), key)
+        for extra in LANGUAGE_ALIASES.get(key) or []:
+            alias_map.setdefault(_normalize_alias(extra), key)
 
     # Unambiguous segment aliases: "kadazan" → kadazan-dusun when unique
     segment_owners: dict[str, list[str]] = {}
@@ -134,7 +143,7 @@ def refresh_registry(force: bool = False) -> dict:
     _CACHE = {
         "keys": keys,
         "alias_map": alias_map,
-        "displays": {k: display_name(k) for k in keys},
+        "displays": {k: DISPLAY_NAMES.get(k, display_name(k)) for k in keys},
     }
     _CACHE_TS = now
     return _CACHE

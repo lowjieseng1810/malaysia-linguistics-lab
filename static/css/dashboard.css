@@ -8076,6 +8076,71 @@ transform:none;
     background-repeat: no-repeat;
 }
 
+.bookan-card,
+.chewong-card,
+.kristang-card,
+.baba-malay-card,
+.temoq-card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bookan-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/bookan_keningau.jpg");
+}
+
+.chewong-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/chewong_kuala_krau.jpg");
+}
+
+.kristang-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/kristang_settlement.jpg");
+}
+
+.baba-malay-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/baba_museum_exterior.jpg");
+}
+
+.temoq-card {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(7, 31, 23, 0.18) 0%,
+            rgba(7, 31, 23, 0.42) 48%,
+            rgba(6, 28, 20, 0.78) 100%
+        ),
+        url("../images/temoq_tasik_chini.jpg");
+}
+
 /* =========================================
    LIVING LANGUAGE RECORD COLLECTION
    ========================================= */
@@ -8186,7 +8251,7 @@ transform:none;
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(3, minmax(0, 1fr));
 
     gap: 22px;
 }
@@ -8840,6 +8905,46 @@ transform:none;
         url("../images/mah_meri_record_art.png") !important;
 }
 
+.bookan-record .record-label,
+.chewong-record .record-label,
+.kristang-record .record-label,
+.baba-malay-record .record-label,
+.temoq-record .record-label {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.bookan-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/bookan_keningau.jpg") !important;
+}
+
+.chewong-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/chewong_community.jpg") !important;
+}
+
+.kristang-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/kristang_settlement.jpg") !important;
+}
+
+.baba-malay-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/baba_museum_exterior.jpg") !important;
+}
+
+.temoq-record .record-label {
+    background-image:
+        linear-gradient(rgba(3, 24, 18, 0.42), rgba(3, 24, 18, 0.58)),
+        url("../images/temoq_tasik_chini.jpg") !important;
+}
+
 
 /* =========================================
    PREMIUM INNER RING
@@ -9289,4 +9394,18 @@ transform:none;
         margin-top: 1px;
         font-size: 0.5rem;
     }
+}
+
+.exploration-beacon.lang-beacon.is-geo-placed .beacon-label {
+    min-width: 108px !important;
+    max-width: 148px;
+    padding: 6px 8px !important;
+}
+
+.exploration-beacon.lang-beacon.is-geo-placed .beacon-label strong {
+    font-size: 0.66rem;
+}
+
+.exploration-beacon.lang-beacon.is-geo-placed .beacon-label small {
+    font-size: 0.5rem;
 }

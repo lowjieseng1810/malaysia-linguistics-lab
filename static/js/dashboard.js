@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="beacon-core"></span>
                             <span class="beacon-label">
                                 <strong>Selangor</strong>
-                                <small>1 living language</small>
+                                <small>${livingCountLabel("Selangor", 1)}</small>
                             </span>
                             <span class="beacon-connector" aria-hidden="true"></span>
                         </button>
@@ -371,7 +371,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="beacon-core"></span>
                             <span class="beacon-label">
                                 <strong>Sarawak</strong>
-                                <small>2 living languages</small>
+                                <small>${livingCountLabel("Sarawak", 2)}</small>
                             </span>
                             <span class="beacon-connector" aria-hidden="true"></span>
                         </button>
@@ -387,10 +387,11 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="beacon-core"></span>
                             <span class="beacon-label">
                                 <strong>Sabah</strong>
-                                <small>1 living language</small>
+                                <small>${livingCountLabel("Sabah", 1)}</small>
                             </span>
                             <span class="beacon-connector" aria-hidden="true"></span>
                         </button>
+                        ${extraBeaconButtonsHTML()}
 
                     </div>
 
@@ -464,6 +465,60 @@ document.addEventListener("DOMContentLoaded", function () {
      * calibrated against Sabah + Sarawak SVG land paths already in malaysia_map.svg
      * using the same community coordinates as language-universe.js.
      */
+    function livingCountLabel(state, fallbackN) {
+        const n = Number(
+            (window.LANGUAGE_MAP && window.LANGUAGE_MAP.state_counts && window.LANGUAGE_MAP.state_counts[state]) ||
+                fallbackN
+        );
+        return n + (n === 1 ? " living language" : " living languages");
+    }
+
+    function extraMapPoints() {
+        const points = (window.LANGUAGE_MAP && window.LANGUAGE_MAP.points) || [];
+        const extraKeys = {
+            bookan: true,
+            chewong: true,
+            temoq: true,
+            kristang: true,
+            "baba-malay": true
+        };
+        return points.filter(function (p) {
+            return p && extraKeys[p.key];
+        });
+    }
+
+    function extraBeaconButtonsHTML() {
+        return extraMapPoints()
+            .map(function (p) {
+                const region = String(p.state || "").toLowerCase();
+                const name = p.display_name || p.key;
+                return (
+                    '<button class="exploration-beacon lang-beacon ' +
+                    p.key +
+                    '-beacon" type="button" data-region="' +
+                    region +
+                    '" data-lang="' +
+                    p.key +
+                    '" aria-label="Explore ' +
+                    name +
+                    " in " +
+                    (p.state || "") +
+                    '">' +
+                    '<span class="beacon-outer-ring"></span>' +
+                    '<span class="beacon-middle-ring"></span>' +
+                    '<span class="beacon-core"></span>' +
+                    '<span class="beacon-label"><strong>' +
+                    name +
+                    "</strong><small>" +
+                    (p.state || "") +
+                    "</small></span>" +
+                    '<span class="beacon-connector" aria-hidden="true"></span>' +
+                    "</button>"
+                );
+            })
+            .join("");
+    }
+
     function getSelangorGeo() {
         const fromMah =
             window.MAH_MERI_DATA &&
@@ -1395,6 +1450,50 @@ document.addEventListener("DOMContentLoaded", function () {
             obstacles.push(label.getBoundingClientRect());
         });
 
+        const extraOrder = ["bookan", "kristang", "baba-malay", "chewong", "temoq"];
+        extraOrder.forEach(function (langKey) {
+            const btn = scene.querySelector(
+                ".exploration-beacon.lang-beacon[data-lang='" + langKey + "'].is-geo-placed"
+            );
+            const label = btn ? btn.querySelector(".beacon-label") : null;
+            if (!btn || !label) {
+                return;
+            }
+            const beaconRect = btn.getBoundingClientRect();
+            const size = label.getBoundingClientRect();
+            const w = Math.max(size.width, 90);
+            const h = Math.max(size.height, 36);
+            const anglePref = {
+                bookan: 70,
+                kristang: 105,
+                "baba-malay": 155,
+                chewong: 200,
+                temoq: 20
+            };
+            let lx;
+            let ly;
+            if (ctx) {
+                const rect = findClearLabelRect(
+                    ctx,
+                    beaconRect,
+                    w,
+                    h,
+                    obstacles,
+                    buildAngleOrder(anglePref[langKey] || 90),
+                    0
+                );
+                lx = rect.left - beaconRect.left;
+                ly = rect.top - beaconRect.top;
+            } else {
+                lx = 18;
+                ly = 28;
+            }
+            btn.style.setProperty("--label-x", lx.toFixed(1) + "px");
+            btn.style.setProperty("--label-y", ly.toFixed(1) + "px");
+            updateConnector(btn, label);
+            obstacles.push(label.getBoundingClientRect());
+        });
+
         return true;
     }
 
@@ -1423,6 +1522,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         /* Ensure beacons are map-attached children of the wrap. */
         [selangor, sabah, sarawak].forEach(function (btn) {
+            if (btn.parentElement !== wrap) {
+                wrap.appendChild(btn);
+            }
+        });
+
+        const extraBeacons = wrap.querySelectorAll(".exploration-beacon.lang-beacon");
+        extraBeacons.forEach(function (btn) {
             if (btn.parentElement !== wrap) {
                 wrap.appendChild(btn);
             }
@@ -1554,6 +1660,40 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             );
             if (okSel && okSabah && okSarawak) {
+                extraMapPoints().forEach(function (p) {
+                    const btn = wrap.querySelector(
+                        ".exploration-beacon.lang-beacon[data-lang='" + p.key + "']"
+                    );
+                    if (!btn) {
+                        return;
+                    }
+                    btn.dataset.geoLat = String(p.lat);
+                    btn.dataset.geoLon = String(p.lon);
+                    btn.dataset.geoSource = "LANGUAGE_MAP";
+                    let svgX;
+                    let svgY;
+                    if (p.frame === "sabah") {
+                        const kdLat = 5.9;
+                        const kdLon = 116.2;
+                        svgX = sabahCx + ((p.lon - kdLon) / 2.4) * sabahBox.width;
+                        svgY = sabahCy - ((p.lat - kdLat) / 2.2) * sabahBox.height;
+                    } else {
+                        const uLonP =
+                            (p.lon - PEN_GEO.lonMin) /
+                            (PEN_GEO.lonMax - PEN_GEO.lonMin);
+                        const vLatP =
+                            (PEN_GEO.latMax - p.lat) /
+                            (PEN_GEO.latMax - PEN_GEO.latMin);
+                        svgX = penMinX + uLonP * (penMaxX - penMinX);
+                        svgY = penMinY + vLatP * (penMaxY - penMinY);
+                    }
+                    placeBeaconAtSvg(btn, mapObject, wrap, svgX, svgY, {
+                        geoFrame: p.frame || "peninsula",
+                        geoLat: String(p.lat),
+                        geoLon: String(p.lon),
+                        geoSource: "LANGUAGE_MAP." + p.key
+                    });
+                });
                 layoutBeaconLabelsAndConnectors();
                 const landReady = collectSvgLandElements(svgDoc).length >= 8;
                 if (!landReady) {
@@ -1667,7 +1807,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </h4>
 
                 <p>
-                    Choose Selangor, Sabah, or Sarawak to reveal
+                    Choose a glowing signal to reveal
                     the living languages connected to that place.
                 </p>
 
@@ -1753,7 +1893,9 @@ document.addEventListener("DOMContentLoaded", function () {
         mapScene.classList.remove(
             "focus-sabah",
             "focus-sarawak",
-            "focus-selangor"
+            "focus-selangor",
+            "focus-pahang",
+            "focus-melaka"
         );
 
 
@@ -2938,7 +3080,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="discovery-paths-header">
 
                     <span>
-                        A path into Sabah
+                        Two paths into Sabah
                     </span>
 
                     <p>
@@ -2951,6 +3093,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 <div class="discovery-language-paths">
 
                     ${kadazanPath}
+
+                    ${createLanguagePathHTML({
+                        selector: ".bookan-card",
+                        langKey: "bookan",
+                        number: "02",
+                        name: "Bookan",
+                        origin: "Sabah",
+                        description: "Follow published documentation of Murut Bookan rather than an invented lexicon."
+                    })}
 
                 </div>
 
@@ -3101,6 +3252,101 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    function getPairedRegionDiscoveryHTML(options) {
+        const paths = (options.languages || [])
+            .map(function (item, index) {
+                const n = String(index + 1).padStart(2, "0");
+                return createLanguagePathHTML({
+                    selector: item.selector,
+                    langKey: item.langKey,
+                    number: n,
+                    name: item.name,
+                    origin: item.origin,
+                    description: item.description
+                });
+            })
+            .join("");
+        return `
+            <div class="region-discovery-content">
+                <button class="close-region-discovery" type="button" aria-label="Return to the full Malaysia map">
+                    <span aria-hidden="true">←</span>
+                    Back to Malaysia
+                </button>
+                <div class="discovery-place-identity">
+                    <span class="region-discovery-eyebrow">${options.eyebrow}</span>
+                    <div class="discovery-place-title-row">
+                        <h4>${options.title}</h4>
+                        <span class="discovery-place-mark" aria-hidden="true">${options.mark}</span>
+                    </div>
+                </div>
+                <div class="discovery-place-story">
+                    <span class="discovery-story-line" aria-hidden="true"></span>
+                    <p>${options.story}</p>
+                </div>
+                <div class="discovery-paths-header">
+                    <span>${options.pathHeading}</span>
+                    <p>Choose a language to continue the journey.</p>
+                </div>
+                <div class="discovery-language-paths">
+                    ${paths}
+                </div>
+            </div>
+        `;
+    }
+
+    function getPahangDiscoveryHTML() {
+        return getPairedRegionDiscoveryHTML({
+            eyebrow: "Pahang Discovered",
+            title: "Aslian languages of Pahang",
+            mark: "04",
+            story: "Chewong and Temoq are documented Orang Asli languages of Pahang. Their map markers use published coordinates, kept apart so the two communities are not collapsed into one point.",
+            pathHeading: "Two paths into Pahang",
+            languages: [
+                {
+                    selector: ".chewong-card",
+                    langKey: "chewong",
+                    name: "Chewong",
+                    origin: "Pahang",
+                    description: "Study the published Ceq Wong basic wordlist used in this course."
+                },
+                {
+                    selector: ".temoq-card",
+                    langKey: "temoq",
+                    name: "Temoq",
+                    origin: "Pahang",
+                    description: "Study the published Temoq basic wordlist. No extra words are invented to fill the page."
+                }
+            ]
+        });
+    }
+
+    function getMelakaDiscoveryHTML() {
+        return getPairedRegionDiscoveryHTML({
+            eyebrow: "Melaka Discovered",
+            title: "Creole and Peranakan heritage languages",
+            mark: "05",
+            story: "Kristang and Baba Malay are both linked with Melaka, but they are different languages with different communities. The map keeps the Portuguese Settlement and the Peranakan quarter as separate signals.",
+            pathHeading: "Two paths into Melaka",
+            languages: [
+                {
+                    selector: ".kristang-card",
+                    langKey: "kristang",
+                    name: "Kristang",
+                    origin: "Melaka",
+                    description: "A Portuguese-based creole taught here from a published Swadesh list."
+                },
+                {
+                    selector: ".baba-malay-card",
+                    langKey: "baba-malay",
+                    name: "Baba Malay",
+                    origin: "Melaka",
+                    description: "A Malay-based Peranakan contact language taught from a published basic wordlist."
+                }
+            ]
+        });
+    }
+
+
     /* =========================================
        SHOW REGION DISCOVERY
        ========================================= */
@@ -3144,6 +3390,14 @@ document.addEventListener("DOMContentLoaded", function () {
             discoveryPanel.innerHTML =
                 getSelangorDiscoveryHTML();
 
+        }
+
+        if (region === "pahang") {
+            discoveryPanel.innerHTML = getPahangDiscoveryHTML();
+        }
+
+        if (region === "melaka") {
+            discoveryPanel.innerHTML = getMelakaDiscoveryHTML();
         }
 
 
@@ -3241,7 +3495,9 @@ document.addEventListener("DOMContentLoaded", function () {
             mapScene.classList.remove(
                 "focus-sabah",
                 "focus-sarawak",
-                "focus-selangor"
+                "focus-selangor",
+                "focus-pahang",
+                "focus-melaka"
             );
 
         }
