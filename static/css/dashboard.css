@@ -9406,6 +9406,7 @@ transform:none;
     font-size: 0.66rem;
 }
 
-.exploration-beacon.lang-beacon.is-geo-placed .beacon-label small {
-    font-size: 0.5rem;
+.exploration-beacon.lang-beacon.is-label-hidden .beacon-label,
+.exploration-beacon.lang-beacon.is-label-hidden .beacon-connector {
+    display: none !important;
 }
