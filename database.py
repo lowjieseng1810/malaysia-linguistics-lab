@@ -745,7 +745,11 @@ def seed_tutor_content(
                 }
             )
 
-    quiz_rows.extend(_generate_vocab_quizzes(vocab_rows))
+    quiz_rows.extend(
+        _generate_vocab_quizzes(
+            [row for row in vocab_rows if row.get("language") not in _EXTENDED_COURSE_LANGS]
+        )
+    )
 
     # Auto-generated vocab quizzes can coincidentally repeat the exact
     # phrasing of a hand-authored lesson quiz step (e.g. both producing

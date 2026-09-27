@@ -82,8 +82,21 @@ class NineLanguageDataTests(unittest.TestCase):
                     self.assertNotIn("think carefully", hint)
                     self.assertNotIn("look at the options", hint)
                     self.assertTrue(step.get("correctFeedback") or step.get("wrongFeedback"))
-                    q = (step.get("question") or "").lower()
-                    self.assertNotIn("what does \"iN\" mean", q)
+                    q = (step.get("question") or "")
+                    q_low = q.lower()
+                    self.assertNotRegex(
+                        q,
+                        r'What does\s+[\'"“][^\'"”]{1,12}[\'"”]\s+mean',
+                        lang_key,
+                    )
+                    self.assertNotRegex(
+                        q_low,
+                        r"which (word|expression) means",
+                        lang_key,
+                    )
+                    self.assertNotIn("iso 639", q_low)
+                    self.assertNotIn("dk0743", q_low)
+                    self.assertNotIn("what does \"in\" mean", q_low)
             self.assertGreaterEqual(quiz_count, 4, lang_key)
 
     def test_bookan_facts_excluded_from_dictionary_harvest(self):

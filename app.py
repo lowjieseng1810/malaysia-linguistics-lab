@@ -3116,7 +3116,7 @@ def get_tutor_language_facts(lang_key):
 
 def build_general_tutor_context():
     """
-    Builds a grounded context covering ALL four supported languages at
+    Builds a grounded context covering all course languages at
     once, sourced only from LANGUAGES / COURSE_DATA. Used for Free Chat
     when no specific course/lesson is open, so general questions and
     comparisons between the supported languages can still be answered
@@ -3191,6 +3191,8 @@ def extract_lesson_vocabulary(lang_key, level_num):
             meaning = step.get("meaning")
 
             if term and meaning:
+                if step.get("exclude_from_dictionary"):
+                    continue
                 vocabulary.append({
                     "term": term,
                     "meaning": meaning,
