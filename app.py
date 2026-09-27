@@ -34,6 +34,7 @@ from database import (
     seed_tutor_content,
     enrich_vocabulary_from_quiz_stems,
     sync_missing_vocabulary_from_course,
+    sync_extended_course_quizzes,
     import_verified_vocabulary_packs,
     vocabulary_counts_by_language,
     vocabulary_coverage_report,
@@ -3115,7 +3116,7 @@ def get_tutor_language_facts(lang_key):
 
 def build_general_tutor_context():
     """
-    Builds a grounded context covering ALL four supported languages at
+    Builds a grounded context covering all course languages at
     once, sourced only from LANGUAGES / COURSE_DATA. Used for Free Chat
     when no specific course/lesson is open, so general questions and
     comparisons between the supported languages can still be answered
@@ -3190,6 +3191,8 @@ def extract_lesson_vocabulary(lang_key, level_num):
             meaning = step.get("meaning")
 
             if term and meaning:
+                if step.get("exclude_from_dictionary"):
+                    continue
                 vocabulary.append({
                     "term": term,
                     "meaning": meaning,
@@ -4172,6 +4175,7 @@ try:
             seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
             sync_missing_vocabulary_from_course(COURSE_DATA)
             import_verified_vocabulary_packs()
+            sync_extended_course_quizzes(COURSE_DATA)
         except Exception as _seed_exc:
             print(f"[tutor seed] warning: {_seed_exc}")
 except Exception as _init_db_exc:
@@ -7654,6 +7658,7 @@ if __name__ == "__main__":
     seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
     sync_missing_vocabulary_from_course(COURSE_DATA)
     import_verified_vocabulary_packs()
+    sync_extended_course_quizzes(COURSE_DATA)
 
     refresh_composer_enabled()
     # Status/health already printed on import for flask run; print again for python app.py

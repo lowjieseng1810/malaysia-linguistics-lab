@@ -41,7 +41,12 @@ class QuizModeTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         import app as app_module
-        from database import import_verified_vocabulary_packs, init_content_tables, seed_tutor_content
+        from database import (
+            import_verified_vocabulary_packs,
+            init_content_tables,
+            seed_tutor_content,
+            sync_extended_course_quizzes,
+        )
         from app import COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS
 
         cls.app_module = app_module
@@ -52,6 +57,7 @@ class QuizModeTests(unittest.TestCase):
             init_content_tables()
             seed_tutor_content(COURSE_DATA, LANGUAGES, EXPLORE_UNLOCKS)
             import_verified_vocabulary_packs()
+            sync_extended_course_quizzes(COURSE_DATA)
 
     def setUp(self):
         self.client = self.app.test_client()

@@ -622,6 +622,14 @@ def _build_session_questions(
     pool = get_quiz_questions(lang_key, int(level_num), limit=200, difficulty=difficulty) if difficulty else []
     if not pool:
         pool = get_quiz_questions(lang_key, int(level_num), limit=200)
+    if len(pool) < count:
+        extra = get_quiz_questions(lang_key, int(level_num), limit=200, search_all=True)
+        seen = {q.get("id") for q in pool}
+        for row in extra:
+            if row.get("id") in seen:
+                continue
+            pool.append(row)
+            seen.add(row.get("id"))
     if not pool:
         return []
     return _session_questions_from_table(pool, count, difficulty, rng)
@@ -670,6 +678,7 @@ def _session_questions_from_table(
                 "options": shuffled,
                 "correct_index": correct_index,
                 "explanation": q.get("explanation") or "",
+                "hint": (q.get("hint") or "").strip(),
                 "difficulty": q.get("difficulty") or difficulty or "medium",
                 "source_lang": q.get("language") or q.get("source_lang"),
             }
@@ -691,6 +700,7 @@ def _public_session_view(state: dict) -> dict:
             "difficulty": q.get("difficulty"),
             "quiz_id": q.get("quiz_id"),
             "source_lang": q.get("source_lang") or state.get("lang_key"),
+            "hint": q.get("hint") or "",
         }
     return {
         "lang_key": state.get("lang_key"),
