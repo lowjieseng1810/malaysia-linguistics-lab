@@ -326,6 +326,33 @@ def _establish_invite_session(invite):
     session.permanent = True
 
 
+# Render's public hostname for this service. Used only as an alternate share
+# URL for the same hashed invite token (same app/DB). Never changes TLS.
+_RENDER_INVITE_HOST = (
+    (os.getenv("RENDER_EXTERNAL_HOSTNAME") or "malaysialinguisticslab.onrender.com")
+    .strip()
+    .split(":")[0]
+    .lower()
+)
+
+
+def _review_invite_share_urls(token: str) -> dict[str, str]:
+    """Absolute invite URLs for the current request host plus Render fallback.
+
+    Invite tokens are host-agnostic (looked up by hash). Session cookies are
+    host-only, so the reviewer must open the invite path on the hostname they
+    will use. The custom-domain link is unchanged; the Render URL is the same
+    path on the default HTTPS hostname.
+    """
+    path = url_for("review_invite_open", token=token)
+    primary = url_for("review_invite_open", token=token, _external=True)
+    urls = {"primary": primary}
+    host = (request.host or "").split(":")[0].lower()
+    if _RENDER_INVITE_HOST and host != _RENDER_INVITE_HOST:
+        urls["render_fallback"] = f"https://{_RENDER_INVITE_HOST}{path}"
+    return urls
+
+
 def _lookup_auth_user(identifier: str):
     """Find a user by username or email (case-insensitive).
 
@@ -7222,6 +7249,7 @@ def admin_review_invitations():
         ],
         kinds=[{"id": key, "label": label} for key, label in KIND_LABELS.items()],
         created_link=session.pop("created_invite_link", None),
+        created_render_link=session.pop("created_invite_render_link", None),
         created_label=session.pop("created_invite_label", None),
     )
 
@@ -7242,9 +7270,9 @@ def admin_review_invitations_create():
         flash(result.get("error") or "Could not create invitation.")
         return redirect(url_for("admin_review_invitations"))
     token = result["token"]
-    session["created_invite_link"] = url_for(
-        "review_invite_open", token=token, _external=True
-    )
+    share = _review_invite_share_urls(token)
+    session["created_invite_link"] = share["primary"]
+    session["created_invite_render_link"] = share.get("render_fallback")
     session["created_invite_label"] = (request.form.get("label") or "").strip()
     flash(
         "Invitation created. Anyone with this private link can review the assigned "
