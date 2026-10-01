@@ -9319,9 +9319,15 @@ transform:none;
     right: auto !important;
     bottom: auto !important;
     width: max-content !important;
-    min-width: 118px !important;
+    min-width: 148px !important;
+    max-width: min(220px, 42vw) !important;
+    padding: 7px 10px !important;
     transform: none !important;
     text-align: left !important;
+    white-space: nowrap;
+    overflow: visible;
+    box-sizing: border-box;
+    z-index: 6;
 }
 
 .exploration-beacon.is-geo-placed::after {
@@ -9398,17 +9404,15 @@ transform:none;
     }
 }
 
-.exploration-beacon.lang-beacon.is-geo-placed .beacon-label {
-    min-width: 108px !important;
-    max-width: 148px;
-    padding: 6px 8px !important;
+.exploration-beacon.lang-beacon {
+    display: none !important;
 }
 
 .exploration-beacon.lang-beacon.is-geo-placed .beacon-label strong {
     font-size: 0.66rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 420px) {
     .miniature-map-scene .real-malaysia-map-wrap {
         justify-content: flex-start !important;
         align-items: flex-start !important;

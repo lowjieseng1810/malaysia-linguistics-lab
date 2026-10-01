@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <span class="beacon-core"></span>
                             <span class="beacon-label">
                                 <strong>Sabah</strong>
-                                <small>${livingCountLabel("Sabah", 1)}</small>
+                                <small>${livingCountLabel("Sabah", 2)}</small>
                             </span>
                             <span class="beacon-connector" aria-hidden="true"></span>
                         </button>
@@ -419,7 +419,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             </span>
                             <span class="beacon-connector" aria-hidden="true"></span>
                         </button>
-                        ${extraBeaconButtonsHTML()}
 
                     </div>
 
@@ -501,67 +500,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return n + (n === 1 ? " living language" : " living languages");
     }
 
-    function extraMapPoints() {
-        const points = (window.LANGUAGE_MAP && window.LANGUAGE_MAP.points) || [];
-        const extraKeys = {
-            bookan: true,
-            chewong: true,
-            temoq: true,
-            kristang: true,
-            "baba-malay": true
-        };
-        return points.filter(function (p) {
-            return p && extraKeys[p.key];
-        });
-    }
-
-    function extraBeaconButtonsHTML() {
-        return extraMapPoints()
-            .map(function (p) {
-                const region = String(p.state || "").toLowerCase();
-                const name = p.display_name || p.key;
-                return (
-                    '<button class="exploration-beacon lang-beacon ' +
-                    p.key +
-                    '-beacon" type="button" data-region="' +
-                    region +
-                    '" data-lang="' +
-                    p.key +
-                    '" aria-label="Explore ' +
-                    name +
-                    " in " +
-                    (p.state || "") +
-                    '">' +
-                    '<span class="beacon-outer-ring"></span>' +
-                    '<span class="beacon-middle-ring"></span>' +
-                    '<span class="beacon-core"></span>' +
-                    '<span class="beacon-label"><strong>' +
-                    name +
-                    "</strong><small>" +
-                    (p.state || "") +
-                    "</small></span>" +
-                    '<span class="beacon-connector" aria-hidden="true"></span>' +
-                    "</button>"
-                );
-            })
-            .join("");
-    }
-
     function getSelangorGeo() {
-        const fromMah =
-            window.MAH_MERI_DATA &&
-            window.MAH_MERI_DATA.language
-                ? window.MAH_MERI_DATA.language
-                : null;
-        if (
-            fromMah &&
-            typeof fromMah.lat === "number" &&
-            typeof fromMah.lon === "number"
-        ) {
-            return { lat: fromMah.lat, lon: fromMah.lon, source: "MAH_MERI_DATA" };
-        }
-        /* Fallback identical to LANGUAGE_COORDS["mah-meri"]. */
-        return { lat: 2.86, lon: 101.35, source: "LANGUAGE_COORDS.mah-meri" };
+        /* State beacon (not the Mah Meri community point): inland Selangor. */
+        return { lat: 3.07, lon: 101.52, source: "Selangor-interior-Shah-Alam" };
     }
 
 
@@ -658,6 +599,71 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         return true;
+    }
+
+    function snapSvgPointToLand(svgDoc, svgX, svgY, opts) {
+        opts = opts || {};
+        const excludeIds = opts.excludeIds || [];
+        const preferEast = !!opts.preferEast;
+        const landEls = collectSvgLandElements(svgDoc).filter(function (el) {
+            return excludeIds.indexOf(el.id) === -1;
+        });
+        if (!landEls.length) {
+            return { x: svgX, y: svgY };
+        }
+        let pt;
+        try {
+            pt = svgDoc.documentElement.createSVGPoint();
+        } catch (err) {
+            return { x: svgX, y: svgY };
+        }
+        function onLand(x, y) {
+            pt.x = x;
+            pt.y = y;
+            for (let i = 0; i < landEls.length; i += 1) {
+                try {
+                    if (landEls[i].isPointInFill(pt)) {
+                        return true;
+                    }
+                } catch (err2) {
+                    /* ignore */
+                }
+            }
+            return false;
+        }
+        if (onLand(svgX, svgY)) {
+            return { x: svgX, y: svgY };
+        }
+        /* Search inland (east / +x) first so west-coast points do not snap into the strait. */
+        const radii = [];
+        for (let r = 2; r <= 64; r += 2) {
+            radii.push(r);
+        }
+        const angles = preferEast
+            ? [0, 0.4, -0.4, 0.8, -0.8, 1.2, -1.2, 1.57, -1.57, 2.2, -2.2, 3.14]
+            : null;
+        for (let ri = 0; ri < radii.length; ri += 1) {
+            const r = radii[ri];
+            if (angles) {
+                for (let ai = 0; ai < angles.length; ai += 1) {
+                    const nx = svgX + Math.cos(angles[ai]) * r;
+                    const ny = svgY + Math.sin(angles[ai]) * r;
+                    if (onLand(nx, ny)) {
+                        return { x: nx, y: ny };
+                    }
+                }
+            } else {
+                for (let a = 0; a < 16; a += 1) {
+                    const rad = (a * Math.PI) / 8;
+                    const nx = svgX + Math.cos(rad) * r;
+                    const ny = svgY + Math.sin(rad) * r;
+                    if (onLand(nx, ny)) {
+                        return { x: nx, y: ny };
+                    }
+                }
+            }
+        }
+        return { x: svgX, y: svgY };
     }
 
 
@@ -844,6 +850,37 @@ document.addEventListener("DOMContentLoaded", function () {
         return { left: left, top: top, right: left + w, bottom: top + h };
     }
 
+    function preferredStateSlot(region, wrapRect, w, h) {
+        const pad = 16;
+        const slots = {
+            pahang: {
+                left: wrapRect.left + Math.min(wrapRect.width * 0.20, 160),
+                top: wrapRect.top + pad
+            },
+            selangor: {
+                left: wrapRect.left + pad,
+                top: wrapRect.top + wrapRect.height * 0.46
+            },
+            melaka: {
+                left: wrapRect.left + pad + 10,
+                top: wrapRect.bottom - h - pad
+            },
+            sabah: {
+                left: wrapRect.right - w - pad,
+                top: wrapRect.top + pad
+            },
+            sarawak: {
+                left: wrapRect.right - w - pad,
+                top: wrapRect.bottom - h - pad
+            }
+        };
+        const s = slots[region];
+        if (!s) {
+            return null;
+        }
+        return { left: s.left, top: s.top, right: s.left + w, bottom: s.top + h };
+    }
+
     /**
      * Search real map-relative geometry (SVG land fills, wrap bounds, sibling
      * labels, instruction text) for a label placement that never covers a
@@ -918,7 +955,7 @@ document.addEventListener("DOMContentLoaded", function () {
             /* Always clamp into the wrap first — visibility is a hard
                requirement — then judge land/obstacle clearance on the
                clamped (i.e. truly final) rect, not the pre-clamp guess. */
-            const rect = clampRectToWrap(raw, placementRect, 4);
+            const rect = clampRectToWrap(raw, placementRect, 8);
             const onLand = rectOverlapsLand(ctx, rect);
             let hardOverlap = 0;
             for (let oi = 0; oi < hardObstacles.length; oi += 1) {
@@ -1179,17 +1216,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const pivotX = 11;
         const pivotY = 11 + connectorHeight / 2;
 
-        let targetX;
-        let targetY;
-        if (isSelangor) {
-            /* Top-center of the painted Selangor card. */
-            targetX = labelLocalX + labelW / 2;
-            targetY = labelLocalY;
-        } else {
-            /* Sabah / Sarawak: aim at the painted card interior. */
-            targetX = labelLocalX + labelW / 2;
-            targetY = labelLocalY + labelH * 0.42;
-        }
+        /* Meet the nearest edge of the painted card so the leader stays attached. */
+        const targetX = Math.max(labelLocalX, Math.min(pivotX, labelLocalX + labelW));
+        const targetY = Math.max(labelLocalY, Math.min(pivotY, labelLocalY + labelH));
 
         const dx = targetX - pivotX;
         const dy = targetY - pivotY;
@@ -1226,7 +1255,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 ? instruction.getBoundingClientRect()
                 : null;
         const mapObjectEl = document.getElementById("real-malaysia-map");
-        const compactMap = wrapRect.width < 640 || wrapRect.height < 280;
+        /* Dock labels only on true narrow phones. Laptop/tablet wraps are
+           often ~520–630px because of the discovery column — those still
+           get ocean slots, not a 5-across dock that overflows the wrap. */
+        const compactMap = wrapRect.width < 420;
         if (mapObjectEl) {
             if (compactMap) {
                 mapObjectEl.style.setProperty("height", "36%", "important");
@@ -1243,46 +1275,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        /* --- Sabah: unchanged — exact original preset + nudge behavior. --- */
-        const sabahBtn = scene.querySelector(".exploration-beacon.sabah-beacon.is-geo-placed");
-        let sabahLabelRect = null;
-        if (sabahBtn) {
-            const sabahPreset = { lx: -132, ly: -90 };
-            let lx = sabahPreset.lx * scale;
-            let ly = sabahPreset.ly * scale;
-            sabahBtn.style.setProperty("--label-x", lx.toFixed(1) + "px");
-            sabahBtn.style.setProperty("--label-y", ly.toFixed(1) + "px");
-
-            const sabahLabel = sabahBtn.querySelector(".beacon-label");
-            if (sabahLabel && instrRect) {
-                for (let n = 0; n < 8; n += 1) {
-                    const lr = sabahLabel.getBoundingClientRect();
-                    const ox = Math.max(
-                        0,
-                        Math.min(lr.right, instrRect.right) -
-                            Math.max(lr.left, instrRect.left)
-                    );
-                    const oy = Math.max(
-                        0,
-                        Math.min(lr.bottom, instrRect.bottom) -
-                            Math.max(lr.top, instrRect.top)
-                    );
-                    if (ox * oy <= 4) {
-                        break;
-                    }
-                    ly -= 10;
-                    lx -= 8;
-                    sabahBtn.style.setProperty("--label-y", ly.toFixed(1) + "px");
-                    sabahBtn.style.setProperty("--label-x", lx.toFixed(1) + "px");
-                }
-            }
-            if (sabahLabel) {
-                updateConnector(sabahBtn, sabahLabel);
-                sabahLabelRect = sabahLabel.getBoundingClientRect();
-            }
-        }
-
-        /* --- Selangor + Sarawak: land-aware responsive placement. --- */
+        /* --- Five state labels: land-aware ocean placement (no language names). --- */
         const mapObject = document.getElementById("real-malaysia-map");
         const svgDoc = resolveMalaysiaSvgDoc(mapObject);
         let ctx = null;
@@ -1353,11 +1346,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (instrRect) {
             obstacles.push({ rect: instrRect, soft: true });
         }
-        if (sabahLabelRect) {
-            obstacles.push(sabahLabelRect);
-        }
-        document.querySelectorAll(".mascot-companion, .ai-tutor-toggle-button").forEach(function (el) {
-            obstacles.push(el.getBoundingClientRect());
+        document.querySelectorAll(
+            ".mascot-companion, .mascot-speech, .ai-tutor-toggle-button, .dash-sidebar, .heritage-plaque"
+        ).forEach(function (el) {
+            const r = el.getBoundingClientRect();
+            if (r.width > 4 && r.height > 4) {
+                obstacles.push(r);
+            }
         });
 
         /* Desktop-only: wrapRect.width ~728-880px on desktop vs. ~310px
@@ -1366,12 +1361,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const isDesktopWide = wrapRect.width > 500;
 
         /*
-         * Sarawak is placed first (with a hard "below the state" bias and a
-         * larger minimum separation) so its stronger placement requirement
-         * wins the best spot; Selangor is placed second and treats Sarawak's
-         * chosen rect as an obstacle to avoid.
+         * Place all five STATE labels off land, biased to ocean around each
+         * state. Language-name beacons are not rendered.
          */
-        ["sarawak", "selangor", "pahang", "melaka"].forEach(function (region) {
+        const STATE_PLANS = [
+            { region: "pahang", angles: buildAngleOrder(255), minR: 0.1 },
+            { region: "sabah", angles: buildAngleOrder(315), minR: 0.1 },
+            { region: "selangor", angles: buildAngleOrder(170), minR: 0.08 },
+            { region: "melaka", angles: buildAngleOrder(100), minR: 0.1 },
+            { region: "sarawak", angles: SARAWAK_ANGLES_DEG, minR: 0.1 }
+        ];
+        STATE_PLANS.forEach(function (plan) {
+            const region = plan.region;
             const btn = scene.querySelector(
                 ".exploration-beacon." + region + "-beacon.is-geo-placed"
             );
@@ -1381,36 +1382,37 @@ document.addEventListener("DOMContentLoaded", function () {
             }
             const beaconRect = btn.getBoundingClientRect();
             const size = label.getBoundingClientRect();
-            const w = Math.max(size.width, 96);
-            const h = Math.max(size.height, 40);
+            const w = Math.max(size.width, 148);
+            const h = Math.max(size.height, 44);
 
             let lx;
             let ly;
             if (ctx) {
-                let rect;
-                if (region === "selangor" && isDesktopWide) {
-                    rect = findDesktopSelangorOffMapRect(ctx, beaconRect, w, h, obstacles);
-                } else {
-                    const angleOrder =
-                        region === "sarawak"
-                            ? SARAWAK_ANGLES_DEG
-                            : region === "pahang"
-                              ? buildAngleOrder(215)
-                              : region === "melaka"
-                                ? buildAngleOrder(70)
-                                : SELANGOR_ANGLES_DEG;
-                    /* No minimum separation — the label should sit as close to
-                       its state as land/obstacle avoidance allows. */
-                    const minRadiusFrac = 0;
-                    rect = findClearLabelRect(
-                        ctx,
-                        beaconRect,
-                        w,
-                        h,
-                        obstacles,
-                        angleOrder,
-                        minRadiusFrac
-                    );
+                let rect = preferredStateSlot(region, wrapRect, w, h);
+                if (rect) {
+                    rect = clampRectToWrap(rect, ctx.placementRect || wrapRect, 8);
+                }
+                const slotBlocked =
+                    !rect ||
+                    rectOverlapsLand(ctx, rect) ||
+                    obstacles.some(function (o) {
+                        const r = o.rect || o;
+                        return rectOverlapArea(rect, r) > 200;
+                    });
+                if (slotBlocked) {
+                    if (region === "selangor" && isDesktopWide) {
+                        rect = findDesktopSelangorOffMapRect(ctx, beaconRect, w, h, obstacles);
+                    } else {
+                        rect = findClearLabelRect(
+                            ctx,
+                            beaconRect,
+                            w,
+                            h,
+                            obstacles,
+                            plan.angles,
+                            plan.minR
+                        );
+                    }
                 }
 
                 if (region === "sarawak" && isDesktopWide) {
@@ -1504,63 +1506,10 @@ document.addEventListener("DOMContentLoaded", function () {
             obstacles.push(label.getBoundingClientRect());
         });
 
-        const extraOrder = ["bookan", "kristang", "baba-malay", "chewong", "temoq"];
-        extraOrder.forEach(function (langKey) {
-            const btn = scene.querySelector(
-                ".exploration-beacon.lang-beacon[data-lang='" + langKey + "'].is-geo-placed"
-            );
-            const label = btn ? btn.querySelector(".beacon-label") : null;
-            if (!btn || !label) {
-                return;
-            }
-            btn.classList.remove("is-label-hidden");
-            const beaconRect = btn.getBoundingClientRect();
-            const size = label.getBoundingClientRect();
-            const w = Math.max(size.width, 90);
-            const h = Math.max(size.height, 36);
-            const oceanFrac = {
-                chewong: { x: 0.30, y: 0.06 },
-                temoq: { x: 0.40, y: 0.33 },
-                kristang: { x: 0.36, y: 0.78 },
-                "baba-malay": { x: 0.02, y: 0.58 },
-                bookan: { x: 0.80, y: 0.54 }
-            };
-            let lx;
-            let ly;
-            const slot = oceanFrac[langKey];
-            if (slot) {
-                let left = wrapRect.left + wrapRect.width * slot.x;
-                let top = wrapRect.top + wrapRect.height * slot.y;
-                left = Math.max(wrapRect.left + 4, Math.min(left, wrapRect.right - w - 4));
-                top = Math.max(wrapRect.top + 4, Math.min(top, wrapRect.bottom - h - 4));
-                lx = left - beaconRect.left;
-                ly = top - beaconRect.top;
-            } else if (ctx) {
-                const rect = findClearLabelRect(
-                    ctx,
-                    beaconRect,
-                    w,
-                    h,
-                    obstacles,
-                    buildAngleOrder(90),
-                    0.16
-                );
-                lx = rect.left - beaconRect.left;
-                ly = rect.top - beaconRect.top;
-            } else {
-                lx = 18;
-                ly = 28;
-            }
-            btn.style.setProperty("--label-x", lx.toFixed(1) + "px");
-            btn.style.setProperty("--label-y", ly.toFixed(1) + "px");
-            updateConnector(btn, label);
-            obstacles.push(label.getBoundingClientRect());
-        });
-
         if (ctx && !compactMap) {
             scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
                 const label = btn.querySelector(".beacon-label");
-                if (!label || btn.classList.contains("sabah-beacon")) {
+                if (!label) {
                     return;
                 }
                 let lr = label.getBoundingClientRect();
@@ -1599,24 +1548,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (compactMap) {
-            const order = [
-                "chewong",
-                "temoq",
-                "pahang",
-                "bookan",
-                "sabah",
-                "selangor",
-                "kristang",
-                "melaka",
-                "baba-malay",
-                "sarawak"
-            ];
-            const narrow = wrapRect.width < 420;
-            const cols = narrow ? 2 : 5;
-            const rows = narrow ? 5 : 2;
-            const dockTop = wrapRect.top + wrapRect.height * 0.40;
-            const avail = Math.max(rows * 34, wrapRect.bottom - dockTop - 6);
-            const cellW = (wrapRect.width - 10) / cols;
+            const order = ["pahang", "selangor", "melaka", "sabah", "sarawak"];
+            const cols = 1;
+            const rows = 5;
+            const dockTop = wrapRect.top + wrapRect.height * 0.42;
+            const avail = Math.max(rows * 40, wrapRect.bottom - dockTop - 6);
+            const cellW = wrapRect.width - 10;
             const cellH = avail / rows;
             scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
                 const label = btn.querySelector(".beacon-label");
@@ -1632,6 +1569,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const c = idx % cols;
                 const r = Math.floor(idx / cols);
                 const br = btn.getBoundingClientRect();
+                label.style.setProperty("min-width", "0px", "important");
                 label.style.maxWidth = Math.max(72, cellW - 8) + "px";
                 const lw = Math.min(label.getBoundingClientRect().width || 88, cellW - 6);
                 const lh = Math.min(label.getBoundingClientRect().height || 34, cellH - 2);
@@ -1750,13 +1688,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        const extraBeacons = wrap.querySelectorAll(".exploration-beacon.lang-beacon");
-        extraBeacons.forEach(function (btn) {
-            if (btn.parentElement !== wrap) {
-                wrap.appendChild(btn);
-            }
-        });
-
         const geo = getSelangorGeo();
         selangor.dataset.geoLat = String(geo.lat);
         selangor.dataset.geoLon = String(geo.lon);
@@ -1842,6 +1773,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 (PEN_GEO.latMax - PEN_GEO.latMin);
             const selSvgX = penMinX + uLon * (penMaxX - penMinX);
             const selSvgY = penMinY + vLat * (penMaxY - penMinY);
+            const selSnapped = snapSvgPointToLand(svgDoc, selSvgX, selSvgY, {
+                excludeIds: ["sabah", "sarawak"],
+                preferEast: true
+            });
 
             const sabahCx = sabahBox.x + sabahBox.width * 0.5;
             const sabahCy = sabahBox.y + sabahBox.height * 0.5;
@@ -1852,9 +1787,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 selangor,
                 mapObject,
                 wrap,
-                selSvgX,
-                selSvgY,
-                { geoFrame: "peninsula-bbox+MAH_MERI_DATA" }
+                selSnapped.x,
+                selSnapped.y,
+                { geoFrame: "peninsula-selangor-interior" }
             );
             const okSabah = placeBeaconAtSvg(
                 sabah,
@@ -1895,80 +1830,25 @@ document.addEventListener("DOMContentLoaded", function () {
                         y: penMinY + vLatP * (penMaxY - penMinY)
                     };
                 }
-                function stateMidpoint(stateName) {
-                    const pts = extraMapPoints().concat(
-                        (window.LANGUAGE_MAP && window.LANGUAGE_MAP.points) || []
-                    );
-                    const seen = {};
-                    const match = [];
-                    pts.forEach(function (p) {
-                        if (!p || p.state !== stateName || seen[p.key]) {
-                            return;
-                        }
-                        seen[p.key] = true;
-                        match.push(p);
-                    });
-                    if (!match.length) {
-                        return null;
-                    }
-                    let lat = 0;
-                    let lon = 0;
-                    match.forEach(function (p) {
-                        lat += p.lat;
-                        lon += p.lon;
-                    });
-                    return { lat: lat / match.length, lon: lon / match.length };
-                }
-                const pahangGeo = stateMidpoint("Pahang") || { lat: 3.6, lon: 102.46 };
-                const melakaGeo = stateMidpoint("Melaka") || { lat: 2.197, lon: 102.26 };
+                const pahangGeo = { lat: 3.81, lon: 102.35 };
+                const melakaGeo = { lat: 2.21, lon: 102.25 };
+                const penSnap = { excludeIds: ["sabah", "sarawak"] };
                 if (pahang) {
                     const xy = peninsulaSvg(pahangGeo.lat, pahangGeo.lon);
-                    placeBeaconAtSvg(pahang, mapObject, wrap, xy.x, xy.y, {
+                    const snapped = snapSvgPointToLand(svgDoc, xy.x, xy.y, penSnap);
+                    placeBeaconAtSvg(pahang, mapObject, wrap, snapped.x, snapped.y, {
                         geoFrame: "peninsula",
-                        geoSource: "LANGUAGE_MAP.Pahang"
+                        geoSource: "Pahang-interior"
                     });
                 }
                 if (melaka) {
                     const xy = peninsulaSvg(melakaGeo.lat, melakaGeo.lon);
-                    placeBeaconAtSvg(melaka, mapObject, wrap, xy.x, xy.y, {
+                    const snapped = snapSvgPointToLand(svgDoc, xy.x, xy.y, penSnap);
+                    placeBeaconAtSvg(melaka, mapObject, wrap, snapped.x, snapped.y, {
                         geoFrame: "peninsula",
-                        geoSource: "LANGUAGE_MAP.Melaka"
+                        geoSource: "Melaka-interior"
                     });
                 }
-                extraMapPoints().forEach(function (p) {
-                    const btn = wrap.querySelector(
-                        ".exploration-beacon.lang-beacon[data-lang='" + p.key + "']"
-                    );
-                    if (!btn) {
-                        return;
-                    }
-                    btn.dataset.geoLat = String(p.lat);
-                    btn.dataset.geoLon = String(p.lon);
-                    btn.dataset.geoSource = "LANGUAGE_MAP";
-                    let svgX;
-                    let svgY;
-                    if (p.frame === "sabah") {
-                        const kdLat = 5.9;
-                        const kdLon = 116.2;
-                        svgX = sabahCx + ((p.lon - kdLon) / 2.4) * sabahBox.width;
-                        svgY = sabahCy - ((p.lat - kdLat) / 2.2) * sabahBox.height;
-                    } else {
-                        const uLonP =
-                            (p.lon - PEN_GEO.lonMin) /
-                            (PEN_GEO.lonMax - PEN_GEO.lonMin);
-                        const vLatP =
-                            (PEN_GEO.latMax - p.lat) /
-                            (PEN_GEO.latMax - PEN_GEO.latMin);
-                        svgX = penMinX + uLonP * (penMaxX - penMinX);
-                        svgY = penMinY + vLatP * (penMaxY - penMinY);
-                    }
-                    placeBeaconAtSvg(btn, mapObject, wrap, svgX, svgY, {
-                        geoFrame: p.frame || "peninsula",
-                        geoLat: String(p.lat),
-                        geoLon: String(p.lon),
-                        geoSource: "LANGUAGE_MAP." + p.key
-                    });
-                });
                 layoutBeaconLabelsAndConnectors();
                 const landReady = collectSvgLandElements(svgDoc).length >= 8;
                 if (!landReady) {

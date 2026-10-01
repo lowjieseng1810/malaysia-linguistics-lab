@@ -128,6 +128,24 @@ class NineLanguageDataTests(unittest.TestCase):
         self.assertEqual(MAP_COORDS["kristang"]["state"], "Melaka")
         self.assertEqual(MAP_COORDS["baba-malay"]["state"], "Melaka")
 
+    def test_map_script_has_only_state_beacons(self):
+        js = (ROOT / "static" / "js" / "dashboard.js").read_text(encoding="utf-8")
+        self.assertNotIn("extraBeaconButtonsHTML", js)
+        self.assertNotIn("exploration-beacon lang-beacon", js)
+        self.assertNotIn("bookan-beacon", js)
+        self.assertNotIn("chewong-beacon", js)
+        self.assertIn("function livingCountLabel", js)
+        self.assertIn('livingCountLabel("Sabah", 2)', js)
+        self.assertIn('livingCountLabel("Selangor", 1)', js)
+        self.assertIn('livingCountLabel("Pahang", 2)', js)
+        self.assertIn('livingCountLabel("Melaka", 2)', js)
+        self.assertIn('livingCountLabel("Sarawak", 2)', js)
+        css = (ROOT / "static" / "css" / "dashboard.css").read_text(encoding="utf-8")
+        self.assertRegex(
+            css,
+            r"\.exploration-beacon\.lang-beacon\s*\{\s*display:\s*none\s*!important",
+        )
+
     def test_tutor_aliases_resolve(self):
         self.assertEqual(resolve_language("Papía Kristang".replace("í", "i")), "kristang")
         self.assertEqual(resolve_language("Cheq Wong"), "chewong")
