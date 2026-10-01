@@ -9412,13 +9412,13 @@ transform:none;
     font-size: 0.66rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 420px) {
     .miniature-map-scene .real-malaysia-map-wrap {
         justify-content: flex-start !important;
         align-items: flex-start !important;
         display: flex !important;
         flex-direction: column !important;
-        overflow: visible;
+        overflow: hidden;
     }
     .miniature-map-scene .real-malaysia-map-wrap .real-malaysia-map {
         width: 100% !important;

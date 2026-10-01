@@ -850,6 +850,37 @@ document.addEventListener("DOMContentLoaded", function () {
         return { left: left, top: top, right: left + w, bottom: top + h };
     }
 
+    function preferredStateSlot(region, wrapRect, w, h) {
+        const pad = 16;
+        const slots = {
+            pahang: {
+                left: wrapRect.left + Math.min(wrapRect.width * 0.20, 160),
+                top: wrapRect.top + pad
+            },
+            selangor: {
+                left: wrapRect.left + pad,
+                top: wrapRect.top + wrapRect.height * 0.46
+            },
+            melaka: {
+                left: wrapRect.left + pad + 10,
+                top: wrapRect.bottom - h - pad
+            },
+            sabah: {
+                left: wrapRect.right - w - pad,
+                top: wrapRect.top + pad
+            },
+            sarawak: {
+                left: wrapRect.right - w - pad,
+                top: wrapRect.bottom - h - pad
+            }
+        };
+        const s = slots[region];
+        if (!s) {
+            return null;
+        }
+        return { left: s.left, top: s.top, right: s.left + w, bottom: s.top + h };
+    }
+
     /**
      * Search real map-relative geometry (SVG land fills, wrap bounds, sibling
      * labels, instruction text) for a label placement that never covers a
@@ -1224,7 +1255,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 ? instruction.getBoundingClientRect()
                 : null;
         const mapObjectEl = document.getElementById("real-malaysia-map");
-        const compactMap = wrapRect.width < 640 || wrapRect.height < 280;
+        /* Dock labels only on true narrow phones. Laptop/tablet wraps are
+           often ~520–630px because of the discovery column — those still
+           get ocean slots, not a 5-across dock that overflows the wrap. */
+        const compactMap = wrapRect.width < 420;
         if (mapObjectEl) {
             if (compactMap) {
                 mapObjectEl.style.setProperty("height", "36%", "important");
@@ -1313,7 +1347,7 @@ document.addEventListener("DOMContentLoaded", function () {
             obstacles.push({ rect: instrRect, soft: true });
         }
         document.querySelectorAll(
-            ".mascot-companion, .ai-tutor-toggle-button, .dash-sidebar"
+            ".mascot-companion, .mascot-speech, .ai-tutor-toggle-button, .dash-sidebar, .heritage-plaque"
         ).forEach(function (el) {
             const r = el.getBoundingClientRect();
             if (r.width > 4 && r.height > 4) {
@@ -1354,19 +1388,31 @@ document.addEventListener("DOMContentLoaded", function () {
             let lx;
             let ly;
             if (ctx) {
-                let rect;
-                if (region === "selangor" && isDesktopWide) {
-                    rect = findDesktopSelangorOffMapRect(ctx, beaconRect, w, h, obstacles);
-                } else {
-                    rect = findClearLabelRect(
-                        ctx,
-                        beaconRect,
-                        w,
-                        h,
-                        obstacles,
-                        plan.angles,
-                        plan.minR
-                    );
+                let rect = preferredStateSlot(region, wrapRect, w, h);
+                if (rect) {
+                    rect = clampRectToWrap(rect, ctx.placementRect || wrapRect, 8);
+                }
+                const slotBlocked =
+                    !rect ||
+                    rectOverlapsLand(ctx, rect) ||
+                    obstacles.some(function (o) {
+                        const r = o.rect || o;
+                        return rectOverlapArea(rect, r) > 200;
+                    });
+                if (slotBlocked) {
+                    if (region === "selangor" && isDesktopWide) {
+                        rect = findDesktopSelangorOffMapRect(ctx, beaconRect, w, h, obstacles);
+                    } else {
+                        rect = findClearLabelRect(
+                            ctx,
+                            beaconRect,
+                            w,
+                            h,
+                            obstacles,
+                            plan.angles,
+                            plan.minR
+                        );
+                    }
                 }
 
                 if (region === "sarawak" && isDesktopWide) {
@@ -1503,12 +1549,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (compactMap) {
             const order = ["pahang", "selangor", "melaka", "sabah", "sarawak"];
-            const narrow = wrapRect.width < 420;
-            const cols = narrow ? 1 : 5;
-            const rows = narrow ? 5 : 1;
-            const dockTop = wrapRect.top + wrapRect.height * 0.40;
-            const avail = Math.max(rows * 34, wrapRect.bottom - dockTop - 6);
-            const cellW = (wrapRect.width - 10) / cols;
+            const cols = 1;
+            const rows = 5;
+            const dockTop = wrapRect.top + wrapRect.height * 0.42;
+            const avail = Math.max(rows * 40, wrapRect.bottom - dockTop - 6);
+            const cellW = wrapRect.width - 10;
             const cellH = avail / rows;
             scene.querySelectorAll(".exploration-beacon.is-geo-placed").forEach(function (btn) {
                 const label = btn.querySelector(".beacon-label");
@@ -1524,6 +1569,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const c = idx % cols;
                 const r = Math.floor(idx / cols);
                 const br = btn.getBoundingClientRect();
+                label.style.setProperty("min-width", "0px", "important");
                 label.style.maxWidth = Math.max(72, cellW - 8) + "px";
                 const lw = Math.min(label.getBoundingClientRect().width || 88, cellW - 6);
                 const lh = Math.min(label.getBoundingClientRect().height || 34, cellH - 2);
