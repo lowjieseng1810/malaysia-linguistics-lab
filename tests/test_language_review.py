@@ -828,6 +828,50 @@ class ReviewInviteTests(unittest.TestCase):
         still_public = self.client.get("/language/mah-meri/review", follow_redirects=False)
         self.assertEqual(still_public.status_code, 302)
 
+    def test_invite_redirect_is_relative_and_host_header_does_not_need_login(self):
+        invite = self._create_invite(label="UM Render fallback")
+        onrender = {"Host": "malaysialinguisticslab.onrender.com"}
+        opened = self.client.get(
+            f"/review/invite/{invite['token']}",
+            follow_redirects=False,
+            headers=onrender,
+        )
+        self.assertEqual(opened.status_code, 302)
+        location = opened.headers.get("Location", "")
+        self.assertTrue(
+            location.startswith("/review/workspace/mah-meri"),
+            location,
+        )
+        self.assertNotIn("malaysialinguisticlab.com", location)
+        self.assertNotIn("/login", location.lower())
+        page = self.client.get("/review/workspace/mah-meri", headers=onrender)
+        self.assertEqual(page.status_code, 200)
+        body = page.get_data(as_text=True)
+        self.assertIn("Private Academic Review Access", body)
+        self.assertIn("Mah Meri", body)
+        self.assertIn("Review Queue", body)
+
+    def test_share_urls_include_render_fallback_on_custom_host(self):
+        from app import _review_invite_share_urls
+
+        with self.app.test_request_context(
+            "/",
+            base_url="https://malaysialinguisticlab.com",
+        ):
+            urls = _review_invite_share_urls("dummy-token-value")
+        self.assertIn("/review/invite/dummy-token-value", urls["primary"])
+        self.assertIn("malaysialinguisticlab.com", urls["primary"])
+        self.assertEqual(
+            urls["render_fallback"],
+            "https://malaysialinguisticslab.onrender.com/review/invite/dummy-token-value",
+        )
+        with self.app.test_request_context(
+            "/",
+            base_url="https://malaysialinguisticslab.onrender.com",
+        ):
+            same_host = _review_invite_share_urls("dummy-token-value")
+        self.assertNotIn("render_fallback", same_host)
+
     def test_invalid_expired_and_revoked_tokens_rejected(self):
         from db import get_db
         from review_invite import revoke_review_invite
@@ -1002,6 +1046,8 @@ class ReviewInviteTests(unittest.TestCase):
         created_html = created.get_data(as_text=True)
         self.assertIn("Copy private review link", created_html)
         self.assertIn("/review/invite/", created_html)
+        self.assertIn("malaysialinguisticslab.onrender.com/review/invite/", created_html)
+        self.assertIn("Copy Render fallback link", created_html)
         ReviewerPermissionTests._insert_user(
             self, "invite_student", "StudentPass1", "student"
         )
