@@ -12,6 +12,7 @@ from __future__ import annotations
 import os
 import re
 import sqlite3
+import hashlib
 import threading
 from contextlib import contextmanager
 from typing import Any, Iterable, Optional, Sequence
@@ -391,3 +392,33 @@ def describe_backend() -> str:
     if is_postgres():
         return "PostgreSQL (DATABASE_URL)"
     return f"SQLite ({get_sqlite_path()})"
+
+
+def database_identity_fingerprint() -> dict[str, str]:
+    """Non-secret identity for comparing whether two hosts share a database.
+
+    Hashes scheme+host+port+dbname (or the SQLite path). Never includes
+    userinfo or the raw URL.
+    """
+    from urllib.parse import urlparse
+
+    url = get_database_url()
+    if not url:
+        path = get_sqlite_path()
+        return {
+            "backend": "sqlite",
+            "fingerprint": hashlib.sha256(path.encode("utf-8")).hexdigest()[:16],
+        }
+    parsed = urlparse(url)
+    ident = "|".join(
+        [
+            parsed.scheme or "",
+            parsed.hostname or "",
+            str(parsed.port or ""),
+            (parsed.path or "").lstrip("/"),
+        ]
+    )
+    return {
+        "backend": "postgres",
+        "fingerprint": hashlib.sha256(ident.encode("utf-8")).hexdigest()[:16],
+    }
