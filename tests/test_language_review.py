@@ -872,6 +872,53 @@ class ReviewInviteTests(unittest.TestCase):
             same_host = _review_invite_share_urls("dummy-token-value")
         self.assertNotIn("render_fallback", same_host)
 
+    def test_normalize_invite_token_strips_url_wrappers(self):
+        from app import _normalize_invite_token
+
+        raw = "AbC-_def123"
+        self.assertEqual(_normalize_invite_token(raw), raw)
+        self.assertEqual(
+            _normalize_invite_token(
+                "https://malaysialinguisticlab.com/review/invite/" + raw
+            ),
+            raw,
+        )
+        self.assertEqual(
+            _normalize_invite_token("review/invite/" + raw + "/"),
+            raw,
+        )
+        self.assertEqual(_normalize_invite_token(raw + "?x=1#queue"), raw)
+
+    def test_percent_encoded_and_path_token_still_opens(self):
+        invite = self._create_invite(label="encoded-path")
+        token = invite["token"]
+        trailing = self.client.get(
+            f"/review/invite/{token}/",
+            follow_redirects=False,
+        )
+        self.assertEqual(trailing.status_code, 302)
+        self.assertIn("/review/workspace/mah-meri", trailing.headers.get("Location", ""))
+        wrapped = self.client.get(
+            f"/review/invite/https://malaysialinguisticslab.onrender.com/review/invite/{token}",
+            follow_redirects=False,
+        )
+        self.assertEqual(wrapped.status_code, 302)
+        self.assertIn("/review/workspace/mah-meri", wrapped.headers.get("Location", ""))
+
+    def test_healthz_exposes_identity_without_secrets(self):
+        resp = self.client.get("/healthz")
+        self.assertEqual(resp.status_code, 200)
+        payload = resp.get_json()
+        self.assertTrue(payload.get("ok"))
+        self.assertEqual(payload.get("db_backend"), "sqlite")
+        self.assertTrue(payload.get("db_fingerprint"))
+        blob = resp.get_data(as_text=True).lower()
+        self.assertNotIn("postgres://", blob)
+        self.assertNotIn("postgresql://", blob)
+        self.assertNotIn("password", blob)
+        self.assertNotIn("token_hash", blob)
+        self.assertNotIn("secret", blob)
+
     def test_invalid_expired_and_revoked_tokens_rejected(self):
         from db import get_db
         from review_invite import revoke_review_invite

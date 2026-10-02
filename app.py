@@ -45,6 +45,7 @@ from database import (
     get_vocabulary_entry,
 )
 from db import (
+    database_identity_fingerprint,
     describe_backend,
     get_db,
     get_sqlite_path,
@@ -147,6 +148,7 @@ import re
 import requests
 import secrets
 import time
+from urllib.parse import unquote, urlparse
 
 
 # Re-read composer flags now that .env is loaded
@@ -336,6 +338,16 @@ _RENDER_INVITE_HOST = (
 )
 
 
+def _review_invite_path(token: str) -> str:
+    """Relative /review/invite/<token> path, never an absolute URL."""
+    path = url_for("review_invite_open", token=token)
+    parsed = urlparse(path)
+    rel = parsed.path if parsed.scheme else path
+    if not rel.startswith("/"):
+        rel = "/" + rel
+    return rel
+
+
 def _review_invite_share_urls(token: str) -> dict[str, str]:
     """Absolute invite URLs for the current request host plus Render fallback.
 
@@ -344,13 +356,33 @@ def _review_invite_share_urls(token: str) -> dict[str, str]:
     will use. The custom-domain link is unchanged; the Render URL is the same
     path on the default HTTPS hostname.
     """
-    path = url_for("review_invite_open", token=token)
+    rel = _review_invite_path(token)
     primary = url_for("review_invite_open", token=token, _external=True)
     urls = {"primary": primary}
     host = (request.host or "").split(":")[0].lower()
     if _RENDER_INVITE_HOST and host != _RENDER_INVITE_HOST:
-        urls["render_fallback"] = f"https://{_RENDER_INVITE_HOST}{path}"
+        urls["render_fallback"] = "https://" + _RENDER_INVITE_HOST + rel
     return urls
+
+
+def _normalize_invite_token(token: str) -> str:
+    """Strip wrapping/encoding artifacts without weakening validation.
+
+    Raw tokens stay hashed in the database; this only normalizes the path
+    segment the browser sent (percent-encoding, accidental full URL paste,
+    surrounding whitespace).
+    """
+    raw = unquote((token or "").strip())
+    raw = raw.split("?", 1)[0].split("#", 1)[0].strip().strip("/")
+    if "://" in raw:
+        raw = urlparse(raw if "://" in raw[:12] else "https://" + raw).path
+        raw = raw.strip().strip("/")
+    marker = "review/invite/"
+    if marker in raw:
+        raw = raw.rsplit(marker, 1)[-1].strip("/")
+    if "/" in raw:
+        raw = raw.rsplit("/", 1)[-1]
+    return raw.strip()
 
 
 def _lookup_auth_user(identifier: str):
@@ -7120,9 +7152,10 @@ def _invite_mutation_attrs(invite):
     }
 
 
-@app.route("/review/invite/<token>")
+@app.route("/review/invite/<path:token>", strict_slashes=False)
 @limiter.limit("20 per minute")
 def review_invite_open(token):
+    token = _normalize_invite_token(token)
     invite = lookup_invite_by_token(token)
     ok, reason = invite_is_usable(invite)
     if not ok:
@@ -7582,7 +7615,39 @@ def add_security_headers(response):
             "max-age=31536000; includeSubDomains"
         )
 
+    git = (os.getenv("RENDER_GIT_COMMIT") or "").strip()
+    if git:
+        response.headers["X-MMLE-Revision"] = git[:12]
+
     return response
+
+
+@app.route("/healthz")
+def healthz():
+    """Public, non-secret identity for comparing custom-domain vs Render hosts.
+
+    Does not expose DATABASE_URL, credentials, invite tokens, or user data.
+    """
+    git = (os.getenv("RENDER_GIT_COMMIT") or "").strip()
+    db_ident = database_identity_fingerprint()
+    cookie_domain = app.config.get("SESSION_COOKIE_DOMAIN")
+    return jsonify(
+        {
+            "ok": True,
+            "revision": git[:12] if git else None,
+            "service": (os.getenv("RENDER_SERVICE_NAME") or "").strip() or None,
+            "render_hostname": (
+                (os.getenv("RENDER_EXTERNAL_HOSTNAME") or "").strip() or None
+            ),
+            "request_host": (request.host or "").split(":")[0].lower(),
+            "request_scheme": request.scheme,
+            "db_backend": db_ident.get("backend"),
+            "db_fingerprint": db_ident.get("fingerprint"),
+            "server_name_configured": bool(app.config.get("SERVER_NAME")),
+            "session_cookie_domain_configured": bool(cookie_domain),
+            "host_matching": bool(getattr(app.url_map, "host_matching", False)),
+        }
+    )
 
 
 # ================= LOGOUT =================
