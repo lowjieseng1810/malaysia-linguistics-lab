@@ -3299,33 +3299,8 @@ def build_tutor_grounded_context(lang_key, level_num, user_message, mode=None):
         or item["meaning"].lower() in lowered_message
     ]
 
-    if lang_key == "mah-meri":
-        try:
-            from mah_meri_quiz import verified_specific_vocab
-
-            extra = [
-                {
-                    "term": (row.get("word") or "").strip(),
-                    "meaning": (row.get("meaning_en") or row.get("meaning_ms") or "").strip(),
-                    "note": "Documented Mah Meri dictionary item.",
-                }
-                for row in verified_specific_vocab(limit=16)
-                if (row.get("word") or "").strip()
-            ]
-            all_vocabulary = extra + [
-                item
-                for item in all_vocabulary
-                if item["term"].strip().lower()
-                not in {e["term"].strip().lower() for e in extra}
-            ]
-            matched_vocabulary = [
-                item
-                for item in all_vocabulary
-                if item["term"].lower() in lowered_message
-                or item["meaning"].lower() in lowered_message
-            ]
-        except Exception:
-            pass
+    # Mah Meri tutor context stays on COURSE_DATA taught items for the
+    # current level — do not prepend unrelated dictionary-pack rows.
 
     if matched_vocabulary:
         vocabulary = matched_vocabulary[:TUTOR_MAX_VOCABULARY_ITEMS]
@@ -3798,9 +3773,17 @@ def get_all_tutor_quiz_candidates(lang_key, level_num):
         from mah_meri_quiz import as_tutor_candidates, build_mah_meri_mcqs
         import random as _random
 
-        mah = as_tutor_candidates(build_mah_meri_mcqs(12, rng=_random.Random(), reverse_bias=0.55))
+        mah = as_tutor_candidates(
+            build_mah_meri_mcqs(
+                12,
+                rng=_random.Random(),
+                reverse_bias=None,
+                level_num=int(level_num) if level_num is not None else None,
+                levels=None if level_num is not None else [1, 2, 3],
+            )
+        )
         if mah:
-            return mah + combined
+            return mah
     return combined
 
 

@@ -154,6 +154,27 @@
   color:#f3aaaa;
 }
 
+.quiz-hint-btn{
+  margin:0 0 12px;
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid rgba(217,180,74,.35);
+  background:transparent;
+  color:#efd77e;
+  font-size:.82rem;
+  font-weight:700;
+  cursor:pointer;
+}
+.quiz-hint-box{
+  display:none;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px dashed rgba(217,180,74,.4);
+  background:rgba(217,180,74,.08);
+  color:#efe6c4;
+  font-size:.88rem;
+  margin-bottom:14px;
+}
 .quiz-feedback{
   padding:14px 16px;
   border-radius:12px;
@@ -295,6 +316,8 @@
   <div id="quiz-coaching" class="quiz-coaching" style="display:none;"></div>
 
   <div class="quiz-question" id="quiz-question-text"></div>
+  <button type="button" class="quiz-hint-btn" id="quiz-hint-btn" style="display:none;">Show hint</button>
+  <div class="quiz-hint-box" id="quiz-hint-box"></div>
   <div class="quiz-options" id="quiz-options"></div>
   <div class="quiz-feedback" id="quiz-feedback" style="display:none;"></div>
 
@@ -345,6 +368,8 @@
     progressFill: document.getElementById("quiz-progress-fill"),
     coaching: document.getElementById("quiz-coaching"),
     questionText: document.getElementById("quiz-question-text"),
+    hintBtn: document.getElementById("quiz-hint-btn"),
+    hintBox: document.getElementById("quiz-hint-box"),
     options: document.getElementById("quiz-options"),
     feedback: document.getElementById("quiz-feedback"),
     nextBtn: document.getElementById("quiz-next-btn"),
@@ -418,6 +443,25 @@
     els.questionText.textContent = q.question;
     els.feedback.style.display = "none";
     els.nextBtn.style.display = "none";
+    const hint = (q.hint || "").trim();
+    if (els.hintBox) {
+      els.hintBox.style.display = "none";
+      els.hintBox.textContent = "";
+    }
+    if (els.hintBtn) {
+      if (hint) {
+        els.hintBtn.style.display = "";
+        els.hintBtn.textContent = "Show hint";
+        els.hintBtn.onclick = function () {
+          els.hintBox.textContent = hint;
+          els.hintBox.style.display = "block";
+          els.hintBtn.style.display = "none";
+        };
+      } else {
+        els.hintBtn.style.display = "none";
+        els.hintBtn.onclick = null;
+      }
+    }
 
     els.options.innerHTML = "";
     q.options.forEach(function (opt, i) {
